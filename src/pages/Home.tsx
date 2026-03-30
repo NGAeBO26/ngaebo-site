@@ -1,0 +1,95 @@
+import TrailMap from "../components/TrailMap";
+
+export default function Home() {
+  return (
+    <main className="page">
+
+      {/* HERO */}
+      <section className="hero">
+        <h1 className="hero-title">
+          North Georgia’s Off‑Road eBike Community Starts Here
+        </h1>
+
+        <p className="hero-text">
+          Safety, trail knowledge, and local events for riders exploring the
+          North Georgia backcountry.
+        </p>
+
+        <div className="hero-actions">
+          <a href="/trail-guides" className="btn btn-primary">
+            Explore Trail Guides
+          </a>
+
+          <a href="#pillars" className="btn btn-secondary">
+            Our Mission
+          </a>
+        </div>
+      </section>
+
+      {/* PILLARS */}
+      <section id="pillars" className="pillars">
+
+        {/* COMMUNITY BUILDING */}
+        <div className="pillar">
+          <div className="pillar-icon">
+            <img
+              src="/images/icons/community.png"
+              alt="Community Building Icon"
+            />
+          </div>
+          <h3 className="pillar-title">Community Building</h3>
+          <p className="pillar-text">
+            Connect with riders, join events, and help grow a respectful,
+            sustainable eBike culture in North Georgia.
+          </p>
+        </div>
+
+        {/* RIDER EDUCATION */}
+        <div className="pillar">
+          <div className="pillar-icon">
+            <img
+              src="/images/icons/education.png"
+              alt="Rider Education Icon"
+            />
+          </div>
+          <h3 className="pillar-title">Rider Education</h3>
+          <p className="pillar-text">
+            Learn safe riding practices, forest road etiquette, and
+            backcountry‑ready skills for every adventure.
+          </p>
+        </div>
+
+        {/* LOCAL PARTNERSHIPS */}
+        <div className="pillar">
+          <div className="pillar-icon">
+            <img
+              src="/images/icons/partnerships.png"
+              alt="Local Partnerships Icon"
+            />
+          </div>
+          <h3 className="pillar-title">Local Partnerships</h3>
+          <p className="pillar-text">
+            Support local shops, trail stewards, and community partners who
+            keep North Georgia’s outdoor spaces thriving.
+          </p>
+        </div>
+
+      </section>
+
+      {/* TRAIL MAP */}
+      <section className="trail">
+        <h2 className="trail-title">North Georgia Gravel Guide v1.0</h2>
+        <p className="trail-text">
+          Explore epic routes across the Chattahoochee‑Oconee National Forest.
+        </p>
+
+        <TrailMap />
+
+        <a href="/trail-guides" className="btn btn-primary">
+          View All Trail Guides
+        </a>
+      </section>
+
+    </main>
+  );
+}

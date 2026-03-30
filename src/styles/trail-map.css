@@ -1,0 +1,57 @@
+.trail-map {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 80vh;
+  position: relative;    /* anchor for absolute children */
+  overflow: hidden;      /* clip canvas to rounded corners */
+  z-index: 0;            /* base stacking level */
+  border-radius: var(--ng-radius-sm);
+  margin-bottom: 24px;
+  border: 1px solid var(--color-border);
+}
+
+/* ensure canvas exactly fills the container */
+.trail-map .maplibregl-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0;
+  pointer-events: auto;
+}
+
+/* floating CTA inside the map */
+.trail-map__cta {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 20;                   /* above the canvas */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--btn-bg, #ff7a00);
+  color: var(--btn-foreground, #fff);
+  border: none;
+  box-shadow: 0 6px 18px rgba(3, 10, 30, 0.18);
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.trail-map__cta:hover { transform: translateY(-2px); }
+.trail-map__cta:active { transform: translateY(0); }
+.trail-map__cta:focus {
+  outline: 3px solid rgba(11,108,255,0.18);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .trail-map__cta {
+    right: 12px;
+    bottom: 12px;
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg3"
+   sodipodi:docname="water.svg"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+
+  <defs id="defs3" />
+
+  <sodipodi:namedview
+     id="namedview3"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:zoom="33.25"
+     inkscape:cx="12"
+     inkscape:cy="12"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3" />
+
+  <!-- Halo droplet -->
+  <path
+     fill="#236ea0"
+     d="m 12,3 c 3,4 5,7 5,10 A 5,5 0 1 1 7,13 C 7,10 9,7 12,3 Z"
+     id="path1"
+     style="display:inline" />
+
+  <!-- Inner droplet -->
+  <path
+     fill="#2A2A2A"
+     d="M12 5c2.5 3.3 4 5.7 4 8a4 4 0 1 1-8 0c0-2.3 1.5-4.7 4-8z"
+     id="path2" />
+
+  <!-- Highlight cutout -->
+  <path
+     fill="#ffffff"
+     d="m 9.9473684,13 a 2.0526318,2.0526318 0 1 0 4.1052636,0 c 0,-1.231579 -0.821053,-2.052632 -2.052632,-2.052632 -1.231579,0 -2.0526316,0.821053 -2.0526316,2.052632 z"
+     id="path3"
+     style="stroke-width:2.05263" />
+
+</svg>

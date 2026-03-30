@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Soft drop shadow -->
+  <ellipse
+    cx="12"
+    cy="19.2"
+    rx="4.2"
+    ry="1.7"
+    fill="black"
+    opacity="0.22" />
+
+  <!-- Pin body -->
+  <path
+    d="M12 2C8.962 2 6.5 4.462 6.5 7.5C6.5 11.25 10.25 15.25 11.55 16.63C11.8 16.9 12.2 16.9 12.45 16.63C13.75 15.25 17.5 11.25 17.5 7.5C17.5 4.462 15.038 2 12 2Z"
+    fill="#1E3A34"/>
+
+  <!-- Inner dot -->
+  <circle
+    cx="12"
+    cy="7.5"
+    r="2.3"
+    fill="#F4F4F4"/>
+</svg>
