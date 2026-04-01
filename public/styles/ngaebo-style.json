@@ -1,0 +1,19 @@
+{
+  "version": 8,
+  "sources": {
+    "ngaebo": {
+      "type": "raster",
+      "tiles": [
+        "https://ngaebo-maptiles.nyc3.cdn.digitaloceanspaces.com/tiles/{z}/{x}/{y}.png"
+      ],
+      "tileSize": 256
+    }
+  },
+  "layers": [
+    {
+      "id": "ngaebo",
+      "type": "raster",
+      "source": "ngaebo"
+    }
+  ]
+}

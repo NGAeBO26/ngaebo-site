@@ -1,0 +1,445 @@
+// src/components/TrailMap/usePois.ts
+import React, { useEffect, useRef } from "react";
+import type maplibregl from "maplibre-gl";
+
+type IconConfig = {
+  id: string;
+  src?: string;
+  pixelRatio?: number;
+  iconSize?: number;
+  clusterMaxZoom?: number;
+  clusterRadius?: number;
+  shadowRadiusStops?: number[] | null;
+  shadowBlurStops?: number[] | null;
+  shadowOpacity?: number;
+};
+
+/**
+ * Hook that manages a combined clustered POI source and cluster/unclustered layers.
+ *
+ * - Creates/updates a clustered "pois-all" source.
+ * - Adds circle-based unclustered points and cluster circles + counts.
+ * - Exposes helpers: updatePoisAllFromRef, addClusteredSourceForId, registerIconType.
+ *
+ * This file intentionally avoids hardcoded sprite names and avoids leaving unused
+ * declarations that trigger TypeScript warnings.
+ */
+export default function usePois(
+  mapRef: React.MutableRefObject<maplibregl.Map | null>,
+) {
+  const registeredIconsRef = useRef<Record<string, IconConfig>>({});
+  const HIGHLIGHT_SRC = "pois-all-cluster-highlight-src";
+  const HIGHLIGHT_LAYER = "pois-all-cluster-highlight";
+  const ALL_SOURCE_ID = "pois-all";
+
+  // Update the combined source data
+  function updatePoisAllFromRef(updatedFeaturesArray: any[]) {
+    const map = mapRef.current as any;
+    if (!map) return;
+    const src = map.getSource(ALL_SOURCE_ID) as any;
+    if (src && typeof src.setData === "function") {
+      src.setData({
+        type: "FeatureCollection",
+        features: updatedFeaturesArray,
+      });
+    }
+  }
+
+  // Helper to load a PNG into an HTMLImageElement
+  async function loadPng(url: string): Promise<HTMLImageElement> {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = url;
+    await new Promise<void>((resolve, reject) => {
+      img.onload = () => resolve();
+      img.onerror = () => reject(new Error(`Failed to load image: ${url}`));
+    });
+    return img;
+  }
+
+  // Add image to map when style is ready (retry loop)
+  function addImageWhenReady(
+    map: maplibregl.Map,
+    name: string,
+    image: HTMLImageElement | ImageBitmap | ImageData | any,
+    options?: any,
+  ) {
+    const tryAdd = () => {
+      if (!map || !map.isStyleLoaded()) {
+        requestAnimationFrame(tryAdd);
+        return;
+      }
+      try {
+        if (!map.hasImage(name)) {
+          map.addImage(name, image as any, options);
+        }
+      } catch {
+        requestAnimationFrame(tryAdd);
+      }
+    };
+    tryAdd();
+  }
+
+  // Create or update a clustered source for a given id
+  function addClusteredSourceForId(
+    sourceId: string,
+    features: any[],
+    clusterMaxZoom = 14,
+    clusterRadius = 40,
+  ) {
+    const map = mapRef.current as any;
+    if (!map) return;
+    if (map.getSource(sourceId)) {
+      (map.getSource(sourceId) as any).setData({
+        type: "FeatureCollection",
+        features,
+      });
+      return sourceId;
+    }
+    map.addSource(sourceId, {
+      type: "geojson",
+      data: { type: "FeatureCollection", features },
+      cluster: true,
+      clusterMaxZoom,
+      clusterRadius,
+    } as any);
+    return sourceId;
+  }
+
+  // Register an icon type: load image (optional) and add a per-icon symbol layer
+  async function registerIconType(cfg: IconConfig) {
+    const map = mapRef.current as any;
+    if (!map) return null;
+    const {
+      id,
+      src,
+      pixelRatio = 2,
+      iconSize = 0.75,
+      clusterMaxZoom = 14,
+      clusterRadius = 40,
+    } = cfg;
+
+    // store config
+    registeredIconsRef.current[id] = {
+      ...cfg,
+      pixelRatio,
+      iconSize,
+      clusterMaxZoom,
+      clusterRadius,
+    };
+
+    // ensure per-icon clustered source exists (empty for now)
+    const perSourceId = `pois-${id}`;
+    if (!map.getSource(perSourceId)) {
+      map.addSource(perSourceId, {
+        type: "geojson",
+        data: { type: "FeatureCollection", features: [] },
+        cluster: true,
+        clusterMaxZoom,
+        clusterRadius,
+      } as any);
+    }
+
+    // try to load image if provided
+    if (src) {
+      try {
+        const img = await loadPng(src);
+        addImageWhenReady(map, id, img, { pixelRatio });
+      } catch (err) {
+        // image load failed — do not throw; symbol layer will simply not render icons
+        // eslint-disable-next-line no-console
+        console.error(`Failed to load icon ${id} from ${src}`, err);
+      }
+    }
+
+    // add per-icon symbol layer (will render only if image exists)
+    const iconLayerId = `poi-${id}-symbol`;
+    if (!map.getLayer(iconLayerId)) {
+      try {
+        map.addLayer({
+          id: iconLayerId,
+          type: "symbol",
+          source: perSourceId,
+          filter: [
+            "all",
+            ["==", ["get", "poi_type"], id],
+            ["!", ["has", "point_count"]],
+          ],
+          layout: {
+            "icon-image": id,
+            "icon-size": iconSize,
+            "icon-allow-overlap": true,
+            "icon-ignore-placement": true,
+          },
+        });
+      } catch (err) {
+        // adding layer may fail if style not ready; swallow to avoid runtime crash
+      }
+    }
+
+    return { iconLayerId, sourceId: perSourceId };
+  }
+
+  useEffect(() => {
+    const map = mapRef.current as any;
+    if (!map) return;
+
+    // Ensure combined clustered source exists
+    if (!map.getSource(ALL_SOURCE_ID)) {
+      map.addSource(ALL_SOURCE_ID, {
+        type: "geojson",
+        data: { type: "FeatureCollection", features: [] },
+        cluster: true,
+        clusterMaxZoom: 14,
+        clusterRadius: 40,
+      } as any);
+    }
+
+    // Unclustered single-point circle (no sprite dependency)
+    if (!map.getLayer("pois-all-unclustered-circle")) {
+      map.addLayer({
+        id: "pois-all-unclustered-circle",
+        type: "circle",
+        source: ALL_SOURCE_ID,
+        filter: ["!", ["has", "point_count"]],
+        paint: {
+          "circle-radius": 6,
+          "circle-color": "#ff5722",
+          "circle-stroke-color": "#ffffff",
+          "circle-stroke-width": 1,
+        },
+      });
+    }
+
+    // Cluster circles
+    if (!map.getLayer("pois-all-clusters")) {
+      map.addLayer({
+        id: "pois-all-clusters",
+        type: "circle",
+        source: ALL_SOURCE_ID,
+        filter: ["has", "point_count"],
+        paint: {
+          "circle-color": [
+            "step",
+            ["get", "point_count"],
+            "#3f5a3c",
+            10,
+            "#f1f075",
+            100,
+            "#f28cb1",
+          ],
+          "circle-radius": [
+            "step",
+            ["get", "point_count"],
+            14,
+            10,
+            18,
+            25,
+            24,
+          ],
+          "circle-stroke-width": 1.5,
+          "circle-stroke-color": "#ffffff",
+        },
+      });
+    }
+
+    // Cluster count labels
+    if (!map.getLayer("pois-all-cluster-count")) {
+      map.addLayer({
+        id: "pois-all-cluster-count",
+        type: "symbol",
+        source: ALL_SOURCE_ID,
+        filter: ["has", "point_count"],
+        layout: {
+          "text-field": ["get", "point_count"],
+          "text-size": 9,
+        },
+        paint: {
+          "text-color": "#ffffff",
+        },
+      });
+    }
+
+    // Highlight source + stroke-only layer
+    if (!map.getSource(HIGHLIGHT_SRC)) {
+      map.addSource(HIGHLIGHT_SRC, {
+        type: "geojson",
+        data: { type: "FeatureCollection", features: [] },
+      } as any);
+    }
+    if (!map.getLayer(HIGHLIGHT_LAYER)) {
+      const highlightLayer: any = {
+        id: HIGHLIGHT_LAYER,
+        type: "circle",
+        source: HIGHLIGHT_SRC,
+        paint: {
+          "circle-opacity": 0,
+          "circle-stroke-color": "#ffcc00",
+          "circle-stroke-width": 2,
+          "circle-radius": [
+            "step",
+            ["get", "point_count"],
+            18,
+            10,
+            22,
+            25,
+            26,
+          ],
+        },
+      };
+      try {
+        // try to insert before first symbol layer so highlight sits under icons
+        const styleLayers = map.getStyle().layers || [];
+        const firstSymbolLayer = styleLayers.find(
+          (l: any) => typeof l.id === "string" && /^poi-.*-symbol$/.test(l.id),
+        );
+        if (firstSymbolLayer) map.addLayer(highlightLayer, firstSymbolLayer.id);
+        else map.addLayer(highlightLayer);
+      } catch {
+        try {
+          map.addLayer(highlightLayer);
+        } catch {}
+      }
+    }
+
+    // mousemove handler to manage hover state for clusters/icons
+    let lastHoverClusterId: number | null = null;
+    let hoverTimer: number | null = null;
+    const onMapMouseMove = (e: any) => {
+      const clusterLayers = ["pois-all-clusters", "pois-all-cluster-count"];
+      const clusterFeatures = map.queryRenderedFeatures(e.point, {
+        layers: clusterLayers,
+      });
+
+      const styleNow = map.getStyle().layers || [];
+      const iconLayerIds = styleNow
+        .map((l: any) => l.id)
+        .filter((id: string) => /^poi-.*-symbol$/.test(id));
+
+      if (iconLayerIds.length) {
+        const iconHits = map.queryRenderedFeatures(e.point, {
+          layers: iconLayerIds,
+        });
+        if (iconHits && iconHits.length) {
+          map.getCanvas().style.cursor = "pointer";
+          try {
+            const highlightSrc = map.getSource(HIGHLIGHT_SRC) as any;
+            if (highlightSrc && typeof highlightSrc.setData === "function") {
+              highlightSrc.setData({
+                type: "FeatureCollection",
+                features: [],
+              });
+            }
+          } catch {}
+          if (hoverTimer !== null) {
+            window.clearTimeout(hoverTimer);
+          }
+          hoverTimer = window.setTimeout(() => {
+            hoverTimer = null;
+          }, 250);
+          lastHoverClusterId = null;
+          return;
+        }
+      }
+
+      if (clusterFeatures && clusterFeatures.length) {
+        const cluster = clusterFeatures[0];
+        const props = cluster.properties || {};
+        const clusterId = props.cluster_id ?? props.clusterId ?? props.cluster;
+
+        if (clusterId === lastHoverClusterId) {
+          map.getCanvas().style.cursor = "pointer";
+          return;
+        }
+        lastHoverClusterId = clusterId;
+        map.getCanvas().style.cursor = "pointer";
+
+        let feature: any = null;
+        const geomCoords = (cluster.geometry as any)?.coordinates;
+        if (
+          Array.isArray(geomCoords) &&
+          typeof geomCoords[0] === "number" &&
+          typeof geomCoords[1] === "number"
+        ) {
+          feature = {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [geomCoords[0], geomCoords[1]],
+            },
+            properties: {
+              point_count: props.point_count ?? props.cluster ?? 0,
+            },
+          };
+        } else {
+          feature = {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: [e.lngLat.lng, e.lngLat.lat],
+            },
+            properties: {
+              point_count: props.point_count ?? props.cluster ?? 0,
+            },
+          };
+        }
+
+        try {
+          const highlightSrc = map.getSource(HIGHLIGHT_SRC) as any;
+          if (highlightSrc && typeof highlightSrc.setData === "function") {
+            highlightSrc.setData({
+              type: "FeatureCollection",
+              features: [feature],
+            });
+          }
+        } catch {}
+
+        if (hoverTimer !== null) {
+          window.clearTimeout(hoverTimer);
+        }
+        hoverTimer = window.setTimeout(() => {
+          hoverTimer = null;
+        }, 250);
+
+        return;
+      }
+
+      lastHoverClusterId = null;
+      map.getCanvas().style.cursor = "";
+      try {
+        const highlightSrc = map.getSource(HIGHLIGHT_SRC) as any;
+        if (highlightSrc && typeof highlightSrc.setData === "function") {
+          highlightSrc.setData({ type: "FeatureCollection", features: [] });
+        }
+      } catch {}
+      if (hoverTimer !== null) {
+        window.clearTimeout(hoverTimer);
+        hoverTimer = null;
+      }
+    };
+
+    map.on("mousemove", onMapMouseMove);
+
+    // cleanup on unmount
+    return () => {
+      try {
+        map.off("mousemove", onMapMouseMove);
+      } catch {}
+      try {
+        if (map.getLayer(HIGHLIGHT_LAYER)) map.removeLayer(HIGHLIGHT_LAYER);
+        if (map.getSource(HIGHLIGHT_SRC)) map.removeSource(HIGHLIGHT_SRC);
+      } catch {}
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mapRef]);
+
+  // expose updater on window for debugging/external injection (optional)
+  (window as any).updatePoisAllFromRef = updatePoisAllFromRef;
+
+  // Return helpers for callers; these are real functions so TS won't mark them unused.
+  return {
+    updatePoisAllFromRef,
+    addClusteredSourceForId,
+    registerIconType,
+  };
+}

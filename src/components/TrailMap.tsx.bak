@@ -1,0 +1,62 @@
+import { useEffect, useRef } from "react";
+import maplibregl from "maplibre-gl";
+import usePois from "./TrailMap/usePois";
+import "../styles/trail-map.css";
+
+export default function TrailMap() {
+  const mapRef = useRef<maplibregl.Map | null>(null);
+
+  useEffect(() => {
+    if (mapRef.current) {
+      mapRef.current.remove();
+      mapRef.current = null;
+    }
+
+    const map = new maplibregl.Map({
+      container: "trail-map",
+      style: {
+        version: 8,
+        sources: {
+          ngaebo: {
+            type: "raster",
+            tiles: [
+              "https://ngaebo-maptiles.nyc3.cdn.digitaloceanspaces.com/tiles/{z}/{x}/{y}.png",
+            ],
+            tileSize: 256,
+          },
+        },
+        layers: [
+          {
+            id: "ngaebo-basemap",
+            type: "raster",
+            source: "ngaebo",
+          },
+        ],
+      },
+      center: [-84.5, 34.5],
+      zoom: 9,
+      minZoom: 8,
+      maxZoom: 15,
+      maxBounds: [
+        [-86.05, 33.95],
+        [-83.05, 35.15],
+      ],
+    });
+
+    mapRef.current = map;
+    (window as any).map = map;
+
+    return () => {
+      try {
+        if (mapRef.current) {
+          mapRef.current.remove();
+          mapRef.current = null;
+        }
+      } catch {}
+    };
+  }, []);
+
+  usePois(mapRef);
+
+  return <div id="trail-map" className="trail-map" />;
+}
