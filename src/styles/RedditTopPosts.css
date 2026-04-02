@@ -1,0 +1,279 @@
+/* -------------------------------------------------- */
+/* REDDIT COMMUNITY-CARD HEADER */
+/* -------------------------------------------------- */
+
+.reddit-card-header {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  border-radius: var(--ng-radius-sm);
+  margin-bottom: 32px;
+}
+
+.reddit-card-banner {
+  width: 100%;
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.floating-banner {
+  position: relative;
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--ng-radius-sm) var(--ng-radius-sm) 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.floating-title {
+  color: var(--brand-bone);
+  font-size: 24px;
+  font-weight: 700;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.45);
+  margin: 0;
+}
+
+.reddit-card-header-content {
+  padding: 24px;
+  text-align: center;
+  background: var(--brand-sand);
+  border-top: 1px solid var(--color-border);
+}
+
+.reddit-card-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: var(--brand-charcoal);
+}
+
+.reddit-card-description {
+  font-size: 16px;
+  opacity: 0.85;
+  margin-bottom: 16px;
+  color: var(--brand-charcoal);
+}
+
+.reddit-card-button {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+/* -------------------------------------------------- */
+/* TOP POSTS SECTION */
+/* -------------------------------------------------- */
+
+.reddit-top-posts {
+  margin-top: 12px;
+  margin-bottom: 32px;
+}
+
+.reddit-top-posts .reddit-subheader {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--brand-charcoal);
+  opacity: 0.85;
+  text-align: center;
+}
+
+.reddit-top-posts .reddit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 8px;
+}
+
+.reddit-top-posts .reddit-mini-card {
+  position: relative; /* for anchored share button */
+  background: var(--brand-olive) !important;
+  border: 1px solid var(--color-border);
+  border-radius: var(--ng-radius-sm);
+  padding: 0;
+  display: block;
+  text-decoration: none;
+  color: var(--brand-bone) !important;
+  transition: background 0.15s ease, transform 0.15s ease;
+  min-height: 180px;
+  padding-bottom: 44px; /* space for share button */
+}
+
+.reddit-top-posts .reddit-mini-card:hover {
+  background: var(--brand-army) !important;
+  transform: translateY(-2px);
+}
+
+/* -------------------------------------------------- */
+/* CSS-based 6px palette banner */
+/* -------------------------------------------------- */
+
+.reddit-mini-banner {
+  height: 6px;
+  width: 100%;
+  margin: 0;
+  border-radius: var(--ng-radius-sm) var(--ng-radius-sm) 0 0;
+  background: linear-gradient(
+    90deg,
+    #40471f 0%,
+    #9ba568 10%,
+    #2c6734 20%,
+    #203c34 30%,
+    #f3741e 40%,
+    #ffd650 50%,
+    #a65229 60%,
+    #b02e26 70%,
+    #3a6ea5 80%,
+    #c9c9c9 100%
+  );
+}
+
+/* -------------------------------------------------- */
+/* Title row + badge placeholder */
+/* -------------------------------------------------- */
+
+.reddit-mini-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* top-align badge with title */
+  padding: 12px 16px 8px 16px;
+  gap: 8px;
+}
+
+.mini-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--brand-bone);
+  flex: 1;
+}
+
+/* Consistent badge size, top-aligned */
+.mini-card-badge-placeholder {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  flex-shrink: 0;
+}
+
+/* -------------------------------------------------- */
+/* Accent bar under title/content */
+/* -------------------------------------------------- */
+
+.reddit-mini-accent {
+  height: 3px;
+  width: calc(100% - 32px);
+  margin: 0 auto;
+  background: rgba(255,255,255,0.25);
+  border-radius: 2px;
+}
+
+/* -------------------------------------------------- */
+/* Content section */
+/* -------------------------------------------------- */
+
+.reddit-mini-content {
+  padding: 12px 16px 16px 16px;
+}
+
+.mini-card-text {
+  font-size: 14px;
+  margin-bottom: 8px;
+  opacity: 0.9;
+  color: var(--brand-bone);
+}
+
+.mini-card-meta {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-top: auto;
+  color: var(--brand-bone);
+}
+
+/* Quiet fallback */
+.reddit-mini-card.quiet {
+  opacity: 0.6;
+  text-align: center;
+}
+
+/* Skeleton loader */
+.reddit-top-posts .skeleton {
+  height: 140px;
+  background: linear-gradient(
+    90deg,
+    #d9d9d9 0%,
+    #e8e8e8 50%,
+    #d9d9d9 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.2s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* -------------------------------------------------- */
+/* Share button anchored bottom-left */
+/* -------------------------------------------------- */
+
+/* Share button anchored bottom-right */
+/* Share button anchored bottom-right, icon only */
+.reddit-mini-share {
+  position: absolute;
+  right: 16px;
+  bottom: 12px;
+  width: 28px;
+  height: 28px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: none; /* removes circle + transparency */
+
+  background-image: url("/images/icons/share.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px 20px; /* adjust if needed */
+}
+
+.reddit-mini-share:hover {
+  opacity: 0.8; /* subtle hover without adding a shape */
+}
+
+/* -------------------------------------------------- */
+/* GLOBAL SPACING FIXES */
+/* -------------------------------------------------- */
+
+#social .community-card:first-of-type {
+  text-align: center !important;
+}
+
+#social.community-section {
+  padding-top: 32px !important;
+}
+
+.community-section + .community-section {
+  padding-top: 32px !important;
+}
+
+/* -------------------------------------------------- */
+/* MOBILE */
+/* -------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .reddit-top-posts .reddit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reddit-top-posts .reddit-mini-card,
+  .reddit-top-posts .reddit-mini-card * {
+    color: var(--brand-bone) !important;
+  }
+}

@@ -30,7 +30,7 @@ export default function Home() {
       <section id="pillars" className="pillars">
 
         {/* COMMUNITY BUILDING */}
-        <div className="pillar">
+        <a href="/community" className="pillar">
           <div className="pillar-icon">
             <img
               src="/images/icons/community.png"
@@ -39,10 +39,9 @@ export default function Home() {
           </div>
           <h3 className="pillar-title">Community Building</h3>
           <p className="pillar-text">
-            Connect with riders, join events, and help grow a respectful,
-            sustainable eBike culture in North Georgia.
+            We connect North Georgia riders with group rides, route intel, and a crew that actually knows the mountains.
           </p>
-        </div>
+        </a>
 
         {/* RIDER EDUCATION */}
         <div className="pillar">
@@ -54,8 +53,7 @@ export default function Home() {
           </div>
           <h3 className="pillar-title">Rider Education</h3>
           <p className="pillar-text">
-            Learn safe riding practices, forest road etiquette, and
-            backcountry‑ready skills for every adventure.
+            We help riders understand terrain, slope, weather windows, and equipment choices so every outing feels intentional and safe.
           </p>
         </div>
 
@@ -69,8 +67,7 @@ export default function Home() {
           </div>
           <h3 className="pillar-title">Local Partnerships</h3>
           <p className="pillar-text">
-            Support local shops, trail stewards, and community partners who
-            keep North Georgia’s outdoor spaces thriving.
+            We collaborate with shops, land stewards, and regional outdoor groups to strengthen access and trail stewardship across North Georgia.
           </p>
         </div>
 
