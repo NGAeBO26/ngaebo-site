@@ -1,0 +1,37 @@
+/* Backdrop */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
+  z-index: 40;
+}
+
+/* Modal card container */
+.modal-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  width: 92%;
+  max-width: 560px;
+  z-index: 50;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  animation: scaleFadeIn 180ms ease-out; /* ← use your global animation */
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: #666;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  color: #000;
+}

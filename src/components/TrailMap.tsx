@@ -6,13 +6,14 @@ import type { Map as MaplibreMap, MapLayerMouseEvent } from "maplibre-gl";
 import useFsRoads from "./TrailMap/useFsRoads";
 import usePois from "./TrailMap/usePois";
 import { usePoiPopups } from "./TrailMap/usePoiPopups";
-
 import GravelPopup, { type GravelPopupData } from "./GravelPopup";
+
+// ✅ NEW: modal hook import (correct path for your structure)
+import { useUnlockModal } from "./modal/useUnlockModal";
 
 import "../styles/trail-map.css";
 
 const STYLE_URL = "/styles/ngaebo-style.json";
-
 const FS_ROADS_LAYER_ID = "fs-roads-line";
 const FS_ROADS_HOVER_LAYER_ID = "fs-roads-hover";
 const FS_ROADS_SELECTED_LAYER_ID = "fs-roads-selected";
@@ -24,7 +25,9 @@ const TrailMap: React.FC = () => {
   const [mapReady, setMapReady] = useState(false);
   const [selectedRoute, setSelectedRoute] = useState<GravelPopupData | null>(null);
 
-  /* ---------------- MAP INITIALIZATION ---------------- */
+  // ✅ NEW: modal trigger
+  const { open: openUnlockModal } = useUnlockModal();
+
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
 
@@ -36,7 +39,7 @@ const TrailMap: React.FC = () => {
 
       try {
         const res = await fetch(STYLE_URL, { cache: "no-store" });
-        if (res && res.ok) {
+        if (res.ok) {
           styleObj = await res.json();
 
           try {
@@ -52,6 +55,7 @@ const TrailMap: React.FC = () => {
 
               if (!isValidProjection) {
                 delete styleObj.projection;
+                console.warn("[TrailMap] removed malformed style.projection");
               }
             }
           } catch {
@@ -74,13 +78,26 @@ const TrailMap: React.FC = () => {
 
         mapRef.current = createdMap;
 
+        try {
+          (window as any).__ngaebo_map = createdMap;
+        } catch {}
+
         createdMap.on("load", () => {
           if (!mounted) return;
+          console.log("[TrailMap] map loaded");
           setMapReady(true);
-          setTimeout(() => createdMap!.resize(), 50);
+          setTimeout(() => {
+            try {
+              createdMap?.resize();
+            } catch {}
+          }, 50);
+        });
+
+        createdMap.on("error", (e: any) => {
+          console.error("[TrailMap] map error", e?.error || e);
         });
       } catch (err) {
-        console.error("TrailMap: failed to create map", err);
+        console.error("[TrailMap] failed to create map", err);
       }
     };
 
@@ -89,115 +106,200 @@ const TrailMap: React.FC = () => {
     return () => {
       mounted = false;
       try {
+        delete (window as any).__ngaebo_map;
+      } catch {}
+      try {
         createdMap?.remove();
       } catch {}
       mapRef.current = null;
     };
   }, []);
 
-  /* ---------------- LOAD SOURCES & LAYERS ---------------- */
   useFsRoads(mapRef.current ?? null, mapReady, { addLayers: true });
   usePois(mapRef, mapReady);
   usePoiPopups(mapRef, mapReady);
 
-  /* ---------------- INTERACTION HANDLERS ---------------- */
+  useEffect(() => {
+    console.log("[TrailMap] selectedRoute changed:", selectedRoute);
+  }, [selectedRoute]);
+
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !mapReady) return;
 
-    if (!map.getLayer(FS_ROADS_LAYER_ID)) return;
-    if (!map.getLayer(FS_ROADS_HOVER_LAYER_ID)) return;
-    if (!map.getLayer(FS_ROADS_SELECTED_LAYER_ID)) return;
+    let cleanup: (() => void) | null = null;
+    let cancelled = false;
+    let tries = 0;
 
-    let hoveredId: string | number | null = null;
-    let selectedId: string | number | null = null;
+    const attachInteractionsWhenReady = () => {
+      if (cancelled) return;
 
-    const setHoverFilter = (id: string | number | null) => {
-      try {
-        map.setFilter(
-          FS_ROADS_HOVER_LAYER_ID,
-          id == null ? ["==", ["id"], ""] : ["==", ["id"], id]
-        );
-      } catch {}
-    };
+      const hasSource = !!map.getSource("fs-roads");
+      const hasBase = !!map.getLayer(FS_ROADS_LAYER_ID);
+      const hasHover = !!map.getLayer(FS_ROADS_HOVER_LAYER_ID);
+      const hasSelected = !!map.getLayer(FS_ROADS_SELECTED_LAYER_ID);
 
-    const setSelectedFilter = (id: string | number | null) => {
-      try {
-        map.setFilter(
-          FS_ROADS_SELECTED_LAYER_ID,
-          id == null ? ["==", ["id"], ""] : ["==", ["id"], id]
-        );
-      } catch {}
-    };
-
-    const onMouseMove = (e: MapLayerMouseEvent) => {
-      const feature = e.features?.[0] as any;
-      const id = feature?.id ?? null;
-
-      map.getCanvas().style.cursor = feature ? "pointer" : "";
-
-      if (id !== hoveredId) {
-        hoveredId = id;
-        setHoverFilter(hoveredId);
-      }
-    };
-
-    const onMouseLeave = () => {
-      map.getCanvas().style.cursor = "";
-      hoveredId = null;
-      setHoverFilter(null);
-    };
-
-    const onRouteClick = (e: MapLayerMouseEvent) => {
-      const feature = e.features?.[0] as any;
-      if (!feature) return;
-
-      selectedId = feature.id ?? null;
-      setSelectedFilter(selectedId);
-
-      const popupData = featureToPopupData(feature);
-      setSelectedRoute(popupData);
-
-      const bounds = getFeatureBounds(feature);
-      if (bounds) {
-        map.fitBounds(bounds, {
-          padding: { top: 40, right: 40, bottom: 260, left: 40 },
-          duration: 700,
-        });
-      }
-    };
-
-    const onMapClick = (e: maplibregl.MapMouseEvent) => {
-      const features = map.queryRenderedFeatures(e.point, {
-        layers: [FS_ROADS_LAYER_ID],
+      console.log("[TrailMap] waiting for fs roads wiring", {
+        tries,
+        hasSource,
+        hasBase,
+        hasHover,
+        hasSelected,
       });
 
-      if (!features.length) {
-        selectedId = null;
-        setSelectedFilter(null);
-        setSelectedRoute(null);
+      if (!hasSource || !hasBase || !hasHover || !hasSelected) {
+        tries += 1;
+
+        if (tries < 30) {
+          window.setTimeout(attachInteractionsWhenReady, 250);
+        } else {
+          console.warn("[TrailMap] fs roads layers never became ready");
+        }
+        return;
       }
+
+      console.log("[TrailMap] attaching FS road interactions");
+
+      let hoveredId: string | number | null = null;
+      let selectedId: string | number | null = null;
+
+      const setHoverFilter = (id: string | number | null) => {
+        try {
+          map.setFilter(
+            FS_ROADS_HOVER_LAYER_ID,
+            id == null ? ["==", ["id"], ""] : ["==", ["id"], id]
+          );
+          console.log("[TrailMap] hover filter set:", id);
+        } catch (err) {
+          console.error("[TrailMap] failed to set hover filter", err);
+        }
+      };
+
+      const setSelectedFilter = (id: string | number | null) => {
+        try {
+          map.setFilter(
+            FS_ROADS_SELECTED_LAYER_ID,
+            id == null ? ["==", ["id"], ""] : ["==", ["id"], id]
+          );
+          console.log("[TrailMap] selected filter set:", id);
+        } catch (err) {
+          console.error("[TrailMap] failed to set selected filter", err);
+        }
+      };
+
+      const onMouseMove = (e: MapLayerMouseEvent) => {
+        const feature = e.features?.[0] as any;
+        const id = feature?.id ?? null;
+
+        console.log("[TrailMap] hover feature:", feature);
+        console.log("[TrailMap] hover feature id:", id);
+
+        try {
+          map.getCanvas().style.cursor = feature ? "pointer" : "";
+        } catch {}
+
+        if (id !== hoveredId) {
+          hoveredId = id;
+          setHoverFilter(hoveredId);
+        }
+      };
+
+      const onMouseLeave = () => {
+        console.log("[TrailMap] mouse left fs roads layer");
+        try {
+          map.getCanvas().style.cursor = "";
+        } catch {}
+        hoveredId = null;
+        setHoverFilter(null);
+      };
+
+      const onRouteClick = (e: MapLayerMouseEvent) => {
+        const feature = e.features?.[0] as any;
+        console.log("[TrailMap] road clicked:", feature);
+
+        if (!feature) return;
+
+        selectedId = feature.id ?? null;
+        setSelectedFilter(selectedId);
+
+        const popupData = featureToPopupData(feature);
+        console.log("[TrailMap] popup data:", popupData);
+        setSelectedRoute(popupData);
+
+        const bounds = getFeatureBounds(feature);
+        console.log("[TrailMap] feature bounds:", bounds);
+
+        if (bounds) {
+          try {
+            map.fitBounds(bounds, {
+              padding: {
+                top: 40,
+                right: 40,
+                bottom: 260,
+                left: 40,
+              },
+              duration: 700,
+            });
+          } catch (err) {
+            console.error("[TrailMap] fitBounds failed", err);
+          }
+        }
+      };
+
+      const onMapClick = (e: maplibregl.MapMouseEvent) => {
+        const features = map.queryRenderedFeatures(e.point, {
+          layers: [FS_ROADS_LAYER_ID],
+        });
+
+        if (!features.length) {
+          console.log("[TrailMap] background clicked, clearing selection");
+          selectedId = null;
+          setSelectedFilter(null);
+          setSelectedRoute(null);
+        }
+      };
+
+      map.on("mousemove", FS_ROADS_LAYER_ID, onMouseMove);
+      map.on("mouseleave", FS_ROADS_LAYER_ID, onMouseLeave);
+      map.on("click", FS_ROADS_LAYER_ID, onRouteClick);
+      map.on("click", onMapClick);
+
+      cleanup = () => {
+        try {
+          map.off("mousemove", FS_ROADS_LAYER_ID, onMouseMove);
+        } catch {}
+        try {
+          map.off("mouseleave", FS_ROADS_LAYER_ID, onMouseLeave);
+        } catch {}
+        try {
+          map.off("click", FS_ROADS_LAYER_ID, onRouteClick);
+        } catch {}
+        try {
+          map.off("click", onMapClick);
+        } catch {}
+      };
     };
 
-    map.on("mousemove", FS_ROADS_LAYER_ID, onMouseMove);
-    map.on("mouseleave", FS_ROADS_LAYER_ID, onMouseLeave);
-    map.on("click", FS_ROADS_LAYER_ID, onRouteClick);
-    map.on("click", onMapClick);
+    attachInteractionsWhenReady();
 
     return () => {
-      map.off("mousemove", FS_ROADS_LAYER_ID, onMouseMove);
-      map.off("mouseleave", FS_ROADS_LAYER_ID, onMouseLeave);
-      map.off("click", FS_ROADS_LAYER_ID, onRouteClick);
-      map.off("click", onMapClick);
+      cancelled = true;
+      if (cleanup) cleanup();
     };
   }, [mapReady]);
 
-  /* ---------------- RENDER ---------------- */
   return (
     <div
       className="trail-map"
-      style={{ position: "relative", width: "100%", height: "100%" }}
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        overflow: "hidden",
+      }}
     >
+      
+
       <div
         ref={containerRef}
         id="map"
@@ -225,11 +327,13 @@ const TrailMap: React.FC = () => {
             route={selectedRoute}
             onClose={() => {
               const map = mapRef.current;
+
               if (map?.getLayer(FS_ROADS_SELECTED_LAYER_ID)) {
                 try {
                   map.setFilter(FS_ROADS_SELECTED_LAYER_ID, ["==", ["id"], ""]);
                 } catch {}
               }
+
               setSelectedRoute(null);
             }}
           />
@@ -240,8 +344,6 @@ const TrailMap: React.FC = () => {
 };
 
 export default TrailMap;
-
-/* ---------------- HELPERS ---------------- */
 
 function featureToPopupData(feature: any): GravelPopupData {
   const p = feature?.properties ?? {};
@@ -269,6 +371,11 @@ function featureToPopupData(feature: any): GravelPopupData {
       p.CLASS_RECOMMENDATION ??
         p.class_recommendation ??
         "Class 1 / 2 recommended"
+    ),
+    classExplanation: String(
+      p.CLASS_EXPLANATION ??
+        p.class_explanation ??
+        "Class explanation text"
     ),
     elevationProfile: parseElevationProfile(
       p.ELEVATION_PROFILE ?? p.elevation_profile
@@ -299,14 +406,10 @@ function parseElevationProfile(value: unknown): number[] {
     if (split.length) return split;
   }
 
-  return [
-    210, 220, 230, 240, 250, 245, 260, 275, 290, 280, 270, 285, 300, 290, 275,
-  ];
+  return [210, 220, 230, 240, 250, 245, 260, 275, 290, 280, 270, 285, 300];
 }
 
-function getFeatureBounds(
-  feature: any
-): maplibregl.LngLatBoundsLike | null {
+function getFeatureBounds(feature: any): maplibregl.LngLatBoundsLike | null {
   const geometry = feature?.geometry;
   if (!geometry) return null;
 
