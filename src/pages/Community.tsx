@@ -1,14 +1,12 @@
-import RedditTopPosts from "../components/RedditTopPosts";
+// import RedditTopPosts from "../components/RedditTopPosts";
+import RedditHybridSection from "../components/socials/RedditHybridSection";
 
 export default function Community() {
-
-  // 🔍 Debug: confirm component mounts when navigating from Home → Community
   console.log(
     "%c[Community] MOUNT",
     "color: #4CAF50; font-weight: bold; font-size:14px;"
   );
 
-  // 🔍 Debug: confirm render cycle
   console.log(
     "%c[Community] RENDER",
     "color: #8BC34A; font-weight:bold; font-size:12px;"
@@ -16,12 +14,12 @@ export default function Community() {
 
   return (
     <main className="page">
-
       {/* SMALL HERO */}
       <section className="hero hero--small">
         <h1 className="hero-title">Your North Georgia eBike Community Hub</h1>
         <p className="hero-text">
-          Social channels, upcoming events, and long‑form articles—all in one place.
+          Social channels, upcoming events, and long‑form articles—all in one
+          place.
         </p>
       </section>
 
@@ -60,26 +58,32 @@ export default function Community() {
 
       {/* SOCIAL SECTION */}
       <section id="social" className="community-section">
-        <h2 className="section-title">Social Channels</h2>
-        <p className="section-text">
-          Connect with riders, share ride reports, and stay in the loop.
-        </p>
+  <div className="social-channels-header">
+    <h2>Social Channels</h2>
+    <p>Connect with riders, share ride reports, and stay in the loop.</p>
+  </div>
 
-        <RedditTopPosts />
+  {/* Temporarily disabled until Reddit API app is approved */}
+  {/* <RedditTopPosts /> */}
 
-        <div className="community-card community-card--disabled">
-          <h3 className="card-title">Facebook Group (Coming Soon)</h3>
-          <p className="card-text">
-            A high‑engagement space for ride planning and local updates.
-          </p>
-        </div>
-      </section>
+  {/* Active Reddit embed section */}
+  <RedditHybridSection />
+
+  <div className="community-card community-card--disabled">
+    <h3 className="card-title">Facebook Group (Coming Soon)</h3>
+    <p className="card-text">
+      A high‑engagement space for ride planning and local updates.
+    </p>
+  </div>
+</section>
+
 
       {/* EVENTS SECTION */}
       <section id="events" className="community-section">
         <h2 className="section-title">Events & Group Rides</h2>
         <p className="section-text">
-          Your central hub for upcoming rides, meetups, and community gatherings.
+          Your central hub for upcoming rides, meetups, and community
+          gatherings.
         </p>
 
         <div className="community-card">
@@ -105,7 +109,6 @@ export default function Community() {
           </p>
         </div>
       </section>
-
     </main>
   );
 }

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "../styles/RedditTopPosts.css";
 
+
+
 // 🔍 Debug: component mount
 console.log(
   "%c[RedditTopPosts] MOUNT",

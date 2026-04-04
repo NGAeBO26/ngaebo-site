@@ -30,7 +30,11 @@
   --ng-radius-lg: 16px;
 
   --header-height: 150px;
+
+  /* ⭐ THE MISSING VARIABLE ⭐ */
+  --max-width: 1200px;   /* You can adjust this to match your design */
 }
+
 
 /* -------------------------------------------------- */
 /* GLOBAL RESET */
@@ -336,10 +340,30 @@ a {
 
 .community-section {
   width: 100%;
-  padding: 60px var(--ng-page-padding);
+  padding: 32px var(--ng-page-padding);
   background: var(--brand-bone);
   box-sizing: border-box;
 }
+
+/* Social Channels header with full-width background image */
+.social-channels-header {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto 32px auto;   /* ← was: 0 auto */
+  padding: 40px var(--ng-page-padding);
+  border-radius: 12px;
+  background-image: url('/images/reddit-highlands-sunset.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  color: var(--brand-bone);
+  box-sizing: border-box;
+}
+
+
+
+
 
 .section-title {
   font-size: 28px;
@@ -432,7 +456,7 @@ a {
 
 /* Reduce spacing between Pillars → Social Channels */
 #social.community-section {
-  padding-top: 32px !important;
+  padding-top: 24px !important;
 }
 
 /* Normalize spacing between Social → Events → Articles */
