@@ -1,7 +1,7 @@
 // components/modal/UnlockModal.tsx
+import { useRef, useState, useEffect } from "react";
 import "../../styles/modal.css";
 
-import React, { useEffect, useRef, useState } from "react";
 import ModalBackdrop from "./ModalBackdrop";
 import ModalCard from "./ModalCard";
 import { useUnlockModal } from "./useUnlockModal";

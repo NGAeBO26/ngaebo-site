@@ -1,5 +1,4 @@
 // components/modal/ModalBackdrop.tsx
-import React from 'react';
 
 interface Props {
   onClose: () => void;

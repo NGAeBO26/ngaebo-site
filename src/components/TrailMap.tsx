@@ -9,7 +9,7 @@ import { usePoiPopups } from "./TrailMap/usePoiPopups";
 import GravelPopup, { type GravelPopupData } from "./GravelPopup";
 
 // ✅ NEW: modal hook import (correct path for your structure)
-import { useUnlockModal } from "./modal/useUnlockModal";
+// import { useUnlockModal } from "./modal/useUnlockModal";
 
 import "../styles/trail-map.css";
 
@@ -26,7 +26,7 @@ const TrailMap: React.FC = () => {
   const [selectedRoute, setSelectedRoute] = useState<GravelPopupData | null>(null);
 
   // ✅ NEW: modal trigger
-  const { open: openUnlockModal } = useUnlockModal();
+  // const { open: openUnlockModal } = useUnlockModal();
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;

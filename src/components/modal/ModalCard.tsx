@@ -7,12 +7,12 @@ interface Props {
   width?: 'sm' | 'md' | 'lg';
 }
 
-const widthMap = {
+/*const widthMap = {
   sm: 'max-w-[450px]',
   md: 'max-w-[560px]',
   lg: 'max-w-[700px]',
 };
-
+*/
 export default function ModalCard({ children }: Props) {
   return <div className="modal-card">{children}</div>;
 }
