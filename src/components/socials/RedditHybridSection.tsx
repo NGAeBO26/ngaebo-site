@@ -1,5 +1,9 @@
+// src/components/socials/RedditHybridSection.tsx
+import { useEnsureRedditWidgets } from './useEnsureRedditWidgets';
+
 export default function RedditHybridSection() {
-  // Your simple array of Reddit post URLs
+  useEnsureRedditWidgets();
+
   const posts = [
     {
       url: "https://www.reddit.com/r/NorthGeorgiaEbikes/comments/1s7q3uc/new_ebike_laws_are_sweeping_across_us_states_in/",
@@ -9,22 +13,18 @@ export default function RedditHybridSection() {
     },
   ];
 
-  // Convert normal Reddit URL → embed URL
-  function toEmbedUrl(url: string) {
-    return url.replace("www.reddit.com", "embed.reddit.com") + "?embed=true&theme=light";
-  }
-
   return (
-    <div>
+    <div className="reddit-hybrid-section">
       {posts.map((post, i) => (
         <div key={i} className="reddit-embed-card">
-          <iframe
-            src={toEmbedUrl(post.url)}
-            loading="lazy"
-            title={`reddit-post-${i}`}
-            scrolling="no"
-          style={{ height: "350px", overflow: "hidden" }}
-          ></iframe>
+          <blockquote
+            className="reddit-embed-bq"
+            data-embed-height="350"
+            data-embed-showmedia="true"
+            data-embed-live="false"
+          >
+            <a href={post.url}></a>
+          </blockquote>
 
           <div className="bottom-gradient-anchor"></div>
 

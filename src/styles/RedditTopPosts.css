@@ -6,6 +6,7 @@
   padding: 0 0 40px 0; /* bottom padding for share button */
   margin-bottom: 20px;
   width: 100%;
+  min-width: 320px;
   max-width: 100%;
   border-radius: 12px;
   background: var(--brand-white);
@@ -122,3 +123,63 @@
   padding: 0 !important;
   margin: 0 !important;
 }
+
+/* === Align reddit embeds with subsection header (uses globals --max-width) === */
+.reddit-top-posts,
+.reddit-hybrid-section {
+  max-width: var(--max-width);
+  margin: 0 auto 24px;
+  padding-left: var(--ng-page-padding);
+  padding-right: var(--ng-page-padding);
+  box-sizing: border-box;
+}
+
+/* Prevent embed cards or injected iframes from forcing a wider layout */
+.reddit-embed-card {
+  min-width: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+
+/* === Force each reddit embed to match the subsection header column === */
+.community-section .reddit-embed-card,
+.reddit-top-posts .reddit-embed-card,
+.reddit-hybrid-section .reddit-embed-card {
+  display: block !important;
+  max-width: calc(var(--max-width) - (2 * var(--ng-page-padding))) !important;
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: var(--ng-page-padding) !important;
+  padding-right: var(--ng-page-padding) !important;
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+}
+
+/* Final alignment: constrain the reddit iframe content to the header's inner column */
+.reddit-embed-card iframe {
+  max-width: calc(var(--max-width) - (2 * var(--ng-page-padding))) !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  display: block !important;
+  box-sizing: border-box !important;
+}
+
+/* fallback: force iframe to header inner column */
+.reddit-embed-card iframe,
+.reddit-embed-card iframe[width] {
+  width: 100% !important;
+  max-width: calc(var(--max-width) - (2 * var(--ng-page-padding))) !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
+  display: block !important;
+}
+
+/* Hide reddit share button completely (visual + accessibility) */
+.reddit-share-btn {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+

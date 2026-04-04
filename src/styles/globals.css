@@ -479,6 +479,30 @@ a {
   text-align: center !important;
 }
 
+/* === Reddit embed vertical spacing: 20px between cards === */
+.reddit-top-posts,
+.reddit-hybrid-section,
+.community-section .reddit-top-posts,
+.community-section .reddit-hybrid-section {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0px !important;
+  box-sizing: border-box !important;
+}
+
+/* Remove previous margin-based spacing so gap is the single source of truth */
+.reddit-embed-card {
+  margin: 0 !important;
+  /* keep the bottom padding used for the gradient/share area */
+  padding-bottom: 10px !important;
+  box-sizing: border-box !important;
+}
+
+/* Fallback for older browsers that don't support gap on flex containers */
+.reddit-embed-card:not(:last-child) {
+  margin-bottom: 0px !important;
+}
+
 /* -------------------------------------------------- */
 /* MOBILE */
 /* -------------------------------------------------- */

@@ -58,25 +58,24 @@ export default function Community() {
 
       {/* SOCIAL SECTION */}
       <section id="social" className="community-section">
-  <div className="social-channels-header">
-    <h2>Social Channels</h2>
-    <p>Connect with riders, share ride reports, and stay in the loop.</p>
-  </div>
+        <h2 className="social-channels-header">Social Channels</h2>
+        <p className="section-text">
+          Connect with riders, share ride reports, and stay in the loop.
+        </p>
 
-  {/* Temporarily disabled until Reddit API app is approved */}
-  {/* <RedditTopPosts /> */}
+        {/* Temporarily disabled until Reddit API app is approved */}
+        {/* <RedditTopPosts /> */}
 
-  {/* Active Reddit embed section */}
-  <RedditHybridSection />
+        {/* Active Reddit embed section */}
+        <RedditHybridSection />
 
-  <div className="community-card community-card--disabled">
-    <h3 className="card-title">Facebook Group (Coming Soon)</h3>
-    <p className="card-text">
-      A high‑engagement space for ride planning and local updates.
-    </p>
-  </div>
-</section>
-
+        <div className="community-card community-card--disabled">
+          <h3 className="card-title">Facebook Group (Coming Soon)</h3>
+          <p className="card-text">
+            A high‑engagement space for ride planning and local updates.
+          </p>
+        </div>
+      </section>
 
       {/* EVENTS SECTION */}
       <section id="events" className="community-section">
