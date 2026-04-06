@@ -4,12 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview --port $PORT --strictPort --host 0.0.0.0",
-    "start": "node scripts/start.cjs"
-  },
+  "dev": "vite",
+  "build": "tsc -b && vite build",
+  "lint": "eslint .",
+  "preview": "vite preview --port $PORT --strictPort --host 0.0.0.0",
+
+  "start": "node scripts/start.cjs",   
+  "server": "node server.js"           
+    }
+,
   "dependencies": {
     "express": "^5.2.1",
     "maplibre-gl": "^5.21.1",

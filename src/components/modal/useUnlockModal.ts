@@ -1,5 +1,7 @@
-// hooks/useUnlockModal.ts
-import { create } from 'zustand';
+// components/modal/useUnlockModal.ts
+import { create } from "zustand";
+
+const STORAGE_KEY = "trailmap_unlocked_v1";
 
 interface UnlockModalState {
   isOpen: boolean;
@@ -11,11 +13,12 @@ interface UnlockModalState {
 
 export const useUnlockModal = create<UnlockModalState>((set) => ({
   isOpen: false,
-  isUnlocked: false,
+  isUnlocked: localStorage.getItem(STORAGE_KEY) === "1",
 
   open: () => set({ isOpen: true }),
   close: () => set({ isOpen: false }),
-
-  // Called after successful email submission
-  unlock: () => set({ isUnlocked: true, isOpen: false }),
+  unlock: () => {
+    localStorage.setItem(STORAGE_KEY, "1");
+    set({ isUnlocked: true, isOpen: false });
+  },
 }));

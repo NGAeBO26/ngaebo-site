@@ -35,3 +35,41 @@
 .modal-close:hover {
   color: #000;
 }
+
+.unlock-form {
+ display: flex;
+ flex-direction: column;
+ gap: 12px;
+}
+.unlock-input {
+ width: 100%;
+ padding: 10px 14px;
+ border: 1px solid #ccc;
+ border-radius: 8px;
+ font-size: 15px;
+ outline: none;
+}
+.unlock-input:focus {
+ border-color: #888;
+}
+.unlock-error {
+ color: #c0392b;
+ font-size: 13px;
+}
+.unlock-submit {
+ padding: 12px;
+ background: #c87941;
+ color: white;
+ border: none;
+ border-radius: 8px;
+ font-size: 15px;
+ cursor: pointer;
+ font-weight: 600;
+}
+.unlock-submit:hover {
+ background: #a8612e;
+}
+.unlock-submit:disabled {
+ opacity: 0.6;
+ cursor: not-allowed;
+}

@@ -1,8 +1,9 @@
+// pages/Home.tsx
 import TrailMap from "../components/TrailMap";
 import { useUnlockModal } from "../components/modal/useUnlockModal";
 
 export default function Home() {
-  const { isUnlocked, open, unlock } = useUnlockModal();
+  const { isUnlocked, open } = useUnlockModal();
 
   return (
     <main className="page">
@@ -10,7 +11,7 @@ export default function Home() {
       {/* HERO */}
       <section className="hero">
         <h1 className="hero-title">
-          North Georgia’s Off‑Road eBike Community Starts Here
+          North Georgia's Off‑Road eBike Community Starts Here
         </h1>
 
         <p className="hero-text">
@@ -93,11 +94,6 @@ export default function Home() {
               <div className="cta-panel">
                 <button className="unlock-cta" onClick={open}>
                   Unlock the Gravel Guide
-                </button>
-
-                {/* Simple dev button to bypass modal */}
-                <button className="fake-complete" onClick={unlock}>
-                  Close / Fake Complete
                 </button>
               </div>
             </div>
