@@ -14,16 +14,16 @@ export default function UnlockModal() {
    setError("");
    setLoading(true);
    try {
-     const res = await fetch("/api/subscribe", {
-       method: "POST",
-       headers: { "Content-Type": "application/json" },
-       body: JSON.stringify({ email }),
-     });
-     const data = await res.json();
-     if (!res.ok) {
-       setError("Something went wrong. Please try again.");
-       return;
-     }
+    //  const res = await fetch("/api/subscribe", {
+    //    method: "POST",
+    //    headers: { "Content-Type": "application/json" },
+    //    body: JSON.stringify({ email }),
+    //  });
+    //  const data = await res.json();
+    //  if (!res.ok) {
+    //    setError("Something went wrong. Please try again.");
+    //    return;
+    //  }
      unlock();
    } catch {
      setError("Network error. Please try again.");
