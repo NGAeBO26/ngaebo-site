@@ -2,6 +2,7 @@ import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import type { Map as MaplibreMap, MapLayerMouseEvent } from "maplibre-gl";
+window.maplibregl = maplibregl;
 
 import useFsRoads from "./TrailMap/useFsRoads";
 import usePois from "./TrailMap/usePois";
@@ -73,9 +74,16 @@ const TrailMap: React.FC = () => {
           container: containerRef.current as HTMLElement,
           style: styleObj || STYLE_URL,
           center: [-84.3, 34.2],
-          zoom: 8,
+          maxBounds: [
+          [-86.05, 33.95],   // southwest corner (lon, lat)
+          [-83.05, 35.15]    // northeast corner (lon, lat)
+          ],
+
+          minZoom: 8,
+          maxZoom: 15
         });
 
+        window.realMap = createdMap;
         mapRef.current = createdMap;
 
         try {
@@ -305,6 +313,7 @@ const TrailMap: React.FC = () => {
         id="map"
         style={{ width: "100%", height: "100%" }}
       />
+      window.realMap = map;
 
       {!mapReady && (
         <div className="map-loading-overlay" aria-hidden>

@@ -10,71 +10,142 @@ export function usePoiPopups(
     const map = mapRef.current;
     if (!map || !mapReady) return;
 
-    // capture a non-null local reference for nested handlers
     const m = map;
 
+    function getPoiSymbolLayers() {
+      const layers = m.getStyle().layers.map(l => l.id);
+      return layers.filter(id => id.startsWith("poi-") && id.includes("symbol"));
+    }
+
     function attach() {
-      if (!m.getLayer("pois-unclustered")) return;
+      const poiSymbolLayers = getPoiSymbolLayers();
+
+      // Wait until ALL POI symbol layers exist
+      if (poiSymbolLayers.length < 6) {
+        console.log("[usePoiPopups] Waiting for all POI symbol layers…", poiSymbolLayers);
+        return null;
+      }
+
+      console.log("[usePoiPopups] Attaching to:", poiSymbolLayers);
 
       const popup = new maplibregl.Popup({
-        closeButton: false,
+        closeButton: true,
         closeOnClick: false,
+        offset: [0, -15], // default offset
       });
 
-      const onEnter = (e: any) => {
-        m.getCanvas().style.cursor = "pointer";
-        const feature = e.features && e.features[0];
+      const handlers: Array<() => void> = [];
 
-        // robust coords: handle Point or wrapped arrays
-        const coords = (feature && feature.geometry && feature.geometry.coordinates)
-          ? (Array.isArray(feature.geometry.coordinates[0]) ? feature.geometry.coordinates[0] : feature.geometry.coordinates)
-          : [e.lngLat.lng, e.lngLat.lat];
+      poiSymbolLayers.forEach(layerId => {
+        const onEnter = () => {
+          m.getCanvas().style.cursor = "pointer";
+        };
 
-        const nameRaw = feature?.properties?.name ?? "POI";
-        const escapeHtml = (s: any) =>
-          String(s)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
+        const onLeave = () => {
+          m.getCanvas().style.cursor = "";
+        };
 
-        const safeName = escapeHtml(nameRaw);
-        popup.setLngLat(coords).setHTML(`<div>${safeName}</div>`).addTo(m);
-      };
+        // suppress any other click behavior we don't control
+        const stopDefault = (e: any) => {
+          if (e.originalEvent) {
+            e.originalEvent.cancelBubble = true;
+          }
+        };
 
-      const onLeave = () => {
-        m.getCanvas().style.cursor = "";
-        popup.remove();
-      };
+        const onClick = (e: any) => {
+          const feature = e.features?.[0];
+          if (!feature) return;
 
-      m.on("mouseenter", "pois-unclustered", onEnter);
-      m.on("mouseleave", "pois-unclustered", onLeave);
+          const props = feature.properties || {};
+          const coords = e.lngLat;
+
+          const name = props.name || props.title || "Point of Interest";
+          const desc = props.description || "";
+
+          // --- Per-type popup offset (typed as tuple) ---
+          const popupOffset: [number, number] =
+            props.poi_type === "camp"
+              ? [0, -100]   // camp icons need more lift
+              : [0, -15];  // default for all other POIs
+
+          // --- Build popup HTML ---
+          let html = `
+            <div class="poi-popup">
+              <strong>${name}</strong>
+          `;
+
+          // Custom CAMP popup with clean URL
+          if (props.poi_type === "camp" && props.url) {
+            const cleanUrl = props.url.replace(/^https?:\/\//, "");
+            html += `
+              <div class="poi-desc">
+                <a href="${props.url}" target="_blank" rel="noopener noreferrer">
+                  ${cleanUrl}
+                </a>
+              </div>
+            `;
+          } else if (desc) {
+            html += `<div class="poi-desc">${desc}</div>`;
+          }
+
+          html += `</div>`;
+
+          // 1) recenter map on the POI
+          m.easeTo({
+            center: coords,
+            duration: 300,
+          });
+
+          // 2) after move completes, show popup at centered coords
+          const onceMoveEnd = () => {
+            m.off("moveend", onceMoveEnd);
+
+            popup
+              .setLngLat(m.getCenter())
+              .setOffset(popupOffset)   // <-- tuple offset applied here
+              .setHTML(html)
+              .addTo(m);
+          };
+
+          m.on("moveend", onceMoveEnd);
+        };
+
+        m.on("mouseenter", layerId, onEnter);
+        m.on("mouseleave", layerId, onLeave);
+        m.on("click", layerId, stopDefault);
+        m.on("click", layerId, onClick);
+
+        handlers.push(() => {
+          m.off("mouseenter", layerId, onEnter);
+          m.off("mouseleave", layerId, onLeave);
+          m.off("click", layerId, stopDefault);
+          m.off("click", layerId, onClick);
+        });
+      });
 
       return () => {
-        m.off("mouseenter", "pois-unclustered", onEnter);
-        m.off("mouseleave", "pois-unclustered", onLeave);
+        handlers.forEach(fn => fn());
         popup.remove();
       };
     }
 
-    if (map.getLayer("pois-unclustered")) {
-      const cleanup = attach();
-      return cleanup;
-    } else {
-      const onStyle = () => {
-        if (m.getLayer("pois-unclustered")) {
-          m.off("styledata", onStyle);
-          const cleanup = attach();
-          (m as any).__poiPopupCleanup = cleanup;
-        }
-      };
-      m.on("styledata", onStyle);
-      return () => {
+    let cleanup = attach();
+    if (cleanup) return cleanup;
+
+    const onStyle = () => {
+      cleanup = attach();
+      if (cleanup) {
         m.off("styledata", onStyle);
-        const c = (m as any).__poiPopupCleanup;
-        if (typeof c === "function") c();
-      };
-    }
+        (m as any).__poiPopupCleanup = cleanup;
+      }
+    };
+
+    m.on("styledata", onStyle);
+
+    return () => {
+      m.off("styledata", onStyle);
+      const c = (m as any).__poiPopupCleanup;
+      if (typeof c === "function") c();
+    };
   }, [mapRef, mapReady]);
 }

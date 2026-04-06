@@ -581,3 +581,33 @@ a {
 .unlock-button:hover {
   background: #115e57;
 }
+
+.poi-popup {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  padding: 6px 10px;
+  background: #ffffff;
+  border: 2px solid #0f3d2e; /* NGAeBO forest green */
+  border-radius: 6px;
+  color: #0f3d2e;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+
+  /* allow clicking links */
+  pointer-events: auto;
+
+  /* auto-size + wrapping */
+  width: max-content;
+  max-width: 260px;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.poi-popup a {
+  color: #0645AD;
+  text-decoration: underline;
+  overflow-wrap: break-word;
+  word-break: break-all;
+}
+
+

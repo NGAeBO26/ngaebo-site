@@ -235,12 +235,12 @@ export default function usePois(
         const p = f.properties || {};
         const safeName = escapeHtml(p.name || "Point of interest");
 
-        new maplibregl.Popup({ offset: 12 })
-          .setLngLat(coords)
-          .setHTML(`<strong>${safeName}</strong>`)
-          .addTo(m);
+        // new maplibregl.Popup({ offset: 12 })
+        //   .setLngLat(coords)
+        //   .setHTML(`<strong>${safeName}</strong>`)
+        //   .addTo(m);
 
-        return;
+        // return;
       }
 
       let unclusteredHits: any[] = [];
@@ -256,12 +256,12 @@ export default function usePois(
         const p = f.properties || {};
         const safeName = escapeHtml(p.name || "Point of interest");
 
-        new maplibregl.Popup({ offset: 12 })
-          .setLngLat(coords)
-          .setHTML(`<strong>${safeName}</strong>`)
-          .addTo(m);
+        // new maplibregl.Popup({ offset: 12 })
+        //   .setLngLat(coords)
+        //   .setHTML(`<strong>${safeName}</strong>`)
+        //   .addTo(m);
 
-        return;
+        // return;
       }
 
       let clusterHits: any[] = [];
