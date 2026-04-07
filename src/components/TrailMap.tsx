@@ -1,16 +1,14 @@
 import * as React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import maplibregl from "maplibre-gl";
 import type { Map as MaplibreMap, MapLayerMouseEvent } from "maplibre-gl";
 window.maplibregl = maplibregl;
 
 import useFsRoads from "./TrailMap/useFsRoads";
 import usePois from "./TrailMap/usePois";
-import { usePoiPopups } from "./TrailMap/usePoiPopups";
+import { usePoiPopups, type PoiPopupState } from "./TrailMap/usePoiPopups";
+import { PoiPopup } from "./TrailMap/PoiPopup";
 import GravelPopup, { type GravelPopupData } from "./GravelPopup";
-
-// ✅ NEW: modal hook import (correct path for your structure)
-// import { useUnlockModal } from "./modal/useUnlockModal";
 
 import "../styles/trail-map.css";
 
@@ -25,9 +23,15 @@ const TrailMap: React.FC = () => {
 
   const [mapReady, setMapReady] = useState(false);
   const [selectedRoute, setSelectedRoute] = useState<GravelPopupData | null>(null);
+  const [poiPopup, setPoiPopup] = useState<PoiPopupState | null>(null);
 
-  // ✅ NEW: modal trigger
-  // const { open: openUnlockModal } = useUnlockModal();
+  const handlePoiOpen = useCallback((state: PoiPopupState) => {
+    setPoiPopup(state);
+  }, []);
+
+  const handlePoiClose = useCallback(() => {
+    setPoiPopup(null);
+  }, []);
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
@@ -75,12 +79,11 @@ const TrailMap: React.FC = () => {
           style: styleObj || STYLE_URL,
           center: [-84.3, 34.2],
           maxBounds: [
-          [-86.05, 33.95],   // southwest corner (lon, lat)
-          [-83.05, 35.15]    // northeast corner (lon, lat)
+            [-86.05, 33.95],
+            [-83.05, 35.15],
           ],
-
           minZoom: 8,
-          maxZoom: 15
+          maxZoom: 15,
         });
 
         window.realMap = createdMap;
@@ -125,7 +128,7 @@ const TrailMap: React.FC = () => {
 
   useFsRoads(mapRef.current ?? null, mapReady, { addLayers: true });
   usePois(mapRef, mapReady);
-  usePoiPopups(mapRef, mapReady);
+  usePoiPopups(mapRef, mapReady, handlePoiOpen, handlePoiClose);
 
   useEffect(() => {
     console.log("[TrailMap] selectedRoute changed:", selectedRoute);
@@ -157,7 +160,6 @@ const TrailMap: React.FC = () => {
 
       if (!hasSource || !hasBase || !hasHover || !hasSelected) {
         tries += 1;
-
         if (tries < 30) {
           window.setTimeout(attachInteractionsWhenReady, 250);
         } else {
@@ -306,14 +308,11 @@ const TrailMap: React.FC = () => {
         overflow: "hidden",
       }}
     >
-      
-
       <div
         ref={containerRef}
         id="map"
         style={{ width: "100%", height: "100%" }}
       />
-      window.realMap = map;
 
       {!mapReady && (
         <div className="map-loading-overlay" aria-hidden>
@@ -321,6 +320,14 @@ const TrailMap: React.FC = () => {
         </div>
       )}
 
+      {/* POI popup — pixel-positioned, bypasses MapLibre's projection matrix */}
+      <PoiPopup
+  mapRef={mapRef}
+  popup={poiPopup}
+  onClose={handlePoiClose}
+/>
+
+      {/* FS road popup — bottom sheet */}
       <div
         style={{
           position: "absolute",
