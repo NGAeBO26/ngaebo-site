@@ -1,0 +1,450 @@
+{
+    "route_id": "99",
+    "count": 74,
+    "locations": [
+        {
+            "label": "Moreland Gap (gap)",
+            "dist": 0.26,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Snake Knob (scenic)",
+            "dist": 0.61,
+            "type": "scenic",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Powell Mountain (scenic)",
+            "dist": 0.64,
+            "type": "scenic",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "McClure Gap (gap)",
+            "dist": 0.67,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Jess Gap (gap)",
+            "dist": 0.77,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Mash Ridge (scenic)",
+            "dist": 0.94,
+            "type": "scenic",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Wolfpen Gap (gap)",
+            "dist": 0.96,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Dicks Creek Gap (gap)",
+            "dist": 0.99,
+            "type": "gap",
+            "via": "US Hwy 76"
+        },
+        {
+            "label": "Fork Ridge (scenic)",
+            "dist": 1.0,
+            "type": "scenic",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Rough Ridge (scenic)",
+            "dist": 1.02,
+            "type": "scenic",
+            "via": "Cynth Creek Rd"
+        },
+        {
+            "label": "Wolfstake Knob (scenic)",
+            "dist": 1.09,
+            "type": "scenic",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Whiteoak Stomp (scenic)",
+            "dist": 1.2,
+            "type": "scenic",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Berrong Mountain (scenic)",
+            "dist": 1.23,
+            "type": "scenic",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Corn Ridge (scenic)",
+            "dist": 1.24,
+            "type": "scenic",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Tower Mountain (scenic)",
+            "dist": 1.32,
+            "type": "scenic",
+            "via": "Pope Rd"
+        },
+        {
+            "label": "Fall Branch Knob (scenic)",
+            "dist": 1.4,
+            "type": "scenic",
+            "via": "Cynth Creek Rd"
+        },
+        {
+            "label": "Deep Gap (gap)",
+            "dist": 1.5,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Kelly Ridge (scenic)",
+            "dist": 1.53,
+            "type": "scenic",
+            "via": "Cynth Creek Rd"
+        },
+        {
+            "label": "Cut Locust Ridge (scenic)",
+            "dist": 1.55,
+            "type": "scenic",
+            "via": "Cynth Creek Rd"
+        },
+        {
+            "label": "Ramp Gap (gap)",
+            "dist": 1.61,
+            "type": "gap",
+            "via": "Cynth Creek Rd"
+        },
+        {
+            "label": "Sheep Stomp Knob (scenic)",
+            "dist": 1.72,
+            "type": "scenic",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Parks Mountain (scenic)",
+            "dist": 1.74,
+            "type": "scenic",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Little Bald Knob (scenic)",
+            "dist": 1.76,
+            "type": "scenic",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Slank Ridge (scenic)",
+            "dist": 1.83,
+            "type": "scenic",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Dismal Knob (scenic)",
+            "dist": 1.86,
+            "type": "scenic",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Manley Gap (gap)",
+            "dist": 1.89,
+            "type": "gap",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Upper Cynth Gap (gap)",
+            "dist": 1.92,
+            "type": "gap",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Dismal Gap (gap)",
+            "dist": 1.96,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Little Mountain (scenic)",
+            "dist": 1.98,
+            "type": "scenic",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Buzzard Knob (scenic)",
+            "dist": 1.99,
+            "type": "scenic",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Day Knob (scenic)",
+            "dist": 2.0,
+            "type": "scenic",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Towns Mountain (scenic)",
+            "dist": 2.0,
+            "type": "scenic",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Jack Pit Gap (gap)",
+            "dist": 2.02,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Parks Gap (gap)",
+            "dist": 2.02,
+            "type": "gap",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Missy Gap (gap)",
+            "dist": 2.03,
+            "type": "gap",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Schoolhouse Gap (gap)",
+            "dist": 2.17,
+            "type": "gap",
+            "via": "River Falls Dr"
+        },
+        {
+            "label": "York Ridge (scenic)",
+            "dist": 2.18,
+            "type": "scenic",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Double Spring Knob (scenic)",
+            "dist": 2.19,
+            "type": "scenic",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Lower Cynth Gap (gap)",
+            "dist": 2.27,
+            "type": "gap",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Cowart Gap (gap)",
+            "dist": 2.3,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Jewell Mountain (scenic)",
+            "dist": 2.37,
+            "type": "scenic",
+            "via": "Old Logging Rd"
+        },
+        {
+            "label": "Rattlesnake Knob (scenic)",
+            "dist": 2.4,
+            "type": "scenic",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Muley Mountain (scenic)",
+            "dist": 2.46,
+            "type": "scenic",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "York Ridge (scenic)",
+            "dist": 2.46,
+            "type": "scenic",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Addis Cove Gap (gap)",
+            "dist": 2.47,
+            "type": "gap",
+            "via": "Cynth Creek Rd"
+        },
+        {
+            "label": "Old Nell Knob (scenic)",
+            "dist": 2.54,
+            "type": "scenic",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Turkey Gap (gap)",
+            "dist": 2.7,
+            "type": "gap",
+            "via": "Lookout Mountain Scenic Hwy"
+        },
+        {
+            "label": "Coffee Gap (gap)",
+            "dist": 2.78,
+            "type": "gap",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Bull Gap (gap)",
+            "dist": 2.8,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Hollifield Gap (gap)",
+            "dist": 2.86,
+            "type": "gap",
+            "via": "Jack Creek Rd"
+        },
+        {
+            "label": "Stillhouse Gap (gap)",
+            "dist": 2.88,
+            "type": "gap",
+            "via": "Mill Creek Rd"
+        },
+        {
+            "label": "Bearmeat Gap (gap)",
+            "dist": 3.08,
+            "type": "gap",
+            "via": "Bearmeat Spr"
+        },
+        {
+            "label": "Addis Gap (gap)",
+            "dist": 3.1,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Fuller Gap (gap)",
+            "dist": 3.52,
+            "type": "gap",
+            "via": "Wildcat Rd"
+        },
+        {
+            "label": "Andy Gap (gap)",
+            "dist": 3.57,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Plumorchard Gap (gap)",
+            "dist": 3.76,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Sassafras Gap (gap)",
+            "dist": 3.81,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Ben Gap (gap)",
+            "dist": 3.94,
+            "type": "gap",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Harley Gap (gap)",
+            "dist": 3.96,
+            "type": "gap",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Bell Gap (gap)",
+            "dist": 4.17,
+            "type": "gap",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Caesar Gap (gap)",
+            "dist": 4.24,
+            "type": "gap",
+            "via": "Riverside Dr"
+        },
+        {
+            "label": "Tripp Gap (gap)",
+            "dist": 4.33,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Wike Gap (gap)",
+            "dist": 4.34,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Blue Ridge Gap (gap)",
+            "dist": 4.35,
+            "type": "gap",
+            "via": "Charlies Creek Rd"
+        },
+        {
+            "label": "HEMLOCK FALLS TRAILHEAD (trailhead)",
+            "dist": 4.39,
+            "type": "trailhead",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Austin Gap (gap)",
+            "dist": 4.42,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Eller Gap (gap)",
+            "dist": 4.63,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Sassafras Gap (gap)",
+            "dist": 4.66,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Egypt Gap (gap)",
+            "dist": 4.7,
+            "type": "gap",
+            "via": "Hickory Cove Ln"
+        },
+        {
+            "label": "Cut-off Gap (gap)",
+            "dist": 4.73,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Skut Gap (gap)",
+            "dist": 4.81,
+            "type": "gap",
+            "via": "Hickory Cove Ln"
+        },
+        {
+            "label": "Blue Ridge Swag (gap)",
+            "dist": 4.88,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        },
+        {
+            "label": "Wildcat Creek Campground #2 Upper (camp)",
+            "dist": 4.92,
+            "type": "camp",
+            "via": "Wildcat Rd"
+        },
+        {
+            "label": "Lemons Gap (gap)",
+            "dist": 5.07,
+            "type": "gap",
+            "via": "Appalachian National Scenic Trail"
+        }
+    ]
+}

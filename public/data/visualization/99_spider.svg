@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="75mm" height="75mm" viewBox="0 0 300 300">
+        <defs>
+            <radialGradient id="t" cx="150" cy="150" r="100" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#8da65a" stop-opacity="0.75"/>
+                <stop offset="45%" stop-color="#ebc850" stop-opacity="0.65"/>
+                <stop offset="75%" stop-color="#af5519" stop-opacity="0.75"/>
+                <stop offset="100%" stop-color="#a52d23" stop-opacity="0.85"/>
+            </radialGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="white"/>
+        <circle cx="150" cy="150" r="20" fill="none" stroke="#ddd" stroke-width="0.8" stroke-dasharray="3,3"/>
+        <circle cx="150" cy="150" r="40" fill="none" stroke="#ddd" stroke-width="0.8" stroke-dasharray="3,3"/>
+        <circle cx="150" cy="150" r="60" fill="none" stroke="#ddd" stroke-width="0.8" stroke-dasharray="3,3"/>
+        <circle cx="150" cy="150" r="80" fill="none" stroke="#ddd" stroke-width="0.8" stroke-dasharray="3,3"/>
+        <circle cx="150" cy="150" r="100" fill="none" stroke="#ddd" stroke-width="1.5"/>
+        <text x="150" y="35" font-family="Montserrat, Arial" font-size="12" text-anchor="middle" font-weight="bold" fill="#777">CLIMBING</text>
+        <text x="270" y="125" font-family="Montserrat, Arial" font-size="12" text-anchor="middle" font-weight="bold" fill="#777">TRACTION</text>
+        <text x="235" y="270" font-family="Montserrat, Arial" font-size="12" text-anchor="middle" font-weight="bold" fill="#777">BATTERY</text>
+        <text x="65" y="270" font-family="Montserrat, Arial" font-size="12" text-anchor="middle" font-weight="bold" fill="#777">RIDER RISK</text>
+        <text x="30" y="125" font-family="Montserrat, Arial" font-size="12" text-anchor="middle" font-weight="bold" fill="#777">REMOTENESS</text>
+        <polygon points="150.0,84.00000000000001 197.55282581475768,134.54915028125262 193.496108669643,209.8672575837461 108.85503233952689,206.63118960624632 130.97886967409693,143.81966011250105" fill="url(#t)" stroke="#999" stroke-width="1.2" stroke-linejoin="round"/>
+        <circle cx="150.0" cy="84.00000000000001" r="9" fill="#fff" stroke="#666" stroke-width="1.5"/><text x="150.0" y="84.00000000000001" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" alignment-baseline="central" fill="#333">3.3</text>
+        <circle cx="197.55282581475768" cy="134.54915028125262" r="9" fill="#fff" stroke="#666" stroke-width="1.5"/><text x="197.55282581475768" y="134.54915028125262" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" alignment-baseline="central" fill="#333">2.5</text>
+        <circle cx="193.496108669643" cy="209.8672575837461" r="9" fill="#fff" stroke="#666" stroke-width="1.5"/><text x="193.496108669643" y="209.8672575837461" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" alignment-baseline="central" fill="#333">3.7</text>
+        <circle cx="108.85503233952689" cy="206.63118960624632" r="9" fill="#fff" stroke="#666" stroke-width="1.5"/><text x="108.85503233952689" y="206.63118960624632" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" alignment-baseline="central" fill="#333">3.5</text>
+        <circle cx="130.97886967409693" cy="143.81966011250105" r="9" fill="#fff" stroke="#666" stroke-width="1.5"/><text x="130.97886967409693" y="143.81966011250105" font-family="Arial" font-size="9" font-weight="bold" text-anchor="middle" alignment-baseline="central" fill="#333">1.0</text>
+    </svg>

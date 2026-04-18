@@ -1,0 +1,90 @@
+{
+    "route_id": "20",
+    "count": 14,
+    "locations": [
+        {
+            "label": "STONEWALL MTN BIKE TRAIL PARKING (trailhead)",
+            "dist": 0.25,
+            "type": "trailhead",
+            "via": "Carleton English Rd"
+        },
+        {
+            "label": "Boggs Mountain (scenic)",
+            "dist": 1.07,
+            "type": "scenic",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Wiley Mountain (scenic)",
+            "dist": 1.17,
+            "type": "scenic",
+            "via": "Carter Ln"
+        },
+        {
+            "label": "Jameson Mountain (scenic)",
+            "dist": 1.4,
+            "type": "scenic",
+            "via": "Worley Creek Rd"
+        },
+        {
+            "label": "Stonewall Knob (scenic)",
+            "dist": 1.82,
+            "type": "scenic",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Crukleton Ridge (scenic)",
+            "dist": 1.87,
+            "type": "scenic",
+            "via": "Stonewall Falls Mountain Bike"
+        },
+        {
+            "label": "Bee Branch Ridge (scenic)",
+            "dist": 1.9,
+            "type": "scenic",
+            "via": "Kerby Rd"
+        },
+        {
+            "label": "Worley Ridge (scenic)",
+            "dist": 2.09,
+            "type": "scenic",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Stekoa Falls (water)",
+            "dist": 2.23,
+            "type": "water",
+            "via": "Madison Ln"
+        },
+        {
+            "label": "Cliff Mountain (scenic)",
+            "dist": 2.26,
+            "type": "scenic",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "ANGEL FALLS (trailhead)",
+            "dist": 4.24,
+            "type": "trailhead",
+            "via": "Lake Rabun Rd"
+        },
+        {
+            "label": "Chattooga River Ranger District (ranger)",
+            "dist": 4.81,
+            "type": "ranger",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Chattooga River District (camp)",
+            "dist": 4.82,
+            "type": "camp",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Chattooga River District (camp)",
+            "dist": 4.82,
+            "type": "camp",
+            "via": "Unmarked Road"
+        }
+    ]
+}

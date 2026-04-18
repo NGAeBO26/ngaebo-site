@@ -1,0 +1,102 @@
+{
+    "route_id": "28-2",
+    "count": 16,
+    "locations": [
+        {
+            "label": "Cochrans Falls (water)",
+            "dist": 0.82,
+            "type": "water",
+            "via": "Hike Inn Lodge"
+        },
+        {
+            "label": "Frosty Mountain (scenic)",
+            "dist": 1.5,
+            "type": "scenic",
+            "via": "Hike Inn Lodge"
+        },
+        {
+            "label": "Bull Mountain (scenic)",
+            "dist": 1.61,
+            "type": "scenic",
+            "via": "Bull Mountain"
+        },
+        {
+            "label": "Nimblewill Gap (gap)",
+            "dist": 1.61,
+            "type": "gap",
+            "via": "Appalachian Approach Trail"
+        },
+        {
+            "label": "Amicalola Mountain (scenic)",
+            "dist": 1.79,
+            "type": "scenic",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Black Mountain (scenic)",
+            "dist": 1.8,
+            "type": "scenic",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "JAKE MOUNTAIN (trailhead)",
+            "dist": 1.93,
+            "type": "trailhead",
+            "via": "Fdr-872 Jones Creek Dam Trail"
+        },
+        {
+            "label": "Jake Mountain (scenic)",
+            "dist": 2.36,
+            "type": "scenic",
+            "via": "Jake Mountain Trail"
+        },
+        {
+            "label": "Sheep Wallow Mountain (scenic)",
+            "dist": 2.49,
+            "type": "scenic",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Amicalola Falls (water)",
+            "dist": 2.64,
+            "type": "water",
+            "via": "Appalachian Approach Trail"
+        },
+        {
+            "label": "Big Stamp Gap (gap)",
+            "dist": 3.74,
+            "type": "gap",
+            "via": "Benton Mackaye"
+        },
+        {
+            "label": "Winding Stair Gap (gap)",
+            "dist": 4.15,
+            "type": "gap",
+            "via": "Benton Mackaye"
+        },
+        {
+            "label": "Deerlick Gap (gap)",
+            "dist": 4.36,
+            "type": "gap",
+            "via": "Benton Mackaye"
+        },
+        {
+            "label": "Black Falls (water)",
+            "dist": 4.98,
+            "type": "water",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Fryingpan Gap (gap)",
+            "dist": 5.01,
+            "type": "gap",
+            "via": "Benton Mackaye"
+        },
+        {
+            "label": "Coppermine Gap (gap)",
+            "dist": 5.17,
+            "type": "gap",
+            "via": "Benton Mackaye"
+        }
+    ]
+}

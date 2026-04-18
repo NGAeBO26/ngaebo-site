@@ -1,0 +1,15 @@
+{
+    "metadata": "Global Forest Service Terrain Baseline",
+    "sample_count": 7,
+    "breakpoints": [
+        8.686,
+        23.3792,
+        39.2624,
+        55.3324
+    ],
+    "stats": {
+        "min": 0.19600000000002635,
+        "max": 387.01,
+        "avg": 77.933
+    }
+}

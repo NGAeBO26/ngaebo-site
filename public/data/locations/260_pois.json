@@ -1,0 +1,48 @@
+{
+    "route_id": "260",
+    "count": 7,
+    "locations": [
+        {
+            "label": "Little Mountain Ridge (scenic)",
+            "dist": 0.92,
+            "type": "scenic",
+            "via": "Pinhoti"
+        },
+        {
+            "label": "Strawberry Mountain (scenic)",
+            "dist": 1.09,
+            "type": "scenic",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "DRY CREEK EQUESTRIAN TRAILHEAD (trailhead)",
+            "dist": 1.95,
+            "type": "trailhead",
+            "via": "Creekside Trail"
+        },
+        {
+            "label": "Baileys Gap (gap)",
+            "dist": 2.25,
+            "type": "gap",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Hammond Gap (gap)",
+            "dist": 4.27,
+            "type": "gap",
+            "via": "Unmarked Road"
+        },
+        {
+            "label": "Keown Falls (water)",
+            "dist": 4.38,
+            "type": "water",
+            "via": "Pinhoti"
+        },
+        {
+            "label": "The Pocket Recreation Area (camp)",
+            "dist": 4.42,
+            "type": "camp",
+            "via": "Unmarked Road"
+        }
+    ]
+}

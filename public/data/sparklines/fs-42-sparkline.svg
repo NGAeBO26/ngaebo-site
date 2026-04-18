@@ -1,0 +1,38 @@
+<svg width="100%" height="80" viewBox="0 0 100 80">
+  <polyline 
+    fill="rgba(255,200,0,0.3)" 
+    stroke="#ffbb00" 
+    stroke-width="2"
+    points="[% 
+      with_variable(
+        'p',
+        json_to_array(
+          file_contents(
+            'https://www.northgeorgiaebikes.com/data/profiles/FS_42.json'
+          )
+        ),
+        array_to_string(
+          array_foreach(
+            @p,
+            scale_linear(
+              map_get(@element,'d'),
+              0,
+              array_max(array_foreach(@p,map_get(@element,'d'))),
+              0,
+              100
+            )
+            || ',' ||
+            ( 80 - scale_linear(
+                map_get(@element,'e'),
+                array_min(array_foreach(@p,map_get(@element,'e'))),
+                array_max(array_foreach(@p,map_get(@element,'e'))),
+                0,
+                80
+            ))
+          ),
+          ' '
+        )
+      )
+    %]"
+  />
+</svg>

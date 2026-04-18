@@ -1,0 +1,12 @@
+{
+    "route_id": "748-3",
+    "count": 1,
+    "locations": [
+        {
+            "label": "McCracken Ford (historical) (hazard)",
+            "dist": 4.57,
+            "type": "hazard",
+            "via": "Unmarked Road"
+        }
+    ]
+}
