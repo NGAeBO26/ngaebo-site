@@ -2,7 +2,6 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import fs from "fs";
 import { exec } from "child_process";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -14,7 +13,7 @@ const dist = path.join(__dirname, "dist");
 app.use(express.json());
 
 // ------------------------------------------------------------
-// 1. API ROUTES (Must be ABOVE static files)
+// 1. API ROUTES (Primary Handlers)
 // ------------------------------------------------------------
 
 app.post("/api/subscribe", async (req, res) => {
@@ -25,10 +24,8 @@ app.post("/api/subscribe", async (req, res) => {
   res.json({ success: true });
 });
 
-// JIT WEATHER SYNC & SVG GENERATION ENDPOINT
 app.get('/api/sync-weather/:routeID', (req, res) => {
   const { routeID } = req.params;
-  // Use __dirname to ensure we are relative to server.js in the /workspace
   const scriptPath = path.join(__dirname, 'scripts', 'weather_engine.py');
   const pythonCmd = process.platform === "win32" ? "python" : "python3";
 
@@ -42,7 +39,6 @@ app.get('/api/sync-weather/:routeID', (req, res) => {
       return res.status(500).json({ error: 'Sync failed', details: error.message });
     }
     
-    // Check for success message from Python
     if (stdout.includes('SUCCESS')) {
       res.json({ status: 'updated' });
     } else {
@@ -52,14 +48,9 @@ app.get('/api/sync-weather/:routeID', (req, res) => {
 });
 
 // ------------------------------------------------------------
-// 2. API SAFETY CATCH
+// 2. API SAFETY CATCH (Express 5 Prefix logic)
 // ------------------------------------------------------------
-// This prevents "SyntaxError: Unexpected token <" by returning JSON 
-// instead of index.html if an API path is typed wrong.
-// ------------------------------------------------------------
-// 2. API SAFETY CATCH (Express 5 Explicit Syntax)
-// ------------------------------------------------------------
-app.all('/api/:path+', (req, res) => {
+app.use('/api', (req, res) => {
   res.status(404).json({ error: "API route not found" });
 });
 
@@ -68,14 +59,13 @@ app.all('/api/:path+', (req, res) => {
 // ------------------------------------------------------------
 app.use(express.static(dist));
 
-// This catches any remaining page requests and sends them to React
-app.get('/:path*', (req, res) => {
+// Express 5 strictly requires a name for wildcards
+app.get('/:splat*', (req, res) => {
   res.sendFile(path.join(dist, "index.html"));
 });
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server listening on port ${PORT}`);
-  console.log(`Working Dir: ${process.cwd()}`);
-  console.log(`Dist Dir: ${dist}`);
+  console.log(`Dist folder: ${dist}`);
 });
