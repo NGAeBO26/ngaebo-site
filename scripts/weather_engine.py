@@ -18,8 +18,12 @@ except ImportError:
 def get_env_path(key, default):
     return os.environ.get(key, default)
 
+# 1. Dynamically determine the project root
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, '..'))
+
 # Base directory for absolute local paths
-BASE_LOCAL = r"C:\Dev\ngaebo-site\public\data"
+BASE_LOCAL = os.path.join(ROOT_DIR, 'public', 'data')
 
 WEATHER_DIR = get_env_path("PYTHON_WEATHER_DIR", os.path.join(BASE_LOCAL, "weather"))
 COND_DIR    = get_env_path("PYTHON_CONDITIONS_DIR", os.path.join(BASE_LOCAL, "conditions"))
