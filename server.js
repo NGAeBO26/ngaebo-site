@@ -13,7 +13,7 @@ const dist = path.join(__dirname, "dist");
 app.use(express.json());
 
 // ------------------------------------------------------------
-// 1. API ROUTES (Primary Handlers)
+// 1. API ROUTES (Must remain above static/fallback)
 // ------------------------------------------------------------
 
 app.post("/api/subscribe", async (req, res) => {
@@ -24,6 +24,7 @@ app.post("/api/subscribe", async (req, res) => {
   res.json({ success: true });
 });
 
+// JIT WEATHER SYNC ENDPOINT
 app.get('/api/sync-weather/:routeID', (req, res) => {
   const { routeID } = req.params;
   const scriptPath = path.join(__dirname, 'scripts', 'weather_engine.py');
@@ -48,8 +49,9 @@ app.get('/api/sync-weather/:routeID', (req, res) => {
 });
 
 // ------------------------------------------------------------
-// 2. API SAFETY CATCH (Express 5 Prefix logic)
+// 2. API SAFETY CATCH
 // ------------------------------------------------------------
+// Using a prefix string here bypasses the Path-to-Regexp parser
 app.use('/api', (req, res) => {
   res.status(404).json({ error: "API route not found" });
 });
@@ -59,13 +61,17 @@ app.use('/api', (req, res) => {
 // ------------------------------------------------------------
 app.use(express.static(dist));
 
-// Express 5 strictly requires a name for wildcards
-app.get('/:splat*', (req, res) => {
+/**
+ * EXPRESS 5 CATCH-ALL
+ * syntax: /:parameterName(regex)
+ * This provides the name 'index' and the regex '(.*)' to match everything.
+ */
+app.get('/:index(.*)', (req, res) => {
   res.sendFile(path.join(dist, "index.html"));
 });
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server listening on port ${PORT}`);
-  console.log(`Dist folder: ${dist}`);
+  console.log(`Dist: ${dist}`);
 });
