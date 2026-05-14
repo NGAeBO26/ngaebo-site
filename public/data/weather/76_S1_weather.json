@@ -1,5 +1,5 @@
 {
-  "current_temp": 53,
+  "current_temp": 57,
   "temp_avg": 63,
   "precip_24h": 0.0,
   "short": "Sunny",
@@ -8,19 +8,6 @@
   "hourly_data": [
     {
       "number": 1,
-      "startTime": "2026-05-14T09:00:00-04:00",
-      "temperature": 53,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 0
-      },
-      "windSpeed": "9 mph",
-      "windDirection": "NNW",
-      "shortForecast": "Sunny",
-      "joy_score": 91.5
-    },
-    {
-      "number": 2,
       "startTime": "2026-05-14T10:00:00-04:00",
       "temperature": 57,
       "probabilityOfPrecipitation": {
@@ -33,7 +20,7 @@
       "joy_score": 93.5
     },
     {
-      "number": 3,
+      "number": 2,
       "startTime": "2026-05-14T11:00:00-04:00",
       "temperature": 60,
       "probabilityOfPrecipitation": {
@@ -46,7 +33,7 @@
       "joy_score": 95.0
     },
     {
-      "number": 4,
+      "number": 3,
       "startTime": "2026-05-14T12:00:00-04:00",
       "temperature": 62,
       "probabilityOfPrecipitation": {
@@ -59,7 +46,7 @@
       "joy_score": 96.0
     },
     {
-      "number": 5,
+      "number": 4,
       "startTime": "2026-05-14T13:00:00-04:00",
       "temperature": 65,
       "probabilityOfPrecipitation": {
@@ -72,7 +59,7 @@
       "joy_score": 97.5
     },
     {
-      "number": 6,
+      "number": 5,
       "startTime": "2026-05-14T14:00:00-04:00",
       "temperature": 66,
       "probabilityOfPrecipitation": {
@@ -85,7 +72,7 @@
       "joy_score": 98.0
     },
     {
-      "number": 7,
+      "number": 6,
       "startTime": "2026-05-14T15:00:00-04:00",
       "temperature": 67,
       "probabilityOfPrecipitation": {
@@ -98,7 +85,7 @@
       "joy_score": 98.5
     },
     {
-      "number": 8,
+      "number": 7,
       "startTime": "2026-05-14T16:00:00-04:00",
       "temperature": 67,
       "probabilityOfPrecipitation": {
@@ -111,7 +98,7 @@
       "joy_score": 98.5
     },
     {
-      "number": 9,
+      "number": 8,
       "startTime": "2026-05-14T17:00:00-04:00",
       "temperature": 67,
       "probabilityOfPrecipitation": {
@@ -124,7 +111,7 @@
       "joy_score": 98.5
     },
     {
-      "number": 10,
+      "number": 9,
       "startTime": "2026-05-14T18:00:00-04:00",
       "temperature": 66,
       "probabilityOfPrecipitation": {
@@ -137,7 +124,7 @@
       "joy_score": 98.0
     },
     {
-      "number": 11,
+      "number": 10,
       "startTime": "2026-05-14T19:00:00-04:00",
       "temperature": 65,
       "probabilityOfPrecipitation": {
@@ -150,7 +137,7 @@
       "joy_score": 97.5
     },
     {
-      "number": 12,
+      "number": 11,
       "startTime": "2026-05-14T20:00:00-04:00",
       "temperature": 61,
       "probabilityOfPrecipitation": {
@@ -163,7 +150,7 @@
       "joy_score": 95.5
     },
     {
-      "number": 13,
+      "number": 12,
       "startTime": "2026-05-14T21:00:00-04:00",
       "temperature": 57,
       "probabilityOfPrecipitation": {
@@ -176,7 +163,7 @@
       "joy_score": 93.5
     },
     {
-      "number": 14,
+      "number": 13,
       "startTime": "2026-05-14T22:00:00-04:00",
       "temperature": 53,
       "probabilityOfPrecipitation": {
@@ -189,7 +176,7 @@
       "joy_score": 91.5
     },
     {
-      "number": 15,
+      "number": 14,
       "startTime": "2026-05-14T23:00:00-04:00",
       "temperature": 51,
       "probabilityOfPrecipitation": {
@@ -202,7 +189,7 @@
       "joy_score": 90.5
     },
     {
-      "number": 16,
+      "number": 15,
       "startTime": "2026-05-15T00:00:00-04:00",
       "temperature": 49,
       "probabilityOfPrecipitation": {
@@ -215,7 +202,7 @@
       "joy_score": 89.5
     },
     {
-      "number": 17,
+      "number": 16,
       "startTime": "2026-05-15T01:00:00-04:00",
       "temperature": 47,
       "probabilityOfPrecipitation": {
@@ -228,7 +215,7 @@
       "joy_score": 88.5
     },
     {
-      "number": 18,
+      "number": 17,
       "startTime": "2026-05-15T02:00:00-04:00",
       "temperature": 45,
       "probabilityOfPrecipitation": {
@@ -241,7 +228,7 @@
       "joy_score": 87.5
     },
     {
-      "number": 19,
+      "number": 18,
       "startTime": "2026-05-15T03:00:00-04:00",
       "temperature": 44,
       "probabilityOfPrecipitation": {
@@ -254,7 +241,7 @@
       "joy_score": 87.0
     },
     {
-      "number": 20,
+      "number": 19,
       "startTime": "2026-05-15T04:00:00-04:00",
       "temperature": 43,
       "probabilityOfPrecipitation": {
@@ -267,7 +254,7 @@
       "joy_score": 86.5
     },
     {
-      "number": 21,
+      "number": 20,
       "startTime": "2026-05-15T05:00:00-04:00",
       "temperature": 43,
       "probabilityOfPrecipitation": {
@@ -280,7 +267,7 @@
       "joy_score": 86.5
     },
     {
-      "number": 22,
+      "number": 21,
       "startTime": "2026-05-15T06:00:00-04:00",
       "temperature": 43,
       "probabilityOfPrecipitation": {
@@ -293,7 +280,7 @@
       "joy_score": 86.5
     },
     {
-      "number": 23,
+      "number": 22,
       "startTime": "2026-05-15T07:00:00-04:00",
       "temperature": 44,
       "probabilityOfPrecipitation": {
@@ -306,7 +293,7 @@
       "joy_score": 87.0
     },
     {
-      "number": 24,
+      "number": 23,
       "startTime": "2026-05-15T08:00:00-04:00",
       "temperature": 46,
       "probabilityOfPrecipitation": {
@@ -317,13 +304,26 @@
       "windDirection": "NE",
       "shortForecast": "Sunny",
       "joy_score": 88.0
+    },
+    {
+      "number": 24,
+      "startTime": "2026-05-15T09:00:00-04:00",
+      "temperature": 52,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 0
+      },
+      "windSpeed": "3 mph",
+      "windDirection": "S",
+      "shortForecast": "Sunny",
+      "joy_score": 91.0
     }
   ],
   "metadata": {
     "profile_id": "76_S1",
     "lat": 34.7216,
     "lon": -83.4935,
-    "generated_at": "2026-05-14T09:30:53.992861",
+    "generated_at": "2026-05-14T10:31:19.781560",
     "saturation_index": 0.0,
     "precip_24h_total": 0.0,
     "soil_status": "Dry / Dusty",

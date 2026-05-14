@@ -118,6 +118,8 @@
   box-sizing: border-box !important;
   padding: 0 !important;
   letter-spacing: .25mm;
+  text-align: center;
+  font-weight: 600 !important;
 }
 
 .rr-overview-widget-container,
@@ -189,8 +191,7 @@
   background-color: #fdf4ce !important;
   border: 1px solid #d88a3a !important;
   border-radius: 1mm 1mm 0 0 !important;
-  font-size: 7.5pt !important;
-  font-weight: 800 !important;
+  font-weight: 600 !important;
   text-transform: uppercase !important;
   text-align: center !important;
   box-sizing: border-box !important;

@@ -233,6 +233,11 @@ def main():
     # Save Merged Result
     with open(weather_path, 'w') as f:
         json.dump(weather_data, f, indent=2)
+    
+    # --- PYTHON EARLY EXIT MESSAGE ---
+    print(f"SUCCESS: {route_id} updated")
+    sys.stdout.flush() # Force Node.js to see the message NOW
+    # ----------------------------------------
 
     # 6. TRIGGER VISUAL GENERATORS
     vis.generate_joy_dial_svg(route_id, weather_data, JOY_DIR, theme)

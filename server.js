@@ -2,7 +2,7 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import { exec } from "child_process";
+import { spawn } from "child_process";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -30,21 +30,32 @@ app.get('/api/sync-weather/:routeID', (req, res) => {
   const scriptPath = path.join(__dirname, 'scripts', 'weather_engine.py');
   const pythonCmd = process.platform === "win32" ? "python" : "python3";
 
-  console.log(`[JIT] Request for: ${routeID}`);
+  console.log(`[JIT] Spawning Engine for: ${routeID}`);
   
-  exec(`${pythonCmd} "${scriptPath}" ${routeID}`, (error, stdout, stderr) => {
-    if (stdout) console.log(`[STDOUT]: ${stdout}`);
-    if (stderr) console.error(`[STDERR]: ${stderr}`);
-    
-    if (error) {
-      return res.status(500).json({ error: 'Sync failed', details: error.message });
-    }
-    
-    if (stdout.includes('SUCCESS')) {
+  const pyProcess = spawn(pythonCmd, [scriptPath, routeID]);
+  let hasSentResponse = false;
+
+  // Listen to the Python Console output
+  pyProcess.stdout.on('data', (data) => {
+    const output = data.toString();
+    console.log(`[PYTHON]: ${output}`);
+
+    // If we see SUCCESS, tell React to go ahead immediately!
+    if (output.includes('SUCCESS') && !hasSentResponse) {
+      hasSentResponse = true;
       res.json({ status: 'updated' });
-    } else {
-      res.status(500).json({ error: 'Engine finished without SUCCESS signal' });
     }
+  });
+
+  pyProcess.stderr.on('data', (data) => {
+    console.error(`[PYTHON ERROR]: ${data}`);
+  });
+
+  pyProcess.on('close', (code) => {
+    if (!hasSentResponse) {
+      res.status(500).json({ error: "Process closed without success signal" });
+    }
+    console.log(`[JIT] Engine process finished with code ${code}`);
   });
 });
 
