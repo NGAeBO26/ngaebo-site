@@ -56,7 +56,7 @@ app.get('/api/sync-weather/:routeID', (req, res) => {
 // ------------------------------------------------------------
 // This prevents "SyntaxError: Unexpected token <" by returning JSON 
 // instead of index.html if an API path is typed wrong.
-app.all('/api/*', (req, res) => {
+app.all('/api/(.*)', (req, res) => {
   res.status(404).json({ error: "API route not found" });
 });
 
@@ -65,8 +65,7 @@ app.all('/api/*', (req, res) => {
 // ------------------------------------------------------------
 app.use(express.static(dist));
 
-app.get('*', (req, res) => {
-  // If it's not an API call, send the React app
+app.get('(.*)', (req, res) => {
   res.sendFile(path.join(dist, "index.html"));
 });
 
