@@ -9,12 +9,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const dist = path.join(process.cwd(), "dist");
+const dist = path.join(__dirname, "dist");
 
 app.use(express.json());
 
 // ------------------------------------------------------------
-// MailerLite API ROUTES
+// 1. API ROUTES (Must be ABOVE static files)
 // ------------------------------------------------------------
 
 app.post("/api/subscribe", async (req, res) => {
@@ -25,48 +25,54 @@ app.post("/api/subscribe", async (req, res) => {
   res.json({ success: true });
 });
 
-// ------------------------------------------------------------
-// 2. JIT WEATHER SYNC & SVG GENERATION ENDPOINT
-// ------------------------------------------------------------
+// JIT WEATHER SYNC & SVG GENERATION ENDPOINT
 app.get('/api/sync-weather/:routeID', (req, res) => {
   const { routeID } = req.params;
-  const scriptPath = path.join(process.cwd(), 'scripts', 'weather_engine.py');
+  // Use __dirname to ensure we are relative to server.js in the /workspace
+  const scriptPath = path.join(__dirname, 'scripts', 'weather_engine.py');
   const pythonCmd = process.platform === "win32" ? "python" : "python3";
 
-  console.log(`[JIT] Executing Production Engine for ${routeID}...`);
-  //console.log(`[AUDIT] Route Click: ${routeID}`);
-  //console.log(`[AUDIT] Python Command: python "scripts/weather_engine.py" ${routeID}`);
-  console.log(`[Phase 1] Environment: ${process.platform}`);
-  console.log(`[Phase 1] Using Command: ${pythonCmd}`);
-
+  console.log(`[JIT] Request for: ${routeID}`);
+  
   exec(`${pythonCmd} "${scriptPath}" ${routeID}`, (error, stdout, stderr) => {
-    if (stdout) console.log(`[ENGINE STDOUT]: ${stdout}`);
-    if (stderr) console.log(`[ENGINE STDERR]: ${stderr}`);
+    if (stdout) console.log(`[STDOUT]: ${stdout}`);
+    if (stderr) console.error(`[STDERR]: ${stderr}`);
     
     if (error) {
-      console.error(`[JIT Error]: ${error.message}`);
-      return res.status(500).json({ error: 'Sync failed' });
+      return res.status(500).json({ error: 'Sync failed', details: error.message });
     }
     
+    // Check for success message from Python
     if (stdout.includes('SUCCESS')) {
-      console.log(`[JIT Success]: ${stdout.trim()}`);
       res.json({ status: 'updated' });
     } else {
-      res.status(500).json({ error: 'Engine failed to report success' });
+      res.status(500).json({ error: 'Engine finished without SUCCESS signal' });
     }
   });
 });
 
 // ------------------------------------------------------------
-// STATIC FRONTEND & FALLBACK
+// 2. API SAFETY CATCH
+// ------------------------------------------------------------
+// This prevents "SyntaxError: Unexpected token <" by returning JSON 
+// instead of index.html if an API path is typed wrong.
+app.all('/api/*', (req, res) => {
+  res.status(404).json({ error: "API route not found" });
+});
+
+// ------------------------------------------------------------
+// 3. STATIC FRONTEND & REACT FALLBACK
 // ------------------------------------------------------------
 app.use(express.static(dist));
 
-app.use((req, res) => {
+app.get('*', (req, res) => {
+  // If it's not an API call, send the React app
   res.sendFile(path.join(dist, "index.html"));
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-  console.log(`[Server] RideGuide V3 running on http://localhost:${PORT}`);
+  console.log(`Server listening on port ${PORT}`);
+  console.log(`Working Dir: ${process.cwd()}`);
+  console.log(`Dist Dir: ${dist}`);
 });
