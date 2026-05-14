@@ -51,7 +51,7 @@ app.get('/api/sync-weather/:routeID', (req, res) => {
 // ------------------------------------------------------------
 // 2. API SAFETY CATCH
 // ------------------------------------------------------------
-// Using a prefix string here bypasses the Path-to-Regexp parser
+// Prefix match - anything starting with /api that didn't match above
 app.use('/api', (req, res) => {
   res.status(404).json({ error: "API route not found" });
 });
@@ -61,12 +61,10 @@ app.use('/api', (req, res) => {
 // ------------------------------------------------------------
 app.use(express.static(dist));
 
-/**
- * EXPRESS 5 CATCH-ALL
- * syntax: /:parameterName(regex)
- * This provides the name 'index' and the regex '(.*)' to match everything.
- */
-app.get('/:index(.*)', (req, res) => {
+// FUNCTION-BASED FALLBACK
+// This does NOT use path-to-regexp, so it CANNOT throw a PathError.
+app.use((req, res) => {
+  // If the request isn't for a file in /dist, send index.html
   res.sendFile(path.join(dist, "index.html"));
 });
 
