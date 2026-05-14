@@ -6,7 +6,7 @@ import TrailGuides from "./pages/TrailGuides";
 import Community from "./pages/Community";
 
 // Import the new RideGuide component
-import RouteReport from "./components/RideGuide/RouteReport";
+//import RouteReport from "./components/RideGuide/RouteReport_v3";
 
 
 // Modal system
@@ -26,7 +26,7 @@ export default function App() {
           
           {/* Temporary Test Route for RideGuide Development */}
           {/* Navigate to http://localhost:5173/test-report to view */}
-          <Route path="/test-report" element={<RouteReport routeID="28-2" />} />
+          
           <Route path="/route-report" element={<RouteReport_v3 routeID="28-2_S1" />} />
           
         </Routes>

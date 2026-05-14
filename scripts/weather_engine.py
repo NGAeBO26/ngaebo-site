@@ -5,14 +5,7 @@ import urllib.request
 from datetime import datetime, timedelta
 import infographic_generator as vis
 
-# --- Phase 1: Directory Safety Check ---
-def ensure_dirs():
-    for d in [WEATHER_DIR, JOY_DIR, COND_DIR, VIS_DIR, TAX_DIR]:
-        if not os.path.exists(d):
-            print(f"Creating missing directory: {d}")
-            os.makedirs(d, exist_ok=True)
 
-ensure_dirs()
 
 # --- 1: THEME INTEGRATION ---
 try:
@@ -39,6 +32,15 @@ TAX_DIR     = get_env_path("PYTHON_TAX_DIR", os.path.join(BASE_LOCAL, "effortgau
 ANCHOR_PATH = os.path.join(BASE_LOCAL, "weather_anchors.json")
 FEATURES_PATH = os.path.join(BASE_LOCAL, "v3_large_sample_testfeatures.geojson")
 USER_AGENT  = 'RideGuideV3/1.0 (contact@rideguide.id)'
+
+# --- Phase 1: Directory Safety Check ---
+def ensure_dirs():
+    for d in [WEATHER_DIR, JOY_DIR, COND_DIR, VIS_DIR, TAX_DIR]:
+        if not os.path.exists(d):
+            print(f"Creating missing directory: {d}")
+            os.makedirs(d, exist_ok=True)
+
+ensure_dirs()
 
 # --- 3: UTILITIES & MODELS ---
 def get_float(data, key, default=0.0):

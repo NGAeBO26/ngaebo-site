@@ -1,10 +1,10 @@
 {
   "profile_id": "100_S1",
   "route_id": "100",
-  "ssdi_score": 8.7,
+  "ssdi_score": 8.3,
   "v3_terrain_score": 4.0,
   "v3_terrain_class": "Strenuous",
-  "badge_type": "wet",
+  "badge_type": "ideal",
   "condition": "WET / SLICK",
   "style_color": "#e66e00",
   "access": {
@@ -17,17 +17,17 @@
     "value": 0.3
   },
   "environment": {
-    "current_temp": 70,
-    "saturation_index": 6.2,
+    "current_temp": 63,
+    "saturation_index": 3.8,
     "soil_status": "Saturated",
     "precip_24h": 0.07,
     "saturation_trend": "stable",
     "alerts": []
   },
   "physics": {
-    "live_traction": 0.8260000000000001,
+    "live_traction": 0.834,
     "live_wh_per_km": 12.77,
-    "energy_penalty_pct": 21.1,
+    "energy_penalty_pct": 19.9,
     "v3_base_intensity": 4.0
   },
   "connectivity": {
