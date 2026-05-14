@@ -1,10 +1,10 @@
 {
   "profile_id": "28B_S1",
   "route_id": "28B",
-  "ssdi_score": 8.4,
+  "ssdi_score": 7.5,
   "v3_terrain_score": 4.5,
   "v3_terrain_class": "Strenuous",
-  "badge_type": "wet",
+  "badge_type": "ideal",
   "condition": "WET / SLICK",
   "style_color": "#e66e00",
   "access": {
@@ -17,17 +17,17 @@
     "value": 0.18
   },
   "environment": {
-    "current_temp": 70,
-    "saturation_index": 4.5,
+    "current_temp": 53,
+    "saturation_index": 0.0,
     "soil_status": "Saturated",
     "precip_24h": 0.0,
     "saturation_trend": "stable",
     "alerts": []
   },
   "physics": {
-    "live_traction": 0.832,
+    "live_traction": 0.85,
     "live_wh_per_km": 14.81,
-    "energy_penalty_pct": 20.2,
+    "energy_penalty_pct": 17.6,
     "v3_base_intensity": 4.5
   },
   "connectivity": {

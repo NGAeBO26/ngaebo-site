@@ -1,7 +1,7 @@
 {
   "profile_id": "25_S1",
   "route_id": "25",
-  "ssdi_score": 8.3,
+  "ssdi_score": 7.5,
   "v3_terrain_score": 3.7,
   "v3_terrain_class": "Cruiser",
   "badge_type": "ideal",
@@ -17,17 +17,17 @@
     "value": 0.21
   },
   "environment": {
-    "current_temp": 76,
-    "saturation_index": 3.8,
+    "current_temp": 53,
+    "saturation_index": 0.0,
     "soil_status": "Saturated",
     "precip_24h": 0.0,
     "saturation_trend": "stable",
     "alerts": []
   },
   "physics": {
-    "live_traction": 0.834,
+    "live_traction": 0.85,
     "live_wh_per_km": 11.12,
-    "energy_penalty_pct": 19.9,
+    "energy_penalty_pct": 17.6,
     "v3_base_intensity": 3.7
   },
   "connectivity": {

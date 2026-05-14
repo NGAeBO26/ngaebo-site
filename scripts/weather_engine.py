@@ -110,7 +110,7 @@ def main():
     actual_miles = get_float(feat, "GIS_MILES", 3.9)
 
     print(f"[ENGINE AUDIT] Mapping Profile: {route_id}")
-    print(f"[ENGINE AUDIT] Found properties: {list(feat.keys()) if feat else 'NONE - Lookup Failed'}")
+    # print(f"[ENGINE AUDIT] Found properties: {list(feat.keys()) if feat else 'NONE - Lookup Failed'}")
     print(f"[ENGINE AUDIT] Grade: {avg_grade} | Surface: {surface} | Miles: {actual_miles}")
 
     # 3. FETCH & PROCESS WEATHER
