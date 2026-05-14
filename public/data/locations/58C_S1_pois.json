@@ -1,0 +1,43 @@
+{
+    "profile_id": "58C_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Rich Mountain",
+            "dist": 0.68,
+            "type": "scenic",
+            "via": "Forest Svc Rd"
+        },
+        {
+            "label": "Silvermine Ridge",
+            "dist": 0.71,
+            "type": "scenic",
+            "via": "Forest Svc Rd"
+        },
+        {
+            "label": "Big Stamp Gap",
+            "dist": 0.91,
+            "type": "gap",
+            "via": "Forest Svc Rd"
+        },
+        {
+            "label": "Ball Mountain",
+            "dist": 1.12,
+            "type": "scenic",
+            "via": "Forest Svc Rd"
+        },
+        {
+            "label": "Deerlick Gap",
+            "dist": 1.29,
+            "type": "gap",
+            "via": "Winding Stair Gap Rd"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 16.2
+    }
+}

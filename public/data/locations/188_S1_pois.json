@@ -1,0 +1,43 @@
+{
+    "profile_id": "188_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "High House",
+            "dist": 0.4,
+            "type": "scenic",
+            "via": "Access Road"
+        },
+        {
+            "label": "Rand Knob",
+            "dist": 0.59,
+            "type": "scenic",
+            "via": "13123"
+        },
+        {
+            "label": "Buzzard Roost",
+            "dist": 0.75,
+            "type": "scenic",
+            "via": "Access Road"
+        },
+        {
+            "label": "Wallace Mountain",
+            "dist": 0.97,
+            "type": "scenic",
+            "via": "Access Road"
+        },
+        {
+            "label": "Bearden Mountain",
+            "dist": 1.26,
+            "type": "scenic",
+            "via": "13123"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Gilmer County Fire and Rescue - Station 17",
+        "type": "Fire-EMS",
+        "address": "7212 Roy Rd, Ellijay, GA 30536, USA",
+        "phone": "(706) 635-1333",
+        "dist_mi": 5.0
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "profile_id": "191_S1",
+    "route_id": "191",
+    "ssdi_score": 2.9,
+    "badge_type": "ideal",
+    "condition": "IDEAL",
+    "style_color": "#2e7d32",
+    "access": {
+        "label": "OPEN",
+        "vibe_context": "CLASSIC FOREST ROAD",
+        "status_code": "OPEN"
+    },
+    "ruggedness": {
+        "class": "Chattery",
+        "value": 0.14
+    },
+    "environment": {
+        "current_temp": 70,
+        "saturation_index": 0.0,
+        "saturation_trend": "stable",
+        "alerts": []
+    },
+    "physics": {
+        "live_traction": 0.94,
+        "live_wh_per_km": 10.57,
+        "energy_penalty_pct": 6.3,
+        "v3_base_intensity": 2.9
+    },
+    "connectivity": {
+        "signal_class": "Spotty",
+        "deadzone_max_meters": 353
+    }
+}

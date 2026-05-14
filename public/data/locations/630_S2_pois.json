@@ -1,0 +1,43 @@
+{
+    "profile_id": "630_S2",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Trackrock Gap",
+            "dist": 0.13,
+            "type": "gap",
+            "via": "Access Road"
+        },
+        {
+            "label": "Thunder-Struck Mountain",
+            "dist": 0.78,
+            "type": "scenic",
+            "via": "Access Road"
+        },
+        {
+            "label": "Buzzard Roost Ridge",
+            "dist": 0.94,
+            "type": "scenic",
+            "via": "Grapevine Trl"
+        },
+        {
+            "label": "Blue Rock",
+            "dist": 1.22,
+            "type": "scenic",
+            "via": "Mariposa Ln"
+        },
+        {
+            "label": "Jackson Gap",
+            "dist": 1.25,
+            "type": "gap",
+            "via": "Mariposa Ln"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Union County Fire Department",
+        "type": "Fire-EMS",
+        "address": "507 Shoe Factory Rd, Blairsville, GA 30512, USA",
+        "phone": "(706) 439-6095",
+        "dist_mi": 4.6
+    }
+}

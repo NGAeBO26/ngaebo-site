@@ -1,20 +1,20 @@
 {
     "route_id": "79",
-    "ssdi_score": 1.3,
-    "badge_type": "dusty",
-    "condition": "DRY / DUSTY",
-    "style_color": "#8B4513",
+    "ssdi_score": 3.3,
+    "badge_type": "ideal",
+    "condition": "IDEAL",
+    "style_color": "#2e7d32",
     "access": {
         "label": "OPEN",
         "code": "ALL"
     },
     "ruggedness": {
-        "class": "Bumpy",
-        "value": 0.28236054264757027
+        "class": "Smooth",
+        "value": 0.27
     },
     "physics": {
-        "live_traction": 0.8,
-        "live_wh_per_km": 15.68,
+        "live_traction": 1.0,
+        "live_wh_per_km": 21.29,
         "energy_penalty_pct": 0.0
     }
 }

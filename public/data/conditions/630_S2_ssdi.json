@@ -1,0 +1,39 @@
+{
+    "profile_id": "630_S2",
+    "route_id": "630",
+    "ssdi_score": 9.0,
+    "v3_terrain_score": 5.4,
+    "v3_terrain_class": "Strenuous",
+    "badge_type": "muddy",
+    "condition": "MUDDY / SOFT",
+    "style_color": "#a52d23",
+    "access": {
+        "label": "OPEN",
+        "vibe_context": "RESTRICTED EXPLORER",
+        "status_code": "OPEN"
+    },
+    "ruggedness": {
+        "class": "Chattery",
+        "value": 0.33
+    },
+    "environment": {
+        "current_temp": 56,
+        "saturation_index": 18.09,
+        "soil_status": "Saturated",
+        "precip_24h": 0.06,
+        "saturation_trend": "stable",
+        "alerts": [
+            "SAFETY ALERT: Cell Service is UNAVAILABLE."
+        ]
+    },
+    "physics": {
+        "live_traction": 0.38,
+        "live_wh_per_km": 17.17,
+        "energy_penalty_pct": 20.0,
+        "v3_base_intensity": 5.4
+    },
+    "connectivity": {
+        "signal_class": "Unavailable",
+        "deadzone_max_meters": 450
+    }
+}

@@ -1,0 +1,15 @@
+{
+  "current_temp": 70,
+  "temp_avg": 70,
+  "precip_24h": 0.0,
+  "short": "Data Unavailable",
+  "primary_condition": "Unknown",
+  "precip_prob": 0,
+  "hourly_data": [],
+  "metadata": {
+    "profile_id": "357A_S1",
+    "saturation_index": 18.42,
+    "soil_status": "Saturated",
+    "prime_joy_score": 0
+  }
+}

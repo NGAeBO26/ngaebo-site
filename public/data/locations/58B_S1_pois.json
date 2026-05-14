@@ -1,0 +1,43 @@
+{
+    "profile_id": "58B_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Noontootla Falls",
+            "dist": 0.56,
+            "type": "water",
+            "via": "Forest Svc Rd"
+        },
+        {
+            "label": "Wildcat Ridge",
+            "dist": 0.72,
+            "type": "scenic",
+            "via": "Forest Svc Rd"
+        },
+        {
+            "label": "Big John Dick Mountain",
+            "dist": 1.08,
+            "type": "scenic",
+            "via": "Access Road"
+        },
+        {
+            "label": "Alec Mountain",
+            "dist": 1.1,
+            "type": "scenic",
+            "via": "Fs Rd 58"
+        },
+        {
+            "label": "Bryson Gap",
+            "dist": 1.37,
+            "type": "gap",
+            "via": "Access Road"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Fannin County Emergency Services - Fire Station 1",
+        "type": "Fire-EMS",
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 15.1
+    }
+}

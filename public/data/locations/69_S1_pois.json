@@ -1,0 +1,43 @@
+{
+    "profile_id": "69_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Dockery Lake Recreation Area",
+            "dist": 0.2,
+            "type": "camp",
+            "via": "Rock Creek Rd"
+        },
+        {
+            "label": "High Falls",
+            "dist": 0.91,
+            "type": "water",
+            "via": "Rock Creek Rd"
+        },
+        {
+            "label": "Rocky Mountain",
+            "dist": 1.54,
+            "type": "scenic",
+            "via": "Rock Creek Rd"
+        },
+        {
+            "label": "Little Frozen Knob",
+            "dist": 1.64,
+            "type": "scenic",
+            "via": "Rock Creek Rd"
+        },
+        {
+            "label": "Wildcat Ridge",
+            "dist": 1.74,
+            "type": "scenic",
+            "via": "Forest Svc Rd"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 16.9
+    }
+}

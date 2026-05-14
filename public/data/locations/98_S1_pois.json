@@ -1,0 +1,43 @@
+{
+    "profile_id": "98_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Campbell Mountain",
+            "dist": 1.08,
+            "type": "scenic",
+            "via": "Access Road"
+        },
+        {
+            "label": "Whissenhunt Mountain",
+            "dist": 1.42,
+            "type": "scenic",
+            "via": "Miles Berry Rd"
+        },
+        {
+            "label": "Black Falls",
+            "dist": 2.48,
+            "type": "water",
+            "via": "Cloverleaf Trl"
+        },
+        {
+            "label": "Low Gap",
+            "dist": 2.49,
+            "type": "gap",
+            "via": "Bull Creek Rd"
+        },
+        {
+            "label": "Little Sal Mountain",
+            "dist": 2.51,
+            "type": "scenic",
+            "via": "Winding Stair Gap Rd"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 8.5
+    }
+}

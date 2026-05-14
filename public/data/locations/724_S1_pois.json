@@ -1,0 +1,43 @@
+{
+    "profile_id": "724_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Hunter Knob",
+            "dist": 0.38,
+            "type": "scenic",
+            "via": "True Love Mountain Rd"
+        },
+        {
+            "label": "Truelove Knob",
+            "dist": 0.75,
+            "type": "scenic",
+            "via": "True Love Mountain Rd"
+        },
+        {
+            "label": "Hooper Gap",
+            "dist": 1.0,
+            "type": "gap",
+            "via": "True Love Mountain Rd"
+        },
+        {
+            "label": "Possum Gap",
+            "dist": 1.12,
+            "type": "gap",
+            "via": "True Love Mountain Rd"
+        },
+        {
+            "label": "Red Gap",
+            "dist": 1.33,
+            "type": "gap",
+            "via": "True Love Mountain Rd"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Union County Fire Department",
+        "type": "Fire-EMS",
+        "address": "507 Shoe Factory Rd, Blairsville, GA 30512, USA",
+        "phone": "(706) 439-6095",
+        "dist_mi": 7.3
+    }
+}

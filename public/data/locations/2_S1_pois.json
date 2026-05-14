@@ -1,0 +1,43 @@
+{
+    "profile_id": "2_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Falls Branch",
+            "dist": 0.6,
+            "type": "water",
+            "via": "Bear Gap Rd"
+        },
+        {
+            "label": "Stony Mountain",
+            "dist": 1.3,
+            "type": "scenic",
+            "via": "Bear Gap Rd"
+        },
+        {
+            "label": "Angel Falls",
+            "dist": 1.41,
+            "type": "trailhead",
+            "via": "Lake Rabun Rd"
+        },
+        {
+            "label": "Bear Gap",
+            "dist": 1.69,
+            "type": "gap",
+            "via": "Bear Gap Rd"
+        },
+        {
+            "label": "Demoore Ridge",
+            "dist": 1.75,
+            "type": "scenic",
+            "via": "Whispering Dale"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clarkesville Fire Department",
+        "type": "Fire-EMS",
+        "address": "303 Adams St, Clarkesville, GA 30523, USA",
+        "phone": "(706) 754-2024",
+        "dist_mi": 9.2
+    }
+}

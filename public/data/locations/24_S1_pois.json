@@ -1,0 +1,43 @@
+{
+    "profile_id": "24_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Shoal Ridge",
+            "dist": 0.43,
+            "type": "scenic",
+            "via": "Crow Creek Rd"
+        },
+        {
+            "label": "Crow Mountain",
+            "dist": 1.21,
+            "type": "scenic",
+            "via": "Access Road"
+        },
+        {
+            "label": "Pigeon Mountain",
+            "dist": 1.25,
+            "type": "scenic",
+            "via": "Seed Lake Rd"
+        },
+        {
+            "label": "Oakey Mountain",
+            "dist": 1.43,
+            "type": "scenic",
+            "via": "Oakey Mountain Rd"
+        },
+        {
+            "label": "Long Ridge",
+            "dist": 1.52,
+            "type": "scenic",
+            "via": "Access Road"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clarkesville Fire Department",
+        "type": "Fire-EMS",
+        "address": "303 Adams St, Clarkesville, GA 30523, USA",
+        "phone": "(706) 754-2024",
+        "dist_mi": 10.6
+    }
+}

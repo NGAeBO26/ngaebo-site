@@ -1,0 +1,43 @@
+{
+    "profile_id": "58D_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Ripshin",
+            "dist": 0.4,
+            "type": "scenic",
+            "via": "Fs Rd 58"
+        },
+        {
+            "label": "Noontootla Falls",
+            "dist": 0.8,
+            "type": "water",
+            "via": "Forest Svc Rd"
+        },
+        {
+            "label": "Alec Mountain",
+            "dist": 1.07,
+            "type": "scenic",
+            "via": "Fs Rd 58"
+        },
+        {
+            "label": "Bearden Mountain",
+            "dist": 1.59,
+            "type": "scenic",
+            "via": "13123"
+        },
+        {
+            "label": "Wildcat Ridge",
+            "dist": 1.74,
+            "type": "scenic",
+            "via": "Forest Svc Rd"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Fannin County Emergency Services - Fire Station 1",
+        "type": "Fire-EMS",
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 14.9
+    }
+}

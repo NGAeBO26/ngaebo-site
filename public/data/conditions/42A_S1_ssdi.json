@@ -1,0 +1,37 @@
+{
+    "profile_id": "42A_S1",
+    "route_id": "42A",
+    "ssdi_score": 7.5,
+    "v3_terrain_score": 3.8,
+    "v3_terrain_class": "Cruiser",
+    "badge_type": "muddy",
+    "condition": "MUDDY / SOFT",
+    "style_color": "#a52d23",
+    "access": {
+        "label": "CLOSED",
+        "vibe_context": "TECHNICAL BACKCOUNTRY (CLOSED)",
+        "status_code": "RESTRICTED"
+    },
+    "ruggedness": {
+        "class": "Chattery",
+        "value": 0.18
+    },
+    "environment": {
+        "current_temp": 52,
+        "saturation_index": 18.37,
+        "soil_status": "Saturated",
+        "precip_24h": 0.02,
+        "saturation_trend": "stable",
+        "alerts": []
+    },
+    "physics": {
+        "live_traction": 0.39,
+        "live_wh_per_km": 12.48,
+        "energy_penalty_pct": 20.0,
+        "v3_base_intensity": 3.8
+    },
+    "connectivity": {
+        "signal_class": "Spotty",
+        "deadzone_max_meters": 751
+    }
+}

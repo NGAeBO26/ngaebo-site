@@ -1,0 +1,43 @@
+{
+    "profile_id": "76_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Piney Ridge",
+            "dist": 0.4,
+            "type": "scenic",
+            "via": "Addis Rd"
+        },
+        {
+            "label": "Stony Mountain",
+            "dist": 0.94,
+            "type": "scenic",
+            "via": "Bear Gap Rd"
+        },
+        {
+            "label": "Fry Mountain",
+            "dist": 1.44,
+            "type": "scenic",
+            "via": "Access Road"
+        },
+        {
+            "label": "Demoore Ridge",
+            "dist": 1.71,
+            "type": "scenic",
+            "via": "Whispering Dale"
+        },
+        {
+            "label": "Low Gap",
+            "dist": 1.89,
+            "type": "gap",
+            "via": "Access Road"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clarkesville Fire Department",
+        "type": "Fire-EMS",
+        "address": "303 Adams St, Clarkesville, GA 30523, USA",
+        "phone": "(706) 754-2024",
+        "dist_mi": 7.5
+    }
+}

@@ -1,0 +1,346 @@
+/* RouteMetrics.css - UNIFIED TECHNICAL INSTRUMENT SIDEBAR */
+
+.rr-metrics-tiles-wrapper {
+  height: 65mm !important;
+  width: 50mm !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background: radial-gradient(circle at center, #ffffff 0%, #f9f9f9 100%) !important;
+  border: 1px solid #e0e0e0 !important;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.02) !important;
+  box-sizing: border-box !important;
+}
+
+.rr-metric-tile-row {
+  height: 13mm !important; /* Strict 14mm CAD budget */
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: 14mm 1fr !important;
+  border-bottom: 0.1pt solid #eeeeee !important;
+  align-items: center !important;
+}
+
+/* --- UNIFIED DIAL ARCHITECTURE --- */
+.rr-metric-dial-wrapper {
+  position: relative;
+  width: 13mm;
+  height: 13mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Base track for all circular instruments */
+.rr-metric-dial-arc {
+  position: absolute;
+  width: 11mm;
+  height: 11mm;
+  border-radius: 50%;
+  transition: background 0.4s ease;
+}
+
+/* The slate-grey track used for the Odometer and static dials */
+.rr-metric-dial-arc.static-dial {
+  background: #9badad !important;
+}
+
+/* Sunset Orange Node Accent - Links Distance to the Score Gauge visually */
+.rr-metric-dial-node-accent {
+  position: absolute;
+  width: 2.2mm;
+  height: 2.2mm;
+  background: #ff8c00;
+  border-radius: 50%;
+  top: 0.6mm;
+  z-index: 5;
+  border: 0.4mm solid #ffffff;
+}
+
+/* Inner mask creates the 1mm thick technical ring */
+.rr-metric-dial-mask {
+  position: absolute;
+  width: 8.5mm;
+  height: 8.5mm;
+  background-color: #ffffff;
+  border-radius: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- ICON REFINEMENT --- */
+.rr-metric-dial-icon {
+  width: 6mm;
+  height: 6mm;
+  z-index: 3;
+  /* Remove the global filter from here so it doesn't crush the odometer */
+  filter: none !important; 
+}
+
+/* Custom class for your new Odometer SVG */
+.odometer {
+  width: 7.2mm !important; /* Scaled up to fit the 8.5mm mask better */
+  height: 7.2mm !important;
+  image-rendering: auto;
+  opacity: 1 !important;
+  display: block;
+}
+
+/* Gain Arrow with "Subtle Stroke" Pop */
+.gain-arrow {
+  width: 6.8mm !important;
+  height: 6.8mm !important;
+  
+}
+
+.grade-bike {
+  width: 6.5mm !important; /* Slightly larger to show the bike detail */
+  height: 6.5mm !important;
+  image-rendering: auto;
+}
+
+.signal-bars-svg {
+  width: 6.5mm !important; /* Balanced for the circular mask */
+  height: 6.5mm !important;
+  display: block;
+  opacity: 1;
+  /* No filters or shadows applied */
+}
+
+/* --- DATA DISPLAY --- */
+.rr-metric-content-column {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  padding-left: 1mm !important;
+}
+
+.rr-metric-value-display {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 14.5pt !important;
+  font-weight: 800 !important;
+  color: #333333 !important;
+  line-height: 1.1 !important;
+}
+
+.rr-metric-label-display {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 6.5pt !important;
+  font-weight: 700 !important;
+  color: #9badad !important; /* Unified label color with dial tracks */
+  text-transform: uppercase !important;
+  letter-spacing: 0.15mm !important;
+}
+
+/* --- LEGACY/SKELETON SUPPORT --- */
+.rr-metric-icon-column {
+  width: 13mm !important;
+  height: 13mm !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.rr-metric-icon-img {
+  width: 7.5mm;
+  height: 7.5mm;
+  object-fit: contain;
+  filter: grayscale(1) opacity(0.5);
+}
+
+/* Effort Tax Widget Styling */
+/* --- EFFORT TAX WIDGET (AUDITED & OPTIMIZED) --- */
+
+.rr-effort-tax-container {
+  width: 50mm;
+  height: 25mm;
+  background: radial-gradient(circle at center, #ffffff 0%, #f9f9f9 100%) !important;
+  border: 1px solid #e0e0e0 !important;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.02) !important;
+  box-sizing: border-box !important;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.rr-effort-tax-header {
+  height: 5mm;
+  background: #f8f9f9;
+  color: #9badad;
+  font-family: "Montserrat", sans-serif;
+  font-size: 6.5pt;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  padding-left: 3mm;
+  letter-spacing: 0.2mm;
+  text-transform: uppercase;
+}
+
+.rr-effort-tax-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; 
+  padding: 2mm 0 1mm 0 !important; /* Tighten top/bottom further */
+}
+
+.rr-effort-tax-gauge-box {
+  width: 100%;
+  height: 11mm !important; /* Increase from 9mm for better SVG scaling */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rr-effort-tax-svg {
+  width: 46mm;
+  height: auto;
+  max-height: 15mm;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Metadata Row: Side-by-Side Labels at 6.5pt */
+.rr-tax-metadata-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2mm !important;
+  width: 100%;
+  margin-bottom: 0.2mm; /* Anchor closer to floor */
+}
+/* Shared typography applied to independent hooks for 100% style consistency */
+.rr-tax-pct-value,
+.rr-tax-miles-value,
+.rr-tax-separator {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 6.5pt !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0mm !important;
+  line-height: 1 !important;
+ 
+}
+
+/* --- RISK RADAR WIDGET --- */
+
+.rr-risk-radar-container {
+  width: 50mm;
+  height: 55mm; 
+  /* Unified background with EffortTax */
+  background: radial-gradient(circle at center, #ffffff 0%, #f9f9f9 100%) !important;
+  border: 1px solid #e0e0e0 !important;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.02) !important;
+  box-sizing: border-box !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.rr-risk-radar-header {
+  height: 5mm;
+  background: #f8f9f9;
+  color: #1a1a1a; 
+  font-family: "Montserrat", sans-serif;
+  font-size: 6.5pt;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centered as requested */
+  padding: 2mm;
+  letter-spacing: 0.2mm;
+  /* Removed bottom border as requested */
+  border-bottom: none !important; 
+  text-transform: uppercase;
+}
+
+.rr-risk-radar-main {
+  flex: 1;
+  display: flex;
+  align-items: flex-start; /* Anchor to top to avoid bottom spill */
+  justify-content: center;
+  position: relative;
+  overflow: hidden; /* Safety clip */
+  padding-top: 0mm !important;
+}
+.rr-radar-stack-context {
+  position: relative;
+  width: 50mm;
+  height: 50mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -3mm !important;
+}
+
+.rr-radar-positioning-wrapper {
+  position: relative;
+  width: 48mm;
+  height: 48mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rr-risk-radar-gauge-box {
+  position: absolute;
+  width: 48mm; /* Expanded to maximize visual impact */
+  height: 48mm;
+  z-index: 1;
+}
+
+.rr-risk-radar-svg {
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: multiply;
+  display: block;
+}
+
+/* Axis Labels - Floating Over SVG Corners */
+.rr-radar-label {
+  position: absolute;
+  font-family: "Montserrat", sans-serif;
+  /* Reduced from 5.5pt to 5pt for better proximity without grid collision */
+  font-size: 5pt !important; 
+  font-weight: 800;
+  color: #9badad;
+  text-transform: uppercase;
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.rr-label-top {
+  top: 3.5mm !important;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.rr-label-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  top: 50%;
+}
+
+.rr-label-left {
+  left: 2.5mm;
+  transform: translateY(-65%) rotate(180deg);
+}
+
+.rr-label-right {
+  right: 2.5mm;
+  transform: translateY(-65%);
+}
+
+/* Pulled up from the floor into the widget container */
+.rr-label-bottom-left {
+  bottom: 4mm;
+  left: 4mm;
+}
+
+.rr-label-bottom-right {
+  bottom: 4mm;
+  right: 3mm;
+}

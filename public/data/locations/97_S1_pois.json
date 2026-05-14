@@ -1,0 +1,43 @@
+{
+    "profile_id": "97_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Campbell Mountain",
+            "dist": 0.66,
+            "type": "scenic",
+            "via": "Access Road"
+        },
+        {
+            "label": "Whissenhunt Mountain",
+            "dist": 1.6,
+            "type": "scenic",
+            "via": "Miles Berry Rd"
+        },
+        {
+            "label": "Sally Free Ridge",
+            "dist": 2.31,
+            "type": "scenic",
+            "via": "Access Road"
+        },
+        {
+            "label": "Jake Mountain",
+            "dist": 2.62,
+            "type": "scenic",
+            "via": "Nimblewill Church Rd"
+        },
+        {
+            "label": "Low Gap",
+            "dist": 2.8,
+            "type": "gap",
+            "via": "Bull Creek Rd"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 7.8
+    }
+}

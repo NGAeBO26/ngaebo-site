@@ -1,0 +1,43 @@
+{
+    "profile_id": "357A_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Frosty Mountain",
+            "dist": 1.32,
+            "type": "scenic",
+            "via": "Nimblewill Gap Rd"
+        },
+        {
+            "label": "Bird Mountain",
+            "dist": 1.37,
+            "type": "scenic",
+            "via": "Old Bucktown Rd"
+        },
+        {
+            "label": "Nimblewill Gap",
+            "dist": 1.91,
+            "type": "gap",
+            "via": "Old Bucktown Rd"
+        },
+        {
+            "label": "Howell Mountain",
+            "dist": 2.15,
+            "type": "scenic",
+            "via": "Creekview Dr"
+        },
+        {
+            "label": "Cochrans Falls",
+            "dist": 2.61,
+            "type": "water",
+            "via": "Blackhawk Dr"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Gilmer County Fire and Rescue - Station 17",
+        "type": "Fire-EMS",
+        "address": "7212 Roy Rd, Ellijay, GA 30536, USA",
+        "phone": "(706) 635-1333",
+        "dist_mi": 4.4
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "profile_id": "79_S1",
+    "route_id": "79",
+    "ssdi_score": 2.9,
+    "badge_type": "ideal",
+    "condition": "IDEAL",
+    "style_color": "#2e7d32",
+    "access": {
+        "label": "OPEN",
+        "vibe_context": "CLASSIC FOREST ROAD",
+        "status_code": "OPEN"
+    },
+    "ruggedness": {
+        "class": "Chattery",
+        "value": 0.28
+    },
+    "environment": {
+        "current_temp": 70,
+        "saturation_index": 0.0,
+        "saturation_trend": "stable",
+        "alerts": [
+            "SAFETY ALERT: Cell Service is UNRELIABLE."
+        ]
+    },
+    "physics": {
+        "live_traction": 0.91,
+        "live_wh_per_km": 10.82,
+        "energy_penalty_pct": 9.8,
+        "v3_base_intensity": 2.9
+    },
+    "connectivity": {
+        "signal_class": "Unreliable",
+        "deadzone_max_meters": 7956
+    }
+}

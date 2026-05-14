@@ -1,0 +1,43 @@
+{
+    "profile_id": "77A_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Bull Mountain",
+            "dist": 0.99,
+            "type": "scenic",
+            "via": "Access Road"
+        },
+        {
+            "label": "Jake Mountain",
+            "dist": 1.93,
+            "type": "trailhead",
+            "via": "Access Road"
+        },
+        {
+            "label": "Ball Mountain",
+            "dist": 2.08,
+            "type": "scenic",
+            "via": "Forest Svc Rd"
+        },
+        {
+            "label": "Amicalola Mountain",
+            "dist": 2.17,
+            "type": "scenic",
+            "via": "Old Bucktown Rd"
+        },
+        {
+            "label": "Black Mountain",
+            "dist": 2.17,
+            "type": "scenic",
+            "via": "Old Bucktown Rd"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 14.1
+    }
+}

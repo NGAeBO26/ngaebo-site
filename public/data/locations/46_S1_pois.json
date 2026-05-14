@@ -1,0 +1,43 @@
+{
+    "profile_id": "46_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Frosty Mountain",
+            "dist": 0.56,
+            "type": "scenic",
+            "via": "Nimblewill Gap Rd"
+        },
+        {
+            "label": "Cochrans Falls",
+            "dist": 0.85,
+            "type": "water",
+            "via": "Blackhawk Dr"
+        },
+        {
+            "label": "Nimblewill Gap",
+            "dist": 1.44,
+            "type": "gap",
+            "via": "Old Bucktown Rd"
+        },
+        {
+            "label": "Amicalola Mountain",
+            "dist": 1.97,
+            "type": "scenic",
+            "via": "Old Bucktown Rd"
+        },
+        {
+            "label": "Black Mountain",
+            "dist": 1.97,
+            "type": "scenic",
+            "via": "Old Bucktown Rd"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "City of Jasper Fire Department, Station 1",
+        "type": "Fire-EMS",
+        "address": "277 Burton St, Jasper, GA 30143, USA",
+        "phone": "(706) 692-6789",
+        "dist_mi": 16.9
+    }
+}

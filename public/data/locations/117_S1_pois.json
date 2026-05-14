@@ -1,0 +1,43 @@
+{
+    "profile_id": "117_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Davis Ridge",
+            "dist": 0.35,
+            "type": "scenic",
+            "via": "Turkey Trot Dr"
+        },
+        {
+            "label": "Scruggs Top",
+            "dist": 0.47,
+            "type": "scenic",
+            "via": "Tucker Rd"
+        },
+        {
+            "label": "Bridge Gap",
+            "dist": 0.5,
+            "type": "gap",
+            "via": "Crump Creek Rd"
+        },
+        {
+            "label": "Nicholson Gap",
+            "dist": 0.57,
+            "type": "gap",
+            "via": "Crump Creek Rd"
+        },
+        {
+            "label": "Jones Knob",
+            "dist": 0.67,
+            "type": "scenic",
+            "via": "Crump Creek Rd"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Union County Fire Department Station 1",
+        "type": "Fire-EMS",
+        "address": "507 Shoe Factory Rd, Blairsville, GA 30512, USA",
+        "phone": "(706) 439-6091",
+        "dist_mi": 2.3
+    }
+}

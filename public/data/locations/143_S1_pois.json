@@ -1,0 +1,43 @@
+{
+    "profile_id": "143_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Davenport Ohv",
+            "dist": 0.09,
+            "type": "trailhead",
+            "via": "Davenport Mtn Rd"
+        },
+        {
+            "label": "Davenport Mountain",
+            "dist": 0.52,
+            "type": "scenic",
+            "via": "Davenport Mtn Rd"
+        },
+        {
+            "label": "Dean Gap",
+            "dist": 1.24,
+            "type": "gap",
+            "via": "Nottely Dam Rd"
+        },
+        {
+            "label": "Chapman Ford (Historical)",
+            "dist": 1.53,
+            "type": "hazard",
+            "via": "Notla Island Dr"
+        },
+        {
+            "label": "Blackjack Mountain",
+            "dist": 1.9,
+            "type": "scenic",
+            "via": "Jitterbug Trl"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Ranger VFD Station 18",
+        "type": "Fire-EMS",
+        "address": "155 Little Ranger Rd, Murphy, NC 28906, USA",
+        "phone": "(828) 644-5677",
+        "dist_mi": 7.2
+    }
+}

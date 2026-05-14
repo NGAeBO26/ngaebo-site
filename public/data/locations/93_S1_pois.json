@@ -1,0 +1,43 @@
+{
+    "profile_id": "93_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Crawford Top",
+            "dist": 0.19,
+            "type": "scenic",
+            "via": "Mariposa Ln"
+        },
+        {
+            "label": "Beasley Knob Ohv - Blue Rock",
+            "dist": 0.33,
+            "type": "trailhead",
+            "via": "Rosemary Dr"
+        },
+        {
+            "label": "Beasley Knob Ohv - Satterfield",
+            "dist": 0.35,
+            "type": "trailhead",
+            "via": "Rosemary Dr"
+        },
+        {
+            "label": "Roundtop Mountain",
+            "dist": 0.57,
+            "type": "scenic",
+            "via": "Mariposa Ln"
+        },
+        {
+            "label": "Blue Ridge Work Center",
+            "dist": 0.67,
+            "type": "ranger",
+            "via": "Young Harris Hwy"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Union County Fire Department",
+        "type": "Fire-EMS",
+        "address": "507 Shoe Factory Rd, Blairsville, GA 30512, USA",
+        "phone": "(706) 439-6095",
+        "dist_mi": 3.5
+    }
+}

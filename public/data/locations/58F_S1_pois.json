@@ -1,0 +1,43 @@
+{
+    "profile_id": "58F_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Brushy Mountain",
+            "dist": 0.39,
+            "type": "scenic",
+            "via": "Forest Svc Rd"
+        },
+        {
+            "label": "Bearden Mountain",
+            "dist": 0.72,
+            "type": "scenic",
+            "via": "13123"
+        },
+        {
+            "label": "Buckeye Mountain",
+            "dist": 0.98,
+            "type": "scenic",
+            "via": "13123"
+        },
+        {
+            "label": "Noontootla Falls",
+            "dist": 1.35,
+            "type": "water",
+            "via": "Forest Svc Rd"
+        },
+        {
+            "label": "Rich Mountain",
+            "dist": 1.61,
+            "type": "scenic",
+            "via": "Forest Svc Rd"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 17.9
+    }
+}

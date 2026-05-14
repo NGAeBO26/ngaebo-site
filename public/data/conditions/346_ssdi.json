@@ -1,0 +1,20 @@
+{
+    "route_id": "346",
+    "ssdi_score": 6.0,
+    "badge_type": "wet",
+    "condition": "WET / SLICK",
+    "style_color": "#e66e00",
+    "access": {
+        "label": "OPEN",
+        "code": "ALL"
+    },
+    "ruggedness": {
+        "class": "Smooth",
+        "value": 0.31
+    },
+    "physics": {
+        "live_traction": 0.7,
+        "live_wh_per_km": 31.01,
+        "energy_penalty_pct": 42.8
+    }
+}

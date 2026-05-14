@@ -1,0 +1,33 @@
+{
+    "profile_id": "35_S1",
+    "route_id": "35",
+    "ssdi_score": 5.7,
+    "badge_type": "wet",
+    "condition": "WET / SLICK",
+    "style_color": "#e66e00",
+    "access": {
+        "label": "OPEN",
+        "vibe_context": "CLASSIC FOREST ROAD",
+        "status_code": "OPEN"
+    },
+    "ruggedness": {
+        "class": "Rough",
+        "value": 0.22
+    },
+    "environment": {
+        "current_temp": 70,
+        "saturation_index": 0.0,
+        "saturation_trend": "stable",
+        "alerts": []
+    },
+    "physics": {
+        "live_traction": 0.67,
+        "live_wh_per_km": 17.42,
+        "energy_penalty_pct": 49.3,
+        "v3_base_intensity": 5.7
+    },
+    "connectivity": {
+        "signal_class": "Intermittent",
+        "deadzone_max_meters": 650
+    }
+}

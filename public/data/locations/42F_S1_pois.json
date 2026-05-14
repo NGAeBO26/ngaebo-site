@@ -1,0 +1,43 @@
+{
+    "profile_id": "42F_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Locust Mountain",
+            "dist": 0.56,
+            "type": "scenic",
+            "via": "13123"
+        },
+        {
+            "label": "Bearden Mountain",
+            "dist": 0.67,
+            "type": "scenic",
+            "via": "13123"
+        },
+        {
+            "label": "Buckeye Mountain",
+            "dist": 0.82,
+            "type": "scenic",
+            "via": "13123"
+        },
+        {
+            "label": "Rand Knob",
+            "dist": 0.99,
+            "type": "scenic",
+            "via": "13123"
+        },
+        {
+            "label": "George Mountain",
+            "dist": 1.02,
+            "type": "scenic",
+            "via": "13123"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Gilmer County Fire and Rescue - Station 17",
+        "type": "Fire-EMS",
+        "address": "7212 Roy Rd, Ellijay, GA 30536, USA",
+        "phone": "(706) 635-1333",
+        "dist_mi": 5.4
+    }
+}

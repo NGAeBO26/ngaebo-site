@@ -1,0 +1,20 @@
+{
+    "route_id": "143",
+    "ssdi_score": 3.3,
+    "badge_type": "ideal",
+    "condition": "IDEAL",
+    "style_color": "#2e7d32",
+    "access": {
+        "label": "OPEN",
+        "code": "ALL"
+    },
+    "ruggedness": {
+        "class": "Smooth",
+        "value": 0.22
+    },
+    "physics": {
+        "live_traction": 1.0,
+        "live_wh_per_km": 20.66,
+        "energy_penalty_pct": 0.0
+    }
+}

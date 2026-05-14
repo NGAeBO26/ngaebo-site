@@ -1,0 +1,43 @@
+{
+    "profile_id": "100_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Stephens Ridge",
+            "dist": 0.23,
+            "type": "scenic",
+            "via": "Forest Rd 100"
+        },
+        {
+            "label": "Ross Gap",
+            "dist": 0.49,
+            "type": "gap",
+            "via": "Forest Rd 100"
+        },
+        {
+            "label": "Juber Knob",
+            "dist": 0.71,
+            "type": "scenic",
+            "via": "Forest Rd 100"
+        },
+        {
+            "label": "Ivylog Mountain",
+            "dist": 0.72,
+            "type": "scenic",
+            "via": "Forest Rd 100"
+        },
+        {
+            "label": "Jenkins Gap",
+            "dist": 0.95,
+            "type": "gap",
+            "via": "Forest Rd 100"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Union County Fire Department",
+        "type": "Fire-EMS",
+        "address": "507 Shoe Factory Rd, Blairsville, GA 30512, USA",
+        "phone": "(706) 439-6095",
+        "dist_mi": 2.8
+    }
+}

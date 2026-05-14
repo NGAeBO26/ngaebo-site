@@ -1,0 +1,43 @@
+{
+    "profile_id": "665_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "George Mountain",
+            "dist": 0.38,
+            "type": "scenic",
+            "via": "13123"
+        },
+        {
+            "label": "Locust Mountain",
+            "dist": 0.49,
+            "type": "scenic",
+            "via": "13123"
+        },
+        {
+            "label": "Wallace Mountain",
+            "dist": 0.87,
+            "type": "scenic",
+            "via": "Access Road"
+        },
+        {
+            "label": "Rand Knob",
+            "dist": 0.99,
+            "type": "scenic",
+            "via": "13123"
+        },
+        {
+            "label": "Howell Mountain",
+            "dist": 1.31,
+            "type": "scenic",
+            "via": "Creekview Dr"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Gilmer County Fire and Rescue - Station 17",
+        "type": "Fire-EMS",
+        "address": "7212 Roy Rd, Ellijay, GA 30536, USA",
+        "phone": "(706) 635-1333",
+        "dist_mi": 4.6
+    }
+}

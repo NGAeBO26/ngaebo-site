@@ -1,0 +1,43 @@
+{
+    "profile_id": "15_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Cooper Gap",
+            "dist": 0.11,
+            "type": "gap",
+            "via": "Coopers Gap Rd"
+        },
+        {
+            "label": "Justus Mountain",
+            "dist": 0.26,
+            "type": "scenic",
+            "via": "Gaddistown Rd"
+        },
+        {
+            "label": "Sassafras Mountain",
+            "dist": 0.53,
+            "type": "scenic",
+            "via": "Appalachian Blue Ridge Rd"
+        },
+        {
+            "label": "Brookshire Gap",
+            "dist": 0.54,
+            "type": "gap",
+            "via": "Coopers Gap Rd"
+        },
+        {
+            "label": "Phyllis Spur",
+            "dist": 0.77,
+            "type": "scenic",
+            "via": "Coopers Gap Rd"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 11.2
+    }
+}

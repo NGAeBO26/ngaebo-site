@@ -1,0 +1,39 @@
+{
+    "profile_id": "642H_S1",
+    "route_id": "642H",
+    "ssdi_score": 7.0,
+    "v3_terrain_score": 3.7,
+    "v3_terrain_class": "Cruiser",
+    "badge_type": "wet",
+    "condition": "WET PAVEMENT",
+    "style_color": "#e66e00",
+    "access": {
+        "label": "OPEN",
+        "vibe_context": "PAVED ACCESS",
+        "status_code": "OPEN"
+    },
+    "ruggedness": {
+        "class": "Smooth",
+        "value": 0.14
+    },
+    "environment": {
+        "current_temp": 57,
+        "saturation_index": 16.4,
+        "soil_status": "Saturated",
+        "precip_24h": 0.0,
+        "saturation_trend": "stable",
+        "alerts": [
+            "SAFETY ALERT: Cell Service is UNAVAILABLE."
+        ]
+    },
+    "physics": {
+        "live_traction": 0.73,
+        "live_wh_per_km": 8.58,
+        "energy_penalty_pct": 1.5,
+        "v3_base_intensity": 3.7
+    },
+    "connectivity": {
+        "signal_class": "Unavailable",
+        "deadzone_max_meters": 134
+    }
+}

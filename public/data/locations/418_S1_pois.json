@@ -1,0 +1,43 @@
+{
+    "profile_id": "418_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Low Gap",
+            "dist": 0.24,
+            "type": "gap",
+            "via": "Access Road"
+        },
+        {
+            "label": "Flat Creek Mountain",
+            "dist": 1.13,
+            "type": "scenic",
+            "via": "Oakey Mountain Rd"
+        },
+        {
+            "label": "Ann Gap",
+            "dist": 1.25,
+            "type": "gap",
+            "via": "Oakey Mountain Rd"
+        },
+        {
+            "label": "Oakey Mountain",
+            "dist": 1.93,
+            "type": "scenic",
+            "via": "Oakey Mountain Rd"
+        },
+        {
+            "label": "Piney Ridge",
+            "dist": 2.06,
+            "type": "scenic",
+            "via": "Addis Rd"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clarkesville Fire Department",
+        "type": "Fire-EMS",
+        "address": "303 Adams St, Clarkesville, GA 30523, USA",
+        "phone": "(706) 754-2024",
+        "dist_mi": 8.3
+    }
+}

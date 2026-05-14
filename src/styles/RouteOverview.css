@@ -1,0 +1,198 @@
+/* --- WIDGET: ROUTE CONDITIONS ($50mm x 30mm) --- */
+.rr-widget-conditions-root {
+  width: 50mm !important;
+  height: 30mm !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: radial-gradient(circle at center, #ffffff 0%, #f9f9f9 100%) !important;
+  border: 1px solid #e0e0e0 !important;
+  overflow: visible !important;
+}
+
+.rr-cond-wheel-container {
+  position: relative !important;
+  width: 29mm !important;
+  height: 29mm !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  filter: drop-shadow(0 0 4px rgba(255,255,255,0.8)) !important;
+}
+
+.rr-cond-tire-bed {
+  position: absolute !important;
+  width: 26mm !important; 
+  height: 26mm !important;
+  border-radius: 70% !important;
+  background: transparent !important;
+  box-shadow: 
+    0 1.5px 3px rgba(0,0,0,0.12), 
+    inset 0 0 4px rgba(0,0,0,0.08),
+    0 0 0 1px rgba(255,255,255,0.8) !important;
+    
+  filter: drop-shadow(0 0 2px rgba(255,255,255,1)) !important;
+  border: 3mm solid #b2aaaa !important; 
+  box-sizing: border-box !important;
+  z-index: 5 !important;
+  opacity: 0.9 !important;
+}
+
+.rr-cond-wheel-svg {
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 10 !important;
+}
+
+.rr-cond-hub-overlay {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 16mm !important;
+  height: 16mm !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 20 !important;
+}
+
+.rr-cond-hub-text {
+  font-family: 'Montserrat' !important;
+  font-size: 8.5pt !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.3mm !important;
+  text-align: center !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+/* --- WIDGET: PRIME RIDE TIME ($91.9mm x 30mm) --- */
+.rr-widget-prime-root {
+  width: 91.9mm !important;
+  height: 30mm !important;
+  display: grid !important;
+  place-items: center !important; 
+  position: relative !important; 
+  background: radial-gradient(circle at center, #ffffff 0%, #f9f9f9 100%) !important;
+  border: 1px solid #e0e0e0 !important;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.02) !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+}
+
+.rr-joy-dial-box {
+  width: 80mm !important; 
+  height: 42mm !important; 
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-top: 0mm !important; 
+}
+
+.rr-joy-dial-svg {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important; 
+  display: block !important;
+}
+
+.rr-prime-time-dual-wrap {
+  position: absolute !important;
+  bottom: 2mm !important; 
+  left: 50% !important;
+  transform: translateX(-55%) !important; 
+  width: 28mm !important;  
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-end !important;
+  z-index: 50 !important;
+  overflow: visible !important;
+}
+
+.rr-prime-time-node-group {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important; 
+  justify-content: center !important;
+}
+
+.rr-prime-time-node {
+  font-size: 12pt !important; 
+  font-weight: 600 !important;
+  color: #111 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.2mm !important;
+  white-space: nowrap !important;
+}
+
+.rr-prime-time-node.separator {
+  font-size: 12pt !important;
+  color: #888 !important;
+  opacity: 0.5 !important;
+  margin-bottom: 1mm !important; 
+}
+
+.rr-prime-micro-label {
+  font-size: 5.5pt !important;
+  font-weight: 700 !important;
+  color: #999 !important; 
+  text-transform: uppercase !important;
+  letter-spacing: 0.4mm !important;
+  margin-bottom: 0.5mm !important; 
+  line-height: 1 !important;
+  text-align: center !important;
+}
+
+/* --- WIDGET: CURRENT WEATHER ($50mm x 30mm) --- */
+.rr-widget-weather-root {
+  width: 50mm !important;
+  height: 30mm !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important; 
+  background: radial-gradient(circle at center, #ffffff 0%, #f9f9f9 100%) !important;
+  border: 1px solid #e0e0e0 !important;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.02) !important;
+  box-sizing: border-box !important;
+  padding: 0.5mm 0 !important;
+}
+
+.rr-weather-icon-box {
+  height: 11mm !important; 
+  margin-top: -1mm !important; 
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.rr-weather-icon-svg {
+  height: 10.5mm !important;
+  width: auto !important;
+}
+
+.rr-weather-temp-node {
+  font-size: 14pt !important;
+  font-weight: 800 !important;
+  color: #222 !important;
+  line-height: 1 !important;
+  margin-top: 2mm !important;
+  margin-bottom: 1mm !important;
+}
+
+.rr-weather-condition-node {
+  font-size: 9pt !important; 
+  font-weight:800 !important;
+  text-transform: uppercase !important;
+  color: #444 !important;
+  line-height: 1.1 !important;
+  margin-top: 1mm !important;
+}
+
+.rr-weather-precip-node {
+  font-size: 7pt !important;
+  font-weight: 800 !important;
+  color: #236ea0 !important; 
+  margin-top: 2mm !important;
+}

@@ -1,0 +1,43 @@
+{
+    "profile_id": "346_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Low Gap",
+            "dist": 0.37,
+            "type": "gap",
+            "via": "Rock Creek Rd"
+        },
+        {
+            "label": "Edmondson Gap",
+            "dist": 1.05,
+            "type": "gap",
+            "via": "Appalachian Blue Ridge Rd"
+        },
+        {
+            "label": "Frozen Knob",
+            "dist": 1.16,
+            "type": "scenic",
+            "via": "Rock Creek Rd"
+        },
+        {
+            "label": "Williams Gap",
+            "dist": 1.2,
+            "type": "gap",
+            "via": "Rock Creek Rd"
+        },
+        {
+            "label": "Greasy Mountain",
+            "dist": 1.56,
+            "type": "scenic",
+            "via": "Appalachian Blue Ridge Rd"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 13.3
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "profile_id": "42_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Puncheon Gap",
+            "dist": 0.22,
+            "type": "gap",
+            "via": "Hightower Gap Rd"
+        },
+        {
+            "label": "Coppermine Gap",
+            "dist": 0.43,
+            "type": "gap",
+            "via": "Hightower Gap Rd"
+        },
+        {
+            "label": "Hawk Mountain",
+            "dist": 0.7,
+            "type": "scenic",
+            "via": "Hightower Gap Rd"
+        },
+        {
+            "label": "Fryingpan Gap",
+            "dist": 0.81,
+            "type": "gap",
+            "via": "Winding Stair Gap Rd"
+        },
+        {
+            "label": "Hightower Gap",
+            "dist": 1.11,
+            "type": "gap",
+            "via": "Rock Creek Rd"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 14.0
+    }
+}

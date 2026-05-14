@@ -1,0 +1,43 @@
+{
+    "profile_id": "877_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Bull Mountain",
+            "dist": 0.98,
+            "type": "scenic",
+            "via": "Access Road"
+        },
+        {
+            "label": "Jake Mountain",
+            "dist": 1.48,
+            "type": "trailhead",
+            "via": "Access Road"
+        },
+        {
+            "label": "Little Sal Mountain",
+            "dist": 1.91,
+            "type": "scenic",
+            "via": "Winding Stair Gap Rd"
+        },
+        {
+            "label": "Winding Stair Gap",
+            "dist": 2.03,
+            "type": "gap",
+            "via": "Winding Stair Gap Rd"
+        },
+        {
+            "label": "Big Stamp Gap",
+            "dist": 2.29,
+            "type": "gap",
+            "via": "Forest Svc Rd"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 13.3
+    }
+}

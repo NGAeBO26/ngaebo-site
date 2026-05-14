@@ -1,0 +1,33 @@
+{
+    "profile_id": "162_S1",
+    "route_id": "162",
+    "ssdi_score": 5.0,
+    "badge_type": "wet",
+    "condition": "WET / SLICK",
+    "style_color": "#e66e00",
+    "access": {
+        "label": "OPEN",
+        "vibe_context": "RESTRICTED EXPLORER",
+        "status_code": "OPEN"
+    },
+    "ruggedness": {
+        "class": "Chattery",
+        "value": 0.37
+    },
+    "environment": {
+        "current_temp": 70,
+        "saturation_index": 0.0,
+        "saturation_trend": "stable",
+        "alerts": []
+    },
+    "physics": {
+        "live_traction": 0.66,
+        "live_wh_per_km": 16.89,
+        "energy_penalty_pct": 51.5,
+        "v3_base_intensity": 5.0
+    },
+    "connectivity": {
+        "signal_class": "Spotty",
+        "deadzone_max_meters": 1464
+    }
+}

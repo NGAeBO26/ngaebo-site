@@ -1,0 +1,43 @@
+{
+    "profile_id": "400_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Blue Ridge Ranger District",
+            "dist": 0.01,
+            "type": "camp",
+            "via": "Us-76"
+        },
+        {
+            "label": "Blue Ridge Ranger District",
+            "dist": 0.01,
+            "type": "camp",
+            "via": "Us-76"
+        },
+        {
+            "label": "Blue Ridge Ranger District",
+            "dist": 0.03,
+            "type": "ranger",
+            "via": "Us-76"
+        },
+        {
+            "label": "Brackett Knob",
+            "dist": 1.86,
+            "type": "scenic",
+            "via": "Lows Mill Ln"
+        },
+        {
+            "label": "Wellborn Mountain",
+            "dist": 1.98,
+            "type": "scenic",
+            "via": "Wellborn Mtn Rd"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Union County Fire Department",
+        "type": "Fire-EMS",
+        "address": "507 Shoe Factory Rd, Blairsville, GA 30512, USA",
+        "phone": "(706) 439-6095",
+        "dist_mi": 3.2
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "profile_id": "819_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Mary Gap",
+            "dist": 0.06,
+            "type": "gap",
+            "via": "Rocky Top Rd"
+        },
+        {
+            "label": "Gumlog Mountain",
+            "dist": 0.49,
+            "type": "scenic",
+            "via": "Rocky Top Rd"
+        },
+        {
+            "label": "Miller Gap",
+            "dist": 0.59,
+            "type": "gap",
+            "via": "Rocky Top Rd"
+        },
+        {
+            "label": "Rocky Top",
+            "dist": 0.71,
+            "type": "scenic",
+            "via": "Rocky Top Rd"
+        },
+        {
+            "label": "Gobblers Knob",
+            "dist": 0.72,
+            "type": "scenic",
+            "via": "Sunset Ct"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Murphy Fire Department",
+        "type": "Fire-EMS",
+        "address": "1 Firehouse Ln, Murphy, NC 28906, USA",
+        "phone": "(828) 837-2212",
+        "dist_mi": 7.4
+    }
+}

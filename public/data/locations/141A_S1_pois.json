@@ -1,0 +1,43 @@
+{
+    "profile_id": "141A_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Black Falls",
+            "dist": 0.6,
+            "type": "water",
+            "via": "Cloverleaf Trl"
+        },
+        {
+            "label": "Little Sal Mountain",
+            "dist": 1.29,
+            "type": "scenic",
+            "via": "Winding Stair Gap Rd"
+        },
+        {
+            "label": "Conner Mountain",
+            "dist": 1.29,
+            "type": "scenic",
+            "via": "Coopers Gap Rd"
+        },
+        {
+            "label": "Horse Gap",
+            "dist": 1.83,
+            "type": "gap",
+            "via": "Appalachian Blue Ridge Rd"
+        },
+        {
+            "label": "Sassafras Mountain",
+            "dist": 1.93,
+            "type": "scenic",
+            "via": "Appalachian Blue Ridge Rd"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 11.5
+    }
+}

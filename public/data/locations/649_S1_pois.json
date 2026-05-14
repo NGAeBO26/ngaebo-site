@@ -1,0 +1,43 @@
+{
+    "profile_id": "649_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Falls Branch",
+            "dist": 0.34,
+            "type": "water",
+            "via": "Bear Gap Rd"
+        },
+        {
+            "label": "Angel Falls",
+            "dist": 0.7,
+            "type": "trailhead",
+            "via": "Lake Rabun Rd"
+        },
+        {
+            "label": "Joe Mountain",
+            "dist": 1.52,
+            "type": "scenic",
+            "via": "Forest Svc Rd"
+        },
+        {
+            "label": "Stamp Knob",
+            "dist": 1.67,
+            "type": "scenic",
+            "via": "Forest Svc Rd"
+        },
+        {
+            "label": "Stamp Ridge",
+            "dist": 1.76,
+            "type": "scenic",
+            "via": "Forest Svc Rd"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clarkesville Fire Department",
+        "type": "Fire-EMS",
+        "address": "303 Adams St, Clarkesville, GA 30523, USA",
+        "phone": "(706) 754-2024",
+        "dist_mi": 10.1
+    }
+}

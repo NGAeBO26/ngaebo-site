@@ -1,0 +1,43 @@
+{
+    "profile_id": "365_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Jake Mountain",
+            "dist": 0.85,
+            "type": "trailhead",
+            "via": "Access Road"
+        },
+        {
+            "label": "Bull Mountain",
+            "dist": 1.21,
+            "type": "scenic",
+            "via": "Access Road"
+        },
+        {
+            "label": "Little Sal Mountain",
+            "dist": 1.24,
+            "type": "scenic",
+            "via": "Winding Stair Gap Rd"
+        },
+        {
+            "label": "Jake Mountain",
+            "dist": 2.35,
+            "type": "scenic",
+            "via": "Nimblewill Church Rd"
+        },
+        {
+            "label": "Black Falls",
+            "dist": 2.39,
+            "type": "water",
+            "via": "Cloverleaf Trl"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 12.1
+    }
+}

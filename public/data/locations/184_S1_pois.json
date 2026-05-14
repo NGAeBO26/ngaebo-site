@@ -1,0 +1,43 @@
+{
+    "profile_id": "184_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Big Shoal Mountain",
+            "dist": 0.82,
+            "type": "scenic",
+            "via": "Us Hwy Nat For Rd 184"
+        },
+        {
+            "label": "Abram Mountain",
+            "dist": 1.85,
+            "type": "scenic",
+            "via": "Yonah Lake Cir"
+        },
+        {
+            "label": "Apple Pie Mountain",
+            "dist": 2.14,
+            "type": "scenic",
+            "via": "School Nature Rd"
+        },
+        {
+            "label": "Hickory Nut Mountain",
+            "dist": 2.68,
+            "type": "scenic",
+            "via": "Hickory Nut Rd"
+        },
+        {
+            "label": "Cascade Falls",
+            "dist": 3.12,
+            "type": "water",
+            "via": "Viola Scott Cir"
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clarkesville Fire Department",
+        "type": "Fire-EMS",
+        "address": "303 Adams St, Clarkesville, GA 30523, USA",
+        "phone": "(706) 754-2024",
+        "dist_mi": 10.5
+    }
+}
