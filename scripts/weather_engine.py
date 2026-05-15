@@ -105,7 +105,7 @@ def main():
     
     avg_grade = get_float(feat, "v3_avg_grade", 0.0)
     surface   = str(feat.get("SURFACE_TY", "NATIVE"))
-    base_wh   = get_float(feat, "v3_wh_per_km", 25.0)
+    base_wh = float(feat.get("v3_wh_km", 25.0))
     # Correctly pulling GIS_MILES for the tax gauge
     actual_miles = get_float(feat, "GIS_MILES", 3.9)
 
@@ -144,22 +144,65 @@ def main():
             "joy_score": round(max(0, joy), 1)
         })
 
-    # 4. SSDI & EFFORT PENALTY CALCULATION
+    # 4. SSDI & EFFORT PENALTY CALCULATION (RESTORED TO QGIS PARITY)
+    # Pull GIS attributes from the feature (passed into the engine from the GeoJSON)
+    v3_terrain_score = float(feat.get("v3_terrain_score", 4.0))
+    v3_surface = str(feat.get("v3_surface", "AGG")).upper()
+    
+    # Calculate Saturation Index (JIT)
     saturation = min(10, p_24 * 50)
-    grade_factor = 2.5 if avg_grade < 3 else 4.0 if avg_grade < 6 else 6.0
-    surface_factor = 1.5 if "AGG" in surface else 3.5 if "NATIVE" in surface else 2.5
     
-    ssdi = round(min(10, (saturation * 0.2) + grade_factor + surface_factor), 1)
-    traction = 1.0 - (ssdi * 0.02)
-    live_wh = round(base_wh / traction, 2)
-    penalty = round(((live_wh / base_wh) - 1) * 100, 1)
+    # Exact QGIS Sensitivity Multiplier
+    sensitivity = 3.0 if "NAT" in v3_surface else 1.0 if "AGG" in v3_surface else 0.2
     
+    # Exact QGIS SSDI Formula (No caps, no 0.2 dampener)
+    ssdi = round(v3_terrain_score + (saturation * sensitivity), 1)
+
+    # Exact QGIS Classification Logic
+    if "PAV" in v3_surface and saturation > 0.1:
+        cond, badge, color, traction_mod = "WET PAVEMENT", "wet", "#e66e00", 0.90
+    elif ssdi < 2.5: 
+        cond, badge, color, traction_mod = "DRY / DUSTY", "dry", "#4a5d23", 0.95
+    elif ssdi < 4.5: 
+        cond, badge, color, traction_mod = "IDEAL", "ideal", "#2e7d32", 1.0
+    elif ssdi < 7.0: 
+        cond, badge, color, traction_mod = "WET / SLICK", "wet", "#e66e00", 0.75
+    else: 
+        cond, badge, color, traction_mod = "MUDDY / SOFT", "muddy", "#a52d23", 0.50
+
+    # --- 7. PHYSICS (RESTORED TO QGIS SOURCE OF TRUTH) ---
+    # Pull base constants from the GIS feature
+    base_traction_idx = float(feat.get("v3_traction_idx", 0.9))
+    base_wh = float(feat.get("v3_wh_km", 25.0))
+    
+    # Calculate Live Traction (using the traction_mod from your classification block)
+    live_traction = round(base_traction_idx * traction_mod, 2)
+    
+    # Physics Dampening logic
+    energy_penalty_factor = 0.15 if "PAV" in v3_surface else 0.40 
+    energy_mod = 1.0 + ((1.0 - traction_mod) * energy_penalty_factor)
+    
+    # Final Physics values
+    live_wh = round(base_wh * energy_mod, 2)
+    energy_penalty_pct = round(((live_wh / base_wh) - 1) * 100, 1)
+    
+    # Map soil status label based on your index
     soil_status = "Dry / Dusty" if saturation < 2 else "Damp" if saturation < 5 else "Saturated"
 
     # 5. SURGICAL SSDI UPDATE (Preserves GIS Metadata)
+    weather_path = os.path.join(WEATHER_DIR, f"{route_id}_weather.json")
+    
+    # Initialize weather_data BEFORE assigning to it
+    if os.path.exists(weather_path):
+        with open(weather_path, 'r') as f:
+            weather_data = json.load(f)
+    else:
+        weather_data = {
+            "metadata": {"profile_id": route_id},
+            "hourly_data": []
+        }
     ssdi_path = os.path.join(COND_DIR, f"{route_id}_ssdi.json")
     
-    # Load existing rich data if available, otherwise start with base schema
     if os.path.exists(ssdi_path):
         with open(ssdi_path, 'r') as f:
             ssdi_data = json.load(f)
@@ -171,42 +214,30 @@ def main():
             "access": {}
         }
 
-    # Map dynamic values into the existing schema
+    # Map dynamic values into the existing schema using QGIS logic
     ssdi_data["ssdi_score"] = ssdi
-    ssdi_data["badge_type"] = "wet" if saturation > 4 else "ideal"
-    ssdi_data["condition"] = "WET / SLICK" if ssdi > 7 else "IDEAL"
-    ssdi_data["style_color"] = "#e66e00" if ssdi > 5 else "#2e7d32"
+    ssdi_data["badge_type"] = badge
+    ssdi_data["condition"] = cond
+    ssdi_data["style_color"] = color
     
-    # Update nested objects used by widgets
     if "physics" not in ssdi_data: ssdi_data["physics"] = {}
-    ssdi_data["physics"]["live_traction"] = traction
-    ssdi_data["physics"]["energy_penalty_pct"] = penalty
+    ssdi_data["physics"]["live_traction"] = live_traction
+    ssdi_data["physics"]["live_wh_per_km"] = live_wh
+    ssdi_data["physics"]["energy_penalty_pct"] = energy_penalty_pct
+    ssdi_data["physics"]["v3_base_intensity"] = v3_terrain_score
     
     if "environment" not in ssdi_data: ssdi_data["environment"] = {}
     ssdi_data["environment"]["current_temp"] = periods[0]['temperature']
     ssdi_data["environment"]["saturation_index"] = round(saturation, 1)
+    ssdi_data["environment"]["soil_status"] = soil_status
 
-    # Ensure access label remains visible
+    # Preserve or set default access
     if "access" not in ssdi_data: ssdi_data["access"] = {}
-    ssdi_data["access"]["label"] = "OPEN"
-    ssdi_data["access"]["status_code"] = "OK"
+    ssdi_data["access"]["label"] = ssdi_data["access"].get("label", "OPEN")
+    ssdi_data["access"]["status_code"] = ssdi_data["access"].get("status_code", "OK")
 
-    # Save merged data
     with open(ssdi_path, 'w') as f:
         json.dump(ssdi_data, f, indent=2)
-
-    # 5. SURGICAL WEATHER UPDATE (Preserves Static Metadata)
-    weather_path = os.path.join(WEATHER_DIR, f"{route_id}_weather.json")
-    
-    # Load existing data to preserve static keys, or create base if missing
-    if os.path.exists(weather_path):
-        with open(weather_path, 'r') as f:
-            weather_data = json.load(f)
-    else:
-        weather_data = {
-            "metadata": {"profile_id": route_id},
-            "hourly_data": []
-        }
 
     # Update Live Meteorological Values
     weather_data["current_temp"] = periods[0]['temperature']
@@ -215,7 +246,7 @@ def main():
     weather_data["primary_condition"] = periods[0]['shortForecast']
     weather_data["precip_prob"] = p_prob_raw
     weather_data["live_wh"] = live_wh
-    weather_data["effort_penalty"] = penalty
+    weather_data["energy_penalty_pct"] = energy_penalty_pct
 
     # Update Metadata Block (Preserving other sub-keys)
     if "metadata" not in weather_data: weather_data["metadata"] = {}
@@ -243,10 +274,11 @@ def main():
     vis.generate_joy_dial_svg(route_id, weather_data, JOY_DIR, theme)
     vis.generate_conditions_wheel_svg(route_id, ssdi_data, VIS_DIR)
     
-    # HANDSHAKE FIX: Passing ALL 5 required positional arguments
-    vis.generate_effort_tax_svg(route_id, penalty, actual_miles, TAX_DIR, theme)
+    # CHANGE: Use energy_penalty_pct instead of the undefined 'penalty'
+    vis.generate_effort_tax_svg(route_id, energy_penalty_pct, actual_miles, TAX_DIR, theme)
 
-    print(f"SUCCESS: {route_id} updated | SSDI: {ssdi} | Penalty: {penalty}%")
+    # Update your final print statement as well for accurate logging
+    print(f"SUCCESS: {route_id} updated | SSDI: {ssdi} | Penalty: {energy_penalty_pct}%")
 
 if __name__ == "__main__":
     main()
