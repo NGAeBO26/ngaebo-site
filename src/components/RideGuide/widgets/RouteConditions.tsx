@@ -7,7 +7,7 @@ export default function RouteConditions({ routeID }: { routeID: string }) {
   if (loading || !data?.ssdi) return <div className="rr-widget-conditions-root">...</div>;
 
   // 1. Pull the exact values processed by the weather_engine
-  const { ssdi_score, condition, style_color} = data.ssdi;
+  const { condition, style_color} = data.ssdi;
 
   // 2. Use the style_color directly from the JSON for the Halo/Label
   const haloStyle = {
