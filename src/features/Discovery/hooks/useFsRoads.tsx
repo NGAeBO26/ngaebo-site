@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+// src/features/Discovery/hooks/useFsRoads.tsx
+import { useEffect, useState } from "react";
 import proj4 from "proj4";
 import type { Map as MaplibreMap, GeoJSONSource } from "maplibre-gl";
 
@@ -30,13 +31,11 @@ function getRoadsBeforeLayerId(map: MaplibreMap): string | undefined {
     const style = map.getStyle?.();
     const layers = style?.layers ?? [];
 
-    // Prefer placing roads directly below POI/cluster layers.
     const poiLayer = layers.find((l: any) =>
       /poi|cluster|marker/i.test(l.id)
     );
     if (poiLayer?.id) return poiLayer.id;
 
-    // Fallback: place below labels/symbol-heavy layers if present.
     const labelLayer = layers.find((l: any) =>
       /label|symbol/i.test(l.id)
     );
@@ -75,6 +74,9 @@ export default function useFsRoads(
   mapReady?: boolean,
   options?: { addLayers?: boolean }
 ) {
+  // NEW state block to securely return features array to JavaScript
+  const [routesData, setRoutesData] = useState<any[]>([]);
+
   useEffect(() => {
     if (!map) return;
     if (mapReady === false) return;
@@ -190,6 +192,9 @@ export default function useFsRoads(
 
         if (cancelled) return;
 
+        // Store to JavaScript state for parent filters array evaluation
+        setRoutesData(finalGeo.features);
+
         try {
           const src = map.getSource("fs-roads") as GeoJSONSource | undefined;
 
@@ -226,8 +231,6 @@ export default function useFsRoads(
           try {
             const beforeId = getRoadsBeforeLayerId(map);
 
-            // 1. THE UNDER-LAYER (CASING)
-            // This must be added first so it renders behind the main route line
             if (!map.getLayer("fs-roads-casing")) {
               map.addLayer(
                 {
@@ -244,26 +247,22 @@ export default function useFsRoads(
                     "line-cap": "round",
                   },
                   paint: {
-                    // Dark casing insulates the bright path over forest and contours
                     "line-color": "#6e7c7c", 
                     "line-width": [
                       "interpolate",
                       ["linear"],
                       ["zoom"],
-                      // Keep the casing proportionally wider than the core line at every step
-                      6, 2.5,  // Core is 1.2
-                      10, 4.5, // Core is 2.4
-                      13, 7.5  // Core is 4.2
+                      6, 2.5,
+                      10, 4.5,
+                      13, 7.5
                     ],
                     "line-opacity": 0.9,
                   },
                 },
-                beforeId // Injected at the correct style layer hierarchy location
+                beforeId
               );
             }
 
-            // 2. THE TOP-LAYER (CORE ROUTE)
-            // Rendered over the casing line to create the "visual sandwich" stroke effect
             if (!map.getLayer("fs-roads-line")) {
               map.addLayer(
                 {
@@ -280,7 +279,6 @@ export default function useFsRoads(
                     "line-cap": "round",
                   },
                   paint: {
-                    // Vibrant core line color (your current amber accent color)
                     "line-color": "#d97706", 
                     "line-width": [
                       "interpolate",
@@ -290,7 +288,6 @@ export default function useFsRoads(
                       10, 2.4,
                       13, 4.2,
                     ],
-                    // Boosted to 1.0 opacity so the core line sits vividly opaque on the casing
                     "line-opacity": 1.0, 
                   },
                 },
@@ -360,7 +357,6 @@ export default function useFsRoads(
               );
             }
 
-            // Reinforce ordering if POI layers got added before this hook ran.
             for (const layerId of [
               "fs-roads-line",
               "fs-roads-hover",
@@ -470,4 +466,6 @@ export default function useFsRoads(
       if (removeLoadListener) removeLoadListener();
     };
   }, [map, mapReady, options?.addLayers]);
+
+  return { routesData };
 }

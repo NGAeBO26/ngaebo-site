@@ -9,8 +9,8 @@ export interface GravelPopupData {
   miles: string;
   avgGrade: string;
   surfaceType: string;
-  difficulty: string;
-  vibe: string;
+  difficulty?: string;
+  vibe?: string;
   elevationProfile: number[];
   status?: string;
 }
