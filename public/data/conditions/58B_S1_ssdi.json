@@ -1,7 +1,7 @@
 {
     "profile_id": "58B_S1",
     "route_id": "58B",
-    "ssdi_score": 9.6,
+    "ssdi_score": 7.5,
     "v3_terrain_score": 5.9,
     "v3_terrain_class": "Strenuous",
     "badge_type": "muddy",
@@ -17,10 +17,10 @@
         "value": 0.3
     },
     "environment": {
-        "current_temp": 54,
-        "saturation_index": 18.37,
+        "current_temp": 63,
+        "saturation_index": 8.03,
         "soil_status": "Saturated",
-        "precip_24h": 0.02,
+        "precip_24h": 0.0,
         "saturation_trend": "stable",
         "alerts": [
             "SAFETY ALERT: Cell Service is UNAVAILABLE."

@@ -1,12 +1,12 @@
 {
     "profile_id": "410_S1",
     "route_id": "410",
-    "ssdi_score": 8.7,
+    "ssdi_score": 6.8,
     "v3_terrain_score": 5.4,
     "v3_terrain_class": "Strenuous",
-    "badge_type": "muddy",
-    "condition": "MUDDY / SOFT",
-    "style_color": "#a52d23",
+    "badge_type": "wet",
+    "condition": "WET / SLICK",
+    "style_color": "#e66e00",
     "access": {
         "label": "OPEN",
         "vibe_context": "RESTRICTED EXPLORER",
@@ -17,17 +17,17 @@
         "value": 0.29
     },
     "environment": {
-        "current_temp": 54,
-        "saturation_index": 16.4,
+        "current_temp": 59,
+        "saturation_index": 6.96,
         "soil_status": "Saturated",
         "precip_24h": 0.0,
         "saturation_trend": "stable",
         "alerts": []
     },
     "physics": {
-        "live_traction": 0.38,
-        "live_wh_per_km": 17.48,
-        "energy_penalty_pct": 20.0,
+        "live_traction": 0.57,
+        "live_wh_per_km": 16.03,
+        "energy_penalty_pct": 10.0,
         "v3_base_intensity": 5.4
     },
     "connectivity": {

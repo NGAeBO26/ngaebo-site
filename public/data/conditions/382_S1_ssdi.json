@@ -1,12 +1,12 @@
 {
     "profile_id": "382_S1",
     "route_id": "382",
-    "ssdi_score": 7.7,
+    "ssdi_score": 5.8,
     "v3_terrain_score": 4.4,
     "v3_terrain_class": "Strenuous",
-    "badge_type": "muddy",
-    "condition": "MUDDY / SOFT",
-    "style_color": "#a52d23",
+    "badge_type": "wet",
+    "condition": "WET / SLICK",
+    "style_color": "#e66e00",
     "access": {
         "label": "OPEN",
         "vibe_context": "PAVED ACCESS",
@@ -17,17 +17,17 @@
         "value": 0.42
     },
     "environment": {
-        "current_temp": 56,
-        "saturation_index": 16.4,
+        "current_temp": 55,
+        "saturation_index": 6.96,
         "soil_status": "Saturated",
         "precip_24h": 0.0,
         "saturation_trend": "stable",
         "alerts": []
     },
     "physics": {
-        "live_traction": 0.37,
-        "live_wh_per_km": 12.76,
-        "energy_penalty_pct": 20.0,
+        "live_traction": 0.55,
+        "live_wh_per_km": 11.69,
+        "energy_penalty_pct": 10.0,
         "v3_base_intensity": 4.4
     },
     "connectivity": {

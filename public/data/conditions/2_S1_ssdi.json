@@ -1,39 +1,39 @@
 {
-  "profile_id": "2_S1",
-  "route_id": "2",
-  "ssdi_score": 7.5,
-  "v3_terrain_score": 5.5,
-  "v3_terrain_class": "Strenuous",
-  "badge_type": "ideal",
-  "condition": "WET / SLICK",
-  "style_color": "#e66e00",
-  "access": {
-    "label": "OPEN",
-    "vibe_context": "RESTRICTED EXPLORER",
-    "status_code": "OK"
-  },
-  "ruggedness": {
-    "class": "Chattery",
-    "value": 0.34
-  },
-  "environment": {
-    "current_temp": 59,
-    "saturation_index": 0.0,
-    "soil_status": "Saturated",
-    "precip_24h": 0.0,
-    "saturation_trend": "stable",
-    "alerts": [
-      "SAFETY ALERT: Cell Service is UNRELIABLE."
-    ]
-  },
-  "physics": {
-    "live_traction": 0.85,
-    "live_wh_per_km": 17.68,
-    "energy_penalty_pct": 17.6,
-    "v3_base_intensity": 5.5
-  },
-  "connectivity": {
-    "signal_class": "Unreliable",
-    "deadzone_max_meters": 1955
-  }
+    "profile_id": "2_S1",
+    "route_id": "2",
+    "ssdi_score": 6.9,
+    "v3_terrain_score": 5.5,
+    "v3_terrain_class": "Strenuous",
+    "badge_type": "wet",
+    "condition": "WET / SLICK",
+    "style_color": "#e66e00",
+    "access": {
+        "label": "OPEN",
+        "vibe_context": "RESTRICTED EXPLORER",
+        "status_code": "OPEN"
+    },
+    "ruggedness": {
+        "class": "Chattery",
+        "value": 0.34
+    },
+    "environment": {
+        "current_temp": 59,
+        "saturation_index": 6.96,
+        "soil_status": "Saturated",
+        "precip_24h": 0.0,
+        "saturation_trend": "stable",
+        "alerts": [
+            "SAFETY ALERT: Cell Service is UNRELIABLE."
+        ]
+    },
+    "physics": {
+        "live_traction": 0.57,
+        "live_wh_per_km": 16.2,
+        "energy_penalty_pct": 10.0,
+        "v3_base_intensity": 5.5
+    },
+    "connectivity": {
+        "signal_class": "Unreliable",
+        "deadzone_max_meters": 1955
+    }
 }

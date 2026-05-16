@@ -1,7 +1,7 @@
 {
     "profile_id": "877A_S1",
     "route_id": "877A",
-    "ssdi_score": 59.0,
+    "ssdi_score": 30.3,
     "v3_terrain_score": 7.0,
     "v3_terrain_class": "Epic",
     "badge_type": "muddy",
@@ -17,8 +17,8 @@
         "value": 0.21
     },
     "environment": {
-        "current_temp": 54,
-        "saturation_index": 17.32,
+        "current_temp": 63,
+        "saturation_index": 7.76,
         "soil_status": "Saturated",
         "precip_24h": 0.0,
         "saturation_trend": "stable",

@@ -1,33 +1,33 @@
 {
   "profile_id": "346_S1",
   "route_id": "346",
-  "ssdi_score": 10,
+  "ssdi_score": 8.7,
   "v3_terrain_score": 6.7,
   "v3_terrain_class": "Strenuous",
-  "badge_type": "wet",
-  "condition": "WET / SLICK",
-  "style_color": "#e66e00",
+  "badge_type": "muddy",
+  "condition": "MUDDY / SOFT",
+  "style_color": "#a52d23",
   "access": {
     "label": "OPEN",
     "vibe_context": "RESTRICTED EXPLORER",
-    "status_code": "OK"
+    "status_code": "OPEN"
   },
   "ruggedness": {
     "class": "Rough",
     "value": 0.35
   },
   "environment": {
-    "current_temp": 72,
-    "saturation_index": 4.7,
-    "soil_status": "Saturated",
-    "precip_24h": 0.01,
+    "current_temp": 63,
+    "saturation_index": 0.7,
+    "soil_status": "Dry / Dusty",
+    "precip_24h": 0.0,
     "saturation_trend": "stable",
     "alerts": []
   },
   "physics": {
-    "live_traction": 0.8,
-    "live_wh_per_km": 16.61,
-    "energy_penalty_pct": 25.0,
+    "live_traction": 0.4,
+    "live_wh_per_km": 16.25,
+    "energy_penalty_pct": 20.0,
     "v3_base_intensity": 6.7
   },
   "connectivity": {

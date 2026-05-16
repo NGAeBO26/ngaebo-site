@@ -1,39 +1,39 @@
 {
-  "profile_id": "58_S1",
-  "route_id": "58",
-  "ssdi_score": 8.6,
-  "v3_terrain_score": 3.8,
-  "v3_terrain_class": "Cruiser",
-  "badge_type": "wet",
-  "condition": "WET / SLICK",
-  "style_color": "#e66e00",
-  "access": {
-    "label": "OPEN",
-    "vibe_context": "CLASSIC FOREST ROAD",
-    "status_code": "OK"
-  },
-  "ruggedness": {
-    "class": "Chattery",
-    "value": 0.21
-  },
-  "environment": {
-    "current_temp": 74,
-    "saturation_index": 5.7,
-    "soil_status": "Saturated",
-    "precip_24h": 0.02,
-    "saturation_trend": "stable",
-    "alerts": [
-      "SAFETY ALERT: Cell Service is UNAVAILABLE."
-    ]
-  },
-  "physics": {
-    "live_traction": 0.8280000000000001,
-    "live_wh_per_km": 12.52,
-    "energy_penalty_pct": 20.8,
-    "v3_base_intensity": 3.8
-  },
-  "connectivity": {
-    "signal_class": "Unavailable",
-    "deadzone_max_meters": 12995
-  }
+    "profile_id": "58_S1",
+    "route_id": "58",
+    "ssdi_score": 5.4,
+    "v3_terrain_score": 3.8,
+    "v3_terrain_class": "Cruiser",
+    "badge_type": "wet",
+    "condition": "WET / SLICK",
+    "style_color": "#e66e00",
+    "access": {
+        "label": "OPEN",
+        "vibe_context": "CLASSIC FOREST ROAD",
+        "status_code": "OPEN"
+    },
+    "ruggedness": {
+        "class": "Chattery",
+        "value": 0.21
+    },
+    "environment": {
+        "current_temp": 62,
+        "saturation_index": 8.03,
+        "soil_status": "Saturated",
+        "precip_24h": 0.0,
+        "saturation_trend": "stable",
+        "alerts": [
+            "SAFETY ALERT: Cell Service is UNAVAILABLE."
+        ]
+    },
+    "physics": {
+        "live_traction": 0.57,
+        "live_wh_per_km": 11.47,
+        "energy_penalty_pct": 10.0,
+        "v3_base_intensity": 3.8
+    },
+    "connectivity": {
+        "signal_class": "Unavailable",
+        "deadzone_max_meters": 12995
+    }
 }

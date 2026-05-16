@@ -1,10 +1,8 @@
-// src/components/TrailMap/useMapReady.ts
+// src/features/Discovery/useMapReady.ts
 import { useEffect, useState } from "react";
 import * as maplibregl from "maplibre-gl";
 
-export function useMapReady(
-  mapRef: React.RefObject<maplibregl.Map | null>
-) {
+export function useMapReady(mapRef: React.RefObject<maplibregl.Map | null>) {
   const [map, setMap] = useState<maplibregl.Map | null>(null);
 
   useEffect(() => {

@@ -1,12 +1,12 @@
 {
     "profile_id": "25B_S1",
     "route_id": "25B",
-    "ssdi_score": 8.0,
+    "ssdi_score": 6.5,
     "v3_terrain_score": 5.3,
     "v3_terrain_class": "Strenuous",
-    "badge_type": "muddy",
-    "condition": "MUDDY / SOFT",
-    "style_color": "#a52d23",
+    "badge_type": "wet",
+    "condition": "WET / SLICK",
+    "style_color": "#e66e00",
     "access": {
         "label": "CLOSED",
         "vibe_context": "TECHNICAL BACKCOUNTRY (CLOSED)",
@@ -17,17 +17,17 @@
         "value": 0.32
     },
     "environment": {
-        "current_temp": 55,
-        "saturation_index": 13.47,
+        "current_temp": 59,
+        "saturation_index": 5.97,
         "soil_status": "Saturated",
         "precip_24h": 0.0,
         "saturation_trend": "stable",
         "alerts": []
     },
     "physics": {
-        "live_traction": 0.4,
-        "live_wh_per_km": 16.97,
-        "energy_penalty_pct": 20.0,
+        "live_traction": 0.59,
+        "live_wh_per_km": 15.55,
+        "energy_penalty_pct": 10.0,
         "v3_base_intensity": 5.3
     },
     "connectivity": {

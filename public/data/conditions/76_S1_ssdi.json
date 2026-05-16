@@ -1,33 +1,33 @@
 {
   "profile_id": "76_S1",
   "route_id": "76",
-  "ssdi_score": 7.5,
+  "ssdi_score": 4.1,
   "v3_terrain_score": 3.8,
   "v3_terrain_class": "Cruiser",
   "badge_type": "ideal",
-  "condition": "WET / SLICK",
-  "style_color": "#e66e00",
+  "condition": "IDEAL",
+  "style_color": "#2e7d32",
   "access": {
-    "label": "OPEN",
+    "label": "CLOSED",
     "vibe_context": "TECHNICAL BACKCOUNTRY (CLOSED)",
-    "status_code": "OK"
+    "status_code": "RESTRICTED"
   },
   "ruggedness": {
     "class": "Chattery",
     "value": 0.19
   },
   "environment": {
-    "current_temp": 57,
-    "saturation_index": 0.0,
-    "soil_status": "Saturated",
+    "current_temp": 55,
+    "saturation_index": 1.3,
+    "soil_status": "Dry / Dusty",
     "precip_24h": 0.0,
     "saturation_trend": "stable",
     "alerts": []
   },
   "physics": {
-    "live_traction": 0.85,
-    "live_wh_per_km": 12.62,
-    "energy_penalty_pct": 17.6,
+    "live_traction": 0.86,
+    "live_wh_per_km": 10.28,
+    "energy_penalty_pct": 0.0,
     "v3_base_intensity": 3.8
   },
   "connectivity": {

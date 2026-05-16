@@ -1,8 +1,8 @@
-// src/components/TrailMap/PoiPopup.tsx
+// src/features/Discovery/PoiPopup.tsx
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import type { Map as MapLibreMap } from "maplibre-gl";
-import type { PoiPopupState } from "./usePoiPopups";
+import type { PoiPopupState } from "../hooks/usePoiPopups";
 
 interface Props {
   mapRef: React.RefObject<MapLibreMap | null>;
@@ -47,7 +47,7 @@ export const PoiPopup: React.FC<Props> = ({ mapRef, popup, onClose }) => {
         position: "absolute",
         left: pixel.x,
         // -45px clears the icon image completely
-        top: pixel.y - 45, 
+        top: pixel.y - 45,
         transform: "translateX(-50%) translateY(-100%)",
         zIndex: 100,
         pointerEvents: "auto",

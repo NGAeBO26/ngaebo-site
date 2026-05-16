@@ -1,6 +1,10 @@
-// src/components/TrailMap/usePoiPopups.ts
+// src/features/Discovery/usePoiPopups.ts
 import { useEffect, useRef } from "react";
-import type { Map as MapLibreMap, MapLayerMouseEvent, GeoJSONSource } from "maplibre-gl";
+import type {
+  Map as MapLibreMap,
+  MapLayerMouseEvent,
+  GeoJSONSource,
+} from "maplibre-gl";
 
 export interface PoiPopupState {
   lngLat: { lng: number; lat: number };
@@ -14,7 +18,7 @@ export function usePoiPopups(
   mapRef: React.RefObject<MapLibreMap | null>,
   mapReady: boolean,
   onOpen: (state: PoiPopupState) => void,
-  onClose: () => void
+  onClose: () => void,
 ) {
   // Use a ref to track the last hovered ID to prevent "setData" flickering
   const lastHoveredId = useRef<string | number | null>(null);
@@ -25,36 +29,48 @@ export function usePoiPopups(
 
     function getPoiSymbolLayers(): string[] {
       try {
-        return map!.getStyle().layers
-          .map(l => l.id)
-          .filter(id => id.startsWith("poi-") && id.includes("symbol"));
-      } catch { return []; }
+        return map!
+          .getStyle()
+          .layers.map((l) => l.id)
+          .filter((id) => id.startsWith("poi-") && id.includes("symbol"));
+      } catch {
+        return [];
+      }
     }
 
     function clearHighlight() {
       if (lastHoveredId.current === null) return;
       lastHoveredId.current = null;
-      
+
       const hSrc = map!.getSource("pois-highlight-src") as any;
       const sSrc = map!.getSource("pois-symbol-highlight-src") as any;
       if (hSrc) hSrc.setData({ type: "FeatureCollection", features: [] });
       if (sSrc) sSrc.setData({ type: "FeatureCollection", features: [] });
     }
 
-    function setHighlight(lng: number, lat: number, isSymbol: boolean, id: string | number) {
+    function setHighlight(
+      lng: number,
+      lat: number,
+      isSymbol: boolean,
+      id: string | number,
+    ) {
       if (lastHoveredId.current === id) return; // Skip if already highlighted
       lastHoveredId.current = id;
 
-      const sourceId = isSymbol ? "pois-symbol-highlight-src" : "pois-highlight-src";
+      const sourceId = isSymbol
+        ? "pois-symbol-highlight-src"
+        : "pois-highlight-src";
       const src = map!.getSource(sourceId) as any;
       if (src) {
         src.setData({
           type: "FeatureCollection",
-          features: [{
-            type: "Feature",
-            geometry: { type: "Point", coordinates: [lng, lat] },
-            properties: {},
-          }],
+          features: [
+            {
+              type: "Feature",
+              geometry: { type: "Point", coordinates: [lng, lat] },
+              properties: {},
+            },
+          ],
         });
       }
     }
@@ -70,9 +86,11 @@ export function usePoiPopups(
       // ── MOUSE MOVE (Handles Pointer & Hover Glow) ───────────────────
       const onMouseMove = (e: MapLayerMouseEvent) => {
         let hit: any = null;
-        
+
         try {
-          const features = map!.queryRenderedFeatures(e.point, { layers: allInteractive });
+          const features = map!.queryRenderedFeatures(e.point, {
+            layers: allInteractive,
+          });
           if (features.length > 0) hit = features[0];
         } catch (err) {
           // Silence MapLibre internal index errors
@@ -108,12 +126,20 @@ export function usePoiPopups(
         let feature: any = null;
         for (const layerId of poiLayers) {
           try {
-            const found = map!.queryRenderedFeatures(e.point, { layers: [layerId] });
-            if (found.length > 0) { feature = found[0]; break; }
+            const found = map!.queryRenderedFeatures(e.point, {
+              layers: [layerId],
+            });
+            if (found.length > 0) {
+              feature = found[0];
+              break;
+            }
           } catch {}
         }
 
-        if (!feature) { onClose(); return; }
+        if (!feature) {
+          onClose();
+          return;
+        }
 
         const props = feature.properties || {};
         const coords = (feature.geometry as any).coordinates;
@@ -123,16 +149,26 @@ export function usePoiPopups(
         if (props.cluster) {
           const source = map!.getSource("pois-all") as GeoJSONSource;
           try {
-            const zoom = await (source as any).getClusterExpansionZoom(feature.id);
+            const zoom = await (source as any).getClusterExpansionZoom(
+              feature.id,
+            );
             map!.easeTo({ center: coords, zoom: zoom + 0.5, duration: 400 });
           } catch {
-            map!.easeTo({ center: coords, zoom: map!.getZoom() + 2, duration: 400 });
+            map!.easeTo({
+              center: coords,
+              zoom: map!.getZoom() + 2,
+              duration: 400,
+            });
           }
           return;
         }
 
-        map!.easeTo({ center: coords, zoom: Math.max(map!.getZoom(), 14.5), duration: 400 });
-        
+        map!.easeTo({
+          center: coords,
+          zoom: Math.max(map!.getZoom(), 14.5),
+          duration: 400,
+        });
+
         onOpen({
           lngLat: { lng: coords[0], lat: coords[1] },
           name: props.name || "Point of Interest",

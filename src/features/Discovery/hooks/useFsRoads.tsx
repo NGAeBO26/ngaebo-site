@@ -87,7 +87,7 @@ export default function useFsRoads(
       addLayers = !!options?.addLayers
     ) => {
       try {
-        const res = await fetch("/data/fs-roads-fcs-web.geojson", {
+        const res = await fetch("/data/v3_large_sample_testfeatures.geojson", {
           cache: "no-store",
         });
 
@@ -149,6 +149,9 @@ export default function useFsRoads(
           } catch {}
 
           const reprojectCoords = (coords: any): any => {
+            proj4.defs("EPSG:26916", "+proj=utm +zone=16 +ellps=GRS80 +datum=NAD83 +units=m +no_defs");
+            proj4.defs("EPSG:4326", "+proj=longlat +datum=WGS84 +no_defs");
+
             if (!Array.isArray(coords)) return coords;
 
             if (
@@ -223,6 +226,44 @@ export default function useFsRoads(
           try {
             const beforeId = getRoadsBeforeLayerId(map);
 
+            // 1. THE UNDER-LAYER (CASING)
+            // This must be added first so it renders behind the main route line
+            if (!map.getLayer("fs-roads-casing")) {
+              map.addLayer(
+                {
+                  id: "fs-roads-casing",
+                  type: "line",
+                  source: "fs-roads",
+                  filter: [
+                    "any",
+                    ["==", ["geometry-type"], "LineString"],
+                    ["==", ["geometry-type"], "MultiLineString"],
+                  ],
+                  layout: {
+                    "line-join": "round",
+                    "line-cap": "round",
+                  },
+                  paint: {
+                    // Dark casing insulates the bright path over forest and contours
+                    "line-color": "#6e7c7c", 
+                    "line-width": [
+                      "interpolate",
+                      ["linear"],
+                      ["zoom"],
+                      // Keep the casing proportionally wider than the core line at every step
+                      6, 2.5,  // Core is 1.2
+                      10, 4.5, // Core is 2.4
+                      13, 7.5  // Core is 4.2
+                    ],
+                    "line-opacity": 0.9,
+                  },
+                },
+                beforeId // Injected at the correct style layer hierarchy location
+              );
+            }
+
+            // 2. THE TOP-LAYER (CORE ROUTE)
+            // Rendered over the casing line to create the "visual sandwich" stroke effect
             if (!map.getLayer("fs-roads-line")) {
               map.addLayer(
                 {
@@ -239,19 +280,18 @@ export default function useFsRoads(
                     "line-cap": "round",
                   },
                   paint: {
-                    "line-color": "#d97706",
+                    // Vibrant core line color (your current amber accent color)
+                    "line-color": "#d97706", 
                     "line-width": [
                       "interpolate",
                       ["linear"],
                       ["zoom"],
-                      6,
-                      1.2,
-                      10,
-                      2.4,
-                      13,
-                      4.2,
+                      6, 1.2,
+                      10, 2.4,
+                      13, 4.2,
                     ],
-                    "line-opacity": 0.8,
+                    // Boosted to 1.0 opacity so the core line sits vividly opaque on the casing
+                    "line-opacity": 1.0, 
                   },
                 },
                 beforeId

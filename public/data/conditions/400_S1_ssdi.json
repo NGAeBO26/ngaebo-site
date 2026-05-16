@@ -1,7 +1,7 @@
 {
     "profile_id": "400_S1",
     "route_id": "400",
-    "ssdi_score": 7.4,
+    "ssdi_score": 5.2,
     "v3_terrain_score": 3.7,
     "v3_terrain_class": "Cruiser",
     "badge_type": "wet",
@@ -17,10 +17,10 @@
         "value": 0.14
     },
     "environment": {
-        "current_temp": 55,
-        "saturation_index": 18.62,
+        "current_temp": 70,
+        "saturation_index": 7.6,
         "soil_status": "Saturated",
-        "precip_24h": 0.07,
+        "precip_24h": 0.0,
         "saturation_trend": "stable",
         "alerts": []
     },

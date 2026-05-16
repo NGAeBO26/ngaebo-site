@@ -1,7 +1,7 @@
 {
     "profile_id": "141A_S1",
     "route_id": "141A",
-    "ssdi_score": 53.6,
+    "ssdi_score": 26.4,
     "v3_terrain_score": 6.1,
     "v3_terrain_class": "Strenuous",
     "badge_type": "muddy",
@@ -17,8 +17,8 @@
         "value": 0.24
     },
     "environment": {
-        "current_temp": 55,
-        "saturation_index": 15.84,
+        "current_temp": 63,
+        "saturation_index": 6.78,
         "soil_status": "Saturated",
         "precip_24h": 0.0,
         "saturation_trend": "stable",

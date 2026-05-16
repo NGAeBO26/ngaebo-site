@@ -1,12 +1,12 @@
 {
     "profile_id": "69A_S1",
     "route_id": "69A",
-    "ssdi_score": 8.2,
+    "ssdi_score": 6.1,
     "v3_terrain_score": 4.5,
     "v3_terrain_class": "Strenuous",
-    "badge_type": "muddy",
-    "condition": "MUDDY / SOFT",
-    "style_color": "#a52d23",
+    "badge_type": "wet",
+    "condition": "WET / SLICK",
+    "style_color": "#e66e00",
     "access": {
         "label": "OPEN",
         "vibe_context": "RESTRICTED EXPLORER",
@@ -17,19 +17,19 @@
         "value": 0.17
     },
     "environment": {
-        "current_temp": 52,
-        "saturation_index": 18.37,
+        "current_temp": 61,
+        "saturation_index": 8.03,
         "soil_status": "Saturated",
-        "precip_24h": 0.02,
+        "precip_24h": 0.0,
         "saturation_trend": "stable",
         "alerts": [
             "SAFETY ALERT: Cell Service is UNAVAILABLE."
         ]
     },
     "physics": {
-        "live_traction": 0.39,
-        "live_wh_per_km": 14.72,
-        "energy_penalty_pct": 20.0,
+        "live_traction": 0.58,
+        "live_wh_per_km": 13.5,
+        "energy_penalty_pct": 10.0,
         "v3_base_intensity": 4.5
     },
     "connectivity": {

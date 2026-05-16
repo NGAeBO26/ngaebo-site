@@ -1,7 +1,7 @@
 {
     "profile_id": "117_S1",
     "route_id": "117",
-    "ssdi_score": 9.6,
+    "ssdi_score": 7.4,
     "v3_terrain_score": 5.9,
     "v3_terrain_class": "Strenuous",
     "badge_type": "muddy",
@@ -17,10 +17,10 @@
         "value": 0.25
     },
     "environment": {
-        "current_temp": 55,
-        "saturation_index": 18.62,
+        "current_temp": 61,
+        "saturation_index": 7.6,
         "soil_status": "Saturated",
-        "precip_24h": 0.07,
+        "precip_24h": 0.0,
         "saturation_trend": "stable",
         "alerts": [
             "SAFETY ALERT: Cell Service is UNAVAILABLE."

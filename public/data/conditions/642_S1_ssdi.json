@@ -1,7 +1,7 @@
 {
     "profile_id": "642_S1",
     "route_id": "642",
-    "ssdi_score": 7.2,
+    "ssdi_score": 5.3,
     "v3_terrain_score": 3.9,
     "v3_terrain_class": "Cruiser",
     "badge_type": "wet",
@@ -17,8 +17,8 @@
         "value": 0.21
     },
     "environment": {
-        "current_temp": 57,
-        "saturation_index": 16.4,
+        "current_temp": 62,
+        "saturation_index": 6.96,
         "soil_status": "Saturated",
         "precip_24h": 0.0,
         "saturation_trend": "stable",

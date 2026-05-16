@@ -1,7 +1,7 @@
 {
     "profile_id": "58C_S1",
     "route_id": "58C",
-    "ssdi_score": 62.4,
+    "ssdi_score": 31.4,
     "v3_terrain_score": 7.3,
     "v3_terrain_class": "Epic",
     "badge_type": "muddy",
@@ -17,10 +17,10 @@
         "value": 0.25
     },
     "environment": {
-        "current_temp": 51,
-        "saturation_index": 18.37,
+        "current_temp": 61,
+        "saturation_index": 8.03,
         "soil_status": "Saturated",
-        "precip_24h": 0.02,
+        "precip_24h": 0.0,
         "saturation_trend": "stable",
         "alerts": [
             "SAFETY ALERT: Cell Service is UNAVAILABLE."

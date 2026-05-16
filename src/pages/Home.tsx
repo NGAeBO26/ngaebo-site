@@ -1,6 +1,6 @@
 // pages/Home.tsx
-import TrailMap from "../components/TrailMap";
 import { useUnlockModal } from "../components/modal/useUnlockModal";
+import GravelGuide from "../features/Discovery/GravelGuide";
 
 export default function Home() {
   const { isUnlocked, open } = useUnlockModal();
@@ -77,18 +77,12 @@ export default function Home() {
 
       </section>
 
-      {/* TRAIL MAP */}
+      {/* TRAIL MAP SECTION */}
       <section className="trail">
-
         <h2 className="trail-title">North Georgia Gravel Guide v1.0</h2>
-        <p className="trail-text">
-          Explore epic routes across the Chattahoochee‑Oconee National Forest.
-        </p>
+        <p className="trail-text">Explore epic routes across the Chattahoochee National Forest.</p>
 
-        {/* MAP WRAPPER WITH LOCK + BLUR */}
         <div className="trail-map-wrapper">
-
-          {/* Blur + lock overlay (only when locked) */}
           {!isUnlocked && (
             <div className="trail-map-overlay">
               <div className="cta-panel">
@@ -99,11 +93,10 @@ export default function Home() {
             </div>
           )}
 
-          {/* Map itself */}
+          {/* 2. Updated Component: Use GravelGuide instead of TrailMap */}
           <div className={isUnlocked ? "trail-map" : "trail-map locked"}>
-            <TrailMap />
+            <GravelGuide />
           </div>
-
         </div>
 
         <a href="/trail-guides" className="btn btn-primary">

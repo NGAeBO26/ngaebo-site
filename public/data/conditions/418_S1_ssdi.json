@@ -1,7 +1,7 @@
 {
     "profile_id": "418_S1",
     "route_id": "418",
-    "ssdi_score": 55.5,
+    "ssdi_score": 27.2,
     "v3_terrain_score": 6.3,
     "v3_terrain_class": "Strenuous",
     "badge_type": "muddy",
@@ -17,8 +17,8 @@
         "value": 0.3
     },
     "environment": {
-        "current_temp": 56,
-        "saturation_index": 16.4,
+        "current_temp": 55,
+        "saturation_index": 6.96,
         "soil_status": "Saturated",
         "precip_24h": 0.0,
         "saturation_trend": "stable",

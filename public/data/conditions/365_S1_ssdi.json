@@ -1,12 +1,12 @@
 {
     "profile_id": "365_S1",
     "route_id": "365",
-    "ssdi_score": 8.7,
+    "ssdi_score": 6.8,
     "v3_terrain_score": 5.4,
     "v3_terrain_class": "Strenuous",
-    "badge_type": "muddy",
-    "condition": "MUDDY / SOFT",
-    "style_color": "#a52d23",
+    "badge_type": "wet",
+    "condition": "WET / SLICK",
+    "style_color": "#e66e00",
     "access": {
         "label": "OPEN",
         "vibe_context": "RESTRICTED EXPLORER",
@@ -17,8 +17,8 @@
         "value": 0.3
     },
     "environment": {
-        "current_temp": 56,
-        "saturation_index": 16.26,
+        "current_temp": 62,
+        "saturation_index": 7.0,
         "soil_status": "Saturated",
         "precip_24h": 0.0,
         "saturation_trend": "stable",
@@ -27,9 +27,9 @@
         ]
     },
     "physics": {
-        "live_traction": 0.39,
-        "live_wh_per_km": 17.42,
-        "energy_penalty_pct": 20.0,
+        "live_traction": 0.58,
+        "live_wh_per_km": 15.97,
+        "energy_penalty_pct": 10.0,
         "v3_base_intensity": 5.4
     },
     "connectivity": {
