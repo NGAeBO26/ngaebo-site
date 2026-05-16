@@ -12,6 +12,7 @@ export interface GravelPopupData {
   difficulty: string;
   vibe: string;
   elevationProfile: number[];
+  status?: string;
 }
 
 interface GravelPopupProps {
