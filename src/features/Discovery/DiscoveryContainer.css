@@ -1,0 +1,583 @@
+/* src/features/Discovery/DiscoveryContainer.css */
+
+/* Core Dashboard Container Frame */
+.discovery-dashboard-root {
+  display: flex;
+  flex-direction: column;
+  height: 90vh; 
+  min-height: 580px;
+  max-height: 820px;
+  background-color: #6e7c7c; /* PRESERVED: Your exact base background slate color */
+  color: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #1e293b;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, sans-serif;
+  position: relative;
+}
+
+/* Tier 1: Top Filter Bar Layout Row */
+.finder-header-row {
+  height: 80px;
+  background-color: #236ea0; /* PRESERVED: Your exact header blue background color */
+  border-bottom: 1px solid #1e293b;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  z-index: 30;
+}
+
+.finder-controls-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: 1; /* Allows the control bar space to distribute dynamically */
+  justify-content: flex-end; /* Keeps your input group layouts clean and sequential */
+  margin-left: 32px; /* Forbids controls from sliding under your brand graphics on narrow window screens */
+}
+
+.finder-brand-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 2px;
+  width: 160px; /* Established an explicit layout anchor width footprint */
+  flex-shrink: 0;
+}
+/* FIXED: Added logo bounding constraints to maintain a sharp layout profile */
+.finder-brand-logo {
+  height: 32px; /* Set proportional height constraint */
+  width: auto;
+  display: block;
+}
+
+/* FIXED: Centered the text and kept your exact styling properties intact */
+.finder-brand-subtitle {
+  font-size: 10px;
+  color: #f59e0b; /* PRESERVED: Your exact amber color option tracking key */
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.control-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+  position: relative;
+}
+
+.control-input-group label {
+  font-size: 9px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+}
+
+.finder-text-input {
+  background-color: #fff;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-family: "Montserrat", sans-serif;
+  color: #333;
+  width: 100%;
+  outline: none;
+}
+
+.finder-select-input {
+  background-color: #fff;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-size: 12px;
+  font-family: "Montserrat", sans-serif;
+  color: #333;
+  width: 130px;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.control-slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 130px;
+}
+
+.slider-header-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+}
+
+/* --- RANGE SLIDER TRACK CONFIGURATION --- */
+.finder-range-slider {
+  -webkit-appearance: none; 
+  -moz-appearance: none;    
+  appearance: none;         
+  width: 100%;
+  height: 4px;
+  background-color: transparent; 
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.finder-range-slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  border-radius: 8px;
+  background: linear-gradient(
+    to right,
+    #f59e0b 0%,
+    #f59e0b var(--value-percent, 50%),
+    #ffffff var(--value-percent, 50%),
+    #ffffff 100%
+  );
+}
+
+.finder-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; 
+  appearance: none;
+  margin-top: -6px;        
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background-color: #f59e0b; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  transition: transform 150ms ease;
+}
+
+.finder-range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);  
+}
+
+.finder-range-slider::-moz-range-track {
+  width: 100%;
+  height: 4px;
+  background-color: #ffffff; 
+  border-radius: 8px;
+}
+
+.finder-range-slider::-moz-range-progress {
+  height: 4px;
+  background-color: #f59e0b; 
+  border-radius: 8px 0 0 8px;
+}
+
+.finder-range-slider::-moz-range-thumb {
+  border: none;            
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background-color: #f59e0b; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  transition: transform 150ms ease;
+}
+
+.finder-range-slider::-moz-range-thumb:hover {
+  transform: scale(1.15);
+}
+
+.yield-counter-panel {
+  border-left: 1px solid #1e293b;
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 70px;
+  text-align: left;
+}
+
+/* Tier 2: Workspace Layout Area Frame */
+.discovery-center-container {
+  width: 100%;
+  height: calc(800px - 80px) !important; 
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.discovery-map-main-viewport {
+  flex: 1;
+  height: 100%;
+  position: relative;
+  background-color: #0f172a;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+/* Slide-out Panel Layout Components */
+.side-drawer-panel {
+  width: 320px;
+  height: 100%;
+  background: radial-gradient(circle at center, #ffffff 0%, #f9f9f9 100%) !important; /* PRESERVED: Your exact light layout background gradient */
+  border-left: 1px solid #e0e0e0 !important;
+  border-right: 1px solid #e0e0e0 !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.side-drawer-panel.drawer-collapsed {
+  transform: translateX(320px);
+  margin-left: -320px; 
+}
+
+/* Toggle Drawer Button Handle Component */
+.drawer-toggle-tab-btn {
+  position: absolute;
+  top: 8px;
+  left: -40px;
+  width: 40px;
+  height: 40px;
+  background-color: #236ea0; /* PRESERVED: Your blue background tracking color */
+  border: 1px solid #1e293b;
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+  color: #f59e0b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: -4px 4px 10px rgba(0,0,0,0.3);
+  transition: background-color 200ms;
+  outline: none;
+  z-index: 11;
+}
+
+.drawer-toggle-tab-btn:hover {
+  background-color: #1e293b;
+}
+
+.drawer-header-title {
+  padding: 16px;
+  border-bottom: 1px solid #1e293b;
+  background-color: #236ea0; /* PRESERVED: Your title block color parameter */
+  text-align: center;
+  z-index: 12;
+}
+
+.drawer-header-title h2 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: "Montserrat", sans-serif;
+  color: #fff;
+  margin: 0;
+}
+
+/* Vertical Cards Scrolling Track Grid Layout */
+.vertical-cards-scroll-container {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-sizing: border-box;
+  background-color: #fdf4ce; /* PRESERVED: Your exact list view background yellow tint */
+}
+
+.gallery-empty-state {
+  font-size: 11px;
+  color: #64748b;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 40px 0;
+  text-align: center;
+}
+
+/* --- REVISED CARD STRUCTURAL SELECTORS --- */
+.route-finder-card-vertical {
+  width: 100%;
+  height: 80px !important; 
+  flex-shrink: 0 !important;
+  background: radial-gradient(circle at center, #ffffff 0%, #f9f9f9 100%) !important; 
+  border-left: 1px solid #e0e0e0 !important;
+  border-right: 1px solid #e0e0e0 !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch; /* Forces left and right boxes to fill the 120px height equally */
+  box-sizing: border-box;
+  border-radius: 10px; 
+  padding: 0 !important; 
+  overflow: hidden;
+  text-align: left;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.route-finder-card-vertical:hover {
+  border-color: rgba(245, 158, 11, 0.5) !important;
+}
+
+.route-finder-card-vertical.card-active-hover {
+  border-color: #f59e0b !important;
+  transform: translateX(-4px);
+  background: #236ea0 !important; 
+}
+
+/* Left Details panel rules */
+.card-left-details-block {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px 0 14px 14px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.card-title-block {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  width: 100%;
+}
+
+.card-id-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+}
+
+.card-route-title {
+  font-size: 11px;
+  font-weight: bold;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-transform: uppercase;
+  color: #334155; 
+  flex: 1;
+  text-align: left;
+}
+
+.card-active-hover .card-route-title {
+  color: #f59e0b;
+}
+
+/* Metrics Section Rules */
+.card-metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  border-top: 1px solid #f59e0b; /* PRESERVED: Your orange section divider line track */
+  padding-top: 8px;
+  margin-right: 14px; 
+}
+
+.card-active-hover .card-metrics-grid {
+  border-top: 1px solid #fff;
+}
+
+.metric-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-column .metric-label {
+  font-size: 7.5px;
+  color: #64748b;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+}
+
+.metric-column .metric-value {
+  font-size: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  color: #475569; 
+  margin-top: 1px;
+}
+
+.card-active-hover .metric-value {
+  color: #cbd5e1;
+}
+
+/* Right Full-Height Badge Frame Column rules */
+.card-right-badge-bay {
+  width: 85px; 
+  height: 100%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+  padding: 12px; 
+  box-sizing: border-box;
+}
+
+.card-active-hover .card-right-badge-bay {
+  background-color: rgba(255, 255, 255, 0.04);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-route-badge-image-scaled {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Scales up responsively while maintaining its aspect ratio */
+  display: block;
+}
+
+/* Custom Scrollbar for Drawer Content panel wrappers */
+.vertical-cards-scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+.vertical-cards-scroll-container::-webkit-scrollbar-track {
+  background: #fff; 
+}
+.vertical-cards-scroll-container::-webkit-scrollbar-thumb {
+  background: #f59e0b; 
+  border-radius: 99px;
+}
+.vertical-cards-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #f59e0b;
+}
+
+/* Add directly to the bottom of DiscoveryContainer.css */
+
+/* Custom Search Autocomplete Styling Layers */
+.styleable-autocomplete-wrapper {
+  position: relative;
+}
+
+.class-select-input-inner-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.autocomplete-input-inner-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 180px; /* Expanded layout track footprint bounds */
+}
+
+.class-dropdown-arrow-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  /* Renders the precise triangle style parameters from your layout blueprint */
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #333; 
+  cursor: pointer;
+  /* Allows clicks to pass through safely into the underlying HTML select element options map */
+  pointer-events: none; 
+}
+
+.autocomplete-input-field {
+  padding-right: 28px !important; /* Leaves room for custom selection arrows */
+  box-sizing: border-box;
+}
+
+/* Replicates the standard browser select arrow icon placement rules */
+.autocomplete-dropdown-arrow-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #333; /* Matches select input arrow gray weight color */
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* Custom List Dropdown Overlay Panel matching search field styling profiles */
+.autocomplete-suggestions-dropdown-overlay {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #ffffff;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  margin: 4px 0 0 0;
+  padding: 0;
+  list-style: none;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.suggestion-interactive-item {
+  padding: 8px 12px;
+  font-size: 12px;
+  font-family: "Montserrat", sans-serif;
+  color: #333;
+  text-align: left;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.suggestion-interactive-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-interactive-item:hover {
+  background-color: #f1f5f9;
+  color: #236ea0; /* Brand blue highlight accent path color text tracking */
+}
+
+/* Custom Scrollbar formatting rules for suggestions overlay dropdown panels */
+.autocomplete-suggestions-dropdown-overlay::-webkit-scrollbar {
+  width: 6px;
+}
+.autocomplete-suggestions-dropdown-overlay::-webkit-scrollbar-track {
+  background: #fff;
+}
+.autocomplete-suggestions-dropdown-overlay::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 99px;
+}

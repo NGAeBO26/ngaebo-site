@@ -19,7 +19,7 @@ export function useHighlight(
       source: SOURCE_ID,
       paint: {
         // Soft Glow Configurations
-        "circle-radius": 24,           // Expanded to let the bloom spill outward cleanly
+        "circle-radius": 36,           // Expanded to let the bloom spill outward cleanly
         "circle-color": "#ffcc00",      // High-visibility golden yellow
         "circle-opacity": 0.75,         // Kept vibrant but translucent
         "circle-blur": 0.85,            // Higher value = softer radial gradient edge

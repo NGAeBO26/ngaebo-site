@@ -31,10 +31,12 @@ function getRoadsBeforeLayerId(map: MaplibreMap): string | undefined {
     const style = map.getStyle?.();
     const layers = style?.layers ?? [];
 
-    const poiLayer = layers.find((l: any) =>
-      /poi|cluster|marker/i.test(l.id)
+    // FIXED: Find the earliest point, marker, cluster, or hitbox layer
+    // Placing road layers before this ID ensures they sit below points in the stack
+    const pointInteractionLayer = layers.find((l: any) =>
+      /poi|cluster|marker|hitbox/i.test(l.id)
     );
-    if (poiLayer?.id) return poiLayer.id;
+    if (pointInteractionLayer?.id) return pointInteractionLayer.id;
 
     const labelLayer = layers.find((l: any) =>
       /label|symbol/i.test(l.id)
@@ -262,6 +264,22 @@ export default function useFsRoads(
                 beforeId
               );
             }
+
+        // FIXED: 2. BROAD TRANSPARENT HITBOX INTERACTION LAYER
+        // This creates a forgiving 28px wide cursor capture zone that stays invisible to the user
+        if (!map.getLayer("fs-roads-hitbox")) {
+          map.addLayer({
+            id: "fs-roads-hitbox",
+            type: "line",
+            source: "fs-roads",
+            layout: { "line-join": "round", "line-cap": "round" },
+            paint: {
+              "line-color": "#000000",
+              "line-width": 14, // Wide capture corridor for effortless hovering at low zoom scales
+              "line-opacity": 0.0, // Kept completely see-through
+            },
+          }, beforeId);
+        }
 
             if (!map.getLayer("fs-roads-line")) {
               map.addLayer(

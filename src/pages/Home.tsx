@@ -1,6 +1,7 @@
 // pages/Home.tsx
 import { useUnlockModal } from "../components/modal/useUnlockModal";
-import GravelGuide from "../features/Discovery/GravelGuide";
+//import GravelGuide from "../features/Discovery/GravelGuide";
+import DiscoveryContainer from "../features/Discovery/DiscoveryContainer";
 
 export default function Home() {
   const { isUnlocked, open } = useUnlockModal();
@@ -95,7 +96,7 @@ export default function Home() {
 
           {/* 2. Updated Component: Use GravelGuide instead of TrailMap */}
           <div className={isUnlocked ? "trail-map" : "trail-map locked"}>
-            <GravelGuide />
+            <DiscoveryContainer />
           </div>
         </div>
 

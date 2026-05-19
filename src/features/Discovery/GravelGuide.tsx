@@ -6,8 +6,6 @@ import type { Map as MaplibreMap, MapLayerMouseEvent } from "maplibre-gl";
 import useFsRoads from "./hooks/useFsRoads";
 import usePois from "./hooks/usePois";
 import { useHighlight } from "./hooks/useHighlight";
-import { usePoiPopups, type PoiPopupState } from "./hooks/usePoiPopups";
-import { PoiPopup } from "./components/PoiPopup";
 import GravelPopup, { type GravelPopupData } from "./components/GravelPopup";
 import { getFeatureBounds, featureToPopupData } from "./utils/utils";
 
@@ -20,223 +18,398 @@ const FS_ROADS_SELECTED_LAYER_ID = "fs-roads-selected";
 
 window.maplibregl = maplibregl;
 
-export default function GravelGuide() {
+interface GravelGuideProps {
+  activeHoverId?: string | null;
+  filteredRoutes?: any[]; 
+  onRouteSelect?: (route: any | null) => void;
+  onRoutesLoaded?: (routes: any[]) => void;
+  onRouteHover?: (id: string | null) => void;
+}
+
+export default function GravelGuide({ 
+  activeHoverId, 
+  filteredRoutes = [], 
+  onRouteSelect, 
+  onRoutesLoaded,
+  onRouteHover 
+}: GravelGuideProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MaplibreMap | null>(null);
+  const blinkIntervalRef = useRef<NodeJS.Timeout | null>(null); 
 
   const [mapReady, setMapReady] = useState(false);
   const [selectedRoute, setSelectedRoute] = useState<GravelPopupData | null>(null);
-  const [poiPopup, setPoiPopup] = useState<PoiPopupState | null>(null);
+  const [clickedProperties, setClickedProperties] = useState<{ NAME: string; GIS_MILES: string } | null>(null);
 
-  const handlePoiOpen = useCallback((state: PoiPopupState) => setPoiPopup(state), []);
-  const handlePoiClose = useCallback(() => setPoiPopup(null), []);
-
-  // Hook initializations using the split ref pattern
-  useFsRoads(mapRef.current ?? null, mapReady, { addLayers: true });
+  const { routesData } = useFsRoads(mapRef.current ?? null, mapReady, { addLayers: true });
   usePois(mapRef, mapReady);
   useHighlight(mapRef, mapReady);
-  usePoiPopups(mapRef, mapReady, handlePoiOpen, handlePoiClose);
+
+  // Syncs hovers, handles persistent map clicks, and implements a rhythmic blinking opacity loop on card hover
+  useEffect(() => {
+    if (!mapReady || !mapRef.current) return;
+    const map = mapRef.current;
+
+    if (blinkIntervalRef.current) {
+      clearInterval(blinkIntervalRef.current);
+      blinkIntervalRef.current = null;
+    }
+
+    try {
+      if (map.getLayer(FS_ROADS_SELECTED_LAYER_ID)) {
+        if (activeHoverId && routesData && routesData.length > 0) {
+          const hoveredRouteData = routesData.find((r: any) => r && String(r.id) === String(activeHoverId));
+          
+          if (hoveredRouteData && hoveredRouteData.properties) {
+            const props = hoveredRouteData.properties;
+            
+            map.setFilter(FS_ROADS_SELECTED_LAYER_ID, [
+              "all",
+              ["==", ["get", "NAME"], props.NAME ?? ""],
+              ["==", ["get", "GIS_MILES"], props.GIS_MILES ?? "0"]
+            ]);
+
+            let animationStep = 0;
+            
+            blinkIntervalRef.current = setInterval(() => {
+              if (!map.getLayer(FS_ROADS_SELECTED_LAYER_ID)) return;
+              
+              animationStep++;
+              if (animationStep % 3 === 1) {
+                map.setPaintProperty(FS_ROADS_SELECTED_LAYER_ID, "line-width", 8); 
+                map.setPaintProperty(FS_ROADS_SELECTED_LAYER_ID, "line-blur", 1.5);
+                map.setPaintProperty(FS_ROADS_SELECTED_LAYER_ID, "line-opacity", 0.75);
+              } else {
+                map.setPaintProperty(FS_ROADS_SELECTED_LAYER_ID, "line-width", 10);
+                map.setPaintProperty(FS_ROADS_SELECTED_LAYER_ID, "line-blur", 1);
+                map.setPaintProperty(FS_ROADS_SELECTED_LAYER_ID, "line-opacity", 1.0);
+              }
+            }, 180);
+
+            return; 
+          }
+        }
+        
+        map.setPaintProperty(FS_ROADS_SELECTED_LAYER_ID, "line-width", [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          6, 3,
+          10, 5,
+          13, 8,
+        ]);
+        map.setPaintProperty(FS_ROADS_SELECTED_LAYER_ID, "line-blur", 0);
+        map.setPaintProperty(FS_ROADS_SELECTED_LAYER_ID, "line-opacity", 1.0);
+
+        if (clickedProperties) {
+          map.setFilter(FS_ROADS_SELECTED_LAYER_ID, [
+            "all",
+            ["==", ["get", "NAME"], clickedProperties.NAME],
+            ["==", ["get", "GIS_MILES"], clickedProperties.GIS_MILES]
+          ]);
+        } else {
+          map.setFilter(FS_ROADS_SELECTED_LAYER_ID, ["==", ["get", "NAME"], ""]);
+        }
+      }
+    } catch (e) {
+      console.warn("Card list hover sync and blur animation cycle crash intercepted:", e);
+    }
+
+    return () => {
+      if (blinkIntervalRef.current) {
+        clearInterval(blinkIntervalRef.current);
+        blinkIntervalRef.current = null;
+      }
+    };
+  }, [activeHoverId, routesData, clickedProperties, mapReady]);
+
+  // Dynamic Map Filter Sync Pass (Manages core orange fill route lines)
+  useEffect(() => {
+    if (!mapReady || !mapRef.current) return;
+    const map = mapRef.current;
+
+    try {
+      if (map.getLayer(FS_ROADS_LAYER_ID)) {
+        if (!filteredRoutes || filteredRoutes.length === 0) {
+          map.setFilter(FS_ROADS_LAYER_ID, ["==", ["get", "NAME"], ""]);
+        } 
+        else if (routesData && filteredRoutes.length === routesData.length) {
+          map.setFilter(FS_ROADS_LAYER_ID, ["has", "NAME"]);
+        } 
+        else {
+          const matchFilterExpression: any = [
+            "any",
+            ...filteredRoutes.map((route: any) => {
+              const props = route.properties ?? {};
+              return [
+                "all",
+                ["==", ["get", "NAME"], props.NAME ?? ""],
+                ["==", ["get", "GIS_MILES"], props.GIS_MILES ?? "0"]
+              ];
+            })
+          ];
+          map.setFilter(FS_ROADS_LAYER_ID, matchFilterExpression as maplibregl.FilterSpecification);
+        }
+      }
+    } catch (e) {
+      console.warn("Dynamic map filter update failed:", e);
+    }
+  }, [filteredRoutes, routesData, mapReady]);
 
   useEffect(() => {
-    if (!containerRef.current || mapRef.current) return;
-    let mounted = true;
+    if (routesData && routesData.length > 0 && onRoutesLoaded) {
+      onRoutesLoaded(routesData);
+    }
+  }, [routesData, onRoutesLoaded]);
 
-    const createMapWithStyle = async () => {
-      let styleObj: any = null;
-      try {
-        const res = await fetch(STYLE_URL, { cache: "no-store" });
-        if (res.ok) styleObj = await res.json();
-      } catch { styleObj = null; }
+  const onRouteClick = useCallback(
+    (e: MapLayerMouseEvent) => {
+      if (!mapRef.current || !e.features || e.features.length === 0) return;
+      const map = mapRef.current;
+      const f = e.features[0];
 
-      const createdMap = new maplibregl.Map({
-        container: containerRef.current as HTMLElement,
-        style: styleObj || STYLE_URL,
-        center: [-84.3, 34.2],
-        maxBounds: [[-86.05, 33.95], [-83.05, 35.15]],
-        minZoom: 8,
-        maxZoom: 15,
-      });
+      const routeID = f.properties?.profile_id;
+      if (routeID) window.open(`/report/${routeID}`, '_blank', 'noopener,noreferrer');
 
-      mapRef.current = createdMap;
-      (window as any).m = createdMap; // Global debug access
+      const popupData = featureToPopupData(f);
+      setSelectedRoute(popupData);
 
-      createdMap.on("load", () => {
-        if (!mounted) return;
-        setMapReady(true);
-        setTimeout(() => createdMap?.resize(), 50);
-      });
-    };
+      if (f.properties) {
+        setClickedProperties({
+          NAME: f.properties.NAME ?? "",
+          GIS_MILES: f.properties.GIS_MILES ?? "0"
+        });
+      }
 
-    createMapWithStyle();
-    return () => { mounted = false; mapRef.current?.remove(); mapRef.current = null; };
+      if (onRouteSelect) {
+        onRouteSelect(f);
+      }
+
+      const bounds = getFeatureBounds(f);
+      if (bounds) {
+        try {
+          map.fitBounds(bounds, { padding: { top: 40, right: 40, bottom: 260, left: 40 }, duration: 700 });
+        } catch {}
+      }
+    },
+    [onRouteSelect]
+  );
+
+  const onPoiHover = useCallback((e: MapLayerMouseEvent) => {
+    if (!mapRef.current || !e.features || e.features.length === 0) return;
+    const map = mapRef.current;
+    map.getCanvas().style.cursor = "pointer";
+    
+    const f = e.features[0];
+    if (!f) return;
+
+    const isCluster = f.properties && !!f.properties.point_count;
+
+    try {
+      if (isCluster) {
+        if (map.getLayer("pois-highlight")) {
+          map.setFilter("pois-highlight", ["==", ["id"], f.id ?? ""]);
+        }
+      } else {
+        const featureId = f.properties?.id ?? f.id ?? "";
+        if (featureId === "") return;
+
+        if (map.getLayer("pois-highlight")) {
+          map.setFilter("pois-highlight", ["==", ["get", "id"], featureId]);
+        }
+        if (map.getLayer("poi-labels")) {
+          map.setFilter("poi-labels", ["all", ["!", ["has", "point_count"]], ["==", ["get", "id"], featureId]]);
+        }
+      }
+    } catch (err) {
+      console.warn("POI Hover evaluation failed:", err);
+    }
   }, []);
 
-  useEffect(() => {
+  const onPoiLeave = useCallback(() => {
+    if (!mapRef.current) return;
     const map = mapRef.current;
-    if (!map || !mapReady) return;
+    map.getCanvas().style.cursor = "";
 
-    let cleanup: (() => void) | undefined;
-    let cancelled = false;
+    try {
+      if (map.getLayer("pois-highlight")) {
+        map.setFilter("pois-highlight", ["==", ["id"], ""]);
+      }
+      if (map.getLayer("poi-labels")) {
+        map.setFilter("poi-labels", ["all", ["!", ["has", "point_count"]], ["==", ["get", "id"], ""]]);
+      }
+    } catch (err) {
+      console.warn("POI Leave context reset failed:", err);
+    }
+  }, []);
 
-    const attachInteractionsWhenReady = () => {
-      if (cancelled) return;
+  const onClusterClick = useCallback(async (e: MapLayerMouseEvent) => {
+    if (!mapRef.current) return;
+    const map = mapRef.current;
 
-  // Inside attachInteractionsWhenReady in GravelGuide.tsx
-  const onClusterClick = async (e: MapLayerMouseEvent) => {
-    const features = map.queryRenderedFeatures(e.point, { layers: ["cluster-layer-cluster-small", "cluster-layer-cluster-medium", "cluster-layer-cluster-large"] });
+    const layers = ["cluster-hitbox"];
+    const features = map.queryRenderedFeatures(e.point, { layers });
     if (!features || !features.length) return;
 
     const feature = features[0];
     const clusterId = feature.properties?.cluster_id;
+    
     const source = map.getSource("pois-all") as maplibregl.GeoJSONSource;
-
-    if (!source || typeof source.getClusterExpansionZoom !== "function") {
-      console.error("Source 'pois-all' is not a clustered GeoJSON source.");
-      return;
-    }
+    if (!source || typeof source.getClusterExpansionZoom !== "function") return;
 
     try {
-      // FIX: getClusterExpansionZoom accepts only 1 argument and returns a Promise
       const expansionZoom = await source.getClusterExpansionZoom(clusterId);
-      
       const coordinates = (feature.geometry as any).coordinates;
 
       map.easeTo({
         center: [coordinates[0], coordinates[1]],
-        zoom: expansionZoom + 1.5, // Buffer to confidently break the cluster open
+        zoom: expansionZoom + 1.5,
         duration: 400,
         essential: true
       });
     } catch (err) {
       console.error("Cluster expansion failed:", err);
     }
-  };
+  }, []);
 
-      // --- ROAD BEHAVIOR ---
-      const onMouseMove = (e: MapLayerMouseEvent) => {
-        map.getCanvas().style.cursor = "pointer";
-        const f = e.features?.[0];
-        if (f) map.setFilter(FS_ROADS_HOVER_LAYER_ID, ["==", ["id"], f.id || ""]);
-      };
+  useEffect(() => {
+    if (!containerRef.current || mapRef.current) return;
 
-      const onMouseLeave = () => {
-        map.getCanvas().style.cursor = "";
-        map.setFilter(FS_ROADS_HOVER_LAYER_ID, ["==", ["id"], ""]);
-      };
+    let map: maplibregl.Map | null = null;
 
-      const onRouteClick = (e: MapLayerMouseEvent) => {
-        const f = e.features?.[0] as any;
-        if (!f) return;
-        const routeID = f.properties?.profile_id;
-        if (routeID) window.open(`/report/${routeID}`, '_blank', 'noopener,noreferrer');
-        
-        map.setFilter(FS_ROADS_SELECTED_LAYER_ID, ["==", ["id"], f.id ?? ""]);
-        setSelectedRoute(featureToPopupData(f));
-        const bounds = getFeatureBounds(f);
-        if (bounds) map.fitBounds(bounds, { padding: { top: 40, right: 40, bottom: 260, left: 40 }, duration: 700 });
-      };
+    try {
+      map = new maplibregl.Map({
+        container: containerRef.current,
+        style: STYLE_URL,
+        center: [-84.3, 34.2],
+        maxBounds: [
+          [-86.05, 33.95],
+          [-83.05, 35.15],
+        ],
+        minZoom: 8,
+        maxZoom: 15,
+      });
 
-      // --- POI BEHAVIOR ---
-      // Layers matching usePois.ts
-      const POI_LAYERS = [
-        "cluster-layer-cluster-small",
-        "cluster-layer-cluster-medium",
-        "cluster-layer-cluster-large",
-        "poi-layer-gap", 
-        "poi-layer-camp", 
-        "poi-layer-water", 
-        "poi-layer-scenic", 
-        "poi-layer-trailhead"
-      ];
+      mapRef.current = map;
 
-      const bindPoiListeners = () => {
-        const clusterLayers = ["cluster-layer-cluster-small", "cluster-layer-cluster-medium", "cluster-layer-cluster-large"];
-
-        clusterLayers.forEach(layerId => {
-          if (map.getLayer(layerId)) {
-            map.off("click", layerId, onClusterClick);
-            map.on("click", layerId, onClusterClick);
-          }
-        });
-        POI_LAYERS.forEach(id => {
-          // MapLibre allows multiple 'on' calls, but it's cleaner to check 
-          // if the layer exists before trying to bind to it.
-          if (map.getLayer(id)) {
-            map.off("mousemove", id, onPoiHover); // prevent double-binding
-            map.on("mousemove", id, onPoiHover);
-            map.off("mouseleave", id, onPoiLeave);
-            map.on("mouseleave", id, onPoiLeave);
-            map.on("click", "clusters", onClusterClick);
-          }
-        });
-      };
-
-      bindPoiListeners();
-      map.on("data", bindPoiListeners);
-
-      
-
-      // --- POI HIGHLIGHT BEHAVIOR ---
-      const onPoiHover = (e: MapLayerMouseEvent) => {
-        const f = e.features?.[0];
-        if (!f) return;
-        
-        map.getCanvas().style.cursor = "pointer";
-        // Since we enabled generateId: true in usePois, f.id is populated for all POIs
-        if (f.id !== undefined) {
-          map.setFilter("pois-highlight", ["==", ["id"], f.id]);
-        }
-      };
-
-      const onPoiLeave = () => {
-        map.getCanvas().style.cursor = "";
-        map.setFilter("pois-highlight", ["==", ["id"], ""]);
-      };
-
-    
-
-      
-
-      map.on("mousemove", FS_ROADS_LAYER_ID, onMouseMove);
-      map.on("mouseleave", FS_ROADS_LAYER_ID, onMouseLeave);
-      map.on("click", FS_ROADS_LAYER_ID, onRouteClick);
-      
-      map.on("click", "clusters", onClusterClick);
-
-      POI_LAYERS.forEach(id => {
-        if (map.getLayer(id)) {
-          map.on("mousemove", id, onPoiHover);
-          map.on("mouseleave", id, onPoiLeave);
+      map.on("load", () => {
+        setMapReady(true);
+        if (mapRef.current) {
+          try {
+            mapRef.current.resize();
+          } catch {}
         }
       });
 
+      map.on("error", (e) => {
+        if (e.error && e.error.message && e.error.message.includes("projection")) {
+          console.warn("Recovered from internal MapLibre projection state mismatch.");
+        } else {
+          console.error("MapLibre initialization warning:", e);
+        }
+      });
+
+    } catch (err) {
+      console.error("Map rendering crash prevented cleanly:", err);
+    }
+
+    return () => {
+      if (mapRef.current) {
+        try {
+          mapRef.current.remove();
+        } catch {}
+        mapRef.current = null;
+        setMapReady(false);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!mapReady || !mapRef.current) return;
+    const map = mapRef.current;
+    let cleanup: (() => void) | null = null;
+
+    const onMouseMove = (e: MapLayerMouseEvent) => {
+      if (!mapRef.current) return;
+      mapRef.current.getCanvas().style.cursor = "pointer";
+      const f = e.features?.[0];
+      if (!f) return;
+
+      map.setFilter(FS_ROADS_HOVER_LAYER_ID, ["==", ["id"], f.id || ""]);
+
+      if (f.properties && routesData && routesData.length > 0 && onRouteHover) {
+        const match = routesData.find((r: any) => 
+          r && r.properties && 
+          r.properties.NAME === f.properties.NAME && 
+          r.properties.GIS_MILES === f.properties.GIS_MILES
+        );
+        if (match) {
+          onRouteHover(String(match.id));
+        }
+      }
+    };
+
+    const onMouseLeave = () => {
+      if (!mapRef.current) return;
+      mapRef.current.getCanvas().style.cursor = "";
+      mapRef.current.setFilter(FS_ROADS_HOVER_LAYER_ID, ["==", ["id"], ""]);
+      if (onRouteHover) onRouteHover(null);
+    };
+
+    // FIXED: Bind event listeners directly onto target hitbox layers outside 
+    // of an unreliable nested dynamic source event loop handler
+    const attachInteractionsWhenReady = () => {
+      if (!map.getLayer("fs-roads-hitbox") || !map.getLayer("cluster-hitbox") || !map.getLayer("poi-hitbox")) {
+        setTimeout(attachInteractionsWhenReady, 100);
+        return;
+      }
+
+      // Bind Route Map Events
+      map.on("mousemove", "fs-roads-hitbox", onMouseMove);
+      map.on("mouseleave", "fs-roads-hitbox", onMouseLeave);
+      map.on("click", "fs-roads-hitbox", onRouteClick);
+
+      // Bind Cluster Events
+      map.on("click", "cluster-hitbox", onClusterClick);
+      map.on("mousemove", "cluster-hitbox", onPoiHover);
+      map.on("mouseleave", "cluster-hitbox", onPoiLeave);
+
+      // Bind Single POI Events
+      map.on("mousemove", "poi-hitbox", onPoiHover);
+      map.on("mouseleave", "poi-hitbox", onPoiLeave);
+
       cleanup = () => {
-        map.off("data", bindPoiListeners);
-        map.off("click", "clusters", onClusterClick);
-        map.off("mousemove", FS_ROADS_LAYER_ID, onMouseMove);
-        map.off("mouseleave", FS_ROADS_LAYER_ID, onMouseLeave);
-        map.off("click", FS_ROADS_LAYER_ID, onRouteClick);
+        map.off("mousemove", "fs-roads-hitbox", onMouseMove);
+        map.off("mouseleave", "fs-roads-hitbox", onMouseLeave);
+        map.off("click", "fs-roads-hitbox", onRouteClick);
        
-        map.off("click", "clusters", onClusterClick);
-        POI_LAYERS.forEach(id => {
-          map.off("mousemove", id, onPoiHover);
-          map.off("mouseleave", id, onPoiLeave);
-        });
+        map.off("click", "cluster-hitbox", onClusterClick);
+        map.off("mousemove", "cluster-hitbox", onPoiHover);
+        map.off("mouseleave", "cluster-hitbox", onPoiLeave);
+
+        map.off("mousemove", "poi-hitbox", onPoiHover);
+        map.off("mouseleave", "poi-hitbox", onPoiLeave);
       };
     };
 
     attachInteractionsWhenReady();
-    return () => { cancelled = true; cleanup?.(); };
-  }, [mapReady]);
+    return () => { cleanup?.(); };
+  }, [mapReady, routesData, onRouteHover, onClusterClick, onPoiHover, onPoiLeave, onRouteClick]);
 
   return (
     <div className="gravel-guide-container" style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden" }}>
       <div ref={containerRef} id="map" style={{ width: "100%", height: "100%" }} />
-      {!mapReady && <div className="map-loading-overlay">Loading Discovery Map…</div>}
-      <PoiPopup mapRef={mapRef} popup={poiPopup} onClose={handlePoiClose} />
+      {!mapReady && <div className="map-loading-overlay">Loading Discovery Map...</div>}
+
       {selectedRoute && (
-        <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, zIndex: 10 }}>
-          <GravelPopup route={selectedRoute} onClose={() => setSelectedRoute(null)} />
+        <div className="absolute top-4 left-4 z-50 max-w-sm">
+          <GravelPopup
+            route={selectedRoute}
+            onClose={() => {
+              setSelectedRoute(null);
+              setClickedProperties(null); 
+            }}
+          />
         </div>
       )}
     </div>
