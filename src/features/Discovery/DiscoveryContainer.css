@@ -4,10 +4,9 @@
 .discovery-dashboard-root {
   display: flex;
   flex-direction: column;
-  height: 90vh; 
-  min-height: 580px;
-  max-height: 820px;
-  background-color: #6e7c7c; /* PRESERVED: Your exact base background slate color */
+  height: 85vh; /* FIXED: Sets an explicit, fluid viewport limit */
+  min-height: 600px;
+  background-color: #6e7c7c; 
   color: #f8fafc;
   border-radius: 12px;
   border: 1px solid #1e293b;
@@ -15,6 +14,15 @@
   box-sizing: border-box;
   font-family: system-ui, -apple-system, sans-serif;
   position: relative;
+}
+
+.discovery-workspace-core-stack {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Automatically takes up all remaining vertical room */
+  min-height: 0; /* CRITICAL: Prevents long list boxes from expanding past boundaries */
+  position: relative;
+  width: 100%;
 }
 
 /* Tier 1: Top Filter Bar Layout Row */
@@ -208,18 +216,25 @@
 
 /* Tier 2: Workspace Layout Area Frame */
 .discovery-center-container {
-  width: 100%;
-  height: calc(800px - 80px) !important; 
-  position: relative;
   display: flex;
-  overflow: hidden;
-  box-sizing: border-box;
+  flex: 1;          /* Automatically fills the remaining space below the filter bar */
+  min-height: 0;    /* CRITICAL: Prevents children from expanding past boundaries */
+  width: 100%;
+  height: calc(100% - 81px); /* FIXED: Safely constrains layout area below your header bar */
+  position: relative;
+  overflow: hidden; /* Clips any rogue child rendering leaks safely */
+}
+
+.gravel-guide-container {
+  width: 100%;
+  height: 100% !important;
+  position: relative;
 }
 
 .discovery-map-main-viewport {
   flex: 1;
   height: 100%;
-  position: relative;
+  position: relative; /* FIXED: Serves as the structural alignment anchor for the popup layout drawer */
   background-color: #0f172a;
   z-index: 10;
   box-sizing: border-box;
@@ -580,4 +595,349 @@
 .autocomplete-suggestions-dropdown-overlay::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 99px;
+}
+
+/* ==========================================================================
+   IMMERSIVE TOP-DOWN DRAWER TAKEOVER SYSTEM (MOCKUP SPECIFICATION)
+   ========================================================================== */
+
+/* Header blanking layer matches deep branding blue during active takeovers */
+.takeover-header-blue-blank {
+  background-color: #236ea0 !important;
+  border-bottom: 1px solid #164e75 !important;
+  height: 84px !important;
+  transition: all 250ms ease;
+}
+
+.takeover-header-center-void-lane {
+  flex: 1;
+  height: 100%;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   MAIN ABSOLUTE POPUP DRAWER LAYOUT CONSTRAINTS
+   ────────────────────────────────────────────────────────────────────────── */
+.takeover-hud-drop-down-tray-wrapper {
+  position: absolute; 
+  top: 0px !important; /* FIXED: Anchors the blue capsule header perfectly over the RideFilterBar title row */
+  left: 50%;
+  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  width: 100% !important;
+  max-width: 580px !important; 
+  height: auto;
+  
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  z-index: 45; 
+  
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   INTEGRATED BLUE RIBBON LAYER (RESTORES ROUTE TEXT STACK PRESTIGE GRAPHICS)
+   ────────────────────────────────────────────────────────────────────────── */
+.hud-integrated-blue-header-capsule {
+  width: 100% !important;
+  height: 84px; 
+  background-color: #236ea0 !important; /* Forces rich background visibility color fill */
+  border-bottom: 1px solid #164e75 !important;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* Coordinate anchor baseline maps the chevron button to the right margin */
+  box-sizing: border-box;
+}
+
+.hud-header-text-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  padding: 0 44px; 
+}
+
+.hud-route-title-node {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  color: #ffffff !important; /* Locks color state cleanly to bright white text */
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+}
+
+.hud-header-centered-cta-btn {
+  background-color: #f59e0b !important; 
+  color: #1e293b !important;
+  font-family: "Montserrat", sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 14px;
+  margin: 4px 0;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: all 150ms ease;
+  outline: none;
+}
+
+.hud-header-centered-cta-btn:hover {
+  background-color: #ffffff !important;
+  color: #236ea0 !important;
+}
+
+.hud-route-metadata-subtext {
+  font-family: "Montserrat", sans-serif;
+  font-size: 10.5px;
+  color: #e2e8f0 !important;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.hud-route-metadata-subtext strong {
+  color: #facc15 !important;
+}
+
+.hud-metadata-inline-divider {
+  margin: 0 8px;
+  color: #5b92b6;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   RE-ANCHORED CHEVRON TOGGLE HANDLES (TOP RIGHT INNER DRAWER COORDS)
+   ────────────────────────────────────────────────────────────────────────── */
+.takeover-hud-tray-up-chevron-btn {
+  position: absolute;
+  
+  /* FIXED: Re-anchored to pin inside the right border wall of the 580px wide blue ribbon capsule header box */
+  right: 12px !important; 
+  bottom: 8px !important; 
+  
+  width: 28px;
+  height: 28px;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  color: #f59e0b;
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: all 150ms ease;
+  outline: none;
+  z-index: 50;
+}
+
+.takeover-hud-tray-up-chevron-btn:hover {
+  background-color: #f59e0b;
+  color: #1e293b;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   THE SLIDING BODY TRAY (Strips borders and background spaces)
+   ────────────────────────────────────────────────────────────────────────── */
+.takeover-hud-drop-down-tray-body {
+  /* FIXED: Binds the inner body content to exactly match the 580px tray envelope dimensions */
+  width: 100% !important;
+  background: #ffffff !important;
+  border-left: 1px solid #cbd5e1 !important;
+  border-right: 1px solid #cbd5e1 !important;
+  border-bottom: 2px solid #94a3b8 !important;
+  border-radius: 0 0 8px 8px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  padding: 0px !important;
+}
+
+.hud-console-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.section-metrics-row {
+  height: auto;
+  min-height: 44px;
+}
+
+.takeover-report-label-banner {
+  background-color: #fdf4ce !important;
+  border-bottom: 1px solid #d88a3a !important;
+  padding: 2px 12px;
+  text-align: center;
+}
+
+.takeover-report-label-banner span {
+  font-family: "Montserrat", sans-serif;
+  font-size: 9px;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  color: #1e293b;
+}
+
+.hud-section-body {
+  padding: 4px 12px;
+  box-sizing: border-box;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   65mm HEIGHT ERADICATION OVERRIDE AND CARD BORDER REMOVAL
+   ────────────────────────────────────────────────────────────────────────── */
+.horizontal-metrics-grid-bay .rr-metrics-tiles-wrapper {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  width: 100% !important;
+  
+  /* FIXED: Eradicates the 65mm legacy layout parameter from RouteMetrics.css */
+  height: auto !important; 
+  min-height: 0px !important;
+  
+  gap: 8px !important;
+  padding: 2px 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.horizontal-metrics-grid-bay .rr-metric-tile-row {
+  display: flex !important;
+  align-items: center !important;
+  height: 32px !important; 
+  padding: 0px !important;
+  margin: 0px !important;
+  background: transparent !important; 
+  border: none !important; 
+  box-shadow: none !important;
+}
+
+.horizontal-metrics-grid-bay .rr-metric-tile-row .rr-metric-icon-column,
+.horizontal-metrics-grid-bay .rr-metric-tile-row > div:first-child {
+  padding-right: 0px !important;
+  margin-right: 4px !important;
+  display: flex !important;
+  align-items: center;
+}
+
+.horizontal-metrics-grid-bay .rr-metric-tile-row .rr-metric-content-column,
+.horizontal-metrics-grid-bay .rr-metric-tile-row > div:nth-child(2) {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  flex: 1 1 auto !important;
+  padding-left: 0px !important;
+  box-sizing: border-box;
+}
+
+.horizontal-metrics-grid-bay .rr-metric-value-display {
+  font-size: 11px !important;
+  line-height: 1.1 !important;
+  font-weight: 800 !important;
+  color: #1e293b !important;
+}
+
+.horizontal-metrics-grid-bay .rr-metric-label-display {
+  font-size: 7.5px !important;
+  line-height: 1.1 !important;
+  color: #64748b !important;
+  text-transform: uppercase;
+}
+
+.horizontal-metrics-grid-bay .rr-metrics-tiles-wrapper .rr-metric-tile-row:nth-child(5) {
+  display: none !important;
+}
+
+/* Sparkline profile timeline viewport chart metrics rules */
+.sparkline-viewport-containment {
+  padding: 2px 12px 6px 12px;
+}
+
+.sparkline-viewport-containment .rr-sparkline-container {
+  width: 100%;
+  height: 100px !important; 
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.sparkline-viewport-containment .rr-sparkline-main,
+.sparkline-viewport-containment .rr-sparkline-svg {
+  /* height: 75px !important; */
+  width: 100%;
+}
+
+.takeover-force-hidden {
+  display: none !important;
+}
+
+
+
+/* ==========================================================================
+   GRAVELPOPUP SLIDE-OUT HUD ANIMATIONS
+   Syncs perfectly with the 400ms cubic-bezier transitions of the results card
+   ========================================================================== */
+
+/* Active mounting state wrapper class */
+.takeover-hud-drop-down-tray-wrapper.popup-entering {
+  position: absolute; 
+  top: 0px !important;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 100% !important;
+  max-width: 580px !important; 
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  z-index: 45; 
+  
+  /* FIXED: Pure hardware transformation using your exact side-drawer timing curves */
+  animation: hudPopupSlideIn 400ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Active unmounting state wrapper class */
+.takeover-hud-drop-down-tray-wrapper.popup-dismissing {
+  position: absolute; 
+  top: 0px !important;
+  left: 50%;
+  width: 100% !important;
+  max-width: 580px !important; 
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  z-index: 45;
+
+  /* FIXED: Clean, direct slide out matching the entry physics */
+  animation: hudPopupSlideOut 400ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes hudPopupSlideIn {
+  0% {
+    transform: translate(-50%, -100%);
+  }
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
+
+/* Pulls right back up without ghosting or lingering on screen */
+@keyframes hudPopupSlideOut {
+  0% {
+    transform: translate(-50%, 0);
+  }
+  100% {
+    transform: translate(-50%, -100%);
+  }
 }

@@ -1,28 +1,8 @@
 /* src/features/Discovery/utils/utils.ts */
 import * as maplibregl from "maplibre-gl";
-import { type GravelPopupData } from "../components/GravelPopup";
+//import { type GravelPopupData } from "../components/GravelPopup";
 
 // --- Data Transformation Helpers ---
-
-/**
- * Converts an FS Road feature into the specific format needed by GravelPopup
- */
-/* src/features/Discovery/utils/utils.ts */
-
-// This function now produces a clean object that your existing widgets can consume
-export function featureToPopupData(feature: any): GravelPopupData {
-  const p = feature?.properties ?? {};
-  return {
-    roadId: String(p.profile_id || p.ID || ""), // Mapping to roadId
-    roadName: String(p.NAME || "Unknown Road"),
-    maintenanceLevel: String(p.OPER_MAINT_LEVEL || "Unknown"),
-    surfaceType: String(p.SURFACE_TYP || "Unknown"),
-    status: String(p.STATUS || "Open"),
-    miles: Number(p.GIS_MILES || 0).toFixed(2),
-    avgGrade: String(p.v3_avg_grade || "0"),
-    elevationProfile: parseElevationProfile(p.v3_elev_gain)
-  };
-}
 
 /**
  * Safely parses elevation JSON or CSV strings into a number array
