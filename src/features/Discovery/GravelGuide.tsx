@@ -4,9 +4,9 @@ import maplibregl from "maplibre-gl";
 import type { Map as MaplibreMap } from "maplibre-gl";
 
 import useFsRoads from "./hooks/useFsRoads";
-import usePois from "./hooks/usePois";
-import { useHighlight } from "./hooks/useHighlight";
-import useMapController from "./hooks/useMapController";
+import usePois from "./hooks/usePois"; //
+import { useHighlight } from "./hooks/useHighlight"; //
+import useMapController from "./hooks/useMapController"; //
 
 import "../../styles/trail-map.css";
 
@@ -38,7 +38,6 @@ export default function GravelGuide({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MaplibreMap | null>(null);
 
-  // Separate static selection IDs from moving cursor hover IDs
   const fsRoadsOptions = useMemo(() => {
     return { 
       addLayers: true,
@@ -52,11 +51,12 @@ export default function GravelGuide({
 
   const { routesData } = useFsRoads(mapRef.current ?? null, !!mapRef.current, fsRoadsOptions);
 
-  // Consolidated elements sit in their clean, modular components
-  usePois(mapRef, !!mapRef.current);
-  useHighlight(mapRef, !!mapRef.current);
-
-  const { mapReady } = useMapController({
+  // ============================================================================
+  // 🎮 SYNC LIFE CYCLES
+  // We extract "mapReady" from useMapController below and pass it straight into 
+  // your feature hooks to synchronize layer initialization cleanly.
+  // ============================================================================
+  const { mapReady } = useMapController({ //
     containerRef,
     mapRef,
     routesData,
@@ -66,9 +66,13 @@ export default function GravelGuide({
     onRegisterZoomFn
   });
 
+  // FIXED: Replaced "!!mapRef.current" with the reactive "mapReady" state token
+  usePois(mapRef, mapReady); 
+  useHighlight(mapRef, mapReady); 
+
   return (
     <div className="gravel-guide-container" style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden" }}>
-      <div ref={containerRef} id="map" style={{ width: "100%", height: "100%" }} />
+      <div ref={containerRef} id="map" style={{ width: "100%", height: "100%" }} /> //
       {!mapReady && <div className="map-loading-overlay">Loading Discovery Map...</div>}
     </div>
   );

@@ -136,13 +136,16 @@ export default function usePois(
             filter: ["has", "point_count"],
             layout: {
               "text-field": ["get", "point_count_abbreviated"],
-              "text-font": ["Montserrat SemiBold", "Arial Unicode MS Regular"],
-              "text-size": 8,
+              // FIXED: Swapped out Montserrat for universally compiled open-source text maps
+              "text-font": ["Open Sans Regular", "Arial Unicode MS Regular"],
+              "text-size": 10,
               "text-anchor": "center",
-              "text-offset": [0, -0.5] 
+              "text-offset": [0, -0.25],
+              "text-allow-overlap": true,
+              "text-ignore-placement": true
             },
             paint: {
-              "text-color": "#1b4332" 
+              "text-color": "#1b4332" // White coloring provides clear contrast inside your dark green ovals
             }
           });
         }
@@ -218,7 +221,8 @@ export default function usePois(
             filter: ["all", ["!", ["has", "point_count"]], ["==", ["get", "id"], ""]], 
             layout: {
               "text-field": ["get", "name"],
-              "text-font": ["Montserrat SemiBold", "Arial Unicode MS Regular"],
+              // FIXED: Swapped out Montserrat for universally compiled open-source text maps
+              "text-font": ["Open Sans Regular", "Arial Unicode MS Regular"],
               "text-transform": "uppercase", 
               "text-letter-spacing": 0.1,    
               "text-size": [
