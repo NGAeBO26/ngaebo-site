@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Rich Mountain",
-            "dist": 0.68,
             "type": "scenic",
-            "via": "Forest Svc Rd"
+            "dist": "0.68",
+            "via": "Horse Cove Rd",
+            "lng": -84.19441,
+            "lat": 34.64393
         },
         {
             "label": "Silvermine Ridge",
-            "dist": 0.71,
             "type": "scenic",
-            "via": "Forest Svc Rd"
+            "dist": "0.71",
+            "via": "Horse Cove Rd",
+            "lng": -84.17336,
+            "lat": 34.63942
         },
         {
             "label": "Big Stamp Gap",
-            "dist": 0.91,
             "type": "gap",
-            "via": "Forest Svc Rd"
+            "dist": "0.91",
+            "via": "Horse Cove Rd",
+            "lng": -84.17325,
+            "lat": 34.63564
         },
         {
             "label": "Ball Mountain",
-            "dist": 1.12,
             "type": "scenic",
-            "via": "Forest Svc Rd"
+            "dist": "1.12",
+            "via": "Horse Cove Rd",
+            "lng": -84.1845,
+            "lat": 34.62993
         },
         {
             "label": "Deerlick Gap",
-            "dist": 1.29,
             "type": "gap",
-            "via": "Winding Stair Gap Rd"
+            "dist": "1.29",
+            "via": "Horse Cove Rd",
+            "lng": -84.1613,
+            "lat": 34.64037
         }
     ],
     "rescue_anchor": {

@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Falls Branch",
-            "dist": 0.34,
             "type": "water",
-            "via": "Bear Gap Rd"
+            "dist": "0.34",
+            "via": "Horse Cove Rd",
+            "lng": -83.47795,
+            "lat": 34.75093
         },
         {
             "label": "Angel Falls",
-            "dist": 0.7,
             "type": "trailhead",
-            "via": "Lake Rabun Rd"
+            "dist": "0.70",
+            "via": "Horse Cove Rd",
+            "lng": -83.47084,
+            "lat": 34.76112
         },
         {
             "label": "Joe Mountain",
-            "dist": 1.52,
             "type": "scenic",
-            "via": "Forest Svc Rd"
+            "dist": "1.52",
+            "via": "Horse Cove Rd",
+            "lng": -83.48461,
+            "lat": 34.77703
         },
         {
             "label": "Stamp Knob",
-            "dist": 1.67,
             "type": "scenic",
-            "via": "Forest Svc Rd"
+            "dist": "1.67",
+            "via": "Horse Cove Rd",
+            "lng": -83.46992,
+            "lat": 34.77763
         },
         {
             "label": "Stamp Ridge",
-            "dist": 1.76,
             "type": "scenic",
-            "via": "Forest Svc Rd"
+            "dist": "1.76",
+            "via": "Horse Cove Rd",
+            "lng": -83.47077,
+            "lat": 34.77933
         }
     ],
     "rescue_anchor": {

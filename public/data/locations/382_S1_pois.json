@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Low Gap",
-            "dist": 0.03,
             "type": "gap",
-            "via": "Access Road"
+            "dist": "0.03",
+            "via": "Horse Cove Rd",
+            "lng": -83.521,
+            "lat": 34.73593
         },
         {
             "label": "Flat Creek Mountain",
-            "dist": 0.86,
             "type": "scenic",
-            "via": "Oakey Mountain Rd"
+            "dist": "0.86",
+            "via": "Horse Cove Rd",
+            "lng": -83.53598,
+            "lat": 34.73964
         },
         {
             "label": "Ann Gap",
-            "dist": 1.0,
             "type": "gap",
-            "via": "Oakey Mountain Rd"
+            "dist": "1.00",
+            "via": "Horse Cove Rd",
+            "lng": -83.53656,
+            "lat": 34.74343
         },
         {
             "label": "Oakey Mountain",
-            "dist": 1.68,
             "type": "scenic",
-            "via": "Oakey Mountain Rd"
+            "dist": "1.68",
+            "via": "Horse Cove Rd",
+            "lng": -83.5455,
+            "lat": 34.75026
         },
         {
             "label": "Sillycook Mountain",
-            "dist": 1.97,
             "type": "scenic",
-            "via": "Oakey Mountain Rd"
+            "dist": "1.97",
+            "via": "Horse Cove Rd",
+            "lng": -83.55554,
+            "lat": 34.73119
         }
     ],
     "rescue_anchor": {

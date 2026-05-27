@@ -29,7 +29,10 @@ export default function PlacesToSee({ routeID }: { routeID: string }) {
         {pois.slice(0, 5).map((poi, idx) => (
           <div key={idx} className="rr-poi-item">
             <div className="rr-poi-main-row">
-              - {poi.label} <span className="rr-poi-type-tag">[{poi.type}]</span>
+              {/* FIXED: Replaced unindexed dash placeholder with legend list prefix numbers */}
+              <span style={{ fontWeight: 700, color: '#e66e00', marginRight: '1mm' }}>{idx + 1}.</span> 
+              {poi.label} 
+              <span className="rr-poi-type-tag">[{poi.type}]</span>
             </div>
             <div className="rr-poi-via-row">
               <b>{poi.dist}</b> mi. via <b>{poi.via}</b>

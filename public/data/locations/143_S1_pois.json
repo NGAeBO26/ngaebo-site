@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Davenport Ohv",
-            "dist": 0.09,
             "type": "trailhead",
-            "via": "Davenport Mtn Rd"
+            "dist": "0.09",
+            "via": "Horse Cove Rd",
+            "lng": -84.09417,
+            "lat": 34.92334
         },
         {
             "label": "Davenport Mountain",
-            "dist": 0.52,
             "type": "scenic",
-            "via": "Davenport Mtn Rd"
+            "dist": "0.52",
+            "via": "Horse Cove Rd",
+            "lng": -84.09653,
+            "lat": 34.93007
         },
         {
             "label": "Dean Gap",
-            "dist": 1.24,
             "type": "gap",
-            "via": "Nottely Dam Rd"
+            "dist": "1.24",
+            "via": "Horse Cove Rd",
+            "lng": -84.09769,
+            "lat": 34.90592
         },
         {
             "label": "Chapman Ford (Historical)",
-            "dist": 1.53,
             "type": "hazard",
-            "via": "Notla Island Dr"
+            "dist": "1.53",
+            "via": "Horse Cove Rd",
+            "lng": -84.08602,
+            "lat": 34.94481
         },
         {
             "label": "Blackjack Mountain",
-            "dist": 1.9,
             "type": "scenic",
-            "via": "Jitterbug Trl"
+            "dist": "1.90",
+            "via": "Horse Cove Rd",
+            "lng": -84.10112,
+            "lat": 34.89673
         }
     ],
     "rescue_anchor": {

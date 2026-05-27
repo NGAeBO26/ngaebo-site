@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Campbell Mountain",
-            "dist": 0.66,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "0.66",
+            "via": "Horse Cove Rd",
+            "lng": -84.09074,
+            "lat": 34.5762
         },
         {
             "label": "Whissenhunt Mountain",
-            "dist": 1.6,
             "type": "scenic",
-            "via": "Miles Berry Rd"
+            "dist": "1.60",
+            "via": "Horse Cove Rd",
+            "lng": -84.06128,
+            "lat": 34.59567
         },
         {
             "label": "Sally Free Ridge",
-            "dist": 2.31,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "2.31",
+            "via": "Horse Cove Rd",
+            "lng": -84.03901,
+            "lat": 34.58044
         },
         {
             "label": "Jake Mountain",
-            "dist": 2.62,
             "type": "scenic",
-            "via": "Nimblewill Church Rd"
+            "dist": "2.62",
+            "via": "Horse Cove Rd",
+            "lng": -84.12396,
+            "lat": 34.56869
         },
         {
             "label": "Low Gap",
-            "dist": 2.8,
             "type": "gap",
-            "via": "Bull Creek Rd"
+            "dist": "2.80",
+            "via": "Horse Cove Rd",
+            "lng": -84.04769,
+            "lat": 34.60898
         }
     ],
     "rescue_anchor": {

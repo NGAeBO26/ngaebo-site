@@ -4,40 +4,50 @@
     "locations": [
         {
             "label": "Dockery Lake Recreation Area",
-            "dist": 0.2,
             "type": "camp",
-            "via": "Rock Creek Rd"
+            "dist": "0.20",
+            "via": "Horse Cove Rd",
+            "lng": -84.14941,
+            "lat": 34.70145
         },
         {
             "label": "High Falls",
-            "dist": 0.91,
             "type": "water",
-            "via": "Rock Creek Rd"
+            "dist": "0.91",
+            "via": "Horse Cove Rd",
+            "lng": -84.13908,
+            "lat": 34.71259
         },
         {
             "label": "Rocky Mountain",
-            "dist": 1.54,
             "type": "scenic",
-            "via": "Rock Creek Rd"
+            "dist": "1.54",
+            "via": "Horse Cove Rd",
+            "lng": -84.13644,
+            "lat": 34.72283
         },
         {
             "label": "Little Frozen Knob",
-            "dist": 1.64,
             "type": "scenic",
-            "via": "Rock Creek Rd"
+            "dist": "1.64",
+            "via": "Horse Cove Rd",
+            "lng": -84.1313,
+            "lat": 34.68668
         },
         {
             "label": "Wildcat Ridge",
-            "dist": 1.74,
             "type": "scenic",
-            "via": "Forest Svc Rd"
+            "dist": "1.74",
+            "via": "Horse Cove Rd",
+            "lng": -84.1814,
+            "lat": 34.70011
         }
     ],
     "rescue_anchor": {
-        "name": "Lumpkin County Fire Department",
+        "name": "Fannin County Emergency Services - Fire Station 1",
         "type": "Fire-EMS",
-        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
-        "phone": "(706) 864-3030",
-        "dist_mi": 16.9
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 16.3
     }
 }

@@ -312,6 +312,7 @@
 /* RouteReport.css - MAP CANVAS INTEGRATION */
 
 .rr-map-main-box {
+  box-sizing: border-box !important; /* FIXED: Traps borders inside the 91.9mm allocation */
   background-color: #f9f9f9 !important;
   border-left: 1px solid #e0e0e0 !important;
   border-right: 1px solid #e0e0e0 !important;

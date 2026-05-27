@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "George Mountain",
-            "dist": 0.38,
             "type": "scenic",
-            "via": "13123"
+            "dist": "0.38",
+            "via": "Horse Cove Rd",
+            "lng": -84.23241,
+            "lat": 34.64703
         },
         {
             "label": "Locust Mountain",
-            "dist": 0.49,
             "type": "scenic",
-            "via": "13123"
+            "dist": "0.49",
+            "via": "Horse Cove Rd",
+            "lng": -84.2217,
+            "lat": 34.6494
         },
         {
             "label": "Wallace Mountain",
-            "dist": 0.87,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "0.87",
+            "via": "Horse Cove Rd",
+            "lng": -84.23877,
+            "lat": 34.66222
         },
         {
             "label": "Rand Knob",
-            "dist": 0.99,
             "type": "scenic",
-            "via": "13123"
+            "dist": "0.99",
+            "via": "Horse Cove Rd",
+            "lng": -84.23325,
+            "lat": 34.66619
         },
         {
             "label": "Howell Mountain",
-            "dist": 1.31,
             "type": "scenic",
-            "via": "Creekview Dr"
+            "dist": "1.31",
+            "via": "Horse Cove Rd",
+            "lng": -84.24146,
+            "lat": 34.63579
         }
     ],
     "rescue_anchor": {

@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Shoal Ridge",
-            "dist": 0.94,
             "type": "scenic",
-            "via": "Crow Creek Rd"
+            "dist": "0.94",
+            "via": "Horse Cove Rd",
+            "lng": -83.53622,
+            "lat": 34.76278
         },
         {
             "label": "Crow Mountain",
-            "dist": 1.01,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "1.01",
+            "via": "Horse Cove Rd",
+            "lng": -83.55005,
+            "lat": 34.78041
         },
         {
             "label": "Pigeon Mountain",
-            "dist": 1.1,
             "type": "scenic",
-            "via": "Seed Lake Rd"
+            "dist": "1.10",
+            "via": "Horse Cove Rd",
+            "lng": -83.51378,
+            "lat": 34.77509
         },
         {
             "label": "Oakey Mtn. Ohv Trailhead",
-            "dist": 1.29,
             "type": "trailhead",
-            "via": "Access Road"
+            "dist": "1.29",
+            "via": "Horse Cove Rd",
+            "lng": -83.55334,
+            "lat": 34.78459
         },
         {
             "label": "Dads Ridge",
-            "dist": 1.81,
             "type": "scenic",
-            "via": "Seed Lake Rd"
+            "dist": "1.81",
+            "via": "Horse Cove Rd",
+            "lng": -83.50808,
+            "lat": 34.79232
         }
     ],
     "rescue_anchor": {

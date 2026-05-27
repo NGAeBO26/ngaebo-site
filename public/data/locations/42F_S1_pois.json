@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Locust Mountain",
-            "dist": 0.56,
             "type": "scenic",
-            "via": "13123"
+            "dist": "0.56",
+            "via": "Horse Cove Rd",
+            "lng": -84.2217,
+            "lat": 34.6494
         },
         {
             "label": "Bearden Mountain",
-            "dist": 0.67,
             "type": "scenic",
-            "via": "13123"
+            "dist": "0.67",
+            "via": "Horse Cove Rd",
+            "lng": -84.21147,
+            "lat": 34.66453
         },
         {
             "label": "Buckeye Mountain",
-            "dist": 0.82,
             "type": "scenic",
-            "via": "13123"
+            "dist": "0.82",
+            "via": "Horse Cove Rd",
+            "lng": -84.20578,
+            "lat": 34.65375
         },
         {
             "label": "Rand Knob",
-            "dist": 0.99,
             "type": "scenic",
-            "via": "13123"
+            "dist": "0.99",
+            "via": "Horse Cove Rd",
+            "lng": -84.23325,
+            "lat": 34.66619
         },
         {
             "label": "George Mountain",
-            "dist": 1.02,
             "type": "scenic",
-            "via": "13123"
+            "dist": "1.02",
+            "via": "Horse Cove Rd",
+            "lng": -84.23241,
+            "lat": 34.64703
         }
     ],
     "rescue_anchor": {

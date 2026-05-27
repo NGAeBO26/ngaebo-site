@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Bull Mountain",
-            "dist": 0.99,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "0.99",
+            "via": "Horse Cove Rd",
+            "lng": -84.15647,
+            "lat": 34.59254
         },
         {
             "label": "Jake Mountain",
-            "dist": 1.93,
             "type": "trailhead",
-            "via": "Access Road"
+            "dist": "1.93",
+            "via": "Horse Cove Rd",
+            "lng": -84.13973,
+            "lat": 34.58862
         },
         {
             "label": "Ball Mountain",
-            "dist": 2.08,
             "type": "scenic",
-            "via": "Forest Svc Rd"
+            "dist": "2.08",
+            "via": "Horse Cove Rd",
+            "lng": -84.1845,
+            "lat": 34.62993
         },
         {
             "label": "Amicalola Mountain",
-            "dist": 2.17,
             "type": "scenic",
-            "via": "Old Bucktown Rd"
+            "dist": "2.17",
+            "via": "Horse Cove Rd",
+            "lng": -84.20468,
+            "lat": 34.6133
         },
         {
             "label": "Black Mountain",
-            "dist": 2.17,
             "type": "scenic",
-            "via": "Old Bucktown Rd"
+            "dist": "2.17",
+            "via": "Horse Cove Rd",
+            "lng": -84.2047,
+            "lat": 34.61339
         }
     ],
     "rescue_anchor": {

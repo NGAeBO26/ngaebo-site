@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Cooper Gap",
-            "dist": 0.11,
             "type": "gap",
-            "via": "Coopers Gap Rd"
+            "dist": "0.11",
+            "via": "Horse Cove Rd",
+            "lng": -84.08408,
+            "lat": 34.65315
         },
         {
             "label": "Justus Mountain",
-            "dist": 0.26,
             "type": "scenic",
-            "via": "Gaddistown Rd"
+            "dist": "0.26",
+            "via": "Horse Cove Rd",
+            "lng": -84.08019,
+            "lat": 34.65592
         },
         {
             "label": "Sassafras Mountain",
-            "dist": 0.53,
             "type": "scenic",
-            "via": "Appalachian Blue Ridge Rd"
+            "dist": "0.53",
+            "via": "Horse Cove Rd",
+            "lng": -84.09366,
+            "lat": 34.65316
         },
         {
             "label": "Brookshire Gap",
-            "dist": 0.54,
             "type": "gap",
-            "via": "Coopers Gap Rd"
+            "dist": "0.54",
+            "via": "Horse Cove Rd",
+            "lng": -84.07547,
+            "lat": 34.65703
         },
         {
             "label": "Phyllis Spur",
-            "dist": 0.77,
             "type": "scenic",
-            "via": "Coopers Gap Rd"
+            "dist": "0.77",
+            "via": "Horse Cove Rd",
+            "lng": -84.07146,
+            "lat": 34.65733
         }
     ],
     "rescue_anchor": {

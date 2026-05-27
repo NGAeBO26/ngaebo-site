@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Noontootla Falls",
-            "dist": 0.56,
             "type": "water",
-            "via": "Forest Svc Rd"
+            "dist": "0.56",
+            "via": "Horse Cove Rd",
+            "lng": -84.1938,
+            "lat": 34.68592
         },
         {
             "label": "Wildcat Ridge",
-            "dist": 0.72,
             "type": "scenic",
-            "via": "Forest Svc Rd"
+            "dist": "0.72",
+            "via": "Horse Cove Rd",
+            "lng": -84.1814,
+            "lat": 34.70011
         },
         {
             "label": "Big John Dick Mountain",
-            "dist": 1.08,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "1.08",
+            "via": "Horse Cove Rd",
+            "lng": -84.1902,
+            "lat": 34.70951
         },
         {
             "label": "Alec Mountain",
-            "dist": 1.1,
             "type": "scenic",
-            "via": "Fs Rd 58"
+            "dist": "1.10",
+            "via": "Horse Cove Rd",
+            "lng": -84.20737,
+            "lat": 34.70279
         },
         {
             "label": "Bryson Gap",
-            "dist": 1.37,
             "type": "gap",
-            "via": "Access Road"
+            "dist": "1.37",
+            "via": "Horse Cove Rd",
+            "lng": -84.18964,
+            "lat": 34.7137
         }
     ],
     "rescue_anchor": {

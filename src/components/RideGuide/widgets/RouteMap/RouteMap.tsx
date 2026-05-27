@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import useFsRoadsReport from "./useFsRoadsReport";
-import usePois from "../../../../features/Discovery/hooks/usePois"; 
+import NorthArrow from "./NorthArrow";
 
 import "maplibre-gl/dist/maplibre-gl.css";
 
@@ -11,13 +11,9 @@ interface RouteMapProps {
   onRouteSelect: (id: string) => void;
 }
 
-// ============================================================================
-// 🎨 PRODUCTION-GRADE GRAYSCALE TOPOGRAPHIC STYLING SPECIFICATION
-// Declares font stack repositories globally to pass MapLibre v4 vector layer rules
-// ============================================================================
-const printStyleConfig: maplibregl.StyleSpecification = {
+// Optimized Core Map Specifications Layout
+const baseStyleSpecification: maplibregl.StyleSpecification = {
   version: 8,
-  // FIXED: Declared font glyph server layout values inline on constructor setup parameters
   glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
   sources: {
     "contours-usgs-raster-source": {
@@ -32,7 +28,8 @@ const printStyleConfig: maplibregl.StyleSpecification = {
       tiles: [
         "https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}"
       ],
-      tileSize: 256
+      tileSize: 256,
+      maxzoom: 13
     }
   },
   layers: [
@@ -42,8 +39,8 @@ const printStyleConfig: maplibregl.StyleSpecification = {
       source: "contours-usgs-raster-source",
       paint: {
         "raster-opacity": 0.85,
-        "raster-saturation": -1.0,      // Client-side monochrome grayscale rendering conversion loop
-        "raster-contrast": 0.35,        // Sharpens your contour lines and text elevation labels
+        "raster-saturation": -1.0,      
+        "raster-contrast": 0.35,        
         "raster-brightness-min": 0.05
       }
     },
@@ -53,67 +50,85 @@ const printStyleConfig: maplibregl.StyleSpecification = {
       source: "transportation-esri-raster-source",
       paint: { 
         "raster-opacity": 0.40,
-        "raster-saturation": -1.0,      // Syncs road label typography to match the gray style
+        "raster-saturation": -1.0,      
         "raster-contrast": 0.15
       }
     }
   ]
 };
 
-export default function RouteMap({ routeID, onRouteSelect }: RouteMapProps) {
+export default function RouteMap({ routeID, onRouteSelect: _onRouteSelect }: RouteMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
   const [mapReady, setMapReady] = useState(false);
 
   useEffect(() => {
-    if (!containerRef.current || mapRef.current) return;
+    if (!containerRef.current) return;
 
-    // Build map instance with hardware gesture interactions completely locked out for clean document layout printing
+    if (mapRef.current) {
+      mapRef.current.remove();
+      mapRef.current = null;
+      setMapReady(false);
+    }
+
     const map = new maplibregl.Map({
       container: containerRef.current,
-      style: printStyleConfig, 
+      style: baseStyleSpecification, 
       center: [-84.15, 34.6], 
       zoom: 11,
       attributionControl: false,
-      
-      // Pin interactions completely locked to safeguard printable layouts
       boxZoom: false,
       scrollZoom: false,
       dragPan: false,
       doubleClickZoom: false,
       touchZoomRotate: false,
-      interactive: true, 
+      interactive: true,
+      
+      transformRequest: (url: string, resourceType: any) => {
+        const typeStr = String(resourceType || '').toLowerCase();
+        if (typeStr === 'sprite' && url.includes('@2x')) {
+          return { url: url.replace('@2x', '') };
+        }
+        return { url };
+      }
     });
 
     mapRef.current = map;
 
+    // Direct event listener context pass synchronization hotfix
     map.on("load", () => {
-      // EXPOSE WORKSPACE HANDLE TO BROWSERS FOR REAL-TIME F12 PANEL RUNTIME INSPECTION
       (window as any).map = map;
-      
-      setTimeout(() => {
-        if (mapRef.current) {
-          setMapReady(true);
-          mapRef.current.resize();
-        }
-      }, 100);
+      setMapReady(true);
+      map.resize();
+    });
+
+    // Handle styling state changes cleanly on rapid URL switches
+    map.on("styledata", () => {
+      if (!map.getSource("fs-roads") && map.isStyleLoaded()) {
+        setMapReady(false);
+        setTimeout(() => setMapReady(true), 50);
+      }
     });
 
     return () => {
       if (mapRef.current) {
         mapRef.current.remove();
         mapRef.current = null;
+        setMapReady(false);
       }
     };
-  }, [onRouteSelect]);
+  }, [routeID]); 
 
-  // Execute processing steps natively within the mount loop
   useFsRoadsReport(mapRef.current, mapReady, { addLayers: true, routeID });
-  usePois(mapRef, mapReady);
 
   return (
     <div className="rr-map-canvas-wrapper" style={{ width: '100%', height: '100%' }}>
-      <div ref={containerRef} className="rr-map-libre-container" style={{ width: '100%', height: '100%' }} />
+      <NorthArrow map={mapRef.current} />
+      <div 
+        ref={containerRef} 
+        id="route-report-static-map" 
+        style={{ width: '100%', height: '100%' }} 
+      />
       {!mapReady && <div className="rr-map-loading">INITIALIZING GIS INFRASTRUCTURE...</div>}
     </div>
   );

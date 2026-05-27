@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Big Shoal Mountain",
-            "dist": 0.82,
             "type": "scenic",
-            "via": "Us Hwy Nat For Rd 184"
+            "dist": "0.82",
+            "via": "Horse Cove Rd",
+            "lng": -83.38259,
+            "lat": 34.68841
         },
         {
             "label": "Abram Mountain",
-            "dist": 1.85,
             "type": "scenic",
-            "via": "Yonah Lake Cir"
+            "dist": "1.85",
+            "via": "Horse Cove Rd",
+            "lng": -83.36266,
+            "lat": 34.68981
         },
         {
             "label": "Apple Pie Mountain",
-            "dist": 2.14,
             "type": "scenic",
-            "via": "School Nature Rd"
+            "dist": "2.14",
+            "via": "Horse Cove Rd",
+            "lng": -83.4063,
+            "lat": 34.72465
         },
         {
             "label": "Hickory Nut Mountain",
-            "dist": 2.68,
             "type": "scenic",
-            "via": "Hickory Nut Rd"
+            "dist": "2.68",
+            "via": "Horse Cove Rd",
+            "lng": -83.40908,
+            "lat": 34.73217
         },
         {
             "label": "Cascade Falls",
-            "dist": 3.12,
             "type": "water",
-            "via": "Viola Scott Cir"
+            "dist": "3.12",
+            "via": "Horse Cove Rd",
+            "lng": -83.3885,
+            "lat": 34.74009
         }
     ],
     "rescue_anchor": {

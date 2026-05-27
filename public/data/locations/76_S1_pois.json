@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Piney Ridge",
-            "dist": 0.4,
             "type": "scenic",
-            "via": "Addis Rd"
+            "dist": "0.40",
+            "via": "Horse Cove Rd",
+            "lng": -83.49057,
+            "lat": 34.71479
         },
         {
             "label": "Stony Mountain",
-            "dist": 0.94,
             "type": "scenic",
-            "via": "Bear Gap Rd"
+            "dist": "0.94",
+            "via": "Horse Cove Rd",
+            "lng": -83.47861,
+            "lat": 34.72415
         },
         {
             "label": "Fry Mountain",
-            "dist": 1.44,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "1.44",
+            "via": "Horse Cove Rd",
+            "lng": -83.47919,
+            "lat": 34.70309
         },
         {
             "label": "Demoore Ridge",
-            "dist": 1.71,
             "type": "scenic",
-            "via": "Whispering Dale"
+            "dist": "1.71",
+            "via": "Horse Cove Rd",
+            "lng": -83.46438,
+            "lat": 34.72206
         },
         {
             "label": "Low Gap",
-            "dist": 1.89,
             "type": "gap",
-            "via": "Access Road"
+            "dist": "1.89",
+            "via": "Horse Cove Rd",
+            "lng": -83.521,
+            "lat": 34.73593
         }
     ],
     "rescue_anchor": {

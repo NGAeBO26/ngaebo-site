@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Puncheon Gap",
-            "dist": 0.22,
             "type": "gap",
-            "via": "Hightower Gap Rd"
+            "dist": "0.22",
+            "via": "Horse Cove Rd",
+            "lng": -84.13853,
+            "lat": 34.65231
         },
         {
             "label": "Coppermine Gap",
-            "dist": 0.43,
             "type": "gap",
-            "via": "Hightower Gap Rd"
+            "dist": "0.43",
+            "via": "Horse Cove Rd",
+            "lng": -84.14714,
+            "lat": 34.64648
         },
         {
             "label": "Hawk Mountain",
-            "dist": 0.7,
             "type": "scenic",
-            "via": "Hightower Gap Rd"
+            "dist": "0.70",
+            "via": "Horse Cove Rd",
+            "lng": -84.14054,
+            "lat": 34.6612
         },
         {
             "label": "Fryingpan Gap",
-            "dist": 0.81,
             "type": "gap",
-            "via": "Winding Stair Gap Rd"
+            "dist": "0.81",
+            "via": "Horse Cove Rd",
+            "lng": -84.15603,
+            "lat": 34.6487
         },
         {
             "label": "Hightower Gap",
-            "dist": 1.11,
             "type": "gap",
-            "via": "Rock Creek Rd"
+            "dist": "1.11",
+            "via": "Horse Cove Rd",
+            "lng": -84.12991,
+            "lat": 34.6637
         }
     ],
     "rescue_anchor": {

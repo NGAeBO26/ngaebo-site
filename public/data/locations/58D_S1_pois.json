@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Ripshin",
-            "dist": 0.4,
             "type": "scenic",
-            "via": "Fs Rd 58"
+            "dist": "0.40",
+            "via": "Horse Cove Rd",
+            "lng": -84.21462,
+            "lat": 34.68769
         },
         {
             "label": "Noontootla Falls",
-            "dist": 0.8,
             "type": "water",
-            "via": "Forest Svc Rd"
+            "dist": "0.80",
+            "via": "Horse Cove Rd",
+            "lng": -84.1938,
+            "lat": 34.68592
         },
         {
             "label": "Alec Mountain",
-            "dist": 1.07,
             "type": "scenic",
-            "via": "Fs Rd 58"
+            "dist": "1.07",
+            "via": "Horse Cove Rd",
+            "lng": -84.20737,
+            "lat": 34.70279
         },
         {
             "label": "Bearden Mountain",
-            "dist": 1.59,
             "type": "scenic",
-            "via": "13123"
+            "dist": "1.59",
+            "via": "Horse Cove Rd",
+            "lng": -84.21147,
+            "lat": 34.66453
         },
         {
             "label": "Wildcat Ridge",
-            "dist": 1.74,
             "type": "scenic",
-            "via": "Forest Svc Rd"
+            "dist": "1.74",
+            "via": "Horse Cove Rd",
+            "lng": -84.1814,
+            "lat": 34.70011
         }
     ],
     "rescue_anchor": {

@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Beasley Knob",
-            "dist": 0.55,
             "type": "scenic",
-            "via": "Dorothy Hughes Rd"
+            "dist": "0.55",
+            "via": "Horse Cove Rd",
+            "lng": -83.92601,
+            "lat": 34.87536
         },
         {
             "label": "Nelson Ridge",
-            "dist": 0.72,
             "type": "scenic",
-            "via": "Hourihan Rd"
+            "dist": "0.72",
+            "via": "Horse Cove Rd",
+            "lng": -83.92627,
+            "lat": 34.87296
         },
         {
             "label": "Nicholson Gap",
-            "dist": 0.73,
             "type": "gap",
-            "via": "Crump Creek Rd"
+            "dist": "0.73",
+            "via": "Horse Cove Rd",
+            "lng": -83.91657,
+            "lat": 34.87676
         },
         {
             "label": "Ross Ridge",
-            "dist": 0.82,
             "type": "scenic",
-            "via": "Byron St"
+            "dist": "0.82",
+            "via": "Horse Cove Rd",
+            "lng": -83.92203,
+            "lat": 34.8947
         },
         {
             "label": "Town Mountain",
-            "dist": 1.04,
             "type": "scenic",
-            "via": "Little Beasley"
+            "dist": "1.04",
+            "via": "Horse Cove Rd",
+            "lng": -83.93562,
+            "lat": 34.87026
         }
     ],
     "rescue_anchor": {

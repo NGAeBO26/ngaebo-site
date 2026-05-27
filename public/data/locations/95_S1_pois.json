@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "White Walnut Gap",
-            "dist": 0.07,
             "type": "gap",
-            "via": "Access Road"
+            "dist": "0.07",
+            "via": "Horse Cove Rd",
+            "lng": -83.95324,
+            "lat": 34.94259
         },
         {
             "label": "Rogers Knob",
-            "dist": 0.26,
             "type": "scenic",
-            "via": "James Henderson Rd"
+            "dist": "0.26",
+            "via": "Horse Cove Rd",
+            "lng": -83.95844,
+            "lat": 34.94429
         },
         {
             "label": "George Ridge",
-            "dist": 0.31,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "0.31",
+            "via": "Horse Cove Rd",
+            "lng": -83.94857,
+            "lat": 34.94372
         },
         {
             "label": "Tarkiln Knob",
-            "dist": 0.37,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "0.37",
+            "via": "Horse Cove Rd",
+            "lng": -83.94761,
+            "lat": 34.94228
         },
         {
             "label": "Beegum Gap",
-            "dist": 0.62,
             "type": "gap",
-            "via": "Access Road"
+            "dist": "0.62",
+            "via": "Horse Cove Rd",
+            "lng": -83.94463,
+            "lat": 34.9387
         }
     ],
     "rescue_anchor": {

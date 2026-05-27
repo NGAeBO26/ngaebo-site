@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Shoal Ridge",
-            "dist": 0.43,
             "type": "scenic",
-            "via": "Crow Creek Rd"
+            "dist": "0.43",
+            "via": "Horse Cove Rd",
+            "lng": -83.53622,
+            "lat": 34.76278
         },
         {
             "label": "Crow Mountain",
-            "dist": 1.21,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "1.21",
+            "via": "Horse Cove Rd",
+            "lng": -83.55005,
+            "lat": 34.78041
         },
         {
             "label": "Pigeon Mountain",
-            "dist": 1.25,
             "type": "scenic",
-            "via": "Seed Lake Rd"
+            "dist": "1.25",
+            "via": "Horse Cove Rd",
+            "lng": -83.51378,
+            "lat": 34.77509
         },
         {
             "label": "Oakey Mountain",
-            "dist": 1.43,
             "type": "scenic",
-            "via": "Oakey Mountain Rd"
+            "dist": "1.43",
+            "via": "Horse Cove Rd",
+            "lng": -83.5455,
+            "lat": 34.75026
         },
         {
             "label": "Long Ridge",
-            "dist": 1.52,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "1.52",
+            "via": "Horse Cove Rd",
+            "lng": -83.55257,
+            "lat": 34.75277
         }
     ],
     "rescue_anchor": {

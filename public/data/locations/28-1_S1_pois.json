@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Little Sal Mountain",
-            "dist": 1.07,
             "type": "scenic",
-            "via": "Winding Stair Gap Rd"
+            "dist": "1.07",
+            "via": "Horse Cove Rd",
+            "lng": -84.12123,
+            "lat": 34.61259
         },
         {
             "label": "Jake Mountain",
-            "dist": 1.61,
             "type": "trailhead",
-            "via": "Access Road"
+            "dist": "1.61",
+            "via": "Horse Cove Rd",
+            "lng": -84.13973,
+            "lat": 34.58862
         },
         {
             "label": "Black Falls",
-            "dist": 1.78,
             "type": "water",
-            "via": "Cloverleaf Trl"
+            "dist": "1.78",
+            "via": "Horse Cove Rd",
+            "lng": -84.10575,
+            "lat": 34.62315
         },
         {
             "label": "Campbell Mountain",
-            "dist": 2.02,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "2.02",
+            "via": "Horse Cove Rd",
+            "lng": -84.09074,
+            "lat": 34.5762
         },
         {
             "label": "Jake Mountain",
-            "dist": 2.11,
             "type": "scenic",
-            "via": "Nimblewill Church Rd"
+            "dist": "2.11",
+            "via": "Horse Cove Rd",
+            "lng": -84.12396,
+            "lat": 34.56869
         }
     ],
     "rescue_anchor": {

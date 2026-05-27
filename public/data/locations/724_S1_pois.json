@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Hunter Knob",
-            "dist": 0.38,
             "type": "scenic",
-            "via": "True Love Mountain Rd"
+            "dist": "0.38",
+            "via": "Horse Cove Rd",
+            "lng": -83.90545,
+            "lat": 34.96758
         },
         {
             "label": "Truelove Knob",
-            "dist": 0.75,
             "type": "scenic",
-            "via": "True Love Mountain Rd"
+            "dist": "0.75",
+            "via": "Horse Cove Rd",
+            "lng": -83.90122,
+            "lat": 34.96358
         },
         {
             "label": "Hooper Gap",
-            "dist": 1.0,
             "type": "gap",
-            "via": "True Love Mountain Rd"
+            "dist": "1.00",
+            "via": "Horse Cove Rd",
+            "lng": -83.89935,
+            "lat": 34.96009
         },
         {
             "label": "Possum Gap",
-            "dist": 1.12,
             "type": "gap",
-            "via": "True Love Mountain Rd"
+            "dist": "1.12",
+            "via": "Horse Cove Rd",
+            "lng": -83.91713,
+            "lat": 34.95648
         },
         {
             "label": "Red Gap",
-            "dist": 1.33,
             "type": "gap",
-            "via": "True Love Mountain Rd"
+            "dist": "1.33",
+            "via": "Horse Cove Rd",
+            "lng": -83.90324,
+            "lat": 34.95315
         }
     ],
     "rescue_anchor": {

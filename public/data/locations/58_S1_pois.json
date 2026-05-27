@@ -4,40 +4,50 @@
     "locations": [
         {
             "label": "Noontootla Falls",
-            "dist": 0.71,
             "type": "water",
-            "via": "Forest Svc Rd"
+            "dist": "0.71",
+            "via": "Horse Cove Rd",
+            "lng": -84.1938,
+            "lat": 34.68592
         },
         {
             "label": "Brushy Mountain",
-            "dist": 0.98,
             "type": "scenic",
-            "via": "Forest Svc Rd"
+            "dist": "0.98",
+            "via": "Horse Cove Rd",
+            "lng": -84.19623,
+            "lat": 34.66185
         },
         {
             "label": "Bearden Mountain",
-            "dist": 1.13,
             "type": "scenic",
-            "via": "13123"
+            "dist": "1.13",
+            "via": "Horse Cove Rd",
+            "lng": -84.21147,
+            "lat": 34.66453
         },
         {
             "label": "Ripshin",
-            "dist": 1.28,
             "type": "scenic",
-            "via": "Fs Rd 58"
+            "dist": "1.28",
+            "via": "Horse Cove Rd",
+            "lng": -84.21462,
+            "lat": 34.68769
         },
         {
             "label": "Buckeye Mountain",
-            "dist": 1.61,
             "type": "scenic",
-            "via": "13123"
+            "dist": "1.61",
+            "via": "Horse Cove Rd",
+            "lng": -84.20578,
+            "lat": 34.65375
         }
     ],
     "rescue_anchor": {
-        "name": "Lumpkin County Fire Department",
+        "name": "Fannin County Emergency Services - Fire Station 1",
         "type": "Fire-EMS",
-        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
-        "phone": "(706) 864-3030",
-        "dist_mi": 18.1
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 15.9
     }
 }

@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Low Gap",
-            "dist": 0.24,
             "type": "gap",
-            "via": "Access Road"
+            "dist": "0.24",
+            "via": "Horse Cove Rd",
+            "lng": -83.521,
+            "lat": 34.73593
         },
         {
             "label": "Flat Creek Mountain",
-            "dist": 1.13,
             "type": "scenic",
-            "via": "Oakey Mountain Rd"
+            "dist": "1.13",
+            "via": "Horse Cove Rd",
+            "lng": -83.53598,
+            "lat": 34.73964
         },
         {
             "label": "Ann Gap",
-            "dist": 1.25,
             "type": "gap",
-            "via": "Oakey Mountain Rd"
+            "dist": "1.25",
+            "via": "Horse Cove Rd",
+            "lng": -83.53656,
+            "lat": 34.74343
         },
         {
             "label": "Oakey Mountain",
-            "dist": 1.93,
             "type": "scenic",
-            "via": "Oakey Mountain Rd"
+            "dist": "1.93",
+            "via": "Horse Cove Rd",
+            "lng": -83.5455,
+            "lat": 34.75026
         },
         {
             "label": "Piney Ridge",
-            "dist": 2.06,
             "type": "scenic",
-            "via": "Addis Rd"
+            "dist": "2.06",
+            "via": "Horse Cove Rd",
+            "lng": -83.49057,
+            "lat": 34.71479
         }
     ],
     "rescue_anchor": {

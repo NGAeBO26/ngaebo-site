@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Conner Mountain",
-            "dist": 0.92,
             "type": "scenic",
-            "via": "Coopers Gap Rd"
+            "dist": "0.92",
+            "via": "Horse Cove Rd",
+            "lng": -84.09769,
+            "lat": 34.64397
         },
         {
             "label": "Black Falls",
-            "dist": 0.94,
             "type": "water",
-            "via": "Cloverleaf Trl"
+            "dist": "0.94",
+            "via": "Horse Cove Rd",
+            "lng": -84.10575,
+            "lat": 34.62315
         },
         {
             "label": "Sassafras Mountain",
-            "dist": 1.51,
             "type": "scenic",
-            "via": "Appalachian Blue Ridge Rd"
+            "dist": "1.51",
+            "via": "Horse Cove Rd",
+            "lng": -84.09366,
+            "lat": 34.65316
         },
         {
             "label": "Cooper Gap",
-            "dist": 1.59,
             "type": "gap",
-            "via": "Coopers Gap Rd"
+            "dist": "1.59",
+            "via": "Horse Cove Rd",
+            "lng": -84.08408,
+            "lat": 34.65315
         },
         {
             "label": "Hogback Mountain",
-            "dist": 1.81,
             "type": "scenic",
-            "via": "Coopers Gap Rd"
+            "dist": "1.81",
+            "via": "Horse Cove Rd",
+            "lng": -84.06797,
+            "lat": 34.64786
         }
     ],
     "rescue_anchor": {

@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Low Gap",
-            "dist": 0.37,
             "type": "gap",
-            "via": "Rock Creek Rd"
+            "dist": "0.37",
+            "via": "Horse Cove Rd",
+            "lng": -84.10519,
+            "lat": 34.68314
         },
         {
             "label": "Edmondson Gap",
-            "dist": 1.05,
             "type": "gap",
-            "via": "Appalachian Blue Ridge Rd"
+            "dist": "1.05",
+            "via": "Horse Cove Rd",
+            "lng": -84.11547,
+            "lat": 34.67481
         },
         {
             "label": "Frozen Knob",
-            "dist": 1.16,
             "type": "scenic",
-            "via": "Rock Creek Rd"
+            "dist": "1.16",
+            "via": "Horse Cove Rd",
+            "lng": -84.11935,
+            "lat": 34.68275
         },
         {
             "label": "Williams Gap",
-            "dist": 1.2,
             "type": "gap",
-            "via": "Rock Creek Rd"
+            "dist": "1.20",
+            "via": "Horse Cove Rd",
+            "lng": -84.11769,
+            "lat": 34.68953
         },
         {
             "label": "Greasy Mountain",
-            "dist": 1.56,
             "type": "scenic",
-            "via": "Appalachian Blue Ridge Rd"
+            "dist": "1.56",
+            "via": "Horse Cove Rd",
+            "lng": -84.12251,
+            "lat": 34.66997
         }
     ],
     "rescue_anchor": {

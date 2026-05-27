@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Stephens Ridge",
-            "dist": 0.23,
             "type": "scenic",
-            "via": "Forest Rd 100"
+            "dist": "0.23",
+            "via": "Horse Cove Rd",
+            "lng": -83.94861,
+            "lat": 34.91058
         },
         {
             "label": "Ross Gap",
-            "dist": 0.49,
             "type": "gap",
-            "via": "Forest Rd 100"
+            "dist": "0.49",
+            "via": "Horse Cove Rd",
+            "lng": -83.93629,
+            "lat": 34.91231
         },
         {
             "label": "Juber Knob",
-            "dist": 0.71,
             "type": "scenic",
-            "via": "Forest Rd 100"
+            "dist": "0.71",
+            "via": "Horse Cove Rd",
+            "lng": -83.93262,
+            "lat": 34.91414
         },
         {
             "label": "Ivylog Mountain",
-            "dist": 0.72,
             "type": "scenic",
-            "via": "Forest Rd 100"
+            "dist": "0.72",
+            "via": "Horse Cove Rd",
+            "lng": -83.9326,
+            "lat": 34.91416
         },
         {
             "label": "Jenkins Gap",
-            "dist": 0.95,
             "type": "gap",
-            "via": "Forest Rd 100"
+            "dist": "0.95",
+            "via": "Horse Cove Rd",
+            "lng": -83.9613,
+            "lat": 34.91453
         }
     ],
     "rescue_anchor": {

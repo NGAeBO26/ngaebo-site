@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Bull Mountain",
-            "dist": 0.98,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "0.98",
+            "via": "Horse Cove Rd",
+            "lng": -84.15647,
+            "lat": 34.59254
         },
         {
             "label": "Jake Mountain",
-            "dist": 1.48,
             "type": "trailhead",
-            "via": "Access Road"
+            "dist": "1.48",
+            "via": "Horse Cove Rd",
+            "lng": -84.13973,
+            "lat": 34.58862
         },
         {
             "label": "Little Sal Mountain",
-            "dist": 1.91,
             "type": "scenic",
-            "via": "Winding Stair Gap Rd"
+            "dist": "1.91",
+            "via": "Horse Cove Rd",
+            "lng": -84.12123,
+            "lat": 34.61259
         },
         {
             "label": "Winding Stair Gap",
-            "dist": 2.03,
             "type": "gap",
-            "via": "Winding Stair Gap Rd"
+            "dist": "2.03",
+            "via": "Horse Cove Rd",
+            "lng": -84.15964,
+            "lat": 34.63565
         },
         {
             "label": "Big Stamp Gap",
-            "dist": 2.29,
             "type": "gap",
-            "via": "Forest Svc Rd"
+            "dist": "2.29",
+            "via": "Horse Cove Rd",
+            "lng": -84.17325,
+            "lat": 34.63564
         }
     ],
     "rescue_anchor": {

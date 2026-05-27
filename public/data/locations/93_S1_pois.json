@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Crawford Top",
-            "dist": 0.19,
             "type": "scenic",
-            "via": "Mariposa Ln"
+            "dist": "0.19",
+            "via": "Horse Cove Rd",
+            "lng": -83.89934,
+            "lat": 34.89953
         },
         {
             "label": "Beasley Knob Ohv - Blue Rock",
-            "dist": 0.33,
             "type": "trailhead",
-            "via": "Rosemary Dr"
+            "dist": "0.33",
+            "via": "Horse Cove Rd",
+            "lng": -83.9076,
+            "lat": 34.89663
         },
         {
             "label": "Beasley Knob Ohv - Satterfield",
-            "dist": 0.35,
             "type": "trailhead",
-            "via": "Rosemary Dr"
+            "dist": "0.35",
+            "via": "Horse Cove Rd",
+            "lng": -83.90778,
+            "lat": 34.8964
         },
         {
             "label": "Roundtop Mountain",
-            "dist": 0.57,
             "type": "scenic",
-            "via": "Mariposa Ln"
+            "dist": "0.57",
+            "via": "Horse Cove Rd",
+            "lng": -83.90029,
+            "lat": 34.8914
         },
         {
             "label": "Blue Ridge Work Center",
-            "dist": 0.67,
             "type": "ranger",
-            "via": "Young Harris Hwy"
+            "dist": "0.67",
+            "via": "Horse Cove Rd",
+            "lng": -83.89469,
+            "lat": 34.90643
         }
     ],
     "rescue_anchor": {

@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Cochrans Falls",
-            "dist": 1.52,
             "type": "water",
-            "via": "Blackhawk Dr"
+            "dist": "1.52",
+            "via": "Horse Cove Rd",
+            "lng": -84.21381,
+            "lat": 34.57953
         },
         {
             "label": "Bull Mountain",
-            "dist": 1.87,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "1.87",
+            "via": "Horse Cove Rd",
+            "lng": -84.15647,
+            "lat": 34.59254
         },
         {
             "label": "Amicalola Mountain",
-            "dist": 2.12,
             "type": "scenic",
-            "via": "Old Bucktown Rd"
+            "dist": "2.12",
+            "via": "Horse Cove Rd",
+            "lng": -84.20468,
+            "lat": 34.6133
         },
         {
             "label": "Black Mountain",
-            "dist": 2.13,
             "type": "scenic",
-            "via": "Old Bucktown Rd"
+            "dist": "2.13",
+            "via": "Horse Cove Rd",
+            "lng": -84.2047,
+            "lat": 34.61339
         },
         {
             "label": "Nimblewill Gap",
-            "dist": 2.18,
             "type": "gap",
-            "via": "Old Bucktown Rd"
+            "dist": "2.18",
+            "via": "Horse Cove Rd",
+            "lng": -84.21436,
+            "lat": 34.6087
         }
     ],
     "rescue_anchor": {

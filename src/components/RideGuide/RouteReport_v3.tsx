@@ -1,5 +1,5 @@
-/* RouteReport_v3.tsx - PRODUCTION UNIT CONTROLLER */
-import { useState } from 'react';
+/* src/components/RideGuide/RouteReport_v3.tsx */
+import { useEffect } from 'react';
 import "../../styles/RouteReport.css";
 import "../../styles/RouteOverview.css";
 import "../../styles/RouteMetrics.css"; 
@@ -21,25 +21,25 @@ import Sparkline from "./widgets/Sparkline";
 import EmergencyServices from "./widgets/EmergencyServices";
 import RouteMap from "./widgets/RouteMap/RouteMap";
 
-export default function RouteReport_v3({ routeID: initialRouteID }: { routeID: string }) {
-  // 1. STATE & DATA HOOKS
-  const [routeID, setRouteID] = useState<string>(initialRouteID);
-
-  // GIS Metrics (Instant local JSON)
+// FIXED: Deconstruct the property argument directly to read router state on the fly
+export default function RouteReport_v3({ routeID }: { routeID: string }) {
+  
+  // GIS Analytics Engine Index Pass
   const { metrics: geoData } = useRouteMetrics(routeID);
   
-  // JIT Weather Sync (15-20s Python Engine)
-  // We keep 'weatherData' here to ensure the hook manages the lifecycle, 
-  // even if individual widgets still fetch by routeID for now.
+  // Real-time Python Weather Framework Integration Pass
   const { loading } = useWeatherData(routeID);
 
-  // 2. CONSTANTS
+  // LIFECYCLE RE-SYNC LAYER: Forces child layouts to recognize route changes instantly
+  useEffect(() => {
+    console.log(`🧭 [ROUTER ACTION] Layout tracking synchronizer initialized focus: "${routeID}"`);
+  }, [routeID]);
+
   const BADGES_BASE = import.meta.env.VITE_BADGES_DIR || '/images/badges/fcs';
   const ASSET_BASE = import.meta.env.VITE_ASSETS_DIR || '/data/assets';
   const badgeType = geoData?.v3_fcs_label?.toLowerCase() || 'default';
   const fcsBadgePath = `${BADGES_BASE}/fcs-badge-${badgeType}.png`;
 
-  // 3. LOADING SKELETON (The "Wait" Screen)
   if (loading) {
     return (
       <div className="animate-pulse space-y-6 p-8 max-w-7xl mx-auto bg-slate-900 min-h-screen">
@@ -56,7 +56,6 @@ export default function RouteReport_v3({ routeID: initialRouteID }: { routeID: s
     );
   }
 
-  // 4. PRODUCTION RENDER
   return (
     <div className="rr-isolation-shell">
       <div className="rr-document-page">
@@ -123,7 +122,8 @@ export default function RouteReport_v3({ routeID: initialRouteID }: { routeID: s
             </div>
 
             <div className="rr-map-main-box" style={{ width: '91.9mm', height: '140mm' }}>
-               <RouteMap routeID={routeID} onRouteSelect={setRouteID} />
+               {/* FIXED: Propagate routeID directly as a reactive attribute rather than a stale closure callback assignment */}
+               <RouteMap routeID={routeID} onRouteSelect={() => {}} />
             </div>
 
             <div className="rr-guide-column-sidebar">

@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "High House",
-            "dist": 0.4,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "0.40",
+            "via": "Horse Cove Rd",
+            "lng": -84.23656,
+            "lat": 34.67676
         },
         {
             "label": "Rand Knob",
-            "dist": 0.59,
             "type": "scenic",
-            "via": "13123"
+            "dist": "0.59",
+            "via": "Horse Cove Rd",
+            "lng": -84.23325,
+            "lat": 34.66619
         },
         {
             "label": "Buzzard Roost",
-            "dist": 0.75,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "0.75",
+            "via": "Horse Cove Rd",
+            "lng": -84.24251,
+            "lat": 34.67047
         },
         {
             "label": "Wallace Mountain",
-            "dist": 0.97,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "0.97",
+            "via": "Horse Cove Rd",
+            "lng": -84.23877,
+            "lat": 34.66222
         },
         {
             "label": "Bearden Mountain",
-            "dist": 1.26,
             "type": "scenic",
-            "via": "13123"
+            "dist": "1.26",
+            "via": "Horse Cove Rd",
+            "lng": -84.21147,
+            "lat": 34.66453
         }
     ],
     "rescue_anchor": {

@@ -4,40 +4,50 @@
     "locations": [
         {
             "label": "Davis Ridge",
-            "dist": 0.35,
             "type": "scenic",
-            "via": "Turkey Trot Dr"
+            "dist": "0.35",
+            "via": "Horse Cove Rd",
+            "lng": -83.90663,
+            "lat": 34.86627
         },
         {
             "label": "Scruggs Top",
-            "dist": 0.47,
             "type": "scenic",
-            "via": "Tucker Rd"
+            "dist": "0.47",
+            "via": "Horse Cove Rd",
+            "lng": -83.90226,
+            "lat": 34.87185
         },
         {
             "label": "Bridge Gap",
-            "dist": 0.5,
             "type": "gap",
-            "via": "Crump Creek Rd"
+            "dist": "0.50",
+            "via": "Horse Cove Rd",
+            "lng": -83.90324,
+            "lat": 34.87453
         },
         {
             "label": "Nicholson Gap",
-            "dist": 0.57,
             "type": "gap",
-            "via": "Crump Creek Rd"
+            "dist": "0.57",
+            "via": "Horse Cove Rd",
+            "lng": -83.91657,
+            "lat": 34.87676
         },
         {
             "label": "Jones Knob",
-            "dist": 0.67,
             "type": "scenic",
-            "via": "Crump Creek Rd"
+            "dist": "0.67",
+            "via": "Horse Cove Rd",
+            "lng": -83.90379,
+            "lat": 34.87842
         }
     ],
     "rescue_anchor": {
-        "name": "Union County Fire Department Station 1",
+        "name": "Union County Fire Department",
         "type": "Fire-EMS",
         "address": "507 Shoe Factory Rd, Blairsville, GA 30512, USA",
-        "phone": "(706) 439-6091",
-        "dist_mi": 2.3
+        "phone": "(706) 439-6095",
+        "dist_mi": 2.4
     }
 }

@@ -4,27 +4,35 @@
     "locations": [
         {
             "label": "Jake Mountain",
-            "dist": 0.89,
             "type": "trailhead",
-            "via": "Access Road"
+            "dist": "0.89",
+            "via": "Horse Cove Rd",
+            "lng": -84.13973,
+            "lat": 34.58862
         },
         {
             "label": "Jake Mountain",
-            "dist": 1.18,
             "type": "scenic",
-            "via": "Nimblewill Church Rd"
+            "dist": "1.18",
+            "via": "Horse Cove Rd",
+            "lng": -84.12396,
+            "lat": 34.56869
         },
         {
             "label": "Bull Mountain",
-            "dist": 1.39,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "1.39",
+            "via": "Horse Cove Rd",
+            "lng": -84.15647,
+            "lat": 34.59254
         },
         {
             "label": "Sheep Wallow Mountain",
-            "dist": 2.63,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "2.63",
+            "via": "Horse Cove Rd",
+            "lng": -84.1463,
+            "lat": 34.53786
         }
     ],
     "rescue_anchor": {

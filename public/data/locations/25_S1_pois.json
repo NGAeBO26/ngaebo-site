@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Joe Mountain",
-            "dist": 0.32,
             "type": "scenic",
-            "via": "Forest Svc Rd"
+            "dist": "0.32",
+            "via": "Horse Cove Rd",
+            "lng": -83.48461,
+            "lat": 34.77703
         },
         {
             "label": "Stamp Ridge",
-            "dist": 0.49,
             "type": "scenic",
-            "via": "Forest Svc Rd"
+            "dist": "0.49",
+            "via": "Horse Cove Rd",
+            "lng": -83.47077,
+            "lat": 34.77933
         },
         {
             "label": "Stamp Knob",
-            "dist": 0.53,
             "type": "scenic",
-            "via": "Forest Svc Rd"
+            "dist": "0.53",
+            "via": "Horse Cove Rd",
+            "lng": -83.46992,
+            "lat": 34.77763
         },
         {
             "label": "Seals Knob",
-            "dist": 0.95,
             "type": "scenic",
-            "via": "Forest Svc Rd"
+            "dist": "0.95",
+            "via": "Horse Cove Rd",
+            "lng": -83.48467,
+            "lat": 34.79141
         },
         {
             "label": "Seals Ridge",
-            "dist": 1.07,
             "type": "scenic",
-            "via": "Forest Svc Rd"
+            "dist": "1.07",
+            "via": "Horse Cove Rd",
+            "lng": -83.49056,
+            "lat": 34.79076
         }
     ],
     "rescue_anchor": {

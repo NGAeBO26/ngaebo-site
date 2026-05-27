@@ -4,40 +4,50 @@
     "locations": [
         {
             "label": "Brushy Mountain",
-            "dist": 0.39,
             "type": "scenic",
-            "via": "Forest Svc Rd"
+            "dist": "0.39",
+            "via": "Horse Cove Rd",
+            "lng": -84.19623,
+            "lat": 34.66185
         },
         {
             "label": "Bearden Mountain",
-            "dist": 0.72,
             "type": "scenic",
-            "via": "13123"
+            "dist": "0.72",
+            "via": "Horse Cove Rd",
+            "lng": -84.21147,
+            "lat": 34.66453
         },
         {
             "label": "Buckeye Mountain",
-            "dist": 0.98,
             "type": "scenic",
-            "via": "13123"
+            "dist": "0.98",
+            "via": "Horse Cove Rd",
+            "lng": -84.20578,
+            "lat": 34.65375
         },
         {
             "label": "Noontootla Falls",
-            "dist": 1.35,
             "type": "water",
-            "via": "Forest Svc Rd"
+            "dist": "1.35",
+            "via": "Horse Cove Rd",
+            "lng": -84.1938,
+            "lat": 34.68592
         },
         {
             "label": "Rich Mountain",
-            "dist": 1.61,
             "type": "scenic",
-            "via": "Forest Svc Rd"
+            "dist": "1.61",
+            "via": "Horse Cove Rd",
+            "lng": -84.19441,
+            "lat": 34.64393
         }
     ],
     "rescue_anchor": {
-        "name": "Lumpkin County Fire Department",
+        "name": "Fannin County Emergency Services - Fire Station 1",
         "type": "Fire-EMS",
-        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
-        "phone": "(706) 864-3030",
-        "dist_mi": 17.9
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 16.4
     }
 }

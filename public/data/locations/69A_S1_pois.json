@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Hightower Gap",
-            "dist": 0.59,
             "type": "gap",
-            "via": "Rock Creek Rd"
+            "dist": "0.59",
+            "via": "Horse Cove Rd",
+            "lng": -84.12991,
+            "lat": 34.6637
         },
         {
             "label": "Mauldin Gap",
-            "dist": 0.62,
             "type": "gap",
-            "via": "Appalachian Blue Ridge Rd"
+            "dist": "0.62",
+            "via": "Horse Cove Rd",
+            "lng": -84.12464,
+            "lat": 34.66676
         },
         {
             "label": "Greasy Mountain",
-            "dist": 0.65,
             "type": "scenic",
-            "via": "Appalachian Blue Ridge Rd"
+            "dist": "0.65",
+            "via": "Horse Cove Rd",
+            "lng": -84.12251,
+            "lat": 34.66997
         },
         {
             "label": "Hawk Mountain",
-            "dist": 0.83,
             "type": "scenic",
-            "via": "Hightower Gap Rd"
+            "dist": "0.83",
+            "via": "Horse Cove Rd",
+            "lng": -84.14054,
+            "lat": 34.6612
         },
         {
             "label": "Little Frozen Knob",
-            "dist": 1.04,
             "type": "scenic",
-            "via": "Rock Creek Rd"
+            "dist": "1.04",
+            "via": "Horse Cove Rd",
+            "lng": -84.1313,
+            "lat": 34.68668
         }
     ],
     "rescue_anchor": {

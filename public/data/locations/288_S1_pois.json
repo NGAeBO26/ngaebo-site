@@ -4,15 +4,19 @@
     "locations": [
         {
             "label": "Cochrans Falls",
-            "dist": 1.81,
             "type": "water",
-            "via": "Blackhawk Dr"
+            "dist": "1.81",
+            "via": "Horse Cove Rd",
+            "lng": -84.21381,
+            "lat": 34.57953
         },
         {
             "label": "Amicalola Falls",
-            "dist": 2.42,
             "type": "water",
-            "via": "Amicalola Falls St Pk Rd"
+            "dist": "2.42",
+            "via": "Horse Cove Rd",
+            "lng": -84.23964,
+            "lat": 34.56398
         }
     ],
     "rescue_anchor": {

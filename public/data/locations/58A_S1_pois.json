@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Bearden Mountain",
-            "dist": 0.4,
             "type": "scenic",
-            "via": "13123"
+            "dist": "0.40",
+            "via": "Horse Cove Rd",
+            "lng": -84.21147,
+            "lat": 34.66453
         },
         {
             "label": "Buckeye Mountain",
-            "dist": 0.73,
             "type": "scenic",
-            "via": "13123"
+            "dist": "0.73",
+            "via": "Horse Cove Rd",
+            "lng": -84.20578,
+            "lat": 34.65375
         },
         {
             "label": "Locust Mountain",
-            "dist": 0.81,
             "type": "scenic",
-            "via": "13123"
+            "dist": "0.81",
+            "via": "Horse Cove Rd",
+            "lng": -84.2217,
+            "lat": 34.6494
         },
         {
             "label": "Rand Knob",
-            "dist": 1.07,
             "type": "scenic",
-            "via": "13123"
+            "dist": "1.07",
+            "via": "Horse Cove Rd",
+            "lng": -84.23325,
+            "lat": 34.66619
         },
         {
             "label": "Brushy Mountain",
-            "dist": 1.14,
             "type": "scenic",
-            "via": "Forest Svc Rd"
+            "dist": "1.14",
+            "via": "Horse Cove Rd",
+            "lng": -84.19623,
+            "lat": 34.66185
         }
     ],
     "rescue_anchor": {

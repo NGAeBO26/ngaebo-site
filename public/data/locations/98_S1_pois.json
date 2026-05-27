@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Campbell Mountain",
-            "dist": 1.08,
             "type": "scenic",
-            "via": "Access Road"
+            "dist": "1.08",
+            "via": "Horse Cove Rd",
+            "lng": -84.09074,
+            "lat": 34.5762
         },
         {
             "label": "Whissenhunt Mountain",
-            "dist": 1.42,
             "type": "scenic",
-            "via": "Miles Berry Rd"
+            "dist": "1.42",
+            "via": "Horse Cove Rd",
+            "lng": -84.06128,
+            "lat": 34.59567
         },
         {
             "label": "Black Falls",
-            "dist": 2.48,
             "type": "water",
-            "via": "Cloverleaf Trl"
+            "dist": "2.48",
+            "via": "Horse Cove Rd",
+            "lng": -84.10575,
+            "lat": 34.62315
         },
         {
             "label": "Low Gap",
-            "dist": 2.49,
             "type": "gap",
-            "via": "Bull Creek Rd"
+            "dist": "2.49",
+            "via": "Horse Cove Rd",
+            "lng": -84.04769,
+            "lat": 34.60898
         },
         {
             "label": "Little Sal Mountain",
-            "dist": 2.51,
             "type": "scenic",
-            "via": "Winding Stair Gap Rd"
+            "dist": "2.51",
+            "via": "Horse Cove Rd",
+            "lng": -84.12123,
+            "lat": 34.61259
         }
     ],
     "rescue_anchor": {

@@ -1,7 +1,7 @@
 {
   "profile_id": "346_S1",
   "route_id": "346",
-  "ssdi_score": 8.7,
+  "ssdi_score": 36.7,
   "v3_terrain_score": 6.7,
   "v3_terrain_class": "Strenuous",
   "badge_type": "muddy",
@@ -17,9 +17,9 @@
     "value": 0.35
   },
   "environment": {
-    "current_temp": 63,
-    "saturation_index": 0.7,
-    "soil_status": "Dry / Dusty",
+    "current_temp": 74,
+    "saturation_index": 10,
+    "soil_status": "Saturated",
     "precip_24h": 0.0,
     "saturation_trend": "stable",
     "alerts": []

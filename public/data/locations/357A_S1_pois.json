@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Frosty Mountain",
-            "dist": 1.32,
             "type": "scenic",
-            "via": "Nimblewill Gap Rd"
+            "dist": "1.32",
+            "via": "Horse Cove Rd",
+            "lng": -84.22658,
+            "lat": 34.59675
         },
         {
             "label": "Bird Mountain",
-            "dist": 1.37,
             "type": "scenic",
-            "via": "Old Bucktown Rd"
+            "dist": "1.37",
+            "via": "Horse Cove Rd",
+            "lng": -84.25878,
+            "lat": 34.62263
         },
         {
             "label": "Nimblewill Gap",
-            "dist": 1.91,
             "type": "gap",
-            "via": "Old Bucktown Rd"
+            "dist": "1.91",
+            "via": "Horse Cove Rd",
+            "lng": -84.21436,
+            "lat": 34.6087
         },
         {
             "label": "Howell Mountain",
-            "dist": 2.15,
             "type": "scenic",
-            "via": "Creekview Dr"
+            "dist": "2.15",
+            "via": "Horse Cove Rd",
+            "lng": -84.24146,
+            "lat": 34.63579
         },
         {
             "label": "Cochrans Falls",
-            "dist": 2.61,
             "type": "water",
-            "via": "Blackhawk Dr"
+            "dist": "2.61",
+            "via": "Horse Cove Rd",
+            "lng": -84.21381,
+            "lat": 34.57953
         }
     ],
     "rescue_anchor": {

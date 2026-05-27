@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Gobbler Knob",
-            "dist": 0.6,
             "type": "scenic",
-            "via": "Plott Rd"
+            "dist": "0.60",
+            "via": "Horse Cove Rd",
+            "lng": -83.90165,
+            "lat": 34.95106
         },
         {
             "label": "Red Gap",
-            "dist": 0.76,
             "type": "gap",
-            "via": "True Love Mountain Rd"
+            "dist": "0.76",
+            "via": "Horse Cove Rd",
+            "lng": -83.90324,
+            "lat": 34.95315
         },
         {
             "label": "Hooper Gap",
-            "dist": 1.07,
             "type": "gap",
-            "via": "True Love Mountain Rd"
+            "dist": "1.07",
+            "via": "Horse Cove Rd",
+            "lng": -83.89935,
+            "lat": 34.96009
         },
         {
             "label": "Ravencliff Knob",
-            "dist": 1.24,
             "type": "scenic",
-            "via": "Ravencliff Faa Rd"
+            "dist": "1.24",
+            "via": "Horse Cove Rd",
+            "lng": -83.91562,
+            "lat": 34.94298
         },
         {
             "label": "Gumlog Lead",
-            "dist": 1.28,
             "type": "scenic",
-            "via": "Ravencliff Faa Rd"
+            "dist": "1.28",
+            "via": "Horse Cove Rd",
+            "lng": -83.91647,
+            "lat": 34.94641
         }
     ],
     "rescue_anchor": {

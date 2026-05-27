@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Black Falls",
-            "dist": 0.6,
             "type": "water",
-            "via": "Cloverleaf Trl"
+            "dist": "0.60",
+            "via": "Horse Cove Rd",
+            "lng": -84.10575,
+            "lat": 34.62315
         },
         {
             "label": "Little Sal Mountain",
-            "dist": 1.29,
             "type": "scenic",
-            "via": "Winding Stair Gap Rd"
+            "dist": "1.29",
+            "via": "Horse Cove Rd",
+            "lng": -84.12123,
+            "lat": 34.61259
         },
         {
             "label": "Conner Mountain",
-            "dist": 1.29,
             "type": "scenic",
-            "via": "Coopers Gap Rd"
+            "dist": "1.29",
+            "via": "Horse Cove Rd",
+            "lng": -84.09769,
+            "lat": 34.64397
         },
         {
             "label": "Horse Gap",
-            "dist": 1.83,
             "type": "gap",
-            "via": "Appalachian Blue Ridge Rd"
+            "dist": "1.83",
+            "via": "Horse Cove Rd",
+            "lng": -84.10464,
+            "lat": 34.65565
         },
         {
             "label": "Sassafras Mountain",
-            "dist": 1.93,
             "type": "scenic",
-            "via": "Appalachian Blue Ridge Rd"
+            "dist": "1.93",
+            "via": "Horse Cove Rd",
+            "lng": -84.09366,
+            "lat": 34.65316
         }
     ],
     "rescue_anchor": {

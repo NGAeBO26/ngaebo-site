@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Morgan Ford (Historical)",
-            "dist": 0.22,
             "type": "hazard",
-            "via": "Eagle Dr"
+            "dist": "0.22",
+            "via": "Horse Cove Rd",
+            "lng": -84.03269,
+            "lat": 34.90981
         },
         {
             "label": "Mcbee Ford (Historical)",
-            "dist": 1.27,
             "type": "hazard",
-            "via": "Fern Valley Ln"
+            "dist": "1.27",
+            "via": "Horse Cove Rd",
+            "lng": -84.02352,
+            "lat": 34.89647
         },
         {
             "label": "Loftis Mountain",
-            "dist": 1.79,
             "type": "scenic",
-            "via": "Loftis Mountain Rd"
+            "dist": "1.79",
+            "via": "Horse Cove Rd",
+            "lng": -84.00335,
+            "lat": 34.91199
         },
         {
             "label": "Peter Young Mountain",
-            "dist": 2.41,
             "type": "scenic",
-            "via": "Mile High Ln"
+            "dist": "2.41",
+            "via": "Horse Cove Rd",
+            "lng": -84.04491,
+            "lat": 34.87841
         },
         {
             "label": "Anderson Knob",
-            "dist": 2.65,
             "type": "scenic",
-            "via": "Forest Rd 100"
+            "dist": "2.65",
+            "via": "Horse Cove Rd",
+            "lng": -83.98852,
+            "lat": 34.91702
         }
     ],
     "rescue_anchor": {

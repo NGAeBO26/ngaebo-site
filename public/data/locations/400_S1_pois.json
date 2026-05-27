@@ -4,33 +4,43 @@
     "locations": [
         {
             "label": "Blue Ridge Ranger District",
-            "dist": 0.01,
             "type": "camp",
-            "via": "Us-76"
+            "dist": "0.01",
+            "via": "Horse Cove Rd",
+            "lng": -83.99047,
+            "lat": 34.86591
         },
         {
             "label": "Blue Ridge Ranger District",
-            "dist": 0.01,
             "type": "camp",
-            "via": "Us-76"
+            "dist": "0.01",
+            "via": "Horse Cove Rd",
+            "lng": -83.99047,
+            "lat": 34.86591
         },
         {
             "label": "Blue Ridge Ranger District",
-            "dist": 0.03,
             "type": "ranger",
-            "via": "Us-76"
+            "dist": "0.03",
+            "via": "Horse Cove Rd",
+            "lng": -83.99036,
+            "lat": 34.86569
         },
         {
             "label": "Brackett Knob",
-            "dist": 1.86,
             "type": "scenic",
-            "via": "Lows Mill Ln"
+            "dist": "1.86",
+            "via": "Horse Cove Rd",
+            "lng": -84.02158,
+            "lat": 34.8747
         },
         {
             "label": "Wellborn Mountain",
-            "dist": 1.98,
             "type": "scenic",
-            "via": "Wellborn Mtn Rd"
+            "dist": "1.98",
+            "via": "Horse Cove Rd",
+            "lng": -83.95566,
+            "lat": 34.8666
         }
     ],
     "rescue_anchor": {
