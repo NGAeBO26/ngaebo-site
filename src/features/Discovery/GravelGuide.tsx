@@ -9,6 +9,7 @@ import { useHighlight } from "./hooks/useHighlight"; //
 import useMapController from "./hooks/useMapController"; //
 
 import "../../styles/trail-map.css";
+import NorthArrow from "../../components/RideGuide/widgets/RouteMap/NorthArrow";
 
 window.maplibregl = maplibregl;
 
@@ -72,6 +73,7 @@ export default function GravelGuide({
 
   return (
     <div className="gravel-guide-container" style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden" }}>
+      <NorthArrow map={mapRef.current} />
       <div ref={containerRef} id="map" style={{ width: "100%", height: "100%" }} /> //
       {!mapReady && <div className="map-loading-overlay">Loading Discovery Map...</div>}
     </div>

@@ -134,82 +134,23 @@ export default function useMapController(opts: MapControllerOptions) {
   }, [opts.routesData, opts.onRoutesLoaded]);
 
   // ==========================================================================
-  // 🎨 VISUAL TELEMETRY BOX REDRAW CYCLE HANDLER
-  // Repaints your canvas lines natively within the WebGL timeline loop
+  // 🎨 HUD OVERLAY REPAINT CLEANUP
+  // Cleanly strips out telemetry graphics boxes from the active WebGL timeline loop
   // ==========================================================================
   const repaintViewportHUDOverlay = useCallback(() => {
     const currentMap = stateRef.current.mapRef.current;
-    if (!currentMap || !activeGeometryCacheRef.current) return;
+    if (!currentMap) return;
 
-    const mapContainer = currentMap.getContainer();
-    let canvas = document.getElementById('discovery-canvas-hud-overlay') as HTMLCanvasElement;
-
-    if (!canvas) {
-      canvas = document.createElement('canvas');
-      canvas.id = 'discovery-canvas-hud-overlay';
-      canvas.style.position = 'absolute';
-      canvas.style.top = '0';
-      canvas.style.left = '0';
-      canvas.style.width = '100%';
-      canvas.style.height = '100%';
-      canvas.style.pointerEvents = 'none';
-      canvas.style.zIndex = '999999';
-      mapContainer.appendChild(canvas);
-    }
-
-    const rect = mapContainer.getBoundingClientRect();
-    if (canvas.width !== rect.width || canvas.height !== rect.height) {
-      canvas.width = rect.width;
-      canvas.height = rect.height;
-    }
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    try {
-      const cache = activeGeometryCacheRef.current;
-
-      const pRawSW = currentMap.project(cache.rawSW);
-      const pRawNE = currentMap.project(cache.rawNE);
-      const pPadSW = currentMap.project(cache.paddedSW);
-      const pPadNE = currentMap.project(cache.paddedNE);
-
-      const rawW = pRawNE.x - pRawSW.x;
-      const rawH = pRawSW.y - pRawNE.y;
-      const padW = pPadNE.x - pPadSW.x;
-      const padH = pPadSW.y - pPadNE.y;
-
-      // Draw Raw Track Envelope Limits (Crisp Blue Dashed Box)
-      ctx.strokeStyle = '#2563eb';
-      ctx.lineWidth = 2.5;
-      ctx.setLineDash([6, 4]);
-      ctx.strokeRect(pRawSW.x, pRawNE.y, rawW, rawH);
-
-      // Draw Cushioned Camera Target Envelope (Thick Solid Neon Orange Box)
-      ctx.strokeStyle = '#ea580c';
-      ctx.lineWidth = 4;
-      ctx.setLineDash([]);
-      ctx.strokeRect(pPadSW.x, pPadNE.y, padW, padH);
-      ctx.fillStyle = 'rgba(234, 88, 12, 0.08)';
-      ctx.fillRect(pPadSW.x, pPadNE.y, padW, padH);
-
-      // Render context data strings directly onto your monitor screen layout
-      ctx.fillStyle = '#ea580c';
-      ctx.font = 'bold 11px monospace';
-      ctx.fillText(`🚨 VISUAL TELEMETRY LOCK: ACTIVE`, pPadSW.x + 8, pPadNE.y + 16);
-      ctx.fillText(`   Raw SW Bounds : [${cache.rawSW[0].toFixed(5)}, ${cache.rawSW[1].toFixed(5)}]`, pPadSW.x + 8, pPadNE.y + 32);
-      ctx.fillText(`   Raw NE Bounds : [${cache.rawNE[0].toFixed(5)}, ${cache.rawNE[1].toFixed(5)}]`, pPadSW.x + 8, pPadNE.y + 48);
-      ctx.fillText(`   Current View Zoom Level : ${currentMap.getZoom().toFixed(2)}`, pPadSW.x + 8, pPadNE.y + 64);
-
-    } catch (e) {
-      console.warn("Visual overlay layer refresh skipped during frame loop:", e);
+    // Direct DOM search pass instantly cleans away leftover telemetry layout frames
+    const oldCanvas = document.getElementById('discovery-canvas-hud-overlay');
+    if (oldCanvas) {
+      oldCanvas.remove();
     }
   }, []);
 
   // ==========================================================================
   // 🚀 UNIFIED CAMERA MOVEMENT PIPELINE
-  // Moves the viewport and tracks data outputs on a single pass
+  // Moves the viewport and handles target extents seamlessly on a single pass
   // ==========================================================================
   const fitRoutePadded = useCallback((incomingFeature: any) => {
     const currentMap = stateRef.current.mapRef.current;
@@ -245,7 +186,6 @@ export default function useMapController(opts: MapControllerOptions) {
         let targetCenter: maplibregl.LngLat = metrics.center;
         let finalZoom = metrics.targetZoom;
 
-        // Tall vertical tracks calculate dynamically via cameraForBounds
         if (!metrics.isHorizontal) {
           const computedCamera = currentMap.cameraForBounds(metrics.bounds, {
             padding: { top: 0, right: 0, bottom: 0, left: 0 }
@@ -257,18 +197,7 @@ export default function useMapController(opts: MapControllerOptions) {
           }
         }
 
-        // EXHAUSTIVE METRICS LOG DUMP
-        console.log("%c📐 [HUD TELEMETRY AUDIT MATRIX]", "color: #2563eb; font-weight: bold; font-size: 12px;");
-        console.log(`   ↳ Target Identity ID  : "${targetId}"`);
-        console.log(`   ↳ Profile Orientation : ${metrics.isHorizontal ? "↔️ HORIZONTAL (Wide)" : "↕️ VERTICAL (Tall)"}`);
-        console.log(`   ↳ Target Position Axis: Lng: ${targetCenter.lng.toFixed(5)} | Lat: ${targetCenter.lat.toFixed(5)}`);
-        console.log(`   ↳ Intended Zoom Level : ${finalZoom.toFixed(2)}`);
-        console.log(`   ↳ Extracted Raw SW    : [${metrics.rawSW[0]}, ${metrics.rawSW[1]}]`);
-        console.log(`   ↳ Extracted Raw NE    : [${metrics.rawNE[0]}, ${metrics.rawNE[1]}]`);
-        console.log(`   ↳ Computed Padded SW  : [${metrics.paddedSW[0]}, ${metrics.paddedSW[1]}]`);
-        console.log(`   ↳ Computed Padded NE  : [${metrics.paddedNE[0]}, ${metrics.paddedNE[1]}]`);
-
-        // Execute precise transition sweep
+        // Precise programmatic track camera glide pass remains intact
         currentMap.easeTo({
           center: targetCenter,
           zoom: finalZoom,
@@ -348,6 +277,7 @@ export default function useMapController(opts: MapControllerOptions) {
         if (stateRef.current.onRegisterZoomFn) stateRef.current.onRegisterZoomFn(fitRoutePadded);
       });
 
+      // Hook listeners act as garbage collectors to immediately wipe canvas artifacts during interactions
       mapInstance.on('move', repaintViewportHUDOverlay);
       mapInstance.on('zoom', repaintViewportHUDOverlay);
       mapInstance.on('render', repaintViewportHUDOverlay);

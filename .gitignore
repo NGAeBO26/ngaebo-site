@@ -1,8 +1,9 @@
 ﻿node_modules/
 dist/
-public/tiles/
+public/basemaps/
 .env
 .env.*
 .vscode/
 .DS_Store
 Thumbs.db
+Dev.code-workspace

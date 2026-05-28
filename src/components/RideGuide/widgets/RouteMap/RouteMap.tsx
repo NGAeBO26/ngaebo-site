@@ -11,47 +11,29 @@ interface RouteMapProps {
   onRouteSelect: (id: string) => void;
 }
 
-// Optimized Core Map Specifications Layout
+// Production Map Stylesheet Specification pointing to your exact DigitalOcean Spaces configuration path
 const baseStyleSpecification: maplibregl.StyleSpecification = {
   version: 8,
   glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
   sources: {
-    "contours-usgs-raster-source": {
+    "custom-rideguide-raster-source": {
       type: "raster",
       tiles: [
-        "https://carto.nationalmap.gov/arcgis/rest/services/contours/MapServer/export?bbox={bbox-epsg-3857}&size=256,256&format=png32&transparent=true&f=image"
+        // 🎯 FIXED URL PATH: Removes the extra directory segment to fetch your files cleanly
+        "https://ngaebo-maptiles.nyc3.cdn.digitaloceanspaces.com/rideguide_tiles/{z}/{x}/{y}.png"
       ],
-      tileSize: 256
-    },
-    "transportation-esri-raster-source": {
-      type: "raster",
-      tiles: [
-        "https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}"
-      ],
-      tileSize: 256,
-      maxzoom: 13
+      // Enforces high-DPI retina rendering by double-sampling the 256px raw inputs
+      tileSize: 128, 
+      maxzoom: 15
     }
   },
   layers: [
     {
-      id: "contours-raster-base-layer",
+      id: "custom-basemap-layer",
       type: "raster",
-      source: "contours-usgs-raster-source",
+      source: "custom-rideguide-raster-source",
       paint: {
-        "raster-opacity": 0.85,
-        "raster-saturation": -1.0,      
-        "raster-contrast": 0.35,        
-        "raster-brightness-min": 0.05
-      }
-    },
-    {
-      id: "transportation-raster-overlay-layer",
-      type: "raster",
-      source: "transportation-esri-raster-source",
-      paint: { 
-        "raster-opacity": 0.40,
-        "raster-saturation": -1.0,      
-        "raster-contrast": 0.15
+        "raster-opacity": 1.0
       }
     }
   ]
@@ -76,6 +58,7 @@ export default function RouteMap({ routeID, onRouteSelect: _onRouteSelect }: Rou
       style: baseStyleSpecification, 
       center: [-84.15, 34.6], 
       zoom: 11,
+      preserveDrawingBuffer: true,
       attributionControl: false,
       boxZoom: false,
       scrollZoom: false,
@@ -95,14 +78,12 @@ export default function RouteMap({ routeID, onRouteSelect: _onRouteSelect }: Rou
 
     mapRef.current = map;
 
-    // Direct event listener context pass synchronization hotfix
     map.on("load", () => {
       (window as any).map = map;
       setMapReady(true);
       map.resize();
     });
 
-    // Handle styling state changes cleanly on rapid URL switches
     map.on("styledata", () => {
       if (!map.getSource("fs-roads") && map.isStyleLoaded()) {
         setMapReady(false);
@@ -122,8 +103,9 @@ export default function RouteMap({ routeID, onRouteSelect: _onRouteSelect }: Rou
   useFsRoadsReport(mapRef.current, mapReady, { addLayers: true, routeID });
 
   return (
-    <div className="rr-map-canvas-wrapper" style={{ width: '100%', height: '100%' }}>
+    <div className="rr-map-canvas-wrapper" style={{ position: 'relative', width: '100%', height: '100%' }}>
       <NorthArrow map={mapRef.current} />
+      
       <div 
         ref={containerRef} 
         id="route-report-static-map" 

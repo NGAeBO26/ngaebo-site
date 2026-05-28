@@ -135,7 +135,7 @@ export default function useFsRoadsReport(
                 "line-cap": "round"
               },
               paint: {
-                "line-color": "#b0b5b3", 
+                "line-color": "#333", 
                 // Inverse zoom interpolation: Boosts thickness when pulled back to 
                 // prevent long routes from turning into thin needles on screen
                 "line-width": [
