@@ -1,15 +1,145 @@
 {
-  "current_temp": 82,
-  "temp_avg": 75,
-  "precip_24h": 0.24,
+  "current_temp": 65,
+  "temp_avg": 74,
+  "precip_24h": 1.02,
   "short": "Sunny",
-  "primary_condition": "Chance Showers And Thunderstorms",
-  "precip_prob": 29,
+  "primary_condition": "Partly Sunny",
+  "precip_prob": 1,
   "hourly_data": [
     {
       "number": 1,
-      "startTime": "2026-05-28T14:00:00-04:00",
-      "temperature": 82,
+      "startTime": "2026-05-29T09:00:00-04:00",
+      "temperature": 65,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 1
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "E",
+      "shortForecast": "Partly Sunny",
+      "joy_score": 97.1
+    },
+    {
+      "number": 2,
+      "startTime": "2026-05-29T10:00:00-04:00",
+      "temperature": 70,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 2
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "E",
+      "shortForecast": "Mostly Cloudy",
+      "joy_score": 99.2
+    },
+    {
+      "number": 3,
+      "startTime": "2026-05-29T11:00:00-04:00",
+      "temperature": 73,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 3
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "E",
+      "shortForecast": "Mostly Cloudy",
+      "joy_score": 97.3
+    },
+    {
+      "number": 4,
+      "startTime": "2026-05-29T12:00:00-04:00",
+      "temperature": 76,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 7
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "E",
+      "shortForecast": "Mostly Cloudy",
+      "joy_score": 94.2
+    },
+    {
+      "number": 5,
+      "startTime": "2026-05-29T13:00:00-04:00",
+      "temperature": 77,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 11
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SE",
+      "shortForecast": "Mostly Cloudy",
+      "joy_score": 92.1
+    },
+    {
+      "number": 6,
+      "startTime": "2026-05-29T14:00:00-04:00",
+      "temperature": 77,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 12
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SE",
+      "shortForecast": "Cloudy",
+      "joy_score": 91.7
+    },
+    {
+      "number": 7,
+      "startTime": "2026-05-29T15:00:00-04:00",
+      "temperature": 78,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 19
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SE",
+      "shortForecast": "Slight Chance Showers And Thunderstorms",
+      "joy_score": 88.4
+    },
+    {
+      "number": 8,
+      "startTime": "2026-05-29T16:00:00-04:00",
+      "temperature": 77,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 24
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SE",
+      "shortForecast": "Slight Chance Showers And Thunderstorms",
+      "joy_score": 86.9
+    },
+    {
+      "number": 9,
+      "startTime": "2026-05-29T17:00:00-04:00",
+      "temperature": 76,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 29
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SE",
+      "shortForecast": "Chance Showers And Thunderstorms",
+      "joy_score": 85.4
+    },
+    {
+      "number": 10,
+      "startTime": "2026-05-29T18:00:00-04:00",
+      "temperature": 75,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 32
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SE",
+      "shortForecast": "Chance Showers And Thunderstorms",
+      "joy_score": 84.7
+    },
+    {
+      "number": 11,
+      "startTime": "2026-05-29T19:00:00-04:00",
+      "temperature": 73,
       "probabilityOfPrecipitation": {
         "unitCode": "wmoUnit:percent",
         "value": 29
@@ -17,317 +147,187 @@
       "windSpeed": "0 mph",
       "windDirection": "",
       "shortForecast": "Chance Showers And Thunderstorms",
-      "joy_score": 82.4
-    },
-    {
-      "number": 2,
-      "startTime": "2026-05-28T15:00:00-04:00",
-      "temperature": 83,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 27
-      },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Chance Showers And Thunderstorms",
-      "joy_score": 82.7
-    },
-    {
-      "number": 3,
-      "startTime": "2026-05-28T16:00:00-04:00",
-      "temperature": 82,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 21
-      },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Slight Chance Showers And Thunderstorms",
-      "joy_score": 85.6
-    },
-    {
-      "number": 4,
-      "startTime": "2026-05-28T17:00:00-04:00",
-      "temperature": 80,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 19
-      },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Slight Chance Showers And Thunderstorms",
-      "joy_score": 87.4
-    },
-    {
-      "number": 5,
-      "startTime": "2026-05-28T18:00:00-04:00",
-      "temperature": 80,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 19
-      },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Slight Chance Showers And Thunderstorms",
-      "joy_score": 87.4
-    },
-    {
-      "number": 6,
-      "startTime": "2026-05-28T19:00:00-04:00",
-      "temperature": 78,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 20
-      },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Slight Chance Showers And Thunderstorms",
-      "joy_score": 88.0
-    },
-    {
-      "number": 7,
-      "startTime": "2026-05-28T20:00:00-04:00",
-      "temperature": 75,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 17
-      },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Slight Chance Showers And Thunderstorms",
-      "joy_score": 90.7
-    },
-    {
-      "number": 8,
-      "startTime": "2026-05-28T21:00:00-04:00",
-      "temperature": 71,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 16
-      },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Slight Chance Showers And Thunderstorms",
-      "joy_score": 93.1
-    },
-    {
-      "number": 9,
-      "startTime": "2026-05-28T22:00:00-04:00",
-      "temperature": 69,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 11
-      },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Mostly Cloudy",
-      "joy_score": 95.1
-    },
-    {
-      "number": 10,
-      "startTime": "2026-05-28T23:00:00-04:00",
-      "temperature": 67,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 8
-      },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Mostly Cloudy",
-      "joy_score": 95.3
-    },
-    {
-      "number": 11,
-      "startTime": "2026-05-29T00:00:00-04:00",
-      "temperature": 67,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 5
-      },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Mostly Cloudy",
-      "joy_score": 96.5
+      "joy_score": 86.9
     },
     {
       "number": 12,
-      "startTime": "2026-05-29T01:00:00-04:00",
-      "temperature": 67,
+      "startTime": "2026-05-29T20:00:00-04:00",
+      "temperature": 71,
       "probabilityOfPrecipitation": {
         "unitCode": "wmoUnit:percent",
-        "value": 3
+        "value": 55
       },
       "windSpeed": "0 mph",
       "windDirection": "",
-      "shortForecast": "Mostly Cloudy",
-      "joy_score": 97.3
+      "shortForecast": "Showers And Thunderstorms Likely",
+      "joy_score": 77.5
     },
     {
       "number": 13,
-      "startTime": "2026-05-29T02:00:00-04:00",
-      "temperature": 66,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 3
-      },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Mostly Cloudy",
-      "joy_score": 96.8
-    },
-    {
-      "number": 14,
-      "startTime": "2026-05-29T03:00:00-04:00",
-      "temperature": 66,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 4
-      },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Mostly Cloudy",
-      "joy_score": 96.4
-    },
-    {
-      "number": 15,
-      "startTime": "2026-05-29T04:00:00-04:00",
-      "temperature": 65,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 6
-      },
-      "windSpeed": "5 mph",
-      "windDirection": "E",
-      "shortForecast": "Partly Cloudy",
-      "joy_score": 95.1
-    },
-    {
-      "number": 16,
-      "startTime": "2026-05-29T05:00:00-04:00",
-      "temperature": 64,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 6
-      },
-      "windSpeed": "5 mph",
-      "windDirection": "E",
-      "shortForecast": "Mostly Cloudy",
-      "joy_score": 94.6
-    },
-    {
-      "number": 17,
-      "startTime": "2026-05-29T06:00:00-04:00",
-      "temperature": 64,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 5
-      },
-      "windSpeed": "5 mph",
-      "windDirection": "E",
-      "shortForecast": "Partly Sunny",
-      "joy_score": 95.0
-    },
-    {
-      "number": 18,
-      "startTime": "2026-05-29T07:00:00-04:00",
-      "temperature": 63,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 3
-      },
-      "windSpeed": "5 mph",
-      "windDirection": "E",
-      "shortForecast": "Partly Sunny",
-      "joy_score": 95.3
-    },
-    {
-      "number": 19,
-      "startTime": "2026-05-29T08:00:00-04:00",
-      "temperature": 63,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 2
-      },
-      "windSpeed": "5 mph",
-      "windDirection": "E",
-      "shortForecast": "Partly Sunny",
-      "joy_score": 95.7
-    },
-    {
-      "number": 20,
-      "startTime": "2026-05-29T09:00:00-04:00",
-      "temperature": 64,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 2
-      },
-      "windSpeed": "5 mph",
-      "windDirection": "E",
-      "shortForecast": "Partly Sunny",
-      "joy_score": 96.2
-    },
-    {
-      "number": 21,
-      "startTime": "2026-05-29T10:00:00-04:00",
+      "startTime": "2026-05-29T21:00:00-04:00",
       "temperature": 68,
       "probabilityOfPrecipitation": {
         "unitCode": "wmoUnit:percent",
-        "value": 2
+        "value": 67
       },
-      "windSpeed": "5 mph",
-      "windDirection": "E",
-      "shortForecast": "Mostly Sunny",
-      "joy_score": 98.2
+      "windSpeed": "0 mph",
+      "windDirection": "",
+      "shortForecast": "Showers And Thunderstorms Likely",
+      "joy_score": 72.2
+    },
+    {
+      "number": 14,
+      "startTime": "2026-05-29T22:00:00-04:00",
+      "temperature": 67,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 66
+      },
+      "windSpeed": "0 mph",
+      "windDirection": "",
+      "shortForecast": "Showers And Thunderstorms Likely",
+      "joy_score": 72.1
+    },
+    {
+      "number": 15,
+      "startTime": "2026-05-29T23:00:00-04:00",
+      "temperature": 66,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 62
+      },
+      "windSpeed": "0 mph",
+      "windDirection": "",
+      "shortForecast": "Showers And Thunderstorms Likely",
+      "joy_score": 73.2
+    },
+    {
+      "number": 16,
+      "startTime": "2026-05-30T00:00:00-04:00",
+      "temperature": 65,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 67
+      },
+      "windSpeed": "0 mph",
+      "windDirection": "",
+      "shortForecast": "Showers And Thunderstorms Likely",
+      "joy_score": 70.7
+    },
+    {
+      "number": 17,
+      "startTime": "2026-05-30T01:00:00-04:00",
+      "temperature": 65,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 66
+      },
+      "windSpeed": "0 mph",
+      "windDirection": "",
+      "shortForecast": "Showers And Thunderstorms Likely",
+      "joy_score": 71.1
+    },
+    {
+      "number": 18,
+      "startTime": "2026-05-30T02:00:00-04:00",
+      "temperature": 65,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 89
+      },
+      "windSpeed": "0 mph",
+      "windDirection": "",
+      "shortForecast": "Showers And Thunderstorms",
+      "joy_score": 61.9
+    },
+    {
+      "number": 19,
+      "startTime": "2026-05-30T03:00:00-04:00",
+      "temperature": 65,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 85
+      },
+      "windSpeed": "0 mph",
+      "windDirection": "",
+      "shortForecast": "Showers And Thunderstorms",
+      "joy_score": 63.5
+    },
+    {
+      "number": 20,
+      "startTime": "2026-05-30T04:00:00-04:00",
+      "temperature": 64,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 81
+      },
+      "windSpeed": "0 mph",
+      "windDirection": "",
+      "shortForecast": "Showers And Thunderstorms",
+      "joy_score": 64.6
+    },
+    {
+      "number": 21,
+      "startTime": "2026-05-30T05:00:00-04:00",
+      "temperature": 63,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 62
+      },
+      "windSpeed": "0 mph",
+      "windDirection": "",
+      "shortForecast": "Rain Showers Likely",
+      "joy_score": 71.7
     },
     {
       "number": 22,
-      "startTime": "2026-05-29T11:00:00-04:00",
-      "temperature": 72,
+      "startTime": "2026-05-30T06:00:00-04:00",
+      "temperature": 63,
       "probabilityOfPrecipitation": {
         "unitCode": "wmoUnit:percent",
-        "value": 3
+        "value": 57
       },
-      "windSpeed": "5 mph",
-      "windDirection": "E",
-      "shortForecast": "Partly Sunny",
-      "joy_score": 97.8
+      "windSpeed": "0 mph",
+      "windDirection": "",
+      "shortForecast": "Rain Showers Likely",
+      "joy_score": 73.7
     },
     {
       "number": 23,
-      "startTime": "2026-05-29T12:00:00-04:00",
-      "temperature": 75,
+      "startTime": "2026-05-30T07:00:00-04:00",
+      "temperature": 63,
       "probabilityOfPrecipitation": {
         "unitCode": "wmoUnit:percent",
-        "value": 5
+        "value": 49
       },
-      "windSpeed": "5 mph",
-      "windDirection": "E",
-      "shortForecast": "Partly Sunny",
-      "joy_score": 95.5
+      "windSpeed": "0 mph",
+      "windDirection": "",
+      "shortForecast": "Chance Rain Showers",
+      "joy_score": 76.9
     },
     {
       "number": 24,
-      "startTime": "2026-05-29T13:00:00-04:00",
-      "temperature": 76,
+      "startTime": "2026-05-30T08:00:00-04:00",
+      "temperature": 62,
       "probabilityOfPrecipitation": {
         "unitCode": "wmoUnit:percent",
-        "value": 8
+        "value": 48
       },
-      "windSpeed": "5 mph",
-      "windDirection": "E",
-      "shortForecast": "Partly Sunny",
-      "joy_score": 93.8
+      "windSpeed": "0 mph",
+      "windDirection": "",
+      "shortForecast": "Chance Rain Showers",
+      "joy_score": 76.8
     }
   ],
   "metadata": {
     "profile_id": "28-2_S1",
     "lat": 34.5822,
     "lon": -84.1879,
-    "generated_at": "2026-05-28T14:53:11.021905",
+    "generated_at": "2026-05-29T09:48:26.350727",
     "saturation_index": 10,
     "precip_24h_total": 0.0,
     "soil_status": "Saturated",
-    "prime_joy_score": 98.2,
+    "prime_joy_score": 99.2,
     "prime_window_start": 8,
     "prime_window_end": 11,
     "ssdi": 5.6

@@ -1,0 +1,101 @@
+{
+  "currentweather": {
+    "title": "Weather Matrix",
+    "tagline": "Real-Time Python Framework Integration",
+    "formula": "Coords ──► 24h Accumulation ──► Saturation Index",
+    "description": "Parses hyper-local coordinate arrays, cross-referencing live precipitation probabilities and 24-hour rainfall trends against canopy drainage models to calculate soil stability.",
+    "bullets": [
+      "✓ Predicts variable single-track slickness",
+      "✓ Informs tire casing decisions",
+      "✓ Optimizes mid-layer apparel choices"
+    ]
+  },
+  "primeridetime": {
+    "title": "Prime Ride Time",
+    "tagline": "Hourly Meteorological Optimization",
+    "formula": "Solar Arc × Wind Velocity × Radar Gaps = Joy Score",
+    "description": "Maps multi-model weather inputs to a normalized performance scalar. Tracks oncoming fronts, crosswinds, and daylight limits to generate a safe departure window.",
+    "bullets": [
+      "✓ Pinpoints optimal launch windows",
+      "✓ Avoids sudden high-altitude storm cells",
+      "✓ Guarantees critical daylight margins"
+    ]
+  },
+  "routeconditions": {
+    "title": "Trail Status Indicator",
+    "tagline": "Substrate & Surface Degradation Index",
+    "formula": "Soil Saturation % × Ruggedness Vector = SSDI",
+    "description": "Calculates real-time substrate track conditions by correlating live moisture saturation percentages against fixed mechanical trail ruggedness classes.",
+    "bullets": [
+      "✓ Provides objective trail surface class",
+      "✓ Identifies localized traction breakdowns",
+      "✓ Determines real-time slip coefficients"
+    ]
+  },
+  "routemetrics": {
+    "title": "Route Analytics",
+    "tagline": "Multi-Dial Geospatial Performance Arrays",
+    "formula": "Track Vectors ──► Conic Dial Fills ──► Signal Maps",
+    "description": "Evaluates track variables by running linear interpolation calculations over your raw telemetry mileage, steepness curves, and regional cellular network availability grids.",
+    "bullets": [
+      "✓ Previews physical track intensity",
+      "✓ Flags off-grid network dead zones",
+      "✓ Maps safe communication check-ins"
+    ]
+  },
+  "efforttax": {
+    "title": "Effort Tax Gauge",
+    "tagline": "Biometric & Terrain Cost Modeling",
+    "formula": "Total Vert + (Friction Coeff × Grade Modifier) = Cost",
+    "description": "Calculates an accurate 'Feels Like' distance modifier by weighting vertical gain, steep pitch resistance, and tire rolling resistance against tarmac defaults.",
+    "bullets": [
+      "✓ Exposes hidden biometric energy costs",
+      "✓ Prevents physical and nutritional bonking",
+      "✓ Calibrates pacing models to unpaved trails"
+    ]
+  },
+  "riskradar": {
+    "title": "Risk Radar Map",
+    "tagline": "Geospatial Exposure Analytics",
+    "formula": "5-Axis Surface Tension Matrix [I, E, E, S, V]",
+    "description": "Processes cellular coverage drops, terrain fall-line safety, maximum grade stress, surface slickness, and remote trail difficulty vectors simultaneously.",
+    "bullets": [
+      "✓ Visualizes trail personality at a glance",
+      "✓ Isolates highly technical trail zones",
+      "✓ Flags maximum risk sectors instantly"
+    ]
+  },
+  "placestosee": {
+    "title": "Places to See",
+    "tagline": "OpenRouteService Mountain Bike Network",
+    "formula": "Midpoint Coords ──► Network Routing ──► 5 POIs Max",
+    "description": "Calculates true path travel distances to landmarks. Uses actual mountain bike network topology instead of inaccurate straight-line estimates.",
+    "bullets": [
+      "✓ Finds hidden single-track connections",
+      "✓ Maps scenic overlooks & water waypoints",
+      "✓ Delivers true, terrain-calibrated logic"
+    ]
+  },
+  "emergencyservices": {
+    "title": "Emergency Services",
+    "tagline": "Google Places API LEO & Fire-EMS Anchor",
+    "formula": "WGS84 Origin ──► Radius Text Search ──► First Responder",
+    "description": "Locates the nearest active dispatch center or EMS facility relative to the route coordinate origin, pulling verified emergency numbers and route-miles.",
+    "bullets": [
+      "✓ Provides immediate dispatch contact info",
+      "✓ Supplies exact coordinate anchors",
+      "✓ Anchors backcountry group safety plans"
+    ]
+  },
+  "elevationprofile": {
+    "title": "Elevation Profile",
+    "tagline": "Savitzky-Golay Resampling & Filter Matrix",
+    "formula": "1200 Linspace ──► Low-Pass Filter ──► Slope Split",
+    "description": "Resamples the route into 1200 equidistant points, running them through a Savitzky-Golay filter window to clean out GPS elevation noise and track real slopes.",
+    "bullets": [
+      "✓ Filters out false coordinate jitter",
+      "✓ Identifies true ascent/descent pitches",
+      "✓ Maps physical pacing across the route"
+    ]
+  }
+}
