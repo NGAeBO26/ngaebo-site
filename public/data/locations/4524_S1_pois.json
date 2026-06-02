@@ -1,0 +1,53 @@
+{
+    "profile_id": "4524_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Dyer Mountain",
+            "type": "scenic",
+            "dist": "1.73",
+            "via": "Horse Cove Rd",
+            "lng": -83.1855,
+            "lat": 34.99658
+        },
+        {
+            "label": "Big Ridge",
+            "type": "scenic",
+            "dist": "1.99",
+            "via": "Horse Cove Rd",
+            "lng": -83.2036,
+            "lat": 34.99748
+        },
+        {
+            "label": "Ammons Branch Campground",
+            "type": "camp",
+            "dist": "2.20",
+            "via": "Horse Cove Rd",
+            "lng": -83.14557,
+            "lat": 35.02199
+        },
+        {
+            "label": "Blue Valley Dispersed Camping",
+            "type": "camp",
+            "dist": "2.27",
+            "via": "Horse Cove Rd",
+            "lng": -83.2209,
+            "lat": 35.00837
+        },
+        {
+            "label": "Ellicott Rock Wilderness West",
+            "type": "trailhead",
+            "dist": "2.45",
+            "via": "Horse Cove Rd",
+            "lng": -83.1415,
+            "lat": 35.0169
+        }
+    ],
+    "rescue_anchor": {
+        "name": "HIGHLANDS FIRE & RESCUE",
+        "type": "Fire-EMS",
+        "address": "Cherrywood Dr, Highlands, NC 28741, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 4.6
+    }
+}

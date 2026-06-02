@@ -1,0 +1,37 @@
+{
+    "profile_id": "62_S2",
+    "route_id": "62",
+    "ssdi_score": 117.6,
+    "v3_terrain_score": 7.2,
+    "v3_terrain_class": "Epic",
+    "badge_type": "muddy",
+    "condition": "MUDDY / SOFT",
+    "style_color": "#a52d23",
+    "access": {
+        "label": "OPEN",
+        "vibe_context": "RESTRICTED EXPLORER",
+        "status_code": "OPEN"
+    },
+    "ruggedness": {
+        "class": "Rough",
+        "value": 0.69
+    },
+    "environment": {
+        "current_temp": 77,
+        "saturation_index": 36.81,
+        "soil_status": "Saturated",
+        "precip_24h": 0.3,
+        "saturation_trend": "stable",
+        "alerts": []
+    },
+    "physics": {
+        "live_traction": 0.35,
+        "live_wh_per_km": 18.53,
+        "energy_penalty_pct": 20.0,
+        "v3_base_intensity": 7.2
+    },
+    "connectivity": {
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
+    }
+}

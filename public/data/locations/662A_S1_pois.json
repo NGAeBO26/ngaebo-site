@@ -1,0 +1,53 @@
+{
+    "profile_id": "662A_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Whissenhunt Mountain",
+            "type": "scenic",
+            "dist": "0.69",
+            "via": "Horse Cove Rd",
+            "lng": -84.06128,
+            "lat": 34.59568
+        },
+        {
+            "label": "Sally Free Ridge",
+            "type": "scenic",
+            "dist": "1.06",
+            "via": "Horse Cove Rd",
+            "lng": -84.03901,
+            "lat": 34.58044
+        },
+        {
+            "label": "Low Gap",
+            "type": "gap",
+            "dist": "1.61",
+            "via": "Horse Cove Rd",
+            "lng": -84.04769,
+            "lat": 34.60898
+        },
+        {
+            "label": "Campbell Mountain",
+            "type": "scenic",
+            "dist": "2.11",
+            "via": "Horse Cove Rd",
+            "lng": -84.09074,
+            "lat": 34.5762
+        },
+        {
+            "label": "John Jones Mountain",
+            "type": "scenic",
+            "dist": "2.79",
+            "via": "Horse Cove Rd",
+            "lng": -84.01808,
+            "lat": 34.56116
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 6.6
+    }
+}

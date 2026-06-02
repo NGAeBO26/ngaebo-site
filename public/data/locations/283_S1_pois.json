@@ -1,0 +1,53 @@
+{
+    "profile_id": "283_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Rocky Mountain",
+            "type": "scenic",
+            "dist": "0.67",
+            "via": "Horse Cove Rd",
+            "lng": -83.7299,
+            "lat": 34.79842
+        },
+        {
+            "label": "Hanson Mountain",
+            "type": "scenic",
+            "dist": "1.01",
+            "via": "Horse Cove Rd",
+            "lng": -83.71295,
+            "lat": 34.81814
+        },
+        {
+            "label": "Unicoi Gap",
+            "type": "gap",
+            "dist": "1.12",
+            "via": "Horse Cove Rd",
+            "lng": -83.74296,
+            "lat": 34.80093
+        },
+        {
+            "label": "Indian Grave Gap",
+            "type": "gap",
+            "dist": "1.17",
+            "via": "Horse Cove Rd",
+            "lng": -83.71407,
+            "lat": 34.79287
+        },
+        {
+            "label": "Bald Ridge",
+            "type": "scenic",
+            "dist": "1.31",
+            "via": "Horse Cove Rd",
+            "lng": -83.70186,
+            "lat": 34.80545
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Helen Fire Department",
+        "type": "Fire-EMS",
+        "address": "120 Unicoi St, Helen, GA 30545, USA",
+        "phone": "(706) 878-3676",
+        "dist_mi": 7.4
+    }
+}

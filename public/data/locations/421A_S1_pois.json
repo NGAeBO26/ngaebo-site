@@ -1,0 +1,29 @@
+{
+    "profile_id": "421A_S1",
+    "count": 2,
+    "locations": [
+        {
+            "label": "Falls Branch",
+            "type": "water",
+            "dist": "2.37",
+            "via": "Horse Cove Rd",
+            "lng": -83.4471,
+            "lat": 34.99148
+        },
+        {
+            "label": "Owen Gap",
+            "type": "gap",
+            "dist": "2.63",
+            "via": "Horse Cove Rd",
+            "lng": -83.42821,
+            "lat": 34.99287
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Otto Volunteer Fire & Rescue",
+        "type": "Fire-EMS",
+        "address": "60 Firehouse Rd, Otto, NC 28763, USA",
+        "phone": "(828) 524-3473",
+        "dist_mi": 4.9
+    }
+}

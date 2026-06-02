@@ -1,0 +1,53 @@
+{
+    "profile_id": "131_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Wildcat Gap",
+            "type": "gap",
+            "dist": "0.78",
+            "via": "Horse Cove Rd",
+            "lng": -83.86435,
+            "lat": 34.74482
+        },
+        {
+            "label": "Dug Gap",
+            "type": "gap",
+            "dist": "0.80",
+            "via": "Horse Cove Rd",
+            "lng": -83.86074,
+            "lat": 34.75982
+        },
+        {
+            "label": "Oak Ridge",
+            "type": "scenic",
+            "dist": "0.83",
+            "via": "Horse Cove Rd",
+            "lng": -83.85249,
+            "lat": 34.73843
+        },
+        {
+            "label": "Double Poplar Top",
+            "type": "scenic",
+            "dist": "0.83",
+            "via": "Horse Cove Rd",
+            "lng": -83.85248,
+            "lat": 34.7384
+        },
+        {
+            "label": "Little Wildcat Mountain",
+            "type": "scenic",
+            "dist": "0.96",
+            "via": "Horse Cove Rd",
+            "lng": -83.86785,
+            "lat": 34.74473
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Helen Fire Department",
+        "type": "Fire-EMS",
+        "address": "120 Unicoi St, Helen, GA 30545, USA",
+        "phone": "(706) 878-3676",
+        "dist_mi": 8.9
+    }
+}

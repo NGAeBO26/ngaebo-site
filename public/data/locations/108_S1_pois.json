@@ -1,0 +1,53 @@
+{
+    "profile_id": "108_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Wildcat Gap",
+            "type": "gap",
+            "dist": "0.55",
+            "via": "Horse Cove Rd",
+            "lng": -83.95852,
+            "lat": 34.77204
+        },
+        {
+            "label": "Wildcat Knob",
+            "type": "scenic",
+            "dist": "0.67",
+            "via": "Horse Cove Rd",
+            "lng": -83.95734,
+            "lat": 34.76837
+        },
+        {
+            "label": "Calf Stomp Gap",
+            "type": "gap",
+            "dist": "0.74",
+            "via": "Horse Cove Rd",
+            "lng": -83.9538,
+            "lat": 34.7862
+        },
+        {
+            "label": "Duncan Ridge",
+            "type": "scenic",
+            "dist": "0.80",
+            "via": "Horse Cove Rd",
+            "lng": -83.96354,
+            "lat": 34.7789
+        },
+        {
+            "label": "Coosa Bald",
+            "type": "scenic",
+            "dist": "0.80",
+            "via": "Horse Cove Rd",
+            "lng": -83.96352,
+            "lat": 34.77897
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Union County Fire Department",
+        "type": "Fire-EMS",
+        "address": "507 Shoe Factory Rd, Blairsville, GA 30512, USA",
+        "phone": "(706) 439-6095",
+        "dist_mi": 6.6
+    }
+}

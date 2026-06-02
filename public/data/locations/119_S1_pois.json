@@ -1,0 +1,53 @@
+{
+    "profile_id": "119_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Persimmon Hill",
+            "type": "scenic",
+            "dist": "0.43",
+            "via": "Horse Cove Rd",
+            "lng": -84.24301,
+            "lat": 34.79993
+        },
+        {
+            "label": "Garland Mountain",
+            "type": "scenic",
+            "dist": "0.63",
+            "via": "Horse Cove Rd",
+            "lng": -84.22632,
+            "lat": 34.79353
+        },
+        {
+            "label": "Garland Gap",
+            "type": "gap",
+            "dist": "0.80",
+            "via": "Horse Cove Rd",
+            "lng": -84.22214,
+            "lat": 34.79536
+        },
+        {
+            "label": "Toccoa River Sandy Bottoms Recreation Area",
+            "type": "camp",
+            "dist": "0.82",
+            "via": "Horse Cove Rd",
+            "lng": -84.23888,
+            "lat": 34.78675
+        },
+        {
+            "label": "Weeks Mountain",
+            "type": "scenic",
+            "dist": "0.90",
+            "via": "Horse Cove Rd",
+            "lng": -84.22722,
+            "lat": 34.78732
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Fannin County Emergency Services - Fire Station 1",
+        "type": "Fire-EMS",
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 7.5
+    }
+}

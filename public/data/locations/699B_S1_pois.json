@@ -1,0 +1,45 @@
+{
+    "profile_id": "699B_S1",
+    "count": 4,
+    "locations": [
+        {
+            "label": "Green Mountain",
+            "type": "scenic",
+            "dist": "1.74",
+            "via": "Horse Cove Rd",
+            "lng": -84.29467,
+            "lat": 34.82111
+        },
+        {
+            "label": "Snake Nation Mountain",
+            "type": "scenic",
+            "dist": "1.90",
+            "via": "Horse Cove Rd",
+            "lng": -84.32007,
+            "lat": 34.83064
+        },
+        {
+            "label": "Deep Gap",
+            "type": "gap",
+            "dist": "2.07",
+            "via": "Horse Cove Rd",
+            "lng": -84.30103,
+            "lat": 34.81703
+        },
+        {
+            "label": "Davenport Mountain",
+            "type": "scenic",
+            "dist": "2.42",
+            "via": "Horse Cove Rd",
+            "lng": -84.30776,
+            "lat": 34.81355
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Fannin County Emergency Services - Fire Station 1",
+        "type": "Fire-EMS",
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 2.5
+    }
+}

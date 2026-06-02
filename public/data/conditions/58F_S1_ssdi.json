@@ -1,39 +1,37 @@
 {
-  "profile_id": "58F_S1",
-  "route_id": "58F",
-  "ssdi_score": 9.5,
-  "v3_terrain_score": 7.8,
-  "v3_terrain_class": "Epic",
-  "badge_type": "muddy",
-  "condition": "MUDDY / SOFT",
-  "style_color": "#a52d23",
-  "access": {
-    "label": "CLOSED",
-    "vibe_context": "TECHNICAL BACKCOUNTRY (CLOSED)",
-    "status_code": "RESTRICTED"
-  },
-  "ruggedness": {
-    "class": "Rough",
-    "value": 0.32
-  },
-  "environment": {
-    "current_temp": 68,
-    "saturation_index": 0.6,
-    "soil_status": "Dry / Dusty",
-    "precip_24h": 0.0,
-    "saturation_trend": "stable",
-    "alerts": [
-      "SAFETY ALERT: Cell Service is UNAVAILABLE."
-    ]
-  },
-  "physics": {
-    "live_traction": 0.41,
-    "live_wh_per_km": 19.79,
-    "energy_penalty_pct": 20.0,
-    "v3_base_intensity": 7.7
-  },
-  "connectivity": {
-    "signal_class": "Unavailable",
-    "deadzone_max_meters": 2340
-  }
+    "profile_id": "58F_S1",
+    "route_id": "58F",
+    "ssdi_score": 130.4,
+    "v3_terrain_score": 7.8,
+    "v3_terrain_class": "Epic",
+    "badge_type": "muddy",
+    "condition": "MUDDY / SOFT",
+    "style_color": "#a52d23",
+    "access": {
+        "label": "CLOSED",
+        "vibe_context": "TECHNICAL BACKCOUNTRY (CLOSED)",
+        "status_code": "RESTRICTED"
+    },
+    "ruggedness": {
+        "class": "Rough",
+        "value": 0.32
+    },
+    "environment": {
+        "current_temp": 68,
+        "saturation_index": 40.86,
+        "soil_status": "Saturated",
+        "precip_24h": 0.01,
+        "saturation_trend": "stable",
+        "alerts": []
+    },
+    "physics": {
+        "live_traction": 0.37,
+        "live_wh_per_km": 20.12,
+        "energy_penalty_pct": 20.0,
+        "v3_base_intensity": 7.8
+    },
+    "connectivity": {
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
+    }
 }

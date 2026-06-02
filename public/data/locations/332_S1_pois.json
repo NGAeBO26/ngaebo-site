@@ -1,0 +1,53 @@
+{
+    "profile_id": "332_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Sapling Gap",
+            "type": "gap",
+            "dist": "0.74",
+            "via": "Horse Cove Rd",
+            "lng": -84.18714,
+            "lat": 34.72342
+        },
+        {
+            "label": "Little John Dick Mountain",
+            "type": "scenic",
+            "dist": "0.78",
+            "via": "Horse Cove Rd",
+            "lng": -84.18767,
+            "lat": 34.71777
+        },
+        {
+            "label": "Bryson Gap",
+            "type": "gap",
+            "dist": "0.85",
+            "via": "Horse Cove Rd",
+            "lng": -84.18964,
+            "lat": 34.7137
+        },
+        {
+            "label": "Big John Dick Mountain",
+            "type": "scenic",
+            "dist": "1.06",
+            "via": "Horse Cove Rd",
+            "lng": -84.1902,
+            "lat": 34.70951
+        },
+        {
+            "label": "Rall Mountain",
+            "type": "scenic",
+            "dist": "1.37",
+            "via": "Horse Cove Rd",
+            "lng": -84.22404,
+            "lat": 34.72273
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Fannin County Emergency Services - Fire Station 1",
+        "type": "Fire-EMS",
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 13.1
+    }
+}

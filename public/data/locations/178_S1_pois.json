@@ -1,0 +1,53 @@
+{
+    "profile_id": "178_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Hargret Ridge",
+            "type": "scenic",
+            "dist": "1.05",
+            "via": "Horse Cove Rd",
+            "lng": -83.76271,
+            "lat": 34.74697
+        },
+        {
+            "label": "Low Gap Campground",
+            "type": "camp",
+            "dist": "1.32",
+            "via": "Horse Cove Rd",
+            "lng": -83.78291,
+            "lat": 34.75092
+        },
+        {
+            "label": "Little Crumbly Knob",
+            "type": "scenic",
+            "dist": "1.57",
+            "via": "Horse Cove Rd",
+            "lng": -83.75674,
+            "lat": 34.74023
+        },
+        {
+            "label": "Poe Knob",
+            "type": "scenic",
+            "dist": "1.65",
+            "via": "Horse Cove Rd",
+            "lng": -83.78601,
+            "lat": 34.74648
+        },
+        {
+            "label": "Crumbly Knob",
+            "type": "scenic",
+            "dist": "1.77",
+            "via": "Horse Cove Rd",
+            "lng": -83.73764,
+            "lat": 34.74871
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Helen Fire Department",
+        "type": "Fire-EMS",
+        "address": "120 Unicoi St, Helen, GA 30545, USA",
+        "phone": "(706) 878-3676",
+        "dist_mi": 4.8
+    }
+}

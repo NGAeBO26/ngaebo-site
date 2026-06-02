@@ -1,0 +1,37 @@
+{
+    "profile_id": "748-2_S1",
+    "route_id": "748-2",
+    "ssdi_score": 8.5,
+    "v3_terrain_score": 1.0,
+    "v3_terrain_class": "Cruiser",
+    "badge_type": "muddy",
+    "condition": "MUDDY / SOFT",
+    "style_color": "#a52d23",
+    "access": {
+        "label": "OPEN",
+        "vibe_context": "CLASSIC FOREST ROAD",
+        "status_code": "OPEN"
+    },
+    "ruggedness": {
+        "class": "Chattery",
+        "value": 0.0
+    },
+    "environment": {
+        "current_temp": 68,
+        "saturation_index": 37.61,
+        "soil_status": "Saturated",
+        "precip_24h": 0.01,
+        "saturation_trend": "stable",
+        "alerts": []
+    },
+    "physics": {
+        "live_traction": 0.41,
+        "live_wh_per_km": 11.35,
+        "energy_penalty_pct": 20.0,
+        "v3_base_intensity": 1.0
+    },
+    "connectivity": {
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
+    }
+}

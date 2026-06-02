@@ -1,0 +1,53 @@
+{
+    "profile_id": "33A_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Addie Gap",
+            "type": "gap",
+            "dist": "0.16",
+            "via": "Horse Cove Rd",
+            "lng": -84.03269,
+            "lat": 34.76342
+        },
+        {
+            "label": "Chestnut Mountain",
+            "type": "scenic",
+            "dist": "0.59",
+            "via": "Horse Cove Rd",
+            "lng": -84.02195,
+            "lat": 34.76556
+        },
+        {
+            "label": "Yellow Mountain",
+            "type": "scenic",
+            "dist": "0.75",
+            "via": "Horse Cove Rd",
+            "lng": -84.04532,
+            "lat": 34.76713
+        },
+        {
+            "label": "Horse Knob",
+            "type": "scenic",
+            "dist": "0.80",
+            "via": "Horse Cove Rd",
+            "lng": -84.04547,
+            "lat": 34.76147
+        },
+        {
+            "label": "Shope Gap",
+            "type": "gap",
+            "dist": "1.01",
+            "via": "Horse Cove Rd",
+            "lng": -84.04436,
+            "lat": 34.77648
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Union County Fire Department",
+        "type": "Fire-EMS",
+        "address": "507 Shoe Factory Rd, Blairsville, GA 30512, USA",
+        "phone": "(706) 439-6095",
+        "dist_mi": 9.5
+    }
+}

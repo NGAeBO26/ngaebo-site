@@ -1,0 +1,53 @@
+{
+    "profile_id": "384_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Wall Mountain",
+            "type": "scenic",
+            "dist": "0.99",
+            "via": "Horse Cove Rd",
+            "lng": -83.27263,
+            "lat": 34.89053
+        },
+        {
+            "label": "Pollywah Knob",
+            "type": "scenic",
+            "dist": "0.99",
+            "via": "Horse Cove Rd",
+            "lng": -83.27265,
+            "lat": 34.89064
+        },
+        {
+            "label": "Sandy Ford",
+            "type": "hazard",
+            "dist": "1.76",
+            "via": "Horse Cove Rd",
+            "lng": -83.24682,
+            "lat": 34.86065
+        },
+        {
+            "label": "Goble Gap",
+            "type": "gap",
+            "dist": "2.29",
+            "via": "Horse Cove Rd",
+            "lng": -83.25821,
+            "lat": 34.90759
+        },
+        {
+            "label": "Earls Ford",
+            "type": "hazard",
+            "dist": "2.44",
+            "via": "Horse Cove Rd",
+            "lng": -83.22849,
+            "lat": 34.87954
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Long Creek FD - Oconee Co. Station 9",
+        "type": "Fire-EMS",
+        "address": "12351 Long Creek Hwy, Long Creek, SC 29658, USA",
+        "phone": "(864) 647-8151",
+        "dist_mi": 7.2
+    }
+}

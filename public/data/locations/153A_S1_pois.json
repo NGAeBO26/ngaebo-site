@@ -1,0 +1,53 @@
+{
+    "profile_id": "153A_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Indian Grave Hill",
+            "type": "scenic",
+            "dist": "0.35",
+            "via": "Horse Cove Rd",
+            "lng": -83.30154,
+            "lat": 34.9062
+        },
+        {
+            "label": "Big Mountain",
+            "type": "scenic",
+            "dist": "0.98",
+            "via": "Horse Cove Rd",
+            "lng": -83.29106,
+            "lat": 34.90992
+        },
+        {
+            "label": "Sheep Knob",
+            "type": "scenic",
+            "dist": "1.07",
+            "via": "Horse Cove Rd",
+            "lng": -83.30571,
+            "lat": 34.92175
+        },
+        {
+            "label": "Deep Gap",
+            "type": "gap",
+            "dist": "1.15",
+            "via": "Horse Cove Rd",
+            "lng": -83.32793,
+            "lat": 34.90815
+        },
+        {
+            "label": "Dan Gap",
+            "type": "gap",
+            "dist": "1.29",
+            "via": "Horse Cove Rd",
+            "lng": -83.30766,
+            "lat": 34.92509
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clayton Fire Department",
+        "type": "Fire-EMS",
+        "address": "14 Emergency Dr # 105, Clayton, GA 30525, USA",
+        "phone": "(706) 782-2751",
+        "dist_mi": 6.5
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "profile_id": "4568_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Ellicott Rock Wilderness East",
+            "type": "trailhead",
+            "dist": "0.59",
+            "via": "Horse Cove Rd",
+            "lng": -83.09501,
+            "lat": 35.02344
+        },
+        {
+            "label": "Chattooga Wild And Scenic River",
+            "type": "camp",
+            "dist": "1.37",
+            "via": "Horse Cove Rd",
+            "lng": -83.12506,
+            "lat": 35.01774
+        },
+        {
+            "label": "Ellicott Rock Wilderness West",
+            "type": "trailhead",
+            "dist": "2.25",
+            "via": "Horse Cove Rd",
+            "lng": -83.1415,
+            "lat": 35.0169
+        },
+        {
+            "label": "Ammons Branch Campground",
+            "type": "camp",
+            "dist": "2.39",
+            "via": "Horse Cove Rd",
+            "lng": -83.14557,
+            "lat": 35.02199
+        },
+        {
+            "label": "Redside Mountain",
+            "type": "scenic",
+            "dist": "2.64",
+            "via": "Horse Cove Rd",
+            "lng": -83.12552,
+            "lat": 34.99374
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Cashiers Fire Department",
+        "type": "Fire-EMS",
+        "address": "579 Frank Allen Rd, Cashiers, NC 28717, USA",
+        "phone": "(828) 743-9544",
+        "dist_mi": 5.8
+    }
+}

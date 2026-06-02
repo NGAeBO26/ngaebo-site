@@ -1,0 +1,53 @@
+{
+    "profile_id": "642_S2",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Angel Falls",
+            "type": "trailhead",
+            "dist": "0.11",
+            "via": "Horse Cove Rd",
+            "lng": -83.47084,
+            "lat": 34.76112
+        },
+        {
+            "label": "Falls Branch",
+            "type": "water",
+            "dist": "0.78",
+            "via": "Horse Cove Rd",
+            "lng": -83.47795,
+            "lat": 34.75093
+        },
+        {
+            "label": "Stamp Knob",
+            "type": "scenic",
+            "dist": "1.14",
+            "via": "Horse Cove Rd",
+            "lng": -83.46992,
+            "lat": 34.77763
+        },
+        {
+            "label": "Stamp Ridge",
+            "type": "scenic",
+            "dist": "1.25",
+            "via": "Horse Cove Rd",
+            "lng": -83.47077,
+            "lat": 34.77933
+        },
+        {
+            "label": "Joe Mountain",
+            "type": "scenic",
+            "dist": "1.28",
+            "via": "Horse Cove Rd",
+            "lng": -83.48461,
+            "lat": 34.77703
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clayton Fire Department",
+        "type": "Fire-EMS",
+        "address": "14 Emergency Dr # 105, Clayton, GA 30525, USA",
+        "phone": "(706) 782-2751",
+        "dist_mi": 9.8
+    }
+}

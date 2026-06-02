@@ -1,0 +1,21 @@
+{
+    "profile_id": "89_S1",
+    "count": 1,
+    "locations": [
+        {
+            "label": "Farmer Mountain",
+            "type": "scenic",
+            "dist": "3.39",
+            "via": "Horse Cove Rd",
+            "lng": -83.4135,
+            "lat": 34.49843
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clarkesville Fire Department",
+        "type": "Fire-EMS",
+        "address": "303 Adams St, Clarkesville, GA 30523, USA",
+        "phone": "(706) 754-2024",
+        "dist_mi": 7.6
+    }
+}

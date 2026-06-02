@@ -1,0 +1,45 @@
+{
+    "profile_id": "713A_S1",
+    "count": 4,
+    "locations": [
+        {
+            "label": "Brack Hill",
+            "type": "scenic",
+            "dist": "2.04",
+            "via": "Horse Cove Rd",
+            "lng": -83.1603,
+            "lat": 34.9192
+        },
+        {
+            "label": "Nicholas Ford",
+            "type": "hazard",
+            "dist": "2.34",
+            "via": "Horse Cove Rd",
+            "lng": -83.16876,
+            "lat": 34.91926
+        },
+        {
+            "label": "Nicholas Ford",
+            "type": "hazard",
+            "dist": "2.34",
+            "via": "Horse Cove Rd",
+            "lng": -83.16876,
+            "lat": 34.91926
+        },
+        {
+            "label": "Little Mountain",
+            "type": "scenic",
+            "dist": "2.55",
+            "via": "Horse Cove Rd",
+            "lng": -83.14672,
+            "lat": 34.93071
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Mountain Rest FD - Oconee Co. Station 4",
+        "type": "Fire-EMS",
+        "address": "130 Verner Mill Rd, Mountain Rest, SC 29664, USA",
+        "phone": "(864) 638-8220",
+        "dist_mi": 3.6
+    }
+}

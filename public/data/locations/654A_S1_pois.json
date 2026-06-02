@@ -1,0 +1,53 @@
+{
+    "profile_id": "654A_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Deep Hole Recreation Area",
+            "type": "camp",
+            "dist": "0.80",
+            "via": "Horse Cove Rd",
+            "lng": -83.98129,
+            "lat": 34.66413
+        },
+        {
+            "label": "Dockery Gap",
+            "type": "gap",
+            "dist": "0.81",
+            "via": "Horse Cove Rd",
+            "lng": -83.98075,
+            "lat": 34.6637
+        },
+        {
+            "label": "Cedar Ridge",
+            "type": "scenic",
+            "dist": "0.86",
+            "via": "Horse Cove Rd",
+            "lng": -83.9738,
+            "lat": 34.66212
+        },
+        {
+            "label": "Glass Mine Top",
+            "type": "scenic",
+            "dist": "0.86",
+            "via": "Horse Cove Rd",
+            "lng": -83.97379,
+            "lat": 34.6621
+        },
+        {
+            "label": "Steel Trap Knob",
+            "type": "scenic",
+            "dist": "1.12",
+            "via": "Horse Cove Rd",
+            "lng": -83.99435,
+            "lat": 34.67804
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 9.7
+    }
+}

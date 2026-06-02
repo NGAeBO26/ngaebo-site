@@ -1,8 +1,8 @@
 {
     "profile_id": "288A_S1",
     "route_id": "288A",
-    "ssdi_score": 6.1,
-    "v3_terrain_score": 4.5,
+    "ssdi_score": 16.1,
+    "v3_terrain_score": 4.6,
     "v3_terrain_class": "Strenuous",
     "badge_type": "wet",
     "condition": "WET PAVEMENT",
@@ -17,23 +17,21 @@
         "value": 0.21
     },
     "environment": {
-        "current_temp": 63,
-        "saturation_index": 7.76,
+        "current_temp": 69,
+        "saturation_index": 57.46,
         "soil_status": "Saturated",
         "precip_24h": 0.0,
         "saturation_trend": "stable",
-        "alerts": [
-            "SAFETY ALERT: Cell Service is UNRELIABLE."
-        ]
+        "alerts": []
     },
     "physics": {
-        "live_traction": 0.72,
-        "live_wh_per_km": 11.41,
+        "live_traction": 0.67,
+        "live_wh_per_km": 11.59,
         "energy_penalty_pct": 1.5,
-        "v3_base_intensity": 4.5
+        "v3_base_intensity": 4.6
     },
     "connectivity": {
-        "signal_class": "Unreliable",
-        "deadzone_max_meters": 1063
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
     }
 }

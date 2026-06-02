@@ -1,10 +1,12 @@
 {
     "profile_id": "135_S1",
     "route_id": "135",
-    "ssdi_score": 5.5,
-    "badge_type": "wet",
-    "condition": "WET / SLICK",
-    "style_color": "#e66e00",
+    "ssdi_score": 154.0,
+    "v3_terrain_score": 6.9,
+    "v3_terrain_class": "Strenuous",
+    "badge_type": "muddy",
+    "condition": "MUDDY / SOFT",
+    "style_color": "#a52d23",
     "access": {
         "label": "OPEN",
         "vibe_context": "RESTRICTED EXPLORER",
@@ -12,22 +14,24 @@
     },
     "ruggedness": {
         "class": "Rough",
-        "value": 0.17
+        "value": 0.21
     },
     "environment": {
-        "current_temp": 70,
-        "saturation_index": 0.0,
+        "current_temp": 69,
+        "saturation_index": 49.05,
+        "soil_status": "Saturated",
+        "precip_24h": 0.04,
         "saturation_trend": "stable",
         "alerts": []
     },
     "physics": {
-        "live_traction": 0.68,
-        "live_wh_per_km": 17.53,
-        "energy_penalty_pct": 47.1,
-        "v3_base_intensity": 5.5
+        "live_traction": 0.36,
+        "live_wh_per_km": 17.39,
+        "energy_penalty_pct": 20.0,
+        "v3_base_intensity": 6.9
     },
     "connectivity": {
-        "signal_class": "Weak/Stable",
-        "deadzone_max_meters": 652
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
     }
 }

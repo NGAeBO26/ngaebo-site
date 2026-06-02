@@ -1,0 +1,29 @@
+{
+    "profile_id": "740A_S1",
+    "count": 2,
+    "locations": [
+        {
+            "label": "Cassidy Bridge Hunt Camp",
+            "type": "camp",
+            "dist": "1.35",
+            "via": "Horse Cove Rd",
+            "lng": -83.2096,
+            "lat": 34.78573
+        },
+        {
+            "label": "Grapevine",
+            "type": "camp",
+            "dist": "2.42",
+            "via": "Horse Cove Rd",
+            "lng": -83.1805,
+            "lat": 34.82299
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Long Creek FD - Oconee Co. Station 9",
+        "type": "Fire-EMS",
+        "address": "12351 Long Creek Hwy, Long Creek, SC 29658, USA",
+        "phone": "(864) 647-8151",
+        "dist_mi": 3.7
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "profile_id": "3_S1",
+    "count": 3,
+    "locations": [
+        {
+            "label": "Chestnut Knob",
+            "type": "scenic",
+            "dist": "0.48",
+            "via": "Horse Cove Rd",
+            "lng": -84.69785,
+            "lat": 34.74214
+        },
+        {
+            "label": "Falls Branch",
+            "type": "water",
+            "dist": "1.38",
+            "via": "Horse Cove Rd",
+            "lng": -84.67383,
+            "lat": 34.74175
+        },
+        {
+            "label": "Rock Creek Trailhead",
+            "type": "trailhead",
+            "dist": "1.51",
+            "via": "Horse Cove Rd",
+            "lng": -84.67112,
+            "lat": 34.74112
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Murray County Fire Department Station 6",
+        "type": "Fire-EMS",
+        "address": "9911 GA-52, Chatsworth, GA 30705, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 3.7
+    }
+}

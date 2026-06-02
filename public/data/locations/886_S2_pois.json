@@ -1,0 +1,53 @@
+{
+    "profile_id": "886_S2",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Meetinghouse Ridge",
+            "type": "scenic",
+            "dist": "1.34",
+            "via": "Horse Cove Rd",
+            "lng": -83.93209,
+            "lat": 34.66257
+        },
+        {
+            "label": "Rock Spring Top",
+            "type": "scenic",
+            "dist": "1.60",
+            "via": "Horse Cove Rd",
+            "lng": -83.93957,
+            "lat": 34.66085
+        },
+        {
+            "label": "Long Gap",
+            "type": "gap",
+            "dist": "1.83",
+            "via": "Horse Cove Rd",
+            "lng": -83.94352,
+            "lat": 34.66176
+        },
+        {
+            "label": "Columbia Ridge",
+            "type": "scenic",
+            "dist": "2.13",
+            "via": "Horse Cove Rd",
+            "lng": -83.94852,
+            "lat": 34.66351
+        },
+        {
+            "label": "Porter Springs Cedar Mountain",
+            "type": "scenic",
+            "dist": "2.34",
+            "via": "Horse Cove Rd",
+            "lng": -83.9563,
+            "lat": 34.64343
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 9.0
+    }
+}

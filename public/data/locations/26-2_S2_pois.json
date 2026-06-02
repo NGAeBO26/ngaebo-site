@@ -1,0 +1,53 @@
+{
+    "profile_id": "26-2_S2",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Lower Cynth Gap",
+            "type": "gap",
+            "dist": "0.82",
+            "via": "Horse Cove Rd",
+            "lng": -83.68184,
+            "lat": 34.87787
+        },
+        {
+            "label": "Rattlesnake Knob",
+            "type": "scenic",
+            "dist": "0.89",
+            "via": "Horse Cove Rd",
+            "lng": -83.68548,
+            "lat": 34.8769
+        },
+        {
+            "label": "Buzzard Knob",
+            "type": "scenic",
+            "dist": "0.90",
+            "via": "Horse Cove Rd",
+            "lng": -83.67434,
+            "lat": 34.88064
+        },
+        {
+            "label": "Upper Cynth Gap",
+            "type": "gap",
+            "dist": "0.96",
+            "via": "Horse Cove Rd",
+            "lng": -83.67295,
+            "lat": 34.88148
+        },
+        {
+            "label": "Manley Gap",
+            "type": "gap",
+            "dist": "1.00",
+            "via": "Horse Cove Rd",
+            "lng": -83.67045,
+            "lat": 34.88176
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Towns County Fire Department",
+        "type": "Fire-EMS",
+        "address": "Sims Cir, Hiawassee, GA 30546, USA",
+        "phone": "(706) 896-2090",
+        "dist_mi": 8.3
+    }
+}

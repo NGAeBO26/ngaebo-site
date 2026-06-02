@@ -29,7 +29,6 @@ function calculateAdvancedTrackMetrics(feature: any): CalculatedTrackMetrics | n
   let maxLng = -Infinity;
   let maxLat = -Infinity;
 
-  // Safe recursive array flattener to support both LineString and MultiLineString formats
   const flattenCoordinates = (arr: any) => {
     if (typeof arr[0] === 'number' && typeof arr[1] === 'number') {
       const [lng, lat] = arr;
@@ -67,16 +66,13 @@ function calculateAdvancedTrackMetrics(feature: any): CalculatedTrackMetrics | n
   let targetZoom: number;
 
   if (isHorizontal) {
-    // ↔️ HORIZONTAL MULTIPLIERS (Extracted directly from your Spacebar telemetry snapshot)
     topCushion = originalLatDelta * 1;
     bottomCushion = originalLatDelta * 0.25;
     sideCushion = originalLngDelta * 0.15;
     
-    // Apply your verified spatial axis center calibration shift
     finalLatCenter = latCenter + (originalLatDelta * 0.3504);
     targetZoom = 11.04;
   } else {
-    // ↕️ VERTICAL MULTIPLIERS (Preserves tall aspect layouts below popup drawer overlays)
     const targetLngDeltaDegrees = originalLatDelta / cosFactor;
     const correction = targetLngDeltaDegrees - originalLngDelta;
     minLngValue -= (correction / 2);
@@ -87,7 +83,7 @@ function calculateAdvancedTrackMetrics(feature: any): CalculatedTrackMetrics | n
     sideCushion = (maxLngValue - minLngValue) * 0.18;
     
     finalLatCenter = latCenter;
-    targetZoom = 13.40; // Maintain standard close-up ceiling for tall segments
+    targetZoom = 13.40; 
   }
 
   const finalCalculatedBounds: LngLatBoundsLike = [
@@ -133,15 +129,10 @@ export default function useMapController(opts: MapControllerOptions) {
     }
   }, [opts.routesData, opts.onRoutesLoaded]);
 
-  // ==========================================================================
-  // 🎨 HUD OVERLAY REPAINT CLEANUP
-  // Cleanly strips out telemetry graphics boxes from the active WebGL timeline loop
-  // ==========================================================================
   const repaintViewportHUDOverlay = useCallback(() => {
     const currentMap = stateRef.current.mapRef.current;
     if (!currentMap) return;
 
-    // Direct DOM search pass instantly cleans away leftover telemetry layout frames
     const oldCanvas = document.getElementById('discovery-canvas-hud-overlay');
     if (oldCanvas) {
       oldCanvas.remove();
@@ -149,18 +140,24 @@ export default function useMapController(opts: MapControllerOptions) {
   }, []);
 
   // ==========================================================================
-  // 🚀 UNIFIED CAMERA MOVEMENT PIPELINE
-  // Moves the viewport and handles target extents seamlessly on a single pass
+  // 🚀 UNIFIED CAMERA MOVEMENT PIPELINE (RETAIL BALANCE ADAPTED)
+  // Moves the viewport and offsets calculations to clear left column cards[cite: 18]
   // ==========================================================================
+  /* Inside src/features/Discovery/hooks/useMapController.tsx */
+
   const fitRoutePadded = useCallback((incomingFeature: any) => {
     const currentMap = stateRef.current.mapRef.current;
     if (!currentMap || !incomingFeature) return;
 
     const targetId = String(incomingFeature.properties?.profile_id || incomingFeature.id || "");
 
+    // 🎯 SYMMETRICAL REBALANCING: Left slot takes 260px, Right slot takes 260px.
+    // This perfectly aligns the center calculation track across your layout columns.
+    const retailLayoutPadding = { top: 24, right: 260, bottom: 24, left: 260 };
+
     try { 
       currentMap.stop(); 
-      currentMap.setPadding({ top: 0, right: 0, bottom: 0, left: 0 });
+      currentMap.setPadding(retailLayoutPadding); 
     } catch {}
 
     if (cameraTimeoutRef.current) {
@@ -197,10 +194,9 @@ export default function useMapController(opts: MapControllerOptions) {
           }
         }
 
-        // Precise programmatic track camera glide pass remains intact
         currentMap.easeTo({
           center: targetCenter,
-          zoom: finalZoom,
+          zoom: finalZoom - 0.2, // Back off zoom slightly to account for the tighter symmetrical margins
           bearing: 0,
           pitch: 0,
           duration: 750, 
@@ -232,7 +228,8 @@ export default function useMapController(opts: MapControllerOptions) {
 
     try {
       map.stop();
-      map.setPadding({ top: 0, right: 0, bottom: 0, left: 0 });
+      // Apply matching balanced initial edge padding dimensions
+      map.setPadding({ top: 0, right: 260, bottom: 0, left: 260 });
       map.resize();
       
       map.easeTo({
@@ -249,7 +246,7 @@ export default function useMapController(opts: MapControllerOptions) {
   }, [opts.mapRef]);
 
   // ==========================================================================
-  // VIEWPORT LIFECYCLE HOOK BINDINGS
+  // VIEWPORT LIFECYCLE HOOK BINDINGS[cite: 18]
   // ==========================================================================
   useEffect(() => {
     if (!opts.containerRef.current || opts.mapRef.current) return;
@@ -277,7 +274,6 @@ export default function useMapController(opts: MapControllerOptions) {
         if (stateRef.current.onRegisterZoomFn) stateRef.current.onRegisterZoomFn(fitRoutePadded);
       });
 
-      // Hook listeners act as garbage collectors to immediately wipe canvas artifacts during interactions
       mapInstance.on('move', repaintViewportHUDOverlay);
       mapInstance.on('zoom', repaintViewportHUDOverlay);
       mapInstance.on('render', repaintViewportHUDOverlay);

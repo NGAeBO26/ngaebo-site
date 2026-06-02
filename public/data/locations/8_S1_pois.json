@@ -1,0 +1,53 @@
+{
+    "profile_id": "8_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Cliff Mountain",
+            "type": "scenic",
+            "dist": "0.62",
+            "via": "Horse Cove Rd",
+            "lng": -83.39183,
+            "lat": 34.80453
+        },
+        {
+            "label": "Hog Mountain",
+            "type": "scenic",
+            "dist": "1.44",
+            "via": "Horse Cove Rd",
+            "lng": -83.35925,
+            "lat": 34.81506
+        },
+        {
+            "label": "Eastman Mountain",
+            "type": "scenic",
+            "dist": "1.70",
+            "via": "Horse Cove Rd",
+            "lng": -83.37722,
+            "lat": 34.82865
+        },
+        {
+            "label": "Wiley Mountain",
+            "type": "scenic",
+            "dist": "1.89",
+            "via": "Horse Cove Rd",
+            "lng": -83.41409,
+            "lat": 34.80523
+        },
+        {
+            "label": "Duncan Bald",
+            "type": "scenic",
+            "dist": "2.06",
+            "via": "Horse Cove Rd",
+            "lng": -83.36295,
+            "lat": 34.83018
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clayton Fire Department",
+        "type": "Fire-EMS",
+        "address": "14 Emergency Dr # 105, Clayton, GA 30525, USA",
+        "phone": "(706) 782-2751",
+        "dist_mi": 5.5
+    }
+}

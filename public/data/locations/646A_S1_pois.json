@@ -1,0 +1,53 @@
+{
+    "profile_id": "646A_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Burrells Ford",
+            "type": "camp",
+            "dist": "0.36",
+            "via": "Horse Cove Rd",
+            "lng": -83.1181,
+            "lat": 34.969
+        },
+        {
+            "label": "Ellicott Rock Wilderness",
+            "type": "camp",
+            "dist": "0.38",
+            "via": "Horse Cove Rd",
+            "lng": -83.12152,
+            "lat": 34.9706
+        },
+        {
+            "label": "Bee Bait Mountain",
+            "type": "scenic",
+            "dist": "0.72",
+            "via": "Horse Cove Rd",
+            "lng": -83.12893,
+            "lat": 34.97443
+        },
+        {
+            "label": "Carey Gap",
+            "type": "gap",
+            "dist": "1.03",
+            "via": "Horse Cove Rd",
+            "lng": -83.12987,
+            "lat": 34.96426
+        },
+        {
+            "label": "Redside Mountain",
+            "type": "scenic",
+            "dist": "1.46",
+            "via": "Horse Cove Rd",
+            "lng": -83.12552,
+            "lat": 34.99374
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Mountain Rest FD - Oconee Co. Station 4",
+        "type": "Fire-EMS",
+        "address": "130 Verner Mill Rd, Mountain Rest, SC 29664, USA",
+        "phone": "(864) 638-8220",
+        "dist_mi": 9.2
+    }
+}

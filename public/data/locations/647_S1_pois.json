@@ -1,0 +1,53 @@
+{
+    "profile_id": "647_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Andrews Cove Campground",
+            "type": "camp",
+            "dist": "0.05",
+            "via": "Horse Cove Rd",
+            "lng": -83.73751,
+            "lat": 34.77823
+        },
+        {
+            "label": "Rocky Mountain",
+            "type": "scenic",
+            "dist": "1.42",
+            "via": "Horse Cove Rd",
+            "lng": -83.7299,
+            "lat": 34.79842
+        },
+        {
+            "label": "Unicoi Gap",
+            "type": "gap",
+            "dist": "1.57",
+            "via": "Horse Cove Rd",
+            "lng": -83.74296,
+            "lat": 34.80093
+        },
+        {
+            "label": "Indian Grave Gap",
+            "type": "gap",
+            "dist": "1.63",
+            "via": "Horse Cove Rd",
+            "lng": -83.71407,
+            "lat": 34.79287
+        },
+        {
+            "label": "Anna Ruby Falls",
+            "type": "water",
+            "dist": "1.76",
+            "via": "Horse Cove Rd",
+            "lng": -83.71212,
+            "lat": 34.76343
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Helen Fire Department",
+        "type": "Fire-EMS",
+        "address": "120 Unicoi St, Helen, GA 30545, USA",
+        "phone": "(706) 878-3676",
+        "dist_mi": 5.4
+    }
+}

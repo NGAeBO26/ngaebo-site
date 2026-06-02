@@ -1,8 +1,8 @@
 {
   "profile_id": "724_S1",
   "route_id": "724",
-  "ssdi_score": 5.8,
-  "v3_terrain_score": 3.9,
+  "ssdi_score": 5.5,
+  "v3_terrain_score": 3.8,
   "v3_terrain_class": "Cruiser",
   "badge_type": "wet",
   "condition": "WET / SLICK",
@@ -17,10 +17,10 @@
     "value": 0.13
   },
   "environment": {
-    "current_temp": 84,
-    "saturation_index": 10,
+    "current_temp": 73,
+    "saturation_index": 8.6,
     "soil_status": "Saturated",
-    "precip_24h": 0.0,
+    "precip_24h": 0.02,
     "saturation_trend": "stable",
     "alerts": []
   },
@@ -31,7 +31,7 @@
     "v3_base_intensity": 3.8
   },
   "connectivity": {
-    "signal_class": "Spotty",
-    "deadzone_max_meters": 2052
+    "signal_class": "Unknown",
+    "deadzone_max_meters": 0
   }
 }

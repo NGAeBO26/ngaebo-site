@@ -1,0 +1,21 @@
+{
+    "profile_id": "191C_S1",
+    "count": 1,
+    "locations": [
+        {
+            "label": "Red Root Mountain",
+            "type": "scenic",
+            "dist": "2.04",
+            "via": "Horse Cove Rd",
+            "lng": -83.4759,
+            "lat": 34.50075
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Baldwin Fire Department",
+        "type": "Fire-EMS",
+        "address": "165 Willingham Ave, Baldwin, GA 30511, USA",
+        "phone": "(706) 778-8711",
+        "dist_mi": 7.2
+    }
+}

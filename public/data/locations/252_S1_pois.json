@@ -1,0 +1,45 @@
+{
+    "profile_id": "252_S1",
+    "count": 4,
+    "locations": [
+        {
+            "label": "Hammond Gap",
+            "type": "gap",
+            "dist": "2.74",
+            "via": "Horse Cove Rd",
+            "lng": -85.24356,
+            "lat": 34.56564
+        },
+        {
+            "label": "Baileys Gap",
+            "type": "gap",
+            "dist": "2.96",
+            "via": "Horse Cove Rd",
+            "lng": -85.20801,
+            "lat": 34.56231
+        },
+        {
+            "label": "Smith Gap",
+            "type": "gap",
+            "dist": "3.33",
+            "via": "Horse Cove Rd",
+            "lng": -85.21662,
+            "lat": 34.65036
+        },
+        {
+            "label": "Taylor Ridge",
+            "type": "scenic",
+            "dist": "3.99",
+            "via": "Horse Cove Rd",
+            "lng": -85.2536,
+            "lat": 34.54954
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Walker County Fire/Rescue",
+        "type": "Fire-EMS",
+        "address": "3352 Round Pond Rd, LaFayette, GA 30728, USA",
+        "phone": "(807) 827-2742",
+        "dist_mi": 6.3
+    }
+}

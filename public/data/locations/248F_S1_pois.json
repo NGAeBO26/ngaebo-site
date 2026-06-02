@@ -1,0 +1,29 @@
+{
+    "profile_id": "248F_S1",
+    "count": 2,
+    "locations": [
+        {
+            "label": "Jackrabbit Mountain Bike Trailhead",
+            "type": "trailhead",
+            "dist": "0.43",
+            "via": "Horse Cove Rd",
+            "lng": -83.76798,
+            "lat": 35.00964
+        },
+        {
+            "label": "Jackrabbit Mountain Recreation Area",
+            "type": "camp",
+            "dist": "0.52",
+            "via": "Horse Cove Rd",
+            "lng": -83.76951,
+            "lat": 35.01011
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clay County Fire and Rescue Station 2",
+        "type": "Fire-EMS",
+        "address": "Hayesville, NC 28904, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 2.3
+    }
+}

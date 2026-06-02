@@ -1,0 +1,53 @@
+{
+    "profile_id": "798_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Hickorynut Mountain",
+            "type": "scenic",
+            "dist": "0.28",
+            "via": "Horse Cove Rd",
+            "lng": -84.46548,
+            "lat": 34.85037
+        },
+        {
+            "label": "Hickorynut Gap",
+            "type": "gap",
+            "dist": "0.43",
+            "via": "Horse Cove Rd",
+            "lng": -84.47104,
+            "lat": 34.85286
+        },
+        {
+            "label": "Polecat Gap",
+            "type": "gap",
+            "dist": "0.80",
+            "via": "Horse Cove Rd",
+            "lng": -84.47771,
+            "lat": 34.85508
+        },
+        {
+            "label": "Collins Mountain",
+            "type": "scenic",
+            "dist": "1.43",
+            "via": "Horse Cove Rd",
+            "lng": -84.46626,
+            "lat": 34.87467
+        },
+        {
+            "label": "Porter Mountain",
+            "type": "scenic",
+            "dist": "1.69",
+            "via": "Horse Cove Rd",
+            "lng": -84.43631,
+            "lat": 34.86369
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Fannin County Emergency Services - Fire Station 1",
+        "type": "Fire-EMS",
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 10.6
+    }
+}

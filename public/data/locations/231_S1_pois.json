@@ -1,0 +1,53 @@
+{
+    "profile_id": "231_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "The Pocket Recreation Area",
+            "type": "camp",
+            "dist": "1.56",
+            "via": "Horse Cove Rd",
+            "lng": -85.0853,
+            "lat": 34.58475
+        },
+        {
+            "label": "Keown Falls",
+            "type": "water",
+            "dist": "1.58",
+            "via": "Horse Cove Rd",
+            "lng": -85.09439,
+            "lat": 34.61342
+        },
+        {
+            "label": "Gentry Gap",
+            "type": "gap",
+            "dist": "1.63",
+            "via": "Horse Cove Rd",
+            "lng": -85.06578,
+            "lat": 34.62675
+        },
+        {
+            "label": "Johns Mountain",
+            "type": "scenic",
+            "dist": "2.11",
+            "via": "Horse Cove Rd",
+            "lng": -85.09836,
+            "lat": 34.62245
+        },
+        {
+            "label": "Calhoun Gap",
+            "type": "gap",
+            "dist": "2.19",
+            "via": "Horse Cove Rd",
+            "lng": -85.06495,
+            "lat": 34.57175
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Walker County Fire/Rescue",
+        "type": "Fire-EMS",
+        "address": "3352 Round Pond Rd, LaFayette, GA 30728, USA",
+        "phone": "(807) 827-2742",
+        "dist_mi": 11.6
+    }
+}

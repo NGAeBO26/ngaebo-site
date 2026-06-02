@@ -1,0 +1,53 @@
+{
+    "profile_id": "1351-1_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Beech Bottom Trailhead",
+            "type": "trailhead",
+            "dist": "0.78",
+            "via": "Horse Cove Rd",
+            "lng": -84.58834,
+            "lat": 34.99084
+        },
+        {
+            "label": "Jacks Rvr Trlhd@Alaculsy Valley",
+            "type": "trailhead",
+            "dist": "1.80",
+            "via": "Horse Cove Rd",
+            "lng": -84.6325,
+            "lat": 34.98723
+        },
+        {
+            "label": "Van Arthur Lead",
+            "type": "scenic",
+            "dist": "2.01",
+            "via": "Horse Cove Rd",
+            "lng": -84.56756,
+            "lat": 34.98571
+        },
+        {
+            "label": "Ken Mountain",
+            "type": "scenic",
+            "dist": "2.25",
+            "via": "Horse Cove Rd",
+            "lng": -84.60527,
+            "lat": 34.96102
+        },
+        {
+            "label": "Cottonwood Patch Campground",
+            "type": "camp",
+            "dist": "2.29",
+            "via": "Horse Cove Rd",
+            "lng": -84.63883,
+            "lat": 34.9806
+        }
+    ],
+    "rescue_anchor": {
+        "name": "East Polk Fire & Rescue",
+        "type": "Fire-EMS",
+        "address": "847 Cherokee Trail, Ducktown, TN 37326, USA",
+        "phone": "(423) 496-3341",
+        "dist_mi": 14.6
+    }
+}

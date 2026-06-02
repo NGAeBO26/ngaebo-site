@@ -1,0 +1,45 @@
+{
+    "profile_id": "4503A_S1",
+    "count": 4,
+    "locations": [
+        {
+            "label": "Estatoah Falls",
+            "type": "water",
+            "dist": "1.00",
+            "via": "Horse Cove Rd",
+            "lng": -83.34432,
+            "lat": 34.9912
+        },
+        {
+            "label": "Rainy Gap",
+            "type": "gap",
+            "dist": "1.42",
+            "via": "Horse Cove Rd",
+            "lng": -83.34154,
+            "lat": 34.98537
+        },
+        {
+            "label": "Alex Mountain",
+            "type": "scenic",
+            "dist": "2.60",
+            "via": "Horse Cove Rd",
+            "lng": -83.3268,
+            "lat": 34.97156
+        },
+        {
+            "label": "Locust School Gap",
+            "type": "gap",
+            "dist": "2.69",
+            "via": "Horse Cove Rd",
+            "lng": -83.33988,
+            "lat": 34.96704
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Scaly Mountain Volunteer Fire Department",
+        "type": "Fire-EMS",
+        "address": "169 Hale Ridge Rd, Scaly Mountain, NC 28775, USA",
+        "phone": "(828) 526-9032",
+        "dist_mi": 3.0
+    }
+}

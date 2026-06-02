@@ -1,0 +1,37 @@
+{
+    "profile_id": "59G_S1",
+    "count": 3,
+    "locations": [
+        {
+            "label": "Lake Russell Recreation Area Campground",
+            "type": "camp",
+            "dist": "0.31",
+            "via": "Horse Cove Rd",
+            "lng": -83.49496,
+            "lat": 34.49315
+        },
+        {
+            "label": "Red Root Mountain",
+            "type": "scenic",
+            "dist": "0.90",
+            "via": "Horse Cove Rd",
+            "lng": -83.4759,
+            "lat": 34.50075
+        },
+        {
+            "label": "Chenocetah Mountain",
+            "type": "scenic",
+            "dist": "1.05",
+            "via": "Horse Cove Rd",
+            "lng": -83.50671,
+            "lat": 34.50209
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Baldwin Fire Department",
+        "type": "Fire-EMS",
+        "address": "165 Willingham Ave, Baldwin, GA 30511, USA",
+        "phone": "(706) 778-8711",
+        "dist_mi": 4.2
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "profile_id": "92B_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Farmer Mountain",
+            "type": "scenic",
+            "dist": "2.04",
+            "via": "Horse Cove Rd",
+            "lng": -83.4135,
+            "lat": 34.49843
+        },
+        {
+            "label": "Red Root Mountain",
+            "type": "scenic",
+            "dist": "2.23",
+            "via": "Horse Cove Rd",
+            "lng": -83.4759,
+            "lat": 34.50075
+        },
+        {
+            "label": "Allen Mountain",
+            "type": "scenic",
+            "dist": "2.47",
+            "via": "Horse Cove Rd",
+            "lng": -83.43103,
+            "lat": 34.48184
+        },
+        {
+            "label": "Wells Mountain",
+            "type": "scenic",
+            "dist": "2.53",
+            "via": "Horse Cove Rd",
+            "lng": -83.44322,
+            "lat": 34.47982
+        },
+        {
+            "label": "Soapstone Mountain",
+            "type": "scenic",
+            "dist": "2.55",
+            "via": "Horse Cove Rd",
+            "lng": -83.41565,
+            "lat": 34.48647
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Baldwin Fire Department",
+        "type": "Fire-EMS",
+        "address": "165 Willingham Ave, Baldwin, GA 30511, USA",
+        "phone": "(706) 778-8711",
+        "dist_mi": 7.7
+    }
+}

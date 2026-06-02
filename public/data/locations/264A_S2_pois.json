@@ -1,0 +1,53 @@
+{
+    "profile_id": "264A_S2",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Lower Polecat",
+            "type": "scenic",
+            "dist": "0.55",
+            "via": "Horse Cove Rd",
+            "lng": -84.10137,
+            "lat": 34.76985
+        },
+        {
+            "label": "Sea Creek Falls",
+            "type": "water",
+            "dist": "0.63",
+            "via": "Horse Cove Rd",
+            "lng": -84.09464,
+            "lat": 34.77009
+        },
+        {
+            "label": "Upper Polecat",
+            "type": "scenic",
+            "dist": "0.97",
+            "via": "Horse Cove Rd",
+            "lng": -84.11689,
+            "lat": 34.7742
+        },
+        {
+            "label": "Cliff Ridge",
+            "type": "scenic",
+            "dist": "1.00",
+            "via": "Horse Cove Rd",
+            "lng": -84.08422,
+            "lat": 34.77238
+        },
+        {
+            "label": "Shope Knob",
+            "type": "scenic",
+            "dist": "1.03",
+            "via": "Horse Cove Rd",
+            "lng": -84.08855,
+            "lat": 34.78911
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Union County Fire Department",
+        "type": "Fire-EMS",
+        "address": "507 Shoe Factory Rd, Blairsville, GA 30512, USA",
+        "phone": "(706) 439-6095",
+        "dist_mi": 12.6
+    }
+}

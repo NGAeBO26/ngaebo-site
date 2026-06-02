@@ -1,0 +1,53 @@
+{
+    "profile_id": "955D_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Horn Mountain",
+            "type": "scenic",
+            "dist": "1.73",
+            "via": "Horse Cove Rd",
+            "lng": -85.07198,
+            "lat": 34.53807
+        },
+        {
+            "label": "Calbeck Mountain",
+            "type": "scenic",
+            "dist": "2.02",
+            "via": "Horse Cove Rd",
+            "lng": -85.09508,
+            "lat": 34.50461
+        },
+        {
+            "label": "Pocket Gap",
+            "type": "gap",
+            "dist": "2.06",
+            "via": "Horse Cove Rd",
+            "lng": -85.08439,
+            "lat": 34.53786
+        },
+        {
+            "label": "Mill Mountain",
+            "type": "scenic",
+            "dist": "2.59",
+            "via": "Horse Cove Rd",
+            "lng": -85.08872,
+            "lat": 34.54477
+        },
+        {
+            "label": "Harrington Ferry (Historical)",
+            "type": "hazard",
+            "dist": "2.86",
+            "via": "Horse Cove Rd",
+            "lng": -85.01189,
+            "lat": 34.5187
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Calhoun Fire Station #1",
+        "type": "Fire-EMS",
+        "address": "327 S Wall St, Calhoun, GA 30701, USA",
+        "phone": "(706) 629-4204",
+        "dist_mi": 7.6
+    }
+}

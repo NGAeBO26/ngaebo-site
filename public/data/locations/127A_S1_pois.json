@@ -1,0 +1,53 @@
+{
+    "profile_id": "127A_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Hemlock Falls Trailhead",
+            "type": "trailhead",
+            "dist": "0.05",
+            "via": "Horse Cove Rd",
+            "lng": -83.59695,
+            "lat": 34.84695
+        },
+        {
+            "label": "Falls Mountain",
+            "type": "scenic",
+            "dist": "0.97",
+            "via": "Horse Cove Rd",
+            "lng": -83.60268,
+            "lat": 34.85947
+        },
+        {
+            "label": "Pigpen Ridge",
+            "type": "scenic",
+            "dist": "1.38",
+            "via": "Horse Cove Rd",
+            "lng": -83.61793,
+            "lat": 34.85626
+        },
+        {
+            "label": "Hellhole Mountain",
+            "type": "scenic",
+            "dist": "1.51",
+            "via": "Horse Cove Rd",
+            "lng": -83.62086,
+            "lat": 34.85565
+        },
+        {
+            "label": "Wildcat Creek Campground #1 Lower",
+            "type": "camp",
+            "dist": "1.81",
+            "via": "Horse Cove Rd",
+            "lng": -83.61889,
+            "lat": 34.8275
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Towns County Fire Department",
+        "type": "Fire-EMS",
+        "address": "Sims Cir, Hiawassee, GA 30546, USA",
+        "phone": "(706) 896-2090",
+        "dist_mi": 13.5
+    }
+}

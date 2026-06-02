@@ -1,0 +1,53 @@
+{
+    "profile_id": "630C_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Hickey Gap",
+            "type": "gap",
+            "dist": "0.82",
+            "via": "Horse Cove Rd",
+            "lng": -84.67299,
+            "lat": 34.89425
+        },
+        {
+            "label": "Hickey Gap Campground",
+            "type": "camp",
+            "dist": "0.83",
+            "via": "Horse Cove Rd",
+            "lng": -84.67247,
+            "lat": 34.89413
+        },
+        {
+            "label": "Pleasant Gap",
+            "type": "gap",
+            "dist": "1.39",
+            "via": "Horse Cove Rd",
+            "lng": -84.67355,
+            "lat": 34.92591
+        },
+        {
+            "label": "Paint Bank Gap",
+            "type": "gap",
+            "dist": "1.48",
+            "via": "Horse Cove Rd",
+            "lng": -84.64494,
+            "lat": 34.91091
+        },
+        {
+            "label": "Hickory Creek Trailhead",
+            "type": "trailhead",
+            "dist": "1.55",
+            "via": "Horse Cove Rd",
+            "lng": -84.64334,
+            "lat": 34.90195
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Bradley County Fire Rescue Station 1 (Taylor)",
+        "type": "Fire-EMS",
+        "address": "5295 Bates Pike SE, Cleveland, TN 37323, USA",
+        "phone": "(423) 728-7061",
+        "dist_mi": 16.7
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "profile_id": "33393_S1",
+    "count": 4,
+    "locations": [
+        {
+            "label": "Tumbling Creek Campground",
+            "type": "camp",
+            "dist": "1.11",
+            "via": "Horse Cove Rd",
+            "lng": -84.46731,
+            "lat": 35.01741
+        },
+        {
+            "label": "Mary Ridge",
+            "type": "scenic",
+            "dist": "1.55",
+            "via": "Horse Cove Rd",
+            "lng": -84.46533,
+            "lat": 34.97904
+        },
+        {
+            "label": "Buckner Mountain",
+            "type": "scenic",
+            "dist": "1.65",
+            "via": "Horse Cove Rd",
+            "lng": -84.4514,
+            "lat": 34.98015
+        },
+        {
+            "label": "Granny Marr Mountain",
+            "type": "scenic",
+            "dist": "1.97",
+            "via": "Horse Cove Rd",
+            "lng": -84.46467,
+            "lat": 34.97301
+        }
+    ],
+    "rescue_anchor": {
+        "name": "East Polk Fire & Rescue",
+        "type": "Fire-EMS",
+        "address": "847 Cherokee Trail, Ducktown, TN 37326, USA",
+        "phone": "(423) 496-3341",
+        "dist_mi": 5.3
+    }
+}

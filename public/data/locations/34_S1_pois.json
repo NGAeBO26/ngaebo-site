@@ -1,0 +1,53 @@
+{
+    "profile_id": "34_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Crow Mountain",
+            "type": "scenic",
+            "dist": "0.53",
+            "via": "Horse Cove Rd",
+            "lng": -83.9438,
+            "lat": 34.69509
+        },
+        {
+            "label": "Miller Top",
+            "type": "scenic",
+            "dist": "0.95",
+            "via": "Horse Cove Rd",
+            "lng": -83.93074,
+            "lat": 34.69453
+        },
+        {
+            "label": "Meadow Gap",
+            "type": "gap",
+            "dist": "1.13",
+            "via": "Horse Cove Rd",
+            "lng": -83.92991,
+            "lat": 34.69815
+        },
+        {
+            "label": "Ground Squirrel Gap",
+            "type": "gap",
+            "dist": "1.30",
+            "via": "Horse Cove Rd",
+            "lng": -83.9388,
+            "lat": 34.70565
+        },
+        {
+            "label": "Gooch Gap",
+            "type": "gap",
+            "dist": "1.52",
+            "via": "Horse Cove Rd",
+            "lng": -83.93047,
+            "lat": 34.70593
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 10.9
+    }
+}

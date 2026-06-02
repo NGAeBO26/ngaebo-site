@@ -1,0 +1,53 @@
+{
+    "profile_id": "376_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Raper Mountain",
+            "type": "scenic",
+            "dist": "1.06",
+            "via": "Horse Cove Rd",
+            "lng": -83.57462,
+            "lat": 34.76731
+        },
+        {
+            "label": "Moates Knob",
+            "type": "scenic",
+            "dist": "1.21",
+            "via": "Horse Cove Rd",
+            "lng": -83.56313,
+            "lat": 34.76298
+        },
+        {
+            "label": "Long Ridge",
+            "type": "scenic",
+            "dist": "1.58",
+            "via": "Horse Cove Rd",
+            "lng": -83.55258,
+            "lat": 34.75277
+        },
+        {
+            "label": "Oakey Mountain",
+            "type": "scenic",
+            "dist": "1.99",
+            "via": "Horse Cove Rd",
+            "lng": -83.5455,
+            "lat": 34.75026
+        },
+        {
+            "label": "Sillycook Mountain",
+            "type": "scenic",
+            "dist": "2.05",
+            "via": "Horse Cove Rd",
+            "lng": -83.55554,
+            "lat": 34.73119
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Habersham Emergency Services Station 16",
+        "type": "Fire-EMS",
+        "address": "6357 GA-17, Clarkesville, GA 30523, USA",
+        "phone": "(706) 754-2822",
+        "dist_mi": 7.6
+    }
+}

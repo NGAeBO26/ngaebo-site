@@ -1,7 +1,7 @@
 {
   "profile_id": "80_S1",
   "route_id": "80",
-  "ssdi_score": 5.9,
+  "ssdi_score": 5.2,
   "v3_terrain_score": 4.2,
   "v3_terrain_class": "Strenuous",
   "badge_type": "wet",
@@ -17,10 +17,10 @@
     "value": 0.28
   },
   "environment": {
-    "current_temp": 76,
-    "saturation_index": 9.2,
+    "current_temp": 68,
+    "saturation_index": 5.7,
     "soil_status": "Saturated",
-    "precip_24h": 0.0,
+    "precip_24h": 0.03,
     "saturation_trend": "stable",
     "alerts": []
   },
@@ -31,7 +31,7 @@
     "v3_base_intensity": 4.1
   },
   "connectivity": {
-    "signal_class": "Intermittent",
-    "deadzone_max_meters": 850
+    "signal_class": "Unknown",
+    "deadzone_max_meters": 0
   }
 }

@@ -1,0 +1,53 @@
+{
+    "profile_id": "295_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Long Ridge",
+            "type": "scenic",
+            "dist": "0.39",
+            "via": "Horse Cove Rd",
+            "lng": -84.34728,
+            "lat": 34.76577
+        },
+        {
+            "label": "Cold Mountain",
+            "type": "scenic",
+            "dist": "0.77",
+            "via": "Horse Cove Rd",
+            "lng": -84.34155,
+            "lat": 34.76135
+        },
+        {
+            "label": "Little Bee Mountain",
+            "type": "scenic",
+            "dist": "1.76",
+            "via": "Horse Cove Rd",
+            "lng": -84.37617,
+            "lat": 34.76205
+        },
+        {
+            "label": "Little Bald Mountain",
+            "type": "scenic",
+            "dist": "1.91",
+            "via": "Horse Cove Rd",
+            "lng": -84.33189,
+            "lat": 34.74688
+        },
+        {
+            "label": "Rich Mountain",
+            "type": "scenic",
+            "dist": "1.95",
+            "via": "Horse Cove Rd",
+            "lng": -84.34313,
+            "lat": 34.74338
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Fannin County Emergency Services - Fire Station 1",
+        "type": "Fire-EMS",
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 7.6
+    }
+}

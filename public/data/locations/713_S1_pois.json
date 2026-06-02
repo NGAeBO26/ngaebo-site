@@ -1,0 +1,29 @@
+{
+    "profile_id": "713_S1",
+    "count": 2,
+    "locations": [
+        {
+            "label": "Nickajack Gap",
+            "type": "gap",
+            "dist": "1.52",
+            "via": "Horse Cove Rd",
+            "lng": -85.13328,
+            "lat": 34.81008
+        },
+        {
+            "label": "Cove Gap",
+            "type": "gap",
+            "dist": "1.52",
+            "via": "Horse Cove Rd",
+            "lng": -85.10717,
+            "lat": 34.77591
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Walker County Fire & Rescue",
+        "type": "Fire-EMS",
+        "address": "7249 US-27, Rock Spring, GA 30739, USA",
+        "phone": "(706) 539-1255",
+        "dist_mi": 7.9
+    }
+}

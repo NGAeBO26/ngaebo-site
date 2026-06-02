@@ -1,0 +1,53 @@
+{
+    "profile_id": "70_S2",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Rock Mountain",
+            "type": "scenic",
+            "dist": "0.31",
+            "via": "Horse Cove Rd",
+            "lng": -83.55165,
+            "lat": 34.93834
+        },
+        {
+            "label": "Tallulah River Campground",
+            "type": "camp",
+            "dist": "0.61",
+            "via": "Horse Cove Rd",
+            "lng": -83.54321,
+            "lat": 34.92718
+        },
+        {
+            "label": "Cedar Cliff Knob",
+            "type": "scenic",
+            "dist": "0.97",
+            "via": "Horse Cove Rd",
+            "lng": -83.56342,
+            "lat": 34.92876
+        },
+        {
+            "label": "Straw Mountain",
+            "type": "scenic",
+            "dist": "1.01",
+            "via": "Horse Cove Rd",
+            "lng": -83.53077,
+            "lat": 34.93812
+        },
+        {
+            "label": "Chestnut Knob",
+            "type": "scenic",
+            "dist": "1.25",
+            "via": "Horse Cove Rd",
+            "lng": -83.57016,
+            "lat": 34.93453
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clay County Fire and Rescue Station 6",
+        "type": "Fire-EMS",
+        "address": "18 Eagle Fork Rd, Hayesville, NC 28904, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 9.9
+    }
+}

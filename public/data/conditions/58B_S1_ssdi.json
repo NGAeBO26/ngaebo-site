@@ -1,7 +1,7 @@
 {
     "profile_id": "58B_S1",
     "route_id": "58B",
-    "ssdi_score": 7.5,
+    "ssdi_score": 14.1,
     "v3_terrain_score": 5.9,
     "v3_terrain_class": "Strenuous",
     "badge_type": "muddy",
@@ -17,23 +17,21 @@
         "value": 0.3
     },
     "environment": {
-        "current_temp": 63,
-        "saturation_index": 8.03,
+        "current_temp": 70,
+        "saturation_index": 40.86,
         "soil_status": "Saturated",
-        "precip_24h": 0.0,
+        "precip_24h": 0.01,
         "saturation_trend": "stable",
-        "alerts": [
-            "SAFETY ALERT: Cell Service is UNAVAILABLE."
-        ]
+        "alerts": []
     },
     "physics": {
-        "live_traction": 0.38,
-        "live_wh_per_km": 19.01,
+        "live_traction": 0.39,
+        "live_wh_per_km": 18.95,
         "energy_penalty_pct": 20.0,
         "v3_base_intensity": 5.9
     },
     "connectivity": {
-        "signal_class": "Unavailable",
-        "deadzone_max_meters": 3343
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
     }
 }

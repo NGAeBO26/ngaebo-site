@@ -1,0 +1,53 @@
+{
+    "profile_id": "244A_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Raven'S Cliff Wilderness Trailhead",
+            "type": "trailhead",
+            "dist": "0.05",
+            "via": "Horse Cove Rd",
+            "lng": -83.78878,
+            "lat": 34.70958
+        },
+        {
+            "label": "Dukes Creek Falls Trailhead",
+            "type": "trailhead",
+            "dist": "0.55",
+            "via": "Horse Cove Rd",
+            "lng": -83.78917,
+            "lat": 34.70195
+        },
+        {
+            "label": "Dukes Creek Falls",
+            "type": "water",
+            "dist": "0.55",
+            "via": "Horse Cove Rd",
+            "lng": -83.79129,
+            "lat": 34.70204
+        },
+        {
+            "label": "Little Hickorynut Mountain",
+            "type": "scenic",
+            "dist": "0.66",
+            "via": "Horse Cove Rd",
+            "lng": -83.77833,
+            "lat": 34.70741
+        },
+        {
+            "label": "Jasper Gap",
+            "type": "gap",
+            "dist": "0.74",
+            "via": "Horse Cove Rd",
+            "lng": -83.77657,
+            "lat": 34.71065
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Helen Fire Department",
+        "type": "Fire-EMS",
+        "address": "120 Unicoi St, Helen, GA 30545, USA",
+        "phone": "(706) 878-3676",
+        "dist_mi": 4.0
+    }
+}

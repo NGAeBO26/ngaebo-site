@@ -45,19 +45,18 @@ function ReportWrapper() {
         <RouteReport_v3 routeID={routeID || "28-2_S1"} />
         <TelemetryOverlayTracker />
 
-        {/* 🛠️ ALIGNMENT FIX STYLE TAG */}
+        {/* ALIGNMENT FIX STYLE TAG */}
         <style>{`
           .rg-interactive-explorer-shell .rr-isolation-shell {
             padding: 0 !important;
             margin: 0 !important;
             background-color: transparent !important;
             width: auto !important;
-            line-height: normal !important; /* Locks structural text node tracking from expanding boxes */
+            line-height: normal !important;
           }
           .rg-interactive-explorer-shell .rr-document-page {
             margin: 0 !important;
           }
-          /* Removes pink test boundaries so production presentation interface looks perfectly clean */
           .rg-blueprint-overlay-canvas {
             border: none !important;
           }
@@ -68,15 +67,25 @@ function ReportWrapper() {
 }
 
 /**
- * PrinterWrapper handles extracting the routeID from the URL
- * and passing it to the isolated PDF printer layer.
+ * 🎯 NEW EXTRACTION WRAPPER:
+ * Safely reads the live URL parameter context *after* React Router resolves 
+ * the sub-navigation match tree, passing the real selected routeID directly to the component.
  */
+function IframeReportWrapper() {
+  const { routeID } = useParams<{ routeID: string }>();
+  return <RouteReport_v3 routeID={routeID || "28-2_S1"} />;
+}
+
 function PrinterWrapper() {
   const { routeID } = useParams<{ routeID: string }>();
   return <RideGuidePrinter routeID={routeID || "28-2_S1"} />;
 }
 
 export default function App() {
+  // Inspect URL parameters at the top-level execution thread
+  const isIframePreviewActive = typeof window !== "undefined" && 
+    new URLSearchParams(window.location.search).get("preview") === "true";
+
   return (
     <>
       <Routes>
@@ -87,21 +96,33 @@ export default function App() {
         <Route
           path="/*"
           element={
-            <div className="app-shell">
-              <Header />
-              <main className="page">
+            isIframePreviewActive ? (
+              /* IFRAME PREVIEW CANVAS MODE (Bypasses parent headers/footers/margins) */
+              <main className="page iframe-preview-clean-canvas" style={{ padding: 0, margin: 0, backgroundColor: "#ffffff" }}>
                 <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/trail-guides" element={<TrailGuides />} />
-                  <Route path="/community" element={<Community />} />
-                  
-                  {/* COOPERATIVE DATA APP ROUTES */}
-                  <Route path="/report/:routeID" element={<ReportWrapper />} />
+                  {/* 🎯 THE DYNAMIC ROUTE CORRECTION: Swapped out the direct inline useParams loop for our parameter extraction wrapper */}
+                  <Route path="/report/:routeID" element={<IframeReportWrapper />} />
                   <Route path="/route-report" element={<RouteReport_v3 routeID="28-2_S1" />} />
                 </Routes>
               </main>
-              <Footer />
-            </div>
+            ) : (
+              /* STANDARD FULL WEB EXPERIENCE SHELL CONTAINER */
+              <div className="app-shell">
+                <Header />
+                <main className="page">
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/trail-guides" element={<TrailGuides />} />
+                    <Route path="/community" element={<Community />} />
+                    
+                    {/* STANDARD MASTER REPORT DETAILS LAYOUT VIEWPORTS */}
+                    <Route path="/report/:routeID" element={<ReportWrapper />} />
+                    <Route path="/route-report" element={<RouteReport_v3 routeID="28-2_S1" />} />
+                  </Routes>
+                </main>
+                <Footer />
+              </div>
+            )
           }
         />
       </Routes>

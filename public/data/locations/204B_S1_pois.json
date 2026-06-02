@@ -1,0 +1,29 @@
+{
+    "profile_id": "204B_S1",
+    "count": 2,
+    "locations": [
+        {
+            "label": "Dunaway Gap",
+            "type": "gap",
+            "dist": "0.79",
+            "via": "Horse Cove Rd",
+            "lng": -85.15995,
+            "lat": 34.47898
+        },
+        {
+            "label": "Little Sand Mountain",
+            "type": "scenic",
+            "dist": "2.15",
+            "via": "Horse Cove Rd",
+            "lng": -85.19189,
+            "lat": 34.49508
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Summerville Fire Department",
+        "type": "Fire-EMS",
+        "address": "176 Cox St, Summerville, GA 30747, USA",
+        "phone": "(706) 859-0914",
+        "dist_mi": 13.5
+    }
+}

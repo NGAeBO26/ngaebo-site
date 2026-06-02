@@ -1,0 +1,21 @@
+{
+    "profile_id": "200-E_S1",
+    "count": 1,
+    "locations": [
+        {
+            "label": "Little Mountain Ridge",
+            "type": "scenic",
+            "dist": "2.51",
+            "via": "Horse Cove Rd",
+            "lng": -85.15323,
+            "lat": 34.56206
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Walker County Fire/Rescue",
+        "type": "Fire-EMS",
+        "address": "3352 Round Pond Rd, LaFayette, GA 30728, USA",
+        "phone": "(807) 827-2742",
+        "dist_mi": 12.2
+    }
+}

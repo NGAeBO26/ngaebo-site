@@ -1,0 +1,53 @@
+{
+    "profile_id": "33C_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Locust Gap",
+            "type": "gap",
+            "dist": "0.10",
+            "via": "Horse Cove Rd",
+            "lng": -83.99853,
+            "lat": 34.7387
+        },
+        {
+            "label": "Rocky Mountain",
+            "type": "scenic",
+            "dist": "0.71",
+            "via": "Horse Cove Rd",
+            "lng": -83.99957,
+            "lat": 34.72898
+        },
+        {
+            "label": "Panther Gap",
+            "type": "gap",
+            "dist": "1.47",
+            "via": "Horse Cove Rd",
+            "lng": -83.98797,
+            "lat": 34.72037
+        },
+        {
+            "label": "Lake Winfield Scott Campground",
+            "type": "camp",
+            "dist": "1.52",
+            "via": "Horse Cove Rd",
+            "lng": -83.97433,
+            "lat": 34.73382
+        },
+        {
+            "label": "Locust Gap",
+            "type": "gap",
+            "dist": "1.57",
+            "via": "Horse Cove Rd",
+            "lng": -84.02658,
+            "lat": 34.73259
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Union County Fire Department",
+        "type": "Fire-EMS",
+        "address": "507 Shoe Factory Rd, Blairsville, GA 30512, USA",
+        "phone": "(706) 439-6095",
+        "dist_mi": 9.9
+    }
+}

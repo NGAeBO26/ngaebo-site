@@ -1,0 +1,29 @@
+{
+    "profile_id": "226A_S1",
+    "count": 2,
+    "locations": [
+        {
+            "label": "Dry Creek Equestrian Trailhead",
+            "type": "trailhead",
+            "dist": "0.51",
+            "via": "Horse Cove Rd",
+            "lng": -85.12945,
+            "lat": 34.5789
+        },
+        {
+            "label": "Little Mountain Ridge",
+            "type": "scenic",
+            "dist": "1.29",
+            "via": "Horse Cove Rd",
+            "lng": -85.15323,
+            "lat": 34.56206
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Walker County Fire/Rescue",
+        "type": "Fire-EMS",
+        "address": "3352 Round Pond Rd, LaFayette, GA 30728, USA",
+        "phone": "(807) 827-2742",
+        "dist_mi": 9.8
+    }
+}

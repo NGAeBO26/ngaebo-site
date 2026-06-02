@@ -1,0 +1,53 @@
+{
+    "profile_id": "99_S3",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Berrong Mountain",
+            "type": "scenic",
+            "dist": "0.52",
+            "via": "Horse Cove Rd",
+            "lng": -83.65013,
+            "lat": 34.91716
+        },
+        {
+            "label": "Corn Ridge",
+            "type": "scenic",
+            "dist": "0.52",
+            "via": "Horse Cove Rd",
+            "lng": -83.65002,
+            "lat": 34.91721
+        },
+        {
+            "label": "Jess Gap",
+            "type": "gap",
+            "dist": "0.56",
+            "via": "Horse Cove Rd",
+            "lng": -83.64073,
+            "lat": 34.91232
+        },
+        {
+            "label": "Wolfpen Gap",
+            "type": "gap",
+            "dist": "0.56",
+            "via": "Horse Cove Rd",
+            "lng": -83.65517,
+            "lat": 34.91648
+        },
+        {
+            "label": "Mash Ridge",
+            "type": "scenic",
+            "dist": "0.78",
+            "via": "Horse Cove Rd",
+            "lng": -83.6481,
+            "lat": 34.8984
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clay County Fire and Rescue Station 6",
+        "type": "Fire-EMS",
+        "address": "18 Eagle Fork Rd, Hayesville, NC 28904, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 7.9
+    }
+}

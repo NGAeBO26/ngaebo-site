@@ -1,0 +1,53 @@
+{
+    "profile_id": "4564_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Chattooga Wild And Scenic River",
+            "type": "camp",
+            "dist": "0.51",
+            "via": "Horse Cove Rd",
+            "lng": -83.12506,
+            "lat": 35.01774
+        },
+        {
+            "label": "Ellicott Rock Wilderness East",
+            "type": "trailhead",
+            "dist": "1.30",
+            "via": "Horse Cove Rd",
+            "lng": -83.09501,
+            "lat": 35.02344
+        },
+        {
+            "label": "Ellicott Rock Wilderness West",
+            "type": "trailhead",
+            "dist": "1.39",
+            "via": "Horse Cove Rd",
+            "lng": -83.1415,
+            "lat": 35.0169
+        },
+        {
+            "label": "Ammons Branch Campground",
+            "type": "camp",
+            "dist": "1.57",
+            "via": "Horse Cove Rd",
+            "lng": -83.14557,
+            "lat": 35.02199
+        },
+        {
+            "label": "Glade Mountain",
+            "type": "scenic",
+            "dist": "1.90",
+            "via": "Horse Cove Rd",
+            "lng": -83.13414,
+            "lat": 34.99828
+        }
+    ],
+    "rescue_anchor": {
+        "name": "HIGHLANDS FIRE & RESCUE",
+        "type": "Fire-EMS",
+        "address": "Cherrywood Dr, Highlands, NC 28741, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 5.9
+    }
+}

@@ -4,6 +4,11 @@ import GravelGuide from "./GravelGuide";
 import { useRideFinderEngine, RideFilterBar, RideResultGallery } from "./components/RideFinder";
 import GravelPopup from "./components/GravelPopup";
 
+// IMPORT PREMIUM E-COMMERCE SIDEBAR CARD NODE CONTEXTS
+import PersistentLeftShopPanel from "../../store/StorePanel";
+
+// LOAD UNIFIED INTEGRATED STOREFRONT BOUNDARIES
+import "../../styles/store.css";
 import "./DiscoveryContainer.css"; 
 
 export default function DiscoveryContainer() {
@@ -13,12 +18,12 @@ export default function DiscoveryContainer() {
   
   const [selectedRouteFeature, setSelectedRouteFeature] = useState<any | null>(null);
   const [activeTakeoverRouteId, setActiveTakeoverRouteId] = useState<string | null>(null);
-  const [isGalleryCollapsed, setIsGalleryCollapsed] = useState(false);
 
   const [isPopupClosing, setIsPopupClosing] = useState(false);
   const mapResetFnRef = useRef<(() => void) | null>(null);
   const mapZoomFnRef = useRef<((feature: any) => void) | null>(null);
 
+  // 🎯 HOC CONTROLLER METHODS
   const handleFilterUpdate = useCallback((results: any[]) => {
     setFilteredRoutes(results);
   }, []);
@@ -36,7 +41,7 @@ export default function DiscoveryContainer() {
       
       setIsPopupClosing(false);
       setActiveTakeoverRouteId(primitiveId);
-      setIsGalleryCollapsed(true);
+      // 🎯 MODIFICATION: Left gallery collapsed triggers detached here to ensure persistent visibility bounds!
 
       if (mapZoomFnRef.current) {
         mapZoomFnRef.current(feature);
@@ -52,13 +57,12 @@ export default function DiscoveryContainer() {
     setTimeout(() => {
       setSelectedRouteFeature(null);
       setActiveTakeoverRouteId(null);
-      setIsGalleryCollapsed(false); 
-      setIsPopupClosing(false); // Reset tracking flag for next mount cycle
+      setIsPopupClosing(false); 
 
       if (mapResetFnRef.current) {
         mapResetFnRef.current();
       }
-    }, 400); // Matches the 350ms duration of the popup-dismissing animation
+    }, 400); 
   }, []);
 
   const filterEngine = useRideFinderEngine(masterRoutes, handleFilterUpdate);
@@ -76,36 +80,50 @@ export default function DiscoveryContainer() {
         <GravelPopup 
           feature={selectedRouteFeature} 
           onClose={handleExitTakeover}
-          // Pass the state class modifier straight through to the popup's top level element
           className={isPopupClosing ? "popup-dismissing" : "popup-entering"}
         />
       )}
 
+      {/* THREE-COLUMN WORKSPACE FRAME CONTAINER */}
       <div className="discovery-center-container">
-        <main className="discovery-map-main-viewport">
-          <GravelGuide
-            activeHoverId={activeHoverId}     
-            onRouteHover={setActiveHoverId}   
-            activeRouteId={activeTakeoverRouteId}   
-            onRouteSelect={handleRouteSelect}       
-            isTakeoverActive={isTakeoverCurrentlyActive}
-            filteredRoutes={filteredRoutes}
-            onRoutesLoaded={handleRoutesLoaded}
-            onRegisterResetFn={(fn) => { mapResetFnRef.current = fn; }}
-            onRegisterZoomFn={(fn) => { mapZoomFnRef.current = fn; }}
-          />
-        </main>
+        <div className="rg-retail-map-workspace-layout-deck">
+          
+          {/* COLUMN 1: PERSISTENT LEFT STOREFRONT SIDEBAR CONTROLLER */}
+          <aside className="rg-left-workspace-storefront-sidebar">
+            <PersistentLeftShopPanel 
+              activeRouteProperties={selectedRouteFeature ? selectedRouteFeature.properties : null} 
+            />
+          </aside>
 
-        <RideResultGallery 
-          routes={filteredRoutes} 
-          activeHoverId={activeHoverId}
-          onHoverChange={setActiveHoverId}
-          isCollapsed={isGalleryCollapsed}
-          onToggleCollapse={() => setIsGalleryCollapsed(prev => !prev)}
-          onRouteSelect={handleRouteSelect}
-          isTakeoverActive={isTakeoverCurrentlyActive}
-        />
+          {/* COLUMN 2: CENTRAL RETAIL SPATIAL MAP VIEWPORT ANCHOR PLATFORM */}
+          <div className="discovery-map-main-viewport">
+            <GravelGuide
+              activeHoverId={activeHoverId}     
+              onRouteHover={setActiveHoverId}   
+              activeRouteId={activeTakeoverRouteId}   
+              onRouteSelect={handleRouteSelect}       
+              isTakeoverActive={isTakeoverCurrentlyActive}
+              filteredRoutes={filteredRoutes}
+              onRoutesLoaded={handleRoutesLoaded}
+              onRegisterResetFn={(fn) => { mapResetFnRef.current = fn; }}
+              onRegisterZoomFn={(fn) => { mapZoomFnRef.current = fn; }}
+            />
+          </div>
+
+          {/* COLUMN 3: 🔒 PERSISTENT RIGHT RESULTS FINDER GALLERY (Stripped out all closing toggle flags) */}
+          <RideResultGallery 
+            routes={filteredRoutes} 
+            activeHoverId={activeHoverId}
+            onHoverChange={setActiveHoverId}
+            isCollapsed={false} /* Frozen to open access parameters */
+            onToggleCollapse={() => {}} /* Voided toggle callback triggers */
+            onRouteSelect={handleRouteSelect}
+            isTakeoverActive={false} /* Overridden to prevent programmatic closure calls */
+          />
+
+        </div>
       </div>
+
     </div>
-  ); // FIXED: Trimmed away compiled trailing layout brace mismatch syntax errors cleanly
+  ); 
 }

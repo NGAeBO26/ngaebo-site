@@ -103,6 +103,7 @@ export function RideFilterBar({
 
   return (
     <header className={`finder-header-row ${isTakeoverActive ? "takeover-header-blue-blank" : ""}`}>
+      {/* COLUMN 1: LEFT BRAND GRAPHIC PLATFORM BLOCK */}
       <div className="finder-brand-block">
         <img
           src="/images/RideGuide_embroid-v1.svg"
@@ -113,36 +114,38 @@ export function RideFilterBar({
       </div>
 
       {!isTakeoverActive ? (
-        <div className="finder-controls-wrapper">
-          <div className="control-input-group styleable-autocomplete-wrapper" ref={wrapperRef}>
-            <label>Search Routes</label>
-            <div className="autocomplete-input-inner-row">
-              <input
-                type="text"
-                placeholder="ENTER ROUTE NAME..."
-                value={engine.searchName}
-                onChange={(e) => {
-                  engine.setSearchName(e.target.value);
-                  setShowSuggestions(true);
-                }}
-                onFocus={() => setShowSuggestions(true)}
-                className="finder-text-input autocomplete-input-field"
-                autoComplete="off"
-              />
-              <span
-                className="autocomplete-dropdown-arrow-icon"
-                onClick={() => setShowSuggestions(!showSuggestions)}
-              ></span>
-            </div>
+        <>
+          {/* COLUMN 2: CENTRAL CONSOLE FILTER CONTROLS TRACK */}
+          <div className="finder-controls-wrapper">
+            <div className="control-input-group styleable-autocomplete-wrapper" ref={wrapperRef}>
+              <label>Search Routes</label>
+              <div className="autocomplete-input-inner-row">
+                <input
+                  type="text"
+                  placeholder="ENTER ROUTE NAME..."
+                  value={engine.searchName}
+                  onChange={(e) => {
+                    engine.setSearchName(e.target.value);
+                    setShowSuggestions(true);
+                  }}
+                  onFocus={() => setShowSuggestions(true)}
+                  className="finder-text-input autocomplete-input-field"
+                  autoComplete="off"
+                />
+                <span
+                  className="autocomplete-dropdown-arrow-icon"
+                  onClick={() => setShowSuggestions(!showSuggestions)}
+                ></span>
+              </div>
 
-            {showSuggestions && dynamicSuggestions.length > 0 && (
-              <ul className="autocomplete-suggestions-dropdown-overlay">
-                {dynamicSuggestions.map((suggestionText: string) => (
-                  <li
-                    key={suggestionText}
-                    onClick={() => {
-                      engine.setSearchName(suggestionText);
-                      setShowSuggestions(false);
+              {showSuggestions && dynamicSuggestions.length > 0 && (
+                <ul className="autocomplete-suggestions-dropdown-overlay">
+                  {dynamicSuggestions.map((suggestionText: string) => (
+                    <li
+                      key={suggestionText}
+                      onClick={() => {
+                        engine.setSearchName(suggestionText);
+                        setShowSuggestions(false);
                     }}
                     className="suggestion-interactive-item"
                   >
@@ -208,19 +211,22 @@ export function RideFilterBar({
               }}
             />
           </div>
+        {/* 🎯 THE FIX: Closed the controls container wrapper right here! */}
+        </div>
 
-          <div className="yield-counter-panel">
-            <span style={{ fontSize: "9px", color: "#94a3b8", fontFamily: "monospace", textTransform: "uppercase", fontWeight: "bold" }}>Yield</span>
-            <div style={{ fontSize: "12px", fontFamily: "monospace", fontWeight: "bold", color: "#e2e8f0", marginTop: "2px" }}>
-              <span style={{ color: "#f59e0b", fontSize: "14px", fontWeight: "900" }}>{engine.filteredRoutes.length}</span> / {totalCount}
-            </div>
+        {/* COLUMN 3: INDEPENDENT ANCHORED MATCHES CONTAINER */}
+        <div className="yield-counter-panel">
+          <label>Matches</label>
+          <div className="yield-value">
+            <span>{engine.filteredRoutes.length}</span> / {totalCount}
           </div>
         </div>
-      ) : (
-        <div className="takeover-header-center-void-lane" />
-      )}
-    </header>
-  );
+      </>
+    ) : (
+      <div className="takeover-header-center-void-lane" />
+    )}
+  </header>
+ );
 }
 
 interface GalleryProps {
@@ -270,7 +276,7 @@ export function RideResultGallery({
       </button>
 
       <div className="drawer-header-title">
-        <h2>{isTakeoverActive ? "Active Route" : "Available Routes"}</h2>
+        <h2>{isTakeoverActive ? "Active Route" : "Available RideGuides"}</h2>
       </div>
 
       <div className="vertical-cards-scroll-container" ref={scrollContainerRef}>

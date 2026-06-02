@@ -1,0 +1,53 @@
+{
+    "profile_id": "793_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Hudson Gap",
+            "type": "gap",
+            "dist": "0.08",
+            "via": "Horse Cove Rd",
+            "lng": -84.43715,
+            "lat": 34.82842
+        },
+        {
+            "label": "Bear Den Mountain",
+            "type": "scenic",
+            "dist": "0.85",
+            "via": "Horse Cove Rd",
+            "lng": -84.42933,
+            "lat": 34.83778
+        },
+        {
+            "label": "Double Knob",
+            "type": "scenic",
+            "dist": "1.18",
+            "via": "Horse Cove Rd",
+            "lng": -84.44629,
+            "lat": 34.81211
+        },
+        {
+            "label": "Mckenny Gap",
+            "type": "gap",
+            "dist": "1.25",
+            "via": "Horse Cove Rd",
+            "lng": -84.45826,
+            "lat": 34.82008
+        },
+        {
+            "label": "Bart Top",
+            "type": "scenic",
+            "dist": "1.31",
+            "via": "Horse Cove Rd",
+            "lng": -84.41924,
+            "lat": 34.8385
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Fannin County Emergency Services - Fire Station 1",
+        "type": "Fire-EMS",
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 9.3
+    }
+}

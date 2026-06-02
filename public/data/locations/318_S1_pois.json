@@ -1,0 +1,53 @@
+{
+    "profile_id": "318_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Grassy Mountain",
+            "type": "scenic",
+            "dist": "1.03",
+            "via": "Horse Cove Rd",
+            "lng": -83.55116,
+            "lat": 34.71789
+        },
+        {
+            "label": "Sillycook Mountain",
+            "type": "scenic",
+            "dist": "1.85",
+            "via": "Horse Cove Rd",
+            "lng": -83.55554,
+            "lat": 34.73119
+        },
+        {
+            "label": "Low Gap",
+            "type": "gap",
+            "dist": "2.00",
+            "via": "Horse Cove Rd",
+            "lng": -83.52101,
+            "lat": 34.73593
+        },
+        {
+            "label": "Flat Creek Mountain",
+            "type": "scenic",
+            "dist": "2.06",
+            "via": "Horse Cove Rd",
+            "lng": -83.53599,
+            "lat": 34.73964
+        },
+        {
+            "label": "Crow Mountain",
+            "type": "scenic",
+            "dist": "2.12",
+            "via": "Horse Cove Rd",
+            "lng": -83.57036,
+            "lat": 34.72186
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clarkesville Fire Department",
+        "type": "Fire-EMS",
+        "address": "303 Adams St, Clarkesville, GA 30523, USA",
+        "phone": "(706) 754-2024",
+        "dist_mi": 6.5
+    }
+}

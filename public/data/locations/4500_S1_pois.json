@@ -1,0 +1,53 @@
+{
+    "profile_id": "4500_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Ford Mountain",
+            "type": "scenic",
+            "dist": "1.44",
+            "via": "Horse Cove Rd",
+            "lng": -83.30486,
+            "lat": 34.98939
+        },
+        {
+            "label": "Webster Gap",
+            "type": "gap",
+            "dist": "1.61",
+            "via": "Horse Cove Rd",
+            "lng": -83.30349,
+            "lat": 34.98287
+        },
+        {
+            "label": "Beegum Gap",
+            "type": "gap",
+            "dist": "1.78",
+            "via": "Horse Cove Rd",
+            "lng": -83.30293,
+            "lat": 34.9787
+        },
+        {
+            "label": "Fodderstack",
+            "type": "scenic",
+            "dist": "1.84",
+            "via": "Horse Cove Rd",
+            "lng": -83.28987,
+            "lat": 34.97175
+        },
+        {
+            "label": "Chestnut Gap",
+            "type": "gap",
+            "dist": "1.87",
+            "via": "Horse Cove Rd",
+            "lng": -83.29182,
+            "lat": 34.97176
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Scaly Mountain Volunteer Fire Department",
+        "type": "Fire-EMS",
+        "address": "169 Hale Ridge Rd, Scaly Mountain, NC 28775, USA",
+        "phone": "(828) 526-9032",
+        "dist_mi": 2.2
+    }
+}

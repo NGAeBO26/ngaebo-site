@@ -1,0 +1,53 @@
+{
+    "profile_id": "233_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Gentry Gap",
+            "type": "gap",
+            "dist": "0.32",
+            "via": "Horse Cove Rd",
+            "lng": -85.06578,
+            "lat": 34.62675
+        },
+        {
+            "label": "Johns Mountain",
+            "type": "scenic",
+            "dist": "1.85",
+            "via": "Horse Cove Rd",
+            "lng": -85.09836,
+            "lat": 34.62245
+        },
+        {
+            "label": "Keown Falls",
+            "type": "water",
+            "dist": "1.95",
+            "via": "Horse Cove Rd",
+            "lng": -85.09439,
+            "lat": 34.61342
+        },
+        {
+            "label": "Snake Creek Gap",
+            "type": "gap",
+            "dist": "2.14",
+            "via": "Horse Cove Rd",
+            "lng": -85.05995,
+            "lat": 34.66147
+        },
+        {
+            "label": "Pinhoti #1, Hwy 136",
+            "type": "trailhead",
+            "dist": "2.15",
+            "via": "Horse Cove Rd",
+            "lng": -85.05834,
+            "lat": 34.6614
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Walker County Fire/Rescue",
+        "type": "Fire-EMS",
+        "address": "3352 Round Pond Rd, LaFayette, GA 30728, USA",
+        "phone": "(807) 827-2742",
+        "dist_mi": 10.8
+    }
+}

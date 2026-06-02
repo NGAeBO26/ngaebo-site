@@ -1,0 +1,53 @@
+{
+    "profile_id": "977A_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Lion Mountain",
+            "type": "scenic",
+            "dist": "0.46",
+            "via": "Horse Cove Rd",
+            "lng": -83.29849,
+            "lat": 34.84092
+        },
+        {
+            "label": "Rouges Ford",
+            "type": "hazard",
+            "dist": "1.81",
+            "via": "Horse Cove Rd",
+            "lng": -83.29488,
+            "lat": 34.81454
+        },
+        {
+            "label": "Rouges Ford",
+            "type": "hazard",
+            "dist": "1.81",
+            "via": "Horse Cove Rd",
+            "lng": -83.29488,
+            "lat": 34.81454
+        },
+        {
+            "label": "Rainy Mountain",
+            "type": "scenic",
+            "dist": "2.38",
+            "via": "Horse Cove Rd",
+            "lng": -83.32266,
+            "lat": 34.86242
+        },
+        {
+            "label": "Rainy Ridge",
+            "type": "scenic",
+            "dist": "2.38",
+            "via": "Horse Cove Rd",
+            "lng": -83.32281,
+            "lat": 34.86235
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Long Creek FD - Oconee Co. Station 9",
+        "type": "Fire-EMS",
+        "address": "12351 Long Creek Hwy, Long Creek, SC 29658, USA",
+        "phone": "(864) 647-8151",
+        "dist_mi": 5.1
+    }
+}

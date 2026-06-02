@@ -1,0 +1,37 @@
+{
+    "profile_id": "218A_S1",
+    "count": 3,
+    "locations": [
+        {
+            "label": "Windy Gap Trailhead",
+            "type": "trailhead",
+            "dist": "0.74",
+            "via": "Horse Cove Rd",
+            "lng": -84.6964,
+            "lat": 34.83473
+        },
+        {
+            "label": "Grassy Mountain",
+            "type": "scenic",
+            "dist": "2.51",
+            "via": "Horse Cove Rd",
+            "lng": -84.66966,
+            "lat": 34.86202
+        },
+        {
+            "label": "Hickory Ridge",
+            "type": "scenic",
+            "dist": "2.73",
+            "via": "Horse Cove Rd",
+            "lng": -84.71553,
+            "lat": 34.88057
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Chatsworth Fire Department",
+        "type": "Fire-EMS",
+        "address": "503 N 3rd Ave, Chatsworth, GA 30705, USA",
+        "phone": "(706) 695-7600",
+        "dist_mi": 6.5
+    }
+}

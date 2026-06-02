@@ -1,0 +1,53 @@
+{
+    "profile_id": "161_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Oakey Mtn. Ohv Trailhead",
+            "type": "trailhead",
+            "dist": "0.07",
+            "via": "Horse Cove Rd",
+            "lng": -83.55334,
+            "lat": 34.78459
+        },
+        {
+            "label": "Crow Mountain",
+            "type": "scenic",
+            "dist": "0.42",
+            "via": "Horse Cove Rd",
+            "lng": -83.55005,
+            "lat": 34.78041
+        },
+        {
+            "label": "Moates Knob",
+            "type": "scenic",
+            "dist": "1.63",
+            "via": "Horse Cove Rd",
+            "lng": -83.56313,
+            "lat": 34.76298
+        },
+        {
+            "label": "Raper Mountain",
+            "type": "scenic",
+            "dist": "1.71",
+            "via": "Horse Cove Rd",
+            "lng": -83.57462,
+            "lat": 34.76731
+        },
+        {
+            "label": "Shoal Ridge",
+            "type": "scenic",
+            "dist": "1.86",
+            "via": "Horse Cove Rd",
+            "lng": -83.53623,
+            "lat": 34.76278
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clarkesville Fire Department",
+        "type": "Fire-EMS",
+        "address": "303 Adams St, Clarkesville, GA 30523, USA",
+        "phone": "(706) 754-2024",
+        "dist_mi": 11.9
+    }
+}

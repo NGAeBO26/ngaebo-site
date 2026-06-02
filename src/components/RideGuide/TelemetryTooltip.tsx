@@ -7,13 +7,15 @@ interface TelemetryTooltipProps {
   isVisible: boolean;
   cardPosition: "left" | "right";
   cardOffsetTop: string;
+  isModalRender?: boolean; // 🎯 NEW ADAPTIVE LAYOUT ATTRIBUTE PARAMETER
 }
 
 export default function TelemetryTooltip({ 
   widgetKey, 
   isVisible, 
   cardPosition, 
-  cardOffsetTop 
+  cardOffsetTop,
+  isModalRender = false // Defaults intact to avoid breaking the active report overlay views
 }: TelemetryTooltipProps) {
   
   if (!isVisible) return null;
@@ -26,21 +28,22 @@ export default function TelemetryTooltip({
     return null;
   }
 
-  // Uses slimmer, precise horizontal viewport offset calculations
-  const placementStyles = cardPosition === "right"
-    ? { left: "calc(215.9mm + 12px)" }
-    : { right: "calc(215.9mm + 12px)" };
+  // 🔒 CONTEXT LAYER SHIFT CONTROL
+  // If rendering inside the registration modal view deck layout, skip hardcoded coordinates
+  const placementStyles = isModalRender 
+    ? {} 
+    : (cardPosition === "right" ? { left: "calc(215.9mm + 12px)" } : { right: "calc(215.9mm + 12px)" });
 
-  const animationClass = cardPosition === "right" 
-    ? "rg-slide-from-right" 
-    : "rg-slide-from-left";
+  const animationClass = isModalRender 
+    ? "rg-modal-inline-fade" 
+    : (cardPosition === "right" ? "rg-slide-from-right" : "rg-slide-from-left");
 
   return (
     <div
       className={`rg-hud-tooltip-card ${animationClass}`}
       style={{
-        position: "absolute",
-        top: cardOffsetTop,
+        position: isModalRender ? "relative" : "absolute",
+        top: isModalRender ? "auto" : cardOffsetTop,
         ...placementStyles
       }}
     >
@@ -50,7 +53,6 @@ export default function TelemetryTooltip({
       <div className="rg-tooltip-formula">{data.formula}</div>
       <p className="rg-tooltip-description">{data.description}</p>
 
-      {/* 🚀 CHECKMARK BULLET LOOP INTERFACE */}
       {data.bullets && (
         <div className="rg-tooltip-bullet-box">
           <strong className="rg-tooltip-bullet-header">RIDER BENEFIT</strong>

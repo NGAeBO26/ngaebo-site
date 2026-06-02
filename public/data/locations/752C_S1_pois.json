@@ -1,0 +1,21 @@
+{
+    "profile_id": "752C_S1",
+    "count": 1,
+    "locations": [
+        {
+            "label": "Trembly Bald",
+            "type": "scenic",
+            "dist": "2.55",
+            "via": "Horse Cove Rd",
+            "lng": -83.30528,
+            "lat": 34.65538
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Long Creek FD - Oconee Co. Station 9",
+        "type": "Fire-EMS",
+        "address": "12351 Long Creek Hwy, Long Creek, SC 29658, USA",
+        "phone": "(864) 647-8151",
+        "dist_mi": 6.2
+    }
+}

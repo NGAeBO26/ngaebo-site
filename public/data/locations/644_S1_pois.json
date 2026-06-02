@@ -1,0 +1,53 @@
+{
+    "profile_id": "644_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Deadennen Mountain",
+            "type": "scenic",
+            "dist": "0.29",
+            "via": "Horse Cove Rd",
+            "lng": -84.17457,
+            "lat": 34.81911
+        },
+        {
+            "label": "Lula Head Gap",
+            "type": "gap",
+            "dist": "0.34",
+            "via": "Horse Cove Rd",
+            "lng": -84.17631,
+            "lat": 34.81259
+        },
+        {
+            "label": "Wilscot Mountain",
+            "type": "scenic",
+            "dist": "0.51",
+            "via": "Horse Cove Rd",
+            "lng": -84.17912,
+            "lat": 34.81161
+        },
+        {
+            "label": "Davis Gap",
+            "type": "gap",
+            "dist": "0.68",
+            "via": "Horse Cove Rd",
+            "lng": -84.16797,
+            "lat": 34.82509
+        },
+        {
+            "label": "Seabolt Mountain",
+            "type": "scenic",
+            "dist": "0.97",
+            "via": "Horse Cove Rd",
+            "lng": -84.167,
+            "lat": 34.82922
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Fannin County Emergency Services - Fire Station 1",
+        "type": "Fire-EMS",
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 10.6
+    }
+}

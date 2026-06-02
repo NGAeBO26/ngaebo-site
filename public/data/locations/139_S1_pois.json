@@ -1,0 +1,53 @@
+{
+    "profile_id": "139_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Black Mountain",
+            "type": "scenic",
+            "dist": "1.02",
+            "via": "Horse Cove Rd",
+            "lng": -83.33747,
+            "lat": 34.65915
+        },
+        {
+            "label": "Lee Mountain",
+            "type": "scenic",
+            "dist": "2.03",
+            "via": "Horse Cove Rd",
+            "lng": -83.31849,
+            "lat": 34.64315
+        },
+        {
+            "label": "Yellowback Mountain",
+            "type": "scenic",
+            "dist": "2.16",
+            "via": "Horse Cove Rd",
+            "lng": -83.31493,
+            "lat": 34.65366
+        },
+        {
+            "label": "Abram Mountain",
+            "type": "scenic",
+            "dist": "2.72",
+            "via": "Horse Cove Rd",
+            "lng": -83.36266,
+            "lat": 34.68981
+        },
+        {
+            "label": "Trembly Bald",
+            "type": "scenic",
+            "dist": "2.72",
+            "via": "Horse Cove Rd",
+            "lng": -83.30528,
+            "lat": 34.65538
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Carnes Creek Vol Fire Department",
+        "type": "Fire-EMS",
+        "address": "PO Box 68, 959 Mize Rd, Toccoa, GA 30577, USA",
+        "phone": "(706) 244-0902",
+        "dist_mi": 7.1
+    }
+}

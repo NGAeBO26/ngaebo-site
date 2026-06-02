@@ -1,0 +1,53 @@
+{
+    "profile_id": "236_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Cavender Gap",
+            "type": "gap",
+            "dist": "0.28",
+            "via": "Horse Cove Rd",
+            "lng": -84.06742,
+            "lat": 34.74509
+        },
+        {
+            "label": "Mulky Campground",
+            "type": "camp",
+            "dist": "0.93",
+            "via": "Horse Cove Rd",
+            "lng": -84.07409,
+            "lat": 34.76175
+        },
+        {
+            "label": "Rocky Mountain",
+            "type": "scenic",
+            "dist": "0.96",
+            "via": "Horse Cove Rd",
+            "lng": -84.08602,
+            "lat": 34.74842
+        },
+        {
+            "label": "Cooper Creek Recreation Area",
+            "type": "camp",
+            "dist": "0.96",
+            "via": "Horse Cove Rd",
+            "lng": -84.06833,
+            "lat": 34.7628
+        },
+        {
+            "label": "Cavender Mountain",
+            "type": "scenic",
+            "dist": "1.31",
+            "via": "Horse Cove Rd",
+            "lng": -84.06959,
+            "lat": 34.72992
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Union County Fire Department",
+        "type": "Fire-EMS",
+        "address": "507 Shoe Factory Rd, Blairsville, GA 30512, USA",
+        "phone": "(706) 439-6095",
+        "dist_mi": 12.1
+    }
+}

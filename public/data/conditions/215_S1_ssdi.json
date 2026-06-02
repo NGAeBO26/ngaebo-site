@@ -1,0 +1,37 @@
+{
+    "profile_id": "215_S1",
+    "route_id": "215",
+    "ssdi_score": 12.4,
+    "v3_terrain_score": 4.5,
+    "v3_terrain_class": "Strenuous",
+    "badge_type": "wet",
+    "condition": "WET PAVEMENT",
+    "style_color": "#e66e00",
+    "access": {
+        "label": "OPEN",
+        "vibe_context": "PAVED ACCESS",
+        "status_code": "OPEN"
+    },
+    "ruggedness": {
+        "class": "Smooth",
+        "value": 0.61
+    },
+    "environment": {
+        "current_temp": 64,
+        "saturation_index": 39.48,
+        "soil_status": "Saturated",
+        "precip_24h": 0.12,
+        "saturation_trend": "stable",
+        "alerts": []
+    },
+    "physics": {
+        "live_traction": 0.68,
+        "live_wh_per_km": 45.2,
+        "energy_penalty_pct": 1.5,
+        "v3_base_intensity": 4.5
+    },
+    "connectivity": {
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "profile_id": "733A_S1",
+    "count": 2,
+    "locations": [
+        {
+            "label": "Cherry Hill Recreation Area",
+            "type": "camp",
+            "dist": "0.67",
+            "via": "Horse Cove Rd",
+            "lng": -83.0879,
+            "lat": 34.9422
+        },
+        {
+            "label": "Burrells Ford",
+            "type": "camp",
+            "dist": "2.37",
+            "via": "Horse Cove Rd",
+            "lng": -83.1181,
+            "lat": 34.969
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Mountain Rest FD - Oconee Co. Station 4",
+        "type": "Fire-EMS",
+        "address": "130 Verner Mill Rd, Mountain Rest, SC 29664, USA",
+        "phone": "(864) 638-8220",
+        "dist_mi": 8.3
+    }
+}

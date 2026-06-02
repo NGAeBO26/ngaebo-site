@@ -7,7 +7,7 @@
             "type": "scenic",
             "dist": "0.19",
             "via": "Horse Cove Rd",
-            "lng": -83.89934,
+            "lng": -83.89935,
             "lat": 34.89953
         },
         {
@@ -39,7 +39,7 @@
             "type": "ranger",
             "dist": "0.67",
             "via": "Horse Cove Rd",
-            "lng": -83.89469,
+            "lng": -83.8947,
             "lat": 34.90643
         }
     ],

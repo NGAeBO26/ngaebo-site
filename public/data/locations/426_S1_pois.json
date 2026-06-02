@@ -1,0 +1,53 @@
+{
+    "profile_id": "426_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Cynthia Knob",
+            "type": "scenic",
+            "dist": "0.25",
+            "via": "Horse Cove Rd",
+            "lng": -84.02875,
+            "lat": 34.681
+        },
+        {
+            "label": "Abe Mountain",
+            "type": "scenic",
+            "dist": "0.72",
+            "via": "Horse Cove Rd",
+            "lng": -84.03683,
+            "lat": 34.68734
+        },
+        {
+            "label": "Liss Gap",
+            "type": "gap",
+            "dist": "0.72",
+            "via": "Horse Cove Rd",
+            "lng": -84.02603,
+            "lat": 34.66843
+        },
+        {
+            "label": "Rich Mountain",
+            "type": "scenic",
+            "dist": "0.90",
+            "via": "Horse Cove Rd",
+            "lng": -84.04611,
+            "lat": 34.67351
+        },
+        {
+            "label": "Jacks Gap",
+            "type": "gap",
+            "dist": "0.91",
+            "via": "Horse Cove Rd",
+            "lng": -84.01741,
+            "lat": 34.67148
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 10.7
+    }
+}

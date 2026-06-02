@@ -1,0 +1,37 @@
+{
+    "profile_id": "955E_S1",
+    "route_id": "955E",
+    "ssdi_score": 13.3,
+    "v3_terrain_score": 4.2,
+    "v3_terrain_class": "Strenuous",
+    "badge_type": "muddy",
+    "condition": "MUDDY / SOFT",
+    "style_color": "#a52d23",
+    "access": {
+        "label": "OPEN",
+        "vibe_context": "RESTRICTED EXPLORER",
+        "status_code": "OPEN"
+    },
+    "ruggedness": {
+        "class": "Chattery",
+        "value": 0.23
+    },
+    "environment": {
+        "current_temp": 75,
+        "saturation_index": 45.39,
+        "soil_status": "Saturated",
+        "precip_24h": 0.09,
+        "saturation_trend": "stable",
+        "alerts": []
+    },
+    "physics": {
+        "live_traction": 0.38,
+        "live_wh_per_km": 13.57,
+        "energy_penalty_pct": 20.0,
+        "v3_base_intensity": 4.2
+    },
+    "connectivity": {
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
+    }
+}

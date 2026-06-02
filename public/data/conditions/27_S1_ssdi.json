@@ -1,9 +1,9 @@
 {
   "profile_id": "27_S1",
   "route_id": "27",
-  "ssdi_score": 9.7,
-  "v3_terrain_score": 7.1,
-  "v3_terrain_class": "Epic",
+  "ssdi_score": 37.0,
+  "v3_terrain_score": 2.6,
+  "v3_terrain_class": "Cruiser",
   "badge_type": "muddy",
   "condition": "MUDDY / SOFT",
   "style_color": "#a52d23",
@@ -14,17 +14,15 @@
   },
   "ruggedness": {
     "class": "Rough",
-    "value": 0.24
+    "value": 0.0
   },
   "environment": {
-    "current_temp": 61,
-    "saturation_index": 0.9,
-    "soil_status": "Dry / Dusty",
-    "precip_24h": 0.0,
+    "current_temp": 69,
+    "saturation_index": 10,
+    "soil_status": "Saturated",
+    "precip_24h": 0.03,
     "saturation_trend": "stable",
-    "alerts": [
-      "SAFETY ALERT: Cell Service is UNAVAILABLE."
-    ]
+    "alerts": []
   },
   "physics": {
     "live_traction": 0.41,
@@ -33,7 +31,7 @@
     "v3_base_intensity": 7.0
   },
   "connectivity": {
-    "signal_class": "Unavailable",
-    "deadzone_max_meters": 2740
+    "signal_class": "Unknown",
+    "deadzone_max_meters": 0
   }
 }

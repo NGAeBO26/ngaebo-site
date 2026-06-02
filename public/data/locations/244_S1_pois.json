@@ -1,0 +1,53 @@
+{
+    "profile_id": "244_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Walnut Gap",
+            "type": "gap",
+            "dist": "0.85",
+            "via": "Horse Cove Rd",
+            "lng": -83.80435,
+            "lat": 34.6826
+        },
+        {
+            "label": "Long Ridge",
+            "type": "scenic",
+            "dist": "1.04",
+            "via": "Horse Cove Rd",
+            "lng": -83.82431,
+            "lat": 34.70052
+        },
+        {
+            "label": "Dukes Creek Falls",
+            "type": "water",
+            "dist": "1.05",
+            "via": "Horse Cove Rd",
+            "lng": -83.79129,
+            "lat": 34.70204
+        },
+        {
+            "label": "Windy Gap",
+            "type": "gap",
+            "dist": "1.12",
+            "via": "Horse Cove Rd",
+            "lng": -83.80657,
+            "lat": 34.67843
+        },
+        {
+            "label": "Piney Gap",
+            "type": "gap",
+            "dist": "1.15",
+            "via": "Horse Cove Rd",
+            "lng": -83.82296,
+            "lat": 34.68398
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Helen Fire Department",
+        "type": "Fire-EMS",
+        "address": "120 Unicoi St, Helen, GA 30545, USA",
+        "phone": "(706) 878-3676",
+        "dist_mi": 5.2
+    }
+}

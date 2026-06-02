@@ -1,0 +1,53 @@
+{
+    "profile_id": "423_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Dockery Lake Recreation Area",
+            "type": "camp",
+            "dist": "0.07",
+            "via": "Horse Cove Rd",
+            "lng": -84.14941,
+            "lat": 34.70145
+        },
+        {
+            "label": "High Falls",
+            "type": "water",
+            "dist": "0.99",
+            "via": "Horse Cove Rd",
+            "lng": -84.13908,
+            "lat": 34.71259
+        },
+        {
+            "label": "Little Frozen Knob",
+            "type": "scenic",
+            "dist": "1.38",
+            "via": "Horse Cove Rd",
+            "lng": -84.1313,
+            "lat": 34.68668
+        },
+        {
+            "label": "Rocky Mountain",
+            "type": "scenic",
+            "dist": "1.68",
+            "via": "Horse Cove Rd",
+            "lng": -84.13644,
+            "lat": 34.72283
+        },
+        {
+            "label": "Pine Tar Knob",
+            "type": "scenic",
+            "dist": "1.69",
+            "via": "Horse Cove Rd",
+            "lng": -84.11936,
+            "lat": 34.69675
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Fannin County Emergency Services - Fire Station 1",
+        "type": "Fire-EMS",
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 16.6
+    }
+}

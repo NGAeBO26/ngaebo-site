@@ -1,0 +1,45 @@
+{
+    "profile_id": "270_S1",
+    "count": 4,
+    "locations": [
+        {
+            "label": "Dry Creek Equestrian Trailhead",
+            "type": "trailhead",
+            "dist": "0.85",
+            "via": "Horse Cove Rd",
+            "lng": -85.12945,
+            "lat": 34.5789
+        },
+        {
+            "label": "Little Mountain Ridge",
+            "type": "scenic",
+            "dist": "2.26",
+            "via": "Horse Cove Rd",
+            "lng": -85.15323,
+            "lat": 34.56206
+        },
+        {
+            "label": "Strawberry Mountain",
+            "type": "scenic",
+            "dist": "2.36",
+            "via": "Horse Cove Rd",
+            "lng": -85.17455,
+            "lat": 34.59723
+        },
+        {
+            "label": "The Pocket Recreation Area",
+            "type": "camp",
+            "dist": "2.80",
+            "via": "Horse Cove Rd",
+            "lng": -85.0853,
+            "lat": 34.58475
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Walker County Fire/Rescue",
+        "type": "Fire-EMS",
+        "address": "3352 Round Pond Rd, LaFayette, GA 30728, USA",
+        "phone": "(807) 827-2742",
+        "dist_mi": 8.9
+    }
+}

@@ -1,8 +1,8 @@
 {
   "profile_id": "28-1_S1",
   "route_id": "28-1",
-  "ssdi_score": 5.7,
-  "v3_terrain_score": 3.8,
+  "ssdi_score": 5.3,
+  "v3_terrain_score": 3.9,
   "v3_terrain_class": "Cruiser",
   "badge_type": "wet",
   "condition": "WET / SLICK",
@@ -17,10 +17,10 @@
     "value": 0.17
   },
   "environment": {
-    "current_temp": 81,
-    "saturation_index": 10,
+    "current_temp": 72,
+    "saturation_index": 7.9,
     "soil_status": "Saturated",
-    "precip_24h": 0.0,
+    "precip_24h": 0.21,
     "saturation_trend": "stable",
     "alerts": []
   },
@@ -31,7 +31,7 @@
     "v3_base_intensity": 3.7
   },
   "connectivity": {
-    "signal_class": "Spotty",
-    "deadzone_max_meters": 5060
+    "signal_class": "Unknown",
+    "deadzone_max_meters": 0
   }
 }

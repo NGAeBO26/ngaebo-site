@@ -1,0 +1,53 @@
+{
+    "profile_id": "69B_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Sids Mountain",
+            "type": "scenic",
+            "dist": "0.45",
+            "via": "Horse Cove Rd",
+            "lng": -84.14575,
+            "lat": 34.73425
+        },
+        {
+            "label": "Rocky Mountain",
+            "type": "scenic",
+            "dist": "0.57",
+            "via": "Horse Cove Rd",
+            "lng": -84.13644,
+            "lat": 34.72283
+        },
+        {
+            "label": "Deep Hole Recreation Area",
+            "type": "camp",
+            "dist": "0.86",
+            "via": "Horse Cove Rd",
+            "lng": -84.14007,
+            "lat": 34.73972
+        },
+        {
+            "label": "High Falls",
+            "type": "water",
+            "dist": "1.09",
+            "via": "Horse Cove Rd",
+            "lng": -84.13908,
+            "lat": 34.71259
+        },
+        {
+            "label": "Head Mountain",
+            "type": "scenic",
+            "dist": "1.20",
+            "via": "Horse Cove Rd",
+            "lng": -84.12348,
+            "lat": 34.72554
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Fannin County Emergency Services - Fire Station 1",
+        "type": "Fire-EMS",
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 15.5
+    }
+}

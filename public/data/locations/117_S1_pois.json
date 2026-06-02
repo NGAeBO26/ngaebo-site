@@ -7,7 +7,7 @@
             "type": "scenic",
             "dist": "0.35",
             "via": "Horse Cove Rd",
-            "lng": -83.90663,
+            "lng": -83.90664,
             "lat": 34.86627
         },
         {
@@ -16,7 +16,7 @@
             "dist": "0.47",
             "via": "Horse Cove Rd",
             "lng": -83.90226,
-            "lat": 34.87185
+            "lat": 34.87186
         },
         {
             "label": "Bridge Gap",
@@ -24,7 +24,7 @@
             "dist": "0.50",
             "via": "Horse Cove Rd",
             "lng": -83.90324,
-            "lat": 34.87453
+            "lat": 34.87454
         },
         {
             "label": "Nicholson Gap",

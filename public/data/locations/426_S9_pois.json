@@ -1,0 +1,53 @@
+{
+    "profile_id": "426_S9",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Desoto Falls Recreation Area",
+            "type": "camp",
+            "dist": "0.43",
+            "via": "Horse Cove Rd",
+            "lng": -83.91498,
+            "lat": 34.70571
+        },
+        {
+            "label": "Desoto Falls",
+            "type": "water",
+            "dist": "0.55",
+            "via": "Horse Cove Rd",
+            "lng": -83.91936,
+            "lat": 34.71704
+        },
+        {
+            "label": "High Water Falls",
+            "type": "water",
+            "dist": "0.93",
+            "via": "Horse Cove Rd",
+            "lng": -83.9202,
+            "lat": 34.7233
+        },
+        {
+            "label": "Hogpen Mountain",
+            "type": "scenic",
+            "dist": "1.03",
+            "via": "Horse Cove Rd",
+            "lng": -83.89532,
+            "lat": 34.71655
+        },
+        {
+            "label": "Cedar Mountain",
+            "type": "scenic",
+            "dist": "1.08",
+            "via": "Horse Cove Rd",
+            "lng": -83.93074,
+            "lat": 34.71536
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Union County Fire Department",
+        "type": "Fire-EMS",
+        "address": "507 Shoe Factory Rd, Blairsville, GA 30512, USA",
+        "phone": "(706) 439-6095",
+        "dist_mi": 11.3
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "profile_id": "219_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Rocky Ridge",
+            "type": "scenic",
+            "dist": "0.88",
+            "via": "Horse Cove Rd",
+            "lng": -85.15376,
+            "lat": 34.70954
+        },
+        {
+            "label": "Wood Gap",
+            "type": "gap",
+            "dist": "1.24",
+            "via": "Horse Cove Rd",
+            "lng": -85.15134,
+            "lat": 34.68703
+        },
+        {
+            "label": "Maddox Gap",
+            "type": "gap",
+            "dist": "1.49",
+            "via": "Horse Cove Rd",
+            "lng": -85.18829,
+            "lat": 34.69064
+        },
+        {
+            "label": "Dick Ridge",
+            "type": "scenic",
+            "dist": "1.87",
+            "via": "Horse Cove Rd",
+            "lng": -85.14677,
+            "lat": 34.72333
+        },
+        {
+            "label": "Shaw Gap",
+            "type": "gap",
+            "dist": "2.56",
+            "via": "Horse Cove Rd",
+            "lng": -85.15856,
+            "lat": 34.66425
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Walker County Fire/Rescue",
+        "type": "Fire-EMS",
+        "address": "3352 Round Pond Rd, LaFayette, GA 30728, USA",
+        "phone": "(807) 827-2742",
+        "dist_mi": 3.2
+    }
+}

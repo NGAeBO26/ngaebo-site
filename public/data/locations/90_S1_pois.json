@@ -1,0 +1,53 @@
+{
+    "profile_id": "90_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Holly Creek Gap",
+            "type": "gap",
+            "dist": "0.59",
+            "via": "Horse Cove Rd",
+            "lng": -84.58966,
+            "lat": 34.81536
+        },
+        {
+            "label": "Double Top",
+            "type": "scenic",
+            "dist": "0.77",
+            "via": "Horse Cove Rd",
+            "lng": -84.59439,
+            "lat": 34.80761
+        },
+        {
+            "label": "Painter Gap",
+            "type": "gap",
+            "dist": "0.82",
+            "via": "Horse Cove Rd",
+            "lng": -84.5741,
+            "lat": 34.80008
+        },
+        {
+            "label": "Bear Creek Trailhead",
+            "type": "trailhead",
+            "dist": "1.10",
+            "via": "Horse Cove Rd",
+            "lng": -84.56612,
+            "lat": 34.82029
+        },
+        {
+            "label": "Demps Mountain",
+            "type": "scenic",
+            "dist": "1.52",
+            "via": "Horse Cove Rd",
+            "lng": -84.57413,
+            "lat": 34.78915
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Gilmer County Fire Rescue Station 14",
+        "type": "Fire-EMS",
+        "address": "2300 Tails Creek Rd, Ellijay, GA 30540, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 8.5
+    }
+}

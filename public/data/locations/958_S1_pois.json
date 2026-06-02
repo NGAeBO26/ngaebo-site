@@ -1,0 +1,53 @@
+{
+    "profile_id": "958_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Piney Ridge",
+            "type": "scenic",
+            "dist": "0.06",
+            "via": "Horse Cove Rd",
+            "lng": -83.80853,
+            "lat": 34.72545
+        },
+        {
+            "label": "Piney Mountain",
+            "type": "scenic",
+            "dist": "0.40",
+            "via": "Horse Cove Rd",
+            "lng": -83.8149,
+            "lat": 34.72676
+        },
+        {
+            "label": "Raven Cliff Falls",
+            "type": "hazard",
+            "dist": "0.41",
+            "via": "Horse Cove Rd",
+            "lng": -83.80907,
+            "lat": 34.71871
+        },
+        {
+            "label": "Cool Springs Gap",
+            "type": "gap",
+            "dist": "1.00",
+            "via": "Horse Cove Rd",
+            "lng": -83.79991,
+            "lat": 34.73732
+        },
+        {
+            "label": "Locust Log Ridge",
+            "type": "scenic",
+            "dist": "1.17",
+            "via": "Horse Cove Rd",
+            "lng": -83.8115,
+            "lat": 34.74146
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Helen Fire Department",
+        "type": "Fire-EMS",
+        "address": "120 Unicoi St, Helen, GA 30545, USA",
+        "phone": "(706) 878-3676",
+        "dist_mi": 5.5
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "profile_id": "516_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Rocky Mountain",
+            "type": "scenic",
+            "dist": "1.06",
+            "via": "Horse Cove Rd",
+            "lng": -83.38145,
+            "lat": 34.75798
+        },
+        {
+            "label": "Cascade Falls",
+            "type": "water",
+            "dist": "1.15",
+            "via": "Horse Cove Rd",
+            "lng": -83.3885,
+            "lat": 34.7401
+        },
+        {
+            "label": "Mccracken Ford (Historical)",
+            "type": "hazard",
+            "dist": "1.48",
+            "via": "Horse Cove Rd",
+            "lng": -83.35294,
+            "lat": 34.72982
+        },
+        {
+            "label": "Chattooga River Ranger District",
+            "type": "ranger",
+            "dist": "1.57",
+            "via": "Horse Cove Rd",
+            "lng": -83.39601,
+            "lat": 34.75307
+        },
+        {
+            "label": "Chattooga River District",
+            "type": "camp",
+            "dist": "1.59",
+            "via": "Horse Cove Rd",
+            "lng": -83.39659,
+            "lat": 34.75271
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Long Creek FD - Oconee Co. Station 9",
+        "type": "Fire-EMS",
+        "address": "12351 Long Creek Hwy, Long Creek, SC 29658, USA",
+        "phone": "(864) 647-8151",
+        "dist_mi": 7.8
+    }
+}

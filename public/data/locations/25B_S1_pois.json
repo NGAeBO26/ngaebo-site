@@ -7,8 +7,8 @@
             "type": "scenic",
             "dist": "0.98",
             "via": "Horse Cove Rd",
-            "lng": -83.49056,
-            "lat": 34.79076
+            "lng": -83.49057,
+            "lat": 34.79077
         },
         {
             "label": "Worley Ridge",
@@ -23,7 +23,7 @@
             "type": "scenic",
             "dist": "1.04",
             "via": "Horse Cove Rd",
-            "lng": -83.5116,
+            "lng": -83.51161,
             "lat": 34.80419
         },
         {
@@ -31,7 +31,7 @@
             "type": "scenic",
             "dist": "1.04",
             "via": "Horse Cove Rd",
-            "lng": -83.48467,
+            "lng": -83.48468,
             "lat": 34.79141
         },
         {
@@ -39,7 +39,7 @@
             "type": "scenic",
             "dist": "1.20",
             "via": "Horse Cove Rd",
-            "lng": -83.50808,
+            "lng": -83.50809,
             "lat": 34.79232
         }
     ],

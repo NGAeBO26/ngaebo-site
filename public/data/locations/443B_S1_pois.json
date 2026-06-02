@@ -1,0 +1,53 @@
+{
+    "profile_id": "443B_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Little Ridge",
+            "type": "scenic",
+            "dist": "1.07",
+            "via": "Horse Cove Rd",
+            "lng": -83.88527,
+            "lat": 34.7169
+        },
+        {
+            "label": "Hogpen Mountain",
+            "type": "scenic",
+            "dist": "1.09",
+            "via": "Horse Cove Rd",
+            "lng": -83.89532,
+            "lat": 34.71655
+        },
+        {
+            "label": "Bee Tree Ridge",
+            "type": "scenic",
+            "dist": "1.22",
+            "via": "Horse Cove Rd",
+            "lng": -83.86769,
+            "lat": 34.69964
+        },
+        {
+            "label": "Shellot Cliffs",
+            "type": "scenic",
+            "dist": "1.25",
+            "via": "Horse Cove Rd",
+            "lng": -83.87963,
+            "lat": 34.71815
+        },
+        {
+            "label": "Turkeypen Gap",
+            "type": "gap",
+            "dist": "1.28",
+            "via": "Horse Cove Rd",
+            "lng": -83.89491,
+            "lat": 34.71954
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Helen Fire Department",
+        "type": "Fire-EMS",
+        "address": "120 Unicoi St, Helen, GA 30545, USA",
+        "phone": "(706) 878-3676",
+        "dist_mi": 10.8
+    }
+}

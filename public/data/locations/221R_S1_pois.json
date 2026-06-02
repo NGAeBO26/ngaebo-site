@@ -1,0 +1,29 @@
+{
+    "profile_id": "221R_S1",
+    "count": 2,
+    "locations": [
+        {
+            "label": "Tumbling Creek Campground",
+            "type": "camp",
+            "dist": "0.49",
+            "via": "Horse Cove Rd",
+            "lng": -84.46731,
+            "lat": 35.01741
+        },
+        {
+            "label": "Brush Creek Trailhead",
+            "type": "trailhead",
+            "dist": "1.98",
+            "via": "Horse Cove Rd",
+            "lng": -84.4371,
+            "lat": 35.03616
+        }
+    ],
+    "rescue_anchor": {
+        "name": "East Polk Fire & Rescue",
+        "type": "Fire-EMS",
+        "address": "847 Cherokee Trail, Ducktown, TN 37326, USA",
+        "phone": "(423) 496-3341",
+        "dist_mi": 5.2
+    }
+}

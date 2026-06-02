@@ -1,0 +1,53 @@
+{
+    "profile_id": "20_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Stonewall Mtn Bike Trail Parking",
+            "type": "trailhead",
+            "dist": "0.52",
+            "via": "Horse Cove Rd",
+            "lng": -83.44306,
+            "lat": 34.82056
+        },
+        {
+            "label": "Boggs Mountain",
+            "type": "scenic",
+            "dist": "1.40",
+            "via": "Horse Cove Rd",
+            "lng": -83.41222,
+            "lat": 34.82546
+        },
+        {
+            "label": "Wiley Mountain",
+            "type": "scenic",
+            "dist": "1.45",
+            "via": "Horse Cove Rd",
+            "lng": -83.41409,
+            "lat": 34.80523
+        },
+        {
+            "label": "Jameson Mountain",
+            "type": "scenic",
+            "dist": "1.66",
+            "via": "Horse Cove Rd",
+            "lng": -83.45766,
+            "lat": 34.80258
+        },
+        {
+            "label": "Bee Branch Ridge",
+            "type": "scenic",
+            "dist": "1.92",
+            "via": "Horse Cove Rd",
+            "lng": -83.4402,
+            "lat": 34.84497
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clayton Fire Department",
+        "type": "Fire-EMS",
+        "address": "14 Emergency Dr # 105, Clayton, GA 30525, USA",
+        "phone": "(706) 782-2751",
+        "dist_mi": 5.1
+    }
+}

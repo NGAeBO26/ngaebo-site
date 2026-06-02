@@ -1,0 +1,53 @@
+{
+    "profile_id": "672_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Horse Range Mountain",
+            "type": "scenic",
+            "dist": "0.90",
+            "via": "Horse Cove Rd",
+            "lng": -83.82146,
+            "lat": 34.66293
+        },
+        {
+            "label": "Big Gap",
+            "type": "gap",
+            "dist": "1.14",
+            "via": "Horse Cove Rd",
+            "lng": -83.8138,
+            "lat": 34.67093
+        },
+        {
+            "label": "Double Head",
+            "type": "scenic",
+            "dist": "1.20",
+            "via": "Horse Cove Rd",
+            "lng": -83.81211,
+            "lat": 34.67205
+        },
+        {
+            "label": "White Oak Gap",
+            "type": "gap",
+            "dist": "1.36",
+            "via": "Horse Cove Rd",
+            "lng": -83.81463,
+            "lat": 34.67398
+        },
+        {
+            "label": "Slayton Gap",
+            "type": "gap",
+            "dist": "1.40",
+            "via": "Horse Cove Rd",
+            "lng": -83.80796,
+            "lat": 34.6751
+        }
+    ],
+    "rescue_anchor": {
+        "name": "White County Fire Department",
+        "type": "Fire-EMS",
+        "address": "1221 Helen Hwy #140, Cleveland, GA 30528, USA",
+        "phone": "(706) 865-9500",
+        "dist_mi": 4.6
+    }
+}

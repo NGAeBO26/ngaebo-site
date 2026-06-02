@@ -1,0 +1,53 @@
+{
+    "profile_id": "26-1_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Wildcat Creek Campground #2 Upper",
+            "type": "camp",
+            "dist": "0.63",
+            "via": "Horse Cove Rd",
+            "lng": -83.62611,
+            "lat": 34.83222
+        },
+        {
+            "label": "Fuller Gap",
+            "type": "gap",
+            "dist": "1.09",
+            "via": "Horse Cove Rd",
+            "lng": -83.62962,
+            "lat": 34.85232
+        },
+        {
+            "label": "Wildcat Creek Campground #1 Lower",
+            "type": "camp",
+            "dist": "1.16",
+            "via": "Horse Cove Rd",
+            "lng": -83.61889,
+            "lat": 34.8275
+        },
+        {
+            "label": "Wildcat Creek Road Corridor",
+            "type": "camp",
+            "dist": "1.16",
+            "via": "Horse Cove Rd",
+            "lng": -83.61889,
+            "lat": 34.8275
+        },
+        {
+            "label": "Bramlet Ridge",
+            "type": "scenic",
+            "dist": "1.20",
+            "via": "Horse Cove Rd",
+            "lng": -83.65082,
+            "lat": 34.84922
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Helen Fire Department",
+        "type": "Fire-EMS",
+        "address": "120 Unicoi St, Helen, GA 30545, USA",
+        "phone": "(706) 878-3676",
+        "dist_mi": 11.6
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "profile_id": "323_S1",
+    "count": 4,
+    "locations": [
+        {
+            "label": "Mount Yonah Trailhead",
+            "type": "trailhead",
+            "dist": "0.51",
+            "via": "Horse Cove Rd",
+            "lng": -83.71945,
+            "lat": 34.63723
+        },
+        {
+            "label": "Yonah Mountain",
+            "type": "scenic",
+            "dist": "0.86",
+            "via": "Horse Cove Rd",
+            "lng": -83.71342,
+            "lat": 34.63768
+        },
+        {
+            "label": "Pink Mountain",
+            "type": "scenic",
+            "dist": "0.86",
+            "via": "Horse Cove Rd",
+            "lng": -83.72212,
+            "lat": 34.6262
+        },
+        {
+            "label": "Murdock Ridge",
+            "type": "scenic",
+            "dist": "1.07",
+            "via": "Horse Cove Rd",
+            "lng": -83.71004,
+            "lat": 34.6344
+        }
+    ],
+    "rescue_anchor": {
+        "name": "White County Fire Department",
+        "type": "Fire-EMS",
+        "address": "1221 Helen Hwy #140, Cleveland, GA 30528, USA",
+        "phone": "(706) 865-9500",
+        "dist_mi": 2.3
+    }
+}

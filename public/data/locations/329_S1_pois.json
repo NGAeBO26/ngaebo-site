@@ -1,0 +1,53 @@
+{
+    "profile_id": "329_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Skeenah Gap",
+            "type": "gap",
+            "dist": "0.74",
+            "via": "Horse Cove Rd",
+            "lng": -84.14019,
+            "lat": 34.80675
+        },
+        {
+            "label": "Licklog Mountain",
+            "type": "scenic",
+            "dist": "1.13",
+            "via": "Horse Cove Rd",
+            "lng": -84.13075,
+            "lat": 34.78425
+        },
+        {
+            "label": "Rhodes Mountain",
+            "type": "scenic",
+            "dist": "1.13",
+            "via": "Horse Cove Rd",
+            "lng": -84.12398,
+            "lat": 34.7958
+        },
+        {
+            "label": "Wallalah Mountain",
+            "type": "scenic",
+            "dist": "1.24",
+            "via": "Horse Cove Rd",
+            "lng": -84.15303,
+            "lat": 34.78019
+        },
+        {
+            "label": "Rhodes Mountain Gap",
+            "type": "gap",
+            "dist": "1.58",
+            "via": "Horse Cove Rd",
+            "lng": -84.11603,
+            "lat": 34.79814
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Fannin County Emergency Services - Fire Station 1",
+        "type": "Fire-EMS",
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 12.9
+    }
+}

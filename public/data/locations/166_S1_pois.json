@@ -1,0 +1,53 @@
+{
+    "profile_id": "166_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Goshen Mountain",
+            "type": "scenic",
+            "dist": "0.88",
+            "via": "Horse Cove Rd",
+            "lng": -83.60566,
+            "lat": 34.80607
+        },
+        {
+            "label": "Baker Knob",
+            "type": "scenic",
+            "dist": "1.69",
+            "via": "Horse Cove Rd",
+            "lng": -83.64573,
+            "lat": 34.81037
+        },
+        {
+            "label": "Wilson Falls",
+            "type": "water",
+            "dist": "1.86",
+            "via": "Horse Cove Rd",
+            "lng": -83.59517,
+            "lat": 34.81815
+        },
+        {
+            "label": "Wildcat Creek Campground #1 Lower",
+            "type": "camp",
+            "dist": "1.92",
+            "via": "Horse Cove Rd",
+            "lng": -83.61889,
+            "lat": 34.8275
+        },
+        {
+            "label": "Wildcat Creek Road Corridor",
+            "type": "camp",
+            "dist": "1.92",
+            "via": "Horse Cove Rd",
+            "lng": -83.61889,
+            "lat": 34.8275
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Helen Fire Department",
+        "type": "Fire-EMS",
+        "address": "120 Unicoi St, Helen, GA 30545, USA",
+        "phone": "(706) 878-3676",
+        "dist_mi": 10.4
+    }
+}

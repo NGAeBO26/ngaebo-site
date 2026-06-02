@@ -1,0 +1,53 @@
+{
+    "profile_id": "643_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Tipton Mountain",
+            "type": "scenic",
+            "dist": "0.40",
+            "via": "Horse Cove Rd",
+            "lng": -84.19951,
+            "lat": 34.80998
+        },
+        {
+            "label": "Wilscot Gap",
+            "type": "gap",
+            "dist": "0.46",
+            "via": "Horse Cove Rd",
+            "lng": -84.18742,
+            "lat": 34.80814
+        },
+        {
+            "label": "Bald Top",
+            "type": "scenic",
+            "dist": "0.71",
+            "via": "Horse Cove Rd",
+            "lng": -84.20248,
+            "lat": 34.8057
+        },
+        {
+            "label": "Wilscot Mountain",
+            "type": "scenic",
+            "dist": "0.81",
+            "via": "Horse Cove Rd",
+            "lng": -84.17912,
+            "lat": 34.81161
+        },
+        {
+            "label": "Ledford Gap",
+            "type": "gap",
+            "dist": "0.88",
+            "via": "Horse Cove Rd",
+            "lng": -84.20575,
+            "lat": 34.80509
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Fannin County Emergency Services - Fire Station 1",
+        "type": "Fire-EMS",
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 9.3
+    }
+}

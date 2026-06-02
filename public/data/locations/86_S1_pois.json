@@ -1,0 +1,53 @@
+{
+    "profile_id": "86_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "John Teague Gap",
+            "type": "gap",
+            "dist": "0.20",
+            "via": "Horse Cove Rd",
+            "lng": -83.22876,
+            "lat": 34.96204
+        },
+        {
+            "label": "Owl Gap",
+            "type": "gap",
+            "dist": "0.31",
+            "via": "Horse Cove Rd",
+            "lng": -83.22182,
+            "lat": 34.95787
+        },
+        {
+            "label": "High Top",
+            "type": "scenic",
+            "dist": "0.64",
+            "via": "Horse Cove Rd",
+            "lng": -83.22217,
+            "lat": 34.97011
+        },
+        {
+            "label": "Bent Ridge",
+            "type": "scenic",
+            "dist": "1.28",
+            "via": "Horse Cove Rd",
+            "lng": -83.24775,
+            "lat": 34.96348
+        },
+        {
+            "label": "Cabin Mountain",
+            "type": "scenic",
+            "dist": "1.37",
+            "via": "Horse Cove Rd",
+            "lng": -83.23689,
+            "lat": 34.94377
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Scaly Mountain Volunteer Fire Department",
+        "type": "Fire-EMS",
+        "address": "169 Hale Ridge Rd, Scaly Mountain, NC 28775, USA",
+        "phone": "(828) 526-9032",
+        "dist_mi": 6.8
+    }
+}

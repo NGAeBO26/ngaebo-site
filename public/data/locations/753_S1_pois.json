@@ -1,0 +1,29 @@
+{
+    "profile_id": "753_S1",
+    "count": 2,
+    "locations": [
+        {
+            "label": "Mccracken Ford (Historical)",
+            "type": "hazard",
+            "dist": "1.76",
+            "via": "Horse Cove Rd",
+            "lng": -83.35294,
+            "lat": 34.72982
+        },
+        {
+            "label": "Abram Mountain",
+            "type": "scenic",
+            "dist": "2.74",
+            "via": "Horse Cove Rd",
+            "lng": -83.36266,
+            "lat": 34.68981
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Long Creek FD - Oconee Co. Station 9",
+        "type": "Fire-EMS",
+        "address": "12351 Long Creek Hwy, Long Creek, SC 29658, USA",
+        "phone": "(864) 647-8151",
+        "dist_mi": 6.1
+    }
+}

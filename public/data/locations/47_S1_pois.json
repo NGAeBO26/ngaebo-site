@@ -1,0 +1,53 @@
+{
+    "profile_id": "47_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Spaniard Mountain",
+            "type": "scenic",
+            "dist": "0.66",
+            "via": "Horse Cove Rd",
+            "lng": -83.75341,
+            "lat": 34.84906
+        },
+        {
+            "label": "Owl Creek Gap",
+            "type": "gap",
+            "dist": "1.14",
+            "via": "Horse Cove Rd",
+            "lng": -83.77712,
+            "lat": 34.85648
+        },
+        {
+            "label": "Jones Mountain",
+            "type": "scenic",
+            "dist": "1.29",
+            "via": "Horse Cove Rd",
+            "lng": -83.75609,
+            "lat": 34.8767
+        },
+        {
+            "label": "Taylor Ridge",
+            "type": "scenic",
+            "dist": "1.31",
+            "via": "Horse Cove Rd",
+            "lng": -83.74245,
+            "lat": 34.84341
+        },
+        {
+            "label": "Glassy Knob",
+            "type": "scenic",
+            "dist": "1.33",
+            "via": "Horse Cove Rd",
+            "lng": -83.77484,
+            "lat": 34.87071
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Towns County Fire Department",
+        "type": "Fire-EMS",
+        "address": "Sims Cir, Hiawassee, GA 30546, USA",
+        "phone": "(706) 896-2090",
+        "dist_mi": 6.6
+    }
+}

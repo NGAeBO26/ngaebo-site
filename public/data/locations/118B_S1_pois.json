@@ -1,0 +1,53 @@
+{
+    "profile_id": "118B_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Chestnut Knob",
+            "type": "scenic",
+            "dist": "0.33",
+            "via": "Horse Cove Rd",
+            "lng": -83.90717,
+            "lat": 34.75831
+        },
+        {
+            "label": "Helton Creek Falls",
+            "type": "water",
+            "dist": "0.49",
+            "via": "Horse Cove Rd",
+            "lng": -83.89574,
+            "lat": 34.75259
+        },
+        {
+            "label": "Long Ridge",
+            "type": "scenic",
+            "dist": "0.69",
+            "via": "Horse Cove Rd",
+            "lng": -83.90884,
+            "lat": 34.76592
+        },
+        {
+            "label": "Fisher Knob",
+            "type": "scenic",
+            "dist": "0.70",
+            "via": "Horse Cove Rd",
+            "lng": -83.88907,
+            "lat": 34.75703
+        },
+        {
+            "label": "Yellow Mountain Gap",
+            "type": "gap",
+            "dist": "0.86",
+            "via": "Horse Cove Rd",
+            "lng": -83.91602,
+            "lat": 34.75537
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Union County Fire Department",
+        "type": "Fire-EMS",
+        "address": "507 Shoe Factory Rd, Blairsville, GA 30512, USA",
+        "phone": "(706) 439-6095",
+        "dist_mi": 8.4
+    }
+}

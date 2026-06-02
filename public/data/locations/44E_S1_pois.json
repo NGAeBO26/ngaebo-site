@@ -1,0 +1,53 @@
+{
+    "profile_id": "44E_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Upper Chattahoochee River Campground",
+            "type": "camp",
+            "dist": "0.09",
+            "via": "Horse Cove Rd",
+            "lng": -83.78291,
+            "lat": 34.787
+        },
+        {
+            "label": "Horsetrough Falls",
+            "type": "water",
+            "dist": "0.56",
+            "via": "Horse Cove Rd",
+            "lng": -83.78824,
+            "lat": 34.7951
+        },
+        {
+            "label": "Horse Trough Falls",
+            "type": "trailhead",
+            "dist": "0.64",
+            "via": "Horse Cove Rd",
+            "lng": -83.78445,
+            "lat": 34.79751
+        },
+        {
+            "label": "Poplar Stomp Gap",
+            "type": "gap",
+            "dist": "1.73",
+            "via": "Horse Cove Rd",
+            "lng": -83.81324,
+            "lat": 34.78871
+        },
+        {
+            "label": "Trail Ridge",
+            "type": "scenic",
+            "dist": "1.79",
+            "via": "Horse Cove Rd",
+            "lng": -83.81251,
+            "lat": 34.77969
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Helen Fire Department",
+        "type": "Fire-EMS",
+        "address": "120 Unicoi St, Helen, GA 30545, USA",
+        "phone": "(706) 878-3676",
+        "dist_mi": 7.0
+    }
+}

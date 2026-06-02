@@ -1,0 +1,45 @@
+{
+    "profile_id": "4622_S1",
+    "count": 4,
+    "locations": [
+        {
+            "label": "Ammons Branch Campground",
+            "type": "camp",
+            "dist": "1.86",
+            "via": "Horse Cove Rd",
+            "lng": -83.14557,
+            "lat": 35.02199
+        },
+        {
+            "label": "Dyer Mountain",
+            "type": "scenic",
+            "dist": "2.11",
+            "via": "Horse Cove Rd",
+            "lng": -83.1855,
+            "lat": 34.99658
+        },
+        {
+            "label": "Ellicott Rock Wilderness West",
+            "type": "trailhead",
+            "dist": "2.17",
+            "via": "Horse Cove Rd",
+            "lng": -83.1415,
+            "lat": 35.0169
+        },
+        {
+            "label": "Big Ridge",
+            "type": "scenic",
+            "dist": "2.47",
+            "via": "Horse Cove Rd",
+            "lng": -83.2036,
+            "lat": 34.99748
+        }
+    ],
+    "rescue_anchor": {
+        "name": "HIGHLANDS FIRE & RESCUE",
+        "type": "Fire-EMS",
+        "address": "Cherrywood Dr, Highlands, NC 28741, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 4.2
+    }
+}

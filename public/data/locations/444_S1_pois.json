@@ -1,0 +1,53 @@
+{
+    "profile_id": "444_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Crumbly Knob",
+            "type": "scenic",
+            "dist": "1.15",
+            "via": "Horse Cove Rd",
+            "lng": -83.73764,
+            "lat": 34.74871
+        },
+        {
+            "label": "Hargret Ridge",
+            "type": "scenic",
+            "dist": "1.24",
+            "via": "Horse Cove Rd",
+            "lng": -83.76271,
+            "lat": 34.74697
+        },
+        {
+            "label": "Andrews Cove Campground",
+            "type": "camp",
+            "dist": "1.35",
+            "via": "Horse Cove Rd",
+            "lng": -83.73751,
+            "lat": 34.77823
+        },
+        {
+            "label": "Crumbly Mountain",
+            "type": "scenic",
+            "dist": "1.38",
+            "via": "Horse Cove Rd",
+            "lng": -83.73768,
+            "lat": 34.74453
+        },
+        {
+            "label": "Little Crumbly Knob",
+            "type": "scenic",
+            "dist": "1.53",
+            "via": "Horse Cove Rd",
+            "lng": -83.75674,
+            "lat": 34.74023
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Helen Fire Department",
+        "type": "Fire-EMS",
+        "address": "120 Unicoi St, Helen, GA 30545, USA",
+        "phone": "(706) 878-3676",
+        "dist_mi": 4.4
+    }
+}

@@ -1,12 +1,12 @@
 {
     "profile_id": "28H_S1",
     "route_id": "28H",
-    "ssdi_score": 5.3,
+    "ssdi_score": 15.6,
     "v3_terrain_score": 3.9,
     "v3_terrain_class": "Cruiser",
-    "badge_type": "wet",
-    "condition": "WET / SLICK",
-    "style_color": "#e66e00",
+    "badge_type": "muddy",
+    "condition": "MUDDY / SOFT",
+    "style_color": "#a52d23",
     "access": {
         "label": "OPEN",
         "vibe_context": "CLASSIC FOREST ROAD",
@@ -17,23 +17,21 @@
         "value": 0.19
     },
     "environment": {
-        "current_temp": 62,
-        "saturation_index": 7.0,
+        "current_temp": 67,
+        "saturation_index": 58.45,
         "soil_status": "Saturated",
         "precip_24h": 0.0,
         "saturation_trend": "stable",
-        "alerts": [
-            "SAFETY ALERT: Cell Service is UNAVAILABLE."
-        ]
+        "alerts": []
     },
     "physics": {
-        "live_traction": 0.59,
-        "live_wh_per_km": 10.81,
-        "energy_penalty_pct": 10.0,
+        "live_traction": 0.35,
+        "live_wh_per_km": 12.07,
+        "energy_penalty_pct": 20.0,
         "v3_base_intensity": 3.9
     },
     "connectivity": {
-        "signal_class": "Unavailable",
-        "deadzone_max_meters": 140
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
     }
 }

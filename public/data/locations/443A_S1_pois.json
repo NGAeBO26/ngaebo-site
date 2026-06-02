@@ -1,0 +1,53 @@
+{
+    "profile_id": "443A_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Little Buzzard Mountain",
+            "type": "scenic",
+            "dist": "0.66",
+            "via": "Horse Cove Rd",
+            "lng": -83.87296,
+            "lat": 34.68314
+        },
+        {
+            "label": "Shingle Mill Gap",
+            "type": "gap",
+            "dist": "0.85",
+            "via": "Horse Cove Rd",
+            "lng": -83.86713,
+            "lat": 34.68648
+        },
+        {
+            "label": "Will Field Gap",
+            "type": "gap",
+            "dist": "1.03",
+            "via": "Horse Cove Rd",
+            "lng": -83.86352,
+            "lat": 34.68871
+        },
+        {
+            "label": "Bee Tree Ridge",
+            "type": "scenic",
+            "dist": "1.05",
+            "via": "Horse Cove Rd",
+            "lng": -83.86769,
+            "lat": 34.69964
+        },
+        {
+            "label": "Tom Field Gap",
+            "type": "gap",
+            "dist": "1.07",
+            "via": "Horse Cove Rd",
+            "lng": -83.86296,
+            "lat": 34.69204
+        }
+    ],
+    "rescue_anchor": {
+        "name": "White County Fire Department",
+        "type": "Fire-EMS",
+        "address": "1221 Helen Hwy #140, Cleveland, GA 30528, USA",
+        "phone": "(706) 865-9500",
+        "dist_mi": 10.1
+    }
+}

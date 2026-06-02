@@ -1,0 +1,37 @@
+{
+    "profile_id": "825A_S1",
+    "count": 3,
+    "locations": [
+        {
+            "label": "Hog Mountain",
+            "type": "scenic",
+            "dist": "1.41",
+            "via": "Horse Cove Rd",
+            "lng": -83.35925,
+            "lat": 34.81506
+        },
+        {
+            "label": "Cliff Mountain",
+            "type": "scenic",
+            "dist": "2.08",
+            "via": "Horse Cove Rd",
+            "lng": -83.39183,
+            "lat": 34.80453
+        },
+        {
+            "label": "Duncan Bald",
+            "type": "scenic",
+            "dist": "2.47",
+            "via": "Horse Cove Rd",
+            "lng": -83.36295,
+            "lat": 34.83018
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clayton Fire Department",
+        "type": "Fire-EMS",
+        "address": "14 Emergency Dr # 105, Clayton, GA 30525, USA",
+        "phone": "(706) 782-2751",
+        "dist_mi": 6.7
+    }
+}

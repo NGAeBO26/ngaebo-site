@@ -1,0 +1,12 @@
+{
+    "profile_id": "707_S1",
+    "count": 0,
+    "locations": [],
+    "rescue_anchor": {
+        "name": "Salem FD - Oconee Co. Station 2",
+        "type": "Fire-EMS",
+        "address": "115 E Main St, Salem, SC 29676, USA",
+        "phone": "(864) 944-6060",
+        "dist_mi": 5.2
+    }
+}

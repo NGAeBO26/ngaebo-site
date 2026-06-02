@@ -1,0 +1,53 @@
+{
+    "profile_id": "427_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Eastman Mountain",
+            "type": "scenic",
+            "dist": "0.52",
+            "via": "Horse Cove Rd",
+            "lng": -83.37722,
+            "lat": 34.82865
+        },
+        {
+            "label": "Duncan Bald",
+            "type": "scenic",
+            "dist": "0.72",
+            "via": "Horse Cove Rd",
+            "lng": -83.36295,
+            "lat": 34.83018
+        },
+        {
+            "label": "Hog Mountain",
+            "type": "scenic",
+            "dist": "0.89",
+            "via": "Horse Cove Rd",
+            "lng": -83.35925,
+            "lat": 34.81506
+        },
+        {
+            "label": "Cliff Mountain",
+            "type": "scenic",
+            "dist": "1.69",
+            "via": "Horse Cove Rd",
+            "lng": -83.39183,
+            "lat": 34.80453
+        },
+        {
+            "label": "Stekoa Falls",
+            "type": "water",
+            "dist": "1.87",
+            "via": "Horse Cove Rd",
+            "lng": -83.3985,
+            "lat": 34.83843
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clayton Fire Department",
+        "type": "Fire-EMS",
+        "address": "14 Emergency Dr # 105, Clayton, GA 30525, USA",
+        "phone": "(706) 782-2751",
+        "dist_mi": 4.5
+    }
+}

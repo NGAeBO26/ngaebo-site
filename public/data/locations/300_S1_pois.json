@@ -1,0 +1,53 @@
+{
+    "profile_id": "300_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Rough Ridge",
+            "type": "scenic",
+            "dist": "0.81",
+            "via": "Horse Cove Rd",
+            "lng": -83.67982,
+            "lat": 34.89703
+        },
+        {
+            "label": "Wolfpen Gap",
+            "type": "gap",
+            "dist": "1.13",
+            "via": "Horse Cove Rd",
+            "lng": -83.65517,
+            "lat": 34.91648
+        },
+        {
+            "label": "Fall Branch Knob",
+            "type": "scenic",
+            "dist": "1.18",
+            "via": "Horse Cove Rd",
+            "lng": -83.67956,
+            "lat": 34.89072
+        },
+        {
+            "label": "Tower Mountain",
+            "type": "scenic",
+            "dist": "1.20",
+            "via": "Horse Cove Rd",
+            "lng": -83.69133,
+            "lat": 34.90273
+        },
+        {
+            "label": "Kelly Ridge",
+            "type": "scenic",
+            "dist": "1.31",
+            "via": "Horse Cove Rd",
+            "lng": -83.67769,
+            "lat": 34.88807
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Towns County Fire Department",
+        "type": "Fire-EMS",
+        "address": "Sims Cir, Hiawassee, GA 30546, USA",
+        "phone": "(706) 896-2090",
+        "dist_mi": 7.0
+    }
+}

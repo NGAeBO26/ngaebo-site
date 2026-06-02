@@ -1,0 +1,53 @@
+{
+    "profile_id": "241_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Bear Creek Trailhead",
+            "type": "trailhead",
+            "dist": "0.82",
+            "via": "Horse Cove Rd",
+            "lng": -84.56612,
+            "lat": 34.82029
+        },
+        {
+            "label": "Granny Mountain",
+            "type": "scenic",
+            "dist": "0.85",
+            "via": "Horse Cove Rd",
+            "lng": -84.55447,
+            "lat": 34.79839
+        },
+        {
+            "label": "Indian Grave Knob",
+            "type": "scenic",
+            "dist": "0.92",
+            "via": "Horse Cove Rd",
+            "lng": -84.54335,
+            "lat": 34.81489
+        },
+        {
+            "label": "Painter Gap",
+            "type": "gap",
+            "dist": "1.13",
+            "via": "Horse Cove Rd",
+            "lng": -84.5741,
+            "lat": 34.80008
+        },
+        {
+            "label": "Bear Pen Gap",
+            "type": "gap",
+            "dist": "1.69",
+            "via": "Horse Cove Rd",
+            "lng": -84.56438,
+            "lat": 34.83425
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Gilmer County Fire Rescue Station 14",
+        "type": "Fire-EMS",
+        "address": "2300 Tails Creek Rd, Ellijay, GA 30540, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 7.8
+    }
+}

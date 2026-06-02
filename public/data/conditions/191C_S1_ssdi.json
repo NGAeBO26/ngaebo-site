@@ -1,10 +1,12 @@
 {
     "profile_id": "191C_S1",
     "route_id": "191C",
-    "ssdi_score": 1.4,
-    "badge_type": "dry",
-    "condition": "DRY / DUSTY",
-    "style_color": "#4a5d23",
+    "ssdi_score": 10.7,
+    "v3_terrain_score": 1.0,
+    "v3_terrain_class": "Cruiser",
+    "badge_type": "muddy",
+    "condition": "MUDDY / SOFT",
+    "style_color": "#a52d23",
     "access": {
         "label": "CLOSED",
         "vibe_context": "TECHNICAL BACKCOUNTRY (CLOSED)",
@@ -12,24 +14,24 @@
     },
     "ruggedness": {
         "class": "Chattery",
-        "value": 0.09
+        "value": 0.0
     },
     "environment": {
-        "current_temp": 70,
-        "saturation_index": 0.0,
+        "current_temp": 67,
+        "saturation_index": 48.53,
+        "soil_status": "Saturated",
+        "precip_24h": 0.04,
         "saturation_trend": "stable",
-        "alerts": [
-            "SAFETY ALERT: Cell Service is UNAVAILABLE."
-        ]
+        "alerts": []
     },
     "physics": {
-        "live_traction": 0.9,
-        "live_wh_per_km": 9.93,
-        "energy_penalty_pct": 11.1,
-        "v3_base_intensity": 1.4
+        "live_traction": 0.39,
+        "live_wh_per_km": 11.52,
+        "energy_penalty_pct": 20.0,
+        "v3_base_intensity": 1.0
     },
     "connectivity": {
-        "signal_class": "Unavailable",
-        "deadzone_max_meters": 397
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
     }
 }

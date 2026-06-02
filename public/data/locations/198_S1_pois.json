@@ -1,0 +1,53 @@
+{
+    "profile_id": "198_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Chestnut Mountain",
+            "type": "scenic",
+            "dist": "0.53",
+            "via": "Horse Cove Rd",
+            "lng": -83.52349,
+            "lat": 34.96478
+        },
+        {
+            "label": "Pot Gap Ridge",
+            "type": "scenic",
+            "dist": "1.28",
+            "via": "Horse Cove Rd",
+            "lng": -83.52637,
+            "lat": 34.97753
+        },
+        {
+            "label": "Tate Branch Campground",
+            "type": "camp",
+            "dist": "1.28",
+            "via": "Horse Cove Rd",
+            "lng": -83.5521,
+            "lat": 34.9553
+        },
+        {
+            "label": "Steeltrap Knob",
+            "type": "scenic",
+            "dist": "1.42",
+            "via": "Horse Cove Rd",
+            "lng": -83.52305,
+            "lat": 34.97904
+        },
+        {
+            "label": "Straw Mountain",
+            "type": "scenic",
+            "dist": "1.46",
+            "via": "Horse Cove Rd",
+            "lng": -83.53077,
+            "lat": 34.93812
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clay County Fire and Rescue Station 6",
+        "type": "Fire-EMS",
+        "address": "18 Eagle Fork Rd, Hayesville, NC 28904, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 10.1
+    }
+}

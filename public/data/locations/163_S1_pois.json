@@ -1,0 +1,53 @@
+{
+    "profile_id": "163_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Turkey Gap",
+            "type": "gap",
+            "dist": "0.65",
+            "via": "Horse Cove Rd",
+            "lng": -83.58711,
+            "lat": 34.89232
+        },
+        {
+            "label": "Coffee Gap",
+            "type": "gap",
+            "dist": "0.94",
+            "via": "Horse Cove Rd",
+            "lng": -83.58572,
+            "lat": 34.91454
+        },
+        {
+            "label": "Poplar Cove Mountain",
+            "type": "scenic",
+            "dist": "1.00",
+            "via": "Horse Cove Rd",
+            "lng": -83.57181,
+            "lat": 34.91224
+        },
+        {
+            "label": "Turkey Mountain",
+            "type": "scenic",
+            "dist": "1.18",
+            "via": "Horse Cove Rd",
+            "lng": -83.57995,
+            "lat": 34.88413
+        },
+        {
+            "label": "Cowart Gap",
+            "type": "gap",
+            "dist": "1.32",
+            "via": "Horse Cove Rd",
+            "lng": -83.59572,
+            "lat": 34.91704
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clay County Fire and Rescue Station 6",
+        "type": "Fire-EMS",
+        "address": "18 Eagle Fork Rd, Hayesville, NC 28904, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 10.0
+    }
+}

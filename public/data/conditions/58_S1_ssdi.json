@@ -1,12 +1,12 @@
 {
     "profile_id": "58_S1",
     "route_id": "58",
-    "ssdi_score": 5.4,
+    "ssdi_score": 12.1,
     "v3_terrain_score": 3.8,
     "v3_terrain_class": "Cruiser",
-    "badge_type": "wet",
-    "condition": "WET / SLICK",
-    "style_color": "#e66e00",
+    "badge_type": "muddy",
+    "condition": "MUDDY / SOFT",
+    "style_color": "#a52d23",
     "access": {
         "label": "OPEN",
         "vibe_context": "CLASSIC FOREST ROAD",
@@ -14,26 +14,24 @@
     },
     "ruggedness": {
         "class": "Chattery",
-        "value": 0.21
+        "value": 0.2
     },
     "environment": {
-        "current_temp": 62,
-        "saturation_index": 8.03,
+        "current_temp": 69,
+        "saturation_index": 41.66,
         "soil_status": "Saturated",
-        "precip_24h": 0.0,
+        "precip_24h": 0.04,
         "saturation_trend": "stable",
-        "alerts": [
-            "SAFETY ALERT: Cell Service is UNAVAILABLE."
-        ]
+        "alerts": []
     },
     "physics": {
-        "live_traction": 0.57,
-        "live_wh_per_km": 11.47,
-        "energy_penalty_pct": 10.0,
+        "live_traction": 0.39,
+        "live_wh_per_km": 12.46,
+        "energy_penalty_pct": 20.0,
         "v3_base_intensity": 3.8
     },
     "connectivity": {
-        "signal_class": "Unavailable",
-        "deadzone_max_meters": 12995
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
     }
 }

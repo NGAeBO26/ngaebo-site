@@ -16,7 +16,7 @@
             "dist": "0.73",
             "via": "Horse Cove Rd",
             "lng": -84.20578,
-            "lat": 34.65375
+            "lat": 34.65376
         },
         {
             "label": "Locust Mountain",
@@ -44,10 +44,10 @@
         }
     ],
     "rescue_anchor": {
-        "name": "Gilmer County Fire and Rescue - Station 17",
+        "name": "Ellijay Fire Department",
         "type": "Fire-EMS",
-        "address": "7212 Roy Rd, Ellijay, GA 30536, USA",
-        "phone": "(706) 635-1333",
-        "dist_mi": 5.7
+        "address": "201 N Main St, Ellijay, GA 30540, USA",
+        "phone": "(706) 635-7430",
+        "dist_mi": 18.4
     }
 }

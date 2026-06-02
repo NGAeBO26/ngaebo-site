@@ -1,0 +1,53 @@
+{
+    "profile_id": "335601_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Beech Bottom Trailhead",
+            "type": "trailhead",
+            "dist": "0.62",
+            "via": "Horse Cove Rd",
+            "lng": -84.58834,
+            "lat": 34.99084
+        },
+        {
+            "label": "Van Arthur Lead",
+            "type": "scenic",
+            "dist": "0.83",
+            "via": "Horse Cove Rd",
+            "lng": -84.56756,
+            "lat": 34.98571
+        },
+        {
+            "label": "Poplar Springs Gap",
+            "type": "gap",
+            "dist": "1.94",
+            "via": "Horse Cove Rd",
+            "lng": -84.54715,
+            "lat": 34.98202
+        },
+        {
+            "label": "Turkey Stand Lead",
+            "type": "scenic",
+            "dist": "2.44",
+            "via": "Horse Cove Rd",
+            "lng": -84.56883,
+            "lat": 34.9596
+        },
+        {
+            "label": "Ken Mountain",
+            "type": "scenic",
+            "dist": "2.75",
+            "via": "Horse Cove Rd",
+            "lng": -84.60527,
+            "lat": 34.96102
+        }
+    ],
+    "rescue_anchor": {
+        "name": "East Polk Fire & Rescue",
+        "type": "Fire-EMS",
+        "address": "847 Cherokee Trail, Ducktown, TN 37326, USA",
+        "phone": "(423) 496-3341",
+        "dist_mi": 13.0
+    }
+}

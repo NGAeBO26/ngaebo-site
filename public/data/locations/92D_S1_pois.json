@@ -1,0 +1,53 @@
+{
+    "profile_id": "92D_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Soapstone Mountain",
+            "type": "scenic",
+            "dist": "0.19",
+            "via": "Horse Cove Rd",
+            "lng": -83.41565,
+            "lat": 34.48647
+        },
+        {
+            "label": "Farmer Mountain",
+            "type": "scenic",
+            "dist": "0.75",
+            "via": "Horse Cove Rd",
+            "lng": -83.4135,
+            "lat": 34.49843
+        },
+        {
+            "label": "Allen Mountain",
+            "type": "scenic",
+            "dist": "0.86",
+            "via": "Horse Cove Rd",
+            "lng": -83.43103,
+            "lat": 34.48184
+        },
+        {
+            "label": "Brady Hill",
+            "type": "scenic",
+            "dist": "1.14",
+            "via": "Horse Cove Rd",
+            "lng": -83.39961,
+            "lat": 34.49426
+        },
+        {
+            "label": "Norton Hill",
+            "type": "scenic",
+            "dist": "1.33",
+            "via": "Horse Cove Rd",
+            "lng": -83.42513,
+            "lat": 34.46995
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Banks County Fire - EMS Station 41",
+        "type": "Fire-EMS",
+        "address": "2348 Damascus Rd, Homer, GA 30547, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 4.5
+    }
+}

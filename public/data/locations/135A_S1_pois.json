@@ -1,0 +1,21 @@
+{
+    "profile_id": "135A_S1",
+    "count": 1,
+    "locations": [
+        {
+            "label": "Three Sisters Mountain",
+            "type": "scenic",
+            "dist": "0.69",
+            "via": "Horse Cove Rd",
+            "lng": -83.9443,
+            "lat": 34.59609
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 4.3
+    }
+}

@@ -1,0 +1,45 @@
+{
+    "profile_id": "62_S4",
+    "count": 4,
+    "locations": [
+        {
+            "label": "Currahee Mountain",
+            "type": "scenic",
+            "dist": "0.91",
+            "via": "Horse Cove Rd",
+            "lng": -83.3758,
+            "lat": 34.52919
+        },
+        {
+            "label": "Davis Mountain",
+            "type": "scenic",
+            "dist": "1.05",
+            "via": "Horse Cove Rd",
+            "lng": -83.38732,
+            "lat": 34.55378
+        },
+        {
+            "label": "Frady Branch Equestrian And Bike Trail System",
+            "type": "trailhead",
+            "dist": "2.35",
+            "via": "Horse Cove Rd",
+            "lng": -83.38101,
+            "lat": 34.50494
+        },
+        {
+            "label": "Rock Quarry Mountain",
+            "type": "scenic",
+            "dist": "2.39",
+            "via": "Horse Cove Rd",
+            "lng": -83.3671,
+            "lat": 34.56909
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Carnes Creek Vol Fire Department",
+        "type": "Fire-EMS",
+        "address": "PO Box 68, 959 Mize Rd, Toccoa, GA 30577, USA",
+        "phone": "(706) 244-0902",
+        "dist_mi": 4.6
+    }
+}

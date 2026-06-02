@@ -1,0 +1,37 @@
+{
+    "profile_id": "2278_S1",
+    "count": 3,
+    "locations": [
+        {
+            "label": "Long Bottom Ford",
+            "type": "camp",
+            "dist": "1.52",
+            "via": "Horse Cove Rd",
+            "lng": -83.1867,
+            "lat": 34.89833
+        },
+        {
+            "label": "Long Bottom Ford",
+            "type": "hazard",
+            "dist": "1.60",
+            "via": "Horse Cove Rd",
+            "lng": -83.18599,
+            "lat": 34.89982
+        },
+        {
+            "label": "Willis Knob",
+            "type": "scenic",
+            "dist": "2.67",
+            "via": "Horse Cove Rd",
+            "lng": -83.21569,
+            "lat": 34.89723
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Mountain Rest FD - Oconee Co. Station 4",
+        "type": "Fire-EMS",
+        "address": "130 Verner Mill Rd, Mountain Rest, SC 29664, USA",
+        "phone": "(864) 638-8220",
+        "dist_mi": 3.7
+    }
+}

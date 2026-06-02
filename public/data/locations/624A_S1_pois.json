@@ -1,0 +1,12 @@
+{
+    "profile_id": "624A_S1",
+    "count": 0,
+    "locations": [],
+    "rescue_anchor": {
+        "name": "Cashiers Fire Department",
+        "type": "Fire-EMS",
+        "address": "579 Frank Allen Rd, Cashiers, NC 28717, USA",
+        "phone": "(828) 743-9544",
+        "dist_mi": 7.5
+    }
+}

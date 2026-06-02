@@ -1,0 +1,37 @@
+{
+    "profile_id": "733_S1",
+    "count": 3,
+    "locations": [
+        {
+            "label": "Cherry Hill Recreation Area",
+            "type": "camp",
+            "dist": "1.17",
+            "via": "Horse Cove Rd",
+            "lng": -83.0879,
+            "lat": 34.9422
+        },
+        {
+            "label": "Burrells Ford",
+            "type": "camp",
+            "dist": "2.40",
+            "via": "Horse Cove Rd",
+            "lng": -83.1181,
+            "lat": 34.969
+        },
+        {
+            "label": "Ellicott Rock Wilderness",
+            "type": "camp",
+            "dist": "2.62",
+            "via": "Horse Cove Rd",
+            "lng": -83.12152,
+            "lat": 34.9706
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Salem FD - Oconee Co. Station 2",
+        "type": "Fire-EMS",
+        "address": "115 E Main St, Salem, SC 29676, USA",
+        "phone": "(864) 944-6060",
+        "dist_mi": 8.4
+    }
+}

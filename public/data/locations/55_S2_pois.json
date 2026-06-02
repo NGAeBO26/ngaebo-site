@@ -1,0 +1,53 @@
+{
+    "profile_id": "55_S2",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Persimmon Gap",
+            "type": "gap",
+            "dist": "0.41",
+            "via": "Horse Cove Rd",
+            "lng": -84.03158,
+            "lat": 34.6362
+        },
+        {
+            "label": "Cane Creek Gap",
+            "type": "gap",
+            "dist": "1.16",
+            "via": "Horse Cove Rd",
+            "lng": -84.04269,
+            "lat": 34.64204
+        },
+        {
+            "label": "Gooch Gap",
+            "type": "gap",
+            "dist": "1.43",
+            "via": "Horse Cove Rd",
+            "lng": -84.03241,
+            "lat": 34.65204
+        },
+        {
+            "label": "Lumpkin Ridge",
+            "type": "scenic",
+            "dist": "1.43",
+            "via": "Horse Cove Rd",
+            "lng": -84.0508,
+            "lat": 34.63701
+        },
+        {
+            "label": "Gooch Mountain",
+            "type": "scenic",
+            "dist": "1.47",
+            "via": "Horse Cove Rd",
+            "lng": -84.03816,
+            "lat": 34.65103
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 7.6
+    }
+}

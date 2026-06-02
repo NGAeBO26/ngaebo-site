@@ -1,0 +1,21 @@
+{
+    "profile_id": "616_S1",
+    "count": 1,
+    "locations": [
+        {
+            "label": "Morganton Point Campground",
+            "type": "camp",
+            "dist": "0.31",
+            "via": "Horse Cove Rd",
+            "lng": -84.24942,
+            "lat": 34.86923
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Fannin County Emergency Services - Fire Station 1",
+        "type": "Fire-EMS",
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 4.7
+    }
+}

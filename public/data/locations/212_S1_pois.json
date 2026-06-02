@@ -1,0 +1,37 @@
+{
+    "profile_id": "212_S1",
+    "count": 3,
+    "locations": [
+        {
+            "label": "Chestnut Mountain",
+            "type": "scenic",
+            "dist": "0.82",
+            "via": "Horse Cove Rd",
+            "lng": -85.02673,
+            "lat": 34.62433
+        },
+        {
+            "label": "Gentry Gap",
+            "type": "gap",
+            "dist": "1.43",
+            "via": "Horse Cove Rd",
+            "lng": -85.06578,
+            "lat": 34.62675
+        },
+        {
+            "label": "Barn Mountain",
+            "type": "scenic",
+            "dist": "2.93",
+            "via": "Horse Cove Rd",
+            "lng": -85.01133,
+            "lat": 34.65753
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Walker County Fire/Rescue",
+        "type": "Fire-EMS",
+        "address": "3352 Round Pond Rd, LaFayette, GA 30728, USA",
+        "phone": "(807) 827-2742",
+        "dist_mi": 12.7
+    }
+}

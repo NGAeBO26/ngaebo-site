@@ -1,0 +1,37 @@
+{
+    "profile_id": "630B_S1",
+    "count": 3,
+    "locations": [
+        {
+            "label": "Hickory Ridge",
+            "type": "scenic",
+            "dist": "1.05",
+            "via": "Horse Cove Rd",
+            "lng": -84.71553,
+            "lat": 34.88057
+        },
+        {
+            "label": "Fancy Hill",
+            "type": "scenic",
+            "dist": "1.80",
+            "via": "Horse Cove Rd",
+            "lng": -84.7516,
+            "lat": 34.89035
+        },
+        {
+            "label": "High Top",
+            "type": "scenic",
+            "dist": "2.12",
+            "via": "Horse Cove Rd",
+            "lng": -84.76753,
+            "lat": 34.87082
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Chatsworth Fire Department",
+        "type": "Fire-EMS",
+        "address": "503 N 3rd Ave, Chatsworth, GA 30705, USA",
+        "phone": "(706) 695-7600",
+        "dist_mi": 7.4
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "profile_id": "268_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Yellow Mountain",
+            "type": "scenic",
+            "dist": "0.71",
+            "via": "Horse Cove Rd",
+            "lng": -83.58406,
+            "lat": 34.70426
+        },
+        {
+            "label": "Crow Mountain",
+            "type": "scenic",
+            "dist": "1.15",
+            "via": "Horse Cove Rd",
+            "lng": -83.57036,
+            "lat": 34.72186
+        },
+        {
+            "label": "Grassy Mountain",
+            "type": "scenic",
+            "dist": "1.46",
+            "via": "Horse Cove Rd",
+            "lng": -83.55116,
+            "lat": 34.71789
+        },
+        {
+            "label": "High Knob",
+            "type": "scenic",
+            "dist": "1.77",
+            "via": "Horse Cove Rd",
+            "lng": -83.58323,
+            "lat": 34.68148
+        },
+        {
+            "label": "Sillycook Mountain",
+            "type": "scenic",
+            "dist": "2.01",
+            "via": "Horse Cove Rd",
+            "lng": -83.55554,
+            "lat": 34.73119
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Habersham Emergency Services Station 16",
+        "type": "Fire-EMS",
+        "address": "6357 GA-17, Clarkesville, GA 30523, USA",
+        "phone": "(706) 754-2822",
+        "dist_mi": 5.6
+    }
+}

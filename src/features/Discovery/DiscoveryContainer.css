@@ -27,26 +27,37 @@
 
 /* Tier 1: Top Filter Bar Layout Row */
 .finder-header-row {
-  height: 80px;
-  background-color: #236ea0; /* PRESERVED: Your exact header blue background color */
-  border-bottom: 1px solid #1e293b;
-  padding: 0 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  flex-shrink: 0;
-  box-sizing: border-box;
-  z-index: 30;
+  height: 80px !important;
+  background-color: #236ea0 !important;
+  border-bottom: 1px solid #1e293b !important;
+  padding: 0px !important;
+  display: grid !important;
+  
+  /* Forces strict matching columns that perfectly mirror the workspace below */
+  grid-template-columns: 260px 1fr 260px !important;
+  
+  align-items: center !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+  z-index: 30 !important;
+  width: 100% !important;
+  overflow: visible !important;
 }
 
+/* Header Column 2: Centers input controls perfectly inside the active middle map workspace area */
 .finder-controls-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  flex: 1; /* Allows the control bar space to distribute dynamically */
-  justify-content: flex-end; /* Keeps your input group layouts clean and sequential */
-  margin-left: 32px; /* Forbids controls from sliding under your brand graphics on narrow window screens */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-evenly !important;
+  gap: 16px !important;
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  margin: 0px !important;
+  padding: 0px 24px !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
 }
 
 .finder-brand-block {
@@ -56,9 +67,13 @@
   justify-content: center;
   text-align: center;
   gap: 2px;
-  width: 160px; /* Established an explicit layout anchor width footprint */
+  width: 260px !important;
+  height: 100%;
   flex-shrink: 0;
+  box-sizing: border-box;
+  border-right: none !important; /* Flat layout look with no borders */
 }
+
 /* FIXED: Added logo bounding constraints to maintain a sharp layout profile */
 .finder-brand-logo {
   height: 32px; /* Set proportional height constraint */
@@ -94,31 +109,41 @@
 }
 
 .finder-text-input {
-  background-color: #fff;
-  border: 1px solid #334155;
-  border-radius: 8px;
-  padding: 6px 12px;
-  font-size: 12px;
-  font-family: "Montserrat", sans-serif;
-  color: #333;
+  background-color: #ffffff !important;
+  color: #334155 !important;
+  
+  /* 🎯 THE ERADICATION: Strips default borders and outline boxes completely */
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  font-size: 11.5px !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 600 !important;
   width: 100%;
-  outline: none;
 }
 
 .finder-select-input {
-  background-color: #fff;
-  border: 1px solid #334155;
-  border-radius: 8px;
-  padding: 6px 8px;
-  font-size: 12px;
-  font-family: "Montserrat", sans-serif;
-  color: #333;
-  width: 130px;
-  cursor: pointer;
-  outline: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  background-color: #ffffff !important;
+  color: #334155 !important;
+  
+  /* 🎯 THE ERADICATION: Strips drop-down element box borders */
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  
+  border-radius: 8px !important;
+  padding: 8px 32px 8px 12px !important; /* Leaves breathing room for arrow icons */
+  font-size: 11.5px !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 600 !important;
+  width: 130px !important;
+  cursor: pointer !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
 }
 
 .control-slider-group {
@@ -205,15 +230,51 @@
 }
 
 .yield-counter-panel {
-  border-left: 1px solid #1e293b;
-  padding-left: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-width: 70px;
-  text-align: left;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  
+  /* 🎯 Centers text exactly inside its own 260px box width */
+  align-items: center !important; 
+  text-align: center !important;
+  
+  /* Fixed dimension match syncing cleanly to the results list panel */
+  width: 260px !important; 
+  max-width: 260px !important;
+  height: 100% !important;
+  
+  border-left: none !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
 }
 
+.yield-counter-panel label {
+  font-size: 9px !important;
+  color: #94a3b8 !important;
+  text-transform: uppercase !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: bold !important;
+  letter-spacing: 0.05em !important;
+  margin-bottom: 2px !important;
+  display: block !important;
+}
+
+.yield-counter-panel .yield-value {
+  font-size: 12px !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: bold !important;
+  color: #e2e8f0 !important;
+  margin-top: 2px !important;
+  display: block !important;
+}
+
+.yield-counter-panel .yield-value span {
+  color: #f59e0b !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+}
 /* Tier 2: Workspace Layout Area Frame */
 .discovery-center-container {
   display: flex;

@@ -1,0 +1,53 @@
+{
+    "profile_id": "792_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Polecat Gap",
+            "type": "gap",
+            "dist": "0.74",
+            "via": "Horse Cove Rd",
+            "lng": -84.47771,
+            "lat": 34.85508
+        },
+        {
+            "label": "Hickorynut Gap",
+            "type": "gap",
+            "dist": "1.05",
+            "via": "Horse Cove Rd",
+            "lng": -84.47104,
+            "lat": 34.85286
+        },
+        {
+            "label": "Collins Mountain",
+            "type": "scenic",
+            "dist": "1.10",
+            "via": "Horse Cove Rd",
+            "lng": -84.46626,
+            "lat": 34.87467
+        },
+        {
+            "label": "Redis Mountain",
+            "type": "scenic",
+            "dist": "1.33",
+            "via": "Horse Cove Rd",
+            "lng": -84.47884,
+            "lat": 34.8843
+        },
+        {
+            "label": "Hickorynut Mountain",
+            "type": "scenic",
+            "dist": "1.38",
+            "via": "Horse Cove Rd",
+            "lng": -84.46548,
+            "lat": 34.85037
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Gilmer County Fire Rescue Station 14",
+        "type": "Fire-EMS",
+        "address": "2300 Tails Creek Rd, Ellijay, GA 30540, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 11.5
+    }
+}

@@ -1,10 +1,12 @@
 {
     "profile_id": "640_S1",
     "route_id": "640",
-    "ssdi_score": 4.7,
-    "badge_type": "wet",
-    "condition": "WET / SLICK",
-    "style_color": "#e66e00",
+    "ssdi_score": 102.5,
+    "v3_terrain_score": 6.0,
+    "v3_terrain_class": "Strenuous",
+    "badge_type": "muddy",
+    "condition": "MUDDY / SOFT",
+    "style_color": "#a52d23",
     "access": {
         "label": "OPEN",
         "vibe_context": "RESTRICTED EXPLORER",
@@ -12,22 +14,24 @@
     },
     "ruggedness": {
         "class": "Rough",
-        "value": 0.26
+        "value": 0.22
     },
     "environment": {
         "current_temp": 70,
-        "saturation_index": 0.0,
+        "saturation_index": 32.17,
+        "soil_status": "Saturated",
+        "precip_24h": 0.02,
         "saturation_trend": "stable",
         "alerts": []
     },
     "physics": {
-        "live_traction": 0.66,
-        "live_wh_per_km": 17.62,
-        "energy_penalty_pct": 51.5,
-        "v3_base_intensity": 4.7
+        "live_traction": 0.4,
+        "live_wh_per_km": 14.46,
+        "energy_penalty_pct": 20.0,
+        "v3_base_intensity": 6.0
     },
     "connectivity": {
-        "signal_class": "Spotty",
-        "deadzone_max_meters": 2706
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
     }
 }

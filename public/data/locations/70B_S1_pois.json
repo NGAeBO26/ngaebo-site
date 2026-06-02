@@ -1,0 +1,53 @@
+{
+    "profile_id": "70B_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Tallulah River Campground",
+            "type": "camp",
+            "dist": "0.11",
+            "via": "Horse Cove Rd",
+            "lng": -83.54321,
+            "lat": 34.92718
+        },
+        {
+            "label": "Rock Mountain",
+            "type": "scenic",
+            "dist": "0.81",
+            "via": "Horse Cove Rd",
+            "lng": -83.55165,
+            "lat": 34.93834
+        },
+        {
+            "label": "Cedar Cliff Knob",
+            "type": "scenic",
+            "dist": "1.05",
+            "via": "Horse Cove Rd",
+            "lng": -83.56342,
+            "lat": 34.92876
+        },
+        {
+            "label": "Straw Mountain",
+            "type": "scenic",
+            "dist": "1.07",
+            "via": "Horse Cove Rd",
+            "lng": -83.53077,
+            "lat": 34.93812
+        },
+        {
+            "label": "Chestnut Knob",
+            "type": "scenic",
+            "dist": "1.50",
+            "via": "Horse Cove Rd",
+            "lng": -83.57016,
+            "lat": 34.93453
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clayton Fire Department",
+        "type": "Fire-EMS",
+        "address": "14 Emergency Dr # 105, Clayton, GA 30525, USA",
+        "phone": "(706) 782-2751",
+        "dist_mi": 10.6
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "profile_id": "335_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Rall Mountain",
+            "type": "scenic",
+            "dist": "1.07",
+            "via": "Horse Cove Rd",
+            "lng": -84.22404,
+            "lat": 34.72273
+        },
+        {
+            "label": "Clark Mountain",
+            "type": "scenic",
+            "dist": "1.30",
+            "via": "Horse Cove Rd",
+            "lng": -84.25295,
+            "lat": 34.74356
+        },
+        {
+            "label": "Wilson Mountain",
+            "type": "scenic",
+            "dist": "1.66",
+            "via": "Horse Cove Rd",
+            "lng": -84.25852,
+            "lat": 34.70729
+        },
+        {
+            "label": "Fox Mountain",
+            "type": "scenic",
+            "dist": "1.74",
+            "via": "Horse Cove Rd",
+            "lng": -84.26997,
+            "lat": 34.73719
+        },
+        {
+            "label": "Buckeye Mountain",
+            "type": "scenic",
+            "dist": "1.98",
+            "via": "Horse Cove Rd",
+            "lng": -84.2513,
+            "lat": 34.7547
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Fannin County Emergency Services - Fire Station 1",
+        "type": "Fire-EMS",
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 11.4
+    }
+}

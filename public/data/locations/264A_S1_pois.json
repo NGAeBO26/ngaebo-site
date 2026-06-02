@@ -1,0 +1,53 @@
+{
+    "profile_id": "264A_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Upper Polecat",
+            "type": "scenic",
+            "dist": "0.34",
+            "via": "Horse Cove Rd",
+            "lng": -84.11689,
+            "lat": 34.7742
+        },
+        {
+            "label": "Licklog Mountain",
+            "type": "scenic",
+            "dist": "0.94",
+            "via": "Horse Cove Rd",
+            "lng": -84.13075,
+            "lat": 34.78425
+        },
+        {
+            "label": "Lower Polecat",
+            "type": "scenic",
+            "dist": "1.02",
+            "via": "Horse Cove Rd",
+            "lng": -84.10137,
+            "lat": 34.76985
+        },
+        {
+            "label": "Chinquapin Ridge",
+            "type": "scenic",
+            "dist": "1.15",
+            "via": "Horse Cove Rd",
+            "lng": -84.11019,
+            "lat": 34.79515
+        },
+        {
+            "label": "Rhodes Mountain",
+            "type": "scenic",
+            "dist": "1.25",
+            "via": "Horse Cove Rd",
+            "lng": -84.12398,
+            "lat": 34.7958
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Union County Fire Department",
+        "type": "Fire-EMS",
+        "address": "507 Shoe Factory Rd, Blairsville, GA 30512, USA",
+        "phone": "(706) 439-6095",
+        "dist_mi": 13.4
+    }
+}

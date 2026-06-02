@@ -1,0 +1,37 @@
+{
+    "profile_id": "201_S1",
+    "count": 3,
+    "locations": [
+        {
+            "label": "Jenkins Gap",
+            "type": "gap",
+            "dist": "1.02",
+            "via": "Horse Cove Rd",
+            "lng": -85.33468,
+            "lat": 34.42064
+        },
+        {
+            "label": "Tightsqueeze Gap",
+            "type": "gap",
+            "dist": "1.20",
+            "via": "Horse Cove Rd",
+            "lng": -85.31162,
+            "lat": 34.39759
+        },
+        {
+            "label": "High Point",
+            "type": "scenic",
+            "dist": "2.71",
+            "via": "Horse Cove Rd",
+            "lng": -85.35634,
+            "lat": 34.38996
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Summerville Fire Department",
+        "type": "Fire-EMS",
+        "address": "176 Cox St, Summerville, GA 30747, USA",
+        "phone": "(706) 859-0914",
+        "dist_mi": 5.0
+    }
+}

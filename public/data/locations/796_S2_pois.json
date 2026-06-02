@@ -1,0 +1,53 @@
+{
+    "profile_id": "796_S2",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Callahan Mountain",
+            "type": "scenic",
+            "dist": "0.70",
+            "via": "Horse Cove Rd",
+            "lng": -84.42742,
+            "lat": 34.87897
+        },
+        {
+            "label": "Pisgah Mountain",
+            "type": "scenic",
+            "dist": "1.45",
+            "via": "Horse Cove Rd",
+            "lng": -84.44876,
+            "lat": 34.87545
+        },
+        {
+            "label": "Sally Ann Mountain",
+            "type": "scenic",
+            "dist": "1.49",
+            "via": "Horse Cove Rd",
+            "lng": -84.44492,
+            "lat": 34.90646
+        },
+        {
+            "label": "Porter Mountain",
+            "type": "scenic",
+            "dist": "1.79",
+            "via": "Horse Cove Rd",
+            "lng": -84.43631,
+            "lat": 34.86369
+        },
+        {
+            "label": "Prince Mountain",
+            "type": "scenic",
+            "dist": "1.91",
+            "via": "Horse Cove Rd",
+            "lng": -84.41214,
+            "lat": 34.86523
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Fannin County Emergency Services - Fire Station 1",
+        "type": "Fire-EMS",
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 8.1
+    }
+}

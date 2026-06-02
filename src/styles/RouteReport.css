@@ -357,3 +357,37 @@
   transform: translateX(-50%);
   z-index: 500;
 }
+
+/* Append directly to the bottom of src/styles/RouteReport.css */
+
+/* ==========================================================================
+   🛑 IFRAME PREVIEW MODE OVERRIDES
+   Hides parent site layout components inside the checkout thumbnail box
+   ========================================================================== */
+body.rr-preview-mode-active {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 🎯 Targets the outer site-wide components in your red boxes from image_e25a84.png */
+body.rr-preview-mode-active header:not(.rr-title-bar-tier),
+body.rr-preview-mode-active footer:not(.rr-metadata-footer-bleed),
+body.rr-preview-mode-active .global-header,
+body.rr-preview-mode-active .site-header,
+body.rr-preview-mode-active .main-navigation,
+body.rr-preview-mode-active .global-footer,
+body.rr-preview-mode-active .site-footer {
+  display: none !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Forces the white report document sheet to scale from the absolute top boundary */
+body.rr-preview-mode-active .rr-isolation-shell {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}

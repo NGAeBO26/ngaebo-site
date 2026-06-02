@@ -2,7 +2,7 @@
   "profile_id": "25_S1",
   "route_id": "25",
   "ssdi_score": 5.7,
-  "v3_terrain_score": 3.7,
+  "v3_terrain_score": 1.0,
   "v3_terrain_class": "Cruiser",
   "badge_type": "wet",
   "condition": "WET / SLICK",
@@ -14,10 +14,10 @@
   },
   "ruggedness": {
     "class": "Chattery",
-    "value": 0.21
+    "value": 0.0
   },
   "environment": {
-    "current_temp": 71,
+    "current_temp": 81,
     "saturation_index": 10,
     "soil_status": "Saturated",
     "precip_24h": 0.0,
@@ -31,7 +31,7 @@
     "v3_base_intensity": 3.7
   },
   "connectivity": {
-    "signal_class": "Intermittent",
-    "deadzone_max_meters": 2155
+    "signal_class": "Unknown",
+    "deadzone_max_meters": 0
   }
 }

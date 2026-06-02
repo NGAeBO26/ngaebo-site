@@ -1,0 +1,53 @@
+{
+    "profile_id": "339_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Peter Knob",
+            "type": "scenic",
+            "dist": "0.51",
+            "via": "Horse Cove Rd",
+            "lng": -84.20825,
+            "lat": 34.7423
+        },
+        {
+            "label": "Doogan Hole",
+            "type": "hazard",
+            "dist": "0.96",
+            "via": "Horse Cove Rd",
+            "lng": -84.20464,
+            "lat": 34.75731
+        },
+        {
+            "label": "Rall Mountain",
+            "type": "scenic",
+            "dist": "1.72",
+            "via": "Horse Cove Rd",
+            "lng": -84.22404,
+            "lat": 34.72273
+        },
+        {
+            "label": "Van Zandt Hill",
+            "type": "scenic",
+            "dist": "1.72",
+            "via": "Horse Cove Rd",
+            "lng": -84.22563,
+            "lat": 34.77006
+        },
+        {
+            "label": "Woody Mountain",
+            "type": "scenic",
+            "dist": "1.77",
+            "via": "Horse Cove Rd",
+            "lng": -84.1888,
+            "lat": 34.75982
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Fannin County Emergency Services - Fire Station 1",
+        "type": "Fire-EMS",
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 11.2
+    }
+}

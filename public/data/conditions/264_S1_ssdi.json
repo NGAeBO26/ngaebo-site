@@ -1,0 +1,37 @@
+{
+    "profile_id": "264_S1",
+    "route_id": "264",
+    "ssdi_score": 11.6,
+    "v3_terrain_score": 4.5,
+    "v3_terrain_class": "Strenuous",
+    "badge_type": "muddy",
+    "condition": "MUDDY / SOFT",
+    "style_color": "#a52d23",
+    "access": {
+        "label": "OPEN",
+        "vibe_context": "RESTRICTED EXPLORER",
+        "status_code": "OPEN"
+    },
+    "ruggedness": {
+        "class": "Chattery",
+        "value": 0.26
+    },
+    "environment": {
+        "current_temp": 71,
+        "saturation_index": 35.37,
+        "soil_status": "Saturated",
+        "precip_24h": 0.02,
+        "saturation_trend": "stable",
+        "alerts": []
+    },
+    "physics": {
+        "live_traction": 0.4,
+        "live_wh_per_km": 14.5,
+        "energy_penalty_pct": 20.0,
+        "v3_base_intensity": 4.5
+    },
+    "connectivity": {
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
+    }
+}

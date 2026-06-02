@@ -1,0 +1,37 @@
+{
+    "profile_id": "249_S1",
+    "route_id": "249",
+    "ssdi_score": 13.2,
+    "v3_terrain_score": 4.4,
+    "v3_terrain_class": "Strenuous",
+    "badge_type": "muddy",
+    "condition": "MUDDY / SOFT",
+    "style_color": "#a52d23",
+    "access": {
+        "label": "OPEN",
+        "vibe_context": "RESTRICTED EXPLORER",
+        "status_code": "OPEN"
+    },
+    "ruggedness": {
+        "class": "Chattery",
+        "value": 0.29
+    },
+    "environment": {
+        "current_temp": 69,
+        "saturation_index": 44.1,
+        "soil_status": "Saturated",
+        "precip_24h": 0.02,
+        "saturation_trend": "stable",
+        "alerts": []
+    },
+    "physics": {
+        "live_traction": 0.38,
+        "live_wh_per_km": 14.24,
+        "energy_penalty_pct": 20.0,
+        "v3_base_intensity": 4.4
+    },
+    "connectivity": {
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
+    }
+}

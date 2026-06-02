@@ -1,0 +1,53 @@
+{
+    "profile_id": "511_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Hog Mountain",
+            "type": "scenic",
+            "dist": "2.50",
+            "via": "Horse Cove Rd",
+            "lng": -83.35925,
+            "lat": 34.81506
+        },
+        {
+            "label": "Rocky Mountain",
+            "type": "scenic",
+            "dist": "2.59",
+            "via": "Horse Cove Rd",
+            "lng": -83.38145,
+            "lat": 34.75798
+        },
+        {
+            "label": "Cliff Mountain",
+            "type": "scenic",
+            "dist": "3.12",
+            "via": "Horse Cove Rd",
+            "lng": -83.39183,
+            "lat": 34.80453
+        },
+        {
+            "label": "Chattooga River Ranger District",
+            "type": "ranger",
+            "dist": "3.47",
+            "via": "Horse Cove Rd",
+            "lng": -83.39601,
+            "lat": 34.75307
+        },
+        {
+            "label": "Chattooga River District",
+            "type": "camp",
+            "dist": "3.51",
+            "via": "Horse Cove Rd",
+            "lng": -83.39659,
+            "lat": 34.75271
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Long Creek FD - Oconee Co. Station 9",
+        "type": "Fire-EMS",
+        "address": "12351 Long Creek Hwy, Long Creek, SC 29658, USA",
+        "phone": "(864) 647-8151",
+        "dist_mi": 5.9
+    }
+}

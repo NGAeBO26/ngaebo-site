@@ -1,0 +1,53 @@
+{
+    "profile_id": "311_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Barret Mountain",
+            "type": "scenic",
+            "dist": "1.05",
+            "via": "Horse Cove Rd",
+            "lng": -83.62796,
+            "lat": 34.96984
+        },
+        {
+            "label": "Eller Gap",
+            "type": "gap",
+            "dist": "1.09",
+            "via": "Horse Cove Rd",
+            "lng": -83.62822,
+            "lat": 34.97037
+        },
+        {
+            "label": "Blue Ridge Gap",
+            "type": "gap",
+            "dist": "1.11",
+            "via": "Horse Cove Rd",
+            "lng": -83.596,
+            "lat": 34.95871
+        },
+        {
+            "label": "As Knob",
+            "type": "scenic",
+            "dist": "1.33",
+            "via": "Horse Cove Rd",
+            "lng": -83.5929,
+            "lat": 34.95406
+        },
+        {
+            "label": "Wheeler Knob",
+            "type": "scenic",
+            "dist": "1.48",
+            "via": "Horse Cove Rd",
+            "lng": -83.59215,
+            "lat": 34.96769
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clay County Fire and Rescue Station 6",
+        "type": "Fire-EMS",
+        "address": "18 Eagle Fork Rd, Hayesville, NC 28904, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 5.5
+    }
+}

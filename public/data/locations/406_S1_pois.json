@@ -1,0 +1,53 @@
+{
+    "profile_id": "406_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Warwoman Dell",
+            "type": "trailhead",
+            "dist": "0.30",
+            "via": "Horse Cove Rd",
+            "lng": -83.35334,
+            "lat": 34.8814
+        },
+        {
+            "label": "Saddle Gap",
+            "type": "gap",
+            "dist": "0.47",
+            "via": "Horse Cove Rd",
+            "lng": -83.35877,
+            "lat": 34.88148
+        },
+        {
+            "label": "Green Gap",
+            "type": "gap",
+            "dist": "0.97",
+            "via": "Horse Cove Rd",
+            "lng": -83.33877,
+            "lat": 34.87676
+        },
+        {
+            "label": "Pinnacle Knob",
+            "type": "scenic",
+            "dist": "1.11",
+            "via": "Horse Cove Rd",
+            "lng": -83.36883,
+            "lat": 34.8937
+        },
+        {
+            "label": "Courthouse Gap",
+            "type": "gap",
+            "dist": "1.29",
+            "via": "Horse Cove Rd",
+            "lng": -83.36794,
+            "lat": 34.89898
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clayton Fire Department",
+        "type": "Fire-EMS",
+        "address": "14 Emergency Dr # 105, Clayton, GA 30525, USA",
+        "phone": "(706) 782-2751",
+        "dist_mi": 3.2
+    }
+}

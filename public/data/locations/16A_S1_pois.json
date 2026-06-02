@@ -1,0 +1,45 @@
+{
+    "profile_id": "16A_S1",
+    "count": 4,
+    "locations": [
+        {
+            "label": "Cottonwood Patch Campground",
+            "type": "camp",
+            "dist": "0.06",
+            "via": "Horse Cove Rd",
+            "lng": -84.63883,
+            "lat": 34.9806
+        },
+        {
+            "label": "Jacks Rvr Trlhd@Alaculsy Valley",
+            "type": "trailhead",
+            "dist": "0.62",
+            "via": "Horse Cove Rd",
+            "lng": -84.6325,
+            "lat": 34.98723
+        },
+        {
+            "label": "Iron Mountain",
+            "type": "scenic",
+            "dist": "1.00",
+            "via": "Horse Cove Rd",
+            "lng": -84.65589,
+            "lat": 34.98661
+        },
+        {
+            "label": "Ken Mountain",
+            "type": "scenic",
+            "dist": "2.38",
+            "via": "Horse Cove Rd",
+            "lng": -84.60527,
+            "lat": 34.96102
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Bradley County Fire Rescue Station 1 (Taylor)",
+        "type": "Fire-EMS",
+        "address": "5295 Bates Pike SE, Cleveland, TN 37323, USA",
+        "phone": "(423) 728-7061",
+        "dist_mi": 13.8
+    }
+}

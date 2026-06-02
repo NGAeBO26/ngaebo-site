@@ -1,12 +1,12 @@
 {
     "profile_id": "665_S1",
     "route_id": "665",
-    "ssdi_score": 5.4,
+    "ssdi_score": 13.7,
     "v3_terrain_score": 3.7,
     "v3_terrain_class": "Cruiser",
-    "badge_type": "wet",
-    "condition": "WET / SLICK",
-    "style_color": "#e66e00",
+    "badge_type": "muddy",
+    "condition": "MUDDY / SOFT",
+    "style_color": "#a52d23",
     "access": {
         "label": "OPEN",
         "vibe_context": "RESTRICTED EXPLORER",
@@ -17,23 +17,21 @@
         "value": 0.17
     },
     "environment": {
-        "current_temp": 62,
-        "saturation_index": 8.38,
+        "current_temp": 69,
+        "saturation_index": 50.24,
         "soil_status": "Saturated",
-        "precip_24h": 0.0,
+        "precip_24h": 0.01,
         "saturation_trend": "stable",
-        "alerts": [
-            "SAFETY ALERT: Cell Service is UNRELIABLE."
-        ]
+        "alerts": []
     },
     "physics": {
-        "live_traction": 0.58,
-        "live_wh_per_km": 11.2,
-        "energy_penalty_pct": 10.0,
+        "live_traction": 0.38,
+        "live_wh_per_km": 12.34,
+        "energy_penalty_pct": 20.0,
         "v3_base_intensity": 3.7
     },
     "connectivity": {
-        "signal_class": "Unreliable",
-        "deadzone_max_meters": 6731
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
     }
 }

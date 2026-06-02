@@ -1,0 +1,53 @@
+{
+    "profile_id": "242A_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Anna Ruby Falls",
+            "type": "water",
+            "dist": "0.25",
+            "via": "Horse Cove Rd",
+            "lng": -83.71212,
+            "lat": 34.76343
+        },
+        {
+            "label": "Smith Mountain",
+            "type": "scenic",
+            "dist": "0.40",
+            "via": "Horse Cove Rd",
+            "lng": -83.70641,
+            "lat": 34.76367
+        },
+        {
+            "label": "Crumbly Knob",
+            "type": "scenic",
+            "dist": "1.67",
+            "via": "Horse Cove Rd",
+            "lng": -83.73764,
+            "lat": 34.74871
+        },
+        {
+            "label": "Hickory Knob",
+            "type": "scenic",
+            "dist": "1.79",
+            "via": "Horse Cove Rd",
+            "lng": -83.68732,
+            "lat": 34.77628
+        },
+        {
+            "label": "Crumbly Mountain",
+            "type": "scenic",
+            "dist": "1.82",
+            "via": "Horse Cove Rd",
+            "lng": -83.73768,
+            "lat": 34.74453
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Helen Fire Department",
+        "type": "Fire-EMS",
+        "address": "120 Unicoi St, Helen, GA 30545, USA",
+        "phone": "(706) 878-3676",
+        "dist_mi": 4.3
+    }
+}

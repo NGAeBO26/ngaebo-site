@@ -197,6 +197,7 @@ export default function useFsRoads(
 
       const uniqueId = f.properties?.profile_id || String(f.id);
 
+      // If the user hovers over the already locked/selected route, clear the temporary hover lines safely
       if (opts?.isTakeoverActive && uniqueId === opts?.selectedRouteId) {
         map.setFilter("fs-roads-hover-outer", ["==", ["get", "profile_id"], ""]);
         map.setFilter("fs-roads-hover-inner", ["==", ["get", "profile_id"], ""]);
@@ -204,21 +205,23 @@ export default function useFsRoads(
         return;
       }
 
-      map.setFilter("fs-roads-hover-outer", ["==", ["get", "profile_id"], uniqueId]);
-      map.setFilter("fs-roads-hover-inner", ["==", ["get", "profile_id"], uniqueId]);
-      
-      if (f.properties && opts?.onRouteHover) {
-        opts.onRouteHover(uniqueId);
+      // 🎯 ACTIVE EVALUATION: Only trigger state changes if shifting to a brand NEW route vector
+      if (String(uniqueId) !== String(opts?.activeHoverId)) {
+        map.setFilter("fs-roads-hover-outer", ["==", ["get", "profile_id"], uniqueId]);
+        map.setFilter("fs-roads-hover-inner", ["==", ["get", "profile_id"], uniqueId]);
+        
+        if (f.properties && opts?.onRouteHover) {
+          opts.onRouteHover(uniqueId);
+        }
       }
     };
 
     const onMouseLeave = () => {
-      const opts = optionsRef.current;
+      // 🎯 THE HOVER PERSISTENCE REVISION:
+      // We restore the native arrow crosshair cursor on the map frame, but we completely
+      // remove the old 'opts.onRouteHover(null)' and 'setFilter("")' actions. This keeps
+      // the card highlighted in your side gallery panel until a new route overwrite event lands.
       map.getCanvas().style.cursor = "";
-      
-      map.setFilter("fs-roads-hover-outer", ["==", ["get", "profile_id"], ""]);
-      map.setFilter("fs-roads-hover-inner", ["==", ["get", "profile_id"], ""]);
-      if (opts?.onRouteHover) opts.onRouteHover(null);
     };
 
     const onRouteClick = (e: MapLayerMouseEvent) => {

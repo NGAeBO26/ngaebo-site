@@ -1,0 +1,53 @@
+{
+    "profile_id": "246_S2",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Hurricane Mountain",
+            "type": "scenic",
+            "dist": "1.14",
+            "via": "Horse Cove Rd",
+            "lng": -85.04162,
+            "lat": 34.70185
+        },
+        {
+            "label": "Middle Mountain",
+            "type": "scenic",
+            "dist": "1.35",
+            "via": "Horse Cove Rd",
+            "lng": -85.0448,
+            "lat": 34.70337
+        },
+        {
+            "label": "Mill Creek Mountain",
+            "type": "scenic",
+            "dist": "1.81",
+            "via": "Horse Cove Rd",
+            "lng": -85.05522,
+            "lat": 34.6848
+        },
+        {
+            "label": "Barn Mountain",
+            "type": "scenic",
+            "dist": "2.54",
+            "via": "Horse Cove Rd",
+            "lng": -85.01133,
+            "lat": 34.65753
+        },
+        {
+            "label": "Dug Mountain",
+            "type": "scenic",
+            "dist": "2.81",
+            "via": "Horse Cove Rd",
+            "lng": -85.01883,
+            "lat": 34.73313
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Whitfield County Fire Department",
+        "type": "Fire-EMS",
+        "address": "804 Professional Blvd, Dalton, GA 30720, USA",
+        "phone": "(706) 259-7433",
+        "dist_mi": 8.0
+    }
+}

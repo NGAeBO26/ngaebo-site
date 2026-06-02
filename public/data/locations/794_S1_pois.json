@@ -1,0 +1,29 @@
+{
+    "profile_id": "794_S1",
+    "count": 2,
+    "locations": [
+        {
+            "label": "Rouges Ford",
+            "type": "hazard",
+            "dist": "1.88",
+            "via": "Horse Cove Rd",
+            "lng": -83.29488,
+            "lat": 34.81454
+        },
+        {
+            "label": "Rouges Ford",
+            "type": "hazard",
+            "dist": "1.88",
+            "via": "Horse Cove Rd",
+            "lng": -83.29488,
+            "lat": 34.81454
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Long Creek FD - Oconee Co. Station 9",
+        "type": "Fire-EMS",
+        "address": "12351 Long Creek Hwy, Long Creek, SC 29658, USA",
+        "phone": "(864) 647-8151",
+        "dist_mi": 2.7
+    }
+}

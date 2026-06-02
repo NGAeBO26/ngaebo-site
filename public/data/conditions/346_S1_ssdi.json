@@ -17,10 +17,10 @@
     "value": 0.35
   },
   "environment": {
-    "current_temp": 63,
+    "current_temp": 62,
     "saturation_index": 10,
     "soil_status": "Saturated",
-    "precip_24h": 0.0,
+    "precip_24h": 0.01,
     "saturation_trend": "stable",
     "alerts": []
   },
@@ -31,7 +31,7 @@
     "v3_base_intensity": 6.7
   },
   "connectivity": {
-    "signal_class": "Spotty",
-    "deadzone_max_meters": 2410
+    "signal_class": "Unknown",
+    "deadzone_max_meters": 0
   }
 }

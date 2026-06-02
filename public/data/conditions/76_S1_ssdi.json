@@ -1,12 +1,12 @@
 {
   "profile_id": "76_S1",
   "route_id": "76",
-  "ssdi_score": 4.1,
-  "v3_terrain_score": 3.8,
+  "ssdi_score": 5.8,
+  "v3_terrain_score": 1.0,
   "v3_terrain_class": "Cruiser",
-  "badge_type": "ideal",
-  "condition": "IDEAL",
-  "style_color": "#2e7d32",
+  "badge_type": "wet",
+  "condition": "WET / SLICK",
+  "style_color": "#e66e00",
   "access": {
     "label": "CLOSED",
     "vibe_context": "TECHNICAL BACKCOUNTRY (CLOSED)",
@@ -14,24 +14,24 @@
   },
   "ruggedness": {
     "class": "Chattery",
-    "value": 0.19
+    "value": 0.0
   },
   "environment": {
-    "current_temp": 55,
-    "saturation_index": 1.3,
-    "soil_status": "Dry / Dusty",
-    "precip_24h": 0.0,
+    "current_temp": 76,
+    "saturation_index": 10,
+    "soil_status": "Saturated",
+    "precip_24h": 0.03,
     "saturation_trend": "stable",
     "alerts": []
   },
   "physics": {
-    "live_traction": 0.86,
-    "live_wh_per_km": 10.28,
-    "energy_penalty_pct": 0.0,
+    "live_traction": 0.65,
+    "live_wh_per_km": 11.31,
+    "energy_penalty_pct": 10.0,
     "v3_base_intensity": 3.8
   },
   "connectivity": {
-    "signal_class": "Spotty",
-    "deadzone_max_meters": 3501
+    "signal_class": "Unknown",
+    "deadzone_max_meters": 0
   }
 }

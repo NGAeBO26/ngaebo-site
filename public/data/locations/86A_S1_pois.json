@@ -1,0 +1,53 @@
+{
+    "profile_id": "86A_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "West Fork Campground",
+            "type": "camp",
+            "dist": "0.60",
+            "via": "Horse Cove Rd",
+            "lng": -83.20381,
+            "lat": 34.94819
+        },
+        {
+            "label": "Page Mountain",
+            "type": "scenic",
+            "dist": "0.67",
+            "via": "Horse Cove Rd",
+            "lng": -83.20572,
+            "lat": 34.93984
+        },
+        {
+            "label": "Pine Mountain",
+            "type": "scenic",
+            "dist": "1.06",
+            "via": "Horse Cove Rd",
+            "lng": -83.17838,
+            "lat": 34.95083
+        },
+        {
+            "label": "Cornpen Gap",
+            "type": "gap",
+            "dist": "1.06",
+            "via": "Horse Cove Rd",
+            "lng": -83.20571,
+            "lat": 34.9312
+        },
+        {
+            "label": "Old Mossy Mountain",
+            "type": "scenic",
+            "dist": "1.09",
+            "via": "Horse Cove Rd",
+            "lng": -83.18954,
+            "lat": 34.92852
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Mountain Rest FD - Oconee Co. Station 4",
+        "type": "Fire-EMS",
+        "address": "130 Verner Mill Rd, Mountain Rest, SC 29664, USA",
+        "phone": "(864) 638-8220",
+        "dist_mi": 8.1
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "profile_id": "11_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Glassy Mountain",
+            "type": "scenic",
+            "dist": "0.32",
+            "via": "Horse Cove Rd",
+            "lng": -83.5006,
+            "lat": 34.84533
+        },
+        {
+            "label": "Timpson Mountain",
+            "type": "scenic",
+            "dist": "1.77",
+            "via": "Horse Cove Rd",
+            "lng": -83.47683,
+            "lat": 34.85744
+        },
+        {
+            "label": "Stonewall Knob",
+            "type": "scenic",
+            "dist": "1.95",
+            "via": "Horse Cove Rd",
+            "lng": -83.47128,
+            "lat": 34.82592
+        },
+        {
+            "label": "Crukleton Ridge",
+            "type": "scenic",
+            "dist": "2.09",
+            "via": "Horse Cove Rd",
+            "lng": -83.46415,
+            "lat": 34.83651
+        },
+        {
+            "label": "Charlie Mountain",
+            "type": "scenic",
+            "dist": "2.16",
+            "via": "Horse Cove Rd",
+            "lng": -83.53791,
+            "lat": 34.83535
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clayton Fire Department",
+        "type": "Fire-EMS",
+        "address": "14 Emergency Dr # 105, Clayton, GA 30525, USA",
+        "phone": "(706) 782-2751",
+        "dist_mi": 7.6
+    }
+}

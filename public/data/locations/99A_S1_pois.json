@@ -1,0 +1,29 @@
+{
+    "profile_id": "99A_S1",
+    "count": 2,
+    "locations": [
+        {
+            "label": "Jacks Rvr Trlhd@Alaculsy Valley",
+            "type": "trailhead",
+            "dist": "2.45",
+            "via": "Horse Cove Rd",
+            "lng": -84.6325,
+            "lat": 34.98723
+        },
+        {
+            "label": "Iron Mountain",
+            "type": "scenic",
+            "dist": "2.51",
+            "via": "Horse Cove Rd",
+            "lng": -84.65589,
+            "lat": 34.98661
+        }
+    ],
+    "rescue_anchor": {
+        "name": "West Polk Fire Rescue",
+        "type": "Fire-EMS",
+        "address": "Benton, TN 37307, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 10.1
+    }
+}

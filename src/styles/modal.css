@@ -1,75 +1,388 @@
-/* Backdrop */
+/* src/styles/modal.css */
+
+/* ==========================================================================
+   1. BASE MODAL SYSTEM OVERLAYS
+   ========================================================================== */
+
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(3px);
-  z-index: 40;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
 }
 
-/* Modal card container */
+/* Wide container that houses all columns internally without clipping layout components */
 .modal-card {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: white;
-  border-radius: 12px;
+  background: #ffffff;
+  border-radius: 16px;
   padding: 24px;
-  width: 92%;
-  max-width: 560px;
-  z-index: 50;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  animation: scaleFadeIn 180ms ease-out; /* ← use your global animation */
+  width: 940px; /* Snug containment frame holding all three columns without overflow leaks */
+  max-width: 95vw;
+  z-index: 10001;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif !important;
+}
+
+.modal-card *, 
+.modal-card input, 
+.modal-card button, 
+.modal-card placeholder {
+  font-family: "Montserrat", sans-serif !important;
+  box-sizing: border-box !important; /* Forces strict mathematical boundary containment across all children */
 }
 
 .modal-close {
   position: absolute;
   top: 16px;
   right: 16px;
-  color: #666;
+  background: none;
+  border: none;
+  color: #64748b;
   font-size: 20px;
   cursor: pointer;
+  z-index: 10005;
 }
 
-.modal-close:hover {
-  color: #000;
+/* ==========================================================================
+   2. THREE-COLUMN BALANCED INTERACTION DECK
+   ========================================================================== */
+
+.rg-immersive-tour-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.rg-tour-header-tagline {
+  color: #d88a3a;
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 2px;
+  display: block;
+}
+
+.rg-tour-header-sub-tagline {
+  color: #64748b;
+  font-weight: 500;
+  font-size: 11.5px;
+  text-align: center;
+  margin-bottom: 14px;
+  line-height: 1.45;
+  max-width: 680px;
+}
+
+/* Flexbox layout to cleanly center the blueprint canvas with balanced flanking sidebars */
+.rg-blueprint-interaction-deck {
+  display: flex;
+  align-items: stretch; /* Stretches left sidebar, blueprint viewport, and right sidebar to uniform height */
+  justify-content: center; 
+  gap: 16px; 
+  width: 100%;
+  margin: 12px 0;
+  box-sizing: border-box;
+}
+
+/* Flanking display slots */
+.rg-gutter-tooltip-slot {
+  width: 260px; /* Locked explicit layout track width */
+  max-width: 260px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* Left-hand gutter explicitly manages the dynamic documentation cards */
+.rg-gutter-tooltip-slot.rg-left-legend {
+  justify-content: stretch;
+}
+
+/* 🎯 REAL LAYOUT BOUNDS: Eliminates all scale() ghost padding bugs */
+.rg-mini-blueprint-viewport {
+  position: relative;
+  width: 326px;  
+  height: 422px; 
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+  overflow: hidden;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.rg-mini-blueprint-img-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ==========================================================================
+   3. PERSISTENT ELEMENT INTERACTION HOVER TARGET GROUPS
+   ========================================================================== */
+
+.rg-mini-hotspot {
+  position: absolute;
+  box-sizing: border-box;
+  cursor: help;
+  z-index: 100;
+  border: 1px dashed transparent;
+  transition: background-color 0.1s ease;
+}
+
+.rg-mini-hotspot:hover, 
+.rg-mini-hotspot.active {
+  background-color: rgba(216, 138, 58, 0.04);
+  border: 1px dashed rgba(216, 138, 58, 0.35);
+}
+
+.rg-mini-hotspot.active {
+  background-color: rgba(216, 138, 58, 0.08) !important;
+  border: 1px solid #d88a3a !important;
+}
+
+/* 🎯 FIXED BOUNDARY MASK: Overrides TelemetryTooltip dynamic variables 
+   to achieve identical layout structures with no horizontal width changes */
+.rg-gutter-tooltip-slot .rg-hud-tooltip-card {
+  position: relative !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  margin: 0 !important;
+  width: 260px !important; /* Strict frozen geometric boundaries */
+  max-width: 260px !important;
+  height: 100% !important; /* Perfect symmetrical vertical balancing match */
+  display: flex !important;
+  flex-direction: column !important;
+  box-shadow: 0 4px 15px rgba(216, 138, 58, 0.06) !important;
+  box-sizing: border-box !important;
+  border-width: 2px !important;
+  overflow: hidden !important;
+  word-wrap: break-word !important; /* Prevents text elements from pushing container slots outwards */
+}
+
+/* Custom interactive reset return node link */
+.rg-intro-return-action-trigger {
+  background: none;
+  border: none;
+  color: #236ea0;
+  font-size: 10.5px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  margin-top: auto; /* Drops button cleanly to the bottom container quadrant */
+  text-align: left;
+  align-self: flex-start;
+}
+
+.rg-intro-return-action-trigger:hover {
+  color: #1a5276;
+}
+
+/* ==========================================================================
+   4. INTRO CARD SCOPED MODIFIERS
+   ========================================================================== */
+
+.rg-gutter-tooltip-slot .rg-modal-intro-card {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  border: 2px solid rgba(35, 110, 160, 0.7) !important; /* Replaced problematic inline border opacity with standard CSS rgba values */
+  animation: rgFadeIn 180ms ease-out forwards !important;
+  background-color: #fffcf0;
+  border-radius: 12px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.rg-intro-tagline-accent {
+  color: #236ea0;
+}
+
+.rg-intro-main-title {
+  border-bottom: 1px dashed #cbd5e1;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+
+.rg-intro-main-desc {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #475569;
+  margin: 0 0 10px 0;
+}
+
+.rg-intro-highlights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.rg-intro-highlight-item {
+  font-size: 10.5px;
+  color: #334155;
+  line-height: 1.4;
+}
+
+.rg-intro-explorer-cta-block {
+  border-top: 1px dashed #e2e8f0;
+  padding-top: 10px;
+  margin-top: auto;
+}
+
+/* ==========================================================================
+   5. PERSISTENT TRANSACTION CENTER CARD (RIGHT COLUMN)
+   ========================================================================== */
+
+.rg-checkout-hub-card {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff; 
+  border: 2px solid #236ea0; /* High-contrast clean deep blue boundary border */
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 4px 15px rgba(35, 110, 160, 0.06);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.rg-hub-badge-tier {
+  background-color: #236ea0;
+  color: #ffffff;
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  align-self: flex-start;
+  margin-bottom: 6px;
+}
+
+.rg-hub-main-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 2px 0;
+  line-height: 1.2;
+}
+
+.rg-hub-pricing-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.rg-hub-price-tag {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.rg-hub-price-annotation {
+  font-size: 9.5px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.rg-hub-divider-line {
+  border-top: 1px dashed #cbd5e1;
+  margin: 12px 0;
+  width: 100%;
 }
 
 .unlock-form {
- display: flex;
- flex-direction: column;
- gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
 }
+
 .unlock-input {
- width: 100%;
- padding: 10px 14px;
- border: 1px solid #ccc;
- border-radius: 8px;
- font-size: 15px;
- outline: none;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 12.5px;
+  outline: none;
+  text-align: center;
+  box-sizing: border-box;
 }
+
 .unlock-input:focus {
- border-color: #888;
+  border-color: #236ea0;
 }
+
 .unlock-error {
- color: #c0392b;
- font-size: 13px;
+  color: #ef4444;
+  font-size: 10.5px;
+  text-align: center;
+  margin: 2px 0 0 0;
 }
-.unlock-submit {
- padding: 12px;
- background: #c87941;
- color: white;
- border: none;
- border-radius: 8px;
- font-size: 15px;
- cursor: pointer;
- font-weight: 600;
+
+/* CTA Layout elements within transaction sidebar slot */
+.rg-free-submit-btn {
+  width: 100%;
+  padding: 11px;
+  background: #ffffff;
+  color: #236ea0;
+  border: 2px solid #236ea0;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+  text-align: center;
 }
-.unlock-submit:hover {
- background: #a8612e;
+
+.rg-free-submit-btn:hover {
+  background-color: #236ea0;
+  color: #ffffff;
 }
-.unlock-submit:disabled {
- opacity: 0.6;
- cursor: not-allowed;
+
+.rg-premium-buy-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #d88a3a 0%, #b06f2f 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(216, 138, 58, 0.2);
+  transition: filter 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.rg-premium-buy-btn:hover {
+  filter: brightness(1.05);
 }

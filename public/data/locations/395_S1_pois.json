@@ -1,0 +1,53 @@
+{
+    "profile_id": "395_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Rabbit Knob",
+            "type": "scenic",
+            "dist": "0.51",
+            "via": "Horse Cove Rd",
+            "lng": -84.08117,
+            "lat": 34.72854
+        },
+        {
+            "label": "Cavender Ridge",
+            "type": "scenic",
+            "dist": "0.64",
+            "via": "Horse Cove Rd",
+            "lng": -84.09797,
+            "lat": 34.72703
+        },
+        {
+            "label": "Hughes Gap",
+            "type": "gap",
+            "dist": "1.01",
+            "via": "Horse Cove Rd",
+            "lng": -84.08908,
+            "lat": 34.71787
+        },
+        {
+            "label": "Ryal Gap",
+            "type": "gap",
+            "dist": "1.01",
+            "via": "Horse Cove Rd",
+            "lng": -84.09492,
+            "lat": 34.7187
+        },
+        {
+            "label": "Cavender Mountain",
+            "type": "scenic",
+            "dist": "1.11",
+            "via": "Horse Cove Rd",
+            "lng": -84.06959,
+            "lat": 34.72992
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Union County Fire Department",
+        "type": "Fire-EMS",
+        "address": "507 Shoe Factory Rd, Blairsville, GA 30512, USA",
+        "phone": "(706) 439-6095",
+        "dist_mi": 13.8
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "profile_id": "22_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Barnes Gap",
+            "type": "gap",
+            "dist": "0.24",
+            "via": "Horse Cove Rd",
+            "lng": -84.50326,
+            "lat": 34.91119
+        },
+        {
+            "label": "Watson Gap",
+            "type": "gap",
+            "dist": "0.69",
+            "via": "Horse Cove Rd",
+            "lng": -84.51243,
+            "lat": 34.90647
+        },
+        {
+            "label": "High Top",
+            "type": "scenic",
+            "dist": "0.84",
+            "via": "Horse Cove Rd",
+            "lng": -84.49171,
+            "lat": 34.90885
+        },
+        {
+            "label": "Dennis Gap",
+            "type": "gap",
+            "dist": "1.10",
+            "via": "Horse Cove Rd",
+            "lng": -84.48715,
+            "lat": 34.92092
+        },
+        {
+            "label": "Cad Gap",
+            "type": "gap",
+            "dist": "1.12",
+            "via": "Horse Cove Rd",
+            "lng": -84.48576,
+            "lat": 34.91008
+        }
+    ],
+    "rescue_anchor": {
+        "name": "East Polk Fire & Rescue",
+        "type": "Fire-EMS",
+        "address": "847 Cherokee Trail, Ducktown, TN 37326, USA",
+        "phone": "(423) 496-3341",
+        "dist_mi": 11.1
+    }
+}

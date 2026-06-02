@@ -1,12 +1,12 @@
 {
     "profile_id": "630_S2",
     "route_id": "630",
-    "ssdi_score": 6.9,
-    "v3_terrain_score": 5.4,
+    "ssdi_score": 12.0,
+    "v3_terrain_score": 5.3,
     "v3_terrain_class": "Strenuous",
-    "badge_type": "wet",
-    "condition": "WET / SLICK",
-    "style_color": "#e66e00",
+    "badge_type": "muddy",
+    "condition": "MUDDY / SOFT",
+    "style_color": "#a52d23",
     "access": {
         "label": "OPEN",
         "vibe_context": "RESTRICTED EXPLORER",
@@ -14,26 +14,24 @@
     },
     "ruggedness": {
         "class": "Chattery",
-        "value": 0.33
+        "value": 0.32
     },
     "environment": {
-        "current_temp": 62,
-        "saturation_index": 7.37,
+        "current_temp": 77,
+        "saturation_index": 33.69,
         "soil_status": "Saturated",
-        "precip_24h": 0.0,
+        "precip_24h": 0.15,
         "saturation_trend": "stable",
-        "alerts": [
-            "SAFETY ALERT: Cell Service is UNAVAILABLE."
-        ]
+        "alerts": []
     },
     "physics": {
-        "live_traction": 0.57,
-        "live_wh_per_km": 15.74,
-        "energy_penalty_pct": 10.0,
-        "v3_base_intensity": 5.4
+        "live_traction": 0.4,
+        "live_wh_per_km": 17.03,
+        "energy_penalty_pct": 20.0,
+        "v3_base_intensity": 5.3
     },
     "connectivity": {
-        "signal_class": "Unavailable",
-        "deadzone_max_meters": 450
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
     }
 }

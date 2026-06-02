@@ -1,0 +1,45 @@
+{
+    "profile_id": "182_S1",
+    "count": 4,
+    "locations": [
+        {
+            "label": "Abram Mountain",
+            "type": "scenic",
+            "dist": "0.59",
+            "via": "Horse Cove Rd",
+            "lng": -83.36266,
+            "lat": 34.68981
+        },
+        {
+            "label": "Big Shoal Mountain",
+            "type": "scenic",
+            "dist": "0.74",
+            "via": "Horse Cove Rd",
+            "lng": -83.38259,
+            "lat": 34.68841
+        },
+        {
+            "label": "Mccracken Ford (Historical)",
+            "type": "hazard",
+            "dist": "2.68",
+            "via": "Horse Cove Rd",
+            "lng": -83.35294,
+            "lat": 34.72982
+        },
+        {
+            "label": "Apple Pie Mountain",
+            "type": "scenic",
+            "dist": "2.89",
+            "via": "Horse Cove Rd",
+            "lng": -83.4063,
+            "lat": 34.72465
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Long Creek FD - Oconee Co. Station 9",
+        "type": "Fire-EMS",
+        "address": "12351 Long Creek Hwy, Long Creek, SC 29658, USA",
+        "phone": "(864) 647-8151",
+        "dist_mi": 9.5
+    }
+}

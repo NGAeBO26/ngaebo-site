@@ -1,0 +1,15 @@
+{
+    "profile_id": "2612_S1",
+    "count": 1,
+    "locations": [
+        {
+            "label": "Mccracken Ford (Historical)",
+            "type": "hazard",
+            "dist": "2.46",
+            "via": "Horse Cove Rd",
+            "lng": -83.35294,
+            "lat": 34.72982
+        }
+    ],
+    "rescue_anchor": null
+}

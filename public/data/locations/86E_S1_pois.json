@@ -1,0 +1,53 @@
+{
+    "profile_id": "86E_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "West Fork Campground",
+            "type": "camp",
+            "dist": "0.51",
+            "via": "Horse Cove Rd",
+            "lng": -83.20381,
+            "lat": 34.94819
+        },
+        {
+            "label": "Norton Ridge",
+            "type": "scenic",
+            "dist": "0.76",
+            "via": "Horse Cove Rd",
+            "lng": -83.21436,
+            "lat": 34.93921
+        },
+        {
+            "label": "Owl Gap",
+            "type": "gap",
+            "dist": "0.76",
+            "via": "Horse Cove Rd",
+            "lng": -83.22182,
+            "lat": 34.95787
+        },
+        {
+            "label": "Page Mountain",
+            "type": "scenic",
+            "dist": "0.80",
+            "via": "Horse Cove Rd",
+            "lng": -83.20572,
+            "lat": 34.93984
+        },
+        {
+            "label": "John Teague Gap",
+            "type": "gap",
+            "dist": "1.24",
+            "via": "Horse Cove Rd",
+            "lng": -83.22876,
+            "lat": 34.96204
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Scaly Mountain Volunteer Fire Department",
+        "type": "Fire-EMS",
+        "address": "169 Hale Ridge Rd, Scaly Mountain, NC 28775, USA",
+        "phone": "(828) 526-9032",
+        "dist_mi": 8.0
+    }
+}

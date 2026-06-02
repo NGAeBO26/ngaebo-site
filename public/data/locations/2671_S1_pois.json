@@ -1,0 +1,21 @@
+{
+    "profile_id": "2671_S1",
+    "count": 1,
+    "locations": [
+        {
+            "label": "Grapevine",
+            "type": "camp",
+            "dist": "0.90",
+            "via": "Horse Cove Rd",
+            "lng": -83.1805,
+            "lat": 34.82299
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Mountain Rest FD - Oconee Co. Station 4",
+        "type": "Fire-EMS",
+        "address": "130 Verner Mill Rd, Mountain Rest, SC 29664, USA",
+        "phone": "(864) 638-8220",
+        "dist_mi": 3.5
+    }
+}

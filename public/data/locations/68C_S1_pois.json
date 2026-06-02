@@ -1,0 +1,53 @@
+{
+    "profile_id": "68C_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Lake Conasauga",
+            "type": "camp",
+            "dist": "0.21",
+            "via": "Horse Cove Rd",
+            "lng": -84.65135,
+            "lat": 34.85961
+        },
+        {
+            "label": "Ball Field Dispersed Camping Area",
+            "type": "camp",
+            "dist": "0.25",
+            "via": "Horse Cove Rd",
+            "lng": -84.65799,
+            "lat": 34.8558
+        },
+        {
+            "label": "Songbird Trailhead",
+            "type": "trailhead",
+            "dist": "0.31",
+            "via": "Horse Cove Rd",
+            "lng": -84.6589,
+            "lat": 34.85529
+        },
+        {
+            "label": "Lake Conasauga Overflow Campground",
+            "type": "camp",
+            "dist": "0.32",
+            "via": "Horse Cove Rd",
+            "lng": -84.64955,
+            "lat": 34.85586
+        },
+        {
+            "label": "Grassy Mountain",
+            "type": "scenic",
+            "dist": "0.90",
+            "via": "Horse Cove Rd",
+            "lng": -84.66966,
+            "lat": 34.86202
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Chatsworth Fire Department",
+        "type": "Fire-EMS",
+        "address": "503 N 3rd Ave, Chatsworth, GA 30705, USA",
+        "phone": "(706) 695-7600",
+        "dist_mi": 9.9
+    }
+}

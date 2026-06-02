@@ -1,0 +1,483 @@
+/* src/styles/store.css */
+
+/* ──────────────────────────────────────────────────────────────────────────
+   1. UNIFIED THREE-COLUMN DECK WORKSPACE
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* Explicit dashboard flex alignment row block */
+.discovery-center-container .rg-retail-map-workspace-layout-deck {
+  display: flex !important;
+  align-items: stretch !important;
+  justify-content: space-between !important;
+  gap: 0px !important; /* Drops space gaps to hold columns flush against map frames */
+  width: 100% !important;
+  height: 100% !important; /* Fills outer container bounding boxes cleanly */
+  box-sizing: border-box !important;
+  min-height: 0 !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Column 1: Symmetrical Left Store Side panel tracking wrapper */
+.rg-left-workspace-storefront-sidebar {
+  width: 260px !important; /* Fixed width matching target spec constraints */
+  max-width: 260px !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+  min-height: 0 !important;
+}
+
+/* Column 2: Central Map Canvas Viewport Track */
+.discovery-map-main-viewport {
+  flex: 1 !important; /* Absorb remaining space fluidly without clipping elements */
+  height: 100% !important;
+  position: relative !important;
+  background-color: #0f172a !important;
+  z-index: 10 !important;
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+}
+
+/* Column 3: 🔒 Persistent Right Hand Results List (Locked at 260px Symmetrical Width) */
+.discovery-center-container .side-drawer-panel {
+  position: relative !important;
+  transform: none !important; /* Shuts off old conditional sliding animations */
+  margin-left: 0 !important;
+  width: 260px !important; /* Balanced layout width matching left pane */
+  max-width: 260px !important;
+  height: 100% !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+  transition: none !important;
+  border-radius: 0px !important; /* Enforces clean square edges */
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+/* Strip toggle arrow elements out of document visibility loops */
+.discovery-center-container .drawer-toggle-tab-btn {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   2. RE-DRESSED PERSISTENT SIDEBAR COMPONENT CARD (ADAPTED INLINE)
+   ────────────────────────────────────────────────────────────────────────── */
+.rg-left-workspace-storefront-sidebar .rg-checkout-hub-card {
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #ffffff !important;
+  border: none !important; /* Strips rounded border lines */
+  border-right: 2px solid #236ea0 !important; /* Left column structural division rule edge link */
+  border-radius: 0px !important; /* 🎯 TAILORED REVISION: Total removal of rounded edges */
+  padding: 16px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+/* Scroll track formatting bars */
+.rg-left-workspace-storefront-sidebar .rg-checkout-hub-card::-webkit-scrollbar {
+  width: 4px;
+}
+.rg-left-workspace-storefront-sidebar .rg-checkout-hub-card::-webkit-scrollbar-thumb {
+  background: #236ea0;
+  border-radius: 99px;
+}
+
+.rg-left-storefront-header-node {
+  margin-bottom: 12px !important;
+  border-bottom: 1px dashed #cbd5e1 !important;
+  padding-bottom: 8px !important;
+  flex-shrink: 0 !important;
+}
+
+.rg-left-storefront-header-node h5 {
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  margin: 4px 0 2px 0 !important;
+  color: #0f172a !important;
+  line-height: 1.2 !important;
+}
+
+.rg-left-storefront-header-node span {
+  font-size: 10px !important;
+  color: #64748b !important;
+  font-weight: 500 !important;
+}
+
+/* src/styles/store.css */
+
+/* ──────────────────────────────────────────────────────────────────────────
+   📦 DEEP-BLUE-SCALE LIVE IFRAME REPORT VIEWPORT PORTAL
+   ────────────────────────────────────────────────────────────────────────── */
+
+.rg-storefront-report-portal-wrapper {
+  position: relative !important;
+  width: 100% !important;
+  
+  /* 🎯 THE WRAPPER HEIGHT OVERRIDE:
+     Locks the physical container height to exactly 272.6px. This matches the 
+     scaled bounds of your document content and eliminates the empty gray block. */
+  height: 272.6px !important;
+  
+  background-color: #ffffff !important; /* Changed from gray to clean white */
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.02) !important;
+  margin: 12px 0 !important;
+  overflow: hidden !important;
+  border-radius: 4px !important;
+  flex-shrink: 0 !important;
+}
+/* 🎯 THE IFRAME SCALING MATRIX:
+   Forces the underlying full-sized multi-axis report page canvas to load 
+   at a massive pixel layout scale, then drops its total visual aspect down 
+   using high-performance CSS transforms to preserve crispness. */
+.rg-storefront-report-portal-wrapper iframe {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 950px !important; /* Matches your active report layout grid width profile */
+  
+  /* 🎯 Fixed from 1340px to match the true 1136px document content height boundary */
+  height: 1136px !important; 
+  
+  border: none !important;
+  pointer-events: none !important;
+  
+  /* Applies crisp, high-performance transformation scalings */
+  transform: scale(0.24) !important;
+  transform-origin: top left !important;
+}
+
+/* Soft loading indicator card template */
+.rg-storefront-report-portal-loader {
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #f8fafc !important;
+  gap: 8px !important;
+  z-index: 15 !important;
+}
+
+.rg-storefront-report-portal-loader span {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 8px !important;
+  font-weight: 700 !important;
+  color: #64748b !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Transparent user-interface shield that intercepts clicks and passes them to the button */
+.rg-storefront-report-portal-shield {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  
+  /* 🎯 Synchronized height boundary profile */
+  height: 272.6px !important; 
+  
+  z-index: 20 !important;
+  cursor: pointer !important;
+  background: transparent !important;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   3. STOREFRONT ACTIVE SELECTION INTEGRATION MODULE
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* Main outer layout flex container properties */
+.rg-checkout-hub-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important; /* Forces layout tracking array to fill total viewport height */
+  justify-content: flex-start !important;
+}
+
+/* Matching top header bar layout container properties */
+.rg-checkout-hub-card .drawer-header-title {
+  padding: 16px !important;
+  border-bottom: 1px solid #1e293b !important;
+  background-color: #236ea0 !important; 
+  text-align: center !important;
+  z-index: 12 !important;
+  margin: -16px -16px 16px -16px !important; 
+  width: auto !important;
+  flex-shrink: 0 !important;
+}
+
+.rg-checkout-hub-card .drawer-header-title h2 {
+  font-size: 12px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  font-family: "Montserrat", sans-serif !important;
+  color: #ffffff !important;
+  margin: 0 !important;
+}
+
+/* Primary Premium call-to-action button pinned at the absolute bottom */
+.rg-checkout-hub-card .rg-premium-buy-btn {
+  width: 100% !important;
+  margin-top: 12px !important; /* 🎯 TAILORED FIX: Replaced margin-top auto to pull layout tight and prevent double padding drop */
+  margin-bottom: 0px !important;
+  border: none !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  padding: 14px 8px !important;
+  border-radius: 8px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  transition: all 150ms ease !important;
+  flex-shrink: 0 !important;
+}
+
+/* Active result card wrapper mapping layout */
+.rg-checkout-hub-card .rg-selection-card-space {
+  width: 100% !important;
+  margin-bottom: 0px !important;
+  flex-shrink: 0 !important;
+}
+
+.rg-checkout-hub-card .rg-selection-card-space .route-finder-card-vertical {
+  cursor: default !important;
+  margin: 0 !important;
+  
+  /* Replicates the exact properties from the active hover spec sheet */
+  border-color: #f59e0b !important;
+  transform: none !important; /* Disables the sliding offset so it sits flush in your sidebar */
+  background: #236ea0 !important; /* Snaps background immediately to deep theme blue */
+}
+
+.rg-checkout-hub-card .rg-selection-card-space .card-metrics-grid {
+  border-top: 1px solid #ffffff !important;
+}
+
+.rg-checkout-hub-card .rg-selection-card-space .metric-column .metric-value {
+  color: #cbd5e1 !important;
+}
+
+.rg-checkout-hub-card .rg-selection-card-space .metric-column .metric-label {
+  color: #94a3b8 !important;
+}
+
+.rg-checkout-hub-card .rg-selection-card-space .card-right-badge-bay {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.rg-checkout-hub-card .rg-selection-card-space .route-finder-card-vertical .card-route-title {
+  color: #f59e0b !important; 
+}
+
+/* Empty placeholder layout card configuration */
+.rg-checkout-hub-card .rg-selection-placeholder-node {
+  text-align: center !important;
+  padding: 24px 12px !important;
+  background-color: #f8fafc !important;
+  border: 1px dashed #cbd5e1 !important;
+  border-radius: 10px !important;
+  color: #64748b !important;
+  font-size: 11px !important;
+  font-family: "Montserrat", sans-serif !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  margin-bottom: 12px !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+}
+
+/* Fixed portal layout adjustments when nested inside the checkout card container */
+.rg-checkout-hub-card .rg-storefront-report-portal-wrapper {
+  margin: 12px 0 0 0 !important;
+  position: relative !important;
+  height: 305px !important; /* 🎯 Expanded from 295px to grant document exposure space */
+  background-color: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.02) !important;
+  overflow: hidden !important;
+  border-radius: 4px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Synchronized iframe view screen scaling height matching the new expanded envelope wrapper */
+.rg-checkout-hub-card .rg-storefront-report-portal-wrapper iframe {
+  position: absolute !important;
+  top: 0 !important;
+  left: -1px !important; /* 🎯 Nudged left 1px to center the scaled canvas perfectly */
+  width: 950px !important; 
+  height: 1280px !important; /* Scaled constraint matching your 305px height envelope */
+  border: none !important;
+  pointer-events: none !important;
+  transform: scale(0.238) !important; /* 🎯 Rebalanced scale factor for a 260px sidebar wrapper */
+  transform-origin: top left !important;
+}
+
+.rg-checkout-hub-card .rg-storefront-report-portal-wrapper .rg-storefront-report-portal-shield {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 305px !important; /* 🎯 Synchronized from 295px to secure total clickable shield footprint */
+  z-index: 20 !important;
+  cursor: pointer !important;
+  background: transparent !important;
+}
+
+/* 🎯 THE OVERLAY ANCHOR DECK UPGRADE: Full Centering and Stack layout engine elements */
+.rg-checkout-hub-card .rg-storefront-report-portal-wrapper .rg-portal-embedded-upsell-overlay {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 30 !important; 
+  background: linear-gradient(to top, 
+    rgba(255, 255, 255, 1.0) 0%, 
+    rgba(255, 255, 255, 0.98) 82%, 
+    rgba(255, 255, 255, 0.0) 100%) !important;
+  padding: 45px 16px 16px 16px !important; 
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important; /* 🎯 CENTERED */
+  text-align: center !important;
+  pointer-events: none !important; 
+}
+
+/* Centered layout elements */
+.rg-checkout-hub-card .rg-retail-badge-row-link {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-bottom: 2px !important;
+}
+
+.rg-checkout-hub-card .rg-retail-badge-row-link .rg-hub-main-title {
+  margin: 0 !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+}
+
+.rg-checkout-hub-card .rg-hub-pricing-row {
+  margin-bottom: 8px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.rg-checkout-hub-card .rg-hub-price-tag {
+  font-size: 19px !important;
+  font-weight: 800 !important;
+  color: #d88a3a !important;
+}
+
+.rg-checkout-hub-card .rg-hub-price-annotation {
+  font-size: 10.5px !important;
+  color: #64748b !important;
+  font-weight: 600 !important;
+}
+
+/* Structured Intro Tagline Typography */
+.rg-checkout-hub-card .rg-retail-description-text {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 10px !important;
+  color: #334155 !important;
+  line-height: 1.4 !important;
+  margin: 0 0 8px 0 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.3px !important;
+}
+
+/* 🎯 VERTICAL PILL CONTAINER SYSTEM */
+.rg-checkout-hub-card .rg-overlay-feature-pills-stack {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+/* Individual Pill Cards */
+.rg-checkout-hub-card .rg-feature-pill-item {
+  background-color: #f0fdf4 !important; /* Soft mint backdrop */
+  border: 1px solid #bbf7d0 !important; /* High-contrast green border */
+  border-radius: 20px !important;
+  padding: 5px 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  box-sizing: border-box !important;
+}
+
+.rg-checkout-hub-card .rg-feature-pill-item .rg-pill-checkmark {
+  color: #16a34a !important; /* Emerald bold icon accent */
+  font-weight: 900 !important;
+  font-size: 11px !important;
+}
+
+.rg-checkout-hub-card .rg-feature-pill-item .rg-pill-label-text {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  color: #14532d !important; /* Deep forest slate text contrast */
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Outro Delivery Confirmation Typography */
+.rg-checkout-hub-card .rg-retail-delivery-footer-text {
+  font-family: "Montserrat", sans-serif !important; /* Linked to match original label typography */
+  font-size: 10px !important;
+  color: #236ea0 !important; /* Tinted blue callout accent text color */
+  line-height: 1.4 !important;
+  margin: 0 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.3px !important;
+}
+
+/* Fallback unselected graphic placeholder elements */
+.rg-checkout-hub-card .rg-storefront-empty-viewport-placeholder {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #f8fafc !important;
+  padding: 32px 16px !important;
+  text-align: center !important;
+  margin: 12px 0 0 0 !important;
+  height: 295px !important;
+  box-sizing: border-box !important;
+}
+
+.rg-checkout-hub-card .rg-storefront-empty-viewport-placeholder .rg-placeholder-icon {
+  font-size: 24px !important;
+  margin-bottom: 8px !important;
+  display: block !important;
+}
+
+.rg-checkout-hub-card .rg-storefront-empty-viewport-placeholder .rg-placeholder-text {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 8px !important;
+  font-weight: 700 !important;
+  color: #94a3b8 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  line-height: 1.3 !important;
+}
+

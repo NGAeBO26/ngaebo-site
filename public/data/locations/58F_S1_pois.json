@@ -24,14 +24,14 @@
             "dist": "0.98",
             "via": "Horse Cove Rd",
             "lng": -84.20578,
-            "lat": 34.65375
+            "lat": 34.65376
         },
         {
             "label": "Noontootla Falls",
             "type": "water",
             "dist": "1.35",
             "via": "Horse Cove Rd",
-            "lng": -84.1938,
+            "lng": -84.19381,
             "lat": 34.68592
         },
         {
@@ -40,14 +40,14 @@
             "dist": "1.61",
             "via": "Horse Cove Rd",
             "lng": -84.19441,
-            "lat": 34.64393
+            "lat": 34.64394
         }
     ],
     "rescue_anchor": {
-        "name": "Fannin County Emergency Services - Fire Station 1",
+        "name": "Lumpkin County Fire Department",
         "type": "Fire-EMS",
-        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
-        "phone": "(706) 632-4711",
-        "dist_mi": 16.4
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 17.9
     }
 }

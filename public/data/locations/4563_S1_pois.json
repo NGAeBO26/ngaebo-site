@@ -1,0 +1,53 @@
+{
+    "profile_id": "4563_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Ammons Branch Campground",
+            "type": "camp",
+            "dist": "0.45",
+            "via": "Horse Cove Rd",
+            "lng": -83.14557,
+            "lat": 35.02199
+        },
+        {
+            "label": "Ellicott Rock Wilderness West",
+            "type": "trailhead",
+            "dist": "0.85",
+            "via": "Horse Cove Rd",
+            "lng": -83.1415,
+            "lat": 35.0169
+        },
+        {
+            "label": "Chattooga Wild And Scenic River",
+            "type": "camp",
+            "dist": "1.63",
+            "via": "Horse Cove Rd",
+            "lng": -83.12506,
+            "lat": 35.01774
+        },
+        {
+            "label": "Glade Mountain",
+            "type": "scenic",
+            "dist": "2.14",
+            "via": "Horse Cove Rd",
+            "lng": -83.13414,
+            "lat": 34.99828
+        },
+        {
+            "label": "Jim Harden Gap",
+            "type": "gap",
+            "dist": "2.48",
+            "via": "Horse Cove Rd",
+            "lng": -83.13737,
+            "lat": 34.99176
+        }
+    ],
+    "rescue_anchor": {
+        "name": "HIGHLANDS FIRE & RESCUE",
+        "type": "Fire-EMS",
+        "address": "Cherrywood Dr, Highlands, NC 28741, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 4.5
+    }
+}

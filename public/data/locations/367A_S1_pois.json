@@ -1,0 +1,37 @@
+{
+    "profile_id": "367A_S1",
+    "count": 3,
+    "locations": [
+        {
+            "label": "Glen Falls Trailhead",
+            "type": "trailhead",
+            "dist": "0.98",
+            "via": "Horse Cove Rd",
+            "lng": -83.23577,
+            "lat": 35.03314
+        },
+        {
+            "label": "Blue Valley Dispersed Camping",
+            "type": "camp",
+            "dist": "1.26",
+            "via": "Horse Cove Rd",
+            "lng": -83.2209,
+            "lat": 35.00837
+        },
+        {
+            "label": "Big Ridge",
+            "type": "scenic",
+            "dist": "2.23",
+            "via": "Horse Cove Rd",
+            "lng": -83.2036,
+            "lat": 34.99748
+        }
+    ],
+    "rescue_anchor": {
+        "name": "HIGHLANDS FIRE & RESCUE",
+        "type": "Fire-EMS",
+        "address": "Cherrywood Dr, Highlands, NC 28741, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 5.3
+    }
+}

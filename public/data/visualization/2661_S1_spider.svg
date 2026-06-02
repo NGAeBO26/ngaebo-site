@@ -1,0 +1,27 @@
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <clipPath id="spider-clip-2661_S1"><polygon points="250.00,124.20 336.21,221.99 277.19,287.42 197.80,321.84 116.28,206.55" /></clipPath>
+                <radialGradient id="spider-heat-2661_S1" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%"   stop-color="#4a5d23" stop-opacity="0.5" />
+                    <stop offset="20%"  stop-color="#4a5d23" stop-opacity="0.5" />
+                    <stop offset="20%"  stop-color="#ebc850" stop-opacity="0.5" />
+                    <stop offset="40%"  stop-color="#ebc850" stop-opacity="0.5" />
+                    <stop offset="40%"  stop-color="#af5519" stop-opacity="0.5" />
+                    <stop offset="60%"  stop-color="#af5519" stop-opacity="0.5" />
+                    <stop offset="60%"  stop-color="#a52d23" stop-opacity="0.6" />
+                    <stop offset="100%" stop-color="#a52d23" stop-opacity="0.6" />
+                </radialGradient>
+            </defs>
+            <circle cx="250" cy="250" r="185" fill="url(#spider-heat-2661_S1)" clip-path="url(#spider-clip-2661_S1)" />
+            <g stroke="#e0e0e0" stroke-width="1.5" fill="none">
+                <circle cx="250" cy="250" r="18.5" stroke-dasharray="4,4" /> <circle cx="250" cy="250" r="37.0" stroke-dasharray="4,4" /> <circle cx="250" cy="250" r="55.5" stroke-dasharray="4,4" /> <circle cx="250" cy="250" r="74.0" stroke-dasharray="4,4" /> <circle cx="250" cy="250" r="92.5" stroke-dasharray="4,4" /> <circle cx="250" cy="250" r="111.0" stroke-dasharray="4,4" /> <circle cx="250" cy="250" r="129.5" stroke-dasharray="4,4" /> <circle cx="250" cy="250" r="148.0" stroke-dasharray="4,4" /> <circle cx="250" cy="250" r="166.5" stroke-dasharray="4,4" /> <circle cx="250" cy="250" r="185.0" stroke-dasharray="4,4" />
+                
+                <circle cx="250" cy="250" r="185" stroke="#9badad" stroke-width="13" />
+                
+                <line x1="250" y1="250" x2="250.0" y2="65.0" /> <line x1="250" y1="250" x2="425.9454555146034" y2="192.83185604063473" /> <line x1="250" y1="250" x2="358.74027167410753" y2="399.66814395936524" /> <line x1="250" y1="250" x2="141.2597283258925" y2="399.66814395936524" /> <line x1="250" y1="250" x2="74.05454448539658" y2="192.83185604063476" />
+            </g>
+            
+            <polygon points="250.00,124.20 336.21,221.99 277.19,287.42 197.80,321.84 116.28,206.55" fill="none" stroke="#9badad" stroke-width="3" stroke-linejoin="round" />
+            
+            <g><circle cx="250.00" cy="124.20" r="26" fill="white" stroke="#a52d23" stroke-width="4"/><text x="250.00" y="132.20" font-family="Montserrat, sans-serif" font-size="22" font-weight="900" text-anchor="middle" fill="#333333ff">6.8</text></g><g><circle cx="336.21" cy="221.99" r="26" fill="white" stroke="#af5519" stroke-width="4"/><text x="336.21" y="229.99" font-family="Montserrat, sans-serif" font-size="22" font-weight="900" text-anchor="middle" fill="#333333ff">4.9</text></g><g><circle cx="277.19" cy="287.42" r="26" fill="white" stroke="#ebc850" stroke-width="4"/><text x="277.19" y="295.42" font-family="Montserrat, sans-serif" font-size="22" font-weight="900" text-anchor="middle" fill="#333333ff">2.5</text></g><g><circle cx="197.80" cy="321.84" r="26" fill="white" stroke="#af5519" stroke-width="4"/><text x="197.80" y="329.84" font-family="Montserrat, sans-serif" font-size="22" font-weight="900" text-anchor="middle" fill="#333333ff">4.8</text></g><g><circle cx="116.28" cy="206.55" r="26" fill="white" stroke="#a52d23" stroke-width="4"/><text x="116.28" y="214.55" font-family="Montserrat, sans-serif" font-size="22" font-weight="900" text-anchor="middle" fill="#333333ff">7.6</text></g>
+        </svg>

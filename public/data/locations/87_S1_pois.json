@@ -1,0 +1,53 @@
+{
+    "profile_id": "87_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Farmer Mountain",
+            "type": "scenic",
+            "dist": "1.81",
+            "via": "Horse Cove Rd",
+            "lng": -83.4135,
+            "lat": 34.49843
+        },
+        {
+            "label": "Brady Hill",
+            "type": "scenic",
+            "dist": "2.39",
+            "via": "Horse Cove Rd",
+            "lng": -83.39961,
+            "lat": 34.49426
+        },
+        {
+            "label": "Soapstone Mountain",
+            "type": "scenic",
+            "dist": "2.60",
+            "via": "Horse Cove Rd",
+            "lng": -83.41565,
+            "lat": 34.48647
+        },
+        {
+            "label": "Currahee Mountain",
+            "type": "scenic",
+            "dist": "2.62",
+            "via": "Horse Cove Rd",
+            "lng": -83.3758,
+            "lat": 34.52919
+        },
+        {
+            "label": "Frady Branch Equestrian And Bike Trail System",
+            "type": "trailhead",
+            "dist": "2.65",
+            "via": "Horse Cove Rd",
+            "lng": -83.38101,
+            "lat": 34.50494
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Carnes Creek Vol Fire Department",
+        "type": "Fire-EMS",
+        "address": "PO Box 68, 959 Mize Rd, Toccoa, GA 30577, USA",
+        "phone": "(706) 244-0902",
+        "dist_mi": 7.1
+    }
+}

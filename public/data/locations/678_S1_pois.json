@@ -1,0 +1,53 @@
+{
+    "profile_id": "678_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Dukes Creek Falls Trailhead",
+            "type": "trailhead",
+            "dist": "0.01",
+            "via": "Horse Cove Rd",
+            "lng": -83.78917,
+            "lat": 34.70195
+        },
+        {
+            "label": "Dukes Creek Falls",
+            "type": "water",
+            "dist": "0.13",
+            "via": "Horse Cove Rd",
+            "lng": -83.79129,
+            "lat": 34.70204
+        },
+        {
+            "label": "Raven'S Cliff Wilderness Trailhead",
+            "type": "trailhead",
+            "dist": "0.52",
+            "via": "Horse Cove Rd",
+            "lng": -83.78878,
+            "lat": 34.70958
+        },
+        {
+            "label": "Little Hickorynut Mountain",
+            "type": "scenic",
+            "dist": "0.71",
+            "via": "Horse Cove Rd",
+            "lng": -83.77833,
+            "lat": 34.70741
+        },
+        {
+            "label": "Allison Ridge",
+            "type": "scenic",
+            "dist": "0.85",
+            "via": "Horse Cove Rd",
+            "lng": -83.78682,
+            "lat": 34.68985
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Helen Fire Department",
+        "type": "Fire-EMS",
+        "address": "120 Unicoi St, Helen, GA 30545, USA",
+        "phone": "(706) 878-3676",
+        "dist_mi": 3.9
+    }
+}

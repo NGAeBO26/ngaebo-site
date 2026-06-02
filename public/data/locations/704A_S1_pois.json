@@ -1,0 +1,53 @@
+{
+    "profile_id": "704A_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Ramey Mountain",
+            "type": "scenic",
+            "dist": "1.61",
+            "via": "Horse Cove Rd",
+            "lng": -83.80986,
+            "lat": 34.95437
+        },
+        {
+            "label": "Long Ridge",
+            "type": "scenic",
+            "dist": "1.96",
+            "via": "Horse Cove Rd",
+            "lng": -83.78526,
+            "lat": 34.9241
+        },
+        {
+            "label": "Rocky Knob",
+            "type": "scenic",
+            "dist": "2.03",
+            "via": "Horse Cove Rd",
+            "lng": -83.81719,
+            "lat": 34.94932
+        },
+        {
+            "label": "Cedar Knob",
+            "type": "scenic",
+            "dist": "2.06",
+            "via": "Horse Cove Rd",
+            "lng": -83.81545,
+            "lat": 34.94147
+        },
+        {
+            "label": "Norton Gap",
+            "type": "gap",
+            "dist": "2.07",
+            "via": "Horse Cove Rd",
+            "lng": -83.81684,
+            "lat": 34.94454
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Towns County Fire Department",
+        "type": "Fire-EMS",
+        "address": "Sims Cir, Hiawassee, GA 30546, USA",
+        "phone": "(706) 896-2090",
+        "dist_mi": 1.5
+    }
+}

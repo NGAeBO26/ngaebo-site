@@ -1,7 +1,7 @@
 {
   "profile_id": "819_S1",
   "route_id": "819",
-  "ssdi_score": 6.8,
+  "ssdi_score": 6.4,
   "v3_terrain_score": 4.8,
   "v3_terrain_class": "Strenuous",
   "badge_type": "wet",
@@ -18,9 +18,9 @@
   },
   "environment": {
     "current_temp": 71,
-    "saturation_index": 10,
+    "saturation_index": 8.1,
     "soil_status": "Saturated",
-    "precip_24h": 0.0,
+    "precip_24h": 0.03,
     "saturation_trend": "stable",
     "alerts": []
   },
@@ -31,7 +31,7 @@
     "v3_base_intensity": 4.8
   },
   "connectivity": {
-    "signal_class": "Intermittent",
-    "deadzone_max_meters": 506
+    "signal_class": "Unknown",
+    "deadzone_max_meters": 0
   }
 }

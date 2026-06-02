@@ -1,0 +1,53 @@
+{
+    "profile_id": "64E_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Dyer Gap",
+            "type": "gap",
+            "dist": "0.53",
+            "via": "Horse Cove Rd",
+            "lng": -84.51438,
+            "lat": 34.86814
+        },
+        {
+            "label": "Long Gap",
+            "type": "gap",
+            "dist": "0.59",
+            "via": "Horse Cove Rd",
+            "lng": -84.51243,
+            "lat": 34.88231
+        },
+        {
+            "label": "Jacks River Fields Campground",
+            "type": "camp",
+            "dist": "0.82",
+            "via": "Horse Cove Rd",
+            "lng": -84.52013,
+            "lat": 34.86342
+        },
+        {
+            "label": "Rich Cove Gap",
+            "type": "gap",
+            "dist": "0.95",
+            "via": "Horse Cove Rd",
+            "lng": -84.51382,
+            "lat": 34.88842
+        },
+        {
+            "label": "Crenshaw Gap",
+            "type": "gap",
+            "dist": "1.10",
+            "via": "Horse Cove Rd",
+            "lng": -84.5291,
+            "lat": 34.86203
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Gilmer County Fire Rescue Station 14",
+        "type": "Fire-EMS",
+        "address": "2300 Tails Creek Rd, Ellijay, GA 30540, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 11.8
+    }
+}

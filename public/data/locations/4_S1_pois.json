@@ -1,0 +1,53 @@
+{
+    "profile_id": "4_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Spencer Ridge",
+            "type": "scenic",
+            "dist": "0.39",
+            "via": "Horse Cove Rd",
+            "lng": -84.04877,
+            "lat": 34.78004
+        },
+        {
+            "label": "Hickory Knob",
+            "type": "scenic",
+            "dist": "0.40",
+            "via": "Horse Cove Rd",
+            "lng": -84.04875,
+            "lat": 34.77999
+        },
+        {
+            "label": "Spencer Knob",
+            "type": "scenic",
+            "dist": "0.41",
+            "via": "Horse Cove Rd",
+            "lng": -84.04656,
+            "lat": 34.78515
+        },
+        {
+            "label": "Shope Gap",
+            "type": "gap",
+            "dist": "0.75",
+            "via": "Horse Cove Rd",
+            "lng": -84.04436,
+            "lat": 34.77648
+        },
+        {
+            "label": "Clements Mountain",
+            "type": "scenic",
+            "dist": "1.07",
+            "via": "Horse Cove Rd",
+            "lng": -84.058,
+            "lat": 34.79918
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Union County Fire Department",
+        "type": "Fire-EMS",
+        "address": "507 Shoe Factory Rd, Blairsville, GA 30512, USA",
+        "phone": "(706) 439-6095",
+        "dist_mi": 9.7
+    }
+}

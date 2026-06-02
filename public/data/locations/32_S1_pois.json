@@ -1,0 +1,53 @@
+{
+    "profile_id": "32_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Howard Mountain",
+            "type": "scenic",
+            "dist": "0.66",
+            "via": "Horse Cove Rd",
+            "lng": -83.48703,
+            "lat": 34.93258
+        },
+        {
+            "label": "Howard Gap",
+            "type": "gap",
+            "dist": "0.76",
+            "via": "Horse Cove Rd",
+            "lng": -83.48099,
+            "lat": 34.93565
+        },
+        {
+            "label": "Tunnel Mountain",
+            "type": "scenic",
+            "dist": "1.01",
+            "via": "Horse Cove Rd",
+            "lng": -83.47519,
+            "lat": 34.93859
+        },
+        {
+            "label": "Wolf Knob",
+            "type": "scenic",
+            "dist": "1.91",
+            "via": "Horse Cove Rd",
+            "lng": -83.47401,
+            "lat": 34.96398
+        },
+        {
+            "label": "Double Knob",
+            "type": "scenic",
+            "dist": "1.94",
+            "via": "Horse Cove Rd",
+            "lng": -83.45898,
+            "lat": 34.94489
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clayton Fire Department",
+        "type": "Fire-EMS",
+        "address": "14 Emergency Dr # 105, Clayton, GA 30525, USA",
+        "phone": "(706) 782-2751",
+        "dist_mi": 7.6
+    }
+}

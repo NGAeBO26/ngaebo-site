@@ -1,0 +1,12 @@
+{
+    "profile_id": "221_S2",
+    "count": 0,
+    "locations": [],
+    "rescue_anchor": {
+        "name": "Clarkesville Fire Department",
+        "type": "Fire-EMS",
+        "address": "303 Adams St, Clarkesville, GA 30523, USA",
+        "phone": "(706) 754-2024",
+        "dist_mi": 7.0
+    }
+}

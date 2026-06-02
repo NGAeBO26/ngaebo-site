@@ -1,0 +1,45 @@
+{
+    "profile_id": "744_S1",
+    "count": 4,
+    "locations": [
+        {
+            "label": "Andrew Pickens Ranger District",
+            "type": "camp",
+            "dist": "3.87",
+            "via": "Horse Cove Rd",
+            "lng": -83.12806,
+            "lat": 34.81006
+        },
+        {
+            "label": "Andrew Pickens Ranger District",
+            "type": "camp",
+            "dist": "3.87",
+            "via": "Horse Cove Rd",
+            "lng": -83.12806,
+            "lat": 34.81006
+        },
+        {
+            "label": "Andrew Pickens Ranger District",
+            "type": "ranger",
+            "dist": "3.88",
+            "via": "Horse Cove Rd",
+            "lng": -83.1275,
+            "lat": 34.80986
+        },
+        {
+            "label": "Grapevine",
+            "type": "camp",
+            "dist": "4.41",
+            "via": "Horse Cove Rd",
+            "lng": -83.1805,
+            "lat": 34.82299
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Mountain Rest FD - Oconee Co. Station 4",
+        "type": "Fire-EMS",
+        "address": "130 Verner Mill Rd, Mountain Rest, SC 29664, USA",
+        "phone": "(864) 638-8220",
+        "dist_mi": 5.9
+    }
+}

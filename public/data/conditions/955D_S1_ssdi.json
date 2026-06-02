@@ -1,0 +1,37 @@
+{
+    "profile_id": "955D_S1",
+    "route_id": "955D",
+    "ssdi_score": 14.2,
+    "v3_terrain_score": 4.7,
+    "v3_terrain_class": "Strenuous",
+    "badge_type": "muddy",
+    "condition": "MUDDY / SOFT",
+    "style_color": "#a52d23",
+    "access": {
+        "label": "OPEN",
+        "vibe_context": "RESTRICTED EXPLORER",
+        "status_code": "OPEN"
+    },
+    "ruggedness": {
+        "class": "Chattery",
+        "value": 0.22
+    },
+    "environment": {
+        "current_temp": 75,
+        "saturation_index": 47.71,
+        "soil_status": "Saturated",
+        "precip_24h": 0.14,
+        "saturation_trend": "stable",
+        "alerts": []
+    },
+    "physics": {
+        "live_traction": 0.38,
+        "live_wh_per_km": 15.37,
+        "energy_penalty_pct": 20.0,
+        "v3_base_intensity": 4.7
+    },
+    "connectivity": {
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
+    }
+}

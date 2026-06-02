@@ -1,0 +1,29 @@
+{
+    "profile_id": "212B_S1",
+    "count": 2,
+    "locations": [
+        {
+            "label": "Chestnut Mountain",
+            "type": "scenic",
+            "dist": "0.51",
+            "via": "Horse Cove Rd",
+            "lng": -85.02673,
+            "lat": 34.62433
+        },
+        {
+            "label": "Gentry Gap",
+            "type": "gap",
+            "dist": "2.18",
+            "via": "Horse Cove Rd",
+            "lng": -85.06578,
+            "lat": 34.62675
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Whitfield County Fire Department",
+        "type": "Fire-EMS",
+        "address": "804 Professional Blvd, Dalton, GA 30720, USA",
+        "phone": "(706) 259-7433",
+        "dist_mi": 13.0
+    }
+}

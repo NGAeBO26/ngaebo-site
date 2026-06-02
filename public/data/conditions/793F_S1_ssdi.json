@@ -1,0 +1,37 @@
+{
+    "profile_id": "793F_S1",
+    "route_id": "793F",
+    "ssdi_score": 156.4,
+    "v3_terrain_score": 2.6,
+    "v3_terrain_class": "Cruiser",
+    "badge_type": "muddy",
+    "condition": "MUDDY / SOFT",
+    "style_color": "#a52d23",
+    "access": {
+        "label": "CLOSED",
+        "vibe_context": "TECHNICAL BACKCOUNTRY (CLOSED)",
+        "status_code": "RESTRICTED"
+    },
+    "ruggedness": {
+        "class": "Rough",
+        "value": 0.0
+    },
+    "environment": {
+        "current_temp": 66,
+        "saturation_index": 51.27,
+        "soil_status": "Saturated",
+        "precip_24h": 0.01,
+        "saturation_trend": "stable",
+        "alerts": []
+    },
+    "physics": {
+        "live_traction": 0.36,
+        "live_wh_per_km": 13.5,
+        "energy_penalty_pct": 20.0,
+        "v3_base_intensity": 2.6
+    },
+    "connectivity": {
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
+    }
+}

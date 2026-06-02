@@ -1,0 +1,53 @@
+{
+    "profile_id": "249A_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "High Falls",
+            "type": "water",
+            "dist": "0.33",
+            "via": "Horse Cove Rd",
+            "lng": -84.13908,
+            "lat": 34.71259
+        },
+        {
+            "label": "Dockery Lake Recreation Area",
+            "type": "camp",
+            "dist": "0.73",
+            "via": "Horse Cove Rd",
+            "lng": -84.14941,
+            "lat": 34.70145
+        },
+        {
+            "label": "Sharp Top",
+            "type": "scenic",
+            "dist": "1.04",
+            "via": "Horse Cove Rd",
+            "lng": -84.12112,
+            "lat": 34.71045
+        },
+        {
+            "label": "Rocky Mountain",
+            "type": "scenic",
+            "dist": "1.05",
+            "via": "Horse Cove Rd",
+            "lng": -84.13644,
+            "lat": 34.72283
+        },
+        {
+            "label": "Pine Tar Knob",
+            "type": "scenic",
+            "dist": "1.36",
+            "via": "Horse Cove Rd",
+            "lng": -84.11936,
+            "lat": 34.69675
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Lumpkin County Fire Department",
+        "type": "Fire-EMS",
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 16.5
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "profile_id": "752A_S1",
+    "count": 1,
+    "locations": [
+        {
+            "label": "Trembly Bald",
+            "type": "scenic",
+            "dist": "2.50",
+            "via": "Horse Cove Rd",
+            "lng": -83.30528,
+            "lat": 34.65538
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Cleveland Rural Fire Department",
+        "type": "Fire-EMS",
+        "address": "684 Cleveland Pike Rd, Westminster, SC 29693, USA",
+        "phone": "(864) 647-0088",
+        "dist_mi": 5.9
+    }
+}

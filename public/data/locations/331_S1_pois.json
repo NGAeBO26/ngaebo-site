@@ -1,0 +1,53 @@
+{
+    "profile_id": "331_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Hickey Knob",
+            "type": "scenic",
+            "dist": "1.39",
+            "via": "Horse Cove Rd",
+            "lng": -84.25929,
+            "lat": 34.8102
+        },
+        {
+            "label": "Hickoryland Mountain",
+            "type": "scenic",
+            "dist": "1.51",
+            "via": "Horse Cove Rd",
+            "lng": -84.2338,
+            "lat": 34.81202
+        },
+        {
+            "label": "Rocky Knob",
+            "type": "scenic",
+            "dist": "1.87",
+            "via": "Horse Cove Rd",
+            "lng": -84.22297,
+            "lat": 34.81431
+        },
+        {
+            "label": "Persimmon Hill",
+            "type": "scenic",
+            "dist": "2.05",
+            "via": "Horse Cove Rd",
+            "lng": -84.24301,
+            "lat": 34.79993
+        },
+        {
+            "label": "Free Knob",
+            "type": "scenic",
+            "dist": "2.49",
+            "via": "Horse Cove Rd",
+            "lng": -84.25605,
+            "lat": 34.79321
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Fannin County Emergency Services - Fire Station 1",
+        "type": "Fire-EMS",
+        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
+        "phone": "(706) 632-4711",
+        "dist_mi": 5.4
+    }
+}

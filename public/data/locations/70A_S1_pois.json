@@ -1,0 +1,53 @@
+{
+    "profile_id": "70A_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Sandy Bottoms Campground",
+            "type": "camp",
+            "dist": "0.04",
+            "via": "Horse Cove Rd",
+            "lng": -83.55774,
+            "lat": 34.96088
+        },
+        {
+            "label": "River Mountain",
+            "type": "scenic",
+            "dist": "0.43",
+            "via": "Horse Cove Rd",
+            "lng": -83.56349,
+            "lat": 34.95734
+        },
+        {
+            "label": "Tate Branch Campground",
+            "type": "camp",
+            "dist": "0.53",
+            "via": "Horse Cove Rd",
+            "lng": -83.5521,
+            "lat": 34.9553
+        },
+        {
+            "label": "Newt Knob",
+            "type": "scenic",
+            "dist": "1.09",
+            "via": "Horse Cove Rd",
+            "lng": -83.5704,
+            "lat": 34.97333
+        },
+        {
+            "label": "Black Mountain",
+            "type": "scenic",
+            "dist": "1.52",
+            "via": "Horse Cove Rd",
+            "lng": -83.58037,
+            "lat": 34.94963
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Clay County Fire and Rescue Station 6",
+        "type": "Fire-EMS",
+        "address": "18 Eagle Fork Rd, Hayesville, NC 28904, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 8.3
+    }
+}

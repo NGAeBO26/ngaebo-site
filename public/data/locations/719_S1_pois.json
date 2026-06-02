@@ -1,0 +1,53 @@
+{
+    "profile_id": "719_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Whetstone Horse Camp",
+            "type": "camp",
+            "dist": "0.85",
+            "via": "Horse Cove Rd",
+            "lng": -83.2256,
+            "lat": 34.86443
+        },
+        {
+            "label": "Earls Ford",
+            "type": "hazard",
+            "dist": "1.50",
+            "via": "Horse Cove Rd",
+            "lng": -83.22849,
+            "lat": 34.87954
+        },
+        {
+            "label": "Warwoman Ford",
+            "type": "hazard",
+            "dist": "1.78",
+            "via": "Horse Cove Rd",
+            "lng": -83.22821,
+            "lat": 34.88482
+        },
+        {
+            "label": "Sandy Ford",
+            "type": "hazard",
+            "dist": "2.07",
+            "via": "Horse Cove Rd",
+            "lng": -83.24682,
+            "lat": 34.86065
+        },
+        {
+            "label": "Willis Knob",
+            "type": "scenic",
+            "dist": "2.34",
+            "via": "Horse Cove Rd",
+            "lng": -83.21569,
+            "lat": 34.89723
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Mountain Rest FD - Oconee Co. Station 4",
+        "type": "Fire-EMS",
+        "address": "130 Verner Mill Rd, Mountain Rest, SC 29664, USA",
+        "phone": "(864) 638-8220",
+        "dist_mi": 5.4
+    }
+}

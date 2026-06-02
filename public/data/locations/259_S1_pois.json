@@ -1,0 +1,37 @@
+{
+    "profile_id": "259_S1",
+    "count": 3,
+    "locations": [
+        {
+            "label": "Taylor Ridge",
+            "type": "scenic",
+            "dist": "0.60",
+            "via": "Horse Cove Rd",
+            "lng": -85.2536,
+            "lat": 34.54954
+        },
+        {
+            "label": "Hammond Gap",
+            "type": "gap",
+            "dist": "1.73",
+            "via": "Horse Cove Rd",
+            "lng": -85.24356,
+            "lat": 34.56564
+        },
+        {
+            "label": "Baileys Gap",
+            "type": "gap",
+            "dist": "2.84",
+            "via": "Horse Cove Rd",
+            "lng": -85.20801,
+            "lat": 34.56231
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Summerville Fire Department",
+        "type": "Fire-EMS",
+        "address": "176 Cox St, Summerville, GA 30747, USA",
+        "phone": "(706) 859-0914",
+        "dist_mi": 8.0
+    }
+}

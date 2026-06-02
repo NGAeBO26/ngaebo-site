@@ -1,0 +1,45 @@
+{
+    "profile_id": "4624A_S1",
+    "count": 4,
+    "locations": [
+        {
+            "label": "Blue Valley Dispersed Camping",
+            "type": "camp",
+            "dist": "1.60",
+            "via": "Horse Cove Rd",
+            "lng": -83.2209,
+            "lat": 35.00837
+        },
+        {
+            "label": "Big Ridge",
+            "type": "scenic",
+            "dist": "1.89",
+            "via": "Horse Cove Rd",
+            "lng": -83.2036,
+            "lat": 34.99748
+        },
+        {
+            "label": "Glen Falls Trailhead",
+            "type": "trailhead",
+            "dist": "2.05",
+            "via": "Horse Cove Rd",
+            "lng": -83.23577,
+            "lat": 35.03314
+        },
+        {
+            "label": "Dyer Mountain",
+            "type": "scenic",
+            "dist": "2.14",
+            "via": "Horse Cove Rd",
+            "lng": -83.1855,
+            "lat": 34.99658
+        }
+    ],
+    "rescue_anchor": {
+        "name": "HIGHLANDS FIRE & RESCUE",
+        "type": "Fire-EMS",
+        "address": "Cherrywood Dr, Highlands, NC 28741, USA",
+        "phone": "911 / Local Dispatch",
+        "dist_mi": 4.7
+    }
+}

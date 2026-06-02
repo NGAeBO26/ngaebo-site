@@ -1,9 +1,9 @@
 {
   "profile_id": "24_S1",
   "route_id": "24",
-  "ssdi_score": 10.9,
-  "v3_terrain_score": 8.4,
-  "v3_terrain_class": "Epic",
+  "ssdi_score": 38.2,
+  "v3_terrain_score": 2.6,
+  "v3_terrain_class": "Cruiser",
   "badge_type": "muddy",
   "condition": "MUDDY / SOFT",
   "style_color": "#a52d23",
@@ -14,13 +14,13 @@
   },
   "ruggedness": {
     "class": "Rough",
-    "value": 0.36
+    "value": 0.0
   },
   "environment": {
-    "current_temp": 60,
-    "saturation_index": 0.9,
-    "soil_status": "Dry / Dusty",
-    "precip_24h": 0.0,
+    "current_temp": 69,
+    "saturation_index": 10,
+    "soil_status": "Saturated",
+    "precip_24h": 0.03,
     "saturation_trend": "stable",
     "alerts": []
   },
@@ -31,7 +31,7 @@
     "v3_base_intensity": 8.2
   },
   "connectivity": {
-    "signal_class": "Intermittent",
-    "deadzone_max_meters": 403
+    "signal_class": "Unknown",
+    "deadzone_max_meters": 0
   }
 }

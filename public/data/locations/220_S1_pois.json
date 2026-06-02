@@ -1,0 +1,21 @@
+{
+    "profile_id": "220_S1",
+    "count": 1,
+    "locations": [
+        {
+            "label": "Black Mountain",
+            "type": "scenic",
+            "dist": "1.88",
+            "via": "Horse Cove Rd",
+            "lng": -83.33747,
+            "lat": 34.65915
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Carnes Creek Vol Fire Department",
+        "type": "Fire-EMS",
+        "address": "PO Box 68, 959 Mize Rd, Toccoa, GA 30577, USA",
+        "phone": "(706) 244-0902",
+        "dist_mi": 7.2
+    }
+}

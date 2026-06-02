@@ -1,0 +1,53 @@
+{
+    "profile_id": "630F_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Hickey Gap",
+            "type": "gap",
+            "dist": "0.92",
+            "via": "Horse Cove Rd",
+            "lng": -84.67299,
+            "lat": 34.89425
+        },
+        {
+            "label": "Hickey Gap Campground",
+            "type": "camp",
+            "dist": "0.95",
+            "via": "Horse Cove Rd",
+            "lng": -84.67247,
+            "lat": 34.89413
+        },
+        {
+            "label": "Hickory Ridge",
+            "type": "scenic",
+            "dist": "1.89",
+            "via": "Horse Cove Rd",
+            "lng": -84.71553,
+            "lat": 34.88057
+        },
+        {
+            "label": "Pleasant Gap",
+            "type": "gap",
+            "dist": "2.18",
+            "via": "Horse Cove Rd",
+            "lng": -84.67355,
+            "lat": 34.92591
+        },
+        {
+            "label": "Hickory Creek Trailhead",
+            "type": "trailhead",
+            "dist": "2.61",
+            "via": "Horse Cove Rd",
+            "lng": -84.64334,
+            "lat": 34.90195
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Chatsworth Fire Department",
+        "type": "Fire-EMS",
+        "address": "503 N 3rd Ave, Chatsworth, GA 30705, USA",
+        "phone": "(706) 695-7600",
+        "dist_mi": 10.3
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "profile_id": "79B_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Blue Valley Dispersed Camping",
+            "type": "camp",
+            "dist": "1.32",
+            "via": "Horse Cove Rd",
+            "lng": -83.2209,
+            "lat": 35.00837
+        },
+        {
+            "label": "Glen Falls Trailhead",
+            "type": "trailhead",
+            "dist": "1.56",
+            "via": "Horse Cove Rd",
+            "lng": -83.23577,
+            "lat": 35.03314
+        },
+        {
+            "label": "Brown Mountain",
+            "type": "scenic",
+            "dist": "1.57",
+            "via": "Horse Cove Rd",
+            "lng": -83.23849,
+            "lat": 34.98917
+        },
+        {
+            "label": "Stooping White Oak Ridge",
+            "type": "scenic",
+            "dist": "2.46",
+            "via": "Horse Cove Rd",
+            "lng": -83.21346,
+            "lat": 34.98607
+        },
+        {
+            "label": "Big Ridge",
+            "type": "scenic",
+            "dist": "2.49",
+            "via": "Horse Cove Rd",
+            "lng": -83.2036,
+            "lat": 34.99748
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Scaly Mountain Volunteer Fire Department",
+        "type": "Fire-EMS",
+        "address": "169 Hale Ridge Rd, Scaly Mountain, NC 28775, USA",
+        "phone": "(828) 526-9032",
+        "dist_mi": 4.3
+    }
+}

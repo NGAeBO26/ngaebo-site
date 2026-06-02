@@ -1,0 +1,37 @@
+{
+    "profile_id": "723_S1",
+    "count": 3,
+    "locations": [
+        {
+            "label": "Sandy Ford",
+            "type": "hazard",
+            "dist": "1.57",
+            "via": "Horse Cove Rd",
+            "lng": -83.24682,
+            "lat": 34.86065
+        },
+        {
+            "label": "Lion Mountain",
+            "type": "scenic",
+            "dist": "2.25",
+            "via": "Horse Cove Rd",
+            "lng": -83.29849,
+            "lat": 34.84092
+        },
+        {
+            "label": "Whetstone Horse Camp",
+            "type": "camp",
+            "dist": "2.53",
+            "via": "Horse Cove Rd",
+            "lng": -83.2256,
+            "lat": 34.86443
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Long Creek FD - Oconee Co. Station 9",
+        "type": "Fire-EMS",
+        "address": "12351 Long Creek Hwy, Long Creek, SC 29658, USA",
+        "phone": "(864) 647-8151",
+        "dist_mi": 4.6
+    }
+}

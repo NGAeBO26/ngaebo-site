@@ -1,0 +1,37 @@
+{
+    "profile_id": "92F_S1",
+    "route_id": "92F",
+    "ssdi_score": 237.4,
+    "v3_terrain_score": 2.7,
+    "v3_terrain_class": "Cruiser",
+    "badge_type": "muddy",
+    "condition": "MUDDY / SOFT",
+    "style_color": "#a52d23",
+    "access": {
+        "label": "OPEN",
+        "vibe_context": "RESTRICTED EXPLORER",
+        "status_code": "OPEN"
+    },
+    "ruggedness": {
+        "class": "Rough",
+        "value": 0.0
+    },
+    "environment": {
+        "current_temp": 78,
+        "saturation_index": 78.23,
+        "soil_status": "Saturated",
+        "precip_24h": 0.62,
+        "saturation_trend": "stable",
+        "alerts": []
+    },
+    "physics": {
+        "live_traction": 0.31,
+        "live_wh_per_km": 13.99,
+        "energy_penalty_pct": 20.0,
+        "v3_base_intensity": 2.7
+    },
+    "connectivity": {
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
+    }
+}

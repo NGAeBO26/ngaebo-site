@@ -1,0 +1,53 @@
+{
+    "profile_id": "26-2_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Wike Gap",
+            "type": "gap",
+            "dist": "0.86",
+            "via": "Horse Cove Rd",
+            "lng": -83.69601,
+            "lat": 34.8501
+        },
+        {
+            "label": "Stillhouse Gap",
+            "type": "gap",
+            "dist": "0.87",
+            "via": "Horse Cove Rd",
+            "lng": -83.69879,
+            "lat": 34.8751
+        },
+        {
+            "label": "Stillhouse Knob",
+            "type": "scenic",
+            "dist": "0.95",
+            "via": "Horse Cove Rd",
+            "lng": -83.7021,
+            "lat": 34.87551
+        },
+        {
+            "label": "Milksick Cove Knob",
+            "type": "scenic",
+            "dist": "0.98",
+            "via": "Horse Cove Rd",
+            "lng": -83.69524,
+            "lat": 34.87684
+        },
+        {
+            "label": "Austin Gap",
+            "type": "gap",
+            "dist": "1.00",
+            "via": "Horse Cove Rd",
+            "lng": -83.71156,
+            "lat": 34.85537
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Towns County Fire Department",
+        "type": "Fire-EMS",
+        "address": "Sims Cir, Hiawassee, GA 30546, USA",
+        "phone": "(706) 896-2090",
+        "dist_mi": 7.6
+    }
+}

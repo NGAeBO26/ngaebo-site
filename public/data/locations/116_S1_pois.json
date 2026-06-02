@@ -16,7 +16,7 @@
             "dist": "1.27",
             "via": "Horse Cove Rd",
             "lng": -84.02352,
-            "lat": 34.89647
+            "lat": 34.89648
         },
         {
             "label": "Loftis Mountain",
@@ -40,7 +40,7 @@
             "dist": "2.65",
             "via": "Horse Cove Rd",
             "lng": -83.98852,
-            "lat": 34.91702
+            "lat": 34.91703
         }
     ],
     "rescue_anchor": {

@@ -1,7 +1,7 @@
 {
     "profile_id": "400_S1",
     "route_id": "400",
-    "ssdi_score": 5.2,
+    "ssdi_score": 8.8,
     "v3_terrain_score": 3.7,
     "v3_terrain_class": "Cruiser",
     "badge_type": "wet",
@@ -14,24 +14,24 @@
     },
     "ruggedness": {
         "class": "Smooth",
-        "value": 0.14
+        "value": 0.13
     },
     "environment": {
-        "current_temp": 70,
-        "saturation_index": 7.6,
+        "current_temp": 72,
+        "saturation_index": 25.3,
         "soil_status": "Saturated",
         "precip_24h": 0.0,
         "saturation_trend": "stable",
         "alerts": []
     },
     "physics": {
-        "live_traction": 0.73,
-        "live_wh_per_km": 8.59,
+        "live_traction": 0.79,
+        "live_wh_per_km": 8.37,
         "energy_penalty_pct": 1.5,
         "v3_base_intensity": 3.7
     },
     "connectivity": {
-        "signal_class": "Intermittent",
-        "deadzone_max_meters": 48
+        "signal_class": "Unknown",
+        "deadzone_max_meters": 0
     }
 }

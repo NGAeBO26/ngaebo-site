@@ -1,0 +1,53 @@
+{
+    "profile_id": "92A_S1",
+    "count": 5,
+    "locations": [
+        {
+            "label": "Red Root Mountain",
+            "type": "scenic",
+            "dist": "0.91",
+            "via": "Horse Cove Rd",
+            "lng": -83.4759,
+            "lat": 34.50075
+        },
+        {
+            "label": "Wells Mountain",
+            "type": "scenic",
+            "dist": "1.47",
+            "via": "Horse Cove Rd",
+            "lng": -83.44322,
+            "lat": 34.47982
+        },
+        {
+            "label": "Kelley Mountain",
+            "type": "scenic",
+            "dist": "1.85",
+            "via": "Horse Cove Rd",
+            "lng": -83.44266,
+            "lat": 34.47287
+        },
+        {
+            "label": "Lake Russell Recreation Area Campground",
+            "type": "camp",
+            "dist": "1.89",
+            "via": "Horse Cove Rd",
+            "lng": -83.49496,
+            "lat": 34.49315
+        },
+        {
+            "label": "Allen Mountain",
+            "type": "scenic",
+            "dist": "1.97",
+            "via": "Horse Cove Rd",
+            "lng": -83.43103,
+            "lat": 34.48184
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Baldwin Fire Department",
+        "type": "Fire-EMS",
+        "address": "165 Willingham Ave, Baldwin, GA 30511, USA",
+        "phone": "(706) 778-8711",
+        "dist_mi": 6.1
+    }
+}

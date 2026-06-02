@@ -1,0 +1,29 @@
+{
+    "profile_id": "67M1_S1",
+    "count": 2,
+    "locations": [
+        {
+            "label": "Nichols Gap",
+            "type": "gap",
+            "dist": "2.25",
+            "via": "Horse Cove Rd",
+            "lng": -83.4821,
+            "lat": 34.98926
+        },
+        {
+            "label": "Grassy Ridge",
+            "type": "scenic",
+            "dist": "2.64",
+            "via": "Horse Cove Rd",
+            "lng": -83.48294,
+            "lat": 34.98361
+        }
+    ],
+    "rescue_anchor": {
+        "name": "Otto Volunteer Fire & Rescue",
+        "type": "Fire-EMS",
+        "address": "60 Firehouse Rd, Otto, NC 28763, USA",
+        "phone": "(828) 524-3473",
+        "dist_mi": 7.0
+    }
+}
