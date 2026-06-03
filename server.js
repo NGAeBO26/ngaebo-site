@@ -143,8 +143,13 @@ app.post("/api/webhooks/shopify/orders-paid", async (req, res) => {
 
     console.log(`🗺️ Linked Route Asset Key: ${targetRouteID} ("${targetRouteTitle}")`);
 
-    // 🎯 LIVE PRODUCTION DESTINATION URL:
-    const targetDownloadUrl = `https://northgeorgiabikes.com/download-guide?routeID=${targetRouteID}`;
+    // 🎯 THE DYNAMIC URL CORRECTION:
+    // Instead of hardcoding northgeorgiabikes.com, this reads the incoming request headers.
+    // In staging, it automatically outputs: https://ngaebo-staging-bym3w.ondigitalocean.app
+    // When you switch DNS records to live, it automatically outputs your real domain!
+    const host = req.headers["x-forwarded-host"] || req.get("host");
+    const protocol = req.headers["x-forwarded-proto"] || req.protocol;
+    const targetDownloadUrl = `${protocol}://${host}/download-guide?routeID=${targetRouteID}`;
 
     if (!MAILERLITE_API_KEY) {
       console.warn("⚠️ SANDBOX ALERT: Skipping MailerLite dispatch step because API key is undefined.");
