@@ -1,7 +1,7 @@
 {
   "profile_id": "357A_S1",
   "route_id": "357A",
-  "ssdi_score": 36.9,
+  "ssdi_score": 7.2,
   "v3_terrain_score": 7.2,
   "v3_terrain_class": "Epic",
   "badge_type": "muddy",
@@ -17,9 +17,9 @@
     "value": 0.4
   },
   "environment": {
-    "current_temp": 73,
-    "saturation_index": 9.9,
-    "soil_status": "Saturated",
+    "current_temp": 56,
+    "saturation_index": 0.0,
+    "soil_status": "Dry / Dusty",
     "precip_24h": 0.02,
     "saturation_trend": "stable",
     "alerts": []

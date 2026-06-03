@@ -60,7 +60,7 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
     setIsRedirecting(true);
     console.log(`🚀 INITIATING TRANSITION: Compiling custom order invoice parameters inside Shopify for track asset: ${rawRouteId}...`);
 
-    const targetVariantId = "gid://shopify/ProductVariant/53101968523580"; 
+    const targetVariantId = "gid://shopify/ProductVariant/51045122146524"; 
 
     const cartInput = {
       lines: [

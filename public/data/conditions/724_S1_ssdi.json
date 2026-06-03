@@ -1,12 +1,12 @@
 {
   "profile_id": "724_S1",
   "route_id": "724",
-  "ssdi_score": 5.5,
+  "ssdi_score": 3.8,
   "v3_terrain_score": 3.8,
   "v3_terrain_class": "Cruiser",
-  "badge_type": "wet",
-  "condition": "WET / SLICK",
-  "style_color": "#e66e00",
+  "badge_type": "ideal",
+  "condition": "IDEAL",
+  "style_color": "#2e7d32",
   "access": {
     "label": "OPEN",
     "vibe_context": "RESTRICTED EXPLORER",
@@ -17,17 +17,17 @@
     "value": 0.13
   },
   "environment": {
-    "current_temp": 73,
-    "saturation_index": 8.6,
-    "soil_status": "Saturated",
+    "current_temp": 54,
+    "saturation_index": 0.0,
+    "soil_status": "Dry / Dusty",
     "precip_24h": 0.02,
     "saturation_trend": "stable",
     "alerts": []
   },
   "physics": {
-    "live_traction": 0.65,
-    "live_wh_per_km": 11.61,
-    "energy_penalty_pct": 10.0,
+    "live_traction": 0.86,
+    "live_wh_per_km": 10.55,
+    "energy_penalty_pct": 0.0,
     "v3_base_intensity": 3.8
   },
   "connectivity": {

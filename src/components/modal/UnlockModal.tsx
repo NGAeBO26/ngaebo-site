@@ -74,7 +74,7 @@ export default function UnlockModal() {
     
     // Shopify Store Domain configurations
     const SHOPIFY_STORE_DOMAIN = "your-dev-store.myshopify.com"; 
-    const BLUEPRINT_VARIANT_ID = "48652317950234"; // Single Product Variant Inventory Token
+    const BLUEPRINT_VARIANT_ID = "51045122146524"; // Single Product Variant Inventory Token
     
     const checkoutPermalink = `https://${SHOPIFY_STORE_DOMAIN}/cart/${BLUEPRINT_VARIANT_ID}:1?attributes[Route_ID]=${targetRouteID}&attributes[Fulfillment_Mode]=Automated_PDF_Pipeline`;
     
