@@ -36,7 +36,7 @@ app.use((req, res, next) => {
 // ------------------------------------------------------------
 
 /**
- * WEATHER ENGINE WORKER SPAWNER (Restored and Locked)
+ * WEATHER ENGINE WORKER SPAWNER
  */
 app.get('/api/sync-weather/:routeID', (req, res) => {
   const { routeID } = req.params;
@@ -71,9 +71,7 @@ app.get('/api/sync-weather/:routeID', (req, res) => {
 });
 
 /**
- * 🎯 SECURE UNBLURRED RIDEGUIDE DOWNLOAD GATEWAY
- * This endpoint serves the unblurred print canvas page directly to the customer 
- * when they click the fulfillment url embedded in their MailerLite delivery email.
+ * SECURE UNBLURRED RIDEGUIDE DOWNLOAD GATEWAY
  */
 app.get("/download-guide", (req, res) => {
   const { routeID } = req.query;
@@ -81,16 +79,11 @@ app.get("/download-guide", (req, res) => {
   if (!routeID) {
     return res.status(400).send("Missing target route identification parameter.");
   }
-  
-  // Serves your index build script. The React Router frontend will catch this path 
-  // and load RideGuidePrinter inside the DOM context cleanly without any blur filters!
   res.sendFile(path.join(dist, "index.html"));
 });
 
 /**
  * SECURE SHOPIFY ORDER DISPATCH WEBHOOK
- * Listens for verified transaction events, parses custom route metadata,
- * and updates MailerLite profiles to trigger the final unblurred PDF delivery.
  */
 app.post("/api/webhooks/shopify/orders-paid", async (req, res) => {
   const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY;
@@ -103,7 +96,7 @@ app.post("/api/webhooks/shopify/orders-paid", async (req, res) => {
 
     const rawBody = req.body.toString();
 
-    // 🎯 SECURE PRODUCTION AUTHENTICITY CHECK:
+    // SECURE PRODUCTION AUTHENTICITY CHECK:
     if (SHOPIFY_WEBHOOK_SECRET) {
       const shopifyHmacHeader = req.headers["x-shopify-hmac-sha256"];
       const generatedHash = crypto
@@ -143,12 +136,15 @@ app.post("/api/webhooks/shopify/orders-paid", async (req, res) => {
 
     console.log(`🗺️ Linked Route Asset Key: ${targetRouteID} ("${targetRouteTitle}")`);
 
-    // 🎯 THE DYNAMIC URL CORRECTION:
-    // Instead of hardcoding northgeorgiabikes.com, this reads the incoming request headers.
-    // In staging, it automatically outputs: https://ngaebo-staging-bym3w.ondigitalocean.app
-    // When you switch DNS records to live, it automatically outputs your real domain!
-    const host = req.headers["x-forwarded-host"] || req.get("host");
-    const protocol = req.headers["x-forwarded-proto"] || req.protocol;
+    // 🎯 SAFE DYNAMIC URL CORRECTION:
+    // Uses direct string fallback properties from the header object to eliminate any middleware function crash risks.
+    const forwardHost = req.headers["x-forwarded-host"];
+    const standardHost = req.headers["host"] || "northgeorgiabikes.com";
+    const host = forwardHost || standardHost;
+    
+    const forwardProto = req.headers["x-forwarded-proto"];
+    const protocol = forwardProto || "https";
+    
     const targetDownloadUrl = `${protocol}://${host}/download-guide?routeID=${targetRouteID}`;
 
     if (!MAILERLITE_API_KEY) {
