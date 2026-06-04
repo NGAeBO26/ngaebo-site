@@ -36,14 +36,12 @@ const baseStyleSpecification: maplibregl.StyleSpecification = {
   ]
 };
 
-// 🎯 Ref-forwarded component to allow direct DOM snapshot targeting
 const RouteMap = forwardRef<HTMLDivElement, RouteMapProps>(
   ({ routeID, onRouteSelect: _onRouteSelect }, ref) => {
     const internalContainerRef = useRef<HTMLDivElement>(null);
     const mapRef = useRef<maplibregl.Map | null>(null);
     const [mapReady, setMapReady] = useState(false);
 
-    // Synchronize the external forwarded ref hook with our internal wrapper node
     useImperativeHandle(ref, () => internalContainerRef.current!);
 
     useEffect(() => {
@@ -55,12 +53,15 @@ const RouteMap = forwardRef<HTMLDivElement, RouteMapProps>(
         setMapReady(false);
       }
 
+      // 🎯 Ensure global state variables are fully cleared during hot component updates
+      (window as any).mapLoaded = false;
+
       const map = new maplibregl.Map({
         container: internalContainerRef.current,
         style: baseStyleSpecification, 
         center: [-84.15, 34.6], 
         zoom: 11,
-        preserveDrawingBuffer: true, // Flawlessly retained for canvas capturing
+        preserveDrawingBuffer: true, 
         attributionControl: false,
         boxZoom: false,
         scrollZoom: false,
@@ -81,14 +82,24 @@ const RouteMap = forwardRef<HTMLDivElement, RouteMapProps>(
       mapRef.current = map;
 
       map.on("load", () => {
+        // Expose the raw instance object handle to the parent DOM tracking thread context
         (window as any).map = map;
         setMapReady(true);
         map.resize();
       });
 
+      // 🎯 THE CRITICAL GIS IDLE HOOK LISTENER:
+      // Fired once the WebGL context finishes parsing tile coordinates and painting polyline paths
+      map.on("idle", () => {
+        console.log("🗺️ MapLibre: Graphics pipeline is idle. Structural map elements fully rendered.");
+        (window as any).mapLoaded = true;
+      });
+
       map.on("styledata", () => {
         if (!map.getSource("fs-roads") && map.isStyleLoaded()) {
           setMapReady(false);
+          // Set the tracking window flag to false while data sources rebuild asynchronously
+          (window as any).mapLoaded = false;
           setTimeout(() => setMapReady(true), 50);
         }
       });
@@ -98,6 +109,7 @@ const RouteMap = forwardRef<HTMLDivElement, RouteMapProps>(
           mapRef.current.remove();
           mapRef.current = null;
           setMapReady(false);
+          (window as any).mapLoaded = false;
         }
       };
     }, [routeID]); 

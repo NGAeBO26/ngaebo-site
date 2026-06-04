@@ -6,10 +6,11 @@ import RouteReport_v3 from "./RouteReport_v3";
 
 export default function RideGuidePrinter({ routeID }: { routeID: string }) {
   const [isPrinting, setIsPrinting] = useState(false);
-  const [hasAutoFired, setHasAutoFired] = useState(false); // Tracks auto-execution gate state
+  const [statusMessage, setStatusMessage] = useState("Initializing report framework...");
+  const [hasAutoFired, setHasAutoFired] = useState(false);
   const printCanvasRef = useRef<HTMLDivElement>(null);
 
-  // 🎯 LIFECYCLE CSS INJECTION RUNTIME HOTFIX LAYER
+  // 🎯 CORE RENDERING COMPATIBILITY SPECIFICATION SHEET LAYER
   useEffect(() => {
     const origHtmlMargin = document.documentElement.style.margin;
     const origHtmlPadding = document.documentElement.style.padding;
@@ -22,9 +23,7 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
     styleElement.innerHTML = `
       html, body, #root, .app-shell, main.page, .rg-printer-root-canvas {
         margin: 0 !important;
-        margin-top: 0 !important;
         padding: 0 !important;
-        padding-top: 0 !important;
         height: auto !important;
         min-height: 0 !important;
         max-height: none !important;
@@ -62,37 +61,61 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
     };
   }, []);
 
-  // 🎯 NEW AUTOMATION LIFECYCLE CONTROLLER:
-  // Monitors DOM attachment states and automatically kicks off the PDF compilation pipeline
+  // 🎯 VERIFICATION POLL CONSOLE ENGINE
   useEffect(() => {
+    let pollingInterval: NodeJS.Timeout;
+    let maximumSafetyTimeout: NodeJS.Timeout;
+
     if (printCanvasRef.current && !hasAutoFired && !isPrinting) {
-      setHasAutoFired(true); // Ensure it only targets the immediate initial compilation thread pass
-      executePdfDownload();
+      setHasAutoFired(true);
+      setStatusMessage("Loading high-density topographic layers...");
+
+      pollingInterval = setInterval(() => {
+        // Query the MapLibre engine to see if the vector layer compilation task has gone idle
+        const isMapRenderFinished = (window as any).mapLoaded === true;
+        
+        if (isMapRenderFinished) {
+          console.log("✅ Map state tracking passed. Initiating snapshot compiler engine...");
+          clearInterval(pollingInterval);
+          clearTimeout(maximumSafetyTimeout);
+          executePdfDownload();
+        }
+      }, 200); 
+
+      // 6-second safety timeout limits prevent absolute loops if map assets time out
+      maximumSafetyTimeout = setTimeout(() => {
+        console.warn("⚠️ Pipeline Timeout: GIS took too long to fire idle state. Proceeding with print.");
+        clearInterval(pollingInterval);
+        executePdfDownload();
+      }, 6000);
     }
+
+    return () => {
+      if (pollingInterval) clearInterval(pollingInterval);
+      if (maximumSafetyTimeout) clearTimeout(maximumSafetyTimeout);
+    };
   }, [printCanvasRef, hasAutoFired]);
 
   const executePdfDownload = async () => {
     if (!printCanvasRef.current) return;
     setIsPrinting(true);
+    setStatusMessage("Compiling high-DPI vectors...");
     window.scrollTo(0, 0);
 
     const mapInstance = (window as any).map;
     const originalDevicePixelRatio = window.devicePixelRatio;
 
     if (mapInstance) {
-      console.log("🧭 Accessing WebGL pipeline to re-scale graphics canvas buffers for crisp high-DPI output...");
       Object.defineProperty(window, 'devicePixelRatio', {
-        get: () => 3, 
+        get: () => 3, // Upsamples device metrics to eliminate card and text rasterization blur
         configurable: true
       });
       mapInstance.resize();
     }
 
-    console.log("⏳ Syncing typography engine buffers...");
     await document.fonts.ready;
-
-    // Give WebGL assets exactly 800ms to resolve all tiling parameters gracefully during automated loading states
-    await new Promise((resolve) => setTimeout(resolve, 800));
+    // Buffer delay allows the WebGL map frame loop to redraw perfectly inside the new 3x boundary limits
+    await new Promise((resolve) => setTimeout(resolve, 600));
 
     try {
       const dataUrl = await domToPng(printCanvasRef.current, {
@@ -102,6 +125,8 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
         height: 1056
       });
 
+      setStatusMessage("Dispatching document stream...");
+
       const pdf = new jsPDF({
         orientation: "portrait",
         unit: "px",
@@ -110,15 +135,13 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
 
       pdf.addImage(dataUrl, "PNG", 0, 0, 816, 1056);
       
-      // 🎯 THE WEB BROWSER INTERACTION UPGRADE:
-      // Compile raw data into a unique binary blob container object
       const blobString = pdf.output("bloburl");
-      
-      // Request the browser engine to natively spawn a new focus view panel containing the raw file object
       window.open(blobString, "_blank");
+      setStatusMessage("Fulfillment complete!");
 
     } catch (error) {
-      console.error("Critical error compiling layout export pass:", error);
+      console.error("Critical error executing dynamic template capture:", error);
+      setStatusMessage("Fulfillment failed. Click to re-run.");
     } finally {
       if (mapInstance) {
         Object.defineProperty(window, 'devicePixelRatio', {
@@ -140,30 +163,10 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
         flexDirection: "column",
         alignItems: "center",
         boxSizing: "border-box",
-        paddingBottom: "80px"
+        paddingBottom: "160px" // Adds clear layout spacing for your floating HUD panel
       }}
     >
-      {/* HUD OVERLAY TRACKER: Left intact as a manual fallback control option */}
-      <div style={{ position: "fixed", top: "20px", right: "20px", zIndex: 99999 }}>
-        <button
-          onClick={executePdfDownload}
-          disabled={isPrinting}
-          style={{
-            padding: "12px 28px",
-            backgroundColor: isPrinting ? "#64748b" : "#10b981", 
-            color: "#ffffff",
-            border: "1px solid rgba(255, 255, 255, 0.2)",
-            borderRadius: "6px",
-            fontWeight: "bold",
-            fontSize: "15px",
-            cursor: "pointer",
-            boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.3)"
-          }}
-        >
-          {isPrinting ? "GENERATING RIDEGUIDE PDF..." : "RE-GENERATE PDF"}
-        </button>
-      </div>
-
+      {/* 🗺️ FIXED RIGID PRINT PAGE SHEET CANVAS BOUNDS */}
       <div
         ref={printCanvasRef}
         className="rg-print-capture-target"
@@ -190,6 +193,53 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
         }}>
           <RouteReport_v3 routeID={routeID} />
         </div>
+      </div>
+
+      {/* 🎯 FLOATING CONTROLLER HUD: Perfectly centered at the bottom of the viewport */}
+      <div 
+        style={{ 
+          position: "fixed", 
+          bottom: "40px", 
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 99999, // Guarantees this overlay layer is excluded from the target snapshot node elements
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "10px",
+          width: "auto"
+        }}
+      >
+        <span style={{ 
+          color: "#94a3b8", 
+          fontSize: "12px", 
+          fontWeight: "bold", 
+          letterSpacing: "0.06em",
+          textTransform: "uppercase",
+          textShadow: "0 2px 4px rgba(0,0,0,0.6)"
+        }}>
+          {statusMessage}
+        </span>
+
+        <button
+          onClick={executePdfDownload}
+          disabled={isPrinting}
+          style={{
+            padding: "14px 40px",
+            backgroundColor: isPrinting ? "#475569" : "#10b981", 
+            color: "#ffffff",
+            border: "1px solid rgba(255, 255, 255, 0.15)",
+            borderRadius: "50px", 
+            fontWeight: "bold",
+            fontSize: "14px",
+            letterSpacing: "0.02em",
+            cursor: isPrinting ? "not-allowed" : "pointer",
+            boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4)",
+            transition: "all 0.2s ease-in-out"
+          }}
+        >
+          {isPrinting ? "GENERATING RIDEGUIDE PDF..." : "RE-GENERATE PDF"}
+        </button>
       </div>
     </div>
   );
