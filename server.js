@@ -205,7 +205,7 @@ app.post("/api/webhooks/shopify/orders-paid", async (req, res) => {
         body: JSON.stringify({
           email: customerEmail,
           status: "active",
-          groups: ["source:leadmagnet-gravelguide"], // Enforces direct segmentation
+          groups: [183580786152178921], // Enforces direct segmentation
           fields: {
             name: payload.billing_address?.first_name || "Gravel Cyclist",
             last_order_id: orderNumber,

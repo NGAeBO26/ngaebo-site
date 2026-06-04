@@ -1,5 +1,5 @@
 /* src/App.tsx */
-import { Routes, Route, useParams } from "react-router-dom";
+import { Routes, Route, useParams, useSearchParams } from "react-router-dom"; // 🎯 Added useSearchParams
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -81,6 +81,27 @@ function PrinterWrapper() {
   return <RideGuidePrinter routeID={routeID || "28-2_S1"} />;
 }
 
+/**
+ * 🖨️ NEW TRANSACTIONAL DOWNLOAD GATEWAY WRAPPER:
+ * Extracts '?routeID=XXXX_XX' out of query string parameters 
+ * and mounts the standalone high-DPI PDF generation print layout engine.
+ */
+function DownloadGuideWrapper() {
+  const [searchParams] = useSearchParams();
+  const routeID = searchParams.get("routeID");
+
+  if (!routeID) {
+    return (
+      <div style={{ color: "white", textAlign: "center", padding: "80px", fontFamily: "sans-serif" }}>
+        <h2>Invalid Asset Link</h2>
+        <p style={{ color: "#9ca3af" }}>We couldn't detect a valid route ID parameter in your request link.</p>
+      </div>
+    );
+  }
+
+  return <RideGuidePrinter routeID={routeID} />;
+}
+
 export default function App() {
   // Inspect URL parameters at the top-level execution thread
   const isIframePreviewActive = typeof window !== "undefined" && 
@@ -89,8 +110,11 @@ export default function App() {
   return (
     <>
       <Routes>
-        {/* 🖨️ DETACHED ROOT ROUTE */}
+        {/* 🖨️ DETACHED ROOT ROUTES (Bypasses headers, footers, and marketing layouts entirely) */}
         <Route path="/print/:routeID" element={<PrinterWrapper />} />
+        
+        {/* 🎯 THE MISSING DOWNLOAD PATH ROUTE: Connects your MailerSend download buttons directly to the printing engine */}
+        <Route path="/download-guide" element={<DownloadGuideWrapper />} />
 
         {/* STANDARD CONSUMER WEB INTERFACE LAYOUT LOOP */}
         <Route
