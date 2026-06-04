@@ -68,7 +68,7 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
 
     if (printCanvasRef.current && !hasAutoFired && !isPrinting) {
       setHasAutoFired(true);
-      setStatusMessage("Loading high-density topographic layers...");
+      // setStatusMessage("Loading high-density topographic layers...");
 
       pollingInterval = setInterval(() => {
         // Query the MapLibre engine to see if the vector layer compilation task has gone idle
@@ -238,7 +238,7 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
             transition: "all 0.2s ease-in-out"
           }}
         >
-          {isPrinting ? "GENERATING RIDEGUIDE PDF..." : "RE-GENERATE PDF"}
+          {isPrinting ? "GENERATING RIDEGUIDE PDF..." : "GENERATE PDF"}
         </button>
       </div>
     </div>
