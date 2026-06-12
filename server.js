@@ -7,6 +7,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { spawn } from "child_process";
 import crypto from "crypto"; 
+import fs from "fs";
 
 import { getRideGuideHTML, getRideGuideText } from "./src/lib/emailTemplates.js";
 
@@ -36,27 +37,73 @@ app.use((req, res, next) => {
 });
 
 // ==========================================================================
-// 🎯 INTERCEPT & ENFORCE LIVE DISK CHANNELS BEFORE SERVING THE COPIED DIST
+// 🎯 FORCE EXPRESS TO SERVE LIVE DISK CHANNELS FROM THE ACTIVE PUBLIC FOLDER
 // ==========================================================================
-const liveWeatherPath = path.join(__dirname, 'dist', 'data', 'weather');
-const liveConditionsPath = path.join(__dirname, 'dist', 'data', 'conditions');
-const liveJoyPath = path.join(__dirname, 'dist', 'data', 'joyscores');
-const liveVisPath = path.join(__dirname, 'dist', 'data', 'visualization');
-const liveTaxPath = path.join(__dirname, 'dist', 'data', 'effortgauges');
+// We dynamically track the live public directory where the Python script drops files,
+// alongside the backup dist directory created during the buildpack process.
+const publicDataPath = path.join(__dirname, 'public', 'data');
+const distDataPath = path.join(__dirname, 'dist', 'data');
 
 const cacheControlMiddleware = (res) => {
   res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
 };
 
-app.use('/data/weather', express.static(liveWeatherPath, { etag: false, lastModified: false, setHeaders: cacheControlMiddleware }));
-app.use('/data/conditions', express.static(liveConditionsPath, { etag: false, lastModified: false, setHeaders: cacheControlMiddleware }));
-app.use('/data/joyscores', express.static(liveJoyPath, { etag: false, lastModified: false, setHeaders: cacheControlMiddleware }));
-app.use('/data/visualization', express.static(liveVisPath, { etag: false, lastModified: false, setHeaders: cacheControlMiddleware }));
-app.use('/data/effortgauges', express.static(liveTaxPath, { etag: false, lastModified: false, setHeaders: cacheControlMiddleware }));
+// Unified dynamic filesystem reader middleware
+const serveLiveShopAssets = (subFolder) => {
+  return (req, res, next) => {
+    const targetFile = req.path;
+    const liveDiskFile = path.join(publicDataPath, subFolder, targetFile);
+    const fallbackCompiledFile = path.join(distDataPath, subFolder, targetFile);
+
+    // If the Python engine has generated a fresh file in public/data, serve it instantly
+    if (fs.existsSync(liveDiskFile)) {
+      cacheControlMiddleware(res);
+      return res.sendFile(liveDiskFile);
+    } 
+    
+    // Otherwise, fallback safely to the buildpack asset directory path
+    if (fs.existsSync(fallbackCompiledFile)) {
+      cacheControlMiddleware(res);
+      return res.sendFile(fallbackCompiledFile);
+    }
+
+    next();
+  };
+};
+
+// Bind our dynamic local filesystem routing layers above default static paths
+app.use('/data/weather', serveLiveShopAssets('weather'));
+app.use('/data/conditions', serveLiveShopAssets('conditions'));
+app.use('/data/joyscores', serveLiveShopAssets('joyscores'));
+app.use('/data/visualization', serveLiveShopAssets('visualization'));
+app.use('/data/effortgauges', serveLiveShopAssets('effortgauges'));
+app.use('/data/shop_images', serveLiveShopAssets('shop_images'));
 
 // ==========================================================================
 // 1. PRODUCTION INTERACTION API ENDPOINTS
 // ==========================================================================
+
+// 🛍️ STATIC FILE PRODUCT LISTING ENDPOINT (ZERO-COST DATA DISPATCH GATEWAY)
+app.get('/api/shop/products', (req, res) => {
+  try {
+    const productsFilePath = path.join(__dirname, 'public', 'data', 'shop', 'products.json');
+    const activePath = fs.existsSync(productsFilePath) 
+      ? productsFilePath 
+      : path.join(__dirname, 'dist', 'data', 'shop', 'products.json');
+
+    if (!fs.existsSync(activePath)) {
+      console.warn("⚠️ Shop data requested but products.json file does not exist on disk.");
+      return res.status(200).json({ success: true, products: [] });
+    }
+
+    const rawData = fs.readFileSync(activePath, 'utf-8');
+    const productsData = JSON.parse(rawData);
+    return res.status(200).json({ success: true, products: productsData });
+  } catch (error) {
+    console.error("❌ Static file query exception encountered parsing products data:", error);
+    return res.status(500).json({ success: false, error: "Internal server failed to compile product asset parameters." });
+  }
+});
 
 app.get('/api/sync-weather/:routeID', (req, res) => {
   const { routeID } = req.params;
