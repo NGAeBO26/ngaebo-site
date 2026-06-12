@@ -1,10 +1,16 @@
 /* src/App.tsx */
-import { Routes, Route, useParams, useSearchParams } from "react-router-dom"; // 🎯 Added useSearchParams
+import { Routes, Route, useParams, useSearchParams, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+
+// 📦 APPLICATION INTENT-DRIVEN MULTI-PAGE WORKSPACES
 import Home from "./pages/Home";
+import RideGuide from "./pages/RideGuide"; 
+import BikeFinder from "./pages/BikeFinder";
+import Shop from "./pages/Shop";
 import TrailGuides from "./pages/TrailGuides";
 import Community from "./pages/Community";
+import RedirectGateway from "./pages/RedirectGateway"; // 🎯 NEW TRANSITION COMPONENT IMPORT
 
 // Modal system
 import UnlockModal from "./components/modal/UnlockModal";
@@ -14,11 +20,6 @@ import RideGuidePrinter from "./components/RideGuide/RideGuidePrinter";
 // Tracking canvas layer
 import TelemetryOverlayTracker from "./components/RideGuide/TelemetryOverlayTracker";
 
-/**
- * ReportWrapper handles extracting the routeID from the URL 
- * and layer-aligning both the master blueprint card and the 
- * transparent tracking grid to the exact same relative origin.
- */
 function ReportWrapper() {
   const { routeID } = useParams<{ routeID: string }>();
   
@@ -66,11 +67,6 @@ function ReportWrapper() {
   );
 }
 
-/**
- * 🎯 NEW EXTRACTION WRAPPER:
- * Safely reads the live URL parameter context *after* React Router resolves 
- * the sub-navigation match tree, passing the real selected routeID directly to the component.
- */
 function IframeReportWrapper() {
   const { routeID } = useParams<{ routeID: string }>();
   return <RouteReport_v3 routeID={routeID || "28-2_S1"} />;
@@ -81,11 +77,6 @@ function PrinterWrapper() {
   return <RideGuidePrinter routeID={routeID || "28-2_S1"} />;
 }
 
-/**
- * 🖨️ NEW TRANSACTIONAL DOWNLOAD GATEWAY WRAPPER:
- * Extracts '?routeID=XXXX_XX' out of query string parameters 
- * and mounts the standalone high-DPI PDF generation print layout engine.
- */
 function DownloadGuideWrapper() {
   const [searchParams] = useSearchParams();
   const routeID = searchParams.get("routeID");
@@ -103,49 +94,62 @@ function DownloadGuideWrapper() {
 }
 
 export default function App() {
-  // Inspect URL parameters at the top-level execution thread
+  const location = useLocation();
   const isIframePreviewActive = typeof window !== "undefined" && 
     new URLSearchParams(window.location.search).get("preview") === "true";
+
+  // Check page identity contexts
+  const isShopPage = location.pathname.toLowerCase() === "/shop";
+  const isGatewayPage = location.pathname.toLowerCase() === "/redirect-gateway"; // 🎯 CAPTURE GATEWAY IDENTITY
 
   return (
     <>
       <Routes>
-        {/* 🖨️ DETACHED ROOT ROUTES (Bypasses headers, footers, and marketing layouts entirely) */}
+        {/* DETACHED OPERATIONAL SYSTEM PATHS */}
         <Route path="/print/:routeID" element={<PrinterWrapper />} />
-        
-        {/* 🎯 THE MISSING DOWNLOAD PATH ROUTE: Connects your MailerSend download buttons directly to the printing engine */}
         <Route path="/download-guide" element={<DownloadGuideWrapper />} />
+        
+        {/* 🎯 ISOLATED COMPLIANCE PIPELINE REDIRECT GATEWAY ROUTE:
+           Bypasses standard site layouts entirely so it acts as an autonomous sandbox canvas tab */}
+        <Route path="/redirect-gateway" element={<RedirectGateway />} />
 
-        {/* STANDARD CONSUMER WEB INTERFACE LAYOUT LOOP */}
+        {/* STANDARD CONSUMER WEB INTERFACE LAYOUT ROUTING CONTAINER */}
         <Route
           path="/*"
           element={
             isIframePreviewActive ? (
-              /* IFRAME PREVIEW CANVAS MODE (Bypasses parent headers/footers/margins) */
               <main className="page iframe-preview-clean-canvas" style={{ padding: 0, margin: 0, backgroundColor: "#ffffff" }}>
                 <Routes>
-                  {/* 🎯 THE DYNAMIC ROUTE CORRECTION: Swapped out the direct inline useParams loop for our parameter extraction wrapper */}
                   <Route path="/report/:routeID" element={<IframeReportWrapper />} />
                   <Route path="/route-report" element={<RouteReport_v3 routeID="28-2_S1" />} />
                 </Routes>
               </main>
+            ) : isShopPage ? (
+              <Routes>
+                <Route path="/shop" element={<Shop />} />
+              </Routes>
+            ) : isGatewayPage ? (
+              /* Fallback safety capture node context path logic protection */
+              <Routes>
+                <Route path="/redirect-gateway" element={<RedirectGateway />} />
+              </Routes>
             ) : (
-              /* STANDARD FULL WEB EXPERIENCE SHELL CONTAINER */
-              <div className="app-shell">
+              /* STANDARD GLOBAL TEMPLATE FRAME FOR REMAINING COMPONENT MAPPINGS */
+              <>
                 <Header />
-                <main className="page">
+                <main className="page" style={{ flex: 1 }}>
                   <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/rides" element={<RideGuide />} />
+                    <Route path="/bikes" element={<BikeFinder />} />
                     <Route path="/trail-guides" element={<TrailGuides />} />
                     <Route path="/community" element={<Community />} />
-                    
-                    {/* STANDARD MASTER REPORT DETAILS LAYOUT VIEWPORTS */}
                     <Route path="/report/:routeID" element={<ReportWrapper />} />
                     <Route path="/route-report" element={<RouteReport_v3 routeID="28-2_S1" />} />
                   </Routes>
                 </main>
                 <Footer />
-              </div>
+              </>
             )
           }
         />

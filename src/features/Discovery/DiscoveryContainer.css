@@ -9,7 +9,7 @@
   background-color: #6e7c7c; 
   color: #f8fafc;
   border-radius: 12px;
-  border: 1px solid #1e293b;
+  border: 2px solid #236ea0;
   overflow: hidden;
   box-sizing: border-box;
   font-family: system-ui, -apple-system, sans-serif;
@@ -306,8 +306,7 @@
   width: 320px;
   height: 100%;
   background: radial-gradient(circle at center, #ffffff 0%, #f9f9f9 100%) !important; /* PRESERVED: Your exact light layout background gradient */
-  border-left: 1px solid #e0e0e0 !important;
-  border-right: 1px solid #e0e0e0 !important;
+  border-left: 2px solid #236ea0 !important;
   border-bottom: 1px solid #e0e0e0 !important;
   display: flex;
   flex-direction: column;
@@ -357,6 +356,7 @@
   background-color: #236ea0; /* PRESERVED: Your title block color parameter */
   text-align: center;
   z-index: 12;
+  border-radius: 0 0 8px 8px
 }
 
 .drawer-header-title h2 {

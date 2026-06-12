@@ -1,5 +1,5 @@
 /* src/pages/Home.tsx */
-import DiscoveryContainer from "../features/Discovery/DiscoveryContainer";
+
 
 // 🎯 DIRECT IMPORTS FROM THE PROJECT PATH VERIFIED IN image_87af64.png
 import PreviewExplorer from "../store/PreviewExplorer";
@@ -41,18 +41,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 🗺️ THE RETAIL-ORIENTED MAIN MAP GRID SECTION */}
-      <section className="trail">
-        <h2 className="trail-title">North Georgia Gravel Guide v1.0</h2>
-        <p className="trail-text">Explore epic routes across the Chattahoochee National Forest.</p>
-
-        <div className="trail-map-wrapper">
-          <div className="trail-map">
-            <DiscoveryContainer />
-          </div>
-        </div>
-      </section>
-
+      
       {/* 🧭 RELOCATED PILLARS MISSION SECTION (Moved securely lower down the viewport hierarchy stack) */}
       <section id="pillars" className="pillars" style={{ marginTop: "48px" }}>
         {/* COMMUNITY BUILDING */}

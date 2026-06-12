@@ -8,9 +8,28 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     proxy: {
-      "/api": {
-        target: "http://localhost:8080", // 🎯 All traffic goes safely to your unified Node engine
+      // 🎯 TARGET A: Route Weather JIT compilation & Shopify Sync actions straight to server.js
+      "/api/sync-weather": {
+        target: "http://localhost:5000",
         changeOrigin: true,
+        secure: false,
+      },
+      "/api/subscribe": {
+        target: "http://localhost:5000",
+        changeOrigin: true,
+        secure: false,
+      },
+      "/api/webhooks": {
+        target: "http://localhost:5000",
+        changeOrigin: true,
+        secure: false,
+      },
+
+      // 🎯 TARGET B: Route your relational Product Catalog parameters directly to the PG database API
+      "/api/products": {
+        target: "http://localhost:5001",
+        changeOrigin: true,
+        secure: false,
       },
     },
   },

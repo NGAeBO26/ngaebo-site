@@ -9,7 +9,10 @@
     "lint": "eslint .",
     "preview": "vite preview --port $PORT --strictPort --host 0.0.0.0",
     "start": "node server.js",
-    "server": "node server.js"
+    "server": "node server.js",
+    "─► MASTER ECOSYSTEM RUNNERS ◄─": "",
+    "dev:backend": "cd ngaebo-backend && npm run dev",
+    "dev:all": "concurrently --kill-others-on-fail --names \"FRONTEND,SHOPIFY-SRV,PG-API,DOCKER-DB\" --prefix-colors \"cyan,blue,magenta,yellow\" \"npm run dev\" \"npm run server\" \"npm run dev:backend\" \"docker start ngaebo-postgres\""
   },
   "dependencies": {
     "chart.js": "^4.5.1",
@@ -20,28 +23,29 @@
     "maplibre-gl": "^4.7.1",
     "modern-screenshot": "^4.7.0",
     "node-fetch": "^3.3.2",
+    "pg": "^8.21.0",
     "proj4": "^2.20.4",
     "react": "^19.2.4",
     "react-chartjs-2": "^5.3.1",
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.13.2",
     "serve": "^14.2.6",
-    "zustand": "^5.0.12"
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.4",
-    "@types/maplibre-gl": "^1.13.2",
-    "@types/node": "^24.12.4",
-    "@types/proj4": "^2.5.6",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.1",
-    "eslint": "^9.39.4",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.5.2",
-    "globals": "^17.4.0",
-    "typescript": "~5.9.3",
-    "typescript-eslint": "^8.57.0",
-    "vite": "^8.0.1"
+    "@types/cors": "^2.8.17",
+    "@types/node": "^22.13.4",
+    "@types/proj4": "^2.5.5",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@typescript-eslint/eslint-plugin": "^8.24.1",
+    "@typescript-eslint/parser": "^8.24.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^8.2.2",
+    "eslint": "^9.20.1",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0"
   }
 }

@@ -5,8 +5,6 @@ import urllib.request
 from datetime import datetime, timedelta
 import infographic_generator as vis
 
-
-
 # --- 1: THEME INTEGRATION ---
 try:
     import theme_config as theme
@@ -14,27 +12,43 @@ except ImportError:
     print("CRITICAL: theme_config.py not found.")
     sys.exit(1)
 
-# --- 2: CONFIG & PATHS (Updated for Env-Awareness) ---
+# --- 2: CONFIG & PATHS (Updated for Production Build Parity) ---
 def get_env_path(key, default):
     return os.environ.get(key, default)
 
-# 1. Dynamically determine the project root
+# 1. Dynamically determine the project root paths
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, '..'))
 
-# Base directory for absolute local paths
-BASE_LOCAL = os.path.join(ROOT_DIR, 'public', 'data')
+# 🎯 DIGITALOCEAN FILE SYSTEM ROUTING BRIDGE:
+# If Vite has compiled the frontend into 'dist', write directly there so Express handles it live.
+# Otherwise, safely fall back to the local development 'public' directory structure.
+DIST_DATA_DIR = os.path.join(ROOT_DIR, 'dist', 'data')
+PUBLIC_DATA_DIR = os.path.join(ROOT_DIR, 'public', 'data')
 
+if os.path.exists(DIST_DATA_DIR):
+    BASE_LOCAL = DIST_DATA_DIR
+    print(f"[ENGINE DIRECTION]: Staging/Production build detected. Writing straight to: {BASE_LOCAL}")
+else:
+    BASE_LOCAL = PUBLIC_DATA_DIR
+    print(f"[ENGINE DIRECTION]: Local Development environment detected. Writing straight to: {BASE_LOCAL}")
+
+# Bind directory variables to the active target environment directory route
 WEATHER_DIR = get_env_path("PYTHON_WEATHER_DIR", os.path.join(BASE_LOCAL, "weather"))
 COND_DIR    = get_env_path("PYTHON_CONDITIONS_DIR", os.path.join(BASE_LOCAL, "conditions"))
-# ADD THIS LINE: It was missing and caused the crash
 JOY_DIR     = get_env_path("PYTHON_JOY_DIR", os.path.join(BASE_LOCAL, "joyscores"))
 VIS_DIR     = get_env_path("PYTHON_VIS_DIR", os.path.join(BASE_LOCAL, "visualization"))
 TAX_DIR     = get_env_path("PYTHON_TAX_DIR", os.path.join(BASE_LOCAL, "effortgauges"))
 
-# Other required anchors
-ANCHOR_PATH = os.path.join(BASE_LOCAL, "weather_anchors.json")
-FEATURES_PATH = os.path.join(BASE_LOCAL, "v3_large_sample_testfeatures.geojson")
+# Read static tracking metrics from the source assets path directory folder maps
+ANCHOR_PATH = os.path.join(ROOT_DIR, 'public', 'data', 'weather_anchors.json')
+FEATURES_PATH = os.path.join(ROOT_DIR, 'public', 'data', 'v3_large_sample_testfeatures.geojson')
+
+# Fallback safely if running inside an absolute deployment environment where public folder was minimized
+if not os.path.exists(ANCHOR_PATH):
+    ANCHOR_PATH = os.path.join(ROOT_DIR, 'dist', 'data', 'weather_anchors.json')
+    FEATURES_PATH = os.path.join(ROOT_DIR, 'dist', 'data', 'v3_large_sample_testfeatures.geojson')
+
 USER_AGENT  = 'RideGuideV3/1.0 (contact@rideguide.id)'
 
 # --- Phase 1: Directory Safety Check ---
@@ -110,7 +124,6 @@ def main():
     actual_miles = get_float(feat, "GIS_MILES", 3.9)
 
     print(f"[ENGINE AUDIT] Mapping Profile: {route_id}")
-    # print(f"[ENGINE AUDIT] Found properties: {list(feat.keys()) if feat else 'NONE - Lookup Failed'}")
     print(f"[ENGINE AUDIT] Grade: {avg_grade} | Surface: {surface} | Miles: {actual_miles}")
 
     # 3. FETCH & PROCESS WEATHER
@@ -145,7 +158,6 @@ def main():
         })
 
     # 4. SSDI & EFFORT PENALTY CALCULATION (RESTORED TO QGIS PARITY)
-    # Pull GIS attributes from the feature (passed into the engine from the GeoJSON)
     v3_terrain_score = float(feat.get("v3_terrain_score", 4.0))
     v3_surface = str(feat.get("v3_surface", "AGG")).upper()
     
@@ -171,7 +183,6 @@ def main():
         cond, badge, color, traction_mod = "MUDDY / SOFT", "muddy", "#a52d23", 0.50
 
     # --- 7. PHYSICS (RESTORED TO QGIS SOURCE OF TRUTH) ---
-    # Pull base constants from the GIS feature
     base_traction_idx = float(feat.get("v3_traction_idx", 0.9))
     base_wh = float(feat.get("v3_wh_km", 25.0))
     
@@ -192,7 +203,6 @@ def main():
     # 5. SURGICAL SSDI UPDATE (Preserves GIS Metadata)
     weather_path = os.path.join(WEATHER_DIR, f"{route_id}_weather.json")
     
-    # Initialize weather_data BEFORE assigning to it
     if os.path.exists(weather_path):
         with open(weather_path, 'r') as f:
             weather_data = json.load(f)
@@ -201,6 +211,7 @@ def main():
             "metadata": {"profile_id": route_id},
             "hourly_data": []
         }
+        
     ssdi_path = os.path.join(COND_DIR, f"{route_id}_ssdi.json")
     
     if os.path.exists(ssdi_path):
@@ -231,7 +242,6 @@ def main():
     ssdi_data["environment"]["saturation_index"] = round(saturation, 1)
     ssdi_data["environment"]["soil_status"] = soil_status
 
-    # Preserve or set default access
     if "access" not in ssdi_data: ssdi_data["access"] = {}
     ssdi_data["access"]["label"] = ssdi_data["access"].get("label", "OPEN")
     ssdi_data["access"]["status_code"] = ssdi_data["access"].get("status_code", "OK")
@@ -258,27 +268,22 @@ def main():
     weather_data["metadata"]["prime_window_start"] = p_start
     weather_data["metadata"]["prime_window_end"] = p_end
     
-    # Update Hourly Array
     weather_data["hourly_data"] = processed_hours
 
-    # Save Merged Result
     with open(weather_path, 'w') as f:
         json.dump(weather_data, f, indent=2)
     
-    # --- PYTHON EARLY EXIT MESSAGE ---
+    # --- FLUSH OUTPUT STREAM FOR NODE INTERACTION ---
     print(f"SUCCESS: {route_id} updated")
-    sys.stdout.flush() # Force Node.js to see the message NOW
-    # ----------------------------------------
+    sys.stdout.flush()
 
     # 6. TRIGGER VISUAL GENERATORS
     vis.generate_joy_dial_svg(route_id, weather_data, JOY_DIR, theme)
     vis.generate_conditions_wheel_svg(route_id, ssdi_data, VIS_DIR)
-    
-    # CHANGE: Use energy_penalty_pct instead of the undefined 'penalty'
     vis.generate_effort_tax_svg(route_id, energy_penalty_pct, actual_miles, TAX_DIR, theme)
 
-    # Update your final print statement as well for accurate logging
     print(f"SUCCESS: {route_id} updated | SSDI: {ssdi} | Penalty: {energy_penalty_pct}%")
+    sys.stdout.flush()
 
 if __name__ == "__main__":
     main()
