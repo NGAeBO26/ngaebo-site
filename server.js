@@ -36,10 +36,23 @@ app.use((req, res, next) => {
 });
 
 // ==========================================================================
-// 🎯 CACHE-BUSTING DYNAMIC STORAGE PATH ROUTING (CRITICAL FOR DIGITALOCEAN)
+// 🎯 INTERCEPT & ENFORCE LIVE DISK CHANNELS BEFORE SERVING THE COPIED DIST
 // ==========================================================================
-const dynamicWeatherPath = path.join(__dirname, 'public', 'data', 'weather');
-const dynamicConditionsPath = path.join(__dirname, 'public', 'data', 'conditions');
+const liveWeatherPath = path.join(__dirname, 'dist', 'data', 'weather');
+const liveConditionsPath = path.join(__dirname, 'dist', 'data', 'conditions');
+const liveJoyPath = path.join(__dirname, 'dist', 'data', 'joyscores');
+const liveVisPath = path.join(__dirname, 'dist', 'data', 'visualization');
+const liveTaxPath = path.join(__dirname, 'dist', 'data', 'effortgauges');
+
+const cacheControlMiddleware = (res) => {
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+};
+
+app.use('/data/weather', express.static(liveWeatherPath, { etag: false, lastModified: false, setHeaders: cacheControlMiddleware }));
+app.use('/data/conditions', express.static(liveConditionsPath, { etag: false, lastModified: false, setHeaders: cacheControlMiddleware }));
+app.use('/data/joyscores', express.static(liveJoyPath, { etag: false, lastModified: false, setHeaders: cacheControlMiddleware }));
+app.use('/data/visualization', express.static(liveVisPath, { etag: false, lastModified: false, setHeaders: cacheControlMiddleware }));
+app.use('/data/effortgauges', express.static(liveTaxPath, { etag: false, lastModified: false, setHeaders: cacheControlMiddleware }));
 
 // ==========================================================================
 // 1. PRODUCTION INTERACTION API ENDPOINTS
@@ -144,10 +157,6 @@ app.post("/api/webhooks/shopify/orders-paid", async (req, res) => {
   }
 });
 
-/**
- * 🎯 AUDITED MAILERLITE AUTOMATED CAPTURE INTEGRATION ROUTE
- * Maps subscribers straight to your 'rideguide_customers' group via the verified endpoint format.
- */
 app.post("/api/subscribe", async (req, res) => {
   try {
     const { email, intent_tag } = req.body; 
@@ -162,19 +171,17 @@ app.post("/api/subscribe", async (req, res) => {
       return res.status(500).json({ error: "Mail credentials missing on server." });
     }
 
-    // 🎯 VERIFIED ACCOUNT MATCH: rideguide_customers Group ID
     const groupId = "189918909111994294"; 
 
     const apiPayload = {
       email: email.trim().toLowerCase(),
       status: "active",
-      groups: [groupId], // Assigns the group dynamically on contact upsert
+      groups: [groupId], 
       fields: {
         intent_tag: intent_tag ? String(intent_tag).trim() : "general_newsletter" 
       }
     };
 
-    // Targets the exact API base endpoint used by your Shopify workflow
     const targetEndpoint = "https://connect.mailerlite.com/api/subscribers";
 
     const response = await fetch(targetEndpoint, {
