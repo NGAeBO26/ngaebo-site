@@ -31,29 +31,33 @@ export function useWeatherData(routeID: string) {
       if (globalPendingPromises[routeID]) {
         console.log(`[JIT] Waiting for existing sync to finish for: ${routeID}`);
         const sharedData = await globalPendingPromises[routeID];
-        if (isMounted) {
+        if (isMounted && sharedData) {
           setData(sharedData);
           setLoading(false);
         }
         return;
       }
 
-      // NO SYNC IN PROGRESS: We are the "Leader" widget. Start the process.
-      setLoading(true);
+      // If no sync is happening, WE are the leader. Start the fetch process.
+      console.log(`[JIT] Leader starting sync for: ${routeID}`);
       
       const syncTask = (async () => {
         try {
-          console.log(`[JIT] Leader starting sync for: ${routeID}`);
           const syncRes = await fetch(`/api/sync-weather/${routeID}`);
           if (!syncRes.ok) throw new Error(`Server Error: ${syncRes.status}`);
           
           const syncStatus = await syncRes.json();
 
           if (syncStatus.status === 'updated') {
-            const t = Date.now();
+            // 🎯 CACHE BUSTER FORCE MULTIPLIER:
+            // Generates a unique microsecond integer string (e.g. 1718210345123)
+            const cacheBusterToken = Date.now();
+            
+            // Appending ?cb=TIMESTAMP forces DigitalOcean and the browser to bypass 
+            // the pre-compiled deployment bundle and load the disk asset live.
             const [weatherRes, ssdiRes] = await Promise.all([
-              fetch(`${WEATHER_BASE}/${routeID}_weather.json?t=${t}`),
-              fetch(`${COND_BASE}/${routeID}_ssdi.json?t=${t}`)
+              fetch(`${WEATHER_BASE}/${routeID}_weather.json?cb=${cacheBusterToken}`),
+              fetch(`${COND_BASE}/${routeID}_ssdi.json?cb=${cacheBusterToken}`)
             ]);
 
             const weather = await weatherRes.json();
@@ -85,8 +89,10 @@ export function useWeatherData(routeID: string) {
 
     getSyncData();
 
-    return () => { isMounted = false; };
-  }, [routeID, WEATHER_BASE, COND_BASE]);
+    return () => {
+      isMounted = false;
+    };
+  }, [routeID]);
 
   return { data, loading };
 }
