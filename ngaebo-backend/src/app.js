@@ -32,11 +32,9 @@ if (process.env.NODE_ENV === 'production' || true) {
   app.use(express.static(distPath));
   
   // Wildcard fallback lets React Router handle inner client-side page loads gracefully
-  app.get('*', (req, res) => {
-    // Prevent catching typo API requests accidentally
-    if (req.originalUrl.startsWith('/api')) {
-      return res.status(404).json({ error: 'API endpoint route target not found on this router.' });
-    }
+  app.get(/^(?!\/api).*$/, (req, res) => {
+    // Path assumes: ngaebo-backend/src/app.js pointing out to project root level /dist
+    const distPath = path.join(__dirname, '..', '..', 'dist');
     res.sendFile(path.join(distPath, 'index.html'));
   });
 }
