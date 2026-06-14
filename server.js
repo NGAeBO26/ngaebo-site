@@ -105,19 +105,19 @@ const cleanTitle = (rawName) => {
 const transformFlatFileProduct = (p) => {
   const specs = p.specifications || {};
   
-  // 🟢 CORRECTED MAPPING PIPELINE:
-  // Tracks your scraper's exact key 'gallery_images' and safely maps string elements to objects.
   let galleryImages = [];
-  
-  if (Array.isArray(p.gallery_images) && p.gallery_images.length > 0) {
+
+  // 🟢 STRICT PRESERVATION LAYER:
+  // Maps your array structures cleanly while respecting explicit pre-assigned role designations.
+  if (Array.isArray(p.images_gallery) && p.images_gallery.length > 0) {
+    galleryImages = p.images_gallery.map(img => ({
+      url: typeof img === 'object' ? img.url : img,
+      role_tag: typeof img === 'object' ? (img.role_tag || 'secondary') : 'secondary'
+    }));
+  } else if (Array.isArray(p.gallery_images) && p.gallery_images.length > 0) {
     galleryImages = p.gallery_images.map((imgUrl, idx) => ({
       url: typeof imgUrl === 'object' ? imgUrl.url : imgUrl,
       role_tag: typeof imgUrl === 'object' && imgUrl.role_tag ? imgUrl.role_tag : (idx === 0 ? 'primary' : 'secondary')
-    }));
-  } else if (Array.isArray(p.images_gallery) && p.images_gallery.length > 0) {
-    galleryImages = p.images_gallery.map((img, idx) => ({ 
-      url: img.url, 
-      role_tag: img.role_tag || (idx === 0 ? 'primary' : 'secondary') 
     }));
   } else if (p.image) {
     galleryImages = [{ url: p.image, role_tag: 'primary' }];
@@ -149,7 +149,7 @@ const transformFlatFileProduct = (p) => {
     braking_details: specs.braking_details || null,
     weight_details: specs.weight_details || null,
     ebike_classification: specs.ebike_classification || null,
-    gallery_images: galleryImages, // Delivers the complete array to Shop.tsx
+    gallery_images: galleryImages,
     product_features: productFeatures,
     tags: Array.isArray(p.tags) ? p.tags : []
   };
@@ -158,32 +158,65 @@ const transformFlatFileProduct = (p) => {
 // 🛍️ STATIC FILE PRODUCT LISTING ENDPOINT (ZERO-COST DATA DISPATCH GATEWAY)
 app.get('/api/products', (req, res) => {
   try {
-    // 🟢 ADJUST THE MATCHING SEQUENCE PRIORITIES:
-    // Forces the cloud container filesystem to search active, live repository tracks 
-    // first before falling back to old static build paths.
-    const pathsToSearch = [
-      path.join(process.cwd(), 'public', 'data', 'shop', 'products.json'),
-      path.join(process.cwd(), 'data', 'products.json'),
-      path.join(process.cwd(), 'dist', 'data', 'shop', 'products.json')
-    ];
+    // 🟢 LOCK THE PATHWAY: Target your backend directory exactly where products.json is written
+    const activePath = path.join(process.cwd(), 'ngaebo-backend', 'data', 'products.json');
 
-    let activePath = null;
-    for (const p of pathsToSearch) {
-      if (fs.existsSync(p)) {
-        activePath = p;
-        break;
-      }
-    }
+    // DigitalOcean Production Check: Fall back to local project root data only if deployed to the cloud container
+    const productionPath = path.join(process.cwd(), 'public', 'data', 'shop', 'products.json');
+    const targetFile = fs.existsSync(activePath) ? activePath : productionPath;
 
-    if (!activePath) {
-      console.warn("⚠️ Shop data requested but products.json file does not exist on disk.");
+    if (!fs.existsSync(targetFile)) {
+      console.warn(`⚠️ Shop data requested but products.json file does not exist at: ${targetFile}`);
       return res.status(200).json({ products: [] });
     }
 
-    const rawData = fs.readFileSync(activePath, 'utf-8');
+    const rawData = fs.readFileSync(targetFile, 'utf-8');
     const parsedJSON = JSON.parse(rawData);
     const baseArray = Array.isArray(parsedJSON) ? parsedJSON : (parsedJSON.products || []);
-    const transformedProducts = baseArray.map(transformFlatFileProduct);
+    
+    // Process data objects while strictly respecting your data file image roles
+    const transformedProducts = baseArray.map(p => {
+      const specs = p.specifications || {};
+      
+      let galleryImages = [];
+
+      // Strict preservation: If images_gallery has pre-existing roles, pass them through exactly as written
+      if (Array.isArray(p.images_gallery) && p.images_gallery.length > 0) {
+        galleryImages = p.images_gallery.map(img => ({
+          url: img.url,
+          role_tag: img.role_tag === 'primary' ? 'primary' : 'secondary'
+        }));
+      } else if (p.image) {
+        galleryImages = [{ url: p.image, role_tag: 'primary' }];
+      }
+
+      return {
+        id: p.id,
+        brand: p.brand,
+        product_name: p.product_name?.split(' - ')[0]?.split(' | ')[0] || '',
+        category: p.category || 'ebike',
+        sub_category: p.sub_category || '',
+        original_url: p.original_url || '',
+        custom_affiliate_link: p.custom_affiliate_link || '',
+        price: Number(p.price) || 0,
+        original_price: Number(p.original_price) || 0,
+        base_commission: p.base_commission || '',
+        cta_label: p.cta_label || 'Check Price',
+        description: p.description || '',
+        notes_snippets: p.notes_snippets || '',
+        rating: Number(p.rating) || 5.0,
+        ul_certification: p.ul_certification || specs.ul_certification || '',
+        motor_details: specs.motor_details || null,
+        battery_details: specs.battery_details || null,
+        drivetrain_details: specs.drivetrain_details || null,
+        braking_details: specs.braking_details || null,
+        weight_details: specs.weight_details || null,
+        ebike_classification: specs.ebike_classification || null,
+        gallery_images: galleryImages,
+        product_features: Array.isArray(p.key_features) ? p.key_features : [],
+        tags: Array.isArray(p.tags) ? p.tags : []
+      };
+    });
 
     return res.status(200).json({ products: transformedProducts });
   } catch (error) {
