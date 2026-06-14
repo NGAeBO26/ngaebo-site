@@ -17,7 +17,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const dist = path.join(__dirname, "dist");
+
+// 🟢 FIXED ASSET CROSS-PLATFORM LOCATION MATCHING:
+// Ensures the absolute build directory path handles standard cloud layout distributions perfectly.
+const dist = path.join(process.cwd(), "dist");
 
 // 🎯 CLOUD RECONCILIATION: Default to 5000 locally to match your Vite config proxies & RedirectGateway!
 const PORT = process.env.PORT || 5000;
@@ -44,6 +47,8 @@ app.use((req, res, next) => {
 // ==========================================================================
 // 🎯 FORCE EXPRESS TO SERVE LIVE DISK CHANNELS FROM THE ACTIVE PUBLIC FOLDER
 // ==========================================================================
+// We dynamically track the live public directory where the Python script drops files,
+// alongside the backup dist directory created during the buildpack process.
 const publicDataPath = path.join(__dirname, 'public', 'data');
 const distDataPath = path.join(__dirname, 'dist', 'data');
 
@@ -51,24 +56,30 @@ const cacheControlMiddleware = (res) => {
   res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
 };
 
+// Unified dynamic filesystem reader middleware
 const serveLiveShopAssets = (subFolder) => {
   return (req, res, next) => {
     const targetFile = req.path;
     const liveDiskFile = path.join(publicDataPath, subFolder, targetFile);
     const fallbackCompiledFile = path.join(distDataPath, subFolder, targetFile);
 
+    // If the Python engine has generated a fresh file in public/data, serve it instantly
     if (fs.existsSync(liveDiskFile)) {
       cacheControlMiddleware(res);
       return res.sendFile(liveDiskFile);
     } 
+    
+    // Otherwise, fallback safely to the buildpack asset directory path
     if (fs.existsSync(fallbackCompiledFile)) {
       cacheControlMiddleware(res);
       return res.sendFile(fallbackCompiledFile);
     }
+
     next();
   };
 };
 
+// Bind our dynamic local filesystem routing layers above default static paths
 app.use('/data/weather', serveLiveShopAssets('weather'));
 app.use('/data/conditions', serveLiveShopAssets('conditions'));
 app.use('/data/joyscores', serveLiveShopAssets('joyscores'));
@@ -77,17 +88,22 @@ app.use('/data/effortgauges', serveLiveShopAssets('effortgauges'));
 app.use('/data/shop_images', serveLiveShopAssets('shop_images'));
 
 // ==========================================================================
-// 🛍️ UNIFIED FLAT FILE DATA DISPATCH GATEWAY
+// 1. PRODUCTION INTERACTION API ENDPOINTS
 // ==========================================================================
+
+/**
+ * Clean title strings by stripping away marketing suffixes
+ */
 const cleanTitle = (rawName) => {
   if (!rawName) return '';
   return rawName.split(' - ')[0].split(' | ')[0];
 };
 
+/**
+ * Transforms flat JSON database exports into the structured data objects expected by Shop.tsx
+ */
 const transformFlatFileProduct = (p) => {
   const specs = p.specifications || {};
-  
-  // Cleanly rebuild relational image structures out of flat file arrays for Shop.tsx
   const galleryImages = Array.isArray(p.images_gallery) && p.images_gallery.length > 0
     ? p.images_gallery.map(img => ({ url: img.url, role_tag: img.role_tag || 'secondary' }))
     : p.image ? [{ url: p.image, role_tag: 'primary' }] : [];
@@ -124,26 +140,16 @@ const transformFlatFileProduct = (p) => {
   };
 };
 
-// Map to your standard production route entrypoint hook
+// 🛍️ STATIC FILE PRODUCT LISTING ENDPOINT (ZERO-COST DATA DISPATCH GATEWAY)
 app.get('/api/products', (req, res) => {
   try {
-    // Looks for products.json inside the root /data directory or fallback directories
-    const pathsToSearch = [
-      path.join(__dirname, 'data', 'products.json'),
-      path.join(__dirname, 'public', 'data', 'shop', 'products.json'),
-      path.join(__dirname, 'dist', 'data', 'shop', 'products.json')
-    ];
+    const productsFilePath = path.join(__dirname, 'data', 'products.json');
+    const activePath = fs.existsSync(productsFilePath) 
+      ? productsFilePath 
+      : path.join(__dirname, 'public', 'data', 'shop', 'products.json');
 
-    let activePath = null;
-    for (const p of pathsToSearch) {
-      if (fs.existsSync(p)) {
-        activePath = p;
-        break;
-      }
-    }
-
-    if (!activePath) {
-      console.warn("⚠️ Shop data requested but products.json file does not exist on disk paths.");
+    if (!fs.existsSync(activePath)) {
+      console.warn("⚠️ Shop data requested but products.json file does not exist on disk.");
       return res.status(200).json({ products: [] });
     }
 
@@ -154,8 +160,8 @@ app.get('/api/products', (req, res) => {
 
     return res.status(200).json({ products: transformedProducts });
   } catch (error) {
-    console.error("❌ Exception encountered compiling file product metrics:", error);
-    return res.status(500).json({ error: "Internal server failed to compile product metrics." });
+    console.error("❌ Static file query exception encountered parsing products data:", error);
+    return res.status(500).json({ error: "Internal server failed to compile product parameters." });
   }
 });
 
@@ -164,14 +170,21 @@ app.get('/api/sync-weather/:routeID', (req, res) => {
   const scriptPath = path.join(__dirname, 'scripts', 'weather_engine.py');
   const pythonCmd = process.platform === "win32" ? "python" : "python3";
   
+  // 🔍 1. Terminal Signal: Track the incoming request immediately
   console.log(`\n========== [SERVER SYNC TRIGGERED] ==========`);
+  console.log(`📍 Route Target ID: ${routeID}`);
+  console.log(`📂 Attempting to spawn script at: ${scriptPath}`);
+  console.log(`⚙️ Executing system command: ${pythonCmd}`);
+
   if (!fs.existsSync(scriptPath)) {
+    console.error(`❌ CRITICAL PATH ERROR: File does not exist at ${scriptPath}`);
     return res.status(500).json({ error: `Script not found at target pathing structure.` });
   }
 
   const pyProcess = spawn(pythonCmd, [scriptPath, routeID]);
   let hasSentResponse = false;
 
+  // 🟢 2. Pipe standard output directly into your terminal stream
   pyProcess.stdout.on('data', (data) => {
     console.log(`[Python stdout]: ${data.toString().trim()}`);
     if (data.toString().includes('SUCCESS') && !hasSentResponse) {
@@ -180,11 +193,14 @@ app.get('/api/sync-weather/:routeID', (req, res) => {
     }
   });
 
+  // 🔴 3. Pipe hidden standard errors directly into your terminal stream
   pyProcess.stderr.on('data', (data) => {
     console.error(`[Python stderr ERROR]: ${data.toString().trim()}`);
   });
 
   pyProcess.on('close', (code) => {
+    console.log(`🏁 Python process closed with exit code: ${code}`);
+    console.log(`=============================================\n`);
     if (!hasSentResponse) {
       res.status(500).json({ error: `Process closed with code ${code} without success signal` });
     }
@@ -321,6 +337,13 @@ app.post("/api/subscribe", async (req, res) => {
 // ==========================================================================
 // 2. STATIC ENVIRONMENT FALLBACKS (MUST STAY AT THE BOTTOM)
 // ==========================================================================
+
+app.use('/api', (req, res) => {
+  res.status(404).json({ error: "API route not found" });
+});
+
+// 🟢 EXPLICIT STATIC ASSET ROOT SERVICE DEFINITION
+app.use(express.static(dist));
 
 // Pure regex catch-all matches every front-facing path route unless it begins explicitly with /api
 app.get(/^(?!\/api).*$/, (req, res) => {
