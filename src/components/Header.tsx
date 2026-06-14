@@ -1,3 +1,4 @@
+/* src/components/Header.tsx */
 import { useState } from "react";
 
 export default function Header() {
@@ -13,11 +14,12 @@ export default function Header() {
       />
 
       {/* Desktop Navigation */}
-  <nav className="nav-desktop">
-  <a href="/" className="nav-link">Home</a>
-  <a href="/trail-guides" className="nav-link">Trail Guides</a>
-  <a href="#pillars" className="nav-link">Our Mission</a>
-</nav>
+      <nav className="nav-desktop">
+        <a href="/" className="nav-link">Home</a>
+        <a href="/rides" className="nav-link">RideGuides</a>
+        <a href="/shop" className="nav-link">Shop</a>
+        <a href="#pillars" className="nav-link">Our Mission</a>
+      </nav>
 
       {/* Mobile Menu Toggle */}
       <button
@@ -36,8 +38,11 @@ export default function Header() {
           <a href="/" className="nav-mobile-link" onClick={() => setMobileOpen(false)}>
             Home
           </a>
-          <a href="/trail-guides" className="nav-mobile-link" onClick={() => setMobileOpen(false)}>
-            Trail Guides
+          <a href="/rides" className="nav-mobile-link" onClick={() => setMobileOpen(false)}>
+            RideGuides
+          </a>
+          <a href="/shop" className="nav-mobile-link" onClick={() => setMobileOpen(false)}>
+            Shop
           </a>
           <a href="#pillars" className="nav-mobile-link" onClick={() => setMobileOpen(false)}>
             Our Mission

@@ -3,14 +3,13 @@ import { Routes, Route, useParams, useSearchParams, useLocation } from "react-ro
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-// 📦 APPLICATION INTENT-DRIVEN MULTI-PAGE WORKSPACES
+// APPLICATION INTENT-DRIVEN MULTI-PAGE WORKSPACES
 import Home from "./pages/Home";
 import RideGuide from "./pages/RideGuide"; 
 import BikeFinder from "./pages/BikeFinder";
 import Shop from "./pages/Shop";
-import TrailGuides from "./pages/TrailGuides";
 import Community from "./pages/Community";
-import RedirectGateway from "./pages/RedirectGateway"; // 🎯 NEW TRANSITION COMPONENT IMPORT
+import RedirectGateway from "./pages/RedirectGateway"; // NEW TRANSITION COMPONENT IMPORT
 
 // Modal system
 import UnlockModal from "./components/modal/UnlockModal";
@@ -100,7 +99,7 @@ export default function App() {
 
   // Check page identity contexts
   const isShopPage = location.pathname.toLowerCase() === "/shop";
-  const isGatewayPage = location.pathname.toLowerCase() === "/redirect-gateway"; // 🎯 CAPTURE GATEWAY IDENTITY
+  const isGatewayPage = location.pathname.toLowerCase() === "/redirect-gateway"; // CAPTURE GATEWAY IDENTITY
 
   return (
     <>
@@ -109,7 +108,7 @@ export default function App() {
         <Route path="/print/:routeID" element={<PrinterWrapper />} />
         <Route path="/download-guide" element={<DownloadGuideWrapper />} />
         
-        {/* 🎯 ISOLATED COMPLIANCE PIPELINE REDIRECT GATEWAY ROUTE:
+        {/* ISOLATED COMPLIANCE PIPELINE REDIRECT GATEWAY ROUTE:
            Bypasses standard site layouts entirely so it acts as an autonomous sandbox canvas tab */}
         <Route path="/redirect-gateway" element={<RedirectGateway />} />
 
@@ -142,7 +141,6 @@ export default function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/rides" element={<RideGuide />} />
                     <Route path="/bikes" element={<BikeFinder />} />
-                    <Route path="/trail-guides" element={<TrailGuides />} />
                     <Route path="/community" element={<Community />} />
                     <Route path="/report/:routeID" element={<ReportWrapper />} />
                     <Route path="/route-report" element={<RouteReport_v3 routeID="28-2_S1" />} />

@@ -1,6 +1,5 @@
 /* src/pages/Home.tsx */
 
-
 // 🎯 DIRECT IMPORTS FROM THE PROJECT PATH VERIFIED IN image_87af64.png
 import PreviewExplorer from "../store/PreviewExplorer";
 
@@ -18,11 +17,12 @@ export default function Home() {
           North Georgia backcountry.
         </p>
         <div className="hero-actions">
-          <a href="/trail-guides" className="btn btn-primary">
-            Explore Trail Guides
+          {/* 🟢 UPDATED: NOW RE-ROUTE CTAs TARGETING RIDEGUIDES AND GEAR STORE CHANNELS */}
+          <a href="/rides" className="btn btn-primary">
+            Explore RideGuides
           </a>
-          <a href="#pillars" className="btn btn-secondary">
-            Our Mission
+          <a href="/shop" className="btn btn-secondary">
+            Shop our Gear
           </a>
         </div>
       </section>
