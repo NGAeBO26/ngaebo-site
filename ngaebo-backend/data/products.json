@@ -1,0 +1,3020 @@
+[
+  {
+    "id": "11780770045",
+    "brand": "Ride1Up",
+    "product_name": "Portola",
+    "category": "ebike",
+    "sub_category": "Folding eBike",
+    "original_url": "https://ride1up.com/product/portola/",
+    "custom_affiliate_link": "https://go.ride1up.com/aff_c?offer_id=1&aff_id=2434&url=https%3A%2F%2Fride1up.com%2Fproduct%2Fportola%2F%3Ftransaction_id%3D%7Btransaction_id%7D",
+    "price": 845.0,
+    "original_price": 1095.0,
+    "base_commission": "",
+    "cta_label": "Add To Cart",
+    "image": "https://ride1up.com/wp-content/uploads/2024/07/Portola-Side-view_warm-gray-1400x933.webp",
+    "gallery_images": [
+      "https://ride1up.com/wp-content/uploads/2024/07/Portola_back_new-color-min-1400x933.webp",
+      "https://ride1up.com/wp-content/uploads/2024/07/Portola-Side-view_warm-gray-1400x933.webp",
+      "https://ride1up.com/wp-content/uploads/2024/07/Portola_fold_new-color-min-1400x933.webp",
+      "https://ride1up.com/wp-content/uploads/2023/07/Portolasurf1-1400x934.webp"
+    ],
+    "tags": [
+      "Folding",
+      "Commuter",
+      "Trail",
+      "Value",
+      "Compact",
+      "Fat-Tire"
+    ],
+    "description": "The Portola compact folding ebike takes value and performance to the next level with high-quality electrical and mechanical components, sleek styling, stunning colorways, and a practical folding frame design ready for any adventure. Road tripping, urban commuting, and hassle-free storage in small spaces have never been easier. Embrace the minimalist in you, without sacrificing performance or style, at a price point only Ride1Up can deliver.",
+    "notes_snippets": "The site uses cookies to enhance browsing, serve personalized ads/content, and analyze traffic. Necessary cookies enable basic functionalities like secure log-in. Functional cookies support social media sharing and third-party features. Analytical cookies track visitor interaction, bounce rate, and traffic sources for optimization. Performance cookies analyze website key performance indexes. Advertisement cookies provide customized ads based on past visits and measure campaign effectiveness.",
+    "rating": 4.77,
+    "ul_certification": "ANSI/CAN/UL 2849; TUV Certified to UL 2271 (for battery)",
+    "key_features": [
+      {
+        "id": 13,
+        "feature_text": "The Portola features a powerful 750W sustained geared hub motor, delivering 65nm of torque for robust assistance on various terrains.",
+        "feature_type": "motor"
+      },
+      {
+        "id": 14,
+        "feature_text": "Equipped with a TUV Certified to UL 2271 48V Reention Rhino battery, the Portola offers a range of 20-40 miles with the 10.4Ah option or 30-50 miles with the 13.4Ah battery.",
+        "feature_type": "battery"
+      },
+      {
+        "id": 15,
+        "feature_text": "Ride1Up prioritizes safety with the Portola, featuring electrical system certification to ANSI/CAN/UL 2849 standards and TUV Certified UL 2271 batteries.",
+        "feature_type": "ul_certification"
+      },
+      {
+        "id": 16,
+        "feature_text": "The Portola comes with a comprehensive 1-Year Warranty from Ride1Up, covering manufacturing defects for peace of mind.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 17,
+        "feature_text": "Ride1Up offers Free Shipping for the Portola to the contiguous 48 states, with an estimated delivery between June 11th - June 15th, arriving 95% assembled.",
+        "feature_type": "shipping"
+      },
+      {
+        "id": 18,
+        "feature_text": "The Ride1Up Portola is a versatile Class 1-3 electric bike, providing up to 28mph pedal assist and a 20mph throttle, configurable via the handlebar display to suit local regulations.",
+        "feature_type": "ebike_class"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 342,
+        "url": "https://ride1up.com/wp-content/uploads/2024/07/Portola_back_new-color-min-1400x933.webp",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 343,
+        "url": "https://ride1up.com/wp-content/uploads/2024/07/Portola-Side-view_warm-gray-1400x933.webp",
+        "role_tag": "primary"
+      },
+      {
+        "id": 344,
+        "url": "https://ride1up.com/wp-content/uploads/2024/07/Portola_fold_new-color-min-1400x933.webp",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 345,
+        "url": "https://ride1up.com/wp-content/uploads/2023/07/Portolasurf1-1400x934.webp",
+        "role_tag": "secondary"
+      }
+    ],
+    "specifications": {
+      "motor_details": "48V 750W Geared Hub Motor, 65nm torque",
+      "battery_details": "48V 10.4Ah Reention Rhino - 500wh (20-40 miles range) or 48V 13.4Ah Reention Rhino - 643wh (30-50 miles range), TUV Certified to UL 2271",
+      "drivetrain_details": "Shimano Altus 8-speed trigger shifter, 48T Front Alloy Chainring, 11-32T R1U Approved Freewheel, Shimano Altus RD-M310 Derailleur, KMC Professional 8-Speed Chain",
+      "braking_details": "Dual Piston Hydraulic Brakes, Electric Cut-Off Sensor, 180mm Rotors",
+      "weight_details": "Bike Weight: 59lbs, Weight Capacity: 342lbs",
+      "ebike_classification": "Class 1-3 (configurable), 28mph pedal assist, 20mph throttle",
+      "product_type": "N/A",
+      "package_type": "N/A"
+    },
+    "metadata": {
+      "source_table": "products",
+      "synchronized_at": "2026-06-14T09:04:35.481402",
+      "created_at": "2026-06-06T18:21:07.024753",
+      "updated_at": "2026-06-06T18:21:07.024753"
+    }
+  },
+  {
+    "id": "11780770681",
+    "brand": "Ride1Up",
+    "product_name": "Vorsa",
+    "category": "ebike",
+    "sub_category": "All Around eBike",
+    "original_url": "https://ride1up.com/product/vorsa/",
+    "custom_affiliate_link": "https://go.ride1up.com/aff_c?offer_id=1&aff_id=2434&url=https%3A%2F%2Fride1up.com%2Fproduct%2Fvorsa%2F%3Ftransaction_id%3D%7Btransaction_id%7D",
+    "price": 1495.0,
+    "original_price": 1595.0,
+    "base_commission": "N/A",
+    "cta_label": "Add To Cart",
+    "image": "https://ride1up.com/wp-content/uploads/2025/01/VorsaST_glacier_side__EDIT2_web-1400x934.webp",
+    "gallery_images": [
+      "https://ride1up.com/wp-content/uploads/2025/01/Vorsa_glacier_back_web-1400x934-1.webp",
+      "https://ride1up.com/wp-content/uploads/2025/01/VorsaST_glacier_side__EDIT2_web-1400x934.webp",
+      "https://ride1up.com/wp-content/uploads/2025/01/VorsaST_blue_side__EDIT_no-fenders-min-1-1400x934.webp",
+      "https://ride1up.com/wp-content/uploads/2025/01/VorsaST_glacier_side-angle_EDIT2_web-1400x934.webp"
+    ],
+    "tags": [
+      "Electric Bike",
+      "Commuter",
+      "Versatile",
+      "Cargo-hauling",
+      "Full-size",
+      "SUV-inspired",
+      "Performance"
+    ],
+    "description": "The Ride1Up Vorsa is the Everyday, Every Way Electric Bike, engineered without compromise for versatility, power, and premium performance. It boasts a 440lb payload capacity and modular, SUV-inspired design allowing for endless customization with cargo-hauling add-ons. Featuring dual sensor pedal assist (Intui-Drive torque and R1CBC cadence), iOS FindMy tracking, intuitive PAS programming, and Connect+ accessorization, the Vorsa is a dynamic platform designed to adapt to any lifestyle.",
+    "notes_snippets": "The website utilizes various cookies (Necessary, Functional, Analytical, Performance, Advertisement, Uncategorised) for enhanced browsing, personalized content/ads, traffic analysis, and site functionality. Cookie durations vary from session to never expires. Partner Programs and Affiliate Program are available. Estimated delivery is June 11th - June 15th. Comes with a 1-Year Warranty, 30-Day Returns, and Free Shipping (contiguous 48 states). Shipping to Canada is $100 and to Hawaii/Alaska is $600. The bikes are water-resistant, not waterproof, and are not recommended for submerging or high-pressure water exposure. Assembly required (85% pre-assembled).",
+    "rating": 4.77,
+    "ul_certification": "ANSI/CAN/UL 2849; TUV Certified to UL 2271; TUV Certified to TUV ANSI/CAN/UL 284.",
+    "key_features": [
+      {
+        "id": 32,
+        "feature_text": "The Ride1Up Vorsa features a lockable, removable Samsung GB50 15Ah battery with 21700 cells, updated software BMS, and double gas vents for enhanced fire safety, offering an impressive 30-60 mile range.",
+        "feature_type": "battery"
+      },
+      {
+        "id": 33,
+        "feature_text": "Ride with confidence knowing the Vorsa is certified to ANSI/CAN/UL 2849, ensuring rigorous electrical and battery fire safety compliance.",
+        "feature_type": "ul_certification"
+      },
+      {
+        "id": 34,
+        "feature_text": "Every Ride1Up Vorsa includes a comprehensive 1-year warranty against manufacturing defects, providing peace of mind for your investment.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 35,
+        "feature_text": "Enjoy free shipping on the Vorsa to the contiguous 48 states, with bikes in stock shipping in under 24 hours for an estimated delivery within 3-7 business days.",
+        "feature_type": "shipping"
+      },
+      {
+        "id": 36,
+        "feature_text": "The Ride1Up Vorsa features a multi-class speed system, shipping as a Class 2 ebike with speeds up to 20 MPH, and configurable to Class 3 (28 MPH pedal assist) or Off-Road mode for private land use.",
+        "feature_type": "ebike_class"
+      },
+      {
+        "id": 31,
+        "feature_text": "Experience unmatched hill-climbing power with the Vorsa's 750W AKM rear hub motor, delivering 95Nm of torque for superior performance in any riding condition.",
+        "feature_type": "motor"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 346,
+        "url": "https://ride1up.com/wp-content/uploads/2025/01/Vorsa_glacier_back_web-1400x934-1.webp",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 347,
+        "url": "https://ride1up.com/wp-content/uploads/2025/01/VorsaST_glacier_side__EDIT2_web-1400x934.webp",
+        "role_tag": "primary"
+      },
+      {
+        "id": 348,
+        "url": "https://ride1up.com/wp-content/uploads/2025/01/VorsaST_blue_side__EDIT_no-fenders-min-1-1400x934.webp",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 349,
+        "url": "https://ride1up.com/wp-content/uploads/2025/01/VorsaST_glacier_side-angle_EDIT2_web-1400x934.webp",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 350,
+        "url": "https://ride1up.com/wp-content/uploads/2025/01/VorsaST_glacier_back-angle_EDIT2_web-1400x934.webp",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 351,
+        "url": "https://ride1up.com/wp-content/uploads/2025/01/VorsaPhotos40-1400x934.webp",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 352,
+        "url": "https://ride1up.com/wp-content/uploads/2025/01/Vorsa_glacier_front_web-1400x934-1.webp",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 353,
+        "url": "https://ride1up.com/wp-content/uploads/2025/01/VorsaPhotos16-1400x934.webp",
+        "role_tag": "auxiliary"
+      }
+    ],
+    "specifications": {
+      "motor_details": "750W AKM rear hub motor with 95Nm of torque",
+      "battery_details": "15Ah Reention Flamingo battery with Samsung 50GB 21700 cells and Precise CanBus protocol SOC, IPX6 TUV Certified to UL 2271, providing a range of 30-60 miles.",
+      "drivetrain_details": "Shimano Acera 8-speed trigger shifter, 48T chainring, Shimano Acera 11-32T cassette, KMC E8 8-speed chain, Shimano Acera 8-speed derailleur.",
+      "braking_details": "Star Union hydraulic disc brakes with electric motor cutoff, featuring 203mm rear and 180mm front rotors.",
+      "weight_details": "65 lbs (without add-ons), 70 lbs (with add-ons), with a total weight capacity of 440 lbs.",
+      "ebike_classification": "Class 2/3 (ships as Class 2, configurable to Class 3, or Off-Road mode for private land)",
+      "product_type": "N/A",
+      "package_type": "N/A"
+    },
+    "metadata": {
+      "source_table": "products",
+      "synchronized_at": "2026-06-14T09:04:35.481402",
+      "created_at": "2026-06-06T18:31:58.714804",
+      "updated_at": "2026-06-06T18:31:58.714804"
+    }
+  },
+  {
+    "id": "1780838513",
+    "brand": "Ride1Up",
+    "product_name": "TrailRush",
+    "category": "ebike",
+    "sub_category": "eMTB",
+    "original_url": "https://ride1up.com/product/trailrush/",
+    "custom_affiliate_link": "https://go.ride1up.com/aff_c?offer_id=1&aff_id=2434&url=https://ride1up.com/product/trailrush/",
+    "price": 1995.0,
+    "original_price": 2095.0,
+    "base_commission": "N/A",
+    "cta_label": "Add To Cart",
+    "image": "https://ride1up.com/wp-content/uploads/2025/06/black-M-1-1400x934.webp",
+    "gallery_images": [
+      "https://ride1up.com/wp-content/uploads/2025/06/black-M-4-1400x934.webp",
+      "https://ride1up.com/wp-content/uploads/2025/06/black-M-1-1400x934.webp",
+      "https://ride1up.com/wp-content/uploads/2025/06/black-M-2-1400x934.webp",
+      "https://ride1up.com/wp-content/uploads/2025/06/black-M-3-1400x934.webp",
+      "https://ride1up.com/wp-content/uploads/2025/06/DSC06577-1400x1003.webp",
+      "https://ride1up.com/wp-content/uploads/2025/06/DSC06562-1400x968.webp",
+      "https://ride1up.com/wp-content/uploads/2025/06/TrailRush-Comes-with_fork-1400x1400.webp",
+      "https://ride1up.com/wp-content/uploads/2023/09/Prodigy-V2-comes-with-08-1400x1400.png",
+      "https://ride1up.com/wp-content/uploads/2025/06/TrailRush-Comes-with_drop-stem-1400x1400.webp",
+      "https://ride1up.com/wp-content/uploads/2025/06/TrailRush-Comes-with_drive-train-1400x1400.webp",
+      "https://ride1up.com/wp-content/uploads/2025/06/TrailRush-Comes-with_tire-1400x1400.webp",
+      "https://ride1up.com/wp-content/uploads/2023/09/Prodigy-V2-comes-with-06-1400x1400.png",
+      "https://ride1up.com/wp-content/uploads/2023/09/Pro-Charger-removebg.png",
+      "https://ride1up.com/wp-content/uploads/2022/01/replacement-keys-scaled-1.png",
+      "https://ride1up.com/wp-content/uploads/2025/06/DSC06546-534x800.webp",
+      "https://ride1up.com/wp-content/uploads/2025/06/DSC06783-1199x800.webp",
+      "https://ride1up.com/wp-content/uploads/2025/06/trailrushScreenshots2-1445x800.webp",
+      "https://ride1up.com/wp-content/uploads/2025/06/trailrushScreenshots5-1431x800.webp"
+    ],
+    "tags": [
+      "eMTB",
+      "Mid-Drive",
+      "Electric Mountain Bike",
+      "Class 3",
+      "Hardtail",
+      "Trail Ready"
+    ],
+    "description": "The Ride1Up TrailRush is a trail-ready hardtail eMTB designed for responsive handling and smooth, natural power on various terrains. Featuring a German-engineered Brose mid-drive motor, a lightweight alloy frame with internal protected electronics, and proven components, it offers the control and capability to ride harder and go farther with quiet confidence.",
+    "notes_snippets": "We use cookies to enhance your browsing experience, serve personalised ads or content, and analyse our traffic. By clicking 'Accept All', you consent to our use of cookies. Necessary cookies are essential for basic site functionalities. Functional cookies enable sharing content and third-party features. Analytical cookies track visitor interactions, bounce rate, and traffic sources. Performance cookies analyze key website performance indexes. Advertisement cookies provide customised advertisements based on previous page visits and measure campaign effectiveness.",
+    "rating": 4.68,
+    "ul_certification": "N/A",
+    "key_features": [
+      {
+        "id": 40,
+        "feature_text": "Benefit from Ride1Up's comprehensive 1-Year Warranty, covering manufacturing defects to ensure your investment is protected from the start.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 38,
+        "feature_text": "Ride confidently for 30-50 miles on a single charge thanks to the integrated 36V 14Ah Phylion BN21 battery, equipped with premium Samsung Cells and a smart BMS for extended life.",
+        "feature_type": "battery"
+      },
+      {
+        "id": 39,
+        "feature_text": "The TrailRush prioritizes safety with a smart BMS for its Samsung cell battery and features internal protected & locked electronics within its lightweight alloy frame for enhanced electrical security.",
+        "feature_type": "ul_certification"
+      },
+      {
+        "id": 41,
+        "feature_text": "Enjoy convenient and reliable delivery with Ride1Up, offering free shipping to the contiguous 48 US states, with in-stock bikes shipping within 1 business day and and estimated delivery within 5-10 business days.",
+        "feature_type": "shipping"
+      },
+      {
+        "id": 42,
+        "feature_text": "Certified as a Class 3 electric bike, the Ride1Up TrailRush provides pedal assistance up to a thrilling 28mph, perfect for conquering trails and extending your adventures.",
+        "feature_type": "ebike_class"
+      },
+      {
+        "id": 37,
+        "feature_text": "Experience powerful and quiet assistance with the German-engineered Brose TF Sprinter mid-drive motor, delivering 90Nm of torque for superior hill-climbing and responsive trail control.",
+        "feature_type": "motor"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 334,
+        "url": "https://ride1up.com/wp-content/uploads/2025/06/black-M-4-1400x934.webp",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 335,
+        "url": "https://ride1up.com/wp-content/uploads/2025/06/black-M-1-1400x934.webp",
+        "role_tag": "primary"
+      },
+      {
+        "id": 336,
+        "url": "https://ride1up.com/wp-content/uploads/2025/06/black-M-2-1400x934.webp",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 337,
+        "url": "https://ride1up.com/wp-content/uploads/2025/06/black-M-3-1400x934.webp",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 338,
+        "url": "https://ride1up.com/wp-content/uploads/2025/06/DSC06577-1400x1003.webp",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 339,
+        "url": "https://ride1up.com/wp-content/uploads/2025/06/black-M-5-1400x934.webp",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 340,
+        "url": "https://ride1up.com/wp-content/uploads/2025/06/DSC06562-1400x968.webp",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 341,
+        "url": "https://ride1up.com/wp-content/uploads/2025/06/DSC06546-534x800.webp",
+        "role_tag": "auxiliary"
+      }
+    ],
+    "specifications": {
+      "motor_details": "Brose TF Sprinter German made mid-drive motor with 90nm torque",
+      "battery_details": "36V 14Ah Phylion BN21, Samsung Cells with smart BMS; 30-50 miles range (504Wh)",
+      "drivetrain_details": "10-speed Shimano Deore, including Shimano Deore SL-M6000-R Rapidfire Plus shifters, a 38T Alloy Chainring, Shimano HG500-10 11-36T cassette, Shimano 10-Speed Deore M6000 derailleur, and KMC e10 Mid-Drive Chain.",
+      "braking_details": "Tektro Orion HD-M745 Quad-Piston Hydraulic Brakes",
+      "weight_details": "Bike Weight: 57-58 lbs (depending on frame size), Weight Capacity: 350 lbs",
+      "ebike_classification": "Class 3",
+      "product_type": "N/A",
+      "package_type": "N/A"
+    },
+    "metadata": {
+      "source_table": "products",
+      "synchronized_at": "2026-06-14T09:04:35.481402",
+      "created_at": "2026-06-07T13:22:00.354669",
+      "updated_at": "2026-06-07T13:22:00.354669"
+    }
+  },
+  {
+    "id": "1780840875",
+    "brand": "Kingbull",
+    "product_name": "Ranger",
+    "category": "ebike",
+    "sub_category": "Vintage Off-Road Electric Bike",
+    "original_url": "https://www.kingbullbike.com/products/kingbull-ranger-vintage-off-road-electric-bike",
+    "custom_affiliate_link": "https://www.awin1.com/cread.php?awinmid=124136&awinaffid=2917709&ued=https%3A%2F%2Fwww.kingbullbike.com%2Fproducts%2Fkingbull-ranger-vintage-off-road-electric-bike",
+    "price": 799.0,
+    "original_price": 1399.0,
+    "base_commission": "Not specified",
+    "cta_label": "Add to cart",
+    "image": "https://www.kingbullbike.com/cdn/shop/files/Ranger_b47535e6-d74e-4e5d-b6c0-25c835c660fe.jpg?v=1780474246&width=1080",
+    "gallery_images": [
+      "https://www.kingbullbike.com/cdn/shop/files/Ranger_b47535e6-d74e-4e5d-b6c0-25c835c660fe.jpg?v=1780474246&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/26-3-23-6.webp?v=1775642412&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/Ranger_17.webp?v=1774261737&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/Ranger_3.webp?v=1774261737&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/Ranger_19.webp?v=1774261737&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/Ranger_2.webp?v=1774261737&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/450006_d96b3f10-b77c-47a4-8246-1830f9afc01a.jpg?v=1775642412&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/45-10006_7a2421d6-f7e5-4dae-b109-c40b9837e34b.jpg?v=1775642412&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/Ranger_18_4fbda03a-238b-44ba-abe1-fba428d259a6.webp?v=1773821586&width=1500",
+      "https://www.kingbullbike.com/cdn/shop/files/Ranger_20.webp?v=1773824342&width=1500",
+      "https://www.kingbullbike.com/cdn/shop/files/Ranger_19_8a498eee-7f5f-44ea-8b88-03da4efc4fec.webp?v=1773821586&width=1500",
+      "https://www.kingbullbike.com/cdn/shop/files/Ranger_17_317b9d5d-d17c-4758-88d0-1b1872d8942b.webp?v=1773821586&width=1500",
+      "https://www.kingbullbike.com/cdn/shop/files/26-3-23-13.webp?v=1774261677&width=1500",
+      "https://www.kingbullbike.com/cdn/shop/files/26-3-23-7.webp?v=1774261678&width=800",
+      "https://www.kingbullbike.com/cdn/shop/files/2026.Ranger-1084.jpg?v=1774262399&width=800",
+      "https://www.kingbullbike.com/cdn/shop/files/2026.Ranger-1090.jpg?v=1774262513&width=800",
+      "https://www.kingbullbike.com/cdn/shop/files/26-3-23-10.webp?v=1774261678&width=800",
+      "https://www.kingbullbike.com/cdn/shop/files/26-3-23-9.webp?v=1774261678&width=800",
+      "https://www.kingbullbike.com/cdn/shop/files/26-3-23-12.webp?v=1774261678&width=800",
+      "https://www.kingbullbike.com/cdn/shop/files/26-3-23-11.webp?v=1774261678&width=800",
+      "https://www.kingbullbike.com/cdn/shop/files/Ranger_11.webp?v=1773817090&width=800"
+    ],
+    "tags": [
+      "Vintage Off-Road Electric Bike",
+      "1300W Peak",
+      "20 x 4 Fat Tire",
+      "Ebike",
+      "Moped-style",
+      "Mountain",
+      "Off Road",
+      "Class 3",
+      "Class 2"
+    ],
+    "description": "The Kingbull Ranger is a vintage-inspired, moped-style electric bike designed for both city commuting and off-road adventures. It features a powerful 750W brushless hub motor with 1300W peak power, an 18Ah (864Wh) Kingbull lithium battery offering up to 80 miles of range, and 20\"x4.0\" CST fat tires for stable, confident control on any terrain. The bike boasts a full-suspension system for a smooth ride, a SHIMANO 7-speed drivetrain for seamless shifting, and a vintage brown PU leather saddle for comfort. It is classified as a Class 3 (default) or Class 2 e-bike, with a top speed of 28 MPH, and comes with integrated LED lights including turn signals. It is also UL Certificated by SGS, ensuring safety.",
+    "notes_snippets": "Ships from U.S. warehouse within 2 business days. Upgrade options available including a portable power station. Accident protection offered by Xcotton (partner with AIG). Includes a 2-Year Warranty, Free Shipping, 15-Day Return, and No Tax. The bike is 85% pre-assembled; basic assembly is required. We ship from warehouses in both eastern and western U.S. Prices include taxes. E-bikes meet US legal standards, with adjustable speed for Class 2 or Class 3. Recommended tire pressure: 25–28 PSI.",
+    "rating": 4.67,
+    "ul_certification": "UL Certificated by SGS",
+    "key_features": [
+      {
+        "id": 43,
+        "feature_text": "Experience robust power with the Kingbull Ranger's 750W brushless hub motor, delivering an impressive 1300W peak output for strong, responsive acceleration across any terrain.",
+        "feature_type": "motor"
+      },
+      {
+        "id": 47,
+        "feature_text": "Receive your Kingbull Ranger quickly with free shipping from a U.S. warehouse, processed within 2 business days and typically delivered within 2-5 business days.",
+        "feature_type": "shipping"
+      },
+      {
+        "id": 48,
+        "feature_text": "The Kingbull Ranger operates as a versatile Class 3 e-bike by default, reaching speeds of up to 28 MPH, with the flexibility to be adjusted to Class 2 for state compliance.",
+        "feature_type": "ebike_class"
+      },
+      {
+        "id": 44,
+        "feature_text": "Achieve extensive range with the Kingbull 48V/864Wh (18Ah) Lithium Battery, providing up to 80 miles on a single charge for your extended adventures.",
+        "feature_type": "battery"
+      },
+      {
+        "id": 45,
+        "feature_text": "Ride with confidence knowing the Kingbull Ranger is UL Certificated by SGS, ensuring high standards of electrical safety and reliability.",
+        "feature_type": "ul_certification"
+      },
+      {
+        "id": 46,
+        "feature_text": "Enjoy peace of mind with Kingbull's comprehensive 2-Year Warranty on the Ranger electric bike.",
+        "feature_type": "warranty"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 362,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/Ranger_b47535e6-d74e-4e5d-b6c0-25c835c660fe.jpg?v=1780474246&width=1080",
+        "role_tag": "primary"
+      },
+      {
+        "id": 363,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/26-3-23-6.webp?v=1775642412&width=1080",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 364,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/Ranger_17.webp?v=1774261737&width=1080",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 365,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/Ranger_3.webp?v=1774261737&width=1080",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 366,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/Ranger_19.webp?v=1774261737&width=1080",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 367,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/Ranger_2.webp?v=1774261737&width=1080",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 368,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/450006_d96b3f10-b77c-47a4-8246-1830f9afc01a.jpg?v=1775642412&width=1080",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 369,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/45-10006_7a2421d6-f7e5-4dae-b109-c40b9837e34b.jpg?v=1775642412&width=1080",
+        "role_tag": "secondary"
+      }
+    ],
+    "specifications": {
+      "motor_details": "750W brushless hub motor, 1300W Peak Power",
+      "battery_details": "Kingbull 48V/864Wh(18Ah) Lithium Battery, Max Range 80 Miles (under ideal riding conditions)",
+      "drivetrain_details": "SHIMANO SL-TX50-7R, right side, 2400mm cable length, 7 speed",
+      "braking_details": "Hydraulic Brakes with left & right power cut-off brake levers",
+      "weight_details": "Weight: 88 lbs, Max Payload Capacity: 350 lbs, Rear Rack Load Limit: 150 lbs",
+      "ebike_classification": "Class 3 (Default), Class 2",
+      "product_type": "N/A",
+      "package_type": "N/A"
+    },
+    "metadata": {
+      "source_table": "products",
+      "synchronized_at": "2026-06-14T09:04:35.481402",
+      "created_at": "2026-06-07T14:01:47.112580",
+      "updated_at": "2026-06-07T14:01:47.112580"
+    }
+  },
+  {
+    "id": "1780841088",
+    "brand": "Kingbull",
+    "product_name": "Hunter 2.0S",
+    "category": "ebike",
+    "sub_category": "Mountain Fat Tire Electric Bike",
+    "original_url": "https://www.kingbullbike.com/products/kingbull-hunter-2-0s-mountain-fat-tire-electric-bike",
+    "custom_affiliate_link": "https://www.awin1.com/cread.php?awinmid=124136&awinaffid=2917709&ued=https%3A%2F%2Fwww.kingbullbike.com%2Fproducts%2Fkingbull-hunter-2-0s-mountain-fat-tire-electric-bike",
+    "price": 899.0,
+    "original_price": 1699.0,
+    "base_commission": "Not specified, inquire about Affiliate Program",
+    "cta_label": "Add to cart",
+    "image": "https://www.kingbullbike.com/cdn/shop/files/26-2-25v3.jpg?v=1772097721&width=1080",
+    "gallery_images": [
+      "https://www.kingbullbike.com/cdn/shop/files/26-2-25v3.jpg?v=1772097721&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/Hunter2.0_S_v6.jpg?v=1778655127&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/26-2-25v2.jpg?v=1772097721&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/26-2-25.jpg?v=1772014272&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/Hunter2.0_S_v4.jpg?v=1778655127&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/Hunter2.0_S_v5.jpg?v=1778655127&width=1080"
+    ],
+    "tags": [
+      "Mountain",
+      "Fat Tire",
+      "Electric Bike",
+      "Off-Road",
+      "Hunting",
+      "All-Terrain",
+      "Class 3",
+      "Class 2"
+    ],
+    "description": "The Kingbull Hunter 2.0S is a rugged Mountain Fat Tire Electric Bike designed for off-road adventures, featuring a powerful 750W brushless hub motor with 1300W peak power and a high-capacity Kingbull 48V/864Wh(18Ah) Lithium Battery for an extended range of up to 80 miles. Equipped with professional hydraulic disc brakes, 26\"x4.0\" puncture-resistant CST all-terrain fat tires, and a front suspension fork, it ensures superior grip, responsive stopping power, and a smooth ride over varied terrain. The bike boasts an IPX6 waterproof rating, SHIMANO 7-speed drivetrain, and a 4.0\" full-color multi-function display, making it a reliable and comfortable workhorse for backcountry hunting, trail riding, and long-distance commutes.",
+    "notes_snippets": "Free shipping; 2-Year warranty; 15-Day Returns; No Tax; Safety Certified; Pass Test; Ships from U.S. warehouse within 2 business days (excluding pre-sale items). Option to upgrade with a portable power station. Network tracking pixels from Bing and Judge.me detected.",
+    "rating": 4.87,
+    "ul_certification": "Not explicitly stated as UL certified for this model; described as 'Safety Certified' and 'Pass Test', and states 'Our e-bikes meet US legal standards.'",
+    "key_features": [
+      {
+        "id": 49,
+        "feature_text": "Experience robust power with the Kingbull Hunter 2.0S's 750W brushless hub motor, delivering an impressive 1300W peak power for effortless hill climbs and challenging terrains.",
+        "feature_type": "motor"
+      },
+      {
+        "id": 50,
+        "feature_text": "Embark on extensive adventures with the Kingbull 48V/18Ah (864Wh) Lithium Battery, providing an exceptional range of up to 80 miles on a single charge.",
+        "feature_type": "battery"
+      },
+      {
+        "id": 51,
+        "feature_text": "Ride with confidence knowing the Kingbull Hunter 2.0S is 'Safety Certified' with a 'Pass Test' indication, ensuring a secure electrical system.",
+        "feature_type": "ul_certification"
+      },
+      {
+        "id": 52,
+        "feature_text": "Benefit from Kingbull's comprehensive 2-Year Warranty, offering peace of mind and protection for your electric bike investment.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 53,
+        "feature_text": "Enjoy complimentary Free Shipping on your Kingbull Hunter 2.0S, with orders dispatched from the U.S. warehouse within 2 business days and delivered within 2-5 business days.",
+        "feature_type": "shipping"
+      },
+      {
+        "id": 54,
+        "feature_text": "Operate legally with the Kingbull Hunter 2.0S, classified as a default Class 3 e-bike reaching 28 MPH, with the flexibility to adjust to Class 2 speed limits.",
+        "feature_type": "ebike_class"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 378,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/26-2-25v3.jpg?v=1772097721&width=1080",
+        "role_tag": "primary"
+      },
+      {
+        "id": 379,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/Hunter2.0_S_v6.jpg?v=1778655127&width=1080",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 380,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/26-2-25v2.jpg?v=1772097721&width=1080",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 381,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/26-2-25.jpg?v=1772014272&width=1080",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 382,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/Hunter2.0_S_v4.jpg?v=1778655127&width=1080",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 383,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/Hunter2.0_S_v5.jpg?v=1778655127&width=1080",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 384,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/Hunter2.0_S_v3.jpg?v=1778841542&width=1080",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 385,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/Hunter2.0_S_v6_82a953c2-1057-4613-b61d-53baf203beea.jpg?v=1778841542&width=1080",
+        "role_tag": "auxiliary"
+      }
+    ],
+    "specifications": {
+      "motor_details": "750W brushless hub motor with 1300W peak power",
+      "battery_details": "Kingbull 48V/864Wh (18Ah) Lithium Battery, offering up to 80 miles range",
+      "drivetrain_details": "SHIMANO SL-TX50-7R 7-speed shifter, SHIMANO RD-TZ500GSD 7-speed rear derailleur, SHIMANO MF-TZ500 14-28T 7-speed cassette, 118L 7-speed chain",
+      "braking_details": "Front and Rear hydraulic disc brakes with a dual-piston system",
+      "weight_details": "77 lbs (bike weight), 400 lbs (max payload capacity), 150 lbs (rear rack load limit)",
+      "ebike_classification": "Class 3 (Default), Class 2 (Adjustable)",
+      "product_type": "N/A",
+      "package_type": "N/A"
+    },
+    "metadata": {
+      "source_table": "products",
+      "synchronized_at": "2026-06-14T09:04:35.481402",
+      "created_at": "2026-06-07T14:19:25.031628",
+      "updated_at": "2026-06-07T14:19:25.031628"
+    }
+  },
+  {
+    "id": "1780842170",
+    "brand": "Kingbull",
+    "product_name": "Literider 2.0",
+    "category": "ebike",
+    "sub_category": "All Terrain Fat Tire Folding eBike",
+    "original_url": "https://www.kingbullbike.com/products/kingbull-literider-2-0-all-terrain-folding-electric-fat-bike?",
+    "custom_affiliate_link": "https://www.awin1.com/cread.php?awinmid=124136&awinaffid=2917709&ued=https%3A%2F%2Fwww.kingbullbike.com%2Fproducts%2Fkingbull-literider-2-0-all-terrain-folding-electric-fat-bike%3Fvariant%3D50576361652506",
+    "price": 979.0,
+    "original_price": 1699.0,
+    "base_commission": "N/A",
+    "cta_label": "Add to cart",
+    "image": "https://www.kingbullbike.com/cdn/shop/files/2_5ee208e5-f36b-4a6a-b510-82f9d561f3c5.webp?v=1767076718&width=1080",
+    "gallery_images": [
+      "https://www.kingbullbike.com/cdn/shop/files/2_5ee208e5-f36b-4a6a-b510-82f9d561f3c5.webp?v=1767076718&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/Literider_2.0-25-04-25-v12.jpg?v=1767092939&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/Literider_2.0-25-06-26-v3_33b68f62-a2b1-45d8-8874-9f0388f03178.jpg?v=1767092939&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/Literider_2.0-25-04-25-v21_8f7beeea-443f-427c-93ed-d5dc9b536d63.jpg?v=1767092939&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/Literider_2.0-Green.jpg?v=1767092939&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/Literider_2.0-25-08-06-v1.webp?v=1767092939&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/Literider_2.0-25-04-25-v11.jpg?v=1767092939&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/Literider_2.0-25-05-21-v2_e7619533-de0d-4ff9-9d58-9e287588d4b3.jpg?v=1767092939&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/Literider_2.0-25-05-21-v3_afd00246-0b2e-4279-9287-2b5265b5fa10.jpg?v=1767092939&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/Literider_2.0-25-05-21-v1_4a334c23-81e4-4793-8001-e47231b50e0b.jpg?v=1767092939&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/IMG_5124_16.jpg?v=1779154262&width=1080",
+      "https://www.kingbullbike.com/cdn/shop/files/2_63e9acc2-1f5c-48a7-875a-5a1381d7bf64.jpg?v=1765443291&width=1500",
+      "https://www.kingbullbike.com/cdn/shop/files/2025-9-11_v5.webp?v=1757581983&width=1500",
+      "https://www.kingbullbike.com/cdn/shop/files/KingBull_Literider_2.0-25-07-03-v.webp?v=1751881985&width=1500",
+      "https://www.kingbullbike.com/cdn/shop/files/2025-9-11_v6.webp?v=1757581940&width=1500",
+      "https://www.kingbullbike.com/cdn/shop/files/KingBull-25-07-01-v14.webp?v=1751884209&width=1500",
+      "https://www.kingbullbike.com/cdn/shop/files/KingBull-25-07-01-v18_48362c9a-9fe6-4f4c-aefd-206e15d7ae6f.webp?v=1751884301&width=1500",
+      "https://www.kingbullbike.com/cdn/shop/files/KingBull_Literider_2.0-Hydraulic_Brakes.webp?v=1751884782&width=800",
+      "https://www.kingbullbike.com/cdn/shop/files/Literider_2.0-25-06-04-v1.jpg?v=1751884810&width=800",
+      "https://www.kingbullbike.com/cdn/shop/files/Kingbull_Literider_2.0_-CST_tires.jpg?v=1751884851&width=800",
+      "https://www.kingbullbike.com/cdn/shop/files/LCD_display-Literider_2.0.jpg?v=1751884882&width=800",
+      "https://www.kingbullbike.com/cdn/shop/files/Breathable_saddle-Literider_2.0.jpg?v=1751884926&width=800",
+      "https://www.kingbullbike.com/cdn/shop/files/Literider_2.0-25-06-04-v11_2e4c1268-77b8-4b4a-8219-2a26df10bcbd.jpg?v=1751884961&width=800",
+      "https://www.kingbullbike.com/cdn/shop/files/Literider_2.0-25-06-04-v10_3bc818ba-9243-48d4-bc3c-82ebe6047379.jpg?v=1751884994&width=800"
+    ],
+    "tags": [
+      "All Terrain",
+      "Fat Tire",
+      "Folding Electric Bike",
+      "Ebike",
+      "Commuter",
+      "City",
+      "Step-Through",
+      "Class 2",
+      "Class 3"
+    ],
+    "description": "The Kingbull Literider 2.0 is a versatile, all-terrain folding electric bike designed for adventure, from city streets to snowy paths. Featuring a low-step frame and 20\" x 4\" fat tires, it offers unmatched stability and effortless mounting for riders of all ages. Powered by a customized 750W Bafang hub motor with 80Nm of torque, and equipped with a 48V/15Ah (720Wh) integrated lithium battery, it provides up to 55 miles of range. This ebike is UL 2849 certified, ensuring comprehensive safety and durability. Its foldable design allows for compact storage, making it perfect for urban commuters and family outings.",
+    "notes_snippets": "Policies include 15-Day Return, 2-Year Warranty, Free Shipping, No Tax, US warehouse shipping (2 business days). Assembly required (85% pre-assembled). Speed adjustable (Class 2/3). Price includes taxes. Optional accident protection available.",
+    "rating": 4.88,
+    "ul_certification": "Model Literider2.0, Certificated by UL 2849 (bike); 18650 cell, Certificated by UL 2580 (battery); US standard 2.0A smart charger, UL-certified (charger).",
+    "key_features": [
+      {
+        "id": 55,
+        "feature_text": "Experience robust propulsion with a custom Kingbull 750W Bafang brushless hub motor, delivering 80Nm of torque for powerful and efficient rides.",
+        "feature_type": "motor"
+      },
+      {
+        "id": 56,
+        "feature_text": "Achieve extended adventures with the Kingbull 48V/15Ah (720Wh) Lithium Battery, offering an impressive range of up to 55 miles on a single charge.",
+        "feature_type": "battery"
+      },
+      {
+        "id": 57,
+        "feature_text": "Ride with confidence thanks to comprehensive safety; the Kingbull Literider 2.0 is UL 2849 certified, with UL 2580 certified battery cells and a UL-certified charger.",
+        "feature_type": "ul_certification"
+      },
+      {
+        "id": 58,
+        "feature_text": "Enjoy peace of mind with Kingbull's generous 2-Year warranty, ensuring long-term support and coverage for your Literider 2.0.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 59,
+        "feature_text": "Benefit from convenient and rapid delivery with Kingbull's free shipping, dispatching from our U.S. warehouse within just 2 business days.",
+        "feature_type": "shipping"
+      },
+      {
+        "id": 60,
+        "feature_text": "The Kingbull Literider 2.0 operates as a Class 2 ebike by default with a 20 MPH throttle-only speed, adjustable to Class 3 for pedal-assist speeds of 28 MPH.",
+        "feature_type": "ebike_class"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 402,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/2_5ee208e5-f36b-4a6a-b510-82f9d561f3c5.webp?v=1767076718&width=1080",
+        "role_tag": "primary"
+      },
+      {
+        "id": 403,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/Literider_2.0-25-04-25-v12.jpg?v=1767092939&width=1080",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 404,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/Literider_2.0-25-06-26-v3_33b68f62-a2b1-45d8-8874-9f0388f03178.jpg?v=1767092939&width=1080",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 405,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/Literider_2.0-25-04-25-v21_8f7beeea-443f-427c-93ed-d5dc9b536d63.jpg?v=1767092939&width=1080",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 406,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/Literider_2.0-Green.jpg?v=1767092939&width=1080",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 407,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/Literider_2.0-25-08-06-v1.webp?v=1767092939&width=1080",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 408,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/Literider_2.0-25-04-25-v11.jpg?v=1767092939&width=1080",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 409,
+        "url": "https://www.kingbullbike.com/cdn/shop/files/Literider_2.0-25-04-25-v1_f1779676-3eb9-47ab-8de8-26ce4a194770.jpg?v=1767092939&width=1080",
+        "role_tag": "secondary"
+      }
+    ],
+    "specifications": {
+      "motor_details": "Custom Bafang 750W brushless hub motor with 80Nm of torque.",
+      "battery_details": "48V/720Wh (15Ah) Lithium Battery with 18650 cells, offering up to 55 miles max range.",
+      "drivetrain_details": "SHIMANO SL-TX50-7R 7-speed shifter, SHIMANO RD-TY21B 7-speed rear derailleur, SHIMANO MF-TZ500 14-28T 7-speed cassette, KMC Z7 7-speed chain.",
+      "braking_details": "LD-D300 hydraulic disc brakes with 2-pistons and 180mm discs (front and rear), featuring power-off brake levers.",
+      "weight_details": "71 lbs total weight, 400 lbs max payload capacity, 150 lbs rear rack load limit.",
+      "ebike_classification": "Class 2 (default), adjustable to Class 3.",
+      "product_type": "N/A",
+      "package_type": "N/A"
+    },
+    "metadata": {
+      "source_table": "products",
+      "synchronized_at": "2026-06-14T09:04:35.481402",
+      "created_at": "2026-06-07T14:23:05.776154",
+      "updated_at": "2026-06-07T14:23:05.776154"
+    }
+  },
+  {
+    "id": "1780949022",
+    "brand": "Rockbros",
+    "product_name": "Anti-theft Alloy Lock with Mounting Bracket",
+    "category": "accessories",
+    "sub_category": "Chain Lock",
+    "original_url": "https://rockbrosbike.us/products/rockbros-folding-bike-lock-anti-theft-alloy-lock-with-mounting-bracket",
+    "custom_affiliate_link": "https://rockbrosbike.us/products/rockbros-folding-bike-lock-anti-theft-alloy-lock-with-mounting-bracket?ref=ngaebo",
+    "price": 59.99,
+    "original_price": 59.99,
+    "base_commission": "8%",
+    "cta_label": "View on Rockbros",
+    "image": "https://rockbrosbike.us/cdn/shop/files/ROCKBROS-Folding-Bike-Lock-Anti-theft-Alloy-Lock-with-Mounting-Bracket-Square_1.png?v=1768787431&width=1600",
+    "gallery_images": [
+      "https://rockbrosbike.us/cdn/shop/files/a973fe9c906124725b4a9777e1934729.webp?v=1768551064&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/ROCKBROS-Folding-Bike-Lock-Anti-theft-Alloy-Lock-with-Mounting-Bracket-Square_1.png?v=1768787431&width=1600",
+      "https://rockbrosbike.us/cdn/shop/files/ROCKBROS-Folding-Bike-Lock-Anti-theft-Alloy-Lock-with-Mounting-Bracket-Square_2.jpg?v=1768550684&width=1600",
+      "https://rockbrosbike.us/cdn/shop/files/ROCKBROS-Folding-Bike-Lock-Anti-theft-Alloy-Lock-with-Mounting-Bracket-Square_2.png?v=1768550684&width=1600",
+      "https://rockbrosbike.us/cdn/shop/files/ROCKBROS-Folding-Bike-Lock-Anti-theft-Alloy-Lock-with-Mounting-Bracket-Square_3.jpg?v=1768550684&width=1600"
+    ],
+    "tags": [
+      "bike lock",
+      "anti-theft",
+      "folding lock",
+      "alloy lock",
+      "heavy duty",
+      "bike accessory"
+    ],
+    "description": "Keep your bike safe and secure with the ROCKBROS Folding Bike Lock. Made with heavy duty anti-theft alloy, this lock is designed to withstand any potential thieves. Its compact size and included mounting bracket makes it easy to carry and attach to your bike. Protect your ride with this multi-functional lock.",
+    "notes_snippets": "Free US shipping on orders over $29. US Warehouse in-stock: 3–4 business days delivery. International Shipping: 7–10 business days. 30-day hassle-free return and exchange policy. 2-year worry-free warranty for defects or product issues, contact service@rockbrosbike.us.",
+    "rating": 4.8,
+    "ul_certification": "N/A",
+    "key_features": [
+      {
+        "id": 1,
+        "feature_text": "Constructed with heavy-duty stainless steel and protective ABS rubber, featuring a Finnish anti-drill lock cylinder for superior anti-theft security.",
+        "feature_type": "material"
+      },
+      {
+        "id": 2,
+        "feature_text": "Equipped with a 16-joint foldable design, it dramatically reduces size for easy storage in a pocket or saddle bag, ideal for mountain, road, and folding bikes.",
+        "feature_type": "utility"
+      },
+      {
+        "id": 3,
+        "feature_text": "No specific waterproof rating, designed for robust security and anti-theft functionality.",
+        "feature_type": "waterproof"
+      },
+      {
+        "id": 4,
+        "feature_text": "Comes with a convenient mounting bracket and hex tools for quick and easy installation, ensuring your lock is always with your bike.",
+        "feature_type": "mounting"
+      },
+      {
+        "id": 5,
+        "feature_text": "Backed by a worry-free 2-year product warranty, guaranteeing replacement or full refund for defects or damage within 90 days, with dedicated customer service.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 6,
+        "feature_text": "Enjoy free standard shipping on orders over $29 within the US, with delivery in 3-4 business days from our US warehouse.",
+        "feature_type": "shipping"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 6,
+        "url": "https://rockbrosbike.us/cdn/shop/files/a973fe9c906124725b4a9777e1934729.webp?v=1768551064&width=1500",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 7,
+        "url": "https://rockbrosbike.us/cdn/shop/files/ROCKBROS-Folding-Bike-Lock-Anti-theft-Alloy-Lock-with-Mounting-Bracket-Square_1.png?v=1768787431&width=1600",
+        "role_tag": "primary"
+      },
+      {
+        "id": 8,
+        "url": "https://rockbrosbike.us/cdn/shop/files/ROCKBROS-Folding-Bike-Lock-Anti-theft-Alloy-Lock-with-Mounting-Bracket-Square_2.jpg?v=1768550684&width=1600",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 9,
+        "url": "https://rockbrosbike.us/cdn/shop/files/ROCKBROS-Folding-Bike-Lock-Anti-theft-Alloy-Lock-with-Mounting-Bracket-Square_2.png?v=1768550684&width=1600",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 10,
+        "url": "https://rockbrosbike.us/cdn/shop/files/ROCKBROS-Folding-Bike-Lock-Anti-theft-Alloy-Lock-with-Mounting-Bracket-Square_3.jpg?v=1768550684&width=1600",
+        "role_tag": "auxiliary"
+      }
+    ],
+    "specifications": {
+      "material_details": "Stainless Steel, ABS, Rubber",
+      "size_dimensions": "Item Weight: 507 g, Length: 27.6 in",
+      "waterproof_rating": "Not applicable",
+      "mounting_type": "Mounting bracket",
+      "product_type": "Folding Bike Lock",
+      "package_type": "Safety"
+    },
+    "metadata": {
+      "source_table": "accessories",
+      "synchronized_at": "2026-06-14T09:04:35.490944",
+      "created_at": "2026-06-08T20:25:58.346954",
+      "updated_at": "2026-06-08T20:25:58.346954"
+    }
+  },
+  {
+    "id": "1780951865",
+    "brand": "Rockbros",
+    "product_name": "Heavy Duty Bike Chain Lock",
+    "category": "accessories",
+    "sub_category": "Chain Lock",
+    "original_url": "https://rockbrosbike.us/products/rockbros-3-2ft-heavy-duty-bike-chain-lock-anti-theft-security-lock-resettable-combination-2-keys",
+    "custom_affiliate_link": "https://rockbrosbike.us/products/rockbros-3-2ft-heavy-duty-bike-chain-lock-anti-theft-security-lock-resettable-combination-2-keys?ref=ngaebo",
+    "price": 19.99,
+    "original_price": 19.99,
+    "base_commission": "N/A",
+    "cta_label": "Add to cart",
+    "image": "https://rockbrosbike.us/cdn/shop/files/image_1_9ad53486-4d67-4ef6-9218-022bdfbcdfe7.jpg?v=1762305134&width=1601",
+    "gallery_images": [
+      "https://rockbrosbike.us/cdn/shop/files/image_1_9ad53486-4d67-4ef6-9218-022bdfbcdfe7.jpg?v=1762305134&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/image_2_e4ff03e4-4420-405a-9fbc-e6dcad0d59c4.jpg?v=1725269663&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/image_3_facf90a6-bcab-4d55-9475-6581ff532c3f.jpg?v=1725269663&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/image_4_3a5258af-ef9f-4802-ae2e-a4edb76b2ed9.jpg?v=1725269663&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/image_6_f88c34a6-47ad-43ed-89b3-334c390c2c79.jpg?v=1725269663&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/image_7_9d3b0845-6786-4c03-a343-76055d1f0021.jpg?v=1725269663&width=1601",
+      "https://m.media-amazon.com/images/S/aplus-media-library-service-media/d959f9e8-dfae-4972-bf68-7ed3c2f95d2b.__CR0,0,970,600_PT0_SX970_V1___.jpg"
+    ],
+    "tags": [
+      "Bike Lock",
+      "Chain Lock",
+      "Heavy Duty",
+      "Anti-Theft",
+      "Security Lock",
+      "Resettable Combination",
+      "Key Access",
+      "Bicycle Accessory",
+      "Motorcycle Lock",
+      "ROCKBROS"
+    ],
+    "description": "This ROCKBROS 3.2FT Heavy Duty Bike Chain Lock offers dual unlock options with a 4-digit resettable combination or 2 included keys for high security. Constructed from heavy-duty alloy steel with a zinc alloy lock cylinder and ABS plastic, it's designed to be cut-resistant, rust-proof, and wear-resistant. A protective cloth sleeve prevents scratches to your bike, and its 3.2-foot length is versatile for securing multiple bikes, motorcycles, gates, and other equipment.",
+    "notes_snippets": "Free US shipping on orders over $29. 30-day hassle-free return and exchange policy. 2-year product warranty covers defects or product issues.",
+    "rating": 0.0,
+    "ul_certification": "N/A",
+    "key_features": [
+      {
+        "id": 7,
+        "feature_text": "Crafted from heavy-duty alloy and hardened steel with a zinc alloy cylinder, ensuring superior cut and rust resistance.",
+        "feature_type": "material"
+      },
+      {
+        "id": 8,
+        "feature_text": "Securely protect multiple bikes, motorcycles, gates, or other equipment with the versatile 3.2-foot (96cm) long chain.",
+        "feature_type": "utility"
+      },
+      {
+        "id": 9,
+        "feature_text": "Built with rust-proof components and a protective sleeve for all-weather durability, extending its outdoor lifespan.",
+        "feature_type": "waterproof"
+      },
+      {
+        "id": 10,
+        "feature_text": "Flexible chain design allows for easy wrapping and securing around various fixed objects, providing adaptable and strong anti-theft protection.",
+        "feature_type": "mounting"
+      },
+      {
+        "id": 11,
+        "feature_text": "Comes with a 2-year worry-free product warranty, offering peace of mind and reliable support for any issues.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 12,
+        "feature_text": "Benefit from free standard US shipping on orders over $29, with quick 3-4 business day delivery.",
+        "feature_type": "shipping"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 18,
+        "url": "https://rockbrosbike.us/cdn/shop/files/image_1_9ad53486-4d67-4ef6-9218-022bdfbcdfe7.jpg?v=1762305134&width=1601",
+        "role_tag": "primary"
+      },
+      {
+        "id": 19,
+        "url": "https://rockbrosbike.us/cdn/shop/files/image_2_e4ff03e4-4420-405a-9fbc-e6dcad0d59c4.jpg?v=1725269663&width=1601",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 20,
+        "url": "https://rockbrosbike.us/cdn/shop/files/image_3_facf90a6-bcab-4d55-9475-6581ff532c3f.jpg?v=1725269663&width=1601",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 21,
+        "url": "https://rockbrosbike.us/cdn/shop/files/image_4_3a5258af-ef9f-4802-ae2e-a4edb76b2ed9.jpg?v=1725269663&width=1601",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 22,
+        "url": "https://rockbrosbike.us/cdn/shop/files/image_6_f88c34a6-47ad-43ed-89b3-334c390c2c79.jpg?v=1725269663&width=1601",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 23,
+        "url": "https://rockbrosbike.us/cdn/shop/files/image_7_9d3b0845-6786-4c03-a343-76055d1f0021.jpg?v=1725269663&width=1601",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 24,
+        "url": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/d959f9e8-dfae-4972-bf68-7ed3c2f95d2b.__CR0,0,970,600_PT0_SX970_V1___.jpg",
+        "role_tag": "auxiliary"
+      }
+    ],
+    "specifications": {
+      "material_details": "Heavy-duty alloy steel chain, zinc alloy lock cylinder, hardened steel material, ABS plastic housing, protective cloth sleeve (polyester).",
+      "size_dimensions": "3.2 feet (96cm) length, 0.93lb (420g) weight, 17.19mm diameter chain.",
+      "waterproof_rating": "Not applicable",
+      "mounting_type": "Wrap-around security for frames, wheels, and stationary objects.",
+      "product_type": "Anti-Theft Security Lock Resettable Combination 2 Keys",
+      "package_type": "Safety"
+    },
+    "metadata": {
+      "source_table": "accessories",
+      "synchronized_at": "2026-06-14T09:04:35.492515",
+      "created_at": "2026-06-08T20:59:54.534889",
+      "updated_at": "2026-06-08T20:59:54.534889"
+    }
+  },
+  {
+    "id": "1780952533",
+    "brand": "Rockbros",
+    "product_name": "Adjustable Handlebar Bike Rearview Mirror",
+    "category": "accessories",
+    "sub_category": "Mirrors",
+    "original_url": "https://rockbrosbike.us/products/rockbros-adjustable-handlebar-bike-rearview-mirror-mirror-with-anti-glare-glass",
+    "custom_affiliate_link": "https://rockbrosbike.us/products/rockbros-adjustable-handlebar-bike-rearview-mirror-mirror-with-anti-glare-glass?ref=ngaebo",
+    "price": 24.99,
+    "original_price": 26.99,
+    "base_commission": "Not specified",
+    "cta_label": "Add to cart",
+    "image": "https://rockbrosbike.us/cdn/shop/files/rockbros-adjustable-handlebar-bike-rearview-mirror-mirror-with-anti-glare-glass_9.webp?v=1761618782&width=1500",
+    "gallery_images": [
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-adjustable-handlebar-bike-rearview-mirror-mirror-with-anti-glare-glass_9.webp?v=1761618782&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-adjustable-handlebar-bike-rearview-mirror-mirror-with-anti-glare-glass_8.webp?v=1761618782&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-adjustable-handlebar-bike-rearview-mirror-mirror-with-anti-glare-glass_7.webp?v=1761618782&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-adjustable-handlebar-bike-rearview-mirror-mirror-with-anti-glare-glass_1.webp?v=1761618781&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-adjustable-handlebar-bike-rearview-mirror-mirror-with-anti-glare-glass_2.webp?v=1761618783&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-adjustable-handlebar-bike-rearview-mirror-mirror-with-anti-glare-glass_3.webp?v=1761618781&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-adjustable-handlebar-bike-rearview-mirror-mirror-with-anti-glare-glass_4.webp?v=1761618782&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-adjustable-handlebar-bike-rearview-mirror-mirror-with-anti-glare-glass_6.webp?v=1761618782&width=1500"
+    ],
+    "tags": [
+      "Bike Mirror",
+      "Rearview Mirror",
+      "Handlebar Mirror",
+      "Anti-Glare",
+      "Cycling Safety",
+      "Adjustable",
+      "ROCKBROS"
+    ],
+    "description": "Upgrade your riding visibility with the ROCKBROS Anti-Glare Rearview Mirror, featuring a blue HD convex lens designed to reduce blind spots and resist glare, ensuring a stable and clearer rear view on any terrain.",
+    "notes_snippets": "US Warehouse in-stock delivery in 3-4 business days. International shipping 7-10 business days if US out of stock. 30-day hassle-free return and exchange policy. 2-year product warranty. Free shipping on orders over $29.",
+    "rating": 0.0,
+    "ul_certification": "N/A",
+    "key_features": [
+      {
+        "id": 13,
+        "feature_text": "Lightweight & Corrosion-Resistant Frame: Constructed from durable carbon fiber or nylon for lasting performance against elements.",
+        "feature_type": "material"
+      },
+      {
+        "id": 14,
+        "feature_text": "Wider, Anti-Glare Vision: Blue HD convex lens provides an enlarged field of view while effectively reducing dazzling reflections for safer night riding.",
+        "feature_type": "utility"
+      },
+      {
+        "id": 15,
+        "feature_text": "Robust Weather Resistance: Corrosion-resistant frame materials are designed to maintain integrity and form through wind and rain.",
+        "feature_type": "waterproof"
+      },
+      {
+        "id": 16,
+        "feature_text": "Secure & Universal Fit: Features a stable, adjustable base with an embedded buckle, compatible with 21–31.8mm handlebars on various bike types.",
+        "feature_type": "mounting"
+      },
+      {
+        "id": 17,
+        "feature_text": "Comprehensive 2-Year Warranty: Enjoy peace of mind with a worry-free 2-year product warranty covering manufacturing defects and issues.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 18,
+        "feature_text": "Free & Fast US Shipping: Get free shipping on orders over $29, with convenient 3-4 business day delivery from our US warehouse.",
+        "feature_type": "shipping"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 33,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-adjustable-handlebar-bike-rearview-mirror-mirror-with-anti-glare-glass_9.webp?v=1761618782&width=1500",
+        "role_tag": "primary"
+      },
+      {
+        "id": 34,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-adjustable-handlebar-bike-rearview-mirror-mirror-with-anti-glare-glass_8.webp?v=1761618782&width=1500",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 35,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-adjustable-handlebar-bike-rearview-mirror-mirror-with-anti-glare-glass_7.webp?v=1761618782&width=1500",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 36,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-adjustable-handlebar-bike-rearview-mirror-mirror-with-anti-glare-glass_1.webp?v=1761618781&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 37,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-adjustable-handlebar-bike-rearview-mirror-mirror-with-anti-glare-glass_2.webp?v=1761618783&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 38,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-adjustable-handlebar-bike-rearview-mirror-mirror-with-anti-glare-glass_3.webp?v=1761618781&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 39,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-adjustable-handlebar-bike-rearview-mirror-mirror-with-anti-glare-glass_4.webp?v=1761618782&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 40,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-adjustable-handlebar-bike-rearview-mirror-mirror-with-anti-glare-glass_6.webp?v=1761618782&width=1500",
+        "role_tag": "auxiliary"
+      }
+    ],
+    "specifications": {
+      "material_details": "Blue HD convex lens; Chrome-plated glass with a choice of Nylon shell and backplate or Nylon shell and Carbon fiber backplate.",
+      "size_dimensions": "Compatible with handlebar diameters 21–31.8mm. Weight: Nylon Style ≈167g ±5g, Carbon Fiber Style ≈163g ±5g.",
+      "waterproof_rating": "Weather-resistant (frame maintains form through wind and rain, corrosion-resistant).",
+      "mounting_type": "Handlebar mount with adjustable base and embedded buckle for non-slip installation.",
+      "product_type": "Mirror with Anti-Glare Glass",
+      "package_type": "Safety"
+    },
+    "metadata": {
+      "source_table": "accessories",
+      "synchronized_at": "2026-06-14T09:04:35.494627",
+      "created_at": "2026-06-08T21:02:41.166039",
+      "updated_at": "2026-06-08T21:02:41.166039"
+    }
+  },
+  {
+    "id": "1781134055",
+    "brand": "Rockbros",
+    "product_name": "Adjustable Handlebar Bike Mirror",
+    "category": "accessories",
+    "sub_category": "Mirrors",
+    "original_url": "https://rockbrosbike.us/products/rockbros-360-adjustable-handlebar-bike-mirror-with-anti-glare-glass",
+    "custom_affiliate_link": "https://rockbrosbike.us/products/rockbros-360-adjustable-handlebar-bike-mirror-with-anti-glare-glass?ref=ngaebo",
+    "price": 27.99,
+    "original_price": 27.99,
+    "base_commission": "Not specified",
+    "cta_label": "Add to cart",
+    "image": "https://rockbrosbike.us/cdn/shop/files/black-left-01.jpg?v=1762304669&width=1601",
+    "gallery_images": [
+      "https://rockbrosbike.us/cdn/shop/files/black-left-01.jpg?v=1762304669&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/black-right-01.jpg?v=1722156697&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/black-leftandright-01.jpg?v=1722156657&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/black-leftandright-06.jpg?v=1722156657&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/black-right-06_14037df5-379e-4af9-9c83-c1c479a46b6e.jpg?v=1722156702&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/black-left-06_4b21c1cb-2dc8-4b68-ad42-421466b61102.jpg?v=1722156739&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/black-leftandright-02.jpg?v=1722156657&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/black-leftandright-03.jpg?v=1722156657&width=1601"
+    ],
+    "tags": [
+      "Bike Mirror",
+      "Handlebar Mirror",
+      "Cycling Accessory",
+      "Anti-Glare Glass",
+      "Adjustable Mirror",
+      "Rear View Mirror",
+      "Bike Safety",
+      "ROCKBROS"
+    ],
+    "description": "This ROCKBROS handlebar bike mirror offers a clear, glare-free, and scratch-resistant view with its HD anti-glare glass. It features a 360-degree rotation for a wide field of view and retractable adjustment (0-50mm) for enhanced safety. The durable nylon base ensures stable installation on handlebars with diameters between 21-24mm.",
+    "notes_snippets": "We offer standard shipping with a $4.99 fee for orders under $29, and free shipping for orders $29 and over, typically delivered in 3-4 business days within the US. International shipping is 7-10 business days if US is out of stock. We provide a 30-day hassle-free return and exchange policy from the receipt date for unworn, unused items with tags and original packaging. Defective items have return shipping covered; customer pays for preference returns. A 2-year warranty covers defects and product issues, contact service@rockbrosbike.us.",
+    "rating": 0.0,
+    "ul_certification": "N/A",
+    "key_features": [
+      {
+        "id": 19,
+        "feature_text": "Constructed with HD anti-glare, scratch-resistant glass for clear, durable visibility.",
+        "feature_type": "material"
+      },
+      {
+        "id": 20,
+        "feature_text": "Enjoy a wide field of view and enhanced safety with 360-degree rotation and retractable length adjustment (0-50mm).",
+        "feature_type": "utility"
+      },
+      {
+        "id": 21,
+        "feature_text": "Designed for everyday use, this mirror is not specifically rated as waterproof, focusing on clear visibility in various conditions.",
+        "feature_type": "waterproof"
+      },
+      {
+        "id": 22,
+        "feature_text": "Securely attaches to handlebars (21-24mm diameter) with a durable nylon base for stable installation.",
+        "feature_type": "mounting"
+      },
+      {
+        "id": 23,
+        "feature_text": "Backed by a comprehensive 2-year product warranty for peace of mind and satisfaction.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 24,
+        "feature_text": "Eligible for free US standard shipping on orders over $29, delivered in 3-4 business days.",
+        "feature_type": "shipping"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 229,
+        "url": "https://rockbrosbike.us/cdn/shop/files/black-left-01.jpg?v=1762304669&width=1601",
+        "role_tag": "primary"
+      },
+      {
+        "id": 230,
+        "url": "https://rockbrosbike.us/cdn/shop/files/black-right-01.jpg?v=1722156697&width=1601",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 231,
+        "url": "https://rockbrosbike.us/cdn/shop/files/black-leftandright-01.jpg?v=1722156657&width=1601",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 232,
+        "url": "https://rockbrosbike.us/cdn/shop/files/black-leftandright-06.jpg?v=1722156657&width=1601",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 233,
+        "url": "https://rockbrosbike.us/cdn/shop/files/black-right-06_14037df5-379e-4af9-9c83-c1c479a46b6e.jpg?v=1722156702&width=1601",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 234,
+        "url": "https://rockbrosbike.us/cdn/shop/files/black-left-06_4b21c1cb-2dc8-4b68-ad42-421466b61102.jpg?v=1722156739&width=1601",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 235,
+        "url": "https://rockbrosbike.us/cdn/shop/files/black-leftandright-02.jpg?v=1722156657&width=1601",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 236,
+        "url": "https://rockbrosbike.us/cdn/shop/files/black-leftandright-03.jpg?v=1722156657&width=1601",
+        "role_tag": "auxiliary"
+      }
+    ],
+    "specifications": {
+      "material_details": "HD Anti-Glare Mirror (glass), Durable nylon base",
+      "size_dimensions": "Retractable Adjustment: Customizable length (0-50mm), fits 21-24mm handlebars",
+      "waterproof_rating": "Not applicable",
+      "mounting_type": "Handlebar mount with durable nylon base, fits 21-24mm handlebars",
+      "product_type": "360° with Anti-Glare Glass",
+      "package_type": "Safety"
+    },
+    "metadata": {
+      "source_table": "accessories",
+      "synchronized_at": "2026-06-14T09:04:35.496228",
+      "created_at": "2026-06-10T23:28:17.171194",
+      "updated_at": "2026-06-10T23:28:17.171194"
+    }
+  },
+  {
+    "id": "1781134151",
+    "brand": "Rockbros",
+    "product_name": "Adjustable MTB Mud Guards",
+    "category": "accessories",
+    "sub_category": "Fenders",
+    "original_url": "https://rockbrosbike.us/products/rockbros-bike-set-adjustable-fender-front-rear-rockbros-bicycle-mtb-mud-guards-cycling-splash-guard-for-mountain-road-city-bike-riding",
+    "custom_affiliate_link": "https://rockbrosbike.us/products/rockbros-bike-set-adjustable-fender-front-rear-rockbros-bicycle-mtb-mud-guards-cycling-splash-guard-for-mountain-road-city-bike-riding?ref=ngaebo",
+    "price": 26.99,
+    "original_price": 26.99,
+    "base_commission": "Not specified; refer to affiliate program terms.",
+    "cta_label": "Add to cart",
+    "image": "https://rockbrosbike.us/cdn/shop/files/image_1_f2128dc0-9380-4fef-a623-d69ef70323a1.jpg?v=1762304751&width=1601",
+    "gallery_images": [
+      "https://rockbrosbike.us/cdn/shop/files/image_1_f2128dc0-9380-4fef-a623-d69ef70323a1.jpg?v=1762304751&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/image_2_261a1a49-e5e4-42c4-b71d-4f14ac31bbc9.jpg?v=1722845574&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/image_3_8145b61d-5bbc-42e7-8ec8-30a4740589f4.jpg?v=1722845574&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/image_4_46b26213-c75a-431f-9f7f-97cfada288a6.jpg?v=1722845574&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/image_5_71c95018-e319-42a7-b21d-686203010ea7.jpg?v=1722845574&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/image_6_d68eb71c-c743-4e80-97a9-2b669f54c2ae.jpg?v=1722845574&width=1601",
+      "https://m.media-amazon.com/images/S/aplus-media-library-service-media/fa2c958c-438e-489d-b6b0-52fe84276978.__CR0,0,970,600_PT0_SX970_V1___.jpg",
+      "https://m.media-amazon.com/images/S/aplus-media-library-service-media/8836a45a-3b59-4204-867a-f389ee127101.__CR0,0,970,600_PT0_SX970_V1___.jpg"
+    ],
+    "tags": [
+      "MTB Mudguard",
+      "Bike Fender Set",
+      "Splash Protection",
+      "Adjustable Bicycle Fender",
+      "Road Bike Mudguard",
+      "City Bike Fender",
+      "Polypropylene",
+      "Nylon"
+    ],
+    "description": "ROCKBROS rear bike fender can adjust different angles to provide optimal dirt and water blocking, offering comprehensive protection for you and your bicycle. Suitable for most types of bicycles, including road bikes, MTBs, electric bikes, and city bicycles.",
+    "notes_snippets": "Free US shipping on orders over $29. We offer a 30-day hassle-free return and exchange policy from the date of receipt, provided items are unworn, unused, with tags, and original packaging. A 2-year worry-free warranty covers defects and product issues.",
+    "rating": 0.0,
+    "ul_certification": "N/A",
+    "key_features": [
+      {
+        "id": 30,
+        "feature_text": "Enjoy free US shipping on orders totaling $29 or more (excluding bikes).",
+        "feature_type": "shipping"
+      },
+      {
+        "id": 25,
+        "feature_text": "Constructed from high-strength, flexible polypropylene and nylon for exceptional durability and resistance to breakage.",
+        "feature_type": "material"
+      },
+      {
+        "id": 26,
+        "feature_text": "Widened design provides comprehensive splash protection, keeping your bike and attire clean during rides.",
+        "feature_type": "utility"
+      },
+      {
+        "id": 27,
+        "feature_text": "Designed for effective rain and mud splash diversion, ensuring a cleaner ride in wet conditions.",
+        "feature_type": "waterproof"
+      },
+      {
+        "id": 28,
+        "feature_text": "Features easy, quick installation with adjustable rear fender angles for optimal dirt-blocking and a secure fit.",
+        "feature_type": "mounting"
+      },
+      {
+        "id": 29,
+        "feature_text": "Backed by a comprehensive 2-year product warranty for peace of mind and hassle-free support.",
+        "feature_type": "warranty"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 221,
+        "url": "https://rockbrosbike.us/cdn/shop/files/image_1_f2128dc0-9380-4fef-a623-d69ef70323a1.jpg?v=1762304751&width=1601",
+        "role_tag": "primary"
+      },
+      {
+        "id": 222,
+        "url": "https://rockbrosbike.us/cdn/shop/files/image_2_261a1a49-e5e4-42c4-b71d-4f14ac31bbc9.jpg?v=1722845574&width=1601",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 223,
+        "url": "https://rockbrosbike.us/cdn/shop/files/image_3_8145b61d-5bbc-42e7-8ec8-30a4740589f4.jpg?v=1722845574&width=1601",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 224,
+        "url": "https://rockbrosbike.us/cdn/shop/files/image_4_46b26213-c75a-431f-9f7f-97cfada288a6.jpg?v=1722845574&width=1601",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 225,
+        "url": "https://rockbrosbike.us/cdn/shop/files/image_5_71c95018-e319-42a7-b21d-686203010ea7.jpg?v=1722845574&width=1601",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 226,
+        "url": "https://rockbrosbike.us/cdn/shop/files/image_6_d68eb71c-c743-4e80-97a9-2b669f54c2ae.jpg?v=1722845574&width=1601",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 227,
+        "url": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/fa2c958c-438e-489d-b6b0-52fe84276978.__CR0,0,970,600_PT0_SX970_V1___.jpg",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 228,
+        "url": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/8836a45a-3b59-4204-867a-f389ee127101.__CR0,0,970,600_PT0_SX970_V1___.jpg",
+        "role_tag": "auxiliary"
+      }
+    ],
+    "specifications": {
+      "material_details": "High-strength polypropylene and nylon",
+      "size_dimensions": "Rear fender fits seat posts under 32mm; Front fender fits fork holes between 22-26.4mm.",
+      "waterproof_rating": "Splash-resistant",
+      "mounting_type": "Seat post mount (rear) and fork hole mount (front)",
+      "product_type": "Front & Rear Splash Guard",
+      "package_type": "Comfort"
+    },
+    "metadata": {
+      "source_table": "accessories",
+      "synchronized_at": "2026-06-14T09:04:35.497950",
+      "created_at": "2026-06-10T23:36:28.811892",
+      "updated_at": "2026-06-10T23:36:28.811892"
+    }
+  },
+  {
+    "id": "1781134662",
+    "brand": "Rockbros",
+    "product_name": "Bike Mudguard Road Gravel MTB FK-892",
+    "category": "accessories",
+    "sub_category": "Fenders",
+    "original_url": "https://rockbrosbike.us/products/rockbros-bike-mudguard-road-gravel-mtb",
+    "custom_affiliate_link": "https://rockbrosbike.us/products/rockbros-bike-mudguard-road-gravel-mtb?ref=ngaebo",
+    "price": 32.99,
+    "original_price": 32.99,
+    "base_commission": "N/A",
+    "cta_label": "Add to cart",
+    "image": "https://rockbrosbike.us/cdn/shop/files/rockbros-front-mudguard-durable-pp-material_2.webp?v=1772690495&width=1600",
+    "gallery_images": [
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-front-mudguard-durable-pp-material_2.webp?v=1772690495&width=1600",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-front-mudguard-durable-pp-material_3.webp?v=1772690495&width=1600",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-front-mudguard-durable-pp-material_4.webp?v=1772690496&width=1600",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-front-mudguard-durable-pp-material_5.webp?v=1772690495&width=1600",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-front-mudguard-durable-pp-material_6.webp?v=1772690496&width=1600",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-front-mudguard-durable-pp-material_7.webp?v=1772690495&width=1600",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-front-mudguard-durable-pp-material_8.webp?v=1772690495&width=1600",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-front-mudguard-durable-pp-material_9.webp?v=1772690495&width=1600"
+    ],
+    "tags": [
+      "Bike Mudguard",
+      "Road Bike",
+      "Gravel Bike",
+      "MTB",
+      "Front Mudguard",
+      "Fender",
+      "Bike Accessory",
+      "Splash Protection",
+      "ROCKBROS"
+    ],
+    "description": "This ROCKBROS front mudguard, model FK-892, is designed for road, gravel, and mountain bikes (26-27.5 inch MTB, 700C Road/Gravel). Made from high-strength polypropylene (PP) using integrated injection moulding, it offers exceptional toughness and impact resistance for long-term daily use on rough terrains. It provides extended coverage with a fork plate and an extension panel, helping to keep your face, frame, and drivetrain cleaner during wet and muddy rides. Ideal for commuters, weekend cyclists, and anyone riding in wet or muddy conditions, especially during autumn and winter. The mudguard also features multi-angle adjustment for fine-tuning its position.",
+    "notes_snippets": "Free US shipping on orders $29+. US Warehouse In-stock: 3–4 business days. International Shipping: 7–10 business days. 30-day hassle-free return and exchange policy (unworn, unused, with tags, original packaging, proof of purchase). 2-year worry-free product warranty for defects/issues. EU customers have a 14-day return right. Refunds processed within 10 business days.",
+    "rating": 0.0,
+    "ul_certification": "N/A",
+    "key_features": [
+      {
+        "id": 31,
+        "feature_text": "Constructed from high-strength, impact-resistant PP material for enduring reliability on challenging roads and trails.",
+        "feature_type": "material"
+      },
+      {
+        "id": 32,
+        "feature_text": "Extended coverage and an optional extension panel keep your face, frame, and drivetrain significantly cleaner in wet and muddy conditions.",
+        "feature_type": "utility"
+      },
+      {
+        "id": 33,
+        "feature_text": "Effectively shields against water and mud splash, ensuring a cleaner ride even in the wettest weather.",
+        "feature_type": "waterproof"
+      },
+      {
+        "id": 34,
+        "feature_text": "Secure two-point zip-tie fixing system with dual side supports ensures a stable, rattle-free fit and quick-release installation.",
+        "feature_type": "mounting"
+      },
+      {
+        "id": 35,
+        "feature_text": "Backed by a comprehensive 2-year product warranty for peace of mind against defects and issues.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 36,
+        "feature_text": "Enjoy free standard US shipping on all orders over $29, with deliveries typically within 3-4 business days.",
+        "feature_type": "shipping"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 57,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-front-mudguard-durable-pp-material_2.webp?v=1772690495&width=1600",
+        "role_tag": "primary"
+      },
+      {
+        "id": 58,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-front-mudguard-durable-pp-material_3.webp?v=1772690495&width=1600",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 59,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-front-mudguard-durable-pp-material_4.webp?v=1772690496&width=1600",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 60,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-front-mudguard-durable-pp-material_5.webp?v=1772690495&width=1600",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 61,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-front-mudguard-durable-pp-material_6.webp?v=1772690496&width=1600",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 62,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-front-mudguard-durable-pp-material_7.webp?v=1772690495&width=1600",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 63,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-front-mudguard-durable-pp-material_8.webp?v=1772690495&width=1600",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 64,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-front-mudguard-durable-pp-material_9.webp?v=1772690495&width=1600",
+        "role_tag": "auxiliary"
+      }
+    ],
+    "specifications": {
+      "material_details": "High-strength polypropylene (PP) main body, reinforced with PA and steel support rod for integrated injection moulding, ensuring excellent toughness and impact resistance.",
+      "size_dimensions": "N/A",
+      "waterproof_rating": "Excellent splash and mud protection for wet conditions",
+      "mounting_type": "Dual side supports with a two-point zip-tie fixing system and quick-release buckles. Designed for mounting on round fork tubes only (not compatible with square tubes).",
+      "product_type": "N/A",
+      "package_type": "N/A"
+    },
+    "metadata": {
+      "source_table": "accessories",
+      "synchronized_at": "2026-06-14T09:04:35.499664",
+      "created_at": "2026-06-10T23:40:11.846946",
+      "updated_at": "2026-06-10T23:40:11.846946"
+    }
+  },
+  {
+    "id": "1781134864",
+    "brand": "Rockbros",
+    "product_name": "4 Bearing MTB Pedals",
+    "category": "accessories",
+    "sub_category": "Pedals",
+    "original_url": "https://rockbrosbike.us/products/rockbros-4-bearings-mountain-mtb-bike-pedals-platform-flat-aluminum-alloy-9-16",
+    "custom_affiliate_link": "https://rockbrosbike.us/products/rockbros-4-bearings-mountain-mtb-bike-pedals-platform-flat-aluminum-alloy-9-16?ref=ngaebo",
+    "price": 34.99,
+    "original_price": 36.99,
+    "base_commission": "Not specified",
+    "cta_label": "Add to cart",
+    "image": "https://rockbrosbike.us/cdn/shop/files/SKU-04-Black_a9cab9a5-ddad-450e-9e3b-7c747300018e.jpg?v=1762304706&width=1601",
+    "gallery_images": [
+      "https://rockbrosbike.us/cdn/shop/files/SKU-04-Black_a9cab9a5-ddad-450e-9e3b-7c747300018e.jpg?v=1762304706&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/SKU-02-Silver_316d28af-25eb-4b7e-bb26-c765fb089bec.jpg?v=1722410559&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/SKU-01-Red_4f261582-178d-4904-827a-de656d7f2099.jpg?v=1722410559&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/SKU-03-Blue_bc023d0b-bfce-49b5-a8b1-903d7c4667c5.jpg?v=1722410559&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/Black-02_0e31e14e-e18b-4244-a02e-7bfac304313b.jpg?v=1722410559&width=1005",
+      "https://rockbrosbike.us/cdn/shop/files/Black-03_988aa032-3c8f-4c87-814c-dff0ad50e9e4.jpg?v=1722410559&width=1005",
+      "https://m.media-amazon.com/images/S/aplus-media-library-service-media/8fffe541-d7b9-4a6d-bc38-d08a4aed5cfa.__CR0,0,600,450_PT0_SX600_V1___.jpg",
+      "https://m.media-amazon.com/images/S/aplus-media-library-service-media/1dbd4060-f78d-4bb3-8196-2ee251e1dff5.__CR0,0,600,450_PT0_SX600_V1___.jpg"
+    ],
+    "tags": [
+      "MTB Pedals",
+      "Mountain Bike Pedals",
+      "Road Bike Pedals",
+      "BMX Pedals",
+      "Urban Bike Pedals",
+      "Flat Pedals",
+      "Aluminum Pedals",
+      "4 Bearing Pedals",
+      "Cycling Accessories",
+      "Bike Parts"
+    ],
+    "description": "These ROCKBROS 4 Bearing MTB Pedals are engineered for a superior cycling experience, featuring 4 advanced lubricated sealed bearings for a remarkably smooth, resistance-free ride without wobbling or endplay. The large flat platform combined with an anti-skid nail design ensures exceptional traction and stability across all riding conditions. Constructed from lightweight yet robust aluminum alloy, these pedals weigh just 0.82 pounds, offering an optimal balance of strength and agility. Installation is straightforward with clear 'L' and 'R' markings, and their standard 9/16\" spindle ensures universal compatibility with mountain bikes, road bikes, BMX, and urban bikes. Designed to be waterproof, they also boast a stylish aesthetic with various color options.",
+    "notes_snippets": "Free US shipping on orders $29 and over, with delivery in 3-4 business days from the US warehouse. International shipping available if US is out of stock (7-10 business days). Bicycle shipping has separate fees and longer delivery times. Enjoy a 30-day hassle-free return and exchange policy from the receipt date; products must be unworn, unused, with tags and original packaging. Defective items have covered return shipping, while personal preference returns are customer-paid. Inspect order within 72 hours. A 2-year product warranty is included, contact service@rockbrosbike.us for defects or issues.",
+    "rating": 0.0,
+    "ul_certification": "N/A",
+    "key_features": [
+      {
+        "id": 37,
+        "feature_text": "Lightweight and Durable: Crafted from robust aluminum alloy, these pedals weigh only 0.82 pounds, striking the perfect balance between strength and lightness for enhanced performance.",
+        "feature_type": "material"
+      },
+      {
+        "id": 38,
+        "feature_text": "Smooth Ride: Engineered with 4 advanced sealed bearings, these pedals deliver a consistently smooth, resistance-free ride, eliminating wobble and endplay for superior cycling efficiency.",
+        "feature_type": "utility"
+      },
+      {
+        "id": 39,
+        "feature_text": "Weather-Resistant Design: Equipped with 4 sealed bearings, these pedals effectively protect the spindle from water and dust, ensuring consistent performance and extended durability in all conditions.",
+        "feature_type": "waterproof"
+      },
+      {
+        "id": 40,
+        "feature_text": "Easy Installation & Universal Fit: Clearly marked 'L' for left and 'R' for right, these pedals feature a standard 9/16\" spindle, guaranteeing quick, hassle-free installation and broad compatibility with most bikes.",
+        "feature_type": "mounting"
+      },
+      {
+        "id": 41,
+        "feature_text": "Comprehensive 2-Year Warranty: Ride with confidence, knowing your pedals are backed by a worry-free 2-year product warranty, ensuring support against defects and issues.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 42,
+        "feature_text": "Free US Shipping: Benefit from complimentary standard shipping within the US on all orders totaling $29 or more, delivered swiftly within 3-4 business days.",
+        "feature_type": "shipping"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 65,
+        "url": "https://rockbrosbike.us/cdn/shop/files/SKU-04-Black_a9cab9a5-ddad-450e-9e3b-7c747300018e.jpg?v=1762304706&width=1601",
+        "role_tag": "primary"
+      },
+      {
+        "id": 66,
+        "url": "https://rockbrosbike.us/cdn/shop/files/SKU-02-Silver_316d28af-25eb-4b7e-bb26-c765fb089bec.jpg?v=1722410559&width=1601",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 67,
+        "url": "https://rockbrosbike.us/cdn/shop/files/SKU-01-Red_4f261582-178d-4904-827a-de656d7f2099.jpg?v=1722410559&width=1601",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 68,
+        "url": "https://rockbrosbike.us/cdn/shop/files/SKU-03-Blue_bc023d0b-bfce-49b5-a8b1-903d7c4667c5.jpg?v=1722410559&width=1601",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 69,
+        "url": "https://rockbrosbike.us/cdn/shop/files/Black-02_0e31e14e-e18b-4244-a02e-7bfac304313b.jpg?v=1722410559&width=1005",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 70,
+        "url": "https://rockbrosbike.us/cdn/shop/files/Black-03_988aa032-3c8f-4c87-814c-dff0ad50e9e4.jpg?v=1722410559&width=1005",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 71,
+        "url": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/8fffe541-d7b9-4a6d-bc38-d08a4aed5cfa.__CR0,0,600,450_PT0_SX600_V1___.jpg",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 72,
+        "url": "https://m.media-amazon.com/images/S/aplus-media-library-service-media/1dbd4060-f78d-4bb3-8196-2ee251e1dff5.__CR0,0,600,450_PT0_SX600_V1___.jpg",
+        "role_tag": "auxiliary"
+      }
+    ],
+    "specifications": {
+      "material_details": "Aluminum alloy",
+      "size_dimensions": "3.74\"L x 3.38\"W",
+      "waterproof_rating": "Waterproof",
+      "mounting_type": "9/16\" spindle",
+      "product_type": "N/A",
+      "package_type": "N/A"
+    },
+    "metadata": {
+      "source_table": "accessories",
+      "synchronized_at": "2026-06-14T09:04:35.501241",
+      "created_at": "2026-06-10T23:42:10.223807",
+      "updated_at": "2026-06-10T23:42:10.223807"
+    }
+  },
+  {
+    "id": "1781134981",
+    "brand": "Rockbros",
+    "product_name": "Lightweight Bike Pedals",
+    "category": "accessories",
+    "sub_category": "Pedals",
+    "original_url": "https://rockbrosbike.us/products/rockbros-bike-pedals-lightweight-aluminum-platform-9-16-sealed-bearing",
+    "custom_affiliate_link": "https://rockbrosbike.us/products/rockbros-bike-pedals-lightweight-aluminum-platform-9-16-sealed-bearing?ref=ngaebo",
+    "price": 26.99,
+    "original_price": 37.99,
+    "base_commission": "N/A",
+    "cta_label": "Add to cart",
+    "image": "https://rockbrosbike.us/cdn/shop/files/1_7fe85408-fb58-4c15-b6a7-ee78cf8fa6b3.jpg?v=1762304673&width=800",
+    "gallery_images": [
+      "https://rockbrosbike.us/cdn/shop/files/1_7fe85408-fb58-4c15-b6a7-ee78cf8fa6b3.jpg?v=1762304673&width=800",
+      "https://rockbrosbike.us/cdn/shop/files/2_f45ff3b7-62af-40c9-8202-d73fb37cf00d.jpg?v=1722222657&width=800",
+      "https://rockbrosbike.us/cdn/shop/files/3_735826b3-87c0-41c9-b513-b9b4b917b6c6.jpg?v=1722222656&width=800",
+      "https://rockbrosbike.us/cdn/shop/files/4_9ffc963e-6787-4283-bf1a-030613b16a4b.jpg?v=1722222656&width=800",
+      "https://rockbrosbike.us/cdn/shop/files/5_869e916f-2f03-493a-82ef-711f8506efa1.jpg?v=1722222656&width=800",
+      "https://rockbrosbike.us/cdn/shop/files/71LDzmA2I8L._AC_SL1200.jpg?v=1770196250&width=1200",
+      "https://rockbrosbike.us/cdn/shop/files/61z92MjvrXL._AC_SL1005.jpg?v=1770196250&width=920",
+      "https://rockbrosbike.us/cdn/shop/files/715Icq_vn_S._AC_SL1500.jpg?v=1770196250&width=1342"
+    ],
+    "tags": [
+      "Bike Pedals",
+      "Lightweight",
+      "Aluminum Platform",
+      "Sealed Bearing",
+      "MTB",
+      "BMX",
+      "Road Bike",
+      "City Bike"
+    ],
+    "description": "The Lightweight Bike Pedals, weighing only 302g (0.66lbs), are crafted from CNC aluminum alloy for exceptional durability on rough terrains. They feature chrome-molybdenum steel spindles with carbon fiber bushings for smooth, noise-free rotation and superior load-bearing. The wide 101mm platform, equipped with anti-skid spikes, ensures maximum grip and stability, suitable for US shoe sizes up to 12. Designed with a standard 9/16” thread, these pedals seamlessly fit most bike types including MTB, BMX, road, and city bikes. Sealed bearings protect the spindles from water and dust, ensuring longevity and reliable performance.",
+    "notes_snippets": "Free US shipping on orders over $29, with delivery in 3-4 business days from the US warehouse. International shipping is 7-10 business days if US is out of stock. Enjoy a 30-day hassle-free return and exchange policy. All products come with a 2-year worry-free product warranty against defects or issues.",
+    "rating": 0.0,
+    "ul_certification": "N/A",
+    "key_features": [
+      {
+        "id": 43,
+        "feature_text": "Crafted from CNC aluminum alloy for exceptional lightweight durability, engineered to withstand rough terrains.",
+        "feature_type": "material"
+      },
+      {
+        "id": 44,
+        "feature_text": "Features a 101mm wide platform with anti-skid spikes, providing superior grip and stability for all riders, accommodating US shoe sizes up to 12.",
+        "feature_type": "utility"
+      },
+      {
+        "id": 45,
+        "feature_text": "Equipped with sealed bearings that effectively protect the spindles from water and dust, ensuring smooth and consistent performance in various conditions.",
+        "feature_type": "waterproof"
+      },
+      {
+        "id": 46,
+        "feature_text": "Designed with a standard 9/16” thread, these pedals ensure seamless compatibility and secure attachment to most bikes, with distinct 'L' and 'R' markings for effortless installation.",
+        "feature_type": "mounting"
+      },
+      {
+        "id": 47,
+        "feature_text": "Backed by a worry-free 2-year product warranty for defects, plus a lifetime warranty and full money-back guarantee for complete customer satisfaction.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 48,
+        "feature_text": "Enjoy free US shipping on orders over $29, with a fast delivery time of 3-4 business days from our US warehouse.",
+        "feature_type": "shipping"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 73,
+        "url": "https://rockbrosbike.us/cdn/shop/files/1_7fe85408-fb58-4c15-b6a7-ee78cf8fa6b3.jpg?v=1762304673&width=800",
+        "role_tag": "primary"
+      },
+      {
+        "id": 74,
+        "url": "https://rockbrosbike.us/cdn/shop/files/2_f45ff3b7-62af-40c9-8202-d73fb37cf00d.jpg?v=1722222657&width=800",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 75,
+        "url": "https://rockbrosbike.us/cdn/shop/files/3_735826b3-87c0-41c9-b513-b9b4b917b6c6.jpg?v=1722222656&width=800",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 76,
+        "url": "https://rockbrosbike.us/cdn/shop/files/4_9ffc963e-6787-4283-bf1a-030613b16a4b.jpg?v=1722222656&width=800",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 77,
+        "url": "https://rockbrosbike.us/cdn/shop/files/5_869e916f-2f03-493a-82ef-711f8506efa1.jpg?v=1722222656&width=800",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 78,
+        "url": "https://rockbrosbike.us/cdn/shop/files/71LDzmA2I8L._AC_SL1200.jpg?v=1770196250&width=1200",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 79,
+        "url": "https://rockbrosbike.us/cdn/shop/files/61z92MjvrXL._AC_SL1005.jpg?v=1770196250&width=920",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 80,
+        "url": "https://rockbrosbike.us/cdn/shop/files/715Icq_vn_S._AC_SL1500.jpg?v=1770196250&width=1342",
+        "role_tag": "secondary"
+      }
+    ],
+    "specifications": {
+      "material_details": "CNC aluminum alloy (platform), Chrome-molybdenum steel (spindles), Carbon fiber (bushing), Stainless steel (anti-skid spikes)",
+      "size_dimensions": "Weight: 302g (0.66lbs) per pair or 10.88 ounces; Platform dimensions: 101mm wide (4.7\"L x 3.92\"W).",
+      "waterproof_rating": "Sealed bearings protect spindles from water and dust ingress.",
+      "mounting_type": "Standard 9/16 inch screw thread; clearly marked 'L' for left and 'R' for right pedal for user-friendly installation.",
+      "product_type": "N/A",
+      "package_type": "N/A"
+    },
+    "metadata": {
+      "source_table": "accessories",
+      "synchronized_at": "2026-06-14T09:04:35.503383",
+      "created_at": "2026-06-10T23:43:39.623625",
+      "updated_at": "2026-06-10T23:43:39.623625"
+    }
+  },
+  {
+    "id": "1781135124",
+    "brand": "Rockbros",
+    "product_name": "Memory Foam Bike Saddle",
+    "category": "accessories",
+    "sub_category": "Saddles",
+    "original_url": "https://rockbrosbike.us/products/bike-seat-memory-foam-bike-saddle-comfortable-waterproof-for-leisure",
+    "custom_affiliate_link": "https://rockbrosbike.us/products/bike-seat-memory-foam-bike-saddle-comfortable-waterproof-for-leisure?_pos=48&_sid=5ea77dc5b&_ss=r&ref=ngaebo",
+    "price": 27.99,
+    "original_price": 36.99,
+    "base_commission": "N/A",
+    "cta_label": "Add to cart",
+    "image": "https://rockbrosbike.us/cdn/shop/files/seat_037e7a54-7208-4b3d-84bc-d8d767211f7e.webp?v=1765431540&width=413",
+    "gallery_images": [
+      "https://rockbrosbike.us/cdn/shop/files/1_0c68aa90-28d9-4451-8621-fcffd8a90616.jpg?v=1759822279&width=800",
+      "https://rockbrosbike.us/cdn/shop/files/seat_037e7a54-7208-4b3d-84bc-d8d767211f7e.webp?v=1765431540&width=413",
+      "https://rockbrosbike.us/cdn/shop/files/2_cc3a3518-78a0-4791-9fc2-5dd33b772e41.jpg?v=1765431540&width=800",
+      "https://rockbrosbike.us/cdn/shop/files/3_fe52ea4b-31b3-4294-afd1-629936e53a07.jpg?v=1765431540&width=800",
+      "https://rockbrosbike.us/cdn/shop/files/4_89d90384-fb72-456f-8a19-450a717ddf88.jpg?v=1765431540&width=800",
+      "https://rockbrosbike.us/cdn/shop/files/5_40cd90f9-d052-41dc-949e-7976caefc9b7.jpg?v=1765431540&width=800",
+      "https://rockbrosbike.us/cdn/shop/files/6_23a021ca-3e56-433a-abdf-1824d0a73079.jpg?v=1765431540&width=800"
+    ],
+    "tags": [
+      "Bike Seat",
+      "Memory Foam",
+      "Bike Saddle",
+      "Comfortable",
+      "Waterproof",
+      "Leisure",
+      "Cycling",
+      "Accessories",
+      "Bike Parts"
+    ],
+    "description": "This ROCKBROS bike seat offers superior comfort for leisure rides with its memory foam padding. Designed to be waterproof, it provides a hassle-free experience in various weather conditions. Its ergonomic design caters to different riding styles including casual, off-road, and competition models, ensuring a comfortable and supportive ride for any cyclist.",
+    "notes_snippets": "Free US shipping $29+. Shipping for orders below $29 is $4.99, delivery in 3-4 business days. International shipping 7-10 business days if US is out of stock. 30-day hassle-free return and exchange policy from date of receipt. Items must be unworn, unused, with tags, in original packaging, and with proof of purchase. We cover return shipping for defective/damaged items; customer pays for preference returns. EU customers have 14-day no-questions-asked return right. 2-year product warranty covers defects or product issues; contact service@rockbrosbike.us with order details.",
+    "rating": 0.0,
+    "ul_certification": "N/A",
+    "key_features": [
+      {
+        "id": 49,
+        "feature_text": "Experience exceptional comfort with high-density memory foam padding, designed to conform to your body for a plush ride.",
+        "feature_type": "material"
+      },
+      {
+        "id": 50,
+        "feature_text": "Versatile design supports various riding styles including casual, off-road, and competition models, enhancing every journey.",
+        "feature_type": "utility"
+      },
+      {
+        "id": 51,
+        "feature_text": "Stay dry and comfortable in any weather with the durable, waterproof exterior, ensuring longevity and easy cleaning.",
+        "feature_type": "waterproof"
+      },
+      {
+        "id": 52,
+        "feature_text": "Secure and stable mounting system ensures the saddle stays firmly in place, compatible with standard bike seat posts.",
+        "feature_type": "mounting"
+      },
+      {
+        "id": 53,
+        "feature_text": "Enjoy peace of mind with a comprehensive 2-year product warranty against defects and issues.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 54,
+        "feature_text": "Benefit from free US shipping on orders over $29, with standard delivery in 3-4 business days.",
+        "feature_type": "shipping"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 214,
+        "url": "https://rockbrosbike.us/cdn/shop/files/1_0c68aa90-28d9-4451-8621-fcffd8a90616.jpg?v=1759822279&width=800",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 215,
+        "url": "https://rockbrosbike.us/cdn/shop/files/seat_037e7a54-7208-4b3d-84bc-d8d767211f7e.webp?v=1765431540&width=413",
+        "role_tag": "primary"
+      },
+      {
+        "id": 216,
+        "url": "https://rockbrosbike.us/cdn/shop/files/2_cc3a3518-78a0-4791-9fc2-5dd33b772e41.jpg?v=1765431540&width=800",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 217,
+        "url": "https://rockbrosbike.us/cdn/shop/files/3_fe52ea4b-31b3-4294-afd1-629936e53a07.jpg?v=1765431540&width=800",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 218,
+        "url": "https://rockbrosbike.us/cdn/shop/files/4_89d90384-fb72-456f-8a19-450a717ddf88.jpg?v=1765431540&width=800",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 219,
+        "url": "https://rockbrosbike.us/cdn/shop/files/5_40cd90f9-d052-41dc-949e-7976caefc9b7.jpg?v=1765431540&width=800",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 220,
+        "url": "https://rockbrosbike.us/cdn/shop/files/6_23a021ca-3e56-433a-abdf-1824d0a73079.jpg?v=1765431540&width=800",
+        "role_tag": "auxiliary"
+      }
+    ],
+    "specifications": {
+      "material_details": "Memory foam padding, waterproof exterior.",
+      "size_dimensions": "Size: 23 × 7 × 26 cm. Weight: 706 g.",
+      "waterproof_rating": "Waterproof",
+      "mounting_type": "Standard rail mounting for bike seat posts.",
+      "product_type": "Comfortable Waterproof for Leisure",
+      "package_type": "Comfort"
+    },
+    "metadata": {
+      "source_table": "accessories",
+      "synchronized_at": "2026-06-14T09:04:35.504998",
+      "created_at": "2026-06-10T23:46:33.517596",
+      "updated_at": "2026-06-10T23:46:33.517596"
+    }
+  },
+  {
+    "id": "1781135255",
+    "brand": "Rockbros",
+    "product_name": "Bike Saddle Bag with Brake Sensor Tail Light",
+    "category": "accessories",
+    "sub_category": "Bags",
+    "original_url": "https://rockbrosbike.us/products/rockbros-bike-saddle-bag-waterproof-with-brake-sensor-tail-light",
+    "custom_affiliate_link": "https://rockbrosbike.us/products/rockbros-bike-saddle-bag-waterproof-with-brake-sensor-tail-light?_pos=29&_sid=5ea77dc5b&_ss=r&ref=ngaebo",
+    "price": 46.99,
+    "original_price": 46.99,
+    "base_commission": "Not specified",
+    "cta_label": "Add to cart",
+    "image": "https://rockbrosbike.us/cdn/shop/files/rockbros-bike-saddle-bag-waterproof-with-brake-sensor-tail-light_2.jpg?v=1762310491&width=1500",
+    "gallery_images": [
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-bike-saddle-bag-waterproof-with-brake-sensor-tail-light_2.jpg?v=1762310491&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-bike-saddle-bag-waterproof-with-brake-sensor-tail-light_1.jpg?v=1749535324&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-bike-saddle-bag-waterproof-with-brake-sensor-tail-light_3.jpg?v=1749179400&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-bike-saddle-bag-waterproof-with-brake-sensor-tail-light_13.jpg?v=1749179400&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-bike-saddle-bag-waterproof-with-brake-sensor-tail-light_5.jpg?v=1749179400&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-bike-saddle-bag-waterproof-with-brake-sensor-tail-light_6.jpg?v=1749179400&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-bike-saddle-bag-waterproof-with-brake-sensor-tail-light_7.jpg?v=1749179400&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-bike-saddle-bag-waterproof-with-brake-sensor-tail-light_8.jpg?v=1749179400&width=1500"
+    ],
+    "tags": [
+      "ROCKBROS",
+      "Bike Saddle Bag",
+      "Waterproof",
+      "Brake Sensor",
+      "Tail Light",
+      "Cycling Accessory",
+      "Storage",
+      "Bike Gear"
+    ],
+    "description": "Elevate your cycling adventures with our ROCKBROS Bike Saddle Bag! This cheeky little storage solution isn't just waterproof—it comes with a smart brake sensor tail light that practically shouts \"Hey, I'm stopping!\" to everyone behind you. Perfect for those who want to keep their gear dry and their presence known on the road. Safety never looked so fun!",
+    "notes_snippets": "Free US shipping on orders over $29. 30-day hassle-free return and exchange policy. 2-year product warranty for defects or product issues. Inspect order within 72 hours.",
+    "rating": 0.0,
+    "ul_certification": "N/A",
+    "key_features": [
+      {
+        "id": 55,
+        "feature_text": "Constructed with a robust build and abrasion-resistant surface, ensuring the bag maintains its shape and resists deformation under pressure.",
+        "feature_type": "material"
+      },
+      {
+        "id": 56,
+        "feature_text": "Features a practical 0.66-litre volume and wide opening for easy access, ideal for carrying everyday essentials on commutes or short rides.",
+        "feature_type": "utility"
+      },
+      {
+        "id": 57,
+        "feature_text": "Utilizes waterproof 600D polyester laminated with TPU and high-frequency welding technology for superior protection against rain and road spray.",
+        "feature_type": "waterproof"
+      },
+      {
+        "id": 58,
+        "feature_text": "Equipped with a secure two-point mounting system, combining a bracket with straps for a stable, wobble-free fit on any terrain.",
+        "feature_type": "mounting"
+      },
+      {
+        "id": 59,
+        "feature_text": "Backed by a worry-free 2-year product warranty, ensuring peace of mind against defects and product issues.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 60,
+        "feature_text": "Enjoy free US shipping on orders over $29, with standard delivery taking 3-4 business days.",
+        "feature_type": "shipping"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 206,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-bike-saddle-bag-waterproof-with-brake-sensor-tail-light_2.jpg?v=1762310491&width=1500",
+        "role_tag": "primary"
+      },
+      {
+        "id": 207,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-bike-saddle-bag-waterproof-with-brake-sensor-tail-light_1.jpg?v=1749535324&width=1500",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 208,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-bike-saddle-bag-waterproof-with-brake-sensor-tail-light_3.jpg?v=1749179400&width=1500",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 209,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-bike-saddle-bag-waterproof-with-brake-sensor-tail-light_13.jpg?v=1749179400&width=1500",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 210,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-bike-saddle-bag-waterproof-with-brake-sensor-tail-light_5.jpg?v=1749179400&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 211,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-bike-saddle-bag-waterproof-with-brake-sensor-tail-light_6.jpg?v=1749179400&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 212,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-bike-saddle-bag-waterproof-with-brake-sensor-tail-light_7.jpg?v=1749179400&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 213,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-bike-saddle-bag-waterproof-with-brake-sensor-tail-light_8.jpg?v=1749179400&width=1500",
+        "role_tag": "auxiliary"
+      }
+    ],
+    "specifications": {
+      "material_details": "Bag: 600D Double-Sided Black TPU-Coated Nylon Frame; Tail Light: ABS+PC Reinforced Polymer",
+      "size_dimensions": "Bag Capacity: 0.66L (Compact Storage for Essentials), Bag Dimensions: 18x8x8cm",
+      "waterproof_rating": "Fully Waterproof Construction",
+      "mounting_type": "Dual-Mount System: Bracket and Strap Fixation",
+      "product_type": "Waterproof Saddle Bag",
+      "package_type": "Cargo"
+    },
+    "metadata": {
+      "source_table": "accessories",
+      "synchronized_at": "2026-06-14T09:04:35.506617",
+      "created_at": "2026-06-10T23:48:07.015534",
+      "updated_at": "2026-06-10T23:48:07.015534"
+    }
+  },
+  {
+    "id": "1781135644",
+    "brand": "Rockbros",
+    "product_name": "Comfort Bike Saddle with Shock Absorption",
+    "category": "accessories",
+    "sub_category": "Saddles",
+    "original_url": "https://rockbrosbike.us/products/bicycle-saddle-with-shock-absorbing-thickened-and-widened-design",
+    "custom_affiliate_link": "https://rockbrosbike.us/products/bicycle-saddle-with-shock-absorbing-thickened-and-widened-design?_pos=26&_sid=5ea77dc5b&_ss=r&ref=ngaebo",
+    "price": 22.99,
+    "original_price": 28.99,
+    "base_commission": "N/A",
+    "cta_label": "Add to cart",
+    "image": "https://rockbrosbike.us/cdn/shop/files/Hdde76e945f494b3dbea454ba74e85b685.jpg?v=1762153686&width=1500",
+    "gallery_images": [
+      "https://rockbrosbike.us/cdn/shop/files/He2b15dc7ee364bada628074e4972c282g_1.jpg?v=1762153686&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/Hdde76e945f494b3dbea454ba74e85b685.jpg?v=1762153686&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/H0c16d127eb324ac4aefd9190d8cb3c5cH.jpg?v=1762153686&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/H35c3f253a7b249129f1a4e32ecb8177e8.jpg?v=1762153686&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/H23968e19c2754983a46c8ceacb9991b3U.jpg?v=1762153686&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/H95dc3429799e4650990f44de5116e7680.jpg?v=1762153686&width=1500",
+      "https://cdn.shopify.com/s/files/1/0580/9117/5988/files/1_01_88c77df7-1f7e-4bda-8330-5cca890e95ee.webp?v=1762411811",
+      "https://cdn.shopify.com/s/files/1/0580/9117/5988/files/1_02_bcbd40c8-fcf1-4ea2-8460-e2dc1161e424.webp?v=1762411811"
+    ],
+    "tags": [
+      "Mountain Bikes",
+      "Bike Saddle",
+      "Shock Absorption",
+      "Comfort",
+      "Cycling Accessory",
+      "Bike Part"
+    ],
+    "description": "Ride longer, smoother, and more comfortably with this ergonomically designed bike saddle. Crafted from PU eco-friendly leather, it’s waterproof, dirt-resistant, and easy to clean — just wipe and go. The high-density polyurethane foam conforms to your body, absorbing road shocks and relieving pressure for an all-day comfortable ride. Featuring a double-layer shock-absorbing ball system (35° + 45°), it delivers enhanced cushioning and stability on rough terrain. The bow-shaped seat rail ensures strong support and lasting durability, while the vacuum molding process keeps the foam and shell tightly bonded for a seamless finish. The streamlined design reduces wind resistance, with a narrow front and wide rear to minimize leg friction and evenly distribute pressure. Add a rear taillight (sold separately) for safer night rides.",
+    "notes_snippets": "Free US shipping on orders $29 and over; otherwise, a $4.99 fee applies. We offer a 30-day hassle-free return and exchange policy for unworn, unused items with tags and original packaging. Enjoy a worry-free 2-year product warranty covering defects and product issues.",
+    "rating": 0.0,
+    "ul_certification": "N/A",
+    "key_features": [
+      {
+        "id": 61,
+        "feature_text": "Constructed with durable PU eco-friendly leather for long-lasting, easy-to-clean performance.",
+        "feature_type": "material"
+      },
+      {
+        "id": 62,
+        "feature_text": "High-density foam and ergonomic streamlined design provide ultimate comfort, absorbing shocks and reducing pressure for long rides.",
+        "feature_type": "utility"
+      },
+      {
+        "id": 63,
+        "feature_text": "Waterproof and dirt-resistant PU eco-friendly leather ensures easy cleaning and durability in all weather conditions.",
+        "feature_type": "waterproof"
+      },
+      {
+        "id": 64,
+        "feature_text": "Features a bow-shaped rail and dual-layer shock-absorbing balls for firm support and enhanced stability on varied terrain.",
+        "feature_type": "mounting"
+      },
+      {
+        "id": 65,
+        "feature_text": "Enjoy peace of mind with a worry-free 2-year product warranty covering defects and product issues.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 66,
+        "feature_text": "Benefit from free US standard shipping on orders over $29; otherwise, a $4.99 fee applies for orders below $29.",
+        "feature_type": "shipping"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 190,
+        "url": "https://rockbrosbike.us/cdn/shop/files/He2b15dc7ee364bada628074e4972c282g_1.jpg?v=1762153686&width=1500",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 191,
+        "url": "https://rockbrosbike.us/cdn/shop/files/Hdde76e945f494b3dbea454ba74e85b685.jpg?v=1762153686&width=1500",
+        "role_tag": "primary"
+      },
+      {
+        "id": 192,
+        "url": "https://rockbrosbike.us/cdn/shop/files/H0c16d127eb324ac4aefd9190d8cb3c5cH.jpg?v=1762153686&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 193,
+        "url": "https://rockbrosbike.us/cdn/shop/files/H35c3f253a7b249129f1a4e32ecb8177e8.jpg?v=1762153686&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 194,
+        "url": "https://rockbrosbike.us/cdn/shop/files/H23968e19c2754983a46c8ceacb9991b3U.jpg?v=1762153686&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 195,
+        "url": "https://rockbrosbike.us/cdn/shop/files/H95dc3429799e4650990f44de5116e7680.jpg?v=1762153686&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 196,
+        "url": "https://cdn.shopify.com/s/files/1/0580/9117/5988/files/1_01_88c77df7-1f7e-4bda-8330-5cca890e95ee.webp?v=1762411811",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 197,
+        "url": "https://cdn.shopify.com/s/files/1/0580/9117/5988/files/1_02_bcbd40c8-fcf1-4ea2-8460-e2dc1161e424.webp?v=1762411811",
+        "role_tag": "auxiliary"
+      }
+    ],
+    "specifications": {
+      "material_details": "PU leather + High-density foam + PP base (PVC logo)",
+      "size_dimensions": "Weight: approximately 628g. Specific length, width, and height dimensions are not provided.",
+      "waterproof_rating": "Waterproof (no specific IPX rating)",
+      "mounting_type": "Standard seat post rail mounting via bow-shaped rails.",
+      "product_type": "Seat For Mountain Bikes",
+      "package_type": "Comfort"
+    },
+    "metadata": {
+      "source_table": "accessories",
+      "synchronized_at": "2026-06-14T09:04:35.507685",
+      "created_at": "2026-06-10T23:54:29.271494",
+      "updated_at": "2026-06-10T23:54:29.271494"
+    }
+  },
+  {
+    "id": "1781135763",
+    "brand": "Rockbros",
+    "product_name": "Adjustable Air Cushion Bike Saddle",
+    "category": "accessories",
+    "sub_category": "Saddles",
+    "original_url": "https://rockbrosbike.us/products/inflatable-bike-saddle-air-cushion",
+    "custom_affiliate_link": "https://rockbrosbike.us/products/inflatable-bike-saddle-air-cushion?_pos=15&_sid=5ea77dc5b&_ss=r&ref=ngaebo",
+    "price": 32.99,
+    "original_price": 32.99,
+    "base_commission": "Not specified",
+    "cta_label": "Add to cart",
+    "image": "https://rockbrosbike.us/cdn/shop/files/inflatable-bike-saddle-air-cushion.webp?v=1776333829&width=1500",
+    "gallery_images": [
+      "https://rockbrosbike.us/cdn/shop/files/inflatable-bike-saddle-air-cushion.webp?v=1776333829&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/inflatable-bike-saddle-air-cushion_2.webp?v=1776333830&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/inflatable-bike-saddle-air-cushion_3.webp?v=1776333829&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/inflatable-bike-saddle-air-cushion_4.webp?v=1776333830&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/inflatable-bike-saddle-air-cushion_5.webp?v=1776333830&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/inflatable-bike-saddle-air-cushion_6.webp?v=1776333830&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/inflatable-bike-saddle-air-cushion_8.webp?v=1776333830&width=1500"
+    ],
+    "tags": [
+      "Bike Saddle",
+      "Air Cushion",
+      "Comfort Seat",
+      "Shock Absorbing",
+      "Wide Saddle",
+      "Ergonomic",
+      "Inflatable",
+      "Cycling Accessory",
+      "ROCKBROS",
+      "Adjustable",
+      "Dual Shock Absorption",
+      "High-Resilience Foam",
+      "PU Leather",
+      "Multi-bike Compatibility"
+    ],
+    "description": "Enjoy a smoother and more comfortable ride with this inflatable air cushion bike saddle. Designed with an adjustable internal air bladder and high-density foam support, it helps reduce pressure on the sit bones while improving shock absorption. Ideal for commuting, leisure cycling and long-distance rides.",
+    "notes_snippets": "Free US shipping over $29. Shipping fee of $4.99 for orders below $29. US Warehouse in-stock delivery in 3-4 business days. International shipping 7-10 business days if US is out of stock. Bicycles have separate shipping fees and longer delivery times. 30-day hassle-free return and exchange policy. 2-year product warranty offered by ROCKBROS.",
+    "rating": 0.0,
+    "ul_certification": "N/A",
+    "key_features": [
+      {
+        "id": 67,
+        "feature_text": "Constructed with durable PU leather and high-resilience polyurethane foam for lasting comfort and wear resistance.",
+        "feature_type": "material"
+      },
+      {
+        "id": 68,
+        "feature_text": "Easily adjust saddle firmness with the built-in air bladder for customized support and enhanced riding comfort.",
+        "feature_type": "utility"
+      },
+      {
+        "id": 69,
+        "feature_text": "Not applicable",
+        "feature_type": "waterproof"
+      },
+      {
+        "id": 70,
+        "feature_text": "Designed for wide compatibility, fitting touring, mountain, leisure, folding, e-bikes, and electric scooters.",
+        "feature_type": "mounting"
+      },
+      {
+        "id": 71,
+        "feature_text": "Backed by a comprehensive 2-year product warranty for worry-free satisfaction and support.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 72,
+        "feature_text": "Enjoy free US shipping on orders over $29, with standard delivery times of 3-4 business days from our US warehouse.",
+        "feature_type": "shipping"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 183,
+        "url": "https://rockbrosbike.us/cdn/shop/files/inflatable-bike-saddle-air-cushion.webp?v=1776333829&width=1500",
+        "role_tag": "primary"
+      },
+      {
+        "id": 184,
+        "url": "https://rockbrosbike.us/cdn/shop/files/inflatable-bike-saddle-air-cushion_2.webp?v=1776333830&width=1500",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 185,
+        "url": "https://rockbrosbike.us/cdn/shop/files/inflatable-bike-saddle-air-cushion_3.webp?v=1776333829&width=1500",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 186,
+        "url": "https://rockbrosbike.us/cdn/shop/files/inflatable-bike-saddle-air-cushion_4.webp?v=1776333830&width=1500",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 187,
+        "url": "https://rockbrosbike.us/cdn/shop/files/inflatable-bike-saddle-air-cushion_5.webp?v=1776333830&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 188,
+        "url": "https://rockbrosbike.us/cdn/shop/files/inflatable-bike-saddle-air-cushion_6.webp?v=1776333830&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 189,
+        "url": "https://rockbrosbike.us/cdn/shop/files/inflatable-bike-saddle-air-cushion_8.webp?v=1776333830&width=1500",
+        "role_tag": "auxiliary"
+      }
+    ],
+    "specifications": {
+      "material_details": "High-density polyurethane foam padding, durable PU leather surface, internal adjustable air bladder.",
+      "size_dimensions": "Extended width of up to 21cm.",
+      "waterproof_rating": "Not specified",
+      "mounting_type": "Standard rail mounting (universal design compatible with most bikes)",
+      "product_type": "Wide Comfort Shock Absorbing Seat",
+      "package_type": "Comfort"
+    },
+    "metadata": {
+      "source_table": "accessories",
+      "synchronized_at": "2026-06-14T09:04:35.508697",
+      "created_at": "2026-06-10T23:58:59.459777",
+      "updated_at": "2026-06-10T23:58:59.459777"
+    }
+  },
+  {
+    "id": "1781136101",
+    "brand": "Rockbros",
+    "product_name": "Comfort Gel Bike Seat",
+    "category": "accessories",
+    "sub_category": "Saddles",
+    "original_url": "https://rockbrosbike.us/products/rockbros-comfort-gel-bike-seat-breathable-waterproof-saddle-cruiser-mountain-fat-bikes",
+    "custom_affiliate_link": "https://rockbrosbike.us/products/rockbros-comfort-gel-bike-seat-breathable-waterproof-saddle-cruiser-mountain-fat-bikes?_pos=9&_sid=5ea77dc5b&_ss=r&ref=ngaebo",
+    "price": 36.99,
+    "original_price": 36.99,
+    "base_commission": "Not specified",
+    "cta_label": "Add to cart",
+    "image": "https://rockbrosbike.us/cdn/shop/files/Black-01_cfb6fca9-0222-4982-b679-e2126536256d.jpg?v=1728545135&width=1601",
+    "gallery_images": [
+      "https://rockbrosbike.us/cdn/shop/files/Black_TailLight_-01.jpg?v=1762306117&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/Black-01_cfb6fca9-0222-4982-b679-e2126536256d.jpg?v=1728545135&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/Brown-01_1721c93a-a39a-4318-b1e8-8329b44c6882.jpg?v=1728546942&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/Black_Foam_-01.jpg?v=1728546986&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/1_f906b110-47f3-4563-ad12-f4ff94118ddf.jpg?v=1730355042&width=800",
+      "https://rockbrosbike.us/cdn/shop/files/Black_TailLight_-02.jpg?v=1728545135&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/Black_TailLight_-03.jpg?v=1728545135&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/Black_TailLight_-04.jpg?v=1728545135&width=1601"
+    ],
+    "tags": [
+      "Bike Seat",
+      "Comfort",
+      "Gel",
+      "Waterproof",
+      "Cruiser Bike",
+      "Mountain Bike",
+      "Fat Bike",
+      "Bicycle Accessories",
+      "Cycling",
+      "Saddle"
+    ],
+    "description": "ROCKBROS wide bike seat is 8.66 inches wide, which will distribute greatly the pressure on the hips in cycling, keep you comfortable and healthy on rides. The bike seat is padded by thicken high-density memory foam and extra gel, enhancing super softness and support, making your workouts last longer. It features a center hole for airflow and comfort, with a non-slip, waterproof, and wear-resistant leather surface. Dual shock balls absorb bumps, potholes, or rough terrain, relieving pressure on your back and tail bone. Easy to install with a universal clamp adapter, it fits most standard bike seat posts for road, city, cruiser, mountain, and fat bikes. The ergonomic, streamlined design allows unrestrained thigh movement, reducing wear and pain. Reflective stickers on the rear improve night safety.",
+    "notes_snippets": "Free gift over $89 (While supplies last.) Mid-Year Sale. Free shipping over $29 (excluding Bikes). 30 day free return. 2-year product warranty. US Warehouse In-stock: 3–4 business days. International Shipping (if US out of stock): 7–10 business days. EU customers have a 14-day no-questions-asked return right. Refunds processed within 10 business days.",
+    "rating": 0.0,
+    "ul_certification": "N/A",
+    "key_features": [
+      {
+        "id": 73,
+        "feature_text": "Padded with thick high-density memory foam and extra gel for superior softness and support.",
+        "feature_type": "material"
+      },
+      {
+        "id": 74,
+        "feature_text": "8.66-inch wide design and ergonomic shape distribute pressure effectively, ensuring comfort and health on long rides while allowing unrestrained thigh movement.",
+        "feature_type": "utility"
+      },
+      {
+        "id": 75,
+        "feature_text": "Features a non-slip, waterproof leather surface with a central cutout for enhanced airflow, keeping you dry and comfortable.",
+        "feature_type": "waterproof"
+      },
+      {
+        "id": 76,
+        "feature_text": "Comes with a universal clamp adapter for easy and secure installation on most standard bike seat posts, perfect for various bike types.",
+        "feature_type": "mounting"
+      },
+      {
+        "id": 77,
+        "feature_text": "Enjoy peace of mind with a 2-year product warranty against defects and issues.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 78,
+        "feature_text": "Benefit from free US shipping on orders over $29 and a 30-day hassle-free return policy.",
+        "feature_type": "shipping"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 175,
+        "url": "https://rockbrosbike.us/cdn/shop/files/Black_TailLight_-01.jpg?v=1762306117&width=1601",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 176,
+        "url": "https://rockbrosbike.us/cdn/shop/files/Black-01_cfb6fca9-0222-4982-b679-e2126536256d.jpg?v=1728545135&width=1601",
+        "role_tag": "primary"
+      },
+      {
+        "id": 177,
+        "url": "https://rockbrosbike.us/cdn/shop/files/Brown-01_1721c93a-a39a-4318-b1e8-8329b44c6882.jpg?v=1728546942&width=1601",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 178,
+        "url": "https://rockbrosbike.us/cdn/shop/files/Black_Foam_-01.jpg?v=1728546986&width=1601",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 179,
+        "url": "https://rockbrosbike.us/cdn/shop/files/1_f906b110-47f3-4563-ad12-f4ff94118ddf.jpg?v=1730355042&width=800",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 180,
+        "url": "https://rockbrosbike.us/cdn/shop/files/Black_TailLight_-02.jpg?v=1728545135&width=1601",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 181,
+        "url": "https://rockbrosbike.us/cdn/shop/files/Black_TailLight_-03.jpg?v=1728545135&width=1601",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 182,
+        "url": "https://rockbrosbike.us/cdn/shop/files/Black_TailLight_-04.jpg?v=1728545135&width=1601",
+        "role_tag": "auxiliary"
+      }
+    ],
+    "specifications": {
+      "material_details": "Thicken high-density memory foam and extra gel padding, non-slip leather surface.",
+      "size_dimensions": "8.66 inches wide",
+      "waterproof_rating": "Waterproof",
+      "mounting_type": "Universal clamp adapter, fits most standard bike seat posts",
+      "product_type": "Breathable Waterproof Saddle Cruiser/Mountain/Fat Bikes",
+      "package_type": "Comfort"
+    },
+    "metadata": {
+      "source_table": "accessories",
+      "synchronized_at": "2026-06-14T09:04:35.511279",
+      "created_at": "2026-06-11T00:03:19.608385",
+      "updated_at": "2026-06-11T00:03:19.608385"
+    }
+  },
+  {
+    "id": "1781136281",
+    "brand": "Rockbros",
+    "product_name": "Bike Bags Set ROAD TO SKY",
+    "category": "accessories",
+    "sub_category": "Bags",
+    "original_url": "https://rockbrosbike.us/products/sustainable-eco-friendly-tyvek%C2%AE-bike-bags-set-road-to-sky",
+    "custom_affiliate_link": "https://rockbrosbike.us/products/sustainable-eco-friendly-tyvek%C2%AE-bike-bags-set-road-to-sky?ref=ngaebo",
+    "price": 249.99,
+    "original_price": 285.98,
+    "base_commission": "N/A",
+    "cta_label": "Add to cart",
+    "image": "https://rockbrosbike.us/cdn/shop/files/sustainable-eco-bike-bag-bundle.jpg?v=1760938531&width=800",
+    "gallery_images": [
+      "https://rockbrosbike.us/cdn/shop/files/sustainable-eco-bike-bag-bundle.jpg?v=1760938531&width=800",
+      "https://rockbrosbike.us/cdn/shop/files/sustainable-eco-friendly-recycled-tire-12l-waterproof-bike-panniers_5.jpg?v=1760938539&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/sustainable-eco-friendly-recycled-tire-bike-frame-bag-0_3.webp?v=1760938548&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/sustainable-eco-friendly-recycled-tire-bicycle-saddle-bag-0_4.webp?v=1770692762&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/sustainable-eco-friendly-recycled-tire-bike-wallet-0_8.webp?v=1760938591&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/sustainable-eco-friendly-recycled-tire-bike-wallet-0_3.webp?v=1770692540&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/sustainable-eco-friendly-recycled-tire-bike-water-bottle-bags-0_6.webp?v=1770692832&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/eco-friendly-bike-bag-set_126003e1-9eb3-423c-be5a-7cf317e0c1e7.jpg?v=1760938614&width=800"
+    ],
+    "tags": [
+      "Sustainable",
+      "Eco-Friendly",
+      "Bike Bags",
+      "Panniers",
+      "Frame Bag",
+      "Saddle Bag",
+      "Wallet",
+      "Water Bottle Bags",
+      "Waterproof",
+      "Recycled Tire",
+      "ROAD TO SKY"
+    ],
+    "description": "This set provides a complete cycling storage solution including waterproof bike panniers (12L), a frame bag (0.5L), a saddle bag (0.4L), two wallets (0.4L, 0.7L), and water bottle bags (0.8L). Made from repurposed inner tubes and sustainable fabric, it promotes recycling and offers wellness benefits through preserved negative ion properties for a natural riding experience.",
+    "notes_snippets": "Free gift over $89 (while supplies last). Mid-Year Sale. 30 day free return policy. Please inspect your order within 72 hours. EU customers have a 14-day no-questions-asked return right. Refunds processed within 10 business days. Unauthorized returns will not be accepted. 2-year product warranty for defects or issues.",
+    "rating": 0.0,
+    "ul_certification": "N/A",
+    "key_features": [
+      {
+        "id": 79,
+        "feature_text": "Eco-Friendly Materials – Made from recycled inner tubes and sustainable fabric reducing waste and environmental impact.",
+        "feature_type": "material"
+      },
+      {
+        "id": 80,
+        "feature_text": "Complete Solution – Includes panniers, frame bag, saddle bag, wallets, and bottle bags for all your cycling storage needs.",
+        "feature_type": "utility"
+      },
+      {
+        "id": 81,
+        "feature_text": "Durable & Waterproof – Strong construction and water-resistant fabrics keep your essentials safe in all conditions.",
+        "feature_type": "waterproof"
+      },
+      {
+        "id": 82,
+        "feature_text": "Practical & Versatile – Multiple sizes and designs ensure the right bag for every ride, accommodating various storage and bike attachment needs.",
+        "feature_type": "mounting"
+      },
+      {
+        "id": 83,
+        "feature_text": "Worry-free 2-year warranty covering defects or product issues; contact service@rockbrosbike.us with order details for smooth resolution.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 84,
+        "feature_text": "Free US standard shipping for orders over $29; below $29, a $4.99 fee applies. Delivery within 3-4 business days for US warehouse in-stock items. International shipping (if US out of stock) takes 7-10 business days.",
+        "feature_type": "shipping"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 167,
+        "url": "https://rockbrosbike.us/cdn/shop/files/sustainable-eco-bike-bag-bundle.jpg?v=1760938531&width=800",
+        "role_tag": "primary"
+      },
+      {
+        "id": 168,
+        "url": "https://rockbrosbike.us/cdn/shop/files/sustainable-eco-friendly-recycled-tire-12l-waterproof-bike-panniers_5.jpg?v=1760938539&width=1500",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 169,
+        "url": "https://rockbrosbike.us/cdn/shop/files/sustainable-eco-friendly-recycled-tire-bike-frame-bag-0_3.webp?v=1760938548&width=1500",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 170,
+        "url": "https://rockbrosbike.us/cdn/shop/files/sustainable-eco-friendly-recycled-tire-bicycle-saddle-bag-0_4.webp?v=1770692762&width=1500",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 171,
+        "url": "https://rockbrosbike.us/cdn/shop/files/sustainable-eco-friendly-recycled-tire-bike-wallet-0_8.webp?v=1760938591&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 172,
+        "url": "https://rockbrosbike.us/cdn/shop/files/sustainable-eco-friendly-recycled-tire-bike-wallet-0_3.webp?v=1770692540&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 173,
+        "url": "https://rockbrosbike.us/cdn/shop/files/sustainable-eco-friendly-recycled-tire-bike-water-bottle-bags-0_6.webp?v=1770692832&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 174,
+        "url": "https://rockbrosbike.us/cdn/shop/files/eco-friendly-bike-bag-set_126003e1-9eb3-423c-be5a-7cf317e0c1e7.jpg?v=1760938614&width=800",
+        "role_tag": "secondary"
+      }
+    ],
+    "specifications": {
+      "material_details": "Made from recycled inner tubes and sustainable fabric.",
+      "size_dimensions": "Waterproof Bike Panniers 12L, Frame Bag 0.5L, Saddle Bag 0.4L, Wallet 0.4L, Wallet 0.7L, Water Bottle Bags 0.8L",
+      "waterproof_rating": "Waterproof",
+      "mounting_type": "Various (Panniers, Frame, Saddle, Bottle mounts)",
+      "product_type": "Sustainable Eco-Friendly ",
+      "package_type": "Cargo"
+    },
+    "metadata": {
+      "source_table": "accessories",
+      "synchronized_at": "2026-06-14T09:04:35.513286",
+      "created_at": "2026-06-11T00:05:11.178599",
+      "updated_at": "2026-06-11T00:05:11.178599"
+    }
+  },
+  {
+    "id": "1781136372",
+    "brand": "Rockbros",
+    "product_name": "Bike Triangle Bag Frame Bag 0.7L",
+    "category": "accessories",
+    "sub_category": "Bags",
+    "original_url": "https://rockbrosbike.us/products/sustainable-eco-friendly-tyvek%C2%AE-bike-triangle-bags-0-7l",
+    "custom_affiliate_link": "https://rockbrosbike.us/products/sustainable-eco-friendly-tyvek%C2%AE-bike-triangle-bags-0-7l?ref=ngaebo",
+    "price": 32.99,
+    "original_price": 32.99,
+    "base_commission": "N/A",
+    "cta_label": "Add to cart",
+    "image": "https://rockbrosbike.us/cdn/shop/files/mtb-road-bike-frame-bag-0.7l.jpg?v=1760943774&width=1500",
+    "gallery_images": [
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-frame-triangle-bag-0-7l-shoulder-strap-ultralight-black_2.webp?v=1760943208&width=1600",
+      "https://rockbrosbike.us/cdn/shop/files/mtb-road-bike-frame-bag-0.7l.jpg?v=1760943774&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-lightweight-tyvek-bicycle-frame-bag.jpg?v=1758177548&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-road-bike-mtb-triangle-toolkit-bag.jpg?v=1760943799&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-waterproof-bicycle-frame-storage-bag.jpg?v=1760943809&width=1500",
+      "https://cdn.shopify.com/s/files/1/0580/9117/5988/files/folding_bike_handlebar_bag_commuter_organizer.webp?v=1760942668",
+      "https://cdn.shopify.com/s/files/1/0580/9117/5988/files/DB003.webp?v=1760943581",
+      "https://cdn.shopify.com/s/files/1/0580/9117/5988/files/db003-1.webp?v=1760943736"
+    ],
+    "tags": [
+      "Bike Triangle Bag",
+      "Frame Bag",
+      "Eco-Friendly",
+      "Tyvek®",
+      "Wear-resistant",
+      "Water-repellent",
+      "0.7L",
+      "Sustainable",
+      "Cycling Bag",
+      "MTB Bag",
+      "Road Bike Bag"
+    ],
+    "description": "This eco-friendly bike triangle frame bag is made from Tyvek® (High-density polyethylene HDPE), making it biodegradable, wear-resistant, tear-resistant, and not easily deformed. It features a water-repellent surface and pressure glue sealed anti-seepage zippers for protection against moisture. Its streamlined design offers low wind resistance, and it's versatile enough for bike riding, crossbody carry, and hand carry with its double-sided zipper. The material is safe, non-toxic, recyclable, reusable, and burns cleanly into water and CO₂.",
+    "notes_snippets": "Free US shipping on orders over $29, with 3-4 business days delivery for in-stock US warehouse items. International shipping takes 7-10 business days if US is out of stock. Enjoy a 30-day hassle-free return and exchange policy from the receipt date. Defective items have return shipping covered; customer pays for preference returns. A worry-free 2-year product warranty is also included.",
+    "rating": 0.0,
+    "ul_certification": "N/A",
+    "key_features": [
+      {
+        "id": 85,
+        "feature_text": "Crafted from Tyvek® (HDPE), this bag is exceptionally wear-resistant and tear-resistant, ensuring long-lasting durability for your rides.",
+        "feature_type": "material"
+      },
+      {
+        "id": 86,
+        "feature_text": "Versatile design allows for secure bike riding, convenient crossbody carry, or comfortable hand carry with its double-sided zipper.",
+        "feature_type": "utility"
+      },
+      {
+        "id": 87,
+        "feature_text": "Equipped with a water-repellent surface and pressure-sealed zippers to protect your essentials from rain and splashes.",
+        "feature_type": "waterproof"
+      },
+      {
+        "id": 88,
+        "feature_text": "Designed as a triangle frame bag, it integrates seamlessly into your bike's main triangle for stable and secure attachment.",
+        "feature_type": "mounting"
+      },
+      {
+        "id": 89,
+        "feature_text": "Enjoy peace of mind with a comprehensive 2-year product warranty and a 30-day hassle-free return policy.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 90,
+        "feature_text": "Benefit from free US standard shipping on orders over $29, with detailed rates for international and expedited options.",
+        "feature_type": "shipping"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 159,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-frame-triangle-bag-0-7l-shoulder-strap-ultralight-black_2.webp?v=1760943208&width=1600",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 160,
+        "url": "https://rockbrosbike.us/cdn/shop/files/mtb-road-bike-frame-bag-0.7l.jpg?v=1760943774&width=1500",
+        "role_tag": "primary"
+      },
+      {
+        "id": 161,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-lightweight-tyvek-bicycle-frame-bag.jpg?v=1758177548&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 162,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-road-bike-mtb-triangle-toolkit-bag.jpg?v=1760943799&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 163,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-waterproof-bicycle-frame-storage-bag.jpg?v=1760943809&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 164,
+        "url": "https://cdn.shopify.com/s/files/1/0580/9117/5988/files/folding_bike_handlebar_bag_commuter_organizer.webp?v=1760942668",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 165,
+        "url": "https://cdn.shopify.com/s/files/1/0580/9117/5988/files/DB003.webp?v=1760943581",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 166,
+        "url": "https://cdn.shopify.com/s/files/1/0580/9117/5988/files/db003-1.webp?v=1760943736",
+        "role_tag": "auxiliary"
+      }
+    ],
+    "specifications": {
+      "material_details": "Tyvek® (High density polyethylene HDPE); Wear-resistant, Tear-resistant, Not easy to deform",
+      "size_dimensions": "0.7L capacity",
+      "waterproof_rating": "Water-repellent surface & Pressure glue sealed anti-seepage zipper",
+      "mounting_type": "Bike triangle frame bag",
+      "product_type": "Sustainable Eco-Friendly",
+      "package_type": "Cargo"
+    },
+    "metadata": {
+      "source_table": "accessories",
+      "synchronized_at": "2026-06-14T09:04:35.514568",
+      "created_at": "2026-06-11T00:16:09.242684",
+      "updated_at": "2026-06-11T00:16:09.242684"
+    }
+  },
+  {
+    "id": "1781137021",
+    "brand": "Rockbros",
+    "product_name": "EVA Waterproof Bike Phone Frame Bag",
+    "category": "accessories",
+    "sub_category": "Bags",
+    "original_url": "https://rockbrosbike.us/products/rockbros-bike-phone-mount-bag-eva-waterproof-front-frame-bag-compatible-phones-under-6-8",
+    "custom_affiliate_link": "https://rockbrosbike.us/products/rockbros-bike-phone-mount-bag-eva-waterproof-front-frame-bag-compatible-phones-under-6-8?ref=ngaebo",
+    "price": 31.99,
+    "original_price": 31.99,
+    "base_commission": "N/A",
+    "cta_label": "Add to cart",
+    "image": "https://rockbrosbike.us/cdn/shop/files/rockbros-eva-waterproof-bike-phone-frame-bag-01.jpg?v=1762304617&width=1000",
+    "gallery_images": [
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-eva-waterproof-bike-phone-frame-bag-01.jpg?v=1762304617&width=1000",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-eva-waterproof-bike-phone-frame-bag-02.jpg?v=1754720116&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-eva-waterproof-bike-phone-frame-bag-03.jpg?v=1754720116&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-eva-waterproof-bike-phone-frame-bag-04.jpg?v=1754720116&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-eva-waterproof-bike-phone-frame-bag-05.jpg?v=1754720116&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/rockbros-eva-waterproof-bike-phone-frame-bag-06.jpg?v=1754720101&width=1500",
+      "https://cdn.shopify.com/s/files/1/0580/9117/5988/files/1_e9108417-24ac-4b58-ac90-657cacefafbe.jpg?v=1732346491",
+      "https://cdn.shopify.com/s/files/1/0580/9117/5988/files/2_051b8aec-baf6-423e-a073-0966024874f9.jpg?v=1732346639"
+    ],
+    "tags": [
+      "bike phone bag",
+      "waterproof",
+      "EVA hard shell",
+      "frame bag",
+      "cycling accessory",
+      "phone mount",
+      "6.8 inch phone compatible",
+      "reflective"
+    ],
+    "description": "The ROCKBROS EVA Waterproof Bike Phone Frame Bag is designed for phones up to 6.8 inches. It features a 1.7-liter capacity, an EVA 3D hard shell with carbon fiber texture, and waterproof construction with seamless zippers. This durable bag offers a high-sensitivity touchscreen, reflective graphics for night visibility, an integrated cable port, and a built-in sun visor. It installs easily with three adjustable hook-and-loop straps and includes shock-absorbing padding to protect your phone and essentials.",
+    "notes_snippets": "Free US shipping on orders over $29. A 30-day hassle-free return and exchange policy is offered, with customers responsible for shipping fees for size or personal preference returns. A 2-year product warranty covers defects or product issues.",
+    "rating": 0.0,
+    "ul_certification": "N/A",
+    "key_features": [
+      {
+        "id": 91,
+        "feature_text": "Constructed with a durable EVA 3D hard shell and carbon fiber texture for robust protection and longevity.",
+        "feature_type": "material"
+      },
+      {
+        "id": 92,
+        "feature_text": "Features a high-sensitivity touchscreen, integrated cable port, and built-in sun visor for enhanced usability on the go.",
+        "feature_type": "utility"
+      },
+      {
+        "id": 93,
+        "feature_text": "Designed with seamless zippers and waterproof material to keep your phone and essentials dry in any weather.",
+        "feature_type": "waterproof"
+      },
+      {
+        "id": 94,
+        "feature_text": "Ensures secure, tool-free installation to your bike frame using three adjustable hook-and-loop straps.",
+        "feature_type": "mounting"
+      },
+      {
+        "id": 95,
+        "feature_text": "Backed by a comprehensive 2-year product warranty for peace of mind and assured quality.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 96,
+        "feature_text": "Enjoy free US shipping on orders over $29, with clear options for standard and international delivery.",
+        "feature_type": "shipping"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 151,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-eva-waterproof-bike-phone-frame-bag-01.jpg?v=1762304617&width=1000",
+        "role_tag": "primary"
+      },
+      {
+        "id": 152,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-eva-waterproof-bike-phone-frame-bag-02.jpg?v=1754720116&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 153,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-eva-waterproof-bike-phone-frame-bag-03.jpg?v=1754720116&width=1500",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 154,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-eva-waterproof-bike-phone-frame-bag-04.jpg?v=1754720116&width=1500",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 155,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-eva-waterproof-bike-phone-frame-bag-05.jpg?v=1754720116&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 156,
+        "url": "https://rockbrosbike.us/cdn/shop/files/rockbros-eva-waterproof-bike-phone-frame-bag-06.jpg?v=1754720101&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 157,
+        "url": "https://cdn.shopify.com/s/files/1/0580/9117/5988/files/1_e9108417-24ac-4b58-ac90-657cacefafbe.jpg?v=1732346491",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 158,
+        "url": "https://cdn.shopify.com/s/files/1/0580/9117/5988/files/2_051b8aec-baf6-423e-a073-0966024874f9.jpg?v=1732346639",
+        "role_tag": "auxiliary"
+      }
+    ],
+    "specifications": {
+      "material_details": "EVA 3D hard shell with carbon fiber texture",
+      "size_dimensions": "1.7 Liters capacity; 9.1 x 3.9 x 3.9 inches (23 x 10 x 10 cm)",
+      "waterproof_rating": "Waterproof with seamless zippers",
+      "mounting_type": "Three adjustable hook-and-loop straps",
+      "product_type": "Frame Bag for 6.8\" Phones",
+      "package_type": "Comfort; Cargo"
+    },
+    "metadata": {
+      "source_table": "accessories",
+      "synchronized_at": "2026-06-14T09:04:35.516691",
+      "created_at": "2026-06-11T00:33:25.033674",
+      "updated_at": "2026-06-11T00:33:25.033674"
+    }
+  },
+  {
+    "id": "1781180396",
+    "brand": "Rockbros",
+    "product_name": "Waterproof Bike Rack Bag 20L Roll-Top Rear Pannier",
+    "category": "accessories",
+    "sub_category": "Bags",
+    "original_url": "https://rockbrosbike.us/products/waterproof-bike-rack-bag-20l-roll-top-rear-pannier",
+    "custom_affiliate_link": "https://rockbrosbike.us/products/waterproof-bike-rack-bag-20l-roll-top-rear-pannier?ref=ngaebo",
+    "price": 69.99,
+    "original_price": 69.99,
+    "base_commission": "Not specified",
+    "cta_label": "Add to cart",
+    "image": "https://rockbrosbike.us/cdn/shop/files/13_49d3ebe4-6295-47c2-b867-2c49ab9af0ea.webp?v=1775027570&width=1500",
+    "gallery_images": [
+      "https://rockbrosbike.us/cdn/shop/files/13_49d3ebe4-6295-47c2-b867-2c49ab9af0ea.webp?v=1775027570&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/14_2bf0da0f-dd2d-4b5d-b3aa-9b8cfb3ab8fb.webp?v=1775027570&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/1_40825fed-565f-4c23-bce0-8f39c6b588a8.webp?v=1775027570&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/2_1e07873a-046c-4386-96fd-36e4d1c11ab9.webp?v=1775027570&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/3_10b97a71-bc02-471d-8f36-e1bc3e640fad.webp?v=1775027570&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/4_55e19768-d537-47b9-ab91-07a663ae0c72.webp?v=1775027570&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/5_c5860781-992b-438f-9f05-52f82a801c76.webp?v=1775027570&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/6_424ed43a-1a05-4d7c-bd20-371e9c54d774.webp?v=1775027570&width=1500"
+    ],
+    "tags": [
+      "Waterproof",
+      "Bike Bag",
+      "Rack Bag",
+      "Pannier",
+      "Polyester",
+      "Roll-Top",
+      "Cycling",
+      "Commuting",
+      "Touring",
+      "Storage",
+      "Reflective",
+      "Quick Release"
+    ],
+    "description": "Ride through any weather with confidence. This fully waterproof bike rack bag is built with durable polyester fabric and high-frequency welded seams, creating a seamless barrier that keeps water out—even in heavy rain. Whether you're commuting or heading out on a long-distance ride, your gear stays dry and protected. The 20L large-capacity design combined with a roll-top closure offers flexible storage space for daily essentials or extended trips. A wide opening allows for quick and easy access, so you can grab what you need without hassle. Designed for both safety and convenience, the bag features high-visibility reflective elements to enhance your presence on the road at night. The adjustable mounting system ensures a secure fit on various bike racks, while the quick-release design makes installation and removal fast and effortless.",
+    "notes_snippets": "Free US shipping $29+, 30 day free return, 2-year product warranty.",
+    "rating": 0.0,
+    "ul_certification": "N/A",
+    "key_features": [
+      {
+        "id": 97,
+        "feature_text": "Durable polyester fabric with high-frequency welded seams ensures 100% waterproof protection against heavy rain.",
+        "feature_type": "material"
+      },
+      {
+        "id": 98,
+        "feature_text": "Generous 20L capacity with a flexible roll-top closure, ideal for daily commutes or extended touring.",
+        "feature_type": "utility"
+      },
+      {
+        "id": 99,
+        "feature_text": "Advanced waterproof design with welded seams and roll-top closure keeps your gear completely dry in any weather.",
+        "feature_type": "waterproof"
+      },
+      {
+        "id": 100,
+        "feature_text": "Secure and universal fit with adjustable buckles and a quick-release system for easy installation on most bike racks.",
+        "feature_type": "mounting"
+      },
+      {
+        "id": 101,
+        "feature_text": "Enjoy peace of mind with a 2-year worry-free product warranty against defects and issues.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 102,
+        "feature_text": "Free US shipping for orders over $29, with detailed delivery times for in-stock items and international shipping.",
+        "feature_type": "shipping"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 143,
+        "url": "https://rockbrosbike.us/cdn/shop/files/13_49d3ebe4-6295-47c2-b867-2c49ab9af0ea.webp?v=1775027570&width=1500",
+        "role_tag": "primary"
+      },
+      {
+        "id": 144,
+        "url": "https://rockbrosbike.us/cdn/shop/files/14_2bf0da0f-dd2d-4b5d-b3aa-9b8cfb3ab8fb.webp?v=1775027570&width=1500",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 145,
+        "url": "https://rockbrosbike.us/cdn/shop/files/1_40825fed-565f-4c23-bce0-8f39c6b588a8.webp?v=1775027570&width=1500",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 146,
+        "url": "https://rockbrosbike.us/cdn/shop/files/2_1e07873a-046c-4386-96fd-36e4d1c11ab9.webp?v=1775027570&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 147,
+        "url": "https://rockbrosbike.us/cdn/shop/files/3_10b97a71-bc02-471d-8f36-e1bc3e640fad.webp?v=1775027570&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 148,
+        "url": "https://rockbrosbike.us/cdn/shop/files/4_55e19768-d537-47b9-ab91-07a663ae0c72.webp?v=1775027570&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 149,
+        "url": "https://rockbrosbike.us/cdn/shop/files/5_c5860781-992b-438f-9f05-52f82a801c76.webp?v=1775027570&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 150,
+        "url": "https://rockbrosbike.us/cdn/shop/files/6_424ed43a-1a05-4d7c-bd20-371e9c54d774.webp?v=1775027570&width=1500",
+        "role_tag": "auxiliary"
+      }
+    ],
+    "specifications": {
+      "material_details": "Durable polyester fabric and high-frequency welded seams",
+      "size_dimensions": "20L Large Capacity",
+      "waterproof_rating": "100% Waterproof Protection; High-frequency welded seams + coated polyester fabric block water penetration, even in heavy rain",
+      "mounting_type": "Adjustable & Universal Fit, compatible with most bike racks with adjustable buckles; Quick Release System; Flexible Mounting Structure with top buckles adjustable left and right and bottom mount rotating 360° and sliding for optimal positioning.",
+      "product_type": "N/A",
+      "package_type": "N/A"
+    },
+    "metadata": {
+      "source_table": "accessories",
+      "synchronized_at": "2026-06-14T09:04:35.517694",
+      "created_at": "2026-06-11T12:23:36.647942",
+      "updated_at": "2026-06-11T12:23:36.647942"
+    }
+  },
+  {
+    "id": "1781188893",
+    "brand": "Rockbros",
+    "product_name": "AS1 Pro Mini Electric Air Bike Tire Pump 120PSI",
+    "category": "accessories",
+    "sub_category": "Pumps",
+    "original_url": "https://rockbrosbike.us/products/rockbros-as1-pro-mini-electric-air-pump-120-psi-advanced-battery-life",
+    "custom_affiliate_link": "https://rockbrosbike.us/products/rockbros-as1-pro-mini-electric-air-pump-120-psi-advanced-battery-life?ref=ngaebo",
+    "price": 83.99,
+    "original_price": 119.99,
+    "base_commission": "Not provided",
+    "cta_label": "Add to cart",
+    "image": "https://rockbrosbike.us/cdn/shop/files/1.1_3.webp?v=1757300849&width=800",
+    "gallery_images": [
+      "https://rockbrosbike.us/cdn/shop/files/1.1_3.webp?v=1757300849&width=800",
+      "https://rockbrosbike.us/cdn/shop/files/81C8jEHmpdL._AC_SL1500.jpg?v=1757300849&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/2fd81e232d6594236be0ed2071f92627_653b3aad-0a0d-4e79-9140-542b2b596f27.webp?v=1757300849&width=1000",
+      "https://rockbrosbike.us/cdn/shop/files/71T7_-hPcqL._AC_SL1500.jpg?v=1757300849&width=1500",
+      "https://rockbrosbike.us/cdn/shop/files/5-1_bf6f2932-6cb6-451f-ae59-c82de6d17d68.webp?v=1757300849&width=1601",
+      "https://rockbrosbike.us/cdn/shop/files/81Y6RxB5_L._AC_SL1500.jpg?v=1757300849&width=1440",
+      "https://rockbrosbike.us/cdn/shop/files/71dBpzikI3L._AC_SL1500_501dc42d-6176-4159-ba8b-343a928b51da.jpg?v=1757300849&width=1500"
+    ],
+    "tags": [
+      "Bike Pump",
+      "Electric Pump",
+      "Tire Pump",
+      "Mini Pump",
+      "120 PSI",
+      "Cycling Accessory",
+      "ROCKBROS"
+    ],
+    "description": "This ROCKBROS AS1 Pro Mini Electric Air Bike Tire Pump is a powerful and portable solution for quick tire inflation. It features a maximum pressure of 120 PSI and is constructed from durable aluminum alloy. Equipped with a 7.4V 450mAh battery, it can inflate two tires from 0-120 PSI on a single charge. The pump includes an LED display for real-time pressure monitoring, auto shutoff, and preset pressure settings, all rechargeable via a convenient Type-C port. Its compact size and light weight make it an ideal cycling accessory.",
+    "notes_snippets": "Free US shipping on orders over $29 (3-4 business days delivery from US warehouse). International shipping 7-10 business days. Bicycle shipping has different rates and times. Offers a 30-day hassle-free return and exchange policy (customer covers shipping for preference returns, company covers for defects). Backed by a 2-year worry-free product warranty, contact service@rockbrosbike.us for support.",
+    "rating": 0.0,
+    "ul_certification": "N/A",
+    "key_features": [
+      {
+        "id": 103,
+        "feature_text": "Constructed from durable Aluminum Alloy for lightweight strength and longevity.",
+        "feature_type": "material"
+      },
+      {
+        "id": 104,
+        "feature_text": "Provides up to 120 PSI for fast and precise inflation of road, mountain bike tires, and sports balls.",
+        "feature_type": "utility"
+      },
+      {
+        "id": 105,
+        "feature_text": "No specific rain protection or waterproof capabilities are highlighted for this pump.",
+        "feature_type": "waterproof"
+      },
+      {
+        "id": 106,
+        "feature_text": "Compact and portable design ensures easy storage and transport without requiring a permanent bike mounting solution.",
+        "feature_type": "mounting"
+      },
+      {
+        "id": 107,
+        "feature_text": "Comes with a worry-free 2-year product warranty, ensuring satisfaction and support for any defects.",
+        "feature_type": "warranty"
+      },
+      {
+        "id": 108,
+        "feature_text": "Enjoy free US shipping on orders over $29, with standard delivery in 3-4 business days.",
+        "feature_type": "shipping"
+      }
+    ],
+    "images_gallery": [
+      {
+        "id": 244,
+        "url": "https://rockbrosbike.us/cdn/shop/files/1.1_3.webp?v=1757300849&width=800",
+        "role_tag": "primary"
+      },
+      {
+        "id": 245,
+        "url": "https://rockbrosbike.us/cdn/shop/files/81C8jEHmpdL._AC_SL1500.jpg?v=1757300849&width=1500",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 246,
+        "url": "https://rockbrosbike.us/cdn/shop/files/2fd81e232d6594236be0ed2071f92627_653b3aad-0a0d-4e79-9140-542b2b596f27.webp?v=1757300849&width=1000",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 247,
+        "url": "https://rockbrosbike.us/cdn/shop/files/71T7_-hPcqL._AC_SL1500.jpg?v=1757300849&width=1500",
+        "role_tag": "secondary"
+      },
+      {
+        "id": 248,
+        "url": "https://rockbrosbike.us/cdn/shop/files/5-1_bf6f2932-6cb6-451f-ae59-c82de6d17d68.webp?v=1757300849&width=1601",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 249,
+        "url": "https://rockbrosbike.us/cdn/shop/files/81Y6RxB5_L._AC_SL1500.jpg?v=1757300849&width=1440",
+        "role_tag": "auxiliary"
+      },
+      {
+        "id": 250,
+        "url": "https://rockbrosbike.us/cdn/shop/files/71dBpzikI3L._AC_SL1500_501dc42d-6176-4159-ba8b-343a928b51da.jpg?v=1757300849&width=1500",
+        "role_tag": "auxiliary"
+      }
+    ],
+    "specifications": {
+      "material_details": "Aluminum Alloy",
+      "size_dimensions": "64.5*48*28mm, 124g",
+      "waterproof_rating": "Not specified",
+      "mounting_type": "Designed for portability, carried in a bag or pocket; no permanent mounting to bike frame specified.",
+      "product_type": "N/A",
+      "package_type": "Safety"
+    },
+    "metadata": {
+      "source_table": "accessories",
+      "synchronized_at": "2026-06-14T09:04:35.518691",
+      "created_at": "2026-06-11T14:44:13.079683",
+      "updated_at": "2026-06-11T14:44:13.079683"
+    }
+  }
+]
