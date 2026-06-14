@@ -18,15 +18,20 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const dist = path.join(__dirname, "dist");
-const PORT = process.env.PORT || 8080;
+
+// 🎯 CLOUD RECONCILIATION: Default to 5000 locally to match your Vite config proxies & RedirectGateway!
+const PORT = process.env.PORT || 5000;
 
 // 🎯 CORS POLICY HANDSHAKE CLEARANCE
-app.use(cors({
-  origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "Accept"]
-}));
+// Explicitly opens testing gates during local dev. On DO, Same-Origin kicks in naturally.
+if (process.env.NODE_ENV !== 'production') {
+  app.use(cors({
+    origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "Accept"]
+  }));
+}
 
 app.use((req, res, next) => {
   if (req.originalUrl === "/api/webhooks/shopify/orders-paid") {
@@ -39,8 +44,6 @@ app.use((req, res, next) => {
 // ==========================================================================
 // 🎯 FORCE EXPRESS TO SERVE LIVE DISK CHANNELS FROM THE ACTIVE PUBLIC FOLDER
 // ==========================================================================
-// We dynamically track the live public directory where the Python script drops files,
-// alongside the backup dist directory created during the buildpack process.
 const publicDataPath = path.join(__dirname, 'public', 'data');
 const distDataPath = path.join(__dirname, 'dist', 'data');
 
@@ -48,30 +51,24 @@ const cacheControlMiddleware = (res) => {
   res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
 };
 
-// Unified dynamic filesystem reader middleware
 const serveLiveShopAssets = (subFolder) => {
   return (req, res, next) => {
     const targetFile = req.path;
     const liveDiskFile = path.join(publicDataPath, subFolder, targetFile);
     const fallbackCompiledFile = path.join(distDataPath, subFolder, targetFile);
 
-    // If the Python engine has generated a fresh file in public/data, serve it instantly
     if (fs.existsSync(liveDiskFile)) {
       cacheControlMiddleware(res);
       return res.sendFile(liveDiskFile);
     } 
-    
-    // Otherwise, fallback safely to the buildpack asset directory path
     if (fs.existsSync(fallbackCompiledFile)) {
       cacheControlMiddleware(res);
       return res.sendFile(fallbackCompiledFile);
     }
-
     next();
   };
 };
 
-// Bind our dynamic local filesystem routing layers above default static paths
 app.use('/data/weather', serveLiveShopAssets('weather'));
 app.use('/data/conditions', serveLiveShopAssets('conditions'));
 app.use('/data/joyscores', serveLiveShopAssets('joyscores'));
@@ -80,28 +77,85 @@ app.use('/data/effortgauges', serveLiveShopAssets('effortgauges'));
 app.use('/data/shop_images', serveLiveShopAssets('shop_images'));
 
 // ==========================================================================
-// 1. PRODUCTION INTERACTION API ENDPOINTS
+// 🛍️ UNIFIED FLAT FILE DATA DISPATCH GATEWAY
 // ==========================================================================
+const cleanTitle = (rawName) => {
+  if (!rawName) return '';
+  return rawName.split(' - ')[0].split(' | ')[0];
+};
 
-// 🛍️ STATIC FILE PRODUCT LISTING ENDPOINT (ZERO-COST DATA DISPATCH GATEWAY)
-app.get('/api/shop/products', (req, res) => {
+const transformFlatFileProduct = (p) => {
+  const specs = p.specifications || {};
+  
+  // Cleanly rebuild relational image structures out of flat file arrays for Shop.tsx
+  const galleryImages = Array.isArray(p.images_gallery) && p.images_gallery.length > 0
+    ? p.images_gallery.map(img => ({ url: img.url, role_tag: img.role_tag || 'secondary' }))
+    : p.image ? [{ url: p.image, role_tag: 'primary' }] : [];
+
+  const productFeatures = Array.isArray(p.key_features)
+    ? p.key_features.map(f => ({ feature_text: f.feature_text, feature_type: f.feature_type }))
+    : [];
+
+  return {
+    id: p.id,
+    brand: p.brand,
+    product_name: cleanTitle(p.product_name),
+    category: p.category || 'ebike',
+    sub_category: p.sub_category || '',
+    original_url: p.original_url || '',
+    custom_affiliate_link: p.custom_affiliate_link || '',
+    price: Number(p.price) || 0,
+    original_price: Number(p.original_price) || 0,
+    base_commission: p.base_commission || '',
+    cta_label: p.cta_label || 'Check Price',
+    description: p.description || '',
+    notes_snippets: p.notes_snippets || '',
+    rating: Number(p.rating) || 5.0,
+    ul_certification: p.ul_certification || specs.ul_certification || '',
+    motor_details: specs.motor_details || null,
+    battery_details: specs.battery_details || null,
+    drivetrain_details: specs.drivetrain_details || null,
+    braking_details: specs.braking_details || null,
+    weight_details: specs.weight_details || null,
+    ebike_classification: specs.ebike_classification || null,
+    gallery_images: galleryImages,
+    product_features: productFeatures,
+    tags: Array.isArray(p.tags) ? p.tags : []
+  };
+};
+
+// Map to your standard production route entrypoint hook
+app.get('/api/products', (req, res) => {
   try {
-    const productsFilePath = path.join(__dirname, 'public', 'data', 'shop', 'products.json');
-    const activePath = fs.existsSync(productsFilePath) 
-      ? productsFilePath 
-      : path.join(__dirname, 'dist', 'data', 'shop', 'products.json');
+    // Looks for products.json inside the root /data directory or fallback directories
+    const pathsToSearch = [
+      path.join(__dirname, 'data', 'products.json'),
+      path.join(__dirname, 'public', 'data', 'shop', 'products.json'),
+      path.join(__dirname, 'dist', 'data', 'shop', 'products.json')
+    ];
 
-    if (!fs.existsSync(activePath)) {
-      console.warn("⚠️ Shop data requested but products.json file does not exist on disk.");
-      return res.status(200).json({ success: true, products: [] });
+    let activePath = null;
+    for (const p of pathsToSearch) {
+      if (fs.existsSync(p)) {
+        activePath = p;
+        break;
+      }
+    }
+
+    if (!activePath) {
+      console.warn("⚠️ Shop data requested but products.json file does not exist on disk paths.");
+      return res.status(200).json({ products: [] });
     }
 
     const rawData = fs.readFileSync(activePath, 'utf-8');
-    const productsData = JSON.parse(rawData);
-    return res.status(200).json({ success: true, products: productsData });
+    const parsedJSON = JSON.parse(rawData);
+    const baseArray = Array.isArray(parsedJSON) ? parsedJSON : (parsedJSON.products || []);
+    const transformedProducts = baseArray.map(transformFlatFileProduct);
+
+    return res.status(200).json({ products: transformedProducts });
   } catch (error) {
-    console.error("❌ Static file query exception encountered parsing products data:", error);
-    return res.status(500).json({ success: false, error: "Internal server failed to compile product asset parameters." });
+    console.error("❌ Exception encountered compiling file product metrics:", error);
+    return res.status(500).json({ error: "Internal server failed to compile product metrics." });
   }
 });
 
@@ -110,21 +164,14 @@ app.get('/api/sync-weather/:routeID', (req, res) => {
   const scriptPath = path.join(__dirname, 'scripts', 'weather_engine.py');
   const pythonCmd = process.platform === "win32" ? "python" : "python3";
   
-  // 🔍 1. Terminal Signal: Track the incoming request immediately
   console.log(`\n========== [SERVER SYNC TRIGGERED] ==========`);
-  console.log(`📍 Route Target ID: ${routeID}`);
-  console.log(`📂 Attempting to spawn script at: ${scriptPath}`);
-  console.log(`⚙️ Executing system command: ${pythonCmd}`);
-
   if (!fs.existsSync(scriptPath)) {
-    console.error(`❌ CRITICAL PATH ERROR: File does not exist at ${scriptPath}`);
     return res.status(500).json({ error: `Script not found at target pathing structure.` });
   }
 
   const pyProcess = spawn(pythonCmd, [scriptPath, routeID]);
   let hasSentResponse = false;
 
-  // 🟢 2. Pipe standard output directly into your terminal stream
   pyProcess.stdout.on('data', (data) => {
     console.log(`[Python stdout]: ${data.toString().trim()}`);
     if (data.toString().includes('SUCCESS') && !hasSentResponse) {
@@ -133,14 +180,11 @@ app.get('/api/sync-weather/:routeID', (req, res) => {
     }
   });
 
-  // 🔴 3. Pipe hidden standard errors directly into your terminal stream
   pyProcess.stderr.on('data', (data) => {
     console.error(`[Python stderr ERROR]: ${data.toString().trim()}`);
   });
 
   pyProcess.on('close', (code) => {
-    console.log(`🏁 Python process closed with exit code: ${code}`);
-    console.log(`=============================================\n`);
     if (!hasSentResponse) {
       res.status(500).json({ error: `Process closed with code ${code} without success signal` });
     }
@@ -270,7 +314,7 @@ app.post("/api/subscribe", async (req, res) => {
     return res.status(200).json({ success: true });
   } catch (error) {
     console.error("❌ Subscription Route Internal Exception:", error);
-    return res.status(500).json({ error: "Internal server error experienced processing your subscription trace request." });
+    return res.status(500).json({ error: "Internal server error experienced processing your subscription request." });
   }
 });
 
@@ -278,15 +322,15 @@ app.post("/api/subscribe", async (req, res) => {
 // 2. STATIC ENVIRONMENT FALLBACKS (MUST STAY AT THE BOTTOM)
 // ==========================================================================
 
-app.use('/api', (req, res) => {
-  res.status(404).json({ error: "API route not found" });
-});
-
-app.use(express.static(dist));
-app.use((req, res) => {
-  res.sendFile(path.join(dist, "index.html"));
+// Pure regex catch-all matches every front-facing path route unless it begins explicitly with /api
+app.get(/^(?!\/api).*$/, (req, res) => {
+  if (fs.existsSync(path.join(dist, "index.html"))) {
+    return res.sendFile(path.join(dist, "index.html"));
+  }
+  // Safe local development string output until 'npm run build' generates the first production distribution
+  res.status(200).send("Express Backend Working. Dist directory built on compile.");
 });
 
 app.listen(PORT, "0.0.0.0", () => {
-  console.log(`\n🚀 Engine Live — Sync Ports Open On: ${PORT}\n`);
+  console.log(`\n🚀 [UNIFIED APPLICATION ENGINE ACTIVE] — Sync Ports Open On: ${PORT}\n`);
 });

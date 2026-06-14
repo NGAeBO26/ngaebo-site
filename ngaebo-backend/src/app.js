@@ -1,48 +1,22 @@
 /* src/app.js */
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
-const app = express();
-
-// 1. 🎯 CLEAN ENVIRONMENT INTEGRATION (CORS Middleware)
-if (process.env.NODE_ENV !== 'production') {
-  app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:3000'],
-    credentials: true
-  }));
-}
-
-// 2. REQUIRED INTERNAL DATA PARSING MIDDLEWARE
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// 3. 🚲 CORE ROUTE MOUNTING
-// Imports your shop routes module cleanly
 const shopRoutes = require('./routes/shopRoutes');
+require('dotenv').config();
 
-// Binds shopRoutes directly under the unified /api gateway prefix
-// This explicitly mounts: /api/products
+const app = express();
+const PORT = 5001;
+
+// Middleware Configurations
+app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:5173' }));
+app.use(express.json());
+
+/* 🖼️ STATIC ASSET STREAMING */
+app.use('/assets', express.static('public/assets'));
+
+// API Routing Mount targeting live PostgreSQL via shopRoutes.js
 app.use('/api', shopRoutes);
 
-// 4. 🗺️ STATIC VITE FRONTEND SERVICE PRODUCTION HANDLER
-// When running live in the cloud, Express handles serving your compiled React app
-if (process.env.NODE_ENV === 'production' || true) {
-  // Path assumes: ngaebo-backend/src/app.js pointing out to project root level /dist
-  const distPath = path.join(__dirname, '..', '..', 'dist');
-  app.use(express.static(distPath));
-  
-  // Wildcard fallback lets React Router handle inner client-side page loads gracefully
-  app.get(/^(?!\/api).*$/, (req, res) => {
-    // Path assumes: ngaebo-backend/src/app.js pointing out to project root level /dist
-    const distPath = path.join(__dirname, '..', '..', 'dist');
-    res.sendFile(path.join(distPath, 'index.html'));
-  });
-}
-
-// 5. CLOUD RUNTIME PORT INTERPOLATION
-// DigitalOcean automatically sets process.env.PORT. Fallback to 5001 to keep your local workflow working.
-const PORT = process.env.PORT || 5001;
-
 app.listen(PORT, () => {
-  console.log(`🚀 [PRODUCTION ENGINE ACTIVE]: Same-origin cluster live on port ${PORT}`);
+  console.log(`📦 [PG DATABASE API ENGINE RUNNING]: Listening on port ${PORT}`);
 });

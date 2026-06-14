@@ -3,17 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
+ "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview --port $PORT --strictPort --host 0.0.0.0",
-    "/* 🚀 DIGITALOCEAN ENTRYPOINT SCRIPTS */": "",
-    "start": "node ngaebo-backend/src/app.js",
-    "server": "node ngaebo-backend/src/app.js",
+    "start": "node server.js",
+    "server": "node server.js",
     "─► MASTER ECOSYSTEM RUNNERS ◄─": "",
-    "dev:backend": "node ngaebo-backend/src/app.js",
-    "dev:all": "concurrently --kill-others-on-fail --names \"FRONTEND,API-SERVER\" --prefix-colors \"cyan,magenta\" \"npm run dev\" \"npm run dev:backend\""
+    "dev:backend": "cd ngaebo-backend && npm run dev",
+    "dev:all": "concurrently --kill-others-on-fail --names \"FRONTEND,MAIN-SRV,PG-API,DOCKER-DB\" --prefix-colors \"cyan,blue,magenta,yellow\" \"npm run dev\" \"npm run server\" \"npm run dev:backend\" \"docker start ngaebo-postgres\""
   },
   "dependencies": {
     "chart.js": "^4.5.1",
