@@ -105,15 +105,23 @@ const cleanTitle = (rawName) => {
 const transformFlatFileProduct = (p) => {
   const specs = p.specifications || {};
   
-  // 🟢 LIVE PARSER ADAPTABILITY TWEAK:
-  // Rebuilds relational image structures out of flat file arrays. If an array exists 
-  // but role_tag properties are completely missing, dynamically force index 0 to act as 'primary'.
-  const galleryImages = Array.isArray(p.images_gallery) && p.images_gallery.length > 0
-    ? p.images_gallery.map((img, idx) => ({ 
-        url: img.url, 
-        role_tag: img.role_tag || (idx === 0 ? 'primary' : 'secondary') 
-      }))
-    : p.image ? [{ url: p.image, role_tag: 'primary' }] : [];
+  // 🟢 CORRECTED MAPPING PIPELINE:
+  // Tracks your scraper's exact key 'gallery_images' and safely maps string elements to objects.
+  let galleryImages = [];
+  
+  if (Array.isArray(p.gallery_images) && p.gallery_images.length > 0) {
+    galleryImages = p.gallery_images.map((imgUrl, idx) => ({
+      url: typeof imgUrl === 'object' ? imgUrl.url : imgUrl,
+      role_tag: typeof imgUrl === 'object' && imgUrl.role_tag ? imgUrl.role_tag : (idx === 0 ? 'primary' : 'secondary')
+    }));
+  } else if (Array.isArray(p.images_gallery) && p.images_gallery.length > 0) {
+    galleryImages = p.images_gallery.map((img, idx) => ({ 
+      url: img.url, 
+      role_tag: img.role_tag || (idx === 0 ? 'primary' : 'secondary') 
+    }));
+  } else if (p.image) {
+    galleryImages = [{ url: p.image, role_tag: 'primary' }];
+  }
 
   const productFeatures = Array.isArray(p.key_features)
     ? p.key_features.map(f => ({ feature_text: f.feature_text, feature_type: f.feature_type }))
@@ -141,7 +149,7 @@ const transformFlatFileProduct = (p) => {
     braking_details: specs.braking_details || null,
     weight_details: specs.weight_details || null,
     ebike_classification: specs.ebike_classification || null,
-    gallery_images: galleryImages,
+    gallery_images: galleryImages, // Delivers the complete array to Shop.tsx
     product_features: productFeatures,
     tags: Array.isArray(p.tags) ? p.tags : []
   };
