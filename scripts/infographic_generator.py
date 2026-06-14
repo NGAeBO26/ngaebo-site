@@ -170,14 +170,12 @@ def generate_conditions_wheel_svg(pid, ssdi_data, output_dir):
 
         with open(os.path.join(target_dir, f"{pid}_conditions_wheel.svg"), "w") as f:
             f.write(svg)
-    
-  
     except Exception as e: print(f"WHEEL ERR: {e}")
 
 def generate_effort_tax_svg(pid, tax_pct, actual_miles, output_dir, theme):
     """
     Generates a high-impact Effort Tax rail with semi-circular ends.
-    Uses theme_config.py to drive the dynamic color ramp.
+    Calibrated to map perfectly across a true 0-100% geometric framework.
     """
     try:
         if not os.path.exists(output_dir): os.makedirs(output_dir)
@@ -190,41 +188,58 @@ def generate_effort_tax_svg(pid, tax_pct, actual_miles, output_dir, theme):
         
         # Pull dynamic color for pin from theme
         fill_color = theme.get_tax_color(tax_pct)
-        fill_pct = min(1.0, max(0.0, tax_pct / 50))
+        
+        # 🎯 GEOMETRIC PARITY: Map percentages over a true 100% horizontal baseline range limit.
+        fill_pct = min(1.0, max(0.0, tax_pct / 100.0))
         fill_x = G_START + (fill_pct * G_WIDTH)
+        
+        clip_width = max(1.0, fill_x - G_START)
 
-        # 2. DYNAMIC GRADIENT GENERATION
-        # We sample the theme ramp to build the static background rail
+        # 🎯 FIXED: Emojis completely stripped out to prevent cp1252 charmap encoding crashes on Windows terminal hosts
+        print("\n==================================================")
+        print(f"[TRACE AUDIT] Generating Effort Tax SVG for Profile: {pid}")
+        print(f"Input Penalty Tax Percentage: {tax_pct}%")
+        print(f"Evaluated Fractional Position Value (fill_pct): {fill_pct}")
+        print(f"Calculated Target Pin Point Coordinate (fill_x): {fill_x:.2f}")
+        print(f"Selected Hex Fill Color for Pin Variant: '{fill_color}'")
+        print("==================================================\n")
+
+        # 2. DYNAMIC GRADIENT GENERATION (Mapped across 100% structural bounds)
         gradient_stops = ""
-        for pt in [0, 10, 20, 30, 40, 50]:
-            offset = (pt / 50) * 100
-            color = theme.get_tax_color(pt)
+        for pt in [0, 20, 40, 60, 80, 100]:
+            offset = pt
+            color = theme.get_tax_color(pt / 2.0) # Map 0-100 gauge bounds down to theme's 0-50 range
             gradient_stops += f'<stop offset="{offset}%" stop-color="{color}" />\n'
 
-        # 3. DUAL-AXIS TICKS (Logic restored from svg_generator_v3.py)
+        # 3. TRUE 10-SEGMENT DUAL-AXIS TICKS (0% to 50% max output displayed gracefully)
         ticks = ""
-        for i in range(51): 
-            tx = G_START + (i / 50 * G_WIDTH)
-            is_maj = i % 10 == 0
-            t_l = 45 if is_maj else 20
-            ticks += f'<line x1="{tx}" y1="{CY-(BAR_H/2)-8}" x2="{tx}" y2="{CY-(BAR_H/2)-8-t_l}" stroke="{theme.BRAND_THEME["charcoal"]}" stroke-width="{6 if is_maj else 2}" opacity="0.3" />'
-            ticks += f'<line x1="{tx}" y1="{CY+(BAR_H/2)+8}" x2="{tx}" y2="{CY+(BAR_H/2)+8+t_l}" stroke="{theme.BRAND_THEME["charcoal"]}" stroke-width="{6 if is_maj else 2}" opacity="0.3" />'
+        for i in range(101): 
+            tx = G_START + (i / 100.0 * G_WIDTH)
+            is_maj = i % 20 == 0
+            is_min = i % 10 == 0 and not is_maj
+            
+            if is_maj or is_min:
+                t_l = 45 if is_maj else 20
+                ticks += f'<line x1="{tx:.1f}" y1="{CY-(BAR_H/2)-8}" x2="{tx:.1f}" y2="{CY-(BAR_H/2)-8-t_l}" stroke="{theme.BRAND_THEME["charcoal"]}" stroke-width="{6 if is_maj else 2}" opacity="0.3" />'
+                ticks += f'<line x1="{tx}" y1="{CY+(BAR_H/2)+8}" x2="{tx}" y2="{CY+(BAR_H/2)+8+t_l}" stroke="{theme.BRAND_THEME["charcoal"]}" stroke-width="{6 if is_maj else 2}" opacity="0.3" />'
+            
             if is_maj:
-                # Top Axis: Tax Percent
-                ticks += f'<text x="{tx}" y="{CY-110}" text-anchor="middle" font-family="{theme.FONT_FAMILY}" font-size="42" font-weight="700" fill="#777">{i}%</text>'
-                # Bottom Axis: Dynamic Mileage
-                ticks += f'<text x="{tx}" y="{CY+125}" text-anchor="middle" font-family="{theme.FONT_FAMILY}" font-size="38" font-weight="700" fill="#777">{actual_miles * (1 + (i / 100)):.1f}</text>'
+                # Top Axis text labels (i goes 0, 20, 40, 60, 80, 100 -> converts directly to 0%, 10%, 20%, 30%...)
+                display_pct = int(i / 2)
+                ticks += f'<text x="{tx:.1f}" y="{CY-110}" text-anchor="middle" font-family="{theme.FONT_FAMILY}" font-size="42" font-weight="700" fill="#777">{display_pct}%</text>'
+                # Bottom Axis text labels (Calculates mileage factor dynamically)
+                ticks += f'<text x="{tx:.1f}" y="{CY+125}" text-anchor="middle" font-family="{theme.FONT_FAMILY}" font-size="38" font-weight="700" fill="#777">{actual_miles * (1 + (display_pct / 100.0)):.1f}</text>'
         
         # 4. SVG ASSEMBLY
         svg = f"""<svg width="100%" height="100%" viewBox="0 0 1000 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
             <defs>
                 <linearGradient id="taxGrad" x1="0%" y1="0%" x2="100%" y2="0%">{gradient_stops}</linearGradient>
-                <clipPath id="taxClip"><rect x="{G_START}" y="{CY-(BAR_H/2)-2}" width="{fill_x - G_START}" height="{BAR_H+4}" rx="{BAR_H/2}" /></clipPath>
+                <clipPath id="taxClip"><rect x="{G_START}" y="{CY-(BAR_H/2)-2}" width="{clip_width:.1f}" height="{BAR_H+4}" rx="{BAR_H/2}" /></clipPath>
             </defs>
             <rect x="{G_START}" y="{CY-(BAR_H/2)}" width="{G_WIDTH}" height="{BAR_H}" fill="url(#taxGrad)" fill-opacity="0.18" rx="{BAR_H/2}" />
             <rect x="{G_START}" y="{CY-(BAR_H/2)-1}" width="{G_WIDTH}" height="{BAR_H+2}" fill="url(#taxGrad)" clip-path="url(#taxClip)" rx="{BAR_H/2}" />
             {ticks}
-            <polygon points="{fill_x},{CY-(BAR_H/2)-12} {fill_x-28},{CY-85} {fill_x+28},{CY-85}" fill="{fill_color}" />
+            <polygon points="{fill_x:.1f},{CY-(BAR_H/2)-12} {fill_x-28:.1f},{CY-85} {fill_x+28:.1f},{CY-85}" fill="{fill_color}" stroke="{theme.BRAND_THEME["charcoal"]}" stroke-width="2" />
         </svg>"""
 
         with open(os.path.join(output_dir, f"{pid}_effort_tax.svg"), 'w') as f: 

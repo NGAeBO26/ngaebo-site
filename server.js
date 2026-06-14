@@ -110,20 +110,39 @@ app.get('/api/sync-weather/:routeID', (req, res) => {
   const scriptPath = path.join(__dirname, 'scripts', 'weather_engine.py');
   const pythonCmd = process.platform === "win32" ? "python" : "python3";
   
+  // 🔍 1. Terminal Signal: Track the incoming request immediately
+  console.log(`\n========== [SERVER SYNC TRIGGERED] ==========`);
+  console.log(`📍 Route Target ID: ${routeID}`);
+  console.log(`📂 Attempting to spawn script at: ${scriptPath}`);
+  console.log(`⚙️ Executing system command: ${pythonCmd}`);
+
+  if (!fs.existsSync(scriptPath)) {
+    console.error(`❌ CRITICAL PATH ERROR: File does not exist at ${scriptPath}`);
+    return res.status(500).json({ error: `Script not found at target pathing structure.` });
+  }
+
   const pyProcess = spawn(pythonCmd, [scriptPath, routeID]);
   let hasSentResponse = false;
 
+  // 🟢 2. Pipe standard output directly into your terminal stream
   pyProcess.stdout.on('data', (data) => {
-    const output = data.toString();
-    if (output.includes('SUCCESS') && !hasSentResponse) {
+    console.log(`[Python stdout]: ${data.toString().trim()}`);
+    if (data.toString().includes('SUCCESS') && !hasSentResponse) {
       hasSentResponse = true;
       res.json({ status: 'updated' });
     }
   });
 
+  // 🔴 3. Pipe hidden standard errors directly into your terminal stream
+  pyProcess.stderr.on('data', (data) => {
+    console.error(`[Python stderr ERROR]: ${data.toString().trim()}`);
+  });
+
   pyProcess.on('close', (code) => {
+    console.log(`🏁 Python process closed with exit code: ${code}`);
+    console.log(`=============================================\n`);
     if (!hasSentResponse) {
-      res.status(500).json({ error: "Process closed without success signal" });
+      res.status(500).json({ error: `Process closed with code ${code} without success signal` });
     }
   });
 });

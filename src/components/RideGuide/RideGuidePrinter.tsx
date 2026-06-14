@@ -6,7 +6,6 @@ import RouteReport_v3 from "./RouteReport_v3";
 
 export default function RideGuidePrinter({ routeID }: { routeID: string }) {
   const [isPrinting, setIsPrinting] = useState(false);
-  const [statusMessage, setStatusMessage] = useState("Initializing report framework...");
   const [hasAutoFired, setHasAutoFired] = useState(false);
   const printCanvasRef = useRef<HTMLDivElement>(null);
 
@@ -37,10 +36,36 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
         background-color: transparent !important;
       }
 
+      /* 🟢 PREVENT SIDEBAR CRADLE LAYOUT ROUNDING WRAP CHECKS */
       .rr-metrics-column-sidebar div,
       .rr-metrics-column-sidebar span,
       .rr-metrics-column-sidebar p {
         white-space: nowrap !important;
+      }
+
+      /* 🟢 COUPLING SELECTORS: PREVENT ALL WEATHER TEXT NODES FROM WRAPPING/SHIFTING IN PDF */
+      /* Targets condition labels, temp fields, and precipitation rows to guarantee inline horizontal centering */
+      .rr-weather-condition-node,
+      .rr-weather-condition-label,
+      .rr-weather-temp-node,
+      .rr-weather-precip-node {
+        white-space: nowrap !important;
+        display: block !important;
+        width: 100% !important;          /* Extends bounding box full width to support alignment calculations */
+        max-width: none !important;
+        text-align: center !important;    /* Forces absolute horizontal centering vectors */
+        margin-left: auto !important;
+        margin-right: auto !important;
+        overflow: visible !important;
+      }
+
+      /* Ensure parent box parameters inherit sub-pixel layout overflow bounds */
+      .rr-widget-weather-root,
+      .rr-overview-module {
+        overflow: visible !important;
+        display: flex !important;         /* Preserves active widget flexbox model templates */
+        flex-direction: column !important;
+        align-items: center !important;
       }
 
       body {
@@ -68,7 +93,6 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
 
     if (printCanvasRef.current && !hasAutoFired && !isPrinting) {
       setHasAutoFired(true);
-      // setStatusMessage("Loading high-density topographic layers...");
 
       pollingInterval = setInterval(() => {
         // Query the MapLibre engine to see if the vector layer compilation task has gone idle
@@ -99,7 +123,6 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
   const executePdfDownload = async () => {
     if (!printCanvasRef.current) return;
     setIsPrinting(true);
-    setStatusMessage("Compiling high-DPI vectors...");
     window.scrollTo(0, 0);
 
     const mapInstance = (window as any).map;
@@ -117,6 +140,13 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
     // Buffer delay allows the WebGL map frame loop to redraw perfectly inside the new 3x boundary limits
     await new Promise((resolve) => setTimeout(resolve, 600));
 
+    // ==========================================================================
+    // 🔍 INTERACTIVE LAYOUT BREAKPOINT DEBUGGER
+    // ==========================================================================
+    // Open your browser DevTools (F12) BEFORE hitting "Generate PDF".
+    // Execution will freeze right here! Go inspect the weather widget elements.
+    debugger;
+
     try {
       const dataUrl = await domToPng(printCanvasRef.current, {
         scale: 3, 
@@ -124,8 +154,6 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
         width: 816,
         height: 1056
       });
-
-      setStatusMessage("Dispatching document stream...");
 
       const pdf = new jsPDF({
         orientation: "portrait",
@@ -137,11 +165,9 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
       
       const blobString = pdf.output("bloburl");
       window.open(blobString, "_blank");
-      setStatusMessage("Fulfillment complete!");
 
     } catch (error) {
       console.error("Critical error executing dynamic template capture:", error);
-      setStatusMessage("Fulfillment failed. Click to re-run.");
     } finally {
       if (mapInstance) {
         Object.defineProperty(window, 'devicePixelRatio', {
@@ -210,17 +236,6 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
           width: "auto"
         }}
       >
-        <span style={{ 
-          color: "#94a3b8", 
-          fontSize: "12px", 
-          fontWeight: "bold", 
-          letterSpacing: "0.06em",
-          textTransform: "uppercase",
-          textShadow: "0 2px 4px rgba(0,0,0,0.6)"
-        }}>
-          {statusMessage}
-        </span>
-
         <button
           onClick={executePdfDownload}
           disabled={isPrinting}

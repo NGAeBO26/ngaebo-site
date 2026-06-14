@@ -1,12 +1,12 @@
 {
   "profile_id": "28-1_S1",
   "route_id": "28-1",
-  "ssdi_score": 5.0,
+  "ssdi_score": 6.5,
   "v3_terrain_score": 3.9,
   "v3_terrain_class": "Cruiser",
-  "badge_type": "wet",
-  "condition": "WET / SLICK",
-  "style_color": "#e66e00",
+  "badge_type": "ideal",
+  "condition": "DAMP / PACK",
+  "style_color": "#1b5e20",
   "access": {
     "label": "OPEN",
     "vibe_context": "CLASSIC FOREST ROAD",
@@ -17,17 +17,17 @@
     "value": 0.17
   },
   "environment": {
-    "current_temp": 82,
-    "saturation_index": 6.6,
+    "current_temp": 69,
+    "saturation_index": 11.8,
     "soil_status": "Saturated",
     "precip_24h": 0.21,
     "saturation_trend": "stable",
     "alerts": []
   },
   "physics": {
-    "live_traction": 0.65,
-    "live_wh_per_km": 11.22,
-    "energy_penalty_pct": 10.0,
+    "live_traction": 0.85,
+    "live_wh_per_km": 10.28,
+    "energy_penalty_pct": 0.8,
     "v3_base_intensity": 3.7
   },
   "connectivity": {
