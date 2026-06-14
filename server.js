@@ -18,7 +18,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-// 🟢 FIXED ASSET CROSS-PLATFORM LOCATION MATCHING:
+// FIXED ASSET CROSS-PLATFORM LOCATION MATCHING:
 // Ensures the absolute build directory path handles standard cloud layout distributions perfectly.
 const dist = path.join(process.cwd(), "dist");
 
@@ -104,8 +104,15 @@ const cleanTitle = (rawName) => {
  */
 const transformFlatFileProduct = (p) => {
   const specs = p.specifications || {};
+  
+  // 🟢 LIVE PARSER ADAPTABILITY TWEAK:
+  // Rebuilds relational image structures out of flat file arrays. If an array exists 
+  // but role_tag properties are completely missing, dynamically force index 0 to act as 'primary'.
   const galleryImages = Array.isArray(p.images_gallery) && p.images_gallery.length > 0
-    ? p.images_gallery.map(img => ({ url: img.url, role_tag: img.role_tag || 'secondary' }))
+    ? p.images_gallery.map((img, idx) => ({ 
+        url: img.url, 
+        role_tag: img.role_tag || (idx === 0 ? 'primary' : 'secondary') 
+      }))
     : p.image ? [{ url: p.image, role_tag: 'primary' }] : [];
 
   const productFeatures = Array.isArray(p.key_features)
@@ -143,12 +150,24 @@ const transformFlatFileProduct = (p) => {
 // 🛍️ STATIC FILE PRODUCT LISTING ENDPOINT (ZERO-COST DATA DISPATCH GATEWAY)
 app.get('/api/products', (req, res) => {
   try {
-    const productsFilePath = path.join(__dirname, 'data', 'products.json');
-    const activePath = fs.existsSync(productsFilePath) 
-      ? productsFilePath 
-      : path.join(__dirname, 'public', 'data', 'shop', 'products.json');
+    // 🟢 ADJUST THE MATCHING SEQUENCE PRIORITIES:
+    // Forces the cloud container filesystem to search active, live repository tracks 
+    // first before falling back to old static build paths.
+    const pathsToSearch = [
+      path.join(process.cwd(), 'public', 'data', 'shop', 'products.json'),
+      path.join(process.cwd(), 'data', 'products.json'),
+      path.join(process.cwd(), 'dist', 'data', 'shop', 'products.json')
+    ];
 
-    if (!fs.existsSync(activePath)) {
+    let activePath = null;
+    for (const p of pathsToSearch) {
+      if (fs.existsSync(p)) {
+        activePath = p;
+        break;
+      }
+    }
+
+    if (!activePath) {
       console.warn("⚠️ Shop data requested but products.json file does not exist on disk.");
       return res.status(200).json({ products: [] });
     }
@@ -170,7 +189,7 @@ app.get('/api/sync-weather/:routeID', (req, res) => {
   const scriptPath = path.join(__dirname, 'scripts', 'weather_engine.py');
   const pythonCmd = process.platform === "win32" ? "python" : "python3";
   
-  // 🔍 1. Terminal Signal: Track the incoming request immediately
+  // 🔍 Terminal Signal: Track the incoming request immediately
   console.log(`\n========== [SERVER SYNC TRIGGERED] ==========`);
   console.log(`📍 Route Target ID: ${routeID}`);
   console.log(`📂 Attempting to spawn script at: ${scriptPath}`);
@@ -184,7 +203,7 @@ app.get('/api/sync-weather/:routeID', (req, res) => {
   const pyProcess = spawn(pythonCmd, [scriptPath, routeID]);
   let hasSentResponse = false;
 
-  // 🟢 2. Pipe standard output directly into your terminal stream
+  // Pipe standard output directly into your terminal stream
   pyProcess.stdout.on('data', (data) => {
     console.log(`[Python stdout]: ${data.toString().trim()}`);
     if (data.toString().includes('SUCCESS') && !hasSentResponse) {
@@ -193,7 +212,7 @@ app.get('/api/sync-weather/:routeID', (req, res) => {
     }
   });
 
-  // 🔴 3. Pipe hidden standard errors directly into your terminal stream
+  // Pipe hidden standard errors directly into your terminal stream
   pyProcess.stderr.on('data', (data) => {
     console.error(`[Python stderr ERROR]: ${data.toString().trim()}`);
   });
@@ -342,7 +361,7 @@ app.use('/api', (req, res) => {
   res.status(404).json({ error: "API route not found" });
 });
 
-// 🟢 EXPLICIT STATIC ASSET ROOT SERVICE DEFINITION
+// EXPLICIT STATIC ASSET ROOT SERVICE DEFINITION
 app.use(express.static(dist));
 
 // Pure regex catch-all matches every front-facing path route unless it begins explicitly with /api

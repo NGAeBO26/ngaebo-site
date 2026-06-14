@@ -160,8 +160,10 @@ console.log(`📡 [NETWORK FETCH]: Dispatched POST stream to: ${targetEndpoint}`
   return (
     <div className="gateway-master-viewport-wrapper">
       <div className="gateway-center-card-shell">
+        
+        {/* 🟢 REPLACED SUB-CATEGORY LABEL WITH "Vendor Redirection Gateway" FOR THE TOP HEADER BAR */}
         <div className="gateway-card-accent-bar">
-          <span>{isSearching ? "Establishing Secure Connection" : subCategory}</span>
+          <span>{isSearching ? "Establishing Secure Connection" : "Vendor Redirection Gateway"}</span>
         </div>
 
         {!isSearching ? (
@@ -176,15 +178,22 @@ console.log(`📡 [NETWORK FETCH]: Dispatched POST stream to: ${targetEndpoint}`
               )}
             </div>
 
+            {/* 🟢 REPOSITIONED LABELS: Product name & sub-category badge sit inline horizontally */}
             <div className="gateway-title-block-lbl">
-              <h2>Vendor Redirection Gateway</h2>
-              <p className="gateway-item-context-lbl">Verifying routing protocols for: <strong>{productName}</strong></p>
+              <p className="gateway-item-context-lbl">
+                Verifying routing protocols for:
+              </p>
+              <div className="gateway-product-row-flex">
+                <h2 className="gateway-inline-product-title">{productName}</h2>
+                {subCategory && (
+                  <span className="gateway-inline-subcat-badge">{subCategory}</span>
+                )}
+              </div>
             </div>
 
+            {/* 🟢 REMOVED GREEN PILL & TITLE CONTENT: Incentive card displays raw single-paragraph copy */}
             <div className="gateway-rideguide-lead-incentive-card">
-              <div className="gateway-lead-icon-badge">🗺️ BONUS INCLUDED</div>
-              <h4>Claim Your Free RideGuide Sample Pack</h4>
-              <p className="gateway-lead-description-copy">
+              <p className="gateway-lead-description-copy" style={{ margin: 0 }}>
                 {isAccessoryItem ? (
                   "Prepping for new gear setup runs? We've bundled our top 3 high-intensity North Georgia gravel trail loops to test out your new accessories. Enter your email to receive high-res printable maps straight to your inbox!"
                 ) : (
