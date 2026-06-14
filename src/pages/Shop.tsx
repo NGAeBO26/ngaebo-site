@@ -48,11 +48,17 @@ export default function Shop() {
   const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
 
   useEffect(() => {
-    fetch('http://localhost:5001/api/products')
-      .then((res) => res.json())
+    // 🎯 CLEANEST PATHING SECURED: Relative paths dynamically match whatever domain 
+    // the user is currently on (Local, DO Staging, or DO Production).
+    fetch('/api/products')
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP network error! status: ${res.status}`);
+        return res.json();
+      })
       .then((data) => {
-        if (data && data.products) {
-          setProducts(data.products);
+        if (data) {
+          const extractedProducts = data.products || (Array.isArray(data) ? data : []);
+          setProducts(extractedProducts);
         }
       })
       .catch((err) => console.error('❌ Frontend Data Pipeline Error:', err));
