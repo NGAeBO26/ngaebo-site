@@ -228,13 +228,15 @@ a {
   font-size: 32px;
   font-weight: 700;
   margin-bottom: 16px;
-  color: var(--brand-bone);
+  font-family: Montserrat, sans-serif;
+  color: var(--brand-charcoal);
 }
 
 .hero-text {
   font-size: 18px;
-  color: var(--brand-bone);
+  font-family: Montserrat, sans-serif;
   margin-bottom: 24px;
+  color: var(--brand-charcoal);
 }
 
 .hero-actions {
