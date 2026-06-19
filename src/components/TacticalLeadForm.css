@@ -1,0 +1,92 @@
+/* src/components/forms/TacticalLeadForm.css */
+
+/* Core Layout Structural Container */
+.tactical-lead-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 🎯 VARIANT A: INLINE ROW STYLE (Perfect for footers and headers) */
+.tactical-lead-wrapper.variant-row .capture-form-flex-row {
+  display: flex; 
+  justify-content: center; /* Centers the input field and button horizontally inside the row wrapper */
+  gap: 12px; 
+  width: 100%; 
+}
+
+/* 🎯 VARIANT B: STACKED STYLE (Perfect for sidebars, cards, and mobile viewports) */
+.tactical-lead-wrapper.variant-stacked .capture-form-flex-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.tactical-lead-wrapper.variant-stacked .lead-disclaimer {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Standardized Form Components */
+.capture-input-styled {
+  padding: 12px 16px; 
+  border-radius: 6px; 
+  border: 1px solid #334155; 
+  background: #1e293b; 
+  color: #ffffff; 
+  font-size: 0.95rem;
+  flex-grow: 1;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.capture-input-styled:focus {
+  outline: none;
+  border-color: #e36622; /* Snaps directly to brand accent on click */
+  box-shadow: 0 0 0 2px rgba(227, 102, 34, 0.15);
+}
+
+.capture-button-whitespace {
+  white-space: nowrap; 
+  padding: 12px 24px;
+  font-weight: 700;
+}
+
+.lead-disclaimer {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--brand-amber);
+  margin-top: 2px;
+  width: 100%;
+  text-align: left;
+}
+
+/* Smart Visual State Border Modifiers */
+.capture-input-styled.input-success-border {
+  border-color: #10b981 !important;
+  background-color: rgba(16, 185, 129, 0.03);
+  color: #a7f3d0;
+}
+
+/* Informational state captions below form boundaries */
+.form-feedback-caption {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-top: 4px;
+  animation: captionSlideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  text-align: left;
+}
+
+.form-feedback-caption.status-success { color: #10b981; }
+.form-feedback-caption.status-error { color: #ef4444; }
+
+@keyframes captionSlideUp {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+

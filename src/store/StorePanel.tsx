@@ -220,6 +220,10 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
           : (isRedirecting ? "COMPILING CHECKOUT... ⏳" : "BUY TODAY'S RIDEGUIDE ➔")
         }
       </button>
+      <span className="rg-disclaimer-note">
+        By purchasing, you agree to our terms and conditions.<br />
+        RideGuide is a digital product delivered instantly after purchase. No physical item will be shipped. RideGuide is provided for informational purposes only and may not reflect real‑time road or terrain conditions. Outdoor activities involve inherent risks. Use at your own discretion.
+      </span>
 
     </div>
   );

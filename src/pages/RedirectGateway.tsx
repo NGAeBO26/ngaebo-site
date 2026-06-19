@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import "./RedirectGateway.css";
+import TacticalLeadForm from "../components/TacticalLeadForm"; // 🎯 INTEGRATED REUSABLE LEAD FORM COMPONENT
 
 export default function RedirectGateway() {
   const [searchParams] = useSearchParams();
@@ -17,11 +18,6 @@ export default function RedirectGateway() {
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const [ftcAgreed, setFtcAgreed] = useState<boolean>(false);
   const [liabilityAgreed, setLiabilityAgreed] = useState<boolean>(false);
-
-  const [emailInput, setEmailInput] = useState<string>("");
-  const [isSubmittingForm, setIsSubmittingForm] = useState<boolean>(false);
-  const [formFeedbackMessage, setFormFeedbackMessage] = useState<string>("");
-  const [formSuccessStatus, setFormSuccessStatus] = useState<boolean>(false);
 
   const loadingPhases = [
     "...Reviewing Listings...",
@@ -85,72 +81,6 @@ export default function RedirectGateway() {
 
   const logoAssetUrl = getGatewayBrandLogoUrl(brand);
 
-  const handleSubmitLeadCapture = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    console.log("\n==================================================");
-    console.log("🚀 [FORM INITIATED]: Processing RideGuide Opt-In Request...");
-
-    if (!emailInput || !emailInput.includes("@")) {
-      console.warn("⚠️ [VALIDATION FAILURE]: Front-end rejected malformed email input:", emailInput);
-      setFormFeedbackMessage("⚠️ Please provide a valid email address path.");
-      return;
-    }
-
-    setIsSubmittingForm(true);
-    setFormFeedbackMessage("");
-
-    /* 🎯 ENVIRONMENTAL REACTION GATEWAY PORT RESOLVER:
-   If running locally on Vite (port 5173), we route directly to your 
-   Express backend on port 5000 using the standard IPv4 loopback address. 
-   When built for production, it seamlessly drops back to a safe relative endpoint string. */
-const targetEndpoint = window.location.port === "5173"
-  ? "http://127.0.0.1:5000/api/subscribe"
-  : "/api/subscribe";
-
-const requestBodyPayload = {
-  email: emailInput.trim(),
-  intent_tag: parsedIntentTag 
-};
-
-console.log(`📡 [NETWORK FETCH]: Dispatched POST stream to: ${targetEndpoint}`);
-    console.log("📦 [PAYLOAD RAW BODY]: Serialized structured data parameters:", requestBodyPayload);
-
-    try {
-      const response = await fetch(targetEndpoint, {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(requestBodyPayload)
-      });
-
-      console.log(`📥 [RESPONSE RETURNED]: Network HTTP Status Code -> ${response.status}`);
-
-      const data = await response.json();
-      console.log("📄 [SERVER JSON RESULT]: Returned data packet maps to:", data);
-
-      if (!response.ok) {
-        throw new Error(data.error || `Server HTTP error status: ${response.status}`);
-      }
-
-      console.log("🎉 [SUCCESS]: Lead successfully accepted by backend pipeline matrix.");
-      setFormSuccessStatus(true);
-      setFormFeedbackMessage("🎉 Adventure Pack Unlocked! Your printable trail sheets are hitting your inbox.");
-      
-    } catch (err: any) {
-      console.error("❌ [PIPELINE CRITICAL EXCEPTION ENCOUNTERED]:");
-      console.error(`💥 Error Name: ${err.name}`);
-      console.error(`💥 Error Message: ${err.message}`);
-      
-      setFormFeedbackMessage("⚠️ Subscription failed. Please try again.");
-    } finally {
-      setIsSubmittingForm(false);
-      console.log("==================================================\n");
-    }
-  };
-
   const handleProceedToAffiliate = (e: React.FormEvent) => {
     e.preventDefault();
     if (!ftcAgreed || !liabilityAgreed) return;
@@ -197,20 +127,20 @@ console.log(`📡 [NETWORK FETCH]: Dispatched POST stream to: ${targetEndpoint}`
                 {isAccessoryItem ? (
                   "Prepping for new gear setup runs? We've bundled our top 3 high-intensity North Georgia gravel trail loops to test out your new accessories. Enter your email to receive high-res printable maps straight to your inbox!"
                 ) : (
-                  "Planning your bike's maiden voyage? We've mapped out the ultimate 3-pack sample series of Fire Service road loops perfectly balanced for this exact build class. Instant download package delivered to your email."
+                  "Planning your bike's maiden voyage? We've mapped out the ultimate 3-pack sample series of Fire Service routes perfectly suited for this bike. Instant download package delivered to your email."
                 )}
               </p>
-
-              {!formSuccessStatus ? (
-                <form className="gateway-inline-subscription-box" onSubmit={handleSubmitLeadCapture}>
-                  <input type="email" placeholder="Enter your email address..." value={emailInput} onChange={(e) => setEmailInput(e.target.value)} disabled={isSubmittingForm} required />
-                  <button type="submit" disabled={isSubmittingForm}>{isSubmittingForm ? "Linking..." : "Claim Free Maps ➔"}</button>
-                </form>
-              ) : null}
-
-              {formFeedbackMessage && <p className={`gateway-form-feedback-lbl ${formSuccessStatus ? "success" : "error"}`}>{formFeedbackMessage}</p>}
-              {!formSuccessStatus && <span className="gateway-form-optional-caption">* Optional onboarding step. Access map links will auto-fulfill natively via email sequences.</span>}
+              <TacticalLeadForm 
+                  layout="row"
+                  sourceGroupTag={parsedIntentTag}
+                  placeholderText="Enter your email address..."
+                  buttonLabel={isAccessoryItem ? "Claim Free Maps ➔" : "Claim Free Maps ➔"}
+                />
+                <span className="gateway-form-optional-caption">
+                * Optional onboarding step. Access map links will auto-fulfill natively via email sequences.
+              </span>
             </div>
+            
 
             <div className="gateway-scrollable-disclosure-pane">
               <div className="gateway-legal-section">

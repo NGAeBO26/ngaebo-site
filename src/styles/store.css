@@ -284,6 +284,13 @@
   color: #f59e0b !important; 
 }
 
+.rg-disclaimer-note{
+  color: var(--brand-amber);
+  font-size: 10px;
+  text-align: center;
+  font-style: italic;
+}
+
 /* Empty placeholder layout card configuration */
 .rg-checkout-hub-card .rg-selection-placeholder-node {
   text-align: center !important;

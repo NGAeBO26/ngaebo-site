@@ -4,7 +4,7 @@
 .discovery-dashboard-root {
   display: flex;
   flex-direction: column;
-  height: 85vh; /* FIXED: Sets an explicit, fluid viewport limit */
+  height: 100vh; /* FIXED: Sets an explicit, fluid viewport limit */
   min-height: 600px;
   background-color: #6e7c7c; 
   color: #f8fafc;
@@ -811,9 +811,9 @@
   /* FIXED: Binds the inner body content to exactly match the 580px tray envelope dimensions */
   width: 100% !important;
   background: #ffffff !important;
-  border-left: 1px solid #cbd5e1 !important;
-  border-right: 1px solid #cbd5e1 !important;
-  border-bottom: 2px solid #94a3b8 !important;
+  border-left: 2px solid var(--brand-sky) !important;
+  border-right: 2px solid var(--brand-sky) !important;
+  border-bottom: 2px solid var(--brand-sky)  !important;
   border-radius: 0 0 8px 8px;
   display: flex;
   flex-direction: column;

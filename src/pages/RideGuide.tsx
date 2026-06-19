@@ -3,6 +3,7 @@ import { useState, useCallback, useRef } from "react";
 import GravelGuide from "../features/Discovery/GravelGuide";
 import { useRideFinderEngine, RideFilterBar, RideResultGallery } from "../features/Discovery/components/RideFinder";
 import GravelPopup from "../features/Discovery/components/GravelPopup";
+import TacticalLeadForm from "../components/TacticalLeadForm";
 
 // IMPORT PREMIUM E-COMMERCE SIDEBAR CARD NODE CONTEXTS
 import PersistentLeftShopPanel from "../store/StorePanel";
@@ -13,6 +14,7 @@ import "../features/Discovery/DiscoveryContainer.css";
 import "../styles/RideGuide.css"; // 🎯 IMPORT NEW STYLESHEET
 
 export default function RideGuide() {
+  
   const [activeHoverId, setActiveHoverId] = useState<string | null>(null);
   const [masterRoutes, setMasterRoutes] = useState<any[]>([]);
   const [filteredRoutes, setFilteredRoutes] = useState<any[]>([]);
@@ -23,6 +25,17 @@ export default function RideGuide() {
   const [isPopupClosing, setIsPopupClosing] = useState(false);
   const mapResetFnRef = useRef<(() => void) | null>(null);
   const mapZoomFnRef = useRef<((feature: any) => void) | null>(null);
+
+  const [showModal, setShowModal] = useState(() => {
+    // Check if user has already submitted the form
+    return localStorage.getItem("rideguide_lead_submitted") !== "true";
+  });
+
+  // 2. Define the success handler
+  const handleLeadSuccess = () => {
+    localStorage.setItem("rideguide_lead_submitted", "true");
+    setShowModal(false);
+  };
 
   // 🎯 HOC CONTROLLER METHODS
   const handleFilterUpdate = useCallback((results: any[]) => {
@@ -71,12 +84,124 @@ export default function RideGuide() {
   return (
     <div className="ride-finder-page-container">
       
-      {/* 🚀 TOP TAGLINE BANNER */}
-      <div className="rf-marketing-hero-banner">
-        <h2>Plan Faster. Ride Smarter.</h2>
-        <p>HIGH ACCURACY TERRAIN - CUSTOM ANALYTICS - 
-                 WEATHER AWARE - GUIDE FOR YOUR RIDE</p>
-      </div>
+      
+      {/* 🚀 PERMANENT 3-TIER IN-PAGE ONBOARDING FLOW */}
+      <section className="rg-inline-showcase-section">
+        {/* 🚀 TOP TAGLINE BANNER */}
+        <div className="rf-marketing-hero-banner">
+          <h2>Plan Faster. Ride Smarter.</h2>
+          <p>HIGH ACCURACY TERRAIN - CUSTOM ANALYTICS - WEATHER AWARE - GUIDE FOR YOUR RIDE</p>
+        </div>
+
+        <div className="rg-inline-funnel-container">
+          
+          {/* 🎯 TIER 1: INTEGRATED 4-COLUMN TRUST & PREVIEW STRIP */}
+          <div className="prop-strip-matrix-bay tier-4-column-grid">
+            
+            {/* Column 1: Integrates the rotated thumbnail asset */}
+            <div className="prop-value-column-card">
+              <div className="prop-card-header-strip">
+                <div className="rg-preview-img-contain-rotated">
+                  <img src="/data/assets/RideGuide_Sample.png" alt="RideGuide Premium PDF Pack" className="rg-mini-thumbnail-rotated" />
+                </div>
+                <h5>Know Before You Go</h5>
+              </div>
+              <p>High-resolution elevation mapping, route metrics, and surface saturation tracking dials, <strong className="text-prop-heavy">so you are prepared for every ride!</strong>.</p>
+            </div>
+
+            {/* Column 2: Offline Independent */}
+            <div className="prop-value-column-card">
+              <div className="prop-card-header-strip">
+                <div className="prop-value-icon-box ng-prop-icon-offline">
+                  <img src="data\assets\icon_no_cell_signal.svg" className="ng-prop-graphic-asset" alt="Offline Independent" />
+                </div>
+                <h5>Offline Independent</h5>
+              </div>
+              <p>Pre-rendered field guides that load instantly without requiring <strong className="text-prop-heavy">cell network data or map syncs</strong>.</p>
+            </div>
+
+            {/* Column 3: No Subscription Required */}
+            <div className="prop-value-column-card">
+              <div className="prop-card-header-strip">
+                <div className="prop-value-icon-box window-icon ng-prop-icon-motor">
+                  <img src="data\assets\icon_credit_card.svg" className="ng-prop-graphic-asset" alt="No Subscription Required" />
+                </div>
+                <h5>No Required Subscription </h5>
+              </div>
+              <p>Don't get caught in subscription based route services. <strong className="text-prop-heavy">Buy only what you want, when you want.</strong></p>
+            </div>
+
+            {/* Column 4: Peace of Mind */}
+            <div className="prop-value-column-card">
+              <div className="prop-card-header-strip">
+                <div className="prop-value-icon-box ng-prop-icon-insurance">
+                  <img src="data\assets\icon_safety.svg" className="ng-prop-graphic-asset" alt="Peace of Mind" />
+                </div>
+                <h5>Peace of Mind</h5>
+              </div>
+              <p>The backcountry can be dangerous if you are not prepared. <strong className="text-prop-heavy">Understand your risk and ride safely.</strong></p>
+            </div>
+          </div>
+
+          {/* 🎯 TIER 2: FULL-WIDTH CONVERSION BANNER */}
+          <div className="rg-conversion-banner-tier">
+            {!showModal ? (
+              <div className="capture-success-persistent-msg">
+                ✓ Free 3-Pack Sample Unlocked! Check your email inbox for your instant backcountry download link.
+              </div>
+            ) : (
+              <>
+                <p className="rg-lead-magnet-pitch-text-center">
+                  Planning your bike's maiden voyage? We've mapped out the ultimate 3-pack sample series of Fire Service routes perfectly suited for this bike. Instant download package delivered straight to your email.
+                </p>
+                
+                <div className="capture-form-full-width-container">
+                  <TacticalLeadForm
+                    layout="row"
+                    sourceGroupTag="rides_page_capture"
+                    buttonLabel="Unlock Free Sample Maps ➔"
+                    onSuccess={handleLeadSuccess}
+                  />
+                </div>      
+                
+              </>
+            )}
+          </div>
+
+          {/* 🎯 TIER 3: HORIZONTAL ONBOARDING ROW & MICRO-HEADER */}
+          <div className="rg-horizontal-instructions-tier">
+            <div className="rg-instructions-micro-header">Get Your RideGuide in 3 Easy Steps...</div>
+            <div className="rg-horizontal-steps-row">
+              
+              <div className="rg-step-column-item">
+                <span className="rg-step-badge-number">1</span>
+                <p className="rg-step-item-text"><strong>Filter routes</strong> by name, route class, distance, or grade using the RideFinder filtering controls.</p>
+              </div>
+
+              {/* ➔ FIRST STEP DIVIDER */}
+              <div className="rg-step-step-divider">➔</div>
+
+              <div className="rg-step-column-item">
+                <span className="rg-step-badge-number">2</span>
+                <p className="rg-step-item-text"><strong>Select your route</strong> by clicking on the list cards or targeting pins directly on the live map canvas.</p>
+              </div>
+
+              {/* ➔ SECOND STEP DIVIDER */}
+              <div className="rg-step-step-divider">➔</div>
+
+              <div className="rg-step-column-item">
+                <span className="rg-step-badge-number">3</span>
+                <p className="rg-step-item-text"><strong>Unlock your RideGuide</strong> pack to download full continuous telemetry, profiles, and safety matrices.</p>
+              </div>
+            </div>
+
+            <h4 className="rg-instructions-micro-header">
+              Use the interactive map below to discover routes, then get your offline guide delivered to your inbox!
+            </h4>
+          </div>
+
+        </div>
+      </section>
 
       {/* 🧭 ORIGINAL WORKSPACE DECK CONTAINER */}
       <div className="discovery-dashboard-root">
@@ -159,7 +284,7 @@ export default function RideGuide() {
           </div>
         </div>
       </div>
-
+        
     </div>
   ); 
 }
