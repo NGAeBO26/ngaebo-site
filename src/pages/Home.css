@@ -165,8 +165,7 @@
 
 .hud-quadrant-card {
   background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   padding: 12px;
@@ -177,6 +176,9 @@
   align-items: flex-start;
   height: 100%;
   width: 100%;
+  --hud-blur: blur(4px);
+  backdrop-filter: var(--hud-blur);
+  -webkit-backdrop-filter: var(--hud-blur);
 }
 
 .cell-top-left     { grid-column: 1; grid-row: 1; }

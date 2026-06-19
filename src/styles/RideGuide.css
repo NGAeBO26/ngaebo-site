@@ -20,14 +20,14 @@
 }
 
 .ride-finder-page-container .rf-marketing-hero-banner h2 {
-    color: #fff;
-    margin: 0 0 6px 0;
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-    font-family: "Montserrat", sans-serif !important;
-    text-shadow: 0 1.5px 1.5px var(--brand-sky);
+  color: #fff;
+  margin: 0 0 6px 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif !important;
+  text-shadow: 0 1.5px 1.5px var(--brand-sky);
 }
 
 .ride-finder-page-container .rf-marketing-hero-banner p {
@@ -82,8 +82,10 @@
    ========================================================================== */
 
 .rg-inline-showcase-section {
-  padding: 20px 0; 
-  background-image: linear-gradient(rgba(30, 58, 52, 0.65), rgba(110, 124, 124, 0.88)), url('/images/backcountry_vprop_bg.jpg');
+  padding: 20px 0;
+  background-image:
+    linear-gradient(rgba(30, 58, 52, 0.65), rgba(110, 124, 124, 0.88)),
+    url("/images/backcountry_vprop_bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -91,8 +93,8 @@
 
 .rg-inline-showcase-section .rg-inline-funnel-container {
   max-width: 960px;
-  margin: 0 auto; 
-  width: 100%;    
+  margin: 0 auto;
+  width: 100%;
   box-sizing: border-box;
 }
 
@@ -122,8 +124,8 @@
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: var(--safe-glass-blur);
+  -webkit-backdrop-filter: var(--safe-glass-blur);
   box-sizing: border-box;
 }
 
@@ -160,8 +162,8 @@
 }
 
 .rg-inline-showcase-section .text-prop-heavy {
-  color: var(--brand-mellow); 
-  font-weight: 800; 
+  color: var(--brand-mellow);
+  font-weight: 800;
 }
 
 .rg-inline-showcase-section .prop-value-icon-box img.ng-prop-graphic-asset {
@@ -185,7 +187,7 @@
   width: 32px;
   height: 44px;
   object-fit: cover;
-  transform: rotate(-20deg); 
+  transform: rotate(-20deg);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
   border-radius: 2px;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -201,8 +203,8 @@
   border-radius: 12px;
   padding: 24px;
   box-sizing: border-box;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: var(--safe-glass-blur);
+  -webkit-backdrop-filter: var(--safe-glass-blur);
   text-align: center;
 }
 
@@ -282,7 +284,7 @@
 
 .rg-inline-showcase-section .rg-step-step-divider {
   font-size: 1.25rem;
-  color: var(--brand-sky); 
+  color: var(--brand-sky);
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -305,7 +307,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
 .rg-inline-showcase-section .rg-step-item-text {
@@ -319,19 +321,19 @@
 .rg-inline-showcase-section .rg-step-item-text strong {
   color: var(--brand-sky);
   font-weight: 700;
-  text-transform:uppercase;
+  text-transform: uppercase;
   text-shadow: 0 1px 2px var(--brand-white);
 }
 
 .rg-inline-showcase-section .rg-instructions-micro-header {
-    font-family: "Montserrat", sans-serif !important;
-    font-size: 0.9rem;
-    font-weight: 800;
-    color: var(--brand-mellow);
-    text-align: center;
-    margin: 12px 0 12px 0;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--brand-mellow);
+  text-align: center;
+  margin: 12px 0 12px 0;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
 /* 🛒 DEDICATED FEATURED PRODUCTS LOWER CONTAINER */

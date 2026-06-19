@@ -1,33 +1,35 @@
 /* --- SECTION 3: INTERACTIVE BLUEPRINT ACCORDION & ICONS --- */
 .digital-product-showcase-section {
-  padding: 20px 0; 
-  background-image: linear-gradient(rgba(30, 58, 52, 0.65), rgba(110, 124, 124, 0.88)), url('/images/backcountry_vprop_bg.jpg');
+  padding: 20px 0;
+  background-image:
+    linear-gradient(rgba(30, 58, 52, 0.65), rgba(110, 124, 124, 0.88)),
+    url("/images/backcountry_vprop_bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .digital-product-showcase-section .funnel-container {
-  max-width: 960px; 
+  max-width: 960px;
 }
 
 .section-header {
-  text-align: center; 
-  margin-bottom: 24px; 
+  text-align: center;
+  margin-bottom: 24px;
   width: 100%;
 }
 
 .section-header h2 {
-  font-size: 2.2rem; 
+  font-size: 2.2rem;
   margin: 0 0 6px 0;
-  color: #ffffff; 
+  color: #ffffff;
 }
 
 .sub-tagline-lowercase {
-  text-align: center; 
+  text-align: center;
   margin: 0 auto;
   width: 100%;
-  color: #fff; 
+  color: #fff;
   font-weight: 700;
   font-size: 0.9rem;
   letter-spacing: 0.05em;
@@ -36,14 +38,13 @@
 
 /* --- VALUE MATRIX PROP STRIP ICON HOOKS --- */
 .prop-strip-matrix-bay {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 46px;
-    width: 100%;
-    max-width: 840px;
-    margin: 8px auto 16px auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 46px;
+  width: 100%;
+  max-width: 840px;
+  margin: 8px auto 16px auto;
 }
-
 
 /* Icon layout adjustments for clean horizontal alignment */
 .prop-value-icon-box {
@@ -64,9 +65,9 @@
 }
 
 .text-prop-heavy {
-  color: var(--brand-mellow); 
-  font-size: 0.75rem; 
-  font-weight: 800; 
+  color: var(--brand-mellow);
+  font-size: 0.75rem;
+  font-weight: 800;
   line-height: 1.2;
 }
 
@@ -86,8 +87,8 @@
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: var(--safe-glass-blur);
+  -webkit-backdrop-filter: var(--safe-glass-blur);
   box-sizing: border-box;
 }
 
@@ -107,30 +108,30 @@
 
 /* --- ACCORDION SYSTEM LAYOUT CHANNELS --- */
 .blueprint-interactive-bay {
-    display: grid;
-    grid-template-columns: 42% 58%;
-    gap: 54px;
-    FONT-VARIANT: JIS04;
-    width: 100%;
-    max-width: 760px;
-    height: 380px;
-    margin: 0 auto;
-    box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 42% 58%;
+  gap: 54px;
+  font-variant: JIS04;
+  width: 100%;
+  max-width: 760px;
+  height: 380px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .product-pillars-tab-stack {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    box-sizing: border-box;
-    max-height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  box-sizing: border-box;
+  max-height: 380px;
 }
 
 .feature-pillar-tab-card {
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 10px;
-  padding: 10px 14px; 
+  padding: 10px 14px;
   cursor: pointer;
   text-align: left;
   display: flex;
@@ -142,7 +143,7 @@
 }
 
 .feature-pillar-tab-card h4 {
-  font-size: 1rem; 
+  font-size: 1rem;
   font-weight: 800;
   margin: 0;
   transition: color 0.2s ease;
@@ -150,7 +151,7 @@
 
 .pillar-eyebrow-accent {
   font-family: monospace;
-  font-size: 8px; 
+  font-size: 8px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -160,7 +161,7 @@
 }
 
 .accordion-title-block {
-  display: flex; 
+  display: flex;
   flex-direction: column;
 }
 
@@ -173,7 +174,7 @@
 }
 
 .feature-pillar-tab-card p {
-  font-size: 0.8rem; 
+  font-size: 0.8rem;
   line-height: 1.4;
   margin: 0;
 }
@@ -215,7 +216,7 @@
 }
 
 .pillar-benefit-bullet-list li {
-  font-size: 0.75rem; 
+  font-size: 0.75rem;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -230,45 +231,63 @@
 
 /* --- STATE A: ACTIVE CARD RULES (LIGHT GLOWING REVISION) --- */
 .feature-pillar-tab-card.active-pillar {
-  flex: 4; 
+  flex: 4;
   background: linear-gradient(180deg, #ffffff 0%, #f4f9ff 100%);
   border-color: #38bdf8;
   box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.2);
 }
 
-.feature-pillar-tab-card.active-pillar h4 { color: #0284c7; margin-bottom: 2px; }
-.feature-pillar-tab-card.active-pillar .pillar-eyebrow-accent { color: var(--brand-amber); }
-.feature-pillar-tab-card.active-pillar p { color: #334155; }
-.feature-pillar-tab-card.active-pillar .pillar-benefit-bullet-list li { color: #166534; }
+.feature-pillar-tab-card.active-pillar h4 {
+  color: #0284c7;
+  margin-bottom: 2px;
+}
+.feature-pillar-tab-card.active-pillar .pillar-eyebrow-accent {
+  color: var(--brand-amber);
+}
+.feature-pillar-tab-card.active-pillar p {
+  color: #334155;
+}
+.feature-pillar-tab-card.active-pillar .pillar-benefit-bullet-list li {
+  color: #166534;
+}
 
 /* 🎯 THE ACCORDION IMAGE INVERSION CONTROLLER: Executes a matrix mathematical inversion turn to slate gray */
-.feature-pillar-tab-card.active-pillar .accordion-tab-vector-placeholder img.ng-accordion-graphic-asset {
-  filter: brightness(0) saturate(100%) invert(48%) sepia(13%) saturate(941%) hue-rotate(178deg) brightness(93%) contrast(87%);
+.feature-pillar-tab-card.active-pillar
+  .accordion-tab-vector-placeholder
+  img.ng-accordion-graphic-asset {
+  filter: brightness(0) saturate(100%) invert(48%) sepia(13%) saturate(941%)
+    hue-rotate(178deg) brightness(93%) contrast(87%);
 }
 
 .feature-pillar-tab-card.active-pillar .accordion-content-overflow-wrapper {
   opacity: 1;
-  max-height: 200px; 
+  max-height: 200px;
   visibility: visible;
   margin-top: 4px;
 }
 
 /* --- STATE B: COLLAPSED CARD RULES (MISTED GLASS CHANNELS) --- */
 .feature-pillar-tab-card.collapsed-pillar {
-  flex: 1; 
+  flex: 1;
   background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: var(--safe-glass-blur);
+  -webkit-backdrop-filter: var(--safe-glass-blur);
   border-color: rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
-  justify-content: center; 
+  justify-content: center;
 }
 
 /* Collapsed white text presentation paths matching image layout viewports */
-.feature-pillar-tab-card.collapsed-pillar h4 { color: var(--brand-mellow); }
-.feature-pillar-tab-card.collapsed-pillar .pillar-eyebrow-accent { color: #94a3b8; }
-.feature-pillar-tab-card.collapsed-pillar .accordion-tab-vector-placeholder img.ng-accordion-graphic-asset {
+.feature-pillar-tab-card.collapsed-pillar h4 {
+  color: var(--brand-mellow);
+}
+.feature-pillar-tab-card.collapsed-pillar .pillar-eyebrow-accent {
+  color: #94a3b8;
+}
+.feature-pillar-tab-card.collapsed-pillar
+  .accordion-tab-vector-placeholder
+  img.ng-accordion-graphic-asset {
   filter: none; /* Keeps original pure white illustration path tracking */
 }
 
@@ -282,23 +301,23 @@
   background: var(--brand-white);
   border: 1px solid #e2e8f0;
   border-radius: 14px;
-  padding: 0; 
+  padding: 0;
   box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
-  max-height: 380px; 
-  aspect-ratio: 3 / 4; 
+  max-height: 380px;
+  aspect-ratio: 3 / 4;
   margin: 0 auto;
-  overflow: hidden; 
+  overflow: hidden;
   box-sizing: border-box;
 }
 
 .blueprint-main-map-image {
-  width: 100%; 
+  width: 100%;
   height: 100%;
-  object-fit: cover; 
+  object-fit: cover;
   display: block;
 }
 
@@ -306,8 +325,8 @@
   position: absolute;
   border-radius: 4px;
   border: 3px solid var(--brand-sky);
-  background: rgba(255, 255, 255, 0); 
-  box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.55); 
+  background: rgba(255, 255, 255, 0);
+  box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.55);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
   z-index: 10;
@@ -316,59 +335,59 @@
 /* --- LOWER FOOTER TRANSITIONAL LAYOUT CHAINS --- */
 .isolated-cta-clear-way {
   width: 100%;
-  padding: 24px 0 0 0; 
+  padding: 24px 0 0 0;
   display: flex;
   justify-content: center;
   box-sizing: border-box;
   position: relative;
-  z-index: 20; 
+  z-index: 20;
 }
 
 .cta-inner-alignment-shield {
-  width: 100%; 
+  width: 100%;
   max-width: 550px; /* Constrains the shield width so the outer container can center it */
-  display: flex; 
-  flex-direction: column; 
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
 .btn-cta-oversized {
-  padding: 14px 24px; 
-  font-size: 1.1rem; 
+  padding: 14px 24px;
+  font-size: 1.1rem;
   letter-spacing: 0.02em;
 }
 
 /* --- CAPTURE STATE INSTRUCTIONS OVERLAY DECK --- */
 .capture-instructions-deck {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    height: 100%;
-    justify-content: flex-start;
-    box-sizing: border-box;
-    background-color: var(--brand-white);
-    border: 1px solid #fff;
-    border-radius: 14px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 14px
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  height: 100%;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  background-color: var(--brand-white);
+  border: 1px solid #fff;
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
 }
 
-.capture-instructions-deck-header{
-    background: var(--brand-sky);    
-    text-align: center;
-    width: 100%;
-    height: 28px;
-    box-sizing: border-box;
-    display: flex; /* Added to center the h3 vertically inside the fixed 28px height */
-    align-items: center;
-    justify-content: center;
+.capture-instructions-deck-header {
+  background: var(--brand-sky);
+  text-align: center;
+  width: 100%;
+  height: 28px;
+  box-sizing: border-box;
+  display: flex; /* Added to center the h3 vertically inside the fixed 28px height */
+  align-items: center;
+  justify-content: center;
 }
 
 .capture-instructions-deck h3 {
   font-family: "Montserrat", sans-serif !important;
   font-size: 1rem;
-  font-weight: 800; 
+  font-weight: 800;
   color: var(--brand-white);
   text-transform: uppercase;
   letter-spacing: 0.02em;
@@ -390,13 +409,13 @@
   font-size: 0.75rem;
   line-height: 1.55;
   font-weight: 700;
-  
+
   color: var(--brand-sky);
 }
 
 .capture-form-inline-container {
-    padding: 8px;
-    width: 100%;
+  padding: 8px;
+  width: 100%;
 }
 
 .capture-legal-disclaimer {
@@ -412,8 +431,8 @@
 }
 
 .capture-instructions-deck-footer {
-  background: var(--brand-sky);    
-    width: 100%;
-    height: 20px;
-    margin-top: auto;    
+  background: var(--brand-sky);
+  width: 100%;
+  height: 20px;
+  margin-top: auto;
 }

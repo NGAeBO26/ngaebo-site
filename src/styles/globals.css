@@ -10,9 +10,9 @@
   --brand-gray: #d9d9d9;
   --brand-olive: #4a5b3a;
   --brand-army: #3c4a2f;
-  --brand-sky:#236ea0;
+  --brand-sky: #236ea0;
   --brand-slate: #9badad;
-  --brand-mellow:#ebc850;  
+  --brand-mellow: #ebc850;
 
   --brand-amber: #d88a3a;
   --brand-forest: #3f5a3c;
@@ -35,9 +35,9 @@
   --header-height: 150px;
 
   /* ⭐ THE MISSING VARIABLE ⭐ */
-  --max-width: 1200px;   /* You can adjust this to match your design */
+  --max-width: 1200px; /* You can adjust this to match your design */
+  --safe-glass-blur: blur(8px);
 }
-
 
 /* -------------------------------------------------- */
 /* GLOBAL RESET */
@@ -91,7 +91,7 @@ a {
 .trail-map-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.35);
+  background: rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,7 +107,7 @@ a {
   font-weight: 600;
   cursor: pointer;
   border: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .cta-panel {
@@ -354,10 +354,10 @@ a {
 .social-channels-header {
   width: 100%;
   max-width: var(--max-width);
-  margin: 0 auto 32px auto;   /* ← was: 0 auto */
+  margin: 0 auto 32px auto; /* ← was: 0 auto */
   padding: 40px var(--ng-page-padding);
   border-radius: 12px;
-  background-image: url('/images/reddit-highlands-sunset.png');
+  background-image: url("/images/reddit-highlands-sunset.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -365,10 +365,6 @@ a {
   color: var(--brand-bone);
   box-sizing: border-box;
 }
-
-
-
-
 
 .section-title {
   font-size: 28px;
@@ -537,14 +533,18 @@ a {
   .hero {
     padding-top: 120px;
   }
-
- 
 }
 
 /* Modal Animation */
 @keyframes scaleFadeIn {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.92); }
-  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
 .animate-scaleFadeIn {
@@ -579,7 +579,7 @@ a {
   padding: 10px 18px;
   border-radius: 8px;
   font-weight: 600;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   transition: background 0.2s ease;
 }
 
@@ -614,5 +614,3 @@ a {
   overflow-wrap: break-word;
   word-break: break-all;
 } */
-
-
