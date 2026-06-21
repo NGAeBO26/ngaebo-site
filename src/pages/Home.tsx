@@ -265,7 +265,7 @@ export default function Home() {
                 Get Your Free Sample Pack.
               </h3>
               <p style={{ margin: 0, color: "#94a3b8", fontSize: "0.95rem", lineHeight: 1.5 }}>
-                Planning your bike's maiden voyage? We've mapped out the ultimate 3-pack sample series of Fire Service road loops perfectly balanced for this exact build class. Instant download package delivered to your email.
+                Planning your bike's maiden voyage? We've mapped out the ultimate 3-pack sample of our favorite Fire Service Road routes, perfect for eBike adventures. Instant download package delivered to your email.
               </p>
             </div>
             <div>

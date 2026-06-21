@@ -1,12 +1,12 @@
 {
   "profile_id": "98_S1",
   "route_id": "98",
-  "ssdi_score": 7.7,
+  "ssdi_score": 8.5,
   "v3_terrain_score": 5.6,
   "v3_terrain_class": "Strenuous",
-  "badge_type": "muddy",
-  "condition": "MUDDY / SOFT",
-  "style_color": "#a52d23",
+  "badge_type": "wet",
+  "condition": "WET / SLICK",
+  "style_color": "#e66e00",
   "access": {
     "label": "OPEN",
     "vibe_context": "RESTRICTED EXPLORER",
@@ -17,17 +17,17 @@
     "value": 0.2
   },
   "environment": {
-    "current_temp": 81,
-    "saturation_index": 10,
+    "current_temp": 69,
+    "saturation_index": 26.1,
     "soil_status": "Saturated",
     "precip_24h": 0.21,
     "saturation_trend": "stable",
     "alerts": []
   },
   "physics": {
-    "live_traction": 0.43,
-    "live_wh_per_km": 18.44,
-    "energy_penalty_pct": 20.0,
+    "live_traction": 0.69,
+    "live_wh_per_km": 16.6,
+    "energy_penalty_pct": 8.0,
     "v3_base_intensity": 5.7
   },
   "connectivity": {

@@ -112,8 +112,6 @@
   font-weight: 500 !important;
 }
 
-/* src/styles/store.css */
-
 /* ──────────────────────────────────────────────────────────────────────────
    📦 DEEP-BLUE-SCALE LIVE IFRAME REPORT VIEWPORT PORTAL
    ────────────────────────────────────────────────────────────────────────── */
@@ -476,16 +474,189 @@
 .rg-checkout-hub-card .rg-storefront-empty-viewport-placeholder .rg-placeholder-icon {
   font-size: 24px !important;
   margin-bottom: 8px !important;
-  display: block !important;
+  display: block !important;  
+}
+
+.rg-placeholder-icon {
+  height: 76px;
 }
 
 .rg-checkout-hub-card .rg-storefront-empty-viewport-placeholder .rg-placeholder-text {
   font-family: "Montserrat", sans-serif !important;
-  font-size: 8px !important;
+  font-size: 16px !important;
   font-weight: 700 !important;
-  color: #94a3b8 !important;
+  color: var(--brand-sky) !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
   line-height: 1.3 !important;
 }
 
+/* ──────────────────────────────────────────────────────────────────────────
+   📦 4. EXTRACTION SPECIFICATION: NEW EXTENDED DISCOVERY INVENTORY VIEWS
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* State 3: Success Banner Shield Intercept Overlay */
+.rg-portal-success-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  background-color: #1e3a34 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 20px !important;
+  box-sizing: border-box !important;
+  z-index: 40 !important;
+  text-align: center !important;
+}
+
+.rg-portal-success-icon {
+  font-size: 32px !important;
+  margin-bottom: 8px !important;
+}
+
+.rg-portal-success-title {
+  margin: 0 !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  color: #ffffff !important;
+  font-family: sans-serif !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+.rg-portal-success-desc {
+  margin: 4px 0 0 0 !important;
+  font-size: 11px !important;
+  color: #cbd5e1 !important;
+  font-family: sans-serif !important;
+}
+
+/* State 4: Current Rider Inventory Deck Main Canvas Module */
+.rg-portal-inventory-deck {
+  position: absolute !important;
+  inset: 0 !important;
+  background-color: #f8fafc !important;
+  padding: 14px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  z-index: 35 !important;
+}
+
+.rg-inventory-header-row {
+  border-bottom: 1px dashed #cbd5e1 !important;
+  padding-bottom: 6px !important;
+  margin-bottom: 8px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.rg-inventory-meta-label {
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  color: #64748b !important;
+  font-family: sans-serif !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.rg-inventory-counter-tag {
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  color: #236ea0 !important;
+  font-family: sans-serif !important;
+}
+
+.rg-inventory-scroll-pane {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  padding-right: 2px !important;
+}
+
+/* Individual Item Card Blocks */
+.rg-inventory-item-card {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  padding: 8px 10px !important;
+  border-radius: 6px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+}
+
+.rg-inventory-item-left-details {
+  min-width: 0 !important;
+  flex: 1 !important;
+  padding-right: 6px !important;
+}
+
+.rg-inventory-item-title {
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  font-family: sans-serif !important;
+}
+
+.rg-inventory-item-subtitle {
+  font-size: 9px !important;
+  color: #64748b !important;
+  font-weight: 600 !important;
+  margin-top: 1px !important;
+  font-family: sans-serif !important;
+}
+
+.rg-inventory-item-right-bay {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-shrink: 0 !important;
+}
+
+.rg-inventory-item-badge-asset {
+  width: 22px !important;
+  height: auto !important;
+  display: block !important;
+}
+
+.rg-inventory-item-price-label {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #236ea0 !important;
+  font-family: sans-serif !important;
+}
+
+/* Under-card quiet background context notification badge banner */
+.rg-sidebar-toast-alert {
+  color: #10b981 !important;
+  font-size: 13px !important;
+  font-weight: bold !important;
+  text-align: center !important;
+  margin-bottom: 12px !important;
+  font-family: sans-serif !important;
+}
+
+/* 🎯 REACTIVE MODIFIER OVERRIDES FOR ACTION ELEMENT SPECIFICATIONS */
+.rg-checkout-hub-card .rg-premium-buy-btn.mod-disabled {
+  background-color: #94a3b8 !important;
+  cursor: not-allowed !important;
+}
+
+.rg-checkout-hub-card .rg-premium-buy-btn.mod-adding {
+  background-color: #10b981 !important;
+  cursor: not-allowed !important;
+}
+
+.rg-checkout-hub-card .rg-premium-buy-btn.mod-ready {
+  background-color: #d88a3a !important;
+  cursor: pointer !important;
+}

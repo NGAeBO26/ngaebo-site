@@ -14,7 +14,6 @@ import "../features/Discovery/DiscoveryContainer.css";
 import "../styles/RideGuide.css"; // 🎯 IMPORT NEW STYLESHEET
 
 export default function RideGuide() {
-  
   const [activeHoverId, setActiveHoverId] = useState<string | null>(null);
   const [masterRoutes, setMasterRoutes] = useState<any[]>([]);
   const [filteredRoutes, setFilteredRoutes] = useState<any[]>([]);
@@ -83,7 +82,6 @@ export default function RideGuide() {
 
   return (
     <div className="ride-finder-page-container">
-      
       
       {/* 🚀 PERMANENT 3-TIER IN-PAGE ONBOARDING FLOW */}
       <section className="rg-inline-showcase-section">

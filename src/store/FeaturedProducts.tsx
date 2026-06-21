@@ -208,7 +208,7 @@ export default function FeaturedProducts({
           {bikeProducts.length > 0 && (
             <div className="shop-accessories-divider-ribbon featured-full-width-ribbon">
               <div className="shop-accessories-divider-label">
-                ⚡ High-Capacity Powertrains Verified for Grade &amp; Elevation
+                Off Road Capable Bikes to Tackle Steep Grades on Gravel and Clay
               </div>
             </div>
           )}
@@ -217,10 +217,10 @@ export default function FeaturedProducts({
           {/* Reassurance value strip banner */}
           <div className="featured-mid-trust-strip">
             <span className="featured-trust-pill">
-              <span className="featured-checkmark-accent">✓</span> 100% Trail Legal Compliance Verified
+              <span className="featured-checkmark-accent">✓</span> Street and Off-Road Legal Bikes
             </span>
             <span className="featured-trust-pill">
-              <span className="featured-checkmark-accent">✓</span> Mapped Rig Vibrational Dampening
+              <span className="featured-checkmark-accent">✓</span> Safety Certified Batteries
             </span>
             <span className="featured-trust-pill">
               <span className="featured-checkmark-accent">✓</span> Direct Manufacturer Sourced Links
@@ -231,7 +231,7 @@ export default function FeaturedProducts({
           {accessoryProducts.length > 0 && (
             <div className="shop-accessories-divider-ribbon section-following-divider featured-following-ribbon">
               <div className="shop-accessories-divider-label">
-                🛠️ Tactical Trail Add-Ons: Tested for High-Vibration Backcountry Impact
+                Trail Tested Gear For Tough Backcountry Routes
               </div>
             </div>
           )}
