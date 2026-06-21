@@ -25,7 +25,7 @@ export default function Home() {
             
             <div className="hero-content-stack">
               <h1 className="hero-home-title">
-                Master the North Georgia Backcountry with Confidence.
+                Master the Backcountry.<br></br> Ride with Confidence.
               </h1>
               <h2 className="hero-tagline-blue">
                 Plan Faster. Ride Smarter.
@@ -152,7 +152,7 @@ export default function Home() {
             <div className="problem-solution-block">
               <span className="problem-tagline-amber">Know Before You Go.</span>
               <p>
-                Riding <span className="txt-bold-heavy">off-road eBikes</span> through North Georgia's <span className="txt-bold-heavy">rugged backcountry </span>demands <span className="txt-bold-heavy">precision planning</span>. Unpredictable high-altitude weather means situations change quickly, which can <span className="txt-bold-heavy">drain your battery</span>, alter the <span className="txt-bold-heavy">rolling resistance</span> of native red clay dynamically, and blind valleys offer zero cellular safety nets. Our <span className="txt-bold-heavy">data-driven methodology</span> eliminates variables by modeling <span className="txt-bold-heavy">real-world physics </span> calculation nodes directly into your field telemetry maps—ensuring <span className="txt-bold-heavy">situational awareness</span> before you head out.
+                Riding <span className="txt-bold-heavy">off-road eBikes</span> through North Georgia's <span className="txt-bold-heavy">rugged backcountry </span>demands <span className="txt-bold-heavy">precision planning</span>. Unpredictable high-altitude weather means situations change quickly, which can <span className="txt-bold-heavy">drain your battery</span>, alter the <span className="txt-bold-heavy">rolling resistance</span> of native red clay dynamically, and blind valleys offer zero <span className="txt-bold-heavy">cellular safety nets.</span> Our <span className="txt-bold-heavy">data-driven methodology</span> evaluates difficulty and risk by modeling <span className="txt-bold-heavy">real-world physics </span> calculations directly into <span className="txt-bold-heavy">weather-aware</span> field guides—ensuring <span className="txt-bold-heavy">situational awareness</span> before you head out.
               </p>
             </div>
           </div>
@@ -168,11 +168,11 @@ export default function Home() {
           {/* 🎯 THE ASYMMETRICAL SPLIT HOOK HEADER PANEL (No inline layout attributes) */}
           <div className="problem-split-grid">
             <div className="problem-challenge-block">
-              <h2>Vetted Backcountry Equipment</h2>
+              <h2>Vetted Adventure-Ready Equipment for Cargo, Safety, Comfort and More.</h2>
             </div>
             <div className="problem-solution-block">
-              <span className="problem-tagline-amber">Tested components optimized specifically for North Georgia gap profiles.</span>
-              <p>Our curratted selection of <span className="txt-bold-heavy">trail proven gear </span>is hand selected for the backcountry trails across the Blue Ridge. These <span className="txt-bold-heavy">featured items </span>aren't just compatible—they are explicitly vetted to survive deep <span className="txt-bold-heavy">off-grid expeditions</span>, ensuring your mechanical and electrical configurations hold out when situations change rapidly.
+              <span className="problem-tagline-amber">Accessories and Gear selected specifically for off-road adventures.</span>
+              <p>Our curratted selection of <span className="txt-bold-heavy">outdoor-proven gear </span>is hand selected for the backcountry trails across North Georgia. These <span className="txt-bold-heavy">featured items </span>aren't just compatible—they are <span className="txt-bold-heavy">capable, durable </span> and built to survive deep <span className="txt-bold-heavy">off-road expeditions</span>, ensuring your mechanical and electrical configurations hold out when situations change rapidly.
               </p>
             </div>
           </div>

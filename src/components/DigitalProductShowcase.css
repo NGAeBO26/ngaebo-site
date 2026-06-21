@@ -85,10 +85,8 @@
   gap: 12px;
   padding: 16px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: var(--safe-glass-blur);
-  -webkit-backdrop-filter: var(--safe-glass-blur);
+  background: color-mix(in srgb, var(--brand-deep-green) 50%, transparent);
+  border: 1px solid var(--brand-deep-green);
   box-sizing: border-box;
 }
 
@@ -225,7 +223,7 @@
 
 .pillar-benefit-bullet-list li::before {
   content: "✓";
-  color: #4ade80;
+  color: var(--brand-sky);
   font-weight: 900;
 }
 
@@ -233,12 +231,12 @@
 .feature-pillar-tab-card.active-pillar {
   flex: 4;
   background: linear-gradient(180deg, #ffffff 0%, #f4f9ff 100%);
-  border-color: #38bdf8;
+  border-color: var(--brand-sky);
   box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.2);
 }
 
 .feature-pillar-tab-card.active-pillar h4 {
-  color: #0284c7;
+  color: var(--brand-sky);
   margin-bottom: 2px;
 }
 .feature-pillar-tab-card.active-pillar .pillar-eyebrow-accent {
@@ -248,7 +246,7 @@
   color: #334155;
 }
 .feature-pillar-tab-card.active-pillar .pillar-benefit-bullet-list li {
-  color: #166534;
+  color: var(--brand-sky);
 }
 
 /* 🎯 THE ACCORDION IMAGE INVERSION CONTROLLER: Executes a matrix mathematical inversion turn to slate gray */
@@ -273,14 +271,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: rgba(15, 23, 42, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: color-mix(in srgb, var(--brand-deep-green) 50%, transparent);
+  border: 1px solid var(--brand-deep-green);
   border-radius: 12px;
 }
 
 /* Collapsed white text presentation paths matching image layout viewports */
 .feature-pillar-tab-card.collapsed-pillar h4 {
-  color: var(--brand-mellow);
+  color: var(--brand-white);
 }
 .feature-pillar-tab-card.collapsed-pillar .pillar-eyebrow-accent {
   color: #94a3b8;

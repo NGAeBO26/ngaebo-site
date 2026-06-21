@@ -37,7 +37,7 @@
   padding: 12px 16px; 
   border-radius: 6px; 
   border: 1px solid #334155; 
-  background: #1e293b; 
+  background: var(--brand-bone); 
   color: #ffffff; 
   font-size: 0.95rem;
   flex-grow: 1;

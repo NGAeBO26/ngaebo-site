@@ -163,10 +163,7 @@
   box-sizing: border-box;
 }
 
-.hud-quadrant-card {
-  background: rgba(255, 255, 255, 0.15);
-  
-  border: 1px solid rgba(255, 255, 255, 0.2);
+.hud-quadrant-card {  
   border-radius: 12px;
   padding: 12px;
   box-sizing: border-box;
@@ -176,9 +173,8 @@
   align-items: flex-start;
   height: 100%;
   width: 100%;
-  --hud-blur: blur(4px);
-  backdrop-filter: var(--hud-blur);
-  -webkit-backdrop-filter: var(--hud-blur);
+  background: color-mix(in srgb, var(--brand-white) 35%, transparent);
+  border: 1px solid var(--brand-white);
 }
 
 .cell-top-left     { grid-column: 1; grid-row: 1; }
@@ -236,6 +232,7 @@
   font-weight: 800;
   color: var(--brand-amber);
   margin: 2px 0 8px 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
 }
 
 .hero-metric-flex-bay {
@@ -250,7 +247,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.65);
   padding: 6px 12px;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -263,7 +260,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.65);
   padding: 6px 12px;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -282,10 +279,11 @@
   font-size: 0.75rem; 
   font-weight: 800; 
   line-height: 1.2;
+  text-shadow: 0 1px 1px #333333;
 }
 
 .hud-metric-label-micro {
-  color: #cbd5e1; 
+  color: var(--color-primary-dark); 
   font-size: 6px; 
   text-transform: uppercase;
 }
@@ -554,7 +552,7 @@
 /* --- SECTION 6: LEAD CAPTURE SYSTEM --- */
 .lead-capture-footer { 
   padding: 60px 0; 
-  background: #0f172a; 
+  background: var(--brand-deep-green); 
   color: #ffffff; 
 }
 
