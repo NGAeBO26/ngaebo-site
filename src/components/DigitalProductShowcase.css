@@ -95,6 +95,7 @@
   font-weight: 800;
   color: #ffffff;
   margin: 0 0 6px 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
 }
 
 .prop-value-column-card p {
@@ -279,6 +280,7 @@
 /* Collapsed white text presentation paths matching image layout viewports */
 .feature-pillar-tab-card.collapsed-pillar h4 {
   color: var(--brand-white);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
 }
 .feature-pillar-tab-card.collapsed-pillar .pillar-eyebrow-accent {
   color: #94a3b8;

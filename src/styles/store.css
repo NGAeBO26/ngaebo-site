@@ -474,16 +474,17 @@
 .rg-checkout-hub-card .rg-storefront-empty-viewport-placeholder .rg-placeholder-icon {
   font-size: 24px !important;
   margin-bottom: 8px !important;
-  display: block !important;  
+  display: block !important;
 }
 
 .rg-placeholder-icon {
-  height: 76px;
+  height: 96px;
+
 }
 
 .rg-checkout-hub-card .rg-storefront-empty-viewport-placeholder .rg-placeholder-text {
   font-family: "Montserrat", sans-serif !important;
-  font-size: 16px !important;
+  font-size: 14px !important;
   font-weight: 700 !important;
   color: var(--brand-sky) !important;
   text-transform: uppercase !important;
@@ -657,6 +658,44 @@
 }
 
 .rg-checkout-hub-card .rg-premium-buy-btn.mod-ready {
+  background-color: #d88a3a !important;
+  cursor: pointer !important;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   🎯 NEW WORKSPACE COMPONENT EXTENSIONS
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* Persistent structural container reserving the bottom area of the panel card block */
+.rg-inventory-continue-shopping-row {
+  margin-top: 10px !important;
+  padding-top: 8px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  text-align: center !important;
+  flex-shrink: 0 !important;
+}
+
+/* Clear, text-centered action links for navigation loop resets */
+.rg-inventory-continue-btn {
+  background: none !important;
+  border: none !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #236ea0 !important;
+  cursor: pointer !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  transition: color 0.15s ease-in-out !important;
+  padding: 4px 8px !important;
+}
+
+.rg-inventory-continue-btn:hover {
+  color: #d88a3a !important;
+}
+
+/* Primary checkout modifier color override configuration */
+.rg-checkout-hub-card .rg-premium-buy-btn.mod-checkout {
   background-color: #d88a3a !important;
   cursor: pointer !important;
 }

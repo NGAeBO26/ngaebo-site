@@ -1,6 +1,7 @@
 /* src/store/StorePanel.tsx */
 import { useState, useEffect } from "react";
 import { useShopifyCart } from "./ShopifyCartContext"; // 🎯 Integrated shared context link
+import { useShopifyAuth } from "./ShopifyAuthContext"; // 🎯 Integrated customer account session data profiles
 
 const BADGES_BASE = "/images/badges/fcs";
 
@@ -12,7 +13,8 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
   const [iframeLoaded, setIframeLoaded] = useState(false);
   
   // 🎯 CONNECT STATE CONTEXT: Read live item arrays alongside mutation engines
-  const { addRouteToCart, cartItems } = useShopifyCart(); 
+  const { isAuthenticated } = useShopifyAuth();
+  const { addRouteToCart, cartItems, checkoutUrl } = useShopifyCart(); 
 
   const [isAdding, setIsAdding] = useState(false);
   const [justAdded, setJustAdded] = useState(false);
@@ -57,16 +59,30 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
     }
   }, [rawRouteId]);
 
+  // 🎯 ANTI-DUPLICATION LOGIC GATE: Scans active cart payload to identify preexisting route assets
+  const isAlreadyInCart = cartItems.some((item) => String(item.routeId) === rawRouteId);
+
   const handleLaunchCheckoutChannel = async () => {
     if (!hasActiveSelection || isAdding || justAdded) return;
     
+    // 🎯 LOGIC GATE INTERCEPT: Blocks mutation payload transmission and triggers duplicate alert overlay state
+    if (isAlreadyInCart) {
+      setCartNotification("already_in_cart");
+      
+      // Auto-advance layout view into active inventory panel screen after visibility window loops out
+      setTimeout(() => {
+        setJustAdded(true);
+        setCartNotification(null);
+      }, 3000);
+      return;
+    }
+
     setIsAdding(true);
     setCartNotification(null);
     console.log(`🚀 INITIATING CART MUTATION: Passing context lines to Shopify Storefront schema layer for asset: ${rawRouteId}...`);
 
     const targetVariantId = "gid://shopify/ProductVariant/51045122146524"; 
 
-    // Trigger background Storefront line inject parameters
     const success = await addRouteToCart(targetVariantId, rawRouteId, routeTitle, distanceMetric, fcsLabel);
 
     if (success) {
@@ -85,13 +101,39 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
     setIsAdding(false);
   };
 
-  // 🎯 DETERMINE MODIFIER PROFILE STATE FOR PRIMARY BUTTON ELEMENT
+  // 🎯 CENTRAL ACTION COORDINATOR FOR MAIN CTAs
+  const handlePrimaryActionDispatch = () => {
+    if (isAdding) return;
+
+    if (hasActiveSelection && !justAdded) {
+      // Flow Path State 2: Execute add item transaction loop
+      handleLaunchCheckoutChannel();
+    } else if (cartItems.length > 0) {
+      // Flow Path State 4 / Global Backup: Redirect user straight to checkout URL link
+      if (checkoutUrl) {
+        window.open(checkoutUrl, "_blank");
+      }
+    }
+  };
+
+  // 🎯 STATE-DRIVEN CLASS ASSIGNMENTS FOR BUTTON
   let btnModifierClass = "mod-ready";
-  if (!hasActiveSelection || justAdded) {
-    btnModifierClass = "mod-disabled";
-  } else if (isAdding) {
+  if (isAdding) {
     btnModifierClass = "mod-adding";
+  } else if (hasActiveSelection && !justAdded) {
+    btnModifierClass = "mod-ready";
+  } else if (cartItems.length > 0) {
+    btnModifierClass = "mod-checkout"; // Greenlight checkout path state styling
+  } else {
+    btnModifierClass = "mod-disabled";
   }
+
+  // Determine if the button is physically clickable or locked down
+  const isButtonDisabled = isAdding || (!hasActiveSelection && cartItems.length === 0);
+
+  // 🎯 SYSTEM DISPLAY STATES DETERMINATION MATRIX
+  const showInventoryDeck = justAdded || (!hasActiveSelection && cartItems.length > 0);
+  const showPortalFrame = hasActiveSelection || cartItems.length > 0;
 
   return (
     <div className="rg-checkout-hub-card">
@@ -150,31 +192,46 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
          📦 DYNAMIC STATE VIEW DECK FOR THE REPORT VIEWPORT PORTAL AREA
          ────────────────────────────────────────────────────────────────────────── */}
       
-      {/* 🎯 STATE 1: INTRO UNSELECTED CHANNELS */}
-      {!hasActiveSelection ? (
+      {/* FIXED CONTROL GATEWAY LOGIC */}
+      {!showPortalFrame ? (
+        
+        /* 🎯 STATE 1: INTRO UNSELECTED CHANNELS (Shows only when logged out or 0 items exist) */
         <div className="rg-storefront-empty-viewport-placeholder">
-          <span className="rg-placeholder-icon"><img alt="fcs classification badge" className="rg-placeholder-icon" src="data/assets/icon_ride.svg"></img></span>
+          <span className="rg-placeholder-icon">
+            <img alt="fcs classification badge" className="rg-placeholder-icon" src="data/assets/icon_ride.svg" />
+          </span>
           <span className="rg-placeholder-text">
-            Select a route line <br /> in the map to <br /> view the route PDF preview
+            Select a route line <br /> on the map tool to <br /> view its custom PDF pack
           </span>
         </div>
       ) : (
         <div className="rg-storefront-report-portal-wrapper">
           
-          {/* 🎯 STATE 3: INTERCEPT WITH LIVE SUCCESS NOTICE (CLEAN EXTRACT) */}
+          {/* 🎯 STATE 3: INTERCEPT WITH LIVE SUCCESS OR DUPLICATION NOTICE */}
           {(isAdding || cartNotification) ? (
-            <div className="rg-portal-success-overlay">
-              <span className="rg-portal-success-icon">✓</span>
-              <h4 className="rg-portal-success-title">
-                Added to Cart!
-              </h4>
-              <p className="rg-portal-success-desc">
-                {routeTitle} has been appended into your active session roster.
-              </p>
+            /* Inline style modification switches background accent cleanly to warning color configuration when duplicate flag triggers */
+            <div className="rg-portal-success-overlay" style={cartNotification === "already_in_cart" ? { backgroundColor: "#451a03" } : undefined}>
+              {cartNotification === "already_in_cart" ? (
+                <>
+                  <span className="rg-portal-success-icon">⚠️</span>
+                  <h4 className="rg-portal-success-title">Route already in cart</h4>
+                  <p className="rg-portal-success-desc">
+                    {routeTitle} is already saved inside your active rider selection list.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <span className="rg-portal-success-icon">✓</span>
+                  <h4 className="rg-portal-success-title">Added to Cart!</h4>
+                  <p className="rg-portal-success-desc">
+                    {routeTitle} has been appended into your active session roster.
+                  </p>
+                </>
+              )}
             </div>
-          ) : justAdded ? (
+          ) : showInventoryDeck ? (
             
-            /* 🎯 STATE 4: THE LIVE INVENTORY DECK DISPLAY MODULE (CLEAN EXTRACT) */
+            /* 🎯 STATE 4: THE LIVE INVENTORY DECK DISPLAY MODULE */
             <div className="rg-portal-inventory-deck">
               <div className="rg-inventory-header-row">
                 <span className="rg-inventory-meta-label">
@@ -191,7 +248,7 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
                   <div key={item.id} className="rg-inventory-item-card">
                     <div className="rg-inventory-item-left-details">
                       <div className="rg-inventory-item-title">
-                        {item.title}
+                        {item.title} {item.quantity > 1 && `(x${item.quantity})`}
                       </div>
                       <div className="rg-inventory-item-subtitle">
                         {item.distance}
@@ -208,11 +265,31 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
                         />
                       )}
                       <span className="rg-inventory-item-price-label">
-                        ${item.price.toFixed(2)}
+                        ${(item.price * item.quantity).toFixed(2)}
                       </span>
                     </div>
                   </div>
                 ))}
+              </div>
+
+              {/* Dynamic warning telemetry banner displayed for anonymous guest shoppers */}
+              {!isAuthenticated && (
+                <div style={{ padding: "4px 0", fontSize: "9.5px", color: "#b45309", fontWeight: "600", textTransform: "uppercase", letterSpacing: "0.3px", textAlign: "center", fontFamily: "sans-serif" }}>
+                  ⚠️ Guest Mode: Login Required at Checkout
+                </div>
+              )}
+
+              {/* 🎯 STATE 4 STICKY FOOTER MODULE: Reserves space for Continue Shopping link */}
+              <div className="rg-inventory-continue-shopping-row">
+                <button 
+                  onClick={() => {
+                    setJustAdded(false);
+                    if (!activeRouteProperties) setCachedRoute(null);
+                  }} 
+                  className="rg-inventory-continue-btn"
+                >
+                  Continue Shopping →
+                </button>
               </div>
             </div>
 
@@ -270,18 +347,20 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
         </div>
       )}
 
-      {/* 🎯 REMOVED: Redundant toast section deleted from this location to eliminate dual layout rendering blocks */}
-
-      {/* PRIMARY ACTION TRIGGER ATTACHED PERMANENTLY TO COLUMN BASE (CLEAN EXTRACT) */}
+      {/* PRIMARY ACTION TRIGGER ATTACHED PERMANENTLY TO COLUMN BASE */}
       <button 
-        onClick={handleLaunchCheckoutChannel} 
-        disabled={!hasActiveSelection || isAdding || justAdded}
+        onClick={handlePrimaryActionDispatch} 
+        disabled={isButtonDisabled}
         className={`rg-premium-buy-btn ${btnModifierClass}`}
       >
         {/* STATE-SWITCHING BUTTON MATRIX DECK */}
-        {!hasActiveSelection || justAdded
-          ? "SELECT ROUTE ON MAP TO BUY" 
-          : (isAdding ? "ADDING TO CART... ⏳" : "ADD ROUTE TO CART")
+        {isAdding
+          ? "ADDING TO CART... ⏳"
+          : (hasActiveSelection && !justAdded)
+            ? "ADD ROUTE TO CART"
+            : (cartItems.length > 0)
+              ? "PROCEED TO CHECKOUT ➔"
+              : "SELECT ROUTE ON MAP TO BUY"
         }
       </button>
 

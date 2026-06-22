@@ -122,10 +122,8 @@
   gap: 12px;
   padding: 16px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: var(--safe-glass-blur);
-  -webkit-backdrop-filter: var(--safe-glass-blur);
+  background: color-mix(in srgb, var(--brand-deep-green) 50%, transparent);
+  border: 1px solid var(--brand-deep-green);
   box-sizing: border-box;
 }
 
@@ -198,13 +196,11 @@
   width: 100%;
   max-width: 930px;
   margin: 0 auto 32px auto;
-  background: rgba(15, 23, 42, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   padding: 24px;
   box-sizing: border-box;
-  backdrop-filter: var(--safe-glass-blur);
-  -webkit-backdrop-filter: var(--safe-glass-blur);
+  background: color-mix(in srgb, var(--brand-deep-green) 50%, transparent);
+  border: 1px solid var(--brand-deep-green);
   text-align: center;
 }
 
@@ -251,13 +247,11 @@
 .rg-inline-showcase-section .rg-horizontal-instructions-tier {
   width: 100%;
   max-width: 930px;
-  margin: 0 auto 12px auto;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 0 auto 12px auto;  
   padding: 16px;
   border-radius: 12px;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: color-mix(in srgb, var(--brand-deep-green) 50%, transparent);
+  border: 1px solid var(--brand-deep-green);
   box-sizing: border-box;
 }
 
@@ -273,12 +267,10 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 16px;
   border-radius: 12px;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: color-mix(in srgb, var(--brand-bone) 30%, transparent);
+  border: 1px solid var(--brand-bone);
   box-sizing: border-box;
 }
 
@@ -313,14 +305,15 @@
 .rg-inline-showcase-section .rg-step-item-text {
   font-size: 0.76rem !important;
   line-height: 1.45 !important;
-  color: #cbd5e1 !important;
+  color: var(--brand-white) !important;
+  font-weight: 600;
   margin: 0 !important;
   text-align: left;
 }
 
 .rg-inline-showcase-section .rg-step-item-text strong {
   color: var(--brand-sky);
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
   text-shadow: 0 1px 2px var(--brand-white);
 }

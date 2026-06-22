@@ -1,7 +1,7 @@
 {
   "profile_id": "98_S1",
   "route_id": "98",
-  "ssdi_score": 8.5,
+  "ssdi_score": 9.2,
   "v3_terrain_score": 5.6,
   "v3_terrain_class": "Strenuous",
   "badge_type": "wet",
@@ -17,8 +17,8 @@
     "value": 0.2
   },
   "environment": {
-    "current_temp": 69,
-    "saturation_index": 26.1,
+    "current_temp": 72,
+    "saturation_index": 31.1,
     "soil_status": "Saturated",
     "precip_24h": 0.21,
     "saturation_trend": "stable",

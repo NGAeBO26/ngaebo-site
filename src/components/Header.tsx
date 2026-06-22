@@ -10,7 +10,8 @@ export default function Header() {
   const { login, logout, isAuthenticated, customer, isLoading: authLoading } = useShopifyAuth();
   const { cartCount, isCartOpen, setIsCartOpen } = useShopifyCart();
 
-  const isCartActive = isCartOpen && isAuthenticated;
+  // 🎯 FIXED: Decoupled isAuthenticated restriction so both guests and logged-in users can operate the popover view
+  const isCartActive = isCartOpen;
 
   return (
     <header className="site-header">
@@ -36,67 +37,68 @@ export default function Header() {
 
         {/* 🔒 SHIELDED SHOPIFY IDENTITY GATEWAY LAYER (DESKTOP) */}
         {!authLoading && (
-          isAuthenticated ? (
-            /* Enclosure blocks completely offloaded onto Header.css */
-            <div className={`rg-header-user-capsule ${isCartActive ? "rg-capsule-active" : ""}`}>
-              
-              <span className="rg-header-greeting-text">
-                Hi, {customer?.firstName || "Rider"}
-              </span>
+          /* 🎯 FIXED: User capsule structure now renders persistently for guest and authenticated states */
+          <div className={`rg-header-user-capsule ${isCartActive ? "rg-capsule-active" : ""}`}>
+            
+            {/* 🎯 FIXED: Dynamic string updates greeting token seamlessly based on active login status */}
+            <span className="rg-header-greeting-text">
+              {isAuthenticated && customer?.firstName ? `Hi, ${customer.firstName}` : "Hi, Guest"}
+            </span>
 
-              {/* 🛒 Headless Cart Icon Toggle Link Trigger */}
-              <button 
-                onClick={() => setIsCartOpen(!isCartOpen)}
-                className="rg-header-cart-trigger"
-                aria-label="Toggle Cart View"
-              >
-                <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="9" cy="21" r="1"></circle>
-                  <circle cx="20" cy="21" r="1"></circle>
-                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                </svg>
-                {cartCount > 0 && (
-                  <span className="rg-header-cart-badge">
-                    {cartCount}
-                  </span>
-                )}
-              </button>
+            {/* 🛒 Headless Cart Icon Toggle Link Trigger */}
+            <button 
+              onClick={() => setIsCartOpen(!isCartOpen)}
+              className="rg-header-cart-trigger"
+              aria-label="Toggle Cart View"
+            >
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              {cartCount > 0 && (
+                <span className="rg-header-cart-badge">
+                  {cartCount}
+                </span>
+              )}
+            </button>
 
+            {/* 🎯 FIXED: Toggles primary display text context and execution hooks responsively */}
+            {isAuthenticated ? (
               <button 
                 onClick={logout} 
                 className="rg-header-signout-btn nav-link"
               >
                 Sign Out
               </button>
-
-              {/* 🎯 NEW: Moved arrow action trigger up to the header line to the right of Sign Out */}
-              <button
-                onClick={() => setIsCartOpen(!isCartOpen)}
-                className="rg-header-toggle-arrow-btn"
-                aria-label="Toggle Cart View Menu"
+            ) : (
+              <button 
+                onClick={login} 
+                className="rg-header-signout-btn nav-link"
               >
-                <svg 
-                  className={`rg-header-toggle-arrow-svg ${isCartActive ? "active" : ""}`} 
-                  width="10" 
-                  height="10" 
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 21l-12-18h24z" />
-                </svg>
+                Sign In
               </button>
+            )}
 
-              {/* STATE ENGINE ROUTER DROPDOWN HOOK */}
-              <CartDropdown isOpen={isCartActive} />
-            </div>
-          ) : (
-            <button 
-              onClick={login} 
-              className="nav-link" 
-              style={{ background: "none", border: "none", cursor: "pointer", padding: 0, font: "inherit", marginLeft: "14px" }}
+            {/* Moved arrow action trigger up to the header line to the right of Sign Out */}
+            <button
+              onClick={() => setIsCartOpen(!isCartOpen)}
+              className="rg-header-toggle-arrow-btn"
+              aria-label="Toggle Cart View Menu"
             >
-              Sign In
+              <svg 
+                className={`rg-header-toggle-arrow-svg ${isCartActive ? "active" : ""}`} 
+                width="10" 
+                height="10" 
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 21l-12-18h24z" />
+              </svg>
             </button>
-          )
+
+            {/* STATE ENGINE ROUTER DROPDOWN HOOK */}
+            <CartDropdown isOpen={isCartActive} />
+          </div>
         )}
       </nav>
 

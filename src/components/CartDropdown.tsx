@@ -1,5 +1,5 @@
 /* src/components/CartDropdown.tsx */
-// import { useShopifyAuth } from "../store/ShopifyAuthContext";
+import { useShopifyAuth } from "../store/ShopifyAuthContext"; // 🎯 RE-INTEGRATED: Fetches live authorization context profiles
 import { useShopifyCart } from "../store/ShopifyCartContext";
 import "../styles/CartDropdown.css"; 
 
@@ -8,6 +8,8 @@ interface CartDropdownProps {
 }
 
 export default function CartDropdown({ isOpen }: CartDropdownProps) {
+  // 🎯 CONNECT AUTH STATE: Read live customer accounts to synchronize user titles
+  const { customer, isAuthenticated } = useShopifyAuth();
   const { cartItems, cartSubtotal, checkoutUrl, removeCartItem } = useShopifyCart();
 
   const handleCheckoutRedirect = () => {
@@ -24,9 +26,14 @@ export default function CartDropdown({ isOpen }: CartDropdownProps) {
         <div>
           <span className="rg-cart-dropdown-header-meta">RIDER INVENTORY CART</span>
           
+          {/* 🎯 DYNAMIC SESSION HANDSHAKE TITLE: Shows custom user credentials if logged in, 
+              or explicitly labels the asset list as a Guest Selection to mirror the StorePanel profile */}
+          <div className="rg-cart-dropdown-header-title" style={{ textAlign: 'left', marginTop: '2px' }}>
+            {isAuthenticated && customer?.firstName 
+              ? `${customer.firstName}'s Selection` 
+              : "Guest Selection"}
+          </div>
         </div>
-        
-        {/* 🎯 REMOVED: Redundant toggle action element cleanly detached from this location */}
       </div>
 
       {/* 🦴 SOLIDIFIED BONE BACKGROUND LAYER */}
@@ -80,6 +87,14 @@ export default function CartDropdown({ isOpen }: CartDropdownProps) {
             ))
           )}
         </div>
+
+        {/* 🎯 GUEST WARNING CONTEXT BANNER: Synchronizes visual cues across the UI, 
+            reminding anonymous shoppers that an account is required at checkout */}
+        {!isAuthenticated && cartItems.length > 0 && (
+          <div style={{ padding: "10px 0 0 0", fontSize: "10px", color: "#b45309", fontWeight: "700", textTransform: "uppercase", letterSpacing: "0.3px", textAlign: "center", fontFamily: "sans-serif", borderTop: "1px dashed rgba(15, 23, 42, 0.1)", marginTop: "10px" }}>
+            ⚠️ Guest Mode: Login Required at Checkout
+          </div>
+        )}
 
         {/* Calculation summary parameters container stack */}
         {cartItems.length > 0 && (
