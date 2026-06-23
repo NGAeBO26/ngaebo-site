@@ -9,7 +9,7 @@ interface CustomerProfile {
   email: string;
   tokens: number;
   passExpiresAt: string | null;
-  unlocked_guides: string; // 🎯 TYPE DEFINITION UPDATE: Explicitly type your 7-day ledger string[cite: 5]
+  unlocked_guides: string; // 🎯 Natively typed on your profile layer
 }
 
 interface ShopifyAuthContextType {
@@ -34,6 +34,15 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const [customer, setCustomer] = useState<CustomerProfile | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
+  // PERSISTENT CRASH LOG DECK: Prints deep trace vectors that survive a redirect reload
+  useEffect(() => {
+    const historicalCrash = localStorage.getItem('auth_crash_log');
+    if (historicalCrash) {
+      console.error("🚨 LAST SESSION REDIRECT CRASH LOG:", JSON.parse(historicalCrash));
+      localStorage.removeItem('auth_crash_log');
+    }
+  }, []);
+
   const login = async () => {
     const verifier = generateCodeVerifier();
     const challenge = await generateCodeChallenge(verifier);
@@ -57,7 +66,7 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
   const handleCallback = async (code: string) => {
     const verifier = sessionStorage.getItem('shopify_code_verifier');
-    if (!verifier) throw new Error("Missing cryptographic tracking tracking verification context keys.");
+    if (!verifier) throw new Error("Missing cryptographic tracking verification context keys.");
 
     const bodyParameters = new URLSearchParams({
       grant_type: 'authorization_code',
@@ -84,13 +93,14 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
       
       setAccessToken(data.access_token);
       sessionStorage.removeItem('shopify_code_verifier');
-    } catch (error) {
+    } catch (error: any) {
+      localStorage.setItem('auth_crash_log', JSON.stringify({ context: "OAuth Callback Exchange", message: error.message }));
       console.error("OAuth Authentication Error:", error);
     }
   };
 
   const fetchCustomerProfile = async (token: string) => {
-    // 🎯 GRAPHQL SCHEMA UPDATE: Added missing 'unlocked' selector field to track active map data arrays[cite: 5]
+    // 🎯 DATA INTEGRATION: Retained the unlocked guides selection node
     const query = `
       query {
         customer {
@@ -106,20 +116,23 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
     `;
 
     try {
-      // 🚀 CACHE BUSTER INTEGRATION: Appends a changing timestamp query and explicit network headers[cite: 5]
-      const response = await fetch(`${GRAPHQL_API_URL}?cache_buster=${Date.now()}`, {
+      // 🎯 THE CORS FIX: URL is kept perfectly clean, and headers only contain what Shopify permits
+      const response = await fetch(GRAPHQL_API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': token,
-          'Cache-Control': 'no-cache, no-store, must-revalidate',
-          'Pragma': 'no-cache',
-          'Expires': '0'
+          'Authorization': token
         },
         body: JSON.stringify({ query }),
       });
 
       const resData = await response.json();
+
+      if (resData.errors) {
+        localStorage.setItem('auth_crash_log', JSON.stringify({ context: "GraphQL Payload Rejection", errors: resData.errors }));
+        console.error("Shopify GraphQL Errors Detected:", resData.errors);
+      }
+
       if (resData.data?.customer) {
         const c = resData.data.customer;
         setCustomer({
@@ -129,10 +142,11 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
           email: c.emailAddress?.emailAddress || '',
           tokens: c.tokens?.value ? parseInt(c.tokens.value, 10) : 0,
           passExpiresAt: c.pass?.value || null,
-          unlocked_guides: c.unlocked?.value || '{}', // 🎯 STATE SYNCHRONIZATION: Map database values down directly[cite: 5]
+          unlocked_guides: c.unlocked?.value || '{}', 
         });
       }
-    } catch (err) {
+    } catch (err: any) {
+      localStorage.setItem('auth_crash_log', JSON.stringify({ context: "Network Profile Resolution Loop", message: err.message }));
       console.error("Error retrieving account payload data:", err);
       logout();
     } finally {
