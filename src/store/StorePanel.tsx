@@ -22,6 +22,24 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
   const [cartNotification, setCartNotification] = useState<string | null>(null);
   const [cachedRoute, setCachedRoute] = useState<any | null>(null);
 
+  // 🚀 AUTO-REFRESH WALLET ON TAB FOCUS
+  // Automatically updates the credit balance when a rider switches back to this tab from Shopify Checkout!
+  useEffect(() => {
+    if (isAuthenticated && refreshProfile) {
+      const handleTabFocusSync = () => {
+        console.log("🔄 Map tab focused. Syncing credit vault parameters with Shopify...");
+        refreshProfile();
+      };
+
+      // Listen for when the user clicks back into this window
+      window.addEventListener("focus", handleTabFocusSync);
+      
+      return () => {
+        window.removeEventListener("focus", handleTabFocusSync);
+      };
+    }
+  }, [isAuthenticated, refreshProfile]);
+
   /* Sync with incoming global map selections */
   useEffect(() => {
     if (activeRouteProperties !== null) {
@@ -46,7 +64,6 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
     ? parseFloat(routeProps.GIS_MILES).toFixed(1) 
     : null;
     
-  // 🎯 FIXED ALIGNMENT: Resolved typing space syntax error block and variable hierarchy duplication
   const distanceMetric = miles 
     ? `${miles} MILES` 
     : (routeProps.distance ? `${routeProps.distance} mi` : "Premium Data");
@@ -69,12 +86,11 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
   const tokenBalance = customer?.tokens || 0;
   const hasTokens = tokenBalance > 0;
   
-  // High-priority toggle indicating user can bypass standard web checkout lines
   const hasPremiumAccess = isAuthenticated && (hasActivePass || hasTokens);
 
   const isAlreadyInCart = cartItems.some((item) => String(item.routeId) === rawRouteId);
 
-  // 🎯 PARSE UNEXPIRED LIVE ACTIVE 7-DAY PASSES FROM METADATA LEDGER MAP
+  // PARSE UNEXPIRED LIVE ACTIVE 7-DAY PASSES FROM METADATA LEDGER MAP
   const rawUnlockedGuides = (customer as any)?.unlocked_guides || (customer as any)?.unlocked || "{}";
   let unlockedMap: Record<string, number> = {};
   try {
@@ -129,7 +145,6 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
 
     if (isRedeeming || !customer) return;
 
-    // Skip verification modal alerts if user is launching a pre-verified active pass item loop
     const isPreVerifiedPass = overrideRouteId ? true : false;
 
     if (!isPreVerifiedPass) {
@@ -155,7 +170,7 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
         body: JSON.stringify({
           customerId: customer.id,
           routeId: targetId,
-          routeTitle: targetTitle // 🚀 THE FIX: Forward route title data to invoke backend MailerSend dispatch loops
+          routeTitle: targetTitle
         })
       });
 
@@ -223,7 +238,6 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
         <h2>Selected RideGuide</h2>
       </div>
 
-      {/* 💳 STEP 3: COMPACT PERMANENT WALLET BANNER STATUS ELEMENT */}
       {isAuthenticated && (
         <div className="rg-compact-wallet-banner">
           <span className="rg-wallet-banner-label">Rider Account:</span>
@@ -278,7 +292,6 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
       ) : null}
 
       {!showPortalFrame ? (
-        /* 🎯 STEP 2: THE REFILL VAULT & ACTIVE PASSES PORTAL VIEW (LOADS WHEN NO ROUTE SELECTION IS ENGAGED) */
         <div className="rg-vault-refill-hub-container">
           <div className="rg-vault-header-section">
             <h3>CREDIT VAULT & REFILL STATION</h3>
@@ -450,7 +463,6 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
           ) : (
             
             <>
-              {/* SHIELD ADJUSTMENT: Routes preview clicks through standard checkouts or credit redemptions */}
               <div className="rg-storefront-report-portal-shield" onClick={hasPremiumAccess ? () => handleTokenRedemption() : handleLaunchCheckoutChannel} />
               
               {!iframeLoaded && (
