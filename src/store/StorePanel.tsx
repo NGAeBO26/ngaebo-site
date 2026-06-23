@@ -90,8 +90,9 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
 
   const isAlreadyInCart = cartItems.some((item) => String(item.routeId) === rawRouteId);
 
-  // PARSE UNEXPIRED LIVE ACTIVE 7-DAY PASSES FROM METADATA LEDGER MAP
-  const rawUnlockedGuides = (customer as any)?.unlocked_guides || (customer as any)?.unlocked || "{}";
+  // 🎯 PARSE UNEXPIRED LIVE ACTIVE 7-DAY PASSES FROM METADATA LEDGER MAP
+  // 🚀 TYPE-SAFE UPGRADE: Removed the type-casting 'as any' workarounds completely[cite: 6]
+  const rawUnlockedGuides = customer?.unlocked_guides || "{}";
   let unlockedMap: Record<string, number> = {};
   try {
     unlockedMap = typeof rawUnlockedGuides === "string" ? JSON.parse(rawUnlockedGuides) : rawUnlockedGuides;

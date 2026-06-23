@@ -7,9 +7,9 @@ interface CustomerProfile {
   firstName: string;
   lastName: string;
   email: string;
-  // 🎯 NEW LEDGER ACCOUNT STATE ATTRIBUTES
   tokens: number;
   passExpiresAt: string | null;
+  unlocked_guides: string; // 🎯 TYPE DEFINITION UPDATE: Explicitly type your 7-day ledger string[cite: 5]
 }
 
 interface ShopifyAuthContextType {
@@ -20,7 +20,7 @@ interface ShopifyAuthContextType {
   logout: () => void;
   handleCallback: (code: string) => Promise<void>;
   accessToken: string | null;
-  refreshProfile: () => Promise<void>; // 🎯 Added to refresh balances instantly after unlocks
+  refreshProfile: () => Promise<void>; 
 }
 
 const ShopifyAuthContext = createContext<ShopifyAuthContextType | undefined>(undefined);
@@ -57,7 +57,7 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
   const handleCallback = async (code: string) => {
     const verifier = sessionStorage.getItem('shopify_code_verifier');
-    if (!verifier) throw new Error("Missing cryptographic tracking verification context keys.");
+    if (!verifier) throw new Error("Missing cryptographic tracking tracking verification context keys.");
 
     const bodyParameters = new URLSearchParams({
       grant_type: 'authorization_code',
@@ -90,7 +90,7 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
   };
 
   const fetchCustomerProfile = async (token: string) => {
-    // 🎯 MODIFIED: Queries the custom metafields verified on your Customer Account setup
+    // 🎯 GRAPHQL SCHEMA UPDATE: Added missing 'unlocked' selector field to track active map data arrays[cite: 5]
     const query = `
       query {
         customer {
@@ -100,16 +100,21 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
           emailAddress { emailAddress }
           tokens: metafield(namespace: "custom", key: "rideguide_tokens") { value }
           pass: metafield(namespace: "custom", key: "pass_expires_at") { value }
+          unlocked: metafield(namespace: "custom", key: "unlocked_guides") { value }
         }
       }
     `;
 
     try {
-      const response = await fetch(GRAPHQL_API_URL, {
+      // 🚀 CACHE BUSTER INTEGRATION: Appends a changing timestamp query and explicit network headers[cite: 5]
+      const response = await fetch(`${GRAPHQL_API_URL}?cache_buster=${Date.now()}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': token,
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0'
         },
         body: JSON.stringify({ query }),
       });
@@ -122,9 +127,9 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
           firstName: c.firstName,
           lastName: c.lastName,
           email: c.emailAddress?.emailAddress || '',
-          // Safe baseline fallback defaults if fields are empty on new profiles
           tokens: c.tokens?.value ? parseInt(c.tokens.value, 10) : 0,
           passExpiresAt: c.pass?.value || null,
+          unlocked_guides: c.unlocked?.value || '{}', // 🎯 STATE SYNCHRONIZATION: Map database values down directly[cite: 5]
         });
       }
     } catch (err) {
