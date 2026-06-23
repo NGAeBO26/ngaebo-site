@@ -1,7 +1,7 @@
 /* src/store/StorePanel.tsx */
 import { useState, useEffect } from "react";
-import { useShopifyCart } from "./ShopifyCartContext"; // 🎯 Integrated shared context link
-import { useShopifyAuth } from "./ShopifyAuthContext"; // 🎯 Integrated customer account session data profiles
+import { useShopifyCart } from "./ShopifyCartContext"; 
+import { useShopifyAuth } from "./ShopifyAuthContext"; 
 
 const BADGES_BASE = "/images/badges/fcs";
 
@@ -12,11 +12,12 @@ interface StorePanelProps {
 export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
   const [iframeLoaded, setIframeLoaded] = useState(false);
   
-  // 🎯 CONNECT STATE CONTEXT: Read live item arrays alongside mutation engines
-  const { isAuthenticated } = useShopifyAuth();
+  // LOAD IDENTITY METRICS: Pull customer profile data hooks along with data refresher utilities
+  const { isAuthenticated, customer, refreshProfile } = useShopifyAuth();
   const { addRouteToCart, cartItems, checkoutUrl } = useShopifyCart(); 
 
   const [isAdding, setIsAdding] = useState(false);
+  const [isRedeeming, setIsRedeeming] = useState(false); 
   const [justAdded, setJustAdded] = useState(false);
   const [cartNotification, setCartNotification] = useState<string | null>(null);
   const [cachedRoute, setCachedRoute] = useState<any | null>(null);
@@ -25,7 +26,7 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
   useEffect(() => {
     if (activeRouteProperties !== null) {
       setCachedRoute(activeRouteProperties);
-      setJustAdded(false); // 🎯 RESET FLOW: Tapping a new map line automatically loops back to State 2
+      setJustAdded(false); 
       setCartNotification(null);
     }
   }, [activeRouteProperties]);
@@ -45,6 +46,7 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
     ? parseFloat(routeProps.GIS_MILES).toFixed(1) 
     : null;
     
+  // 🎯 FIXED ALIGNMENT: Resolved typing space syntax error block and variable hierarchy duplication
   const distanceMetric = miles 
     ? `${miles} MILES` 
     : (routeProps.distance ? `${routeProps.distance} mi` : "Premium Data");
@@ -59,17 +61,42 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
     }
   }, [rawRouteId]);
 
-  // 🎯 ANTI-DUPLICATION LOGIC GATE: Scans active cart payload to identify preexisting route assets
+  // EVALUATE ACCOUNT BALANCE GATES
+  const hasActivePass = customer?.passExpiresAt 
+    ? new Date() < new Date(customer.passExpiresAt) 
+    : false;
+
+  const tokenBalance = customer?.tokens || 0;
+  const hasTokens = tokenBalance > 0;
+  
+  // High-priority toggle indicating user can bypass standard web checkout lines
+  const hasPremiumAccess = isAuthenticated && (hasActivePass || hasTokens);
+
   const isAlreadyInCart = cartItems.some((item) => String(item.routeId) === rawRouteId);
 
+  // 🎯 PARSE UNEXPIRED LIVE ACTIVE 7-DAY PASSES FROM METADATA LEDGER MAP
+  const rawUnlockedGuides = (customer as any)?.unlocked_guides || (customer as any)?.unlocked || "{}";
+  let unlockedMap: Record<string, number> = {};
+  try {
+    unlockedMap = typeof rawUnlockedGuides === "string" ? JSON.parse(rawUnlockedGuides) : rawUnlockedGuides;
+  } catch (e) {
+    unlockedMap = {};
+  }
+
+  const currentTimestamp = Date.now();
+  const active7DayPassesList = Object.entries(unlockedMap)
+    .filter(([_, expiresAt]) => expiresAt > currentTimestamp)
+    .map(([routeId, expiresAt]) => ({
+      routeId,
+      expiresAt,
+      daysLeft: Math.ceil((expiresAt - currentTimestamp) / (1000 * 60 * 60 * 24))
+    }));
+
+  // Standard checkout mutation pipeline
   const handleLaunchCheckoutChannel = async () => {
     if (!hasActiveSelection || isAdding || justAdded) return;
-    
-    // 🎯 LOGIC GATE INTERCEPT: Blocks mutation payload transmission and triggers duplicate alert overlay state
     if (isAlreadyInCart) {
       setCartNotification("already_in_cart");
-      
-      // Auto-advance layout view into active inventory panel screen after visibility window loops out
       setTimeout(() => {
         setJustAdded(true);
         setCartNotification(null);
@@ -79,71 +106,133 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
 
     setIsAdding(true);
     setCartNotification(null);
-    console.log(`🚀 INITIATING CART MUTATION: Passing context lines to Shopify Storefront schema layer for asset: ${rawRouteId}...`);
 
     const targetVariantId = "gid://shopify/ProductVariant/51045122146524"; 
-
     const success = await addRouteToCart(targetVariantId, rawRouteId, routeTitle, distanceMetric, fcsLabel);
 
     if (success) {
-      console.log("✓ ITEM PERSISTED SUCCESSFULLY: Internal cart count matrices refreshed.");
       setCartNotification(`✓ Added ${routeTitle} to cart!`);
-      setJustAdded(true); // 🎯 SWITCH TO STATE 4: Locks view down to show user's active cart contents
-      
-      // Auto-expire popup alert block after a readable duration loop
+      setJustAdded(true); 
       setTimeout(() => {
         setCartNotification(null);
       }, 4500);
     } else {
       alert("Could not append item to cart selection. Please check network connectivity.");
     }
-    
     setIsAdding(false);
   };
 
-  // 🎯 CENTRAL ACTION COORDINATOR FOR MAIN CTAs
+  // 🎰 EXECUTE ATOMIC STATELESS TOKEN REDEMPTION HANDSHAKE
+  const handleTokenRedemption = async (overrideRouteId?: string, overrideRouteTitle?: string) => {
+    const targetId = overrideRouteId || rawRouteId;
+    const targetTitle = overrideRouteTitle || routeTitle;
+
+    if (isRedeeming || !customer) return;
+
+    // Skip verification modal alerts if user is launching a pre-verified active pass item loop
+    const isPreVerifiedPass = overrideRouteId ? true : false;
+
+    if (!isPreVerifiedPass) {
+      const messagePrompt = hasActivePass
+        ? `Download the printable RideGuide for "${targetTitle}" using your Unlimited Pass membership?`
+        : `Use 1 credit token to unlock the printable RideGuide for "${targetTitle}"?\n\n(Current Balance: ${tokenBalance} Credits remaining)`;
+
+      if (!window.confirm(messagePrompt)) {
+        console.log("🎰 Transaction aborted by rider choice.");
+        return; 
+      }
+    }
+
+    setIsRedeeming(true);
+    console.log(`🎰 DESTRUCTIVE CALL INITIATED: Redeeming access balance for guide ID: ${targetId}...`);
+
+    const API_BASE_TARGET = window.location.hostname === "localhost" ? "http://localhost:5000" : "";
+
+    try {
+      const response = await fetch(`${API_BASE_TARGET}/api/tokens/redeem`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customerId: customer.id,
+          routeId: targetId,
+          routeTitle: targetTitle // 🚀 THE FIX: Forward route title data to invoke backend MailerSend dispatch loops
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Server rejected balance transaction rules.");
+      }
+
+      await refreshProfile();
+
+      if (data.success && data.downloadUrl) {
+        console.log("🔒 Access approved! Launching secured link loop matrix...");
+        window.open(data.downloadUrl, "_blank");
+      } else {
+        console.warn("⚠️ Fallback active: Backend didn't return a verified token link path.");
+        window.open(`/download-guide?routeID=${targetId}`, "_blank");
+      }
+
+    } catch (err: any) {
+      console.error("🚨 BALANCE REDEMPTION CRITICAL FAILURE:", err);
+      alert(`Transaction Rejected: ${err.message || "Insufficient account balance."}`);
+    } finally {
+      setIsRedeeming(false);
+    }
+  };
+
+  // MAIN ROUTER ENTRYPOINT FOR THE CTA CLICKS
   const handlePrimaryActionDispatch = () => {
-    if (isAdding) return;
+    if (isAdding || isRedeeming) return;
 
     if (hasActiveSelection && !justAdded) {
-      // Flow Path State 2: Execute add item transaction loop
-      handleLaunchCheckoutChannel();
+      if (hasPremiumAccess) {
+        handleTokenRedemption();
+      } else {
+        handleLaunchCheckoutChannel();
+      }
     } else if (cartItems.length > 0) {
-      // Flow Path State 4 / Global Backup: Redirect user straight to checkout URL link
       if (checkoutUrl) {
         window.open(checkoutUrl, "_blank");
       }
     }
   };
 
-  // 🎯 STATE-DRIVEN CLASS ASSIGNMENTS FOR BUTTON
+  // RE-STYLED CONDITIONAL LOOKUPS FOR PRIMARY BUTTON
   let btnModifierClass = "mod-ready";
-  if (isAdding) {
+  if (isAdding || isRedeeming) {
     btnModifierClass = "mod-adding";
   } else if (hasActiveSelection && !justAdded) {
-    btnModifierClass = "mod-ready";
+    btnModifierClass = hasPremiumAccess ? "mod-premium-unlock" : "mod-ready";
   } else if (cartItems.length > 0) {
-    btnModifierClass = "mod-checkout"; // Greenlight checkout path state styling
+    btnModifierClass = "mod-checkout"; 
   } else {
     btnModifierClass = "mod-disabled";
   }
 
-  // Determine if the button is physically clickable or locked down
-  const isButtonDisabled = isAdding || (!hasActiveSelection && cartItems.length === 0);
-
-  // 🎯 SYSTEM DISPLAY STATES DETERMINATION MATRIX
+  const isButtonDisabled = isAdding || isRedeeming || (!hasActiveSelection && cartItems.length === 0);
   const showInventoryDeck = justAdded || (!hasActiveSelection && cartItems.length > 0);
   const showPortalFrame = hasActiveSelection || cartItems.length > 0;
 
   return (
     <div className="rg-checkout-hub-card">
       
-      {/* MATCHING HEADER COMPONENT BLOCK WITH NEGATIVE MARGIN BREAKOUT */}
       <div className="drawer-header-title">
         <h2>Selected RideGuide</h2>
       </div>
 
-      {/* DYNAMIC METRIC RESULT CARD CONTAINER */}
+      {/* 💳 STEP 3: COMPACT PERMANENT WALLET BANNER STATUS ELEMENT */}
+      {isAuthenticated && (
+        <div className="rg-compact-wallet-banner">
+          <span className="rg-wallet-banner-label">Rider Account:</span>
+          <span className="rg-wallet-banner-value">
+            {hasActivePass ? "⚡ UNLIMITED MEMBERSHIP" : `🎫 ${tokenBalance} CREDIT BUNDLES`}
+          </span>
+        </div>
+      )}
+
       {hasActiveSelection ? (
         <div className="rg-selection-card-space">
           <div className="route-finder-card-vertical">
@@ -182,34 +271,89 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
             </div>
           </div>
         </div>
-      ) : (
+      ) : !showInventoryDeck ? (
         <div className="rg-selection-placeholder-node">
           No Map Route Activated
         </div>
-      )}
+      ) : null}
 
-      {/* ──────────────────────────────────────────────────────────────────────────
-         📦 DYNAMIC STATE VIEW DECK FOR THE REPORT VIEWPORT PORTAL AREA
-         ────────────────────────────────────────────────────────────────────────── */}
-      
-      {/* FIXED CONTROL GATEWAY LOGIC */}
       {!showPortalFrame ? (
-        
-        /* 🎯 STATE 1: INTRO UNSELECTED CHANNELS (Shows only when logged out or 0 items exist) */
-        <div className="rg-storefront-empty-viewport-placeholder">
-          <span className="rg-placeholder-icon">
-            <img alt="fcs classification badge" className="rg-placeholder-icon" src="data/assets/icon_ride.svg" />
-          </span>
-          <span className="rg-placeholder-text">
-            Select a route line <br /> on the map tool to <br /> view its custom PDF pack
-          </span>
+        /* 🎯 STEP 2: THE REFILL VAULT & ACTIVE PASSES PORTAL VIEW (LOADS WHEN NO ROUTE SELECTION IS ENGAGED) */
+        <div className="rg-vault-refill-hub-container">
+          <div className="rg-vault-header-section">
+            <h3>CREDIT VAULT & REFILL STATION</h3>
+            <p>Refill credit wallet bundles to unlock print portals without web checkout lineups.</p>
+          </div>
+
+          {/* ACTIVE 7-DAY RE-PRINT LEDGER LIST */}
+          {isAuthenticated && active7DayPassesList.length > 0 && (
+            <div className="rg-vault-active-passes-block">
+              <h4>Active 7-Day Download Windows</h4>
+              <div className="rg-vault-passes-scroll-pane">
+                {active7DayPassesList.map((pass) => (
+                  <div key={pass.routeId} className="rg-vault-pass-row-item">
+                    <div className="rg-vault-pass-meta-left">
+                      <span className="rg-vault-pass-route-id">Route: #{pass.routeId}</span>
+                      <span className="rg-vault-pass-countdown">⏰ {pass.daysLeft} days left</span>
+                    </div>
+                    <button 
+                      className="rg-vault-pass-reopen-action-btn"
+                      disabled={isRedeeming}
+                      onClick={() => handleTokenRedemption(pass.routeId, `Route #${pass.routeId}`)}
+                    >
+                      PRINT PDF
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* BUNDLE PACK CART PERMALINKS MARKETPLACE */}
+          <div className="rg-vault-bundle-marketplace">
+            <h4>Purchase Token Refill Packs</h4>
+            
+            <div className="rg-vault-marketplace-card">
+              <div className="rg-vault-card-details-left">
+                <span className="rg-vault-pack-title">🚀 3-CREDIT REFILL</span>
+                <span className="rg-vault-pack-desc">Unlock 3 maps anytime</span>
+              </div>
+              <a href="https://ngaebo-shop-3.myshopify.com/cart/51619975069916:1" target="_blank" rel="noreferrer" className="rg-vault-pack-checkout-link">
+                $14.99
+              </a>
+            </div>
+
+            <div className="rg-vault-marketplace-card featured-gold-border">
+              <div className="rg-vault-card-details-left">
+                <span className="rg-vault-pack-title">🔥 5-CREDIT REFILL</span>
+                <span className="rg-vault-pack-desc">Unlock 5 maps (Save 10%)</span>
+              </div>
+              <a href="https://ngaebo-shop-3.myshopify.com/cart/51620055089372:1" target="_blank" rel="noreferrer" className="rg-vault-pack-checkout-link highlight">
+                $22.49
+              </a>
+            </div>
+
+            <div className="rg-vault-marketplace-card">
+              <div className="rg-vault-card-details-left">
+                <span className="rg-vault-pack-title">👑 15-CREDIT REFILL</span>
+                <span className="rg-vault-pack-desc">Ultimate Gravel Pack</span>
+              </div>
+              <a href="https://ngaebo-shop-3.myshopify.com/cart/51620150837468:1" target="_blank" rel="noreferrer" className="rg-vault-pack-checkout-link">
+                $59.99
+              </a>
+            </div>
+          </div>
+
+          <div className="rg-storefront-empty-viewport-placeholder inline-adjustment-hint">
+            <span className="rg-placeholder-text">
+              Select any map track line above to preview live telemetry data sets
+            </span>
+          </div>
         </div>
       ) : (
         <div className="rg-storefront-report-portal-wrapper">
           
-          {/* 🎯 STATE 3: INTERCEPT WITH LIVE SUCCESS OR DUPLICATION NOTICE */}
-          {(isAdding || cartNotification) ? (
-            /* Inline style modification switches background accent cleanly to warning color configuration when duplicate flag triggers */
+          {(isAdding || isRedeeming || cartNotification) ? (
             <div className="rg-portal-success-overlay" style={cartNotification === "already_in_cart" ? { backgroundColor: "#451a03" } : undefined}>
               {cartNotification === "already_in_cart" ? (
                 <>
@@ -217,6 +361,14 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
                   <h4 className="rg-portal-success-title">Route already in cart</h4>
                   <p className="rg-portal-success-desc">
                     {routeTitle} is already saved inside your active rider selection list.
+                  </p>
+                </>
+              ) : isRedeeming ? (
+                <>
+                  <span className="rg-portal-success-icon">🎰</span>
+                  <h4 className="rg-portal-success-title">Verifying Balance...</h4>
+                  <p className="rg-portal-success-desc">
+                    Communicating transaction credentials with your Shopify account ledger profile...
                   </p>
                 </>
               ) : (
@@ -231,7 +383,6 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
             </div>
           ) : showInventoryDeck ? (
             
-            /* 🎯 STATE 4: THE LIVE INVENTORY DECK DISPLAY MODULE */
             <div className="rg-portal-inventory-deck">
               <div className="rg-inventory-header-row">
                 <span className="rg-inventory-meta-label">
@@ -242,7 +393,6 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
                 </span>
               </div>
 
-              {/* Internal overflow micro scroll-pane matrix layout */}
               <div className="rg-inventory-scroll-pane">
                 {cartItems.map((item) => (
                   <div key={item.id} className="rg-inventory-item-card">
@@ -272,14 +422,18 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
                 ))}
               </div>
 
-              {/* Dynamic warning telemetry banner displayed for anonymous guest shoppers */}
-              {!isAuthenticated && (
+              {isAuthenticated ? (
+                <div style={{ padding: "4px 0", fontSize: "9.5px", color: "#16a34a", fontWeight: "700", textTransform: "uppercase", letterSpacing: "0.3px", textAlign: "center", fontFamily: "sans-serif" }}>
+                  {hasActivePass 
+                    ? "⚡ Unlimited Access Active Pass" 
+                    : `🎫 Token Balance Remaining: ${tokenBalance} Credits`}
+                </div>
+              ) : (
                 <div style={{ padding: "4px 0", fontSize: "9.5px", color: "#b45309", fontWeight: "600", textTransform: "uppercase", letterSpacing: "0.3px", textAlign: "center", fontFamily: "sans-serif" }}>
                   ⚠️ Guest Mode: Login Required at Checkout
                 </div>
               )}
 
-              {/* 🎯 STATE 4 STICKY FOOTER MODULE: Reserves space for Continue Shopping link */}
               <div className="rg-inventory-continue-shopping-row">
                 <button 
                   onClick={() => {
@@ -295,9 +449,9 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
 
           ) : (
             
-            /* 🎯 STATE 2: ACTIVE SELECTION LIVE IFRAME REPORT VIEWPORT PREVIEW */
             <>
-              <div className="rg-storefront-report-portal-shield" onClick={handleLaunchCheckoutChannel} />
+              {/* SHIELD ADJUSTMENT: Routes preview clicks through standard checkouts or credit redemptions */}
+              <div className="rg-storefront-report-portal-shield" onClick={hasPremiumAccess ? () => handleTokenRedemption() : handleLaunchCheckoutChannel} />
               
               {!iframeLoaded && (
                 <div className="rg-storefront-report-portal-loader">
@@ -317,10 +471,17 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
                   <h4 className="rg-hub-main-title">Printable RideGuide PDF</h4>
                 </div>
                 
-                <div className="rg-hub-pricing-row">
-                  <span className="rg-hub-price-tag">$6.99</span>
-                  <span className="rg-hub-price-annotation">/ One-Time Purchase</span>
-                </div>
+                {hasPremiumAccess ? (
+                  <div className="rg-hub-pricing-row">
+                    <span className="rg-hub-price-tag" style={{ color: "#16a34a" }}>✓ Unlocked</span>
+                    <span className="rg-hub-price-annotation">/ Available in Account</span>
+                  </div>
+                ) : (
+                  <div className="rg-hub-pricing-row">
+                    <span className="rg-hub-price-tag">$6.99</span>
+                    <span className="rg-hub-price-annotation">/ One-Time Purchase</span>
+                  </div>
+                )}
                 
                 <p className="rg-retail-description-text">
                   Get today's RideGuide for this route featuring:
@@ -347,20 +508,24 @@ export default function StorePanel({ activeRouteProperties }: StorePanelProps) {
         </div>
       )}
 
-      {/* PRIMARY ACTION TRIGGER ATTACHED PERMANENTLY TO COLUMN BASE */}
       <button 
         onClick={handlePrimaryActionDispatch} 
         disabled={isButtonDisabled}
         className={`rg-premium-buy-btn ${btnModifierClass}`}
       >
-        {/* STATE-SWITCHING BUTTON MATRIX DECK */}
         {isAdding
           ? "ADDING TO CART... ⏳"
-          : (hasActiveSelection && !justAdded)
-            ? "ADD ROUTE TO CART"
-            : (cartItems.length > 0)
-              ? "PROCEED TO CHECKOUT ➔"
-              : "SELECT ROUTE ON MAP TO BUY"
+          : isRedeeming
+            ? "GENERATING DOWNLOAD... ⏳"
+            : (hasActiveSelection && !justAdded)
+              ? hasActivePass
+                ? "DOWNLOAD WITH ACTIVE PASS ➔"
+                : hasTokens
+                  ? `UNLOCK WITH 1 CREDIT (Balance: ${tokenBalance}) ➔`
+                  : "ADD ROUTE TO CART"
+              : (cartItems.length > 0)
+                ? "PROCEED TO CHECKOUT ➔"
+                : "SELECT ROUTE ON MAP TO BUY"
         }
       </button>
 

@@ -12,7 +12,8 @@ import Community from "./pages/Community";
 import RedirectGateway from "./pages/RedirectGateway"; // NEW TRANSITION COMPONENT IMPORT
 
 // SHOPIFY CUSTOMER AUTHENTICATION INFRASTRUCTURE
-import { ShopifyAuthProvider } from "./store/ShopifyAuthContext";
+// 🎯 UPDATE: Added useShopifyAuth to consume the authenticated user state directly
+import { ShopifyAuthProvider, useShopifyAuth } from "./store/ShopifyAuthContext";
 import { ShopifyCartProvider } from "./store/ShopifyCartContext"; // 🎯 Integrated shared cart state context provider
 import AccountCallback from "./pages/AccountCallback";
 
@@ -78,12 +79,18 @@ function IframeReportWrapper() {
 
 function PrinterWrapper() {
   const { routeID } = useParams<{ routeID: string }>();
-  return <RideGuidePrinter routeID={routeID || "28-2_S1"} />;
+  // 🎯 THE FIX: Retrieve the active customer session object from context
+  const { customer } = useShopifyAuth(); 
+  
+  // Pass the verified customer ID string down to clear the TypeScript requirement
+  return <RideGuidePrinter routeID={routeID || "28-2_S1"} customerID={customer?.id || ""} />;
 }
 
 function DownloadGuideWrapper() {
   const [searchParams] = useSearchParams();
   const routeID = searchParams.get("routeID");
+  // 🎯 THE FIX: Retrieve the active customer session object from context
+  const { customer } = useShopifyAuth(); 
 
   if (!routeID) {
     return (
@@ -94,7 +101,8 @@ function DownloadGuideWrapper() {
     );
   }
 
-  return <RideGuidePrinter routeID={routeID} />;
+  // Pass the verified customer ID string down to clear the TypeScript requirement
+  return <RideGuidePrinter routeID={routeID} customerID={customer?.id || ""} />;
 }
 
 export default function App() {

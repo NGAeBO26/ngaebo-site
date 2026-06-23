@@ -699,3 +699,236 @@
   background-color: #d88a3a !important;
   cursor: pointer !important;
 }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   🎨 COMPACT PERMANENT WALLET STATUS HEADER BANNER
+   ────────────────────────────────────────────────────────────────────────── */
+.rg-compact-wallet-banner {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  background-color: #0f172a !important; /* Deep dark industrial slate */
+  border-left: 3px solid #10b981 !important; /* Vivid green indicator tab edge */
+  padding: 8px 12px !important;
+  margin: -4px 0 12px 0 !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+}
+
+.rg-wallet-banner-label {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 9.5px !important;
+  font-weight: 700 !important;
+  color: #94a3b8 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.rg-wallet-banner-value {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  color: #10b981 !important; /* Bright emerald wallet text highlight */
+  text-transform: uppercase !important;
+  letter-spacing: 0.3px !important;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   🎨 CREDIT VAULT & REFILL STATION CONTAINER ARCHITECTURE
+   ────────────────────────────────────────────────────────────────────────── */
+.rg-vault-refill-hub-container {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.rg-vault-header-section {
+  text-align: center !important;
+  margin-bottom: 14px !important;
+}
+
+.rg-vault-header-section h3 {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  color: #1e293b !important;
+  margin: 0 0 4px 0 !important;
+  letter-spacing: 0.5px !important;
+}
+
+.rg-vault-header-section p {
+  font-size: 10px !important;
+  color: #64748b !important;
+  line-height: 1.3 !important;
+  margin: 0 !important;
+  font-family: sans-serif !important;
+}
+
+/* ACTIVE PASSES LIST COMPONENT */
+.rg-vault-active-passes-block {
+  background-color: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  padding: 10px !important;
+  margin-bottom: 14px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.rg-vault-active-passes-block h4 {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 800 !important;
+  color: #475569 !important;
+  margin: 0 0 6px 0 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.rg-vault-passes-scroll-pane {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  max-height: 110px !important;
+  overflow-y: auto !important;
+}
+
+.rg-vault-pass-row-item {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  padding: 6px 8px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.rg-vault-pass-meta-left {
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+}
+
+.rg-vault-pass-route-id {
+  font-size: 10.5px !important;
+  font-weight: bold !important;
+  color: #0f172a !important;
+  font-family: sans-serif !important;
+}
+
+.rg-vault-pass-countdown {
+  font-size: 8.5px !important;
+  color: #ef4444 !important; /* Warning red color indicating rolling lifetime limits */
+  font-weight: 600 !important;
+  margin-top: 1px !important;
+  font-family: sans-serif !important;
+}
+
+.rg-vault-pass-reopen-action-btn {
+  background-color: #236ea0 !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 800 !important;
+  padding: 5px 10px !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  letter-spacing: 0.3px !important;
+  transition: background-color 0.15s ease !important;
+}
+
+.rg-vault-pass-reopen-action-btn:hover {
+  background-color: #d88a3a !important;
+}
+
+/* MARKETPLACE BUNDLE CARDS */
+.rg-vault-bundle-marketplace {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+
+.rg-vault-bundle-marketplace h4 {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 800 !important;
+  color: #475569 !important;
+  margin: 0 0 2px 0 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.rg-vault-marketplace-card {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+}
+
+.rg-vault-marketplace-card.featured-gold-border {
+  border: 1px solid #f59e0b !important; /* Distinct gold boundary highlight */
+  background-color: #fffbeb !important;
+}
+
+.rg-vault-card-details-left {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.rg-vault-pack-title {
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  font-family: sans-serif !important;
+}
+
+.rg-vault-pack-desc {
+  font-size: 9px !important;
+  color: #64748b !important;
+  font-weight: 500 !important;
+  margin-top: 1px !important;
+  font-family: sans-serif !important;
+}
+
+.rg-vault-pack-checkout-link {
+  background-color: #475569 !important;
+  color: #ffffff !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  padding: 6px 12px !important;
+  border-radius: 4px !important;
+  text-decoration: none !important;
+  text-align: center !important;
+  transition: all 0.15s ease !important;
+}
+
+.rg-vault-pack-checkout-link:hover {
+  background-color: #0f172a !important;
+}
+
+.rg-vault-pack-checkout-link.highlight {
+  background-color: #d88a3a !important; /* Standout conversion color button modifier link */
+}
+
+.rg-vault-pack-checkout-link.highlight:hover {
+  background-color: #b45309 !important;
+}
+
+/* INLINE HELPER ADJUSTMENT HINTS */
+.inline-adjustment-hint {
+  height: auto !important;
+  padding: 12px 6px !important;
+  margin-top: 12px !important;
+  background-color: transparent !important;
+}
+.inline-adjustment-hint .rg-placeholder-text {
+  font-size: 10px !important;
+  color: #94a3b8 !important;
+  font-weight: 600 !important;
+}

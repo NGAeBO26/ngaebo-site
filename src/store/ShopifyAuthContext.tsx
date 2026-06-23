@@ -7,6 +7,9 @@ interface CustomerProfile {
   firstName: string;
   lastName: string;
   email: string;
+  // 🎯 NEW LEDGER ACCOUNT STATE ATTRIBUTES
+  tokens: number;
+  passExpiresAt: string | null;
 }
 
 interface ShopifyAuthContextType {
@@ -17,11 +20,11 @@ interface ShopifyAuthContextType {
   logout: () => void;
   handleCallback: (code: string) => Promise<void>;
   accessToken: string | null;
+  refreshProfile: () => Promise<void>; // 🎯 Added to refresh balances instantly after unlocks
 }
 
 const ShopifyAuthContext = createContext<ShopifyAuthContextType | undefined>(undefined);
 
-// 🎯 FIXED CONFIGURATIONS: Standardized global Shopify routing pattern
 const SHOP_ID = "83633864924"; 
 const AUTH_BASE_URL = `https://shopify.com/authentication/${SHOP_ID}/oauth`;
 const GRAPHQL_API_URL = `https://shopify.com/${SHOP_ID}/account/customer/api/2026-04/graphql`;
@@ -31,17 +34,13 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const [customer, setCustomer] = useState<CustomerProfile | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  // 1. Redirect to Shopify Identity Login Screen
   const login = async () => {
     const verifier = generateCodeVerifier();
     const challenge = await generateCodeChallenge(verifier);
     const state = generateRandomState();
 
-    // Cache security keys to verify during callback processing
     sessionStorage.setItem('shopify_code_verifier', verifier);
     sessionStorage.setItem('shopify_auth_state', state);
-    
-    // 🎯 DYNAMIC REDIRECT STORAGE: Cache current route location before authentication detour
     sessionStorage.setItem('shopify_auth_redirect_origin', window.location.pathname + window.location.search);
 
     const authorizationUrl = new URL(`${AUTH_BASE_URL}/authorize`);
@@ -53,11 +52,9 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
     authorizationUrl.searchParams.append('code_challenge', challenge);
     authorizationUrl.searchParams.append('code_challenge_method', 'S256');
 
-    // Route browser to login panel
     window.location.href = authorizationUrl.toString();
   };
 
-  // 2. Exchange Authorization Code for Access Tokens
   const handleCallback = async (code: string) => {
     const verifier = sessionStorage.getItem('shopify_code_verifier');
     if (!verifier) throw new Error("Missing cryptographic tracking verification context keys.");
@@ -92,8 +89,8 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
     }
   };
 
-  // 3. Query Customer profile using the GraphQL customer account framework
   const fetchCustomerProfile = async (token: string) => {
+    // 🎯 MODIFIED: Queries the custom metafields verified on your Customer Account setup
     const query = `
       query {
         customer {
@@ -101,6 +98,8 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
           firstName
           lastName
           emailAddress { emailAddress }
+          tokens: metafield(namespace: "custom", key: "rideguide_tokens") { value }
+          pass: metafield(namespace: "custom", key: "pass_expires_at") { value }
         }
       }
     `;
@@ -123,6 +122,9 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
           firstName: c.firstName,
           lastName: c.lastName,
           email: c.emailAddress?.emailAddress || '',
+          // Safe baseline fallback defaults if fields are empty on new profiles
+          tokens: c.tokens?.value ? parseInt(c.tokens.value, 10) : 0,
+          passExpiresAt: c.pass?.value || null,
         });
       }
     } catch (err) {
@@ -131,6 +133,10 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const refreshProfile = async () => {
+    if (accessToken) await fetchCustomerProfile(accessToken);
   };
 
   const logout = () => {
@@ -163,7 +169,7 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
   }, [accessToken]);
 
   return (
-    <ShopifyAuthContext.Provider value={{ isAuthenticated: !!accessToken, isLoading, customer, login, logout, handleCallback, accessToken }}>
+    <ShopifyAuthContext.Provider value={{ isAuthenticated: !!accessToken, isLoading, customer, login, logout, handleCallback, accessToken, refreshProfile }}>
       {children}
     </ShopifyAuthContext.Provider>
   );

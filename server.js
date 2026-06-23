@@ -8,6 +8,7 @@ import { fileURLToPath } from "url";
 import { spawn } from "child_process";
 import crypto from "crypto"; 
 import fs from "fs";
+import { rateLimit } from "express-rate-limit";
 
 import { getRideGuideHTML, getRideGuideText } from "./src/lib/emailTemplates.js";
 
@@ -18,12 +19,95 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
+// 🎯 PROXY TRUST ENABLE: Forces Express to read 'x-forwarded-for' headers 
+// so the rate limiter tracks the true user's IP address, not the cloud proxy's IP.
+app.set("trust proxy", 1);
+
 // FIXED ASSET CROSS-PLATFORM LOCATION MATCHING:
 // Ensures the absolute build directory path handles standard cloud layout distributions perfectly.
 const dist = path.join(process.cwd(), "dist");
 
 // 🎯 CLOUD RECONCILIATION: Default to 5000 locally to match your Vite config proxies & RedirectGateway!
 const PORT = process.env.PORT || 5000;
+
+// Memory cache to prevent hammering Shopify's auth server on every page click
+let cachedAdminToken = null;
+let tokenExpiresAt = 0;
+
+/**
+ * Automatically requests and handles secure token retrieval via Client Credentials
+ * Formatted exactly to match Shopify's required form-urlencoded OAuth specification.
+ */
+async function getShopifyAdminToken() {
+  // If a valid token is cached (with a 5-minute safety buffer), use it instantly
+  if (cachedAdminToken && Date.now() < tokenExpiresAt - 300000) {
+    return cachedAdminToken;
+  }
+
+  const shopDomain = process.env.VITE_SHOPIFY_STORE_DOMAIN || "ngaebo-shop-3.myshopify.com";
+  const clientId = process.env.SHOPIFY_CLIENT_ID;
+  const clientSecret = process.env.SHOPIFY_CLIENT_SECRET;
+
+  if (!clientId || !clientSecret) {
+    throw new Error("Missing critical SHOPIFY_CLIENT_ID or SHOPIFY_CLIENT_SECRET environment variables.");
+  }
+
+  console.log("🔄 Requesting fresh Shopify Admin Token programmatically...");
+
+  // 🎯 THE FIX: Convert parameters to URLSearchParams to send as application/x-www-form-urlencoded
+  const params = new URLSearchParams();
+  params.append("grant_type", "client_credentials");
+  params.append("client_id", clientId);
+  params.append("client_secret", clientSecret);
+
+  const response = await fetch(`https://${shopDomain}/admin/oauth/access_token`, {
+    method: "POST",
+    headers: { 
+      "Content-Type": "application/x-www-form-urlencoded" 
+    },
+    body: params.toString()
+  });
+
+  const data = await response.json();
+  
+  if (!response.ok || !data.access_token) {
+    console.error("❌ SHOPIFY AUTH REJECTION RESPONDED WITH:", data);
+    throw new Error(`Shopify Token Exchange Rejected: ${JSON.stringify(data)}`);
+  }
+
+  // Cache the token string and set its lifecycle expiration timestamp (24 hours)
+  cachedAdminToken = data.access_token;
+  tokenExpiresAt = Date.now() + (data.expires_in || 86399) * 1000;
+
+  console.log("✅ New Shopify Admin API session token acquired successfully!");
+  return cachedAdminToken;
+}
+
+// ==========================================================================
+// 🛡️ PRODUCTION RATE LIMITING PERIMETERS (ANTI-BOT SPIKE PROTECTION)
+// ==========================================================================
+
+// Limiter A: For ownership verification requests (Leager & Profile Handshakes)
+const verificationLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes window
+  max: 100, // Limit each IP to 100 requests per window
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  message: {
+    error: "Too many verification requests from this IP. Please try again after 15 minutes."
+  }
+});
+
+// Limiter B: For token redemptions (Strict wallet financial transaction protection)
+const redemptionLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes window
+  max: 15, // Limit each IP to 15 token redeems per 15 minutes
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    error: "🚨 Transaction security threshold reached. Too many redemption requests from this IP. Please try again later."
+  }
+});
 
 // 🎯 CORS POLICY HANDSHAKE CLEARANCE
 // Explicitly opens testing gates during local dev. On DO, Same-Origin kicks in naturally.
@@ -86,6 +170,85 @@ app.use('/data/joyscores', serveLiveShopAssets('joyscores'));
 app.use('/data/visualization', serveLiveShopAssets('visualization'));
 app.use('/data/effortgauges', serveLiveShopAssets('effortgauges'));
 app.use('/data/shop_images', serveLiveShopAssets('shop_images'));
+
+// ==========================================================================
+// 🎯 STATELESS CRYPTOGRAPHIC LINK UTILITIES & TOKEN ENGINE HELPERS
+// ==========================================================================
+
+/**
+ * Generates an encrypted, tamper-proof token containing access parameters
+ */
+const generateSecureDownloadToken = (routeId, customerId) => {
+  // 🎯 UPDATE: Change access lifecycle window to precisely 7 days
+  const expiresAt = Date.now() + 7 * 24 * 60 * 60 * 1000; 
+  const payload = JSON.stringify({ routeId, customerId, expiresAt });
+  
+  const secureKey = crypto.scryptSync(process.env.JWT_SECRET || 'fallback-secret-string', 'ngaebo-salt', 32);
+  const initializationVector = Buffer.alloc(16, 0); 
+  
+  const cipher = crypto.createCipheriv('aes-256-cbc', secureKey, initializationVector);
+  let encrypted = cipher.update(payload, 'utf8', 'hex');
+  encrypted += cipher.final('hex');
+  
+  return encrypted;
+};
+
+/**
+ * Decrypts a download token and verifies that the 48-hour signature window is still open
+ */
+const verifySecureDownloadToken = (tokenString) => {
+  try {
+    const secureKey = crypto.scryptSync(process.env.JWT_SECRET || 'fallback-secret-string', 'ngaebo-salt', 32);
+    const initializationVector = Buffer.alloc(16, 0);
+    
+    const decipher = crypto.createDecipheriv('aes-256-cbc', secureKey, initializationVector);
+    let decrypted = decipher.update(tokenString, 'hex', 'utf8');
+    decrypted += decipher.final('utf8');
+    
+    const data = JSON.parse(decrypted);
+    
+    // Check if the current timestamp has surpassed the expiration boundary
+    if (Date.now() > data.expiresAt) {
+      console.warn("⚠️ SECURITY ACCESS ALERT: Token verification rejected due to expired lifetime timeline window.");
+      return null;
+    }
+    
+    return data;
+  } catch (err) {
+    console.error("🚨 CRYPTOGRAPHIC DECRYPTION FAILURE: Download link signature token manipulated or corrupted:", err.message);
+    return null;
+  }
+};
+
+/**
+ * Helper endpoint query handler targeting Shopify's Admin GraphQL node
+ */
+async function shopifyAdminFetch(query, variables = {}) {
+  try {
+    // 🎯 DYNAMIC CALL: Fetch the active server-authenticated token on-the-fly
+    const token = await getShopifyAdminToken();
+    const shopDomain = process.env.VITE_SHOPIFY_STORE_DOMAIN || "ngaebo-shop-3.myshopify.com";
+
+    const response = await fetch(`https://${shopDomain}/admin/api/2026-04/graphql.json`, {
+      method: "POST",
+      headers: {
+        "X-Shopify-Access-Token": token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ query, variables }),
+    });
+
+    const json = await response.json();
+    if (json.errors) {
+      console.error("❌ SHOPIFY ADMIN GRAPHQL ERROR:", json.errors);
+    }
+    return json.data;
+    
+  } catch (err) {
+    console.error("❌ Failed executing shopifyAdminFetch operation:", err);
+    throw err;
+  }
+}
 
 // ==========================================================================
 // 1. PRODUCTION INTERACTION API ENDPOINTS
@@ -267,12 +430,269 @@ app.get('/api/sync-weather/:routeID', (req, res) => {
   });
 });
 
+/**
+ * INTERACTIVE RIDEGUIDE RENDER GATEWAY
+ * Intercepts signed token payloads to verify authentication before serving index.html
+ */
 app.get("/download-guide", (req, res) => {
-  const { routeID } = req.query;
-  if (!routeID) return res.status(400).send("Missing target identification parameter.");
-  res.sendFile(path.join(dist, "index.html"));
+  const { routeID, secureToken } = req.query;
+
+  // 1. Instantly drop requests missing their cryptographic visa
+  if (!secureToken) {
+    console.warn(`🔒 SECURITY BLOCK: Unauthorized attempt to view route ${routeID} without a token.`);
+    return res.status(401).send("🚨 Access Denied: This link is missing its cryptographic access verification token.");
+  }
+
+  // 2. Decode and evaluate the signature against your server keys
+  const tokenData = verifySecureDownloadToken(String(secureToken));
+  
+  if (!tokenData) {
+    return res.status(403).send("🚨 Access Expired: This RideGuide link has expired (7-day access window closed) or the signature was altered.");
+  }
+
+  // 3. Prevent parameter manipulation (Ensure the URL's route matches the token payload)
+  if (routeID && tokenData.routeId !== routeID) {
+    return res.status(400).send("🚨 Validation Mismatch: Token signature does not match the requested route parameters.");
+  }
+
+  // Verification passed! Force privacy cache rules and serve the canvas dashboard
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  return res.sendFile(path.join(dist, "index.html"));
 });
 
+// ==========================================================================
+// 🎯 NEW ACCESS CONTROL GATEWAYS (DOWNLOAD STREAMING & TOKEN MUTATIONS)
+// ==========================================================================
+
+/**
+ * 🔒 CRYPTOGRAPHICALLY SECURED HIGH-PERFORMANCE FILE STREAM DOWNLOAD LINK
+ * Intercepts signed token signatures and extracts/streams the raw PDF out of the secure static build paths
+ */
+app.get("/api/download-secure-guide", (req, res) => {
+  const { secureToken } = req.query;
+  
+  if (!secureToken) {
+    return res.status(400).send("Access Rejected: Missing cryptographic token validation vector.");
+  }
+
+  // Parse token validity parameters via server decryption keys
+  const tokenData = verifySecureDownloadToken(String(secureToken));
+  
+  if (!tokenData) {
+    return res.status(403).send("Access Revoked: Download link has expired or has a compromised signature footprint.");
+  }
+
+  const { routeId } = tokenData;
+  
+  // 🎯 FILE SYSTEM PATH MAPPING:
+  // Dynamically maps the target file location relative to where the automated report engine outputs PDF documents
+  const assetFilePath = path.join(__dirname, "public", "data", "generated_pdfs", `${routeId}.pdf`);
+  const fallbackAssetPath = path.join(__dirname, "dist", "data", "generated_pdfs", `${routeId}.pdf`);
+  
+  const finalFileTarget = fs.existsSync(assetFilePath) ? assetFilePath : fallbackAssetPath;
+
+  if (!fs.existsSync(finalFileTarget)) {
+    console.error(`❌ TARGET PDF DISK LOSS: Request authenticated successfully, but target asset file could not be found at: ${finalFileTarget}`);
+    return res.status(404).send("Document compilation complete, but asset retrieval timed out on disk layers.");
+  }
+
+  // Force strict cache privacy parameters
+  cacheControlMiddleware(res);
+  
+  // Stream file byte payload straight into user context stream safely
+  return res.sendFile(finalFileTarget);
+});
+
+/**
+ * 🎰 ATOMIC TOKEN CONSUMPTION GATEWAY REDEMPTION ROUTE
+ * Tracks time-locked JSON lifecycles, decrements tokens, and sends a MailerSend link receipt.
+ */
+app.post("/api/tokens/redeem", redemptionLimiter, async (req, res) => {
+  // 🎯 UPDATE: Added routeTitle to the incoming body parameters
+  const { customerId, routeId, routeTitle } = req.body;
+  const MAILERSEND_API_KEY = process.env.MAILERSEND_API_KEY;
+
+  if (!customerId || !routeId) {
+    return res.status(400).json({ error: "Missing identity constraints." });
+  }
+
+  const normalizedCustomerId = customerId.replace("CustomerAccount/Customer", "Customer");
+
+  try {
+    const query = `
+      query getCustomerMetafields($id: ID!) {
+        customer(id: $id) {
+          email
+          tokens: metafield(namespace: "custom", key: "rideguide_tokens") { value }
+          pass: metafield(namespace: "custom", key: "pass_expires_at") { value }
+          unlocked: metafield(namespace: "custom", key: "unlocked_guides") { value }
+        }
+      }
+    `;
+
+    const data = await shopifyAdminFetch(query, { id: normalizedCustomerId });
+    if (!data || !data.customer) {
+      return res.status(404).json({ error: "Customer profile matching context not found." });
+    }
+
+    const customerEmail = data.customer.email; // 🎯 Extracted live from Shopify profile query
+    const passValue = data.customer.pass?.value;
+    const tokenCount = parseInt(data.customer.tokens?.value || "0", 10);
+    const rawUnlockedJson = data.customer.unlocked?.value || "{}";
+    
+    let unlockedMap = {};
+    try { unlockedMap = JSON.parse(rawUnlockedJson); } catch (e) { unlockedMap = {}; }
+
+    const currentTimestamp = Date.now();
+    const targetExpiration = unlockedMap[routeId] || 0;
+    
+    let accessGranted = targetExpiration > currentTimestamp;
+    const mutationsArray = [];
+
+    if (!accessGranted && passValue && new Date() < new Date(passValue)) {
+      accessGranted = true;
+      console.log(`✓ ACCESS APPROVED: Member ${customerId} owns a live active membership pass.`);
+    } 
+    else if (!accessGranted && tokenCount > 0) {
+      const remainingTokens = tokenCount - 1;
+      mutationsArray.push({
+        ownerId: normalizedCustomerId,
+        namespace: "custom",
+        key: "rideguide_tokens",
+        type: "number_integer",
+        value: String(remainingTokens)
+      });
+      accessGranted = true;
+    }
+
+    if (!accessGranted) {
+      return res.status(402).json({ error: "Insufficient account balance. Pack token depletion reached." });
+    }
+
+    unlockedMap[routeId] = currentTimestamp + (7 * 24 * 60 * 60 * 1000);
+    
+    mutationsArray.push({
+      ownerId: normalizedCustomerId,
+      namespace: "custom",
+      key: "unlocked_guides",
+      type: "json",
+      value: JSON.stringify(unlockedMap)
+    });
+
+    if (mutationsArray.length > 0) {
+      const setMetafieldsMutation = `
+        mutation metafieldsSet($metafields: [MetafieldsSetInput!]!) {
+          metafieldsSet(metafields: $metafields) {
+            userErrors { message }
+          }
+        }
+      `;
+      const mutationResult = await shopifyAdminFetch(setMetafieldsMutation, { metafields: mutationsArray });
+      const errors = mutationResult?.metafieldsSet?.userErrors || [];
+      if (errors.length > 0) throw new Error(errors[0].message);
+    }
+
+    const downloadToken = generateSecureDownloadToken(routeId, customerId);
+    const host = req.headers.host || "bogged-nanometer-criteria.ngrok-free.dev";
+    const protocol = req.headers['x-forwarded-proto'] === 'https' ? 'https' : 'http';
+    const downloadUrl = `${protocol}://${host}/download-guide?routeID=${routeId}&secureToken=${downloadToken}`;
+
+    // 🚀 MAILERSEND DISPATCH ENGINE (Runs on every single verification loop block redemption)
+    if (MAILERSEND_API_KEY && customerEmail) {
+      const targetRouteTitle = routeTitle || "Your Requested Custom Route";
+      const mailersendPayload = {
+        from: { email: "orders@northgeorgiaebikes.com", name: "North Georgia eBike Outfitters" },
+        to: [{ email: customerEmail }],
+        subject: `Your ${targetRouteTitle} RideGuide Access Link`,
+        text: getRideGuideText(targetRouteTitle, downloadUrl), 
+        html: getRideGuideHTML(targetRouteTitle, downloadUrl)  
+      };
+
+      // Fire the email asynchronously so we don't hold up the user's browser tab redirection
+      fetch("https://api.mailersend.com/v1/email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${MAILERSEND_API_KEY}` },
+        body: JSON.stringify(mailersendPayload)
+      }).catch(err => console.error("⚠️ Non-fatal email transmission glitch:", err));
+    }
+
+    return res.status(200).json({ success: true, downloadUrl });
+
+  } catch (err) {
+    console.error("❌ TOKEN REDEEM LOGIC CRASH:", err);
+    return res.status(500).json({ error: "Internal ledger processing loop error." });
+  }
+});
+
+/**
+ * 🔒 ZERO-TRUST TIME-LOCKED OWNERSHIP VERIFICATION GATEWAY
+ * Cross-checks client claims against cryptographically signed token payloads.
+ */
+app.post("/api/tokens/verify-ownership",verificationLimiter ,async (req, res) => {
+  const { customerId, routeId, secureToken } = req.body;
+
+  // 1. Drop requests immediately if they are missing their cryptographic signature
+  if (!secureToken || !customerId || !routeId) {
+    return res.status(400).json({ error: "Missing cryptographic validation tokens." });
+  }
+
+  // 2. Decrypt the token signature to see what customer ID was actually authorized
+  const decryptedTokenData = verifySecureDownloadToken(String(secureToken));
+  if (!decryptedTokenData) {
+    return res.status(403).json({ error: "🚨 Access Denied: The signature token is invalid or has expired." });
+  }
+
+  // 3. ANTI-SPOOFING CROSS CHECK: 
+  // Ensure the logged-in customer matching context matches the signature payload data exactly!
+  if (decryptedTokenData.customerId !== customerId || decryptedTokenData.routeId !== routeId) {
+    console.warn(`🔒 SECURITY BLOCK: Tampering detected. Client claimed ID ${customerId} but token belongs to ${decryptedTokenData.customerId}`);
+    return res.status(403).json({ error: "🚨 Access Denied: Session credentials do not match this signed token." });
+  }
+
+  const normalizedCustomerId = customerId.replace("CustomerAccount/Customer", "Customer");
+
+  try {
+    const query = `
+      query verifyOwnership($id: ID!) {
+        customer(id: $id) {
+          pass: metafield(namespace: "custom", key: "pass_expires_at") { value }
+          unlocked: metafield(namespace: "custom", key: "unlocked_guides") { value }
+        }
+      }
+    `;
+
+    const data = await shopifyAdminFetch(query, { id: normalizedCustomerId });
+    if (!data || !data.customer) {
+      return res.status(404).json({ error: "Customer profile context not found." });
+    }
+
+    const passValue = data.customer.pass?.value;
+    const rawUnlockedJson = data.customer.unlocked?.value || "{}";
+
+    if (passValue && new Date() < new Date(passValue)) {
+      return res.status(200).json({ hasAccess: true, reason: "Unlimited pass coverage active." });
+    }
+
+    let unlockedMap = {};
+    try { unlockedMap = JSON.parse(rawUnlockedJson); } catch (e) { unlockedMap = {}; }
+
+    const expirationTime = unlockedMap[routeId] || 0;
+
+    if (expirationTime > Date.now()) {
+      return res.status(200).json({ hasAccess: true, reason: "Verified unexpired 7-day route loop access window." });
+    }
+
+    return res.status(403).json({ hasAccess: false, error: "🚨 Access Expired: Your 7-day access window for this guide has closed. Please refresh it with a token credit." });
+
+  } catch (err) {
+    console.error("❌ OWNERSHIP MATRIX FAILURE:", err);
+    return res.status(500).json({ error: "Internal credential handshake error." });
+  }
+});
+
+// ==========================================================================
+// 🚀 PRODUCTION WEBHOOK FULL LIFECYCLE MONITOR ENGINE
+// ==========================================================================
 app.post("/api/webhooks/shopify/orders-paid", async (req, res) => {
   const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY;
   const MAILERSEND_API_KEY = process.env.MAILERSEND_API_KEY; 
@@ -293,7 +713,93 @@ app.post("/api/webhooks/shopify/orders-paid", async (req, res) => {
     const buyerAcceptsMarketing = payload.buyer_accepts_marketing || false; 
     const lineItems = payload.line_items || [];
     
+    const rawCustomerId = payload.customer?.id;
+    const shopifyCustomerId = rawCustomerId ? `gid://shopify/Customer/${rawCustomerId}` : null;
+
     const purchasedItem = lineItems[0] || {};
+    const targetVariantId = purchasedItem.variant_id ? `gid://shopify/ProductVariant/${purchasedItem.variant_id}` : '';
+    const itemQuantity = purchasedItem.quantity || 1;
+
+    // ──────────────────────────────────────────────────────────────────────
+    // 🎯 LIVE HARD-CODED MULTI-PACK PROVISIONING GATE (CHECKED FIRST)
+    // ──────────────────────────────────────────────────────────────────────
+    if (shopifyCustomerId) {
+      let tokenIncrementAmount = 0;
+      let passExtensionDays = 0;
+
+      // Mapped explicitly to your validated Shopify production variant signatures
+      if (targetVariantId === "gid://shopify/ProductVariant/51619975069916") {
+        tokenIncrementAmount = 3 * itemQuantity;
+      } else if (targetVariantId === "gid://shopify/ProductVariant/51620055089372") {
+        tokenIncrementAmount = 5 * itemQuantity;
+      } else if (targetVariantId === "gid://shopify/ProductVariant/51620150837468") {
+        tokenIncrementAmount = 15 * itemQuantity;
+      } else if (targetVariantId === "gid://shopify/ProductVariant/YOUR_7_DAY_PASS_VARIANT_ID") {
+        passExtensionDays = 7;
+      }
+
+      if (tokenIncrementAmount > 0 || passExtensionDays > 0) {
+        console.log(`📦 PROVISIONING EVENT DETECTED: Order ${orderNumber} contains multi-pack bundle assets for client profile ${shopifyCustomerId}...`);
+        
+        const currentMetafieldsQuery = `
+          query getCustomerMetafields($id: ID!) {
+            customer(id: $id) {
+              tokens: metafield(namespace: "custom", key: "rideguide_tokens") { value }
+              pass: metafield(namespace: "custom", key: "pass_expires_at") { value }
+            }
+          }
+        `;
+        const profileData = await shopifyAdminFetch(currentMetafieldsQuery, { id: shopifyCustomerId });
+        
+        const mutationsArray = [];
+
+        if (tokenIncrementAmount > 0) {
+          const baselineTokens = parseInt(profileData?.customer?.tokens?.value || "0", 10);
+          const computedTotal = baselineTokens + tokenIncrementAmount;
+          mutationsArray.push({
+            ownerId: shopifyCustomerId,
+            namespace: "custom",
+            key: "rideguide_tokens",
+            type: "number_integer",
+            value: String(computedTotal)
+          });
+        }
+
+        if (passExtensionDays > 0) {
+          const currentPassExpirationValue = profileData?.customer?.pass?.value;
+          let baseDate = new Date();
+          
+          if (currentPassExpirationValue && new Date(currentPassExpirationValue) > new Date()) {
+            baseDate = new Date(currentPassExpirationValue);
+          }
+          
+          baseDate.setDate(baseDate.getDate() + passExtensionDays);
+          
+          mutationsArray.push({
+            ownerId: shopifyCustomerId,
+            namespace: "custom",
+            key: "pass_expires_at",
+            type: "date_time",
+            value: baseDate.toISOString()
+          });
+        }
+
+        const setMetafieldsMutation = `
+          mutation metafieldsSet($metafields: [MetafieldsSetInput!]!) {
+            metafieldsSet(metafields: $metafields) {
+              userErrors { message }
+            }
+          }
+        `;
+        await shopifyAdminFetch(setMetafieldsMutation, { metafields: mutationsArray });
+        console.log(`✓ PROVISIONING EVENT FINALIZED: Balance modifications committed successfully for order ${orderNumber}.`);
+        return res.status(200).send("Account Balance Incremented Successfully");
+      }
+    }
+
+    // ──────────────────────────────────────────────────────────────────────
+    // 🛍️ STANDARD RETAIL FALLBACK ROUTE: RETAINS SINGLE GUIDE EMAIL ENGINE
+    // ──────────────────────────────────────────────────────────────────────
     const customProperties = purchasedItem.properties || [];
     const routeIDAttr = customProperties.find(attr => attr.name === "SelectedRouteID");
     const routeTitleAttr = customProperties.find(attr => attr.name === "RouteTitle");
@@ -302,7 +808,13 @@ app.post("/api/webhooks/shopify/orders-paid", async (req, res) => {
 
     const targetRouteID = routeIDAttr.value; 
     const targetRouteTitle = routeTitleAttr ? routeTitleAttr.value : "Your Custom Route";
-    const targetDownloadUrl = `https://ngaebo-staging-bym3w.ondigitalocean.app/download-guide?routeID=${targetRouteID}`;
+
+    // 🚀 THE FIX: Generate a real, cryptographically signed token for this specific retail buyer
+    const fallbackCustomerGid = shopifyCustomerId || "gid://shopify/Customer/anonymous_retail";
+    const retailSecureToken = generateSecureDownloadToken(targetRouteID, fallbackCustomerGid);
+
+    // Safely append the secureToken signature to prevent 401 rejections from the gateway
+    const targetDownloadUrl = `https://ngaebo-staging-bym3w.ondigitalocean.app/download-guide?routeID=${targetRouteID}&secureToken=${retailSecureToken}`;
 
     if (MAILERSEND_API_KEY) {
       const mailersendPayload = {
