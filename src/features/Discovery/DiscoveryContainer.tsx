@@ -1,13 +1,11 @@
 /* src/features/Discovery/DiscoveryContainer.tsx */
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import GravelGuide from "./GravelGuide";
 import { useRideFinderEngine, RideFilterBar, RideResultGallery } from "./components/RideFinder";
 import GravelPopup from "./components/GravelPopup";
-
-// IMPORT PREMIUM E-COMMERCE SIDEBAR CARD NODE CONTEXTS
 import PersistentLeftShopPanel from "../../store/StorePanel";
+import { LoadingOverlay } from "../../components/LoadingOverlay";
 
-// LOAD UNIFIED INTEGRATED STOREFRONT BOUNDARIES
 import "../../styles/store.css";
 import "./DiscoveryContainer.css"; 
 
@@ -23,14 +21,49 @@ export default function DiscoveryContainer() {
   const mapResetFnRef = useRef<(() => void) | null>(null);
   const mapZoomFnRef = useRef<((feature: any) => void) | null>(null);
 
-  // 🎯 HOC CONTROLLER METHODS
+  const [isWorkspaceLoading, setIsWorkspaceLoading] = useState<boolean>(true);
+  const [loadProgress, setLoadProgress] = useState<number>(0);
+
+  // Simulated progressive loader baseline sync
+  useEffect(() => {
+    if (!isWorkspaceLoading) return;
+    
+    const progressTimer = setInterval(() => {
+      setLoadProgress((prev) => {
+        if (prev >= 85) {
+          clearInterval(progressTimer);
+          return prev;
+        }
+        return prev + 5;
+      });
+    }, 90);
+
+    return () => clearInterval(progressTimer);
+  }, [isWorkspaceLoading]);
+
+  // 🎯 PARENT STATE TELEMETRY DISPATCH: Exposes orchestration variables directly to DevTools
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      (window as any).parentMasterRoutes = masterRoutes;
+      (window as any).parentFilteredRoutes = filteredRoutes;
+    }
+  }, [masterRoutes, filteredRoutes]);
+
   const handleFilterUpdate = useCallback((results: any[]) => {
     setFilteredRoutes(results);
   }, []);
 
   const handleRoutesLoaded = useCallback((routes: any[]) => {
+    console.log("=== 🗺️ MAP ENGINE DISPATCHED DATA ===");
+    console.log(`Successfully received ${routes.length} features from MapLibre canvas layers.`);
+    
     setMasterRoutes(routes);
     setFilteredRoutes(routes);
+    
+    setLoadProgress(100);
+    setTimeout(() => {
+      setIsWorkspaceLoading(false);
+    }, 200);
   }, []);
 
   const handleRouteSelect = useCallback((feature: any | null) => {
@@ -41,7 +74,6 @@ export default function DiscoveryContainer() {
       
       setIsPopupClosing(false);
       setActiveTakeoverRouteId(primitiveId);
-      // 🎯 MODIFICATION: Left gallery collapsed triggers detached here to ensure persistent visibility bounds!
 
       if (mapZoomFnRef.current) {
         mapZoomFnRef.current(feature);
@@ -69,7 +101,14 @@ export default function DiscoveryContainer() {
   const isTakeoverCurrentlyActive = activeTakeoverRouteId !== null;
 
   return (
-    <div className="discovery-dashboard-root">
+    <div className="discovery-dashboard-root" style={{ position: "relative" }}>
+      
+      <LoadingOverlay 
+        isLoading={isWorkspaceLoading} 
+        progress={loadProgress} 
+        message="Hydrating Backcountry Telemetry..."
+      />
+
       <RideFilterBar 
         engine={filterEngine} 
         totalCount={masterRoutes.length} 
@@ -84,18 +123,16 @@ export default function DiscoveryContainer() {
         />
       )}
 
-      {/* THREE-COLUMN WORKSPACE FRAME CONTAINER */}
       <div className="discovery-center-container">
         <div className="rg-retail-map-workspace-layout-deck">
           
-          {/* COLUMN 1: PERSISTENT LEFT STOREFRONT SIDEBAR CONTROLLER */}
           <aside className="rg-left-workspace-storefront-sidebar">
             <PersistentLeftShopPanel 
               activeRouteProperties={selectedRouteFeature ? selectedRouteFeature.properties : null} 
+              allRoutes={masterRoutes} 
             />
           </aside>
 
-          {/* COLUMN 2: CENTRAL RETAIL SPATIAL MAP VIEWPORT ANCHOR PLATFORM */}
           <div className="discovery-map-main-viewport">
             <GravelGuide
               activeHoverId={activeHoverId}     
@@ -110,15 +147,14 @@ export default function DiscoveryContainer() {
             />
           </div>
 
-          {/* COLUMN 3: 🔒 PERSISTENT RIGHT RESULTS FINDER GALLERY (Stripped out all closing toggle flags) */}
           <RideResultGallery 
             routes={filteredRoutes} 
             activeHoverId={activeHoverId}
             onHoverChange={setActiveHoverId}
-            isCollapsed={false} /* Frozen to open access parameters */
-            onToggleCollapse={() => {}} /* Voided toggle callback triggers */
+            isCollapsed={false} 
+            onToggleCollapse={() => {}} 
             onRouteSelect={handleRouteSelect}
-            isTakeoverActive={false} /* Overridden to prevent programmatic closure calls */
+            isTakeoverActive={false} 
           />
 
         </div>

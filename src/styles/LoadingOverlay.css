@@ -1,0 +1,85 @@
+/* src/styles/LoadingOverlay.css */
+
+.ngaebo-global-loading-takeover-screen {
+  position: absolute !important; /* 🎯 SWAPPED: Now binds directly to .discovery-center-container */
+  inset: 0 !important; /* Stretches tightly edge-to-edge within the relative container boundaries */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 9999 !important; /* Remains above internal sidebars and map stacks */
+  background: color-mix(in srgb, var(--brand-deep-green) 75%, transparent);
+  border: 1px solid var(--brand-deep-green);
+  width: 100% !important; /* Fills parent canvas box horizontally */
+  height: 100% !important; /* Fills parent canvas box vertically */
+}
+
+.ngaebo-spinner-assembly-box {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 30%;
+  gap: 20px !important;
+  padding-top: 20px;
+  background: color-mix(in srgb, var(--brand-bone) 80%, transparent);
+  border: 1px solid var(--brand-deep-green);
+  border-radius: 8px;
+}
+
+.ngaebo-spinner-composite-container {
+  position: relative !important;
+  width: 180px !important;
+  height: 180px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.ngaebo-spinner-logo-core {
+  position: absolute !important;
+  width: 140px !important;
+  height: 140px !important;
+  object-fit: contain !important;
+  z-index: 2 !important;
+}
+
+.ngaebo-spinner-wheel-rotating-element {
+  position: absolute !important;
+  width: 160px !important;
+  height: 160px !important;
+  object-fit: contain !important;
+  z-index: 1 !important;
+  animation: ngaeboWheelRotationTransform 3.5s linear infinite !important;
+}
+
+.ngaebo-loading-telemetry-text-deck {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.ngaebo-loading-status-message {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  color: var(--brand-forest) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+}
+
+.ngaebo-loading-percentage-counter {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 900 !important;
+  color: var(--brand-amber) !important; 
+  letter-spacing: 0.5px !important;
+}
+
+@keyframes ngaeboWheelRotationTransform {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -378,7 +378,7 @@
   flex-direction: column;
   gap: 12px;
   box-sizing: border-box;
-  background-color: #fdf4ce; /* PRESERVED: Your exact list view background yellow tint */
+  background-color: var(--brand-bone); /* PRESERVED: Your exact list view background yellow tint */
 }
 
 .gallery-empty-state {

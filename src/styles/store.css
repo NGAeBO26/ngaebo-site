@@ -1,26 +1,24 @@
 /* src/styles/store.css */
 
-/* ──────────────────────────────────────────────────────────────────────────
-   1. UNIFIED THREE-COLUMN DECK WORKSPACE
-   ────────────────────────────────────────────────────────────────────────── */
+/* ==========================================================================
+   1. GLOBAL SIDEBAR WIREFRAME & SYSTEM ALIGNMENT DECK
+   ========================================================================== */
 
-/* Explicit dashboard flex alignment row block */
 .discovery-center-container .rg-retail-map-workspace-layout-deck {
   display: flex !important;
   align-items: stretch !important;
   justify-content: space-between !important;
-  gap: 0px !important; /* Drops space gaps to hold columns flush against map frames */
+  gap: 0px !important;
   width: 100% !important;
-  height: 100% !important; /* Fills outer container bounding boxes cleanly */
+  height: 100% !important; 
   box-sizing: border-box !important;
   min-height: 0 !important;
   position: relative !important;
   overflow: hidden !important;
 }
 
-/* Column 1: Symmetrical Left Store Side panel tracking wrapper */
 .rg-left-workspace-storefront-sidebar {
-  width: 260px !important; /* Fixed width matching target spec constraints */
+  width: 260px !important;
   max-width: 260px !important;
   height: 100% !important;
   display: flex !important;
@@ -30,905 +28,783 @@
   min-height: 0 !important;
 }
 
-/* Column 2: Central Map Canvas Viewport Track */
 .discovery-map-main-viewport {
-  flex: 1 !important; /* Absorb remaining space fluidly without clipping elements */
+  flex: 1 !important; 
   height: 100% !important;
   position: relative !important;
-  background-color: #0f172a !important;
+  background-color: var(--brand-charcoal) !important;
   z-index: 10 !important;
   box-sizing: border-box !important;
   min-width: 0 !important;
 }
 
-/* Column 3: 🔒 Persistent Right Hand Results List (Locked at 260px Symmetrical Width) */
 .discovery-center-container .side-drawer-panel {
   position: relative !important;
-  transform: none !important; /* Shuts off old conditional sliding animations */
+  transform: none !important; 
   margin-left: 0 !important;
-  width: 260px !important; /* Balanced layout width matching left pane */
+  width: 260px !important; 
   max-width: 260px !important;
   height: 100% !important;
   flex-shrink: 0 !important;
   box-sizing: border-box !important;
   transition: none !important;
-  border-radius: 0px !important; /* Enforces clean square edges */
+  border-radius: 0px !important; 
   border-top: none !important;
   border-bottom: none !important;
 }
 
-/* Strip toggle arrow elements out of document visibility loops */
 .discovery-center-container .drawer-toggle-tab-btn {
   display: none !important;
   visibility: hidden !important;
   pointer-events: none !important;
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   2. RE-DRESSED PERSISTENT SIDEBAR COMPONENT CARD (ADAPTED INLINE)
-   ────────────────────────────────────────────────────────────────────────── */
+/* ==========================================================================
+   2. CORE PANELS & RIDER WALLET HEADERS
+   ========================================================================== */
+
 .rg-left-workspace-storefront-sidebar .rg-checkout-hub-card {
   width: 100% !important;
   height: 100% !important;
-  background-color: #ffffff !important;
-  border: none !important; /* Strips rounded border lines */
-  border-right: 2px solid #236ea0 !important; /* Left column structural division rule edge link */
-  border-radius: 0px !important; /* 🎯 TAILORED REVISION: Total removal of rounded edges */
+  background-color: var(--brand-bone) !important; 
+  border: none !important; 
+  border-right: 2px solid var(--brand-sky) !important; 
+  border-radius: 0px !important; 
   padding: 16px !important;
   box-sizing: border-box !important;
   display: flex !important;
   flex-direction: column !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
+  overflow: hidden;
 }
 
-/* Scroll track formatting bars */
-.rg-left-workspace-storefront-sidebar .rg-checkout-hub-card::-webkit-scrollbar {
-  width: 4px;
-}
-.rg-left-workspace-storefront-sidebar .rg-checkout-hub-card::-webkit-scrollbar-thumb {
-  background: #236ea0;
-  border-radius: 99px;
-}
-
-.rg-left-storefront-header-node {
-  margin-bottom: 12px !important;
-  border-bottom: 1px dashed #cbd5e1 !important;
-  padding-bottom: 8px !important;
-  flex-shrink: 0 !important;
-}
-
-.rg-left-storefront-header-node h5 {
-  font-size: 13px !important;
-  font-weight: 800 !important;
-  margin: 4px 0 2px 0 !important;
-  color: #0f172a !important;
-  line-height: 1.2 !important;
-}
-
-.rg-left-storefront-header-node span {
-  font-size: 10px !important;
-  color: #64748b !important;
-  font-weight: 500 !important;
-}
-
-/* ──────────────────────────────────────────────────────────────────────────
-   📦 DEEP-BLUE-SCALE LIVE IFRAME REPORT VIEWPORT PORTAL
-   ────────────────────────────────────────────────────────────────────────── */
-
-.rg-storefront-report-portal-wrapper {
-  position: relative !important;
-  width: 100% !important;
-  
-  /* 🎯 THE WRAPPER HEIGHT OVERRIDE:
-     Locks the physical container height to exactly 272.6px. This matches the 
-     scaled bounds of your document content and eliminates the empty gray block. */
-  height: 272.6px !important;
-  
-  background-color: #ffffff !important; /* Changed from gray to clean white */
-  border: 1px solid #cbd5e1 !important;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.02) !important;
-  margin: 12px 0 !important;
-  overflow: hidden !important;
-  border-radius: 4px !important;
-  flex-shrink: 0 !important;
-}
-/* 🎯 THE IFRAME SCALING MATRIX:
-   Forces the underlying full-sized multi-axis report page canvas to load 
-   at a massive pixel layout scale, then drops its total visual aspect down 
-   using high-performance CSS transforms to preserve crispness. */
-.rg-storefront-report-portal-wrapper iframe {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 950px !important; /* Matches your active report layout grid width profile */
-  
-  /* 🎯 Fixed from 1340px to match the true 1136px document content height boundary */
-  height: 1136px !important; 
-  
-  border: none !important;
-  pointer-events: none !important;
-  
-  /* Applies crisp, high-performance transformation scalings */
-  transform: scale(0.24) !important;
-  transform-origin: top left !important;
-}
-
-/* Soft loading indicator card template */
-.rg-storefront-report-portal-loader {
-  position: absolute !important;
-  inset: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  background-color: #f8fafc !important;
-  gap: 8px !important;
-  z-index: 15 !important;
-}
-
-.rg-storefront-report-portal-loader span {
-  font-family: "Montserrat", sans-serif !important;
-  font-size: 8px !important;
-  font-weight: 700 !important;
-  color: #64748b !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
-}
-
-/* Transparent user-interface shield that intercepts clicks and passes them to the button */
-.rg-storefront-report-portal-shield {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  
-  /* 🎯 Synchronized height boundary profile */
-  height: 272.6px !important; 
-  
-  z-index: 20 !important;
-  cursor: pointer !important;
-  background: transparent !important;
-}
-
-/* ──────────────────────────────────────────────────────────────────────────
-   3. STOREFRONT ACTIVE SELECTION INTEGRATION MODULE
-   ────────────────────────────────────────────────────────────────────────── */
-
-/* Main outer layout flex container properties */
-.rg-checkout-hub-card {
-  display: flex !important;
-  flex-direction: column !important;
-  height: 100% !important; /* Forces layout tracking array to fill total viewport height */
-  justify-content: flex-start !important;
-}
-
-/* Matching top header bar layout container properties */
 .rg-checkout-hub-card .drawer-header-title {
-  padding: 16px !important;
-  border-bottom: 1px solid #1e293b !important;
-  background-color: #236ea0 !important; 
+  padding: 14px 12px !important;
+  border-bottom: 1px solid var(--brand-charcoal) !important;
+  background-color: var(--brand-sky) !important; 
   text-align: center !important;
   z-index: 12 !important;
-  margin: -16px -16px 16px -16px !important; 
+  margin: -16px -16px 0 -16px !important; 
   width: auto !important;
   flex-shrink: 0 !important;
-  border-radius: 0 0 8px 8px
+  border-radius: 0 0 8px 8px;
 }
 
 .rg-checkout-hub-card .drawer-header-title h2 {
-  font-size: 12px !important;
+  font-size: 11px !important;
   text-transform: uppercase !important;
   letter-spacing: 0.1em !important;
   font-family: "Montserrat", sans-serif !important;
-  color: #ffffff !important;
+  color: var(--brand-white) !important;
   margin: 0 !important;
 }
 
-/* Primary Premium call-to-action button pinned at the absolute bottom */
-.rg-checkout-hub-card .rg-premium-buy-btn {
-  width: 100% !important;
-  margin-top: 12px !important; /* 🎯 TAILORED FIX: Replaced margin-top auto to pull layout tight and prevent double padding drop */
-  margin-bottom: 0px !important;
-  border: none !important;
+.rg-unified-top-profile-deck {
+  background-color: var(--brand-sky) !important; 
+  padding: 12px 14px !important;
+  margin: 0 -16px 0 -16px !important; 
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  border-bottom: 1px solid var(--brand-gray) !important; 
+  flex-shrink: 0 !important;
+  border-radius: 8px;
+}
+
+.rg-profile-identity-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.rg-profile-username-tag {
   font-family: "Montserrat", sans-serif !important;
-  font-size: 11px !important;
+  font-size: 10px !important;
   font-weight: 800 !important;
-  color: #ffffff !important;
-  padding: 14px 8px !important;
-  border-radius: 8px !important;
+  color: var(--brand-white) !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-  transition: all 150ms ease !important;
+}
+
+.rg-profile-wallet-balance-tag {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 9.5px !important;
+  font-weight: 800 !important;
+  color: var(--brand-mellow) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.3px !important;
+}
+
+.rg-profile-purchase-pricing-stack {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  background-color: rgba(0, 0, 0, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 6px !important;
+  border-radius: var(--ng-radius-sm) !important;
+  text-align: center !important;
+}
+
+.rg-purchase-for-label-text {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 8px !important;
+  font-weight: 700 !important;
+  color: var(--brand-sand) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+  margin-bottom: 1px !important;
+}
+
+.rg-purchase-price-value-callout {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 900 !important;
+  color: var(--brand-mellow) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.rg-ledger-balance-subtext {
+  font-size: 8px !important;
+  color: var(--brand-sand) !important;
+  margin-top: 1px !important;
+  font-weight: 500 !important;
+}
+
+/* ==========================================================================
+   3. MIDDLE CONTAINER & HIGH-CONTRAST TYPOGRAPHY LABELS
+   ========================================================================= */
+
+.rg-storefront-workspace-container {
+  flex: 1 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  margin-top: 12px !important; 
+  margin-bottom: 8px !important;
+  box-sizing: border-box !important;
+}
+
+.rg-panel-section-title {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  color: var(--brand-amber) !important; 
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  margin: 0 0 6px 0 !important;
+  border-left: 2px solid var(--brand-amber) !important;
+  padding-left: 6px !important;
+}
+
+/* A. ACTIVE MAP CARD SELECTION */
+.rg-active-map-selection-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
   flex-shrink: 0 !important;
 }
 
-/* Active result card wrapper mapping layout */
 .rg-checkout-hub-card .rg-selection-card-space {
   width: 100% !important;
   margin-bottom: 0px !important;
-  flex-shrink: 0 !important;
 }
 
 .rg-checkout-hub-card .rg-selection-card-space .route-finder-card-vertical {
   cursor: default !important;
   margin: 0 !important;
-  
-  /* Replicates the exact properties from the active hover spec sheet */
-  border-color: #f59e0b !important;
-  transform: none !important; /* Disables the sliding offset so it sits flush in your sidebar */
-  background: #236ea0 !important; /* Snaps background immediately to deep theme blue */
+  background-color: var(--brand-white) !important;
+  border: 1px solid var(--brand-gray) !important;
+  border-radius: var(--ng-radius-md) !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03) !important;
 }
 
 .rg-checkout-hub-card .rg-selection-card-space .card-metrics-grid {
-  border-top: 1px solid #ffffff !important;
+  border-top: 1px solid var(--brand-gray) !important;
 }
 
 .rg-checkout-hub-card .rg-selection-card-space .metric-column .metric-value {
-  color: #cbd5e1 !important;
+  color: var(--brand-charcoal) !important;
 }
 
 .rg-checkout-hub-card .rg-selection-card-space .metric-column .metric-label {
-  color: #94a3b8 !important;
+  color: var(--brand-slate) !important;
 }
 
 .rg-checkout-hub-card .rg-selection-card-space .card-right-badge-bay {
-  background-color: rgba(255, 255, 255, 0.04) !important;
-  border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background-color: #faf9f6 !important;
+  border-left: 1px solid var(--brand-gray) !important;
 }
 
 .rg-checkout-hub-card .rg-selection-card-space .route-finder-card-vertical .card-route-title {
-  color: #f59e0b !important; 
+  color: var(--brand-sky) !important;
 }
 
-.rg-disclaimer-note{
-  color: var(--brand-amber);
-  font-size: 10px;
-  text-align: center;
-  font-style: italic;
-}
-
-/* Empty placeholder layout card configuration */
-.rg-checkout-hub-card .rg-selection-placeholder-node {
-  text-align: center !important;
-  padding: 24px 12px !important;
-  background-color: #f8fafc !important;
-  border: 1px dashed #cbd5e1 !important;
-  border-radius: 10px !important;
-  color: #64748b !important;
-  font-size: 11px !important;
-  font-family: "Montserrat", sans-serif !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
-  margin-bottom: 12px !important;
-  box-sizing: border-box !important;
-  flex-shrink: 0 !important;
-}
-
-/* Fixed portal layout adjustments when nested inside the checkout card container */
-.rg-checkout-hub-card .rg-storefront-report-portal-wrapper {
-  margin: 12px 0 0 0 !important;
-  position: relative !important;
-  height: 305px !important; /* 🎯 Expanded from 295px to grant document exposure space */
-  background-color: #ffffff !important;
-  border: 1px solid #cbd5e1 !important;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.02) !important;
-  overflow: hidden !important;
-  border-radius: 4px !important;
-  flex-shrink: 0 !important;
-}
-
-/* Synchronized iframe view screen scaling height matching the new expanded envelope wrapper */
-.rg-checkout-hub-card .rg-storefront-report-portal-wrapper iframe {
-  position: absolute !important;
-  top: 0 !important;
-  left: -1px !important; /* 🎯 Nudged left 1px to center the scaled canvas perfectly */
-  width: 950px !important; 
-  height: 1280px !important; /* Scaled constraint matching your 305px height envelope */
+.rg-inline-card-action-btn {
+  width: 100% !important;
   border: none !important;
-  pointer-events: none !important;
-  transform: scale(0.238) !important; /* 🎯 Rebalanced scale factor for a 260px sidebar wrapper */
-  transform-origin: top left !important;
-}
-
-.rg-checkout-hub-card .rg-storefront-report-portal-wrapper .rg-storefront-report-portal-shield {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 305px !important; /* 🎯 Synchronized from 295px to secure total clickable shield footprint */
-  z-index: 20 !important;
-  cursor: pointer !important;
-  background: transparent !important;
-}
-
-/* 🎯 THE OVERLAY ANCHOR DECK UPGRADE: Full Centering and Stack layout engine elements */
-.rg-checkout-hub-card .rg-storefront-report-portal-wrapper .rg-portal-embedded-upsell-overlay {
-  position: absolute !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  z-index: 30 !important; 
-  background: linear-gradient(to top, 
-    rgba(255, 255, 255, 1.0) 0%, 
-    rgba(255, 255, 255, 0.98) 82%, 
-    rgba(255, 255, 255, 0.0) 100%) !important;
-  padding: 45px 16px 16px 16px !important; 
-  box-sizing: border-box !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important; /* 🎯 CENTERED */
-  text-align: center !important;
-  pointer-events: none !important; 
-}
-
-/* Centered layout elements */
-.rg-checkout-hub-card .rg-retail-badge-row-link {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  margin-bottom: 2px !important;
-}
-
-.rg-checkout-hub-card .rg-retail-badge-row-link .rg-hub-main-title {
-  margin: 0 !important;
-  font-size: 13px !important;
-  font-weight: 800 !important;
-  color: #0f172a !important;
-}
-
-.rg-checkout-hub-card .rg-hub-pricing-row {
-  margin-bottom: 8px !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: 4px !important;
-}
-
-.rg-checkout-hub-card .rg-hub-price-tag {
-  font-size: 19px !important;
-  font-weight: 800 !important;
-  color: #d88a3a !important;
-}
-
-.rg-checkout-hub-card .rg-hub-price-annotation {
-  font-size: 10.5px !important;
-  color: #64748b !important;
-  font-weight: 600 !important;
-}
-
-/* Structured Intro Tagline Typography */
-.rg-checkout-hub-card .rg-retail-description-text {
   font-family: "Montserrat", sans-serif !important;
-  font-size: 10px !important;
-  color: #334155 !important;
-  line-height: 1.4 !important;
-  margin: 0 0 8px 0 !important;
-  font-weight: 700 !important;
+  font-size: 9px !important;
+  font-weight: 800 !important;
+  color: var(--brand-white) !important;
+  padding: 8px 4px !important;
+  margin-top: 6px !important;
+  border-radius: var(--ng-radius-sm) !important;
+  cursor: pointer !important;
   text-transform: uppercase !important;
   letter-spacing: 0.3px !important;
 }
 
-/* 🎯 VERTICAL PILL CONTAINER SYSTEM */
-.rg-checkout-hub-card .rg-overlay-feature-pills-stack {
+.rg-inline-card-action-btn.print-green { background-color: var(--brand-verdant) !important; }
+.rg-inline-card-action-btn.unlock-verdant { background-color: var(--brand-verdant) !important; }
+.rg-inline-card-action-btn.add-verdant { background-color: var(--brand-verdant) !important; }
+.rg-inline-card-action-btn:disabled {
+  background-color: #cbd5e1 !important;
+  color: #64748b !important;
+  cursor: not-allowed !important;
+}
+
+/* 🎯 REFACTORED: B. SCROLLING MINI-CART SELECTION LISTS (Remapped naming boundaries safely) */
+.rg-persistent-cart-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  flex: 1 !important; 
+  min-height: 0 !important;
+}
+
+.rg-cart-items-list-container {
+  flex: 1 !important;
+  overflow-y: auto !important; 
+  overflow-x: hidden !important;
+  min-height: 0 !important; 
   display: flex !important;
   flex-direction: column !important;
   gap: 5px !important;
-  margin-bottom: 5px !important;
-}
-
-/* Individual Pill Cards */
-.rg-checkout-hub-card .rg-feature-pill-item {
-  background-color: #f0fdf4 !important; /* Soft mint backdrop */
-  border: 1px solid #bbf7d0 !important; /* High-contrast green border */
-  border-radius: 20px !important;
-  padding: 5px 12px !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  box-sizing: border-box !important;
-}
-
-.rg-checkout-hub-card .rg-feature-pill-item .rg-pill-checkmark {
-  color: #16a34a !important; /* Emerald bold icon accent */
-  font-weight: 900 !important;
-  font-size: 11px !important;
-}
-
-.rg-checkout-hub-card .rg-feature-pill-item .rg-pill-label-text {
-  font-family: "Montserrat", sans-serif !important;
-  font-size: 10px !important;
-  font-weight: 700 !important;
-  color: #14532d !important; /* Deep forest slate text contrast */
-  text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
-}
-
-/* Outro Delivery Confirmation Typography */
-.rg-checkout-hub-card .rg-retail-delivery-footer-text {
-  font-family: "Montserrat", sans-serif !important; /* Linked to match original label typography */
-  font-size: 10px !important;
-  color: #236ea0 !important; /* Tinted blue callout accent text color */
-  line-height: 1.4 !important;
-  margin: 0 !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.3px !important;
-}
-
-/* Fallback unselected graphic placeholder elements */
-.rg-checkout-hub-card .rg-storefront-empty-viewport-placeholder {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  background-color: #f8fafc !important;
-  padding: 32px 16px !important;
-  text-align: center !important;
-  margin: 12px 0 0 0 !important;
-  height: 295px !important;
-  box-sizing: border-box !important;
-}
-
-.rg-checkout-hub-card .rg-storefront-empty-viewport-placeholder .rg-placeholder-icon {
-  font-size: 24px !important;
-  margin-bottom: 8px !important;
-  display: block !important;
-}
-
-.rg-placeholder-icon {
-  height: 96px;
-
-}
-
-.rg-checkout-hub-card .rg-storefront-empty-viewport-placeholder .rg-placeholder-text {
-  font-family: "Montserrat", sans-serif !important;
-  font-size: 14px !important;
-  font-weight: 700 !important;
-  color: var(--brand-sky) !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
-  line-height: 1.3 !important;
-}
-
-/* ──────────────────────────────────────────────────────────────────────────
-   📦 4. EXTRACTION SPECIFICATION: NEW EXTENDED DISCOVERY INVENTORY VIEWS
-   ────────────────────────────────────────────────────────────────────────── */
-
-/* State 3: Success Banner Shield Intercept Overlay */
-.rg-portal-success-overlay {
-  position: absolute !important;
-  inset: 0 !important;
-  background-color: #1e3a34 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 20px !important;
-  box-sizing: border-box !important;
-  z-index: 40 !important;
-  text-align: center !important;
-}
-
-.rg-portal-success-icon {
-  font-size: 32px !important;
-  margin-bottom: 8px !important;
-}
-
-.rg-portal-success-title {
-  margin: 0 !important;
-  font-size: 14px !important;
-  font-weight: bold !important;
-  color: #ffffff !important;
-  font-family: sans-serif !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.05em !important;
-}
-
-.rg-portal-success-desc {
-  margin: 4px 0 0 0 !important;
-  font-size: 11px !important;
-  color: #cbd5e1 !important;
-  font-family: sans-serif !important;
-}
-
-/* State 4: Current Rider Inventory Deck Main Canvas Module */
-.rg-portal-inventory-deck {
-  position: absolute !important;
-  inset: 0 !important;
-  background-color: #f8fafc !important;
-  padding: 14px !important;
-  box-sizing: border-box !important;
-  display: flex !important;
-  flex-direction: column !important;
-  z-index: 35 !important;
-}
-
-.rg-inventory-header-row {
-  border-bottom: 1px dashed #cbd5e1 !important;
-  padding-bottom: 6px !important;
-  margin-bottom: 8px !important;
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-}
-
-.rg-inventory-meta-label {
-  font-size: 9px !important;
-  font-weight: 700 !important;
-  color: #64748b !important;
-  font-family: sans-serif !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
-}
-
-.rg-inventory-counter-tag {
-  font-size: 10px !important;
-  font-weight: 800 !important;
-  color: #236ea0 !important;
-  font-family: sans-serif !important;
-}
-
-.rg-inventory-scroll-pane {
-  flex: 1 !important;
-  overflow-y: auto !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 8px !important;
   padding-right: 2px !important;
 }
 
-/* Individual Item Card Blocks */
-.rg-inventory-item-card {
-  background-color: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  padding: 8px 10px !important;
-  border-radius: 6px !important;
+.rg-cart-items-list-container::-webkit-scrollbar {
+  width: 4px;
+}
+.rg-cart-items-list-container::-webkit-scrollbar-thumb {
+  background: var(--brand-gray) !important;
+  border-radius: 99px !important;
+}
+
+.rg-cart-empty-placeholder {
+  flex: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 20px 12px !important;
+  background-color: var(--brand-white) !important;
+  border: 1px dashed var(--brand-gray) !important;
+  border-radius: var(--ng-radius-md) !important;
+  text-align: center;
+}
+
+.rg-cart-empty-placeholder span {
+  font-size: 9.5px !important;
+  color: var(--brand-slate) !important;
+  line-height: 1.4 !important;
+  font-family: "Montserrat", sans-serif !important;
+}
+
+.rg-cart-row-item {
+  background-color: var(--brand-white) !important;
+  border: 1px solid var(--brand-gray) !important;
+  padding: 7px 10px !important;
+  border-radius: var(--ng-radius-sm) !important;
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.01) !important;
+  flex-shrink: 0 !important;
 }
 
-.rg-inventory-item-left-details {
+.rg-cart-item-meta-left {
+  display: flex !important;
+  flex-direction: column !important;
   min-width: 0 !important;
   flex: 1 !important;
-  padding-right: 6px !important;
 }
 
-.rg-inventory-item-title {
-  font-size: 11px !important;
+.rg-cart-item-title-text {
+  font-size: 10.5px !important;
   font-weight: 800 !important;
-  color: #0f172a !important;
+  color: var(--brand-charcoal) !important;
   text-transform: uppercase !important;
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
-  font-family: sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
 }
 
-.rg-inventory-item-subtitle {
-  font-size: 9px !important;
-  color: #64748b !important;
+.rg-cart-item-sub-metrics {
+  font-size: 8.5px !important;
+  color: var(--brand-slate) !important;
   font-weight: 600 !important;
-  margin-top: 1px !important;
-  font-family: sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
 }
 
-.rg-inventory-item-right-bay {
+.rg-cart-item-actions-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.rg-cart-item-price-tag {
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  color: var(--brand-verdant) !important;
+  font-family: "Montserrat", sans-serif !important;
+}
+
+.rg-cart-remove-line-item-btn {
+  background: none !important;
+  border: none !important;
+  color: var(--brand-slate) !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  padding: 0 1px !important;
+  line-height: 1 !important;
+}
+
+.rg-cart-remove-line-item-btn:hover { 
+  color: var(--brand-amber) !important; 
+}
+
+/* ==========================================================================
+   4. SECTION 3 STYLE SUITE: PILL Action CTA Buttons & Disclaimers
+   ========================================================================== */
+
+.rg-checkout-hub-card .rg-premium-buy-btn {
+  width: 100% !important;
+  margin-top: auto !important; 
+  margin-bottom: 0px !important;
+  border: none !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 10.5px !important;
+  font-weight: 800 !important;
+  color: var(--brand-white) !important;
+  padding: 13px 8px !important;
+  border-radius: 999px !important; 
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  transition: background-color 100ms ease !important;
+  flex-shrink: 0 !important;
+}
+
+.rg-token-checkout-instruction-banner {
+  background-color: var(--brand-white) !important;
+  border: 1px solid var(--brand-gray) !important;
+  color: var(--brand-charcoal) !important;
+  font-size: 9.5px !important;
+  font-weight: 700 !important;
+  padding: 9px !important;
+  border-radius: var(--ng-radius-sm) !important;
+  text-align: center !important;
+  font-family: "Montserrat", sans-serif !important;
+  line-height: 1.3 !important;
+  margin-top: auto !important;
+  flex-shrink: 0 !important;
+}
+
+.rg-checkout-hub-card .rg-premium-buy-btn.mod-disabled {
+  background-color: var(--brand-gray) !important;
+  color: var(--brand-slate) !important;
+  cursor: not-allowed !important;
+}
+
+.rg-checkout-hub-card .rg-premium-buy-btn.mod-ready,
+.rg-checkout-hub-card .rg-premium-buy-btn.mod-checkout {
+  background-color: var(--brand-amber) !important;
+  cursor: pointer !important;
+}
+
+.rg-checkout-hub-card .rg-premium-buy-btn.mod-ready:hover,
+.rg-checkout-hub-card .rg-premium-buy-btn.mod-checkout:hover {
+  background-color: var(--color-primary-dark) !important;
+}
+
+.rg-disclaimer-note {
+  color: var(--brand-amber) !important;
+  font-size: 9px !important;
+  text-align: center !important;
+  font-style: italic !important;
+  margin-top: 8px !important;
+  line-height: 1.3 !important;
+  font-family: "Montserrat", sans-serif !important;
+  flex-shrink: 0 !important;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   🎨 PROFILE GROUP LAYOUTS & INTERACTIVE TRASHCAN ICON EXTENSIONS
+   ────────────────────────────────────────────────────────────────────────── */
+
+.rg-profile-user-group-left {
   display: flex !important;
   align-items: center !important;
   gap: 8px !important;
-  flex-shrink: 0 !important;
 }
 
-.rg-inventory-item-badge-asset {
-  width: 22px !important;
-  height: auto !important;
-  display: block !important;
-}
-
-.rg-inventory-item-price-label {
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  color: #236ea0 !important;
-  font-family: sans-serif !important;
-}
-
-/* Under-card quiet background context notification badge banner */
-.rg-sidebar-toast-alert {
-  color: #10b981 !important;
-  font-size: 13px !important;
-  font-weight: bold !important;
-  text-align: center !important;
-  margin-bottom: 12px !important;
-  font-family: sans-serif !important;
-}
-
-/* 🎯 REACTIVE MODIFIER OVERRIDES FOR ACTION ELEMENT SPECIFICATIONS */
-.rg-checkout-hub-card .rg-premium-buy-btn.mod-disabled {
-  background-color: #94a3b8 !important;
-  cursor: not-allowed !important;
-}
-
-.rg-checkout-hub-card .rg-premium-buy-btn.mod-adding {
-  background-color: #10b981 !important;
-  cursor: not-allowed !important;
-}
-
-.rg-checkout-hub-card .rg-premium-buy-btn.mod-ready {
-  background-color: #d88a3a !important;
-  cursor: pointer !important;
-}
-
-/* ──────────────────────────────────────────────────────────────────────────
-   🎯 NEW WORKSPACE COMPONENT EXTENSIONS
-   ────────────────────────────────────────────────────────────────────────── */
-
-/* Persistent structural container reserving the bottom area of the panel card block */
-.rg-inventory-continue-shopping-row {
-  margin-top: 10px !important;
-  padding-top: 8px !important;
-  border-top: 1px solid #e2e8f0 !important;
-  text-align: center !important;
-  flex-shrink: 0 !important;
-}
-
-/* Clear, text-centered action links for navigation loop resets */
-.rg-inventory-continue-btn {
+.rg-profile-inline-auth-btn-link {
   background: none !important;
   border: none !important;
   font-family: "Montserrat", sans-serif !important;
-  font-size: 11px !important;
+  font-size: 9.5px !important;
   font-weight: 700 !important;
-  color: #236ea0 !important;
+  color: var(--brand-white) !important; 
+  text-transform: uppercase !important;
+  text-decoration: underline !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  letter-spacing: 0.3px !important;
+  transition: color 100ms ease !important;
+}
+
+.rg-profile-inline-auth-btn-link:hover {
+  color: var(--brand-amber) !important;
+}
+
+/* 🎯 REFACTORED: Interactive deletion vector targets remuted to matching standards */
+.rg-cart-remove-line-item-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: none !important;
+  border: none !important;
+  color: var(--brand-slate) !important; 
+  cursor: pointer !important;
+  padding: 4px !important;
+  transition: color 100ms ease, transform 100ms ease !important;
+}
+
+.rg-cart-remove-line-item-btn:hover {
+  color: #ef4444 !important; 
+  transform: scale(1.05) !important;
+}
+
+.rg-profile-right-side-dock {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important; 
+}
+
+.rg-profile-user-group-left {
+  display: none !important;
+}
+
+/* 🎯 REFACTORED: Inline unlock trigger targets remap values */
+.rg-cart-inline-unlock-btn {
+  background-color: var(--brand-amber) !important;
+  color: var(--brand-white) !important;
+  border: none !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 800 !important;
+  padding: 4px 8px !important;
+  border-radius: var(--ng-radius-sm) !important;
   cursor: pointer !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
-  transition: color 0.15s ease-in-out !important;
-  padding: 4px 8px !important;
-}
-
-.rg-inventory-continue-btn:hover {
-  color: #d88a3a !important;
-}
-
-/* Primary checkout modifier color override configuration */
-.rg-checkout-hub-card .rg-premium-buy-btn.mod-checkout {
-  background-color: #d88a3a !important;
-  cursor: pointer !important;
-}
-
-/* ──────────────────────────────────────────────────────────────────────────
-   🎨 COMPACT PERMANENT WALLET STATUS HEADER BANNER
-   ────────────────────────────────────────────────────────────────────────── */
-.rg-compact-wallet-banner {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  background-color: #0f172a !important; /* Deep dark industrial slate */
-  border-left: 3px solid #10b981 !important; /* Vivid green indicator tab edge */
-  padding: 8px 12px !important;
-  margin: -4px 0 12px 0 !important;
-  box-sizing: border-box !important;
+  letter-spacing: 0.3px !important;
+  transition: background-color 100ms ease-in-out, transform 100ms ease !important;
   flex-shrink: 0 !important;
 }
 
-.rg-wallet-banner-label {
-  font-family: "Montserrat", sans-serif !important;
-  font-size: 9.5px !important;
-  font-weight: 700 !important;
-  color: #94a3b8 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
+.rg-cart-inline-unlock-btn:hover {
+  background-color: var(--color-primary-dark) !important;
+  transform: translateY(-1px) !important;
 }
 
-.rg-wallet-banner-value {
-  font-family: "Montserrat", sans-serif !important;
-  font-size: 10px !important;
-  font-weight: 800 !important;
-  color: #10b981 !important; /* Bright emerald wallet text highlight */
-  text-transform: uppercase !important;
-  letter-spacing: 0.3px !important;
+.rg-cart-inline-unlock-btn:disabled {
+  background-color: var(--brand-gray) !important;
+  color: var(--brand-slate) !important;
+  cursor: not-allowed !important;
+  transform: none !important;
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   🎨 CREDIT VAULT & REFILL STATION CONTAINER ARCHITECTURE
-   ────────────────────────────────────────────────────────────────────────── */
-.rg-vault-refill-hub-container {
-  display: flex !important;
-  flex-direction: column !important;
+.rg-cart-inline-unlock-btn.unlocked-green {
+  background-color: var(--brand-verdant) !important;
+}
+.rg-cart-inline-unlock-btn.unlocked-green:hover {
+  background-color: var(--brand-forest) !important;
+}
+
+/* ==========================================================================
+   5. VAULT CATALOG & DUAL PANELS SCROLL CONFIGURATIONS
+   ========================================================================== */
+
+.rg-storefront-dual-scroll-pane {
   flex: 1 !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-.rg-vault-header-section {
-  text-align: center !important;
-  margin-bottom: 14px !important;
-}
-
-.rg-vault-header-section h3 {
-  font-family: "Montserrat", sans-serif !important;
-  font-size: 11px !important;
-  font-weight: 800 !important;
-  color: #1e293b !important;
-  margin: 0 0 4px 0 !important;
-  letter-spacing: 0.5px !important;
-}
-
-.rg-vault-header-section p {
-  font-size: 10px !important;
-  color: #64748b !important;
-  line-height: 1.3 !important;
-  margin: 0 !important;
-  font-family: sans-serif !important;
-}
-
-/* ACTIVE PASSES LIST COMPONENT */
-.rg-vault-active-passes-block {
-  background-color: #f1f5f9 !important;
-  border: 1px solid #cbd5e1 !important;
-  padding: 10px !important;
-  margin-bottom: 14px !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-.rg-vault-active-passes-block h4 {
-  font-family: "Montserrat", sans-serif !important;
-  font-size: 9px !important;
-  font-weight: 800 !important;
-  color: #475569 !important;
-  margin: 0 0 6px 0 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
-}
-
-.rg-vault-passes-scroll-pane {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 6px !important;
-  max-height: 110px !important;
   overflow-y: auto !important;
+  overflow-x: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  padding-right: 2px !important;
+  min-height: 0 !important;
 }
 
-.rg-vault-pass-row-item {
-  background-color: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  padding: 6px 8px !important;
+.rg-storefront-dual-scroll-pane::-webkit-scrollbar {
+  width: 4px;
+}
+.rg-storefront-dual-scroll-pane::-webkit-scrollbar-thumb {
+  background: var(--brand-gray) !important;
+  border-radius: 99px !important;
+}
+
+/* 🎯 REFACTORED: Unlocked child scroll layers flattened seamlessly */
+.rg-cart-items-list-container,
+.rg-catalog-items-list-container {
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px !important;
+}
+
+.rg-catalog-vault-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+}
+
+.rg-catalog-empty-placeholder {
+  padding: 20px 12px !important;
+  background-color: var(--brand-white) !important;
+  border: 1px dashed var(--brand-gray) !important;
+  border-radius: var(--ng-radius-md) !important;
+  text-align: center;
+}
+
+.rg-catalog-empty-placeholder span {
+  font-size: 9.5px !important;
+  color: var(--brand-slate) !important;
+  line-height: 1.4 !important;
+  font-family: "Montserrat", sans-serif !important;
+}
+
+/* 🎯 THE VISUAL UNIFICATION FIX: Explicitly forced readable color parameters and structural layout boundaries */
+.rg-catalog-row-item {
+  background-color: var(--brand-white) !important;
+  border: 1px solid var(--brand-gray) !important;
+  padding: 7px 10px !important; /* Unified to match .rg-cart-row-item padding exactly */
+  border-radius: var(--ng-radius-sm) !important;
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.01) !important;
+  flex-shrink: 0 !important;
 }
 
-.rg-vault-pass-meta-left {
+.rg-catalog-item-meta-left {
   display: flex !important;
   flex-direction: column !important;
   min-width: 0 !important;
+  flex: 1 !important;
 }
 
-.rg-vault-pass-route-id {
+.rg-catalog-item-title-text {
   font-size: 10.5px !important;
-  font-weight: bold !important;
-  color: #0f172a !important;
-  font-family: sans-serif !important;
-}
-
-.rg-vault-pass-countdown {
-  font-size: 8.5px !important;
-  color: #ef4444 !important; /* Warning red color indicating rolling lifetime limits */
-  font-weight: 600 !important;
-  margin-top: 1px !important;
-  font-family: sans-serif !important;
-}
-
-.rg-vault-pass-reopen-action-btn {
-  background-color: #236ea0 !important;
-  border: none !important;
-  color: #ffffff !important;
-  font-family: "Montserrat", sans-serif !important;
-  font-size: 9px !important;
   font-weight: 800 !important;
-  padding: 5px 10px !important;
-  border-radius: 4px !important;
-  cursor: pointer !important;
-  letter-spacing: 0.3px !important;
-  transition: background-color 0.15s ease !important;
+  color: var(--brand-charcoal) !important; /* High-contrast visibility restore link */
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  font-family: "Montserrat", sans-serif !important;
 }
 
-.rg-vault-pass-reopen-action-btn:hover {
-  background-color: #d88a3a !important;
+.rg-catalog-item-countdown-tag {
+  font-size: 8.5px !important;
+  color: var(--brand-verdant) !important; 
+  font-weight: 600 !important;
+  font-family: "Montserrat", sans-serif !important;
 }
 
-/* MARKETPLACE BUNDLE CARDS */
-.rg-vault-bundle-marketplace {
+.rg-catalog-item-actions-right {
   display: flex !important;
-  flex-direction: column !important;
+  align-items: center !important;
   gap: 6px !important;
 }
 
-.rg-vault-bundle-marketplace h4 {
+.rg-catalog-inline-print-btn {
+  background-color: var(--brand-verdant) !important;
+  color: var(--brand-white) !important;
+  border: none !important;
   font-family: "Montserrat", sans-serif !important;
   font-size: 9px !important;
   font-weight: 800 !important;
-  color: #475569 !important;
-  margin: 0 0 2px 0 !important;
+  padding: 4px 8px !important; /* Scaled precisely to balance look of cart rows */
+  border-radius: var(--ng-radius-sm) !important;
+  cursor: pointer !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
+  letter-spacing: 0.3px !important;
+  transition: background-color 100ms ease-in-out, transform 100ms ease !important;
+  flex-shrink: 0 !important;
 }
 
-.rg-vault-marketplace-card {
-  background-color: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  padding: 8px 12px !important;
-  border-radius: 6px !important;
+.rg-catalog-inline-print-btn:hover {
+  background-color: var(--brand-forest) !important;
+  transform: translateY(-1px) !important;
+}
+
+.rg-checkout-hub-card .price-verdant {
+  color: var(--brand-verdant) !important;
+  font-weight: 800 !important;
+}
+
+/* ==========================================================================
+   🎯 6. TWO-TAB SYSTEM NAVIGATION & VIEWPORT EXTENSIONS
+   ========================================================================== */
+
+.rg-storefront-tabs-nav-bar {
   display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+  align-items: stretch !important;
+  background-color: rgba(15, 23, 42, 0.04) !important;
+  border: 1px solid var(--brand-gray) !important;
+  padding: 3px !important;
+  border-radius: var(--ng-radius-sm) !important;
+  flex-shrink: 0 !important;
+  margin-bottom: 2px !important;
 }
 
-.rg-vault-marketplace-card.featured-gold-border {
-  border: 1px solid #f59e0b !important; /* Distinct gold boundary highlight */
-  background-color: #fffbeb !important;
+.rg-tab-nav-trigger-btn {
+  flex: 1 !important;
+  background: none !important;
+  border: none !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  color: var(--brand-slate) !important;
+  padding: 8px 4px !important;
+  cursor: pointer !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.3px !important;
+  border-radius: 4px !important;
+  transition: all 120ms ease-in-out !important;
 }
 
-.rg-vault-card-details-left {
+.rg-tab-nav-trigger-btn:hover {
+  color: var(--brand-charcoal) !important;
+}
+
+.rg-tab-nav-trigger-btn.active {
+  background-color: var(--brand-white) !important;
+  color: var(--brand-amber) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+.rg-storefront-tab-active-content-pane {
+  flex: 1 !important;
+  overflow-y: auto !important; 
+  overflow-x: hidden !important;
+  min-height: 0 !important; 
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+}
+
+.rg-storefront-tab-active-content-pane::-webkit-scrollbar {
+  width: 4px;
+}
+
+.rg-storefront-tab-active-content-pane::-webkit-scrollbar-thumb {
+  background: var(--brand-gray) !important;
+  border-radius: 99px !important;
+}
+
+/* Ensure the absolute root dashboard forces full viewport expansion */
+.discovery-dashboard-root {
+  position: relative !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow: hidden !important;
   display: flex !important;
   flex-direction: column !important;
 }
 
-.rg-vault-pack-title {
-  font-size: 11px !important;
-  font-weight: 800 !important;
-  color: #0f172a !important;
-  font-family: sans-serif !important;
+/* ==========================================================================
+   🎯 PREMIUM WORKSPACE CARDS & WINDOW BOUNDARY OVERRIDES
+   ========================================================================== */
+
+/* The Selected Route Frame with the Text-Clipping Protection Fix */
+.rg-active-map-selection-panel {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  background-color: var(--brand-white, #ffffff) !important;
+  border: 1px solid var(--brand-gray, #e2e8f0) !important;
+  border-radius: 8px !important;
+  padding: 12px !important; /* Provides a protective gutter layer around titles and actions */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+  overflow: visible !important; /* Prevents text layout bounds from being chopped at edges */
 }
 
-.rg-vault-pack-desc {
-  font-size: 9px !important;
-  color: #64748b !important;
-  font-weight: 500 !important;
-  margin-top: 1px !important;
-  font-family: sans-serif !important;
+/* The New Tabs and Scroll Pane Window Box Frame Context */
+.rg-tabs-window-container {
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 !important; /* Forces the box to dynamically stretch to match available lower area height */
+  min-height: 0 !important; /* Crucial anchor for preserving child scroll panes */
+  background-color: var(--brand-white, #ffffff) !important;
+  border: 1px solid var(--brand-gray, #e2e8f0) !important;
+  border-radius: 8px !important;
+  padding: 10px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
 }
 
-.rg-vault-pack-checkout-link {
-  background-color: #475569 !important;
-  color: #ffffff !important;
-  font-family: "Montserrat", sans-serif !important;
-  font-size: 10px !important;
-  font-weight: 800 !important;
-  padding: 6px 12px !important;
-  border-radius: 4px !important;
-  text-decoration: none !important;
-  text-align: center !important;
-  transition: all 0.15s ease !important;
+/* Smooth micro margins inside the pane wrapper box */
+.rg-tabs-window-container .rg-storefront-tabs-nav-bar {
+  margin-top: 0 !important;
+  margin-bottom: 8px !important;
 }
 
-.rg-vault-pack-checkout-link:hover {
-  background-color: #0f172a !important;
+/* Ensure active inner lists inherit the nested height controls beautifully */
+.rg-tabs-window-container .rg-storefront-tab-active-content-pane {
+  flex: 1 !important;
+  min-height: 0 !important;
 }
 
-.rg-vault-pack-checkout-link.highlight {
-  background-color: #d88a3a !important; /* Standout conversion color button modifier link */
+/* ==========================================================================
+   💥 VERTICAL CLIPPING & HORIZONTAL ELLIPSIS TRUNCATION FIX
+   ========================================================================== */
+
+/* Force layout details block to collapse correctly against flex boundaries */
+.rg-active-map-selection-panel .route-finder-card-vertical {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  height: 80px !important;
+  min-height: 0 !important;
+  overflow: visible !important;
 }
 
-.rg-vault-pack-checkout-link.highlight:hover {
-  background-color: #b45309 !important;
-}
-
-/* INLINE HELPER ADJUSTMENT HINTS */
-.inline-adjustment-hint {
+.rg-active-map-selection-panel .card-left-details-block {
+  flex: 1 !important;
+  min-width: 0 !important; /* 🎯 CRITICAL: Tells flex item it's allowed to shrink smaller than text length */
   height: auto !important;
-  padding: 12px 6px !important;
-  margin-top: 12px !important;
-  background-color: transparent !important;
+  overflow: visible !important;
 }
-.inline-adjustment-hint .rg-placeholder-text {
-  font-size: 10px !important;
-  color: #94a3b8 !important;
-  font-weight: 600 !important;
+
+/* Beautifully truncates long route names right before hitting the badge */
+.rg-active-map-selection-panel .card-route-title {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+  
+  /* 🛑 Fixes Vertical Clipping */
+  line-height: 1.4 !important; 
+  padding-top: 6px !important;  
+  padding-bottom: 4px !important;
+  
+  /* ➔ Fixes Horizontal Overflow & Forces Ellipsis */
+  overflow: hidden !important;        /* Changed from visible to allow truncation */
+  text-overflow: ellipsis !important; /* Appends the '...' when text runs out of room */
+  white-space: nowrap !important;     /* Keeps text locked tightly to a single line */
 }
