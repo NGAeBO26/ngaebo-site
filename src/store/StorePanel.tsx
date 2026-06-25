@@ -20,7 +20,6 @@ interface StorePanelProps {
 
 export default function StorePanel({ activeRouteProperties, allRoutes = [] }: StorePanelProps) {
   // ACTIVE RENDERING LOG: Tracks prop data updates on every cycle
-  // TARGETED TELEMETRY: Inspecting prop arrival & reference identity
   console.log("=== ⚡ STOREPANEL RE-RENDER AUDIT ===");
   console.log("1. Raw allRoutes Prop Reference:", allRoutes);
   console.log("2. Array.isArray Check:", Array.isArray(allRoutes));
@@ -36,8 +35,10 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
   const [activeTab, setActiveTab] = useState<"cart" | "catalog">("cart");
   const [activeCatalogHoverId, setActiveCatalogHoverId] = useState<string | null>(null);
 
+  const isFullyAuthenticated = isAuthenticated && customer !== null; //
+
   const rawUnlockedGuides = customer?.unlocked_guides || "{}";
-  let unlockedMap: Record<string, number> = {};
+  let unlockedMap: Record<string, any> = {}; //
   
   try {
     if (typeof rawUnlockedGuides === "string") {
@@ -54,12 +55,21 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     unlockedMap = {};
   }
 
-  const currentTimestamp = Date.now();
+  const currentTimestamp = Date.now(); //
+
+  // 🎯 DEFENSIVE DICTIONARY EXTRACTORS: Safely handles objects and raw fallback timestamps
+  const getRouteExpiry = (id: string): number => {
+    const entry = unlockedMap[id];
+    if (!entry) return 0;
+    if (typeof entry === "object" && entry !== null) return Number(entry.expiresAt || 0);
+    return Number(entry || 0);
+  };
+
   const hasActivePass = customer?.passExpiresAt 
     ? new Date() < new Date(customer.passExpiresAt) 
     : false;
 
-  const hasActiveSelection = cachedRoute !== null;
+  const hasActiveSelection = cachedRoute !== null; //
   const routeProps = cachedRoute?.properties || cachedRoute || {};
 
   const routeTitle = hasActiveSelection
@@ -78,37 +88,42 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
 
   const tokenBalance = customer?.tokens || 0;
   const hasTokens = tokenBalance > 0;
-  const isTokenUser = isAuthenticated && hasTokens;
+  const isTokenUser = isFullyAuthenticated && hasTokens; 
 
-  const isThisRouteExplicitlyUnlocked = hasActivePass || (unlockedMap[rawRouteId] && unlockedMap[rawRouteId] > currentTimestamp);
+  const isThisRouteExplicitlyUnlocked = hasActivePass || (getRouteExpiry(rawRouteId) > currentTimestamp);
 
+  // 🎯 SCHEMATIC OBJECT ENTRY PARSING
   const activeCatalogPasses = Object.entries(unlockedMap)
-    .filter(([_, expiresAt]) => Number(expiresAt) > currentTimestamp)
-    .map(([routeId, expiresAt]) => ({
-      routeId,
-      expiresAt: Number(expiresAt),
-      daysLeft: Math.ceil((Number(expiresAt) - currentTimestamp) / (1000 * 60 * 60 * 24))
+    .map(([routeId, entry]) => {
+      const expiresAt = typeof entry === "object" && entry !== null ? Number(entry.expiresAt || 0) : Number(entry || 0);
+      const name = typeof entry === "object" && entry !== null ? String(entry.name || "") : "";
+      return { routeId, expiresAt, name };
+    })
+    .filter((pass) => pass.expiresAt > currentTimestamp)
+    .map((pass) => ({
+      ...pass,
+      daysLeft: Math.ceil((pass.expiresAt - currentTimestamp) / (1000 * 60 * 60 * 24))
     }));
 
   const visibleCartItems = cartItems.filter((item: CartItem) => {
     const targetId = item.routeId || "";
-    const isLineRouteUnlocked = hasActivePass || (unlockedMap[targetId] && unlockedMap[targetId] > currentTimestamp);
+    const isLineRouteUnlocked = hasActivePass || (getRouteExpiry(targetId) > currentTimestamp);
     return !isLineRouteUnlocked;
   });
 
-  const totalCartCount = visibleCartItems.length;
+  const totalCartCount = visibleCartItems.length; //
   const computedPriceTotal = (totalCartCount * 6.99).toFixed(2);
   const computedTokenTotal = totalCartCount; 
 
   const isAlreadyInCart = visibleCartItems.some((item: CartItem) => String(item.routeId) === rawRouteId);
 
   useEffect(() => {
-    if (isAuthenticated && refreshProfile) {
+    if (isFullyAuthenticated && refreshProfile) {
       const handleTabFocusSync = () => refreshProfile();
       window.addEventListener("focus", handleTabFocusSync);
       return () => window.removeEventListener("focus", handleTabFocusSync);
     }
-  }, [isAuthenticated, refreshProfile]);
+  }, [isFullyAuthenticated, refreshProfile]);
 
   useEffect(() => {
     if (activeRouteProperties !== null) {
@@ -117,7 +132,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
       const routeProps = activeRouteProperties.properties || activeRouteProperties || {};
       const clickedRouteId = String(routeProps.profile_id || activeRouteProperties.id || routeProps.id || routeProps.ID || "");
       
-      const isRoutePaidFor = hasActivePass || (unlockedMap[clickedRouteId] && unlockedMap[clickedRouteId] > Date.now());
+      const isRoutePaidFor = hasActivePass || (getRouteExpiry(clickedRouteId) > Date.now());
       if (isRoutePaidFor) {
         setActiveTab("catalog");
       }
@@ -148,7 +163,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
   const handleTokenRedemption = async (targetId: string, targetTitle: string) => {
     if (isRedeeming || !customer) return;
 
-    const isAlreadyOpen = hasActivePass || (unlockedMap[targetId] && unlockedMap[targetId] > currentTimestamp);
+    const isAlreadyOpen = hasActivePass || (getRouteExpiry(targetId) > currentTimestamp);
     if (!isAlreadyOpen) {
       if (!window.confirm(`Use 1 credit token to unlock the printable RideGuide for "${targetTitle}"?`)) return; 
     }
@@ -225,14 +240,14 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
       <div className="rg-unified-top-profile-deck">
         <div className="rg-profile-identity-row">
           <span className="rg-profile-username-tag">
-            👤︎ {isAuthenticated ? (customer?.firstName || "Rider") : "Guest Rider"}
+            👤︎ {isFullyAuthenticated ? (customer?.firstName || "Rider") : "Guest Rider"}
           </span>
           <div className="rg-profile-right-side-dock">
-            {isAuthenticated && !hasActivePass && (
+            {isFullyAuthenticated && !hasActivePass && (
               <span className="rg-profile-wallet-balance-tag">🎫 {tokenBalance} Credits</span>
             )}
-            <button onClick={isAuthenticated ? logout : login} className="rg-profile-inline-auth-btn-link">
-              {isAuthenticated ? "Sign Out" : "Sign In"}
+            <button onClick={isFullyAuthenticated ? logout : login} className="rg-profile-inline-auth-btn-link">
+              {isFullyAuthenticated ? "Sign Out" : "Sign In"}
             </button>
           </div>
         </div>
@@ -256,7 +271,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
 
       <div className="rg-storefront-workspace-container">
         
-        {/* A. MAP SELECTION CARD (Rounded boundaries styled via storefront CSS overrides) */}
         {hasActiveSelection && (
           <div className="rg-active-map-selection-panel">
             <h4 className="rg-panel-section-title">Selected Route Details</h4>
@@ -289,7 +303,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
           </div>
         )}
 
-        {/* 🎯 THE WINDOW WRAPPER: Encapsulates navigation and active context layer views into an isolated window container */}
         <div className="rg-tabs-window-container">
           
           <div className="rg-storefront-tabs-nav-bar">
@@ -299,7 +312,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
             >
               Cart ({totalCartCount})
             </button>
-            {isAuthenticated && (
+            {isFullyAuthenticated && (
               <button 
                 className={`rg-tab-nav-trigger-btn ${activeTab === "catalog" ? "active" : ""}`}
                 onClick={() => setActiveTab("catalog")}
@@ -355,7 +368,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
               </div>
             )}
 
-            {activeTab === "catalog" && isAuthenticated && (
+            {activeTab === "catalog" && isFullyAuthenticated && (
               <div className="rg-catalog-vault-panel">
                 {activeCatalogPasses.length === 0 ? (
                   <div className="rg-catalog-empty-placeholder">
@@ -369,7 +382,8 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
                         return id === pass.routeId;
                       });
 
-                      const displayTitle = matchedMatch?.properties?.NAME || 
+                      const displayTitle = pass.name || 
+                                           matchedMatch?.properties?.NAME || 
                                            matchedMatch?.title || 
                                            (rawRouteId === pass.routeId ? routeTitle : `Route Access #${pass.routeId}`);
                       
@@ -403,21 +417,20 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
                               className="rg-catalog-inline-print-btn" 
                               disabled={isRedeeming} 
                               onClick={() => handleTokenRedemption(pass.routeId, displayTitle)}
-                        >
-                          Print ➔
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
+                            >
+                              Print ➔
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             )}
           </div>
-        )}
+        </div>
       </div>
-
-    </div>
-  </div>
 
       {/* SECTION 3: BOTTOM MASTER CTA RUNTIME */}
       {activeTab === "catalog" ? (
@@ -444,7 +457,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
 
       <span className="rg-disclaimer-note">
         By purchasing, you agree to our terms and conditions.<br />
-        RideGuide is a digital product delivered instantly after purchase. No physical item will be shipped. RideGuide is provided for informational purposes only and may not reflect real‑time road or terrain conditions. Outdoor activities involve inherent risks. Use at your own discretion.
+        
       </span>
     </div>
   );

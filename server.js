@@ -508,7 +508,7 @@ app.get("/api/download-secure-guide", (req, res) => {
  * Tracks time-locked JSON lifecycles, decrements tokens, and sends a MailerSend link receipt.
  */
 app.post("/api/tokens/redeem", redemptionLimiter, async (req, res) => {
-  // 🎯 UPDATE: Added routeTitle to the incoming body parameters
+  // 🎯 PARAMETERS CAPTURE: Process the customer identity, requested route vector, and descriptive title
   const { customerId, routeId, routeTitle } = req.body;
   const MAILERSEND_API_KEY = process.env.MAILERSEND_API_KEY;
 
@@ -544,7 +544,18 @@ app.post("/api/tokens/redeem", redemptionLimiter, async (req, res) => {
     try { unlockedMap = JSON.parse(rawUnlockedJson); } catch (e) { unlockedMap = {}; }
 
     const currentTimestamp = Date.now();
-    const targetExpiration = unlockedMap[routeId] || 0;
+    
+    // 🎯 SCHEMATIC OBJECT ENTRY PARSER: Safely reads the new object properties, 
+    // while remaining fully backward-compatible with legacy primitive numbers.
+    const entry = unlockedMap[routeId];
+    let targetExpiration = 0;
+    if (entry) {
+      if (typeof entry === "object" && entry !== null) {
+        targetExpiration = Number(entry.expiresAt || 0);
+      } else {
+        targetExpiration = Number(entry || 0);
+      }
+    }
     
     let accessGranted = targetExpiration > currentTimestamp;
     const mutationsArray = [];
@@ -569,7 +580,11 @@ app.post("/api/tokens/redeem", redemptionLimiter, async (req, res) => {
       return res.status(402).json({ error: "Insufficient account balance. Pack token depletion reached." });
     }
 
-    unlockedMap[routeId] = currentTimestamp + (7 * 24 * 60 * 60 * 1000);
+    // 🎯 SCHEMATIC DICTIONARY WRITER: Seeds the explicit route names directly into the database payload object
+    unlockedMap[routeId] = {
+      expiresAt: currentTimestamp + (7 * 24 * 60 * 60 * 1000),
+      name: routeTitle || `Route ${routeId}`
+    };
     
     mutationsArray.push({
       ownerId: normalizedCustomerId,
@@ -628,7 +643,7 @@ app.post("/api/tokens/redeem", redemptionLimiter, async (req, res) => {
  * 🔒 ZERO-TRUST TIME-LOCKED OWNERSHIP VERIFICATION GATEWAY
  * Cross-checks client claims against cryptographically signed token payloads.
  */
-app.post("/api/tokens/verify-ownership",verificationLimiter ,async (req, res) => {
+app.post("/api/tokens/verify-ownership", verificationLimiter, async (req, res) => {
   const { customerId, routeId, secureToken } = req.body;
 
   // 1. Drop requests immediately if they are missing their cryptographic signature
@@ -676,7 +691,16 @@ app.post("/api/tokens/verify-ownership",verificationLimiter ,async (req, res) =>
     let unlockedMap = {};
     try { unlockedMap = JSON.parse(rawUnlockedJson); } catch (e) { unlockedMap = {}; }
 
-    const expirationTime = unlockedMap[routeId] || 0;
+    // 🎯 SCHEMATIC ENTRY PARSER: Extract the target expiration safely regardless of data shape
+    const entry = unlockedMap[routeId];
+    let expirationTime = 0;
+    if (entry) {
+      if (typeof entry === "object" && entry !== null) {
+        expirationTime = Number(entry.expiresAt || 0);
+      } else {
+        expirationTime = Number(entry || 0);
+      }
+    }
 
     if (expirationTime > Date.now()) {
       return res.status(200).json({ hasAccess: true, reason: "Verified unexpired 7-day route loop access window." });
