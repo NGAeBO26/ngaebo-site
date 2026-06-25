@@ -9,7 +9,7 @@ interface CustomerProfile {
   email: string;
   tokens: number;
   passExpiresAt: string | null;
-  unlocked_guides: string; // 🎯 Natively typed on your profile layer
+  unlocked_guides: string; // Natively typed on your profile layer
 }
 
 interface ShopifyAuthContextType {
@@ -38,10 +38,35 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
   useEffect(() => {
     const historicalCrash = localStorage.getItem('auth_crash_log');
     if (historicalCrash) {
-      console.error("🚨 LAST SESSION REDIRECT CRASH LOG:", JSON.parse(historicalCrash));
+      console.error(" LAST SESSION REDIRECT CRASH LOG:", JSON.parse(historicalCrash));
       localStorage.removeItem('auth_crash_log');
     }
   }, []);
+
+  // 🎯 AUTOMATIC RETURN-TRIP INTERCEPTOR: Bounces the browser back to stashed asset views post-auth
+  useEffect(() => {
+    // Halt checking loops if a customer profile hasn't fully loaded yet
+    if (!customer) return;
+
+    // 1. Check if they were intercepted by our explicit download page guard
+    const explicitDownloadTarget = sessionStorage.getItem("auth_redirect_back_target");
+    if (explicitDownloadTarget) {
+      sessionStorage.removeItem("auth_redirect_back_target");
+      sessionStorage.removeItem("shopify_auth_redirect_origin"); // Clear fallback to stay synced
+      console.log("🚀 Restoring secure download window target destination:", explicitDownloadTarget);
+      window.location.href = explicitDownloadTarget;
+      return;
+    }
+
+    // 2. Fallback to standard context parameters stashed natively during user-initiated login
+    const standardAuthRedirectOrigin = sessionStorage.getItem("shopify_auth_redirect_origin");
+    if (standardAuthRedirectOrigin) {
+      sessionStorage.removeItem("shopify_auth_redirect_origin");
+      const completeUrlTarget = window.location.origin + standardAuthRedirectOrigin;
+      console.log("🔄 Restoring original storefront origin point:", completeUrlTarget);
+      window.location.href = completeUrlTarget;
+    }
+  }, [customer]);
 
   const login = async () => {
     const verifier = generateCodeVerifier();
@@ -50,7 +75,7 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
     sessionStorage.setItem('shopify_code_verifier', verifier);
     sessionStorage.setItem('shopify_auth_state', state);
-    sessionStorage.setItem('shopify_auth_redirect_origin', window.location.pathname + window.location.search);
+    sessionStorage.setItem('shopify_auth_redirect_origin', window.location.pathname + window.location.search); //
 
     const authorizationUrl = new URL(`${AUTH_BASE_URL}/authorize`);
     authorizationUrl.searchParams.append('client_id', import.meta.env.VITE_SHOPIFY_PUBLIC_CLIENT_ID);
@@ -100,7 +125,7 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
   };
 
   const fetchCustomerProfile = async (token: string) => {
-    // 🎯 DATA INTEGRATION: Retained the unlocked guides selection node
+    // DATA INTEGRATION: Retained the unlocked guides selection node
     const query = `
       query {
         customer {
@@ -116,7 +141,7 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
     `;
 
     try {
-      // 🎯 THE CORS FIX: URL is kept perfectly clean, and headers only contain what Shopify permits
+      // THE CORS FIX: URL is kept perfectly clean, and headers only contain what Shopify permits
       const response = await fetch(GRAPHQL_API_URL, {
         method: 'POST',
         headers: {

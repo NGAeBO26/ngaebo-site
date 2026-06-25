@@ -2,6 +2,7 @@
 import { Routes, Route, useParams, useSearchParams, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { useEffect } from "react";
 
 // APPLICATION INTENT-DRIVEN MULTI-PAGE WORKSPACES
 import Home from "./pages/Home";
@@ -89,9 +90,25 @@ function PrinterWrapper() {
 function DownloadGuideWrapper() {
   const [searchParams] = useSearchParams();
   const routeID = searchParams.get("routeID");
-  // 🎯 THE FIX: Retrieve the active customer session object from context
-  const { customer } = useShopifyAuth(); 
+  
+  // 🎯 ACTIVE MONITOR: Grab the full lifecycle state flags from your auth context
+  const { customer, isAuthenticated, isLoading, login } = useShopifyAuth(); 
 
+  useEffect(() => {
+    // Hold execution if Shopify is still processing the initial token check loop
+    if (isLoading) return;
+
+    // If the token was rejected (isAuthenticated is false), stash the target URL and force an auth refresh
+    if (!isAuthenticated) {
+      const currentURL = window.location.href;
+      sessionStorage.setItem("auth_redirect_back_target", currentURL);
+      
+      console.warn("🔐 Session token expired or invalid. Re-routing through security gate...");
+      login(); // Transparently triggers the Shopify OAuth flow to get a fresh token
+    }
+  }, [isAuthenticated, isLoading, login]);
+
+  // Handle cases where a route parameter was missing entirely
   if (!routeID) {
     return (
       <div style={{ color: "white", textAlign: "center", padding: "80px", fontFamily: "sans-serif" }}>
@@ -101,7 +118,21 @@ function DownloadGuideWrapper() {
     );
   }
 
-  // Pass the verified customer ID string down to clear the TypeScript requirement
+  // Display a clean, secure message while the application handles the login handshake
+  if (isLoading || !isAuthenticated) {
+    return (
+      <div style={{ color: "white", textAlign: "center", padding: "140px 20px", fontFamily: "sans-serif" }}>
+        <h2 style={{ fontSize: "22px", marginBottom: "12px", fontWeight: 700 }}>
+          🔒 Verifying Security Clearance...
+        </h2>
+        <p style={{ color: "#9ca3af", fontSize: "14px" }}>
+          Confirming account ownership metrics against the requested map asset. One moment.
+        </p>
+      </div>
+    );
+  }
+
+  // Pass down the safely verified customer data now that auth is guaranteed
   return <RideGuidePrinter routeID={routeID} customerID={customer?.id || ""} />;
 }
 
