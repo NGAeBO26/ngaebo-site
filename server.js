@@ -646,24 +646,35 @@ app.post("/api/tokens/redeem", redemptionLimiter, async (req, res) => {
 app.post("/api/tokens/verify-ownership", verificationLimiter, async (req, res) => {
   const { customerId, routeId, secureToken } = req.body;
 
-  // 1. Drop requests immediately if they are missing their cryptographic signature
-  if (!secureToken || !customerId || !routeId) {
-    return res.status(400).json({ error: "Missing cryptographic validation tokens." });
+  if (!customerId || !routeId) {
+    return res.status(400).json({ error: "Missing identity constraints." });
   }
 
-  // 2. Decrypt the token signature to see what customer ID was actually authorized
-  const decryptedTokenData = verifySecureDownloadToken(String(secureToken));
-  if (!decryptedTokenData) {
-    return res.status(403).json({ error: "🚨 Access Denied: The signature token is invalid or has expired." });
+  // 🎯 STEP 1: DEFENSIVE CRYPTOGRAPHIC VISAS CHECK
+  let passesCryptographicValidation = false;
+  if (secureToken) {
+    const decryptedTokenData = verifySecureDownloadToken(String(secureToken));
+    if (decryptedTokenData) {
+      const extractNumericId = (gid) => {
+        return String(gid || "").replace("gid://shopify/", "").replace("CustomerAccount/", "").replace("Customer/", "");
+      };
+      
+      const tokenUserDigits = extractNumericId(decryptedTokenData.customerId);
+      const sessionUserDigits = extractNumericId(customerId);
+
+      if (tokenUserDigits === sessionUserDigits && decryptedTokenData.routeId === routeId) {
+        passesCryptographicValidation = true;
+      }
+    }
   }
 
-  // 3. ANTI-SPOOFING CROSS CHECK: 
-  // Ensure the logged-in customer matching context matches the signature payload data exactly!
-  if (decryptedTokenData.customerId !== customerId || decryptedTokenData.routeId !== routeId) {
-    console.warn(`🔒 SECURITY BLOCK: Tampering detected. Client claimed ID ${customerId} but token belongs to ${decryptedTokenData.customerId}`);
-    return res.status(403).json({ error: "🚨 Access Denied: Session credentials do not match this signed token." });
+  // If the link's secureToken itself is active and matching, approve access immediately
+  if (passesCryptographicValidation) {
+    return res.status(200).json({ hasAccess: true, reason: "Cryptographically verified unexpired 7-day token link signature." });
   }
 
+  // 🎯 STEP 2: FALLBACK DATABASE VERIFICATION CHECK
+  // If the link signature has expired, check the customer's Shopify profile for an active pass
   const normalizedCustomerId = customerId.replace("CustomerAccount/Customer", "Customer");
 
   try {
@@ -691,7 +702,6 @@ app.post("/api/tokens/verify-ownership", verificationLimiter, async (req, res) =
     let unlockedMap = {};
     try { unlockedMap = JSON.parse(rawUnlockedJson); } catch (e) { unlockedMap = {}; }
 
-    // 🎯 SCHEMATIC ENTRY PARSER: Extract the target expiration safely regardless of data shape
     const entry = unlockedMap[routeId];
     let expirationTime = 0;
     if (entry) {
@@ -703,10 +713,14 @@ app.post("/api/tokens/verify-ownership", verificationLimiter, async (req, res) =
     }
 
     if (expirationTime > Date.now()) {
-      return res.status(200).json({ hasAccess: true, reason: "Verified unexpired 7-day route loop access window." });
+      return res.status(200).json({ hasAccess: true, reason: "Verified unexpired 7-day route vault window." });
     }
 
-    return res.status(403).json({ hasAccess: false, error: "🚨 Access Expired: Your 7-day access window for this guide has closed. Please refresh it with a token credit." });
+    // Both verification tracks failed
+    return res.status(403).json({ 
+      hasAccess: false, 
+      error: "🚨 Access Expired: Your 7-day access window for this guide has closed. Please refresh it with a token credit." 
+    });
 
   } catch (err) {
     console.error("❌ OWNERSHIP MATRIX FAILURE:", err);

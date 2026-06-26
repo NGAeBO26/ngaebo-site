@@ -25,9 +25,9 @@ interface ShopifyAuthContextType {
 
 const ShopifyAuthContext = createContext<ShopifyAuthContextType | undefined>(undefined);
 
-const SHOP_ID = "83633864924"; 
-const AUTH_BASE_URL = `https://shopify.com/authentication/${SHOP_ID}/oauth`;
-const GRAPHQL_API_URL = `https://shopify.com/${SHOP_ID}/account/customer/api/2026-04/graphql`;
+const SHOP_ID = "83633864924"; //
+const AUTH_BASE_URL = `https://shopify.com/authentication/${SHOP_ID}/oauth`; //
+const GRAPHQL_API_URL = `https://shopify.com/${SHOP_ID}/account/customer/api/2026-04/graphql`; //
 
 export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [accessToken, setAccessToken] = useState<string | null>(localStorage.getItem('shopify_access_token'));
@@ -89,9 +89,56 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
     window.location.href = authorizationUrl.toString();
   };
 
+  // 🎯 SILENT TOKEN ROTATION ENGINE: Silent lifecycle token exchange handler
+  const refreshTokens = async (): Promise<string | null> => {
+    const storedRefreshToken = localStorage.getItem('shopify_refresh_token');
+    if (!storedRefreshToken) {
+      console.warn("⚠️ Silent token rotation aborted: No refresh token present in cache memory.");
+      return null;
+    }
+
+    const bodyParameters = new URLSearchParams({
+      grant_type: 'refresh_token',
+      client_id: import.meta.env.VITE_SHOPIFY_PUBLIC_CLIENT_ID,
+      refresh_token: storedRefreshToken,
+    });
+
+    try {
+      const response = await fetch(`${AUTH_BASE_URL}/token`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: bodyParameters.toString(),
+      });
+
+      if (!response.ok) throw new Error("Upstream OAuth exchange rejected refresh token lifecycle.");
+      const data = await response.json();
+
+      localStorage.setItem('shopify_access_token', data.access_token);
+      if (data.id_token) {
+        localStorage.setItem('shopify_id_token', data.id_token);
+      }
+      if (data.refresh_token) {
+        localStorage.setItem('shopify_refresh_token', data.refresh_token);
+      }
+
+      setAccessToken(data.access_token);
+      console.log("✅ Headless access session token successfully rotated silently!");
+      return data.access_token;
+    } catch (error) {
+      console.error("❌ Silent session refresh failed completely:", error);
+      // Evacuate ghost variables instantly to clean out loop blocks
+      localStorage.removeItem('shopify_access_token');
+      localStorage.removeItem('shopify_refresh_token');
+      localStorage.removeItem('shopify_id_token');
+      setAccessToken(null);
+      setCustomer(null);
+      return null;
+    }
+  };
+
   const handleCallback = async (code: string) => {
     const verifier = sessionStorage.getItem('shopify_code_verifier');
-    if (!verifier) throw new Error("Missing cryptographic tracking verification context keys.");
+    if (!verifier) throw new Error("Missing cryptographic tracking verification context keys."); //
 
     const bodyParameters = new URLSearchParams({
       grant_type: 'authorization_code',
@@ -108,24 +155,27 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
         body: bodyParameters.toString(),
       });
 
-      if (!response.ok) throw new Error("Failed token verification exchange handshake.");
+      if (!response.ok) throw new Error("Failed token verification exchange handshake."); //
       const data = await response.json();
 
       localStorage.setItem('shopify_access_token', data.access_token);
       if (data.id_token) {
-        localStorage.setItem('shopify_id_token', data.id_token);
+        localStorage.setItem('shopify_id_token', data.id_token); //
+      }
+      // 🎯 SEED STORAGE CELL: Cache the refresh token payload mapping securely
+      if (data.refresh_token) {
+        localStorage.setItem('shopify_refresh_token', data.refresh_token);
       }
       
       setAccessToken(data.access_token);
-      sessionStorage.removeItem('shopify_code_verifier');
+      sessionStorage.removeItem('shopify_code_verifier'); //
     } catch (error: any) {
-      localStorage.setItem('auth_crash_log', JSON.stringify({ context: "OAuth Callback Exchange", message: error.message }));
+      localStorage.setItem('auth_crash_log', JSON.stringify({ context: "OAuth Callback Exchange", message: error.message })); //
       console.error("OAuth Authentication Error:", error);
     }
   };
 
-  const fetchCustomerProfile = async (token: string) => {
-    // DATA INTEGRATION: Retained the unlocked guides selection node
+  const fetchCustomerProfile = async (token: string, isRetry = false) => {
     const query = `
       query {
         customer {
@@ -141,7 +191,6 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
     `;
 
     try {
-      // THE CORS FIX: URL is kept perfectly clean, and headers only contain what Shopify permits
       const response = await fetch(GRAPHQL_API_URL, {
         method: 'POST',
         headers: {
@@ -151,36 +200,67 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
         body: JSON.stringify({ query }),
       });
 
+      // 🎯 HTTP INTERCEPT STATE: Handle raw 401 status blocks instantly
+      if (response.status === 401 && !isRetry) {
+        console.warn("🔄 HTTP 401 Unauthorized captured. Initiating rotation execution...");
+        const rotatedToken = await refreshTokens();
+        if (rotatedToken) {
+          await fetchCustomerProfile(rotatedToken, true);
+          return;
+        }
+      }
+
       const resData = await response.json();
 
+      // 🎯 GRAPHQL ERROR INTERCEPT BLOCK: Catch internal token validation drops
       if (resData.errors) {
-        localStorage.setItem('auth_crash_log', JSON.stringify({ context: "GraphQL Payload Rejection", errors: resData.errors }));
-        console.error("Shopify GraphQL Errors Detected:", resData.errors);
+        const isUnauthorized = resData.errors.some((e: any) => 
+          e.message?.toLowerCase().includes("unauthorized") || 
+          e.extensions?.code === "UNAUTHORIZED"
+        );
+
+        if (isUnauthorized && !isRetry) {
+          console.warn("🔄 GraphQL Payload authorization failure. Attempting silent token rotation...");
+          const rotatedToken = await refreshTokens();
+          if (rotatedToken) {
+            await fetchCustomerProfile(rotatedToken, true);
+            return;
+          }
+        }
+
+        localStorage.setItem('auth_crash_log', JSON.stringify({ context: "GraphQL Payload Rejection", errors: resData.errors })); //
+        console.error("Shopify GraphQL Errors Detected:", resData.errors); //
       }
 
       if (resData.data?.customer) {
-        const c = resData.data.customer;
+        const c = resData.data.customer; //
         setCustomer({
           id: c.id,
           firstName: c.firstName,
           lastName: c.lastName,
-          email: c.emailAddress?.emailAddress || '',
-          tokens: c.tokens?.value ? parseInt(c.tokens.value, 10) : 0,
-          passExpiresAt: c.pass?.value || null,
-          unlocked_guides: c.unlocked?.value || '{}', 
+          email: c.emailAddress?.emailAddress || '', //
+          tokens: c.tokens?.value ? parseInt(c.tokens.value, 10) : 0, //
+          passExpiresAt: c.pass?.value || null, //
+          unlocked_guides: c.unlocked?.value || '{}', //
         });
       }
     } catch (err: any) {
-      localStorage.setItem('auth_crash_log', JSON.stringify({ context: "Network Profile Resolution Loop", message: err.message }));
-      console.error("Error retrieving account payload data:", err);
-      logout();
+      localStorage.setItem('auth_crash_log', JSON.stringify({ context: "Network Profile Resolution Loop", message: err.message })); //
+      console.error("Error retrieving account payload data:", err); //
+      
+      // Clear variables on hard network errors to drop back to guest state safely
+      localStorage.removeItem('shopify_access_token');
+      localStorage.removeItem('shopify_refresh_token');
+      localStorage.removeItem('shopify_id_token');
+      setAccessToken(null);
+      setCustomer(null);
     } finally {
-      setIsLoading(false);
+      setIsLoading(false); //
     }
   };
 
   const refreshProfile = async () => {
-    if (accessToken) await fetchCustomerProfile(accessToken);
+    if (accessToken) await fetchCustomerProfile(accessToken); //
   };
 
   const logout = () => {
@@ -188,27 +268,28 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
     localStorage.removeItem('shopify_access_token');
     localStorage.removeItem('shopify_id_token');
-    setAccessToken(null);
-    setCustomer(null);
+    localStorage.removeItem('shopify_refresh_token'); // Clear refresh cache
+    setAccessToken(null); //
+    setCustomer(null); //
     
-    const absoluteLogoutEndpoint = `https://shopify.com/authentication/${SHOP_ID}/logout`;
-    const logoutUrl = new URL(absoluteLogoutEndpoint);
+    const absoluteLogoutEndpoint = `https://shopify.com/authentication/${SHOP_ID}/logout`; //
+    const logoutUrl = new URL(absoluteLogoutEndpoint); //
     
-    logoutUrl.searchParams.append('client_id', import.meta.env.VITE_SHOPIFY_PUBLIC_CLIENT_ID);
-    logoutUrl.searchParams.append('post_logout_redirect_uri', window.location.origin + '/');
+    logoutUrl.searchParams.append('client_id', import.meta.env.VITE_SHOPIFY_PUBLIC_CLIENT_ID); //
+    logoutUrl.searchParams.append('post_logout_redirect_uri', window.location.origin + '/'); //
     
     if (idToken) {
-      logoutUrl.searchParams.append('id_token_hint', idToken);
+      logoutUrl.searchParams.append('id_token_hint', idToken); //
     }
 
-    window.location.href = logoutUrl.toString();
+    window.location.href = logoutUrl.toString(); //
   };
 
   useEffect(() => {
     if (accessToken) {
-      fetchCustomerProfile(accessToken);
+      fetchCustomerProfile(accessToken); //
     } else {
-      setIsLoading(false);
+      setIsLoading(false); //
     }
   }, [accessToken]);
 
@@ -221,6 +302,6 @@ export const ShopifyAuthProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
 export const useShopifyAuth = () => {
   const context = useContext(ShopifyAuthContext);
-  if (!context) throw new Error("useShopifyAuth can only look inside a secure ShopifyAuthProvider wrapper mapping.");
+  if (!context) throw new Error("useShopifyAuth can only look inside a secure ShopifyAuthProvider wrapper mapping."); //
   return context;
 };

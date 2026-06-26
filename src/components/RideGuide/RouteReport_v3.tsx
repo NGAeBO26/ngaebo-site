@@ -63,7 +63,7 @@ export default function RouteReport_v3({ routeID }: { routeID: string }) {
         <div className="rr-header-blue-cap-bleed-node"></div>
         <header className="rr-title-bar-tier">
            <div className="rr-logo-slot">
-              <img src="/images/RideGuide_embroid-v1.svg" className="rr-img-logo-v3" alt="Logo" />
+              <img src="/images/RideGuide_embroid-v1.svg" className="rr-img-logo-v3" alt="RideGuide Logo" />
            </div>
            <div className="rr-name-slot">
               <h1 className="rr-route-name-header-node">FS {geoData?.ID} - {geoData?.NAME || 'NIMBLEWILL'}</h1>

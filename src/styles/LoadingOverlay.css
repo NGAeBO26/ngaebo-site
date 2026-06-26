@@ -48,7 +48,7 @@
   height: 160px !important;
   object-fit: contain !important;
   z-index: 1 !important;
-  animation: ngaeboWheelRotationTransform 3.5s linear infinite !important;
+  animation: ngaeboWheelRotationTransform 4.5s linear infinite !important;
 }
 
 .ngaebo-loading-telemetry-text-deck {

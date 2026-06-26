@@ -1,0 +1,146 @@
+/* src/styles/Legals.css */
+
+.rg-legals-central-canvas {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    color: var(--brand-charcoal);
+    background-color: var(--brand-white);
+    border-radius: 16px;
+    border: var(--color-border) 1px solid;
+    font-family: sans-serif;
+    line-height: 1.7;
+}
+
+.rg-legals-header {
+    border-bottom: 2px solid var(--brand-gray);
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+    background-color: var(--brand-graphite);
+    padding: 16px;
+    border-radius: 16px 16px 0 0;
+    border: var(--brand-bone) 1px solid;
+    
+}
+
+.rg-legals-title {
+  font-size: 32px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 10px 0;
+  color: var(--brand-bone);
+}
+
+.rg-legals-date {
+  color: var(--brand-bone);
+  margin: 0;
+  font-size: 14px;
+}
+
+.rg-legals-meta {
+  color: var(--brand-amber);
+  margin: 4px 0 0 0;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* 🎯 SECTION SPACING ARCHITECTURE: Preserves exact responsive layout rules */
+.rg-legals-section-large {
+  margin-bottom: 60px;
+  scroll-margin-top: 40px;
+}
+
+.rg-legals-section-small {
+  margin-bottom: 40px;
+  scroll-margin-top: 40px;
+}
+
+.rg-legals-heading-2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--brand-amber);
+  border-bottom: 1px solid var(--brand-gray);
+  padding-bottom: 8px;
+  text-transform: uppercase;
+  margin-top: 30px;
+}
+
+.rg-legals-heading-3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 20px 0 6px 0;
+  color: var(--brand-charcoal);
+}
+
+.rg-legals-heading-3-dark {
+  font-size: 15px;
+  font-weight: 800;
+  margin: 20px 0 6px 0;
+  text-transform: uppercase;
+  color: var(--brand-charcoal);
+}
+
+.rg-legals-body-text {
+  background-color: var(--brand-bone);
+  border-left: 4px solid var(--brand-amber);
+  padding: 14px;
+  margin: 16px 0;
+  font-size: 13.5px;
+  color: var(--brand-grpahite);
+  border-radius: 0 4px 4px 0;
+}
+
+.rg-legals-link {
+  color: var(--brand-sky, #0284c7);
+  text-decoration: underline;
+  text-underline-offset: 3px; /* Gives the underline clean breathing room */
+  font-weight: 600;
+  transition: color 150ms ease-in-out, background-color 150ms ease-in-out;
+  border-radius: 4px;
+  padding: 1px 4px; /* Minimal padding so background highlights look clean */
+  margin: -1px -4px;
+}
+
+/* 🎯 THE HOVER ENGINE: Transitions smoothly to your amber brand accent */
+.rg-legals-link:hover {
+  color: var(--brand-amber, #d88a3a);
+  background-color: rgba(216, 138, 58, 0.08); /* Subtle amber tint highlight */
+  text-decoration: underline;
+}
+
+/* ♿ THE ACCESSIBILITY HARDENING: Enforces high-visibility keyboard focus indicators */
+.rg-legals-link:focus-visible {
+  outline: 2px solid var(--brand-amber, #d88a3a);
+  outline-offset: 2px;
+  background-color: rgba(216, 138, 58, 0.15);
+  color: var(--brand-amber, #d88a3a);
+}
+
+/* 🎯 ACCENT SAFETY CALLOUT: Tailored with brand alerts */
+.rg-legals-safety-box  {
+  background-color: var(--brand-bone);
+  border-left: 4px solid var(--brand-amber);
+  padding: 14px;
+  margin: 16px 0;
+  font-size: 13.5px;
+  color: var(--brand-grpahite);
+  border-radius: 0 4px 4px 0;
+}
+
+.rg-legals-safety-box strong {
+  color: var(--brand-amber);
+}
+
+/* 🎯 INTERACTIVE HYPERLINKS: Implements dynamic hover states */
+.rg-legals-central-canvas a {
+  color: var(--brand-sky);
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 150ms ease-in-out;
+}
+
+.rg-legals-central-canvas a:hover {
+  color: var(--brand-amber);
+  text-decoration: underline;
+}

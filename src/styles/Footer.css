@@ -1,0 +1,50 @@
+/* src/styles/Footer.css */
+
+.rg-site-footer {
+  background-color: var(--brand-charcoal);
+  color: #94a3b8;
+  padding: 40px 20px;
+  border-top: 2px solid #0f172a;
+  font-family: sans-serif;
+}
+
+.rg-footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+/* 🎯 THE FIX: Native media query replaces invalid 'mdFlexDirection' style object */
+@media (min-width: 768px) {
+  .rg-footer-container {
+    flex-direction: row;
+  }
+}
+
+.rg-footer-links-block {
+  display: flex;
+  gap: 24px;
+  font-size: 13px;
+}
+
+.rg-footer-link {
+  color: var(--brand-bone);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s ease-in-out;
+}
+
+/* Native hover engine replaces your onMouseEnter/onMouseLeave closures */
+.rg-footer-link:hover {
+  color: var(--brand-amber);
+}
+
+.rg-footer-copyright-text {
+  font-size: 12px;
+  text-align: center;
+  color: var(--brand-slate);
+}

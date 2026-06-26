@@ -2,7 +2,7 @@
 import { Routes, Route, useParams, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-// import { useEffect } from "react";
+
 
 // APPLICATION INTENT-DRIVEN MULTI-PAGE WORKSPACES
 import Home from "./pages/Home";
@@ -12,6 +12,7 @@ import Shop from "./pages/Shop";
 import Community from "./pages/Community";
 import RedirectGateway from "./pages/RedirectGateway"; // NEW TRANSITION COMPONENT IMPORT
 import DownloadGuide from "./pages/DownloadGuide"
+import Legals from "./pages/Legals";
 
 // SHOPIFY CUSTOMER AUTHENTICATION INFRASTRUCTURE
 // 🎯 UPDATE: Added useShopifyAuth to consume the authenticated user state directly
@@ -23,6 +24,7 @@ import AccountCallback from "./pages/AccountCallback";
 import UnlockModal from "./components/modal/UnlockModal";
 import RouteReport_v3 from "./components/RideGuide/RouteReport_v3";
 import RideGuidePrinter from "./components/RideGuide/RideGuidePrinter";
+import CookieBanner from "./pages/CookieBanner";
 
 // Tracking canvas layer
 import TelemetryOverlayTracker from "./components/RideGuide/TelemetryOverlayTracker";
@@ -88,55 +90,6 @@ function PrinterWrapper() {
   return <RideGuidePrinter routeID={routeID || "28-2_S1"} customerID={customer?.id || ""} />;
 }
 
-// function DownloadGuideWrapper() {
-//   const [searchParams] = useSearchParams();
-//   const routeID = searchParams.get("routeID");
-  
-//   // 🎯 ACTIVE MONITOR: Grab the full lifecycle state flags from your auth context
-//   const { customer, isAuthenticated, isLoading, login } = useShopifyAuth(); 
-
-//   useEffect(() => {
-//     // Hold execution if Shopify is still processing the initial token check loop
-//     if (isLoading) return;
-
-//     // If the token was rejected (isAuthenticated is false), stash the target URL and force an auth refresh
-//     if (!isAuthenticated) {
-//       const currentURL = window.location.href;
-//       sessionStorage.setItem("auth_redirect_back_target", currentURL);
-      
-//       console.warn("🔐 Session token expired or invalid. Re-routing through security gate...");
-//       login(); // Transparently triggers the Shopify OAuth flow to get a fresh token
-//     }
-//   }, [isAuthenticated, isLoading, login]);
-
-//   // Handle cases where a route parameter was missing entirely
-//   if (!routeID) {
-//     return (
-//       <div style={{ color: "white", textAlign: "center", padding: "80px", fontFamily: "sans-serif" }}>
-//         <h2>Invalid Asset Link</h2>
-//         <p style={{ color: "#9ca3af" }}>We couldn't detect a valid route ID parameter in your request link.</p>
-//       </div>
-//     );
-//   }
-
-//   // Display a clean, secure message while the application handles the login handshake
-//   if (isLoading || !isAuthenticated) {
-//     return (
-//       <div style={{ color: "white", textAlign: "center", padding: "140px 20px", fontFamily: "sans-serif" }}>
-//         <h2 style={{ fontSize: "22px", marginBottom: "12px", fontWeight: 700 }}>
-//           🔒 Verifying Security Clearance...
-//         </h2>
-//         <p style={{ color: "#9ca3af", fontSize: "14px" }}>
-//           Confirming account ownership metrics against the requested map asset. One moment.
-//         </p>
-//       </div>
-//     );
-//   }
-
-//   // Pass down the safely verified customer data now that auth is guaranteed
-//   return <RideGuidePrinter routeID={routeID} customerID={customer?.id || ""} />;
-// }
-
 export default function App() {
   const location = useLocation();
   const isIframePreviewActive = typeof window !== "undefined" && 
@@ -190,6 +143,7 @@ export default function App() {
                       <Route path="/rides" element={<RideGuide />} />
                       <Route path="/bikes" element={<BikeFinder />} />
                       <Route path="/community" element={<Community />} />
+                      <Route path="/legals" element={<Legals />} />
                       <Route path="/report/:routeID" element={<ReportWrapper />} />
                       <Route path="/route-report" element={<RouteReport_v3 routeID="28-2_S1" />} />
                     </Routes>
@@ -201,6 +155,7 @@ export default function App() {
           />
         </Routes>
         <UnlockModal />
+        <CookieBanner />
       </ShopifyCartProvider>
     </ShopifyAuthProvider>
   );
