@@ -1,6 +1,8 @@
 /* src/store/ShopifyCartContext.tsx */
 import React, { createContext, useContext, useState, useEffect } from "react"; 
 import { shopifyFetch } from "./shopifyClient";
+// 🎯 INTERACTION GATE: Hook into your authentication listener state engine
+import { useShopifyAuth } from "./ShopifyAuthContext"; 
 
 interface CartItem {
   id: string;
@@ -19,9 +21,8 @@ interface ShopifyCartContextType {
   checkoutUrl: string | null;
   isCartOpen: boolean;
   setIsCartOpen: (open: boolean) => void;
-  // 🎯 ADDED: Appended fcsLabel signature flag onto backend parameters list
-  addRouteToCart: (variantId: string, routeId: string, title: string, distance: string, fcsLabel: string) => Promise<boolean>;
-  removeCartItem: (lineId: string) => Promise<boolean>; // 🎯 ADDED: Exposing explicit item line clearance vector
+  addRouteToCart: (variantId: string, routeId: string, title: string, distance: string, fcsLabel: string) => Promise<boolean>; //
+  removeCartItem: (lineId: string) => Promise<boolean>; //
   isLoading: boolean;
 }
 
@@ -137,7 +138,6 @@ const CART_LINES_ADD_MUTATION = `
   }
 `;
 
-// 🎯 ADDED: Shopify Storefront Core Line Splice Mutation
 const CART_LINES_REMOVE_MUTATION = `
   mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
     cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
@@ -176,7 +176,26 @@ const CART_LINES_REMOVE_MUTATION = `
   }
 `;
 
+// 🎯 IDENTITY BRIDGE MUTATION: Binds the customer access token payload directly to the cart instance
+const CART_BUYER_IDENTITY_UPDATE_MUTATION = `
+  mutation cartBuyerIdentityUpdate($cartId: ID!, $buyerIdentity: CartBuyerIdentityInput!) {
+    cartBuyerIdentityUpdate(cartId: $cartId, buyerIdentity: $buyerIdentity) {
+      cart {
+        id
+        checkoutUrl
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
 export const ShopifyCartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  // 🎯 EXTRACT SESSION TOKENS: Listen continuously to the user's active login parameters
+  const { accessToken } = useShopifyAuth();
+
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [cartCount, setCartCount] = useState<number>(0);
   const [cartSubtotal, setCartSubtotal] = useState<number>(0);
@@ -184,7 +203,7 @@ export const ShopifyCartProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [cartId, setCartId] = useState<string | null>(() => localStorage.getItem("shopify_cart_id"));
+  const [cartId, setCartId] = useState<string | null>(() => localStorage.getItem("shopify_cart_id")); //
 
   // 🔍 HELPER FUNCTION: Standardized payload processing mapper
   const updateLocalCartState = (cart: any) => {
@@ -197,7 +216,7 @@ export const ShopifyCartProvider: React.FC<{ children: React.ReactNode }> = ({ c
       const rTitle = attrs.find((a: any) => a.key === "RouteTitle")?.value || "Premium Route";
       const rId = attrs.find((a: any) => a.key === "SelectedRouteID")?.value || "";
       const rDist = attrs.find((a: any) => a.key === "TelemetryDistance")?.value || "Premium Data";
-      const rFcs = attrs.find((a: any) => a.key === "FcsLabel")?.value || ""; // 🎯 ADDED: Dynamic parameter capture string
+      const rFcs = attrs.find((a: any) => a.key === "FcsLabel")?.value || ""; 
 
       return {
         id: node.id,
@@ -206,7 +225,7 @@ export const ShopifyCartProvider: React.FC<{ children: React.ReactNode }> = ({ c
         price: Number(node.merchandise.price.amount),
         routeId: rId,
         distance: rDist,
-        fcsLabel: rFcs // 🎯 ADDED: Exposed to localized return structures
+        fcsLabel: rFcs 
       };
     });
 
@@ -228,7 +247,6 @@ export const ShopifyCartProvider: React.FC<{ children: React.ReactNode }> = ({ c
         if (responseData?.cart) {
           updateLocalCartState(responseData.cart);
         } else {
-          // If Shopify no longer recognizes the old cart ID (e.g., it expired), clear it out
           localStorage.removeItem("shopify_cart_id");
           setCartId(null);
         }
@@ -240,7 +258,35 @@ export const ShopifyCartProvider: React.FC<{ children: React.ReactNode }> = ({ c
     hydrateActiveCart();
   }, [cartId]);
 
-  // 🎯 UPDATED: Extended function arguments to fetch the fcs alignment label data safely
+  // 🎯 ACTIVE IDENTITY SYNC LOOP: Links anonymous guest carts to user accounts post-login
+  useEffect(() => {
+    const syncCartBuyerIdentity = async () => {
+      if (!cartId || !accessToken) return;
+
+      try {
+        const responseData = await shopifyFetch({
+          query: CART_BUYER_IDENTITY_UPDATE_MUTATION,
+          variables: {
+            cartId: cartId,
+            buyerIdentity: {
+              customerAccessToken: accessToken
+            }
+          }
+        });
+
+        const updatedCart = responseData?.cartBuyerIdentityUpdate?.cart;
+        if (updatedCart?.checkoutUrl) {
+          setCheckoutUrl(updatedCart.checkoutUrl);
+          console.log("🔗 Identity Bridge: Synced checkout token with active Shopify profile.");
+        }
+      } catch (err) {
+        console.error(" Handshake Exception binding identity variables to active cart:", err);
+      }
+    };
+
+    syncCartBuyerIdentity();
+  }, [cartId, accessToken]);
+
   const addRouteToCart = async (variantId: string, routeId: string, title: string, distance: string, fcsLabel: string): Promise<boolean> => {
     setIsLoading(true);
     
@@ -251,7 +297,7 @@ export const ShopifyCartProvider: React.FC<{ children: React.ReactNode }> = ({ c
         { key: "SelectedRouteID", value: routeId },
         { key: "RouteTitle", value: title },
         { key: "TelemetryDistance", value: distance },
-        { key: "FcsLabel", value: fcsLabel } // 🎯 ADDED: Persistent client payload configuration mapping
+        { key: "FcsLabel", value: fcsLabel } 
       ]
     };
 
@@ -266,12 +312,19 @@ export const ShopifyCartProvider: React.FC<{ children: React.ReactNode }> = ({ c
         }
       });
     } else {
+      // 🎯 OPTIMIZATION: Seed identity parameters during creation if already logged in
+      const cartInputParameters: any = {
+        lines: [lineItemInput]
+      };
+
+      if (accessToken) {
+        cartInputParameters.buyerIdentity = { customerAccessToken: accessToken };
+      }
+
       responseData = await shopifyFetch({
         query: CART_CREATE_MUTATION,
         variables: {
-          input: {
-            lines: [lineItemInput]
-          }
+          input: cartInputParameters
         }
       });
     }
@@ -292,7 +345,6 @@ export const ShopifyCartProvider: React.FC<{ children: React.ReactNode }> = ({ c
     return false;
   };
 
-  // 🎯 ADDED: Autonomous Item Removal Action Workflow Handler
   const removeCartItem = async (lineId: string): Promise<boolean> => {
     if (!cartId) return false;
     setIsLoading(true);
@@ -333,6 +385,6 @@ export const ShopifyCartProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
 export const useShopifyCart = () => {
   const context = useContext(ShopifyCartContext);
-  if (!context) throw new Error("useShopifyCart must be utilized inside a protected ShopifyCartProvider wrapper node.");
+  if (!context) throw new Error("useShopifyCart must be utilized inside a protected ShopifyCartProvider wrapper node."); //
   return context;
 };

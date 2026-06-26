@@ -10,7 +10,8 @@ interface CartDropdownProps {
 }
 
 export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownProps) {
-  const { customer, isAuthenticated, refreshProfile } = useShopifyAuth();
+  // 🎯 THE FIX: Destructured the native login gateway method directly from auth context
+  const { customer, isAuthenticated, refreshProfile, login } = useShopifyAuth();
   const { cartItems, cartSubtotal, checkoutUrl, removeCartItem } = useShopifyCart();
 
   const [activeTab, setActiveTab] = useState<"cart" | "catalog">("cart");
@@ -137,7 +138,16 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
     }
   };
 
+  // 🎯 THE CHECKOUT GATE KEEPER INTERCEPTOR
   const handleCheckoutRedirect = () => {
+    if (totalCartCount === 0) return;
+
+    // Intercept guest checkouts and redirect them to authenticate first
+    if (!isFullyAuthenticated) {
+      login();
+      return;
+    }
+
     if (checkoutUrl) {
       window.open(checkoutUrl, "_blank"); 
     }
@@ -149,7 +159,7 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
       <div className="rg-cart-dropdown-header">
         <div style={{ width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div>
-              <div className="rg-cart-dropdown-header-title" style={{ textAlign: "left", marginTop: "2px" }}>
+            <div className="rg-cart-dropdown-header-title" style={{ textAlign: "left", marginTop: "2px" }}>
               {activeTab === "cart" ? "Selection Inventory" : "Your Activated Guides"}
             </div>
           </div>
@@ -244,19 +254,19 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
                   </span>
                 </div>
                 
-                {/* 🎯 CONDITIONAL CTA WORKFLOW ELEMENT: Routes execution paths dynamically */}
+                {/* 🎯 WORKFLOW GATEWAY: Intercepts checkout actions and prompts login */}
                 {isTokenUser ? (
                   <button 
                     onClick={handleBatchTokenRedemption}
                     disabled={isRedeeming}
                     className="rg-cart-checkout-cta-btn"
-                    style={{ backgroundColor: "#16a34a" }} // Green accent vector matching the sidebar instant-unlock buttons
+                    style={{ backgroundColor: "#16a34a" }} 
                   >
                     {isRedeeming ? "PROCESSING VAULT... ⏳" : `UNLOCK WITH ${totalCartCount} CREDITS ➔`}
                   </button>
                 ) : (
                   <button onClick={handleCheckoutRedirect} className="rg-cart-checkout-cta-btn">
-                    PROCEED TO CHECKOUT ➔
+                    {!isFullyAuthenticated ? "SIGN IN TO CHECKOUT ➔" : "PROCEED TO CHECKOUT ➔"}
                   </button>
                 )}
               </div>

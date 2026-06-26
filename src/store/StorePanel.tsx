@@ -1,9 +1,9 @@
 /* src/store/StorePanel.tsx */
 import { useState, useEffect } from "react";
-import { useShopifyCart } from "./ShopifyCartContext"; 
-import { useShopifyAuth } from "./ShopifyAuthContext"; 
+import { useShopifyCart } from "./ShopifyCartContext"; //
+import { useShopifyAuth } from "./ShopifyAuthContext"; //
 
-const BADGES_BASE = "/images/badges/fcs";
+const BADGES_BASE = "/images/badges/fcs"; //
 
 interface CartItem {
   id: string;
@@ -26,18 +26,18 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
   console.log("3. Current Length:", allRoutes ? allRoutes.length : "undefined/null");
   console.log("======================================");
 
-  const { isAuthenticated, customer, refreshProfile, login, logout } = useShopifyAuth();
-  const { addRouteToCart, removeCartItem, cartItems, checkoutUrl } = useShopifyCart();
+  const { isAuthenticated, customer, refreshProfile, login, logout } = useShopifyAuth(); //
+  const { addRouteToCart, removeCartItem, cartItems, checkoutUrl } = useShopifyCart(); //
 
-  const [isAdding, setIsAdding] = useState(false);
-  const [isRedeeming, setIsRedeeming] = useState(false); 
-  const [cachedRoute, setCachedRoute] = useState<any | null>(null);
-  const [activeTab, setActiveTab] = useState<"cart" | "catalog">("cart");
-  const [activeCatalogHoverId, setActiveCatalogHoverId] = useState<string | null>(null);
+  const [isAdding, setIsAdding] = useState(false); //
+  const [isRedeeming, setIsRedeeming] = useState(false);  //
+  const [cachedRoute, setCachedRoute] = useState<any | null>(null); //
+  const [activeTab, setActiveTab] = useState<"cart" | "catalog">("cart"); //
+  const [activeCatalogHoverId, setActiveCatalogHoverId] = useState<string | null>(null); //
 
   const isFullyAuthenticated = isAuthenticated && customer !== null; //
 
-  const rawUnlockedGuides = customer?.unlocked_guides || "{}";
+  const rawUnlockedGuides = customer?.unlocked_guides || "{}"; //
   let unlockedMap: Record<string, any> = {}; //
   
   try {
@@ -67,30 +67,30 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
 
   const hasActivePass = customer?.passExpiresAt 
     ? new Date() < new Date(customer.passExpiresAt) 
-    : false;
+    : false; //
 
   const hasActiveSelection = cachedRoute !== null; //
-  const routeProps = cachedRoute?.properties || cachedRoute || {};
+  const routeProps = cachedRoute?.properties || cachedRoute || {}; //
 
   const routeTitle = hasActiveSelection
     ? (routeProps.NAME || routeProps.title || "Selected Route")
-    : "No Route Selected";
+    : "No Route Selected"; //
 
   const rawRouteId = hasActiveSelection 
     ? String(routeProps.profile_id || cachedRoute.id || routeProps.id || routeProps.ID || "")
-    : "";
+    : ""; //
 
-  const miles = routeProps.GIS_MILES ? parseFloat(routeProps.GIS_MILES).toFixed(1) : null;
-  const distanceMetric = miles ? `${miles} MILES` : (routeProps.distance ? `${routeProps.distance} mi` : "Premium Data");
-  const avgGrade = routeProps.v3_avg_grade || "0";
-  const fcsLabel = routeProps.v3_fcs_label ? String(routeProps.v3_fcs_label).toLowerCase() : "";
-  const fcsBadgePath = fcsLabel ? `${BADGES_BASE}/fcs-badge-${fcsLabel}.png` : "";
+  const miles = routeProps.GIS_MILES ? parseFloat(routeProps.GIS_MILES).toFixed(1) : null; //
+  const distanceMetric = miles ? `${miles} MILES` : (routeProps.distance ? `${routeProps.distance} mi` : "Premium Data"); //
+  const avgGrade = routeProps.v3_avg_grade || "0"; //
+  const fcsLabel = routeProps.v3_fcs_label ? String(routeProps.v3_fcs_label).toLowerCase() : ""; //
+  const fcsBadgePath = fcsLabel ? `${BADGES_BASE}/fcs-badge-${fcsLabel}.png` : ""; //
 
-  const tokenBalance = customer?.tokens || 0;
-  const hasTokens = tokenBalance > 0;
-  const isTokenUser = isFullyAuthenticated && hasTokens; 
+  const tokenBalance = customer?.tokens || 0; //
+  const hasTokens = tokenBalance > 0; //
+  const isTokenUser = isFullyAuthenticated && hasTokens;  //
 
-  const isThisRouteExplicitlyUnlocked = hasActivePass || (getRouteExpiry(rawRouteId) > currentTimestamp);
+  const isThisRouteExplicitlyUnlocked = hasActivePass || (getRouteExpiry(rawRouteId) > currentTimestamp); //
 
   // 🎯 SCHEMATIC OBJECT ENTRY PARSING
   const activeCatalogPasses = Object.entries(unlockedMap)
@@ -109,13 +109,13 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     const targetId = item.routeId || "";
     const isLineRouteUnlocked = hasActivePass || (getRouteExpiry(targetId) > currentTimestamp);
     return !isLineRouteUnlocked;
-  });
+  }); //
 
   const totalCartCount = visibleCartItems.length; //
-  const computedPriceTotal = (totalCartCount * 6.99).toFixed(2);
-  const computedTokenTotal = totalCartCount; 
+  const computedPriceTotal = (totalCartCount * 6.99).toFixed(2); //
+  const computedTokenTotal = totalCartCount;  //
 
-  const isAlreadyInCart = visibleCartItems.some((item: CartItem) => String(item.routeId) === rawRouteId);
+  const isAlreadyInCart = visibleCartItems.some((item: CartItem) => String(item.routeId) === rawRouteId); //
 
   useEffect(() => {
     if (isFullyAuthenticated && refreshProfile) {
@@ -123,7 +123,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
       window.addEventListener("focus", handleTabFocusSync);
       return () => window.removeEventListener("focus", handleTabFocusSync);
     }
-  }, [isFullyAuthenticated, refreshProfile]);
+  }, [isFullyAuthenticated, refreshProfile]); //
 
   useEffect(() => {
     if (activeRouteProperties !== null) {
@@ -137,14 +137,14 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
         setActiveTab("catalog");
       }
     }
-  }, [activeRouteProperties, unlockedMap, hasActivePass]);
+  }, [activeRouteProperties, unlockedMap, hasActivePass]); //
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       (window as any).debugCatalog = activeCatalogPasses;
       (window as any).debugRoutes = allRoutes;
     }
-  }, [activeCatalogPasses, allRoutes]);
+  }, [activeCatalogPasses, allRoutes]); //
 
   const handleAddToCartAction = async () => {
     if (!hasActiveSelection || isAdding) return;
@@ -158,7 +158,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     const targetVariantId = "gid://shopify/ProductVariant/51045122146524"; 
     await addRouteToCart(targetVariantId, rawRouteId, routeTitle, distanceMetric, fcsLabel);
     setIsAdding(false);
-  };
+  }; //
 
   const handleTokenRedemption = async (targetId: string, targetTitle: string) => {
     if (isRedeeming || !customer) return;
@@ -191,7 +191,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     } finally {
       setIsRedeeming(false);
     }
-  };
+  }; //
 
   const handleBatchTokenRedemption = async () => {
     if (isRedeeming || !customer || totalCartCount === 0) return;
@@ -224,10 +224,19 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     } finally {
       setIsRedeeming(false);
     }
-  };
+  }; //
 
+  // 🎯 THE CHECKOUT GATE KEEPER INTERCEPTOR
   const handlePrimaryCheckoutDispatch = () => {
-    if (totalCartCount === 0 || !checkoutUrl) return;
+    if (totalCartCount === 0) return;
+    
+    // Intercept guest checkouts and redirect them to authenticate first
+    if (!isFullyAuthenticated) {
+      login();
+      return;
+    }
+
+    if (!checkoutUrl) return;
     window.open(checkoutUrl, "_blank");
   };
 
@@ -259,7 +268,9 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
               ? "✓ UNLOCKED" 
               : totalCartCount === 0 
                 ? "Cart Empty" 
-                : isTokenUser ? `${computedTokenTotal} Token Credit` : `$${computedPriceTotal}`}
+                : !isFullyAuthenticated 
+                  ? `$${computedPriceTotal}` 
+                  : isTokenUser ? `${computedTokenTotal} Token Credit` : `$${computedPriceTotal}`}
           </span>
           {totalCartCount > 0 && isTokenUser && !isThisRouteExplicitlyUnlocked && (
             <span className="rg-ledger-balance-subtext">
@@ -451,13 +462,16 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
           disabled={totalCartCount === 0} 
           className={`rg-premium-buy-btn ${totalCartCount > 0 ? "mod-ready" : "mod-disabled"}`}
         >
-          {totalCartCount === 0 ? "SELECT ROUTE TO CHECKOUT" : "PROCEED TO CHECKOUT ➔"}
+          {totalCartCount === 0 
+            ? "SELECT ROUTE TO CHECKOUT" 
+            : !isFullyAuthenticated 
+              ? "SIGN IN TO CHECKOUT ➔" 
+              : "PROCEED TO CHECKOUT ➔"}
         </button>
       )}
 
       <span className="rg-disclaimer-note">
         By purchasing, you agree to our terms and conditions.<br />
-        
       </span>
     </div>
   );
