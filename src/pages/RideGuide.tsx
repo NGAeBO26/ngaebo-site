@@ -1,17 +1,12 @@
 /* src/pages/RideGuide.tsx */
-import { useState, useCallback, useRef, useEffect } from "react"; // 🎯 ADDED: useEffect hook extraction
+import { useState, useCallback, useRef, useEffect } from "react"; 
 import GravelGuide from "../features/Discovery/GravelGuide";
 import { useRideFinderEngine, RideFilterBar, RideResultGallery } from "../features/Discovery/components/RideFinder";
 import GravelPopup from "../features/Discovery/components/GravelPopup";
 import TacticalLeadForm from "../components/TacticalLeadForm";
-
-// IMPORT LOADING ANIMATION MODULES
 import { LoadingOverlay } from "../components/LoadingOverlay";
-
-// IMPORT PREMIUM E-COMMERCE SIDEBAR CARD NODE CONTEXTS
 import PersistentLeftShopPanel from "../store/StorePanel";
 
-// LOAD UNIFIED INTEGRATED STOREFRONT BOUNDARIES
 import "../styles/store.css";
 import "../features/Discovery/DiscoveryContainer.css"; 
 import "../styles/RideGuide.css"; 
@@ -28,7 +23,6 @@ export default function RideGuide() {
   const mapResetFnRef = useRef<(() => void) | null>(null);
   const mapZoomFnRef = useRef<((feature: any) => void) | null>(null);
 
-  // 🎯 ADDED: Active layout loading guards state machine
   const [isWorkspaceLoading, setIsWorkspaceLoading] = useState<boolean>(true);
   const [loadProgress, setLoadProgress] = useState<number>(0);
 
@@ -36,7 +30,12 @@ export default function RideGuide() {
     return localStorage.getItem("rideguide_lead_submitted") !== "true";
   });
 
-  // 🎯 ADDED: Simulated incremental percentage progression engine
+  // Layout Coordination Anchors
+  const [isEnteringFullscreen, setIsEnteringFullscreen] = useState<boolean>(false);
+
+  const dashboardRef = useRef<HTMLDivElement | null>(null);
+  const ignoreObserverRef = useRef<boolean>(false);
+
   useEffect(() => {
     if (!isWorkspaceLoading) return;
     
@@ -53,6 +52,50 @@ export default function RideGuide() {
     return () => clearInterval(progressTimer);
   }, [isWorkspaceLoading]);
 
+  // ─── 🎯 UNIFIED STAGGERED ANIMATION ESCAPE OUTLET PIPELINE ───
+  const handleExitFullscreen = useCallback(() => {
+    ignoreObserverRef.current = true;
+    
+    document.body.classList.add("dashboard-view-exiting");
+    
+    setTimeout(() => {
+      document.body.classList.remove("dashboard-view-active", "dashboard-view-exiting");
+      window.scrollTo({ top: 0 });
+      ignoreObserverRef.current = false;
+    }, 350);
+  }, []);
+
+  // ─── 🎯 LOOP-PROOF SCROLL CAPTURE TRACKING ENGINE ───
+  useEffect(() => {
+    const handleScrollEntryTrigger = () => {
+      if (ignoreObserverRef.current) return;
+      if (document.body.classList.contains("dashboard-view-active")) return;
+
+      const element = dashboardRef.current;
+      if (!element) return;
+
+      const rect = element.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      if (rect.top <= viewportHeight * 0.33 && rect.top > 0) {
+        ignoreObserverRef.current = true;
+        setIsEnteringFullscreen(true);
+
+        setTimeout(() => {
+          setIsEnteringFullscreen(false);
+          document.body.classList.add("dashboard-view-active");
+          ignoreObserverRef.current = false;
+        }, 2500);
+      }
+    };
+
+    window.addEventListener("scroll", handleScrollEntryTrigger, { passive: true });
+    return () => window.removeEventListener("scroll", handleScrollEntryTrigger);
+  }, []);
+
+  // ─── 🎯 REVISED: GESTURE COOLDOWN ENGINE ───
+  // Mouse wheel listeners removed to let users scroll galleries, sidebars, and filters safely.
+
   const handleLeadSuccess = () => {
     localStorage.setItem("rideguide_lead_submitted", "true");
     setShowModal(false);
@@ -62,11 +105,9 @@ export default function RideGuide() {
     setFilteredRoutes(results);
   }, []);
 
-  // 🎯 UPDATED: Releases workspace loading locks once map dataset hydrates successfully
   const handleRoutesLoaded = useCallback((routes: any[]) => {
     setMasterRoutes(routes);
     setFilteredRoutes(routes);
-    
     setLoadProgress(100);
     setTimeout(() => {
       setIsWorkspaceLoading(false);
@@ -92,7 +133,6 @@ export default function RideGuide() {
 
   const handleExitTakeover = useCallback(() => {
     setIsPopupClosing(true);
-
     setTimeout(() => {
       setSelectedRouteFeature(null);
       setActiveTakeoverRouteId(null);
@@ -110,7 +150,17 @@ export default function RideGuide() {
   return (
     <div className="ride-finder-page-container">
       
-      {/* PERMANENT 3-TIER IN-PAGE ONBOARDING FLOW */}
+      {/* HUD TARGET FULL SCREEN COUNTDOWN TIMELINE OVERLAY */}
+      <LoadingOverlay 
+        isLoading={isEnteringFullscreen}
+        progress={0}
+        message="Entering Full Screen Mode"
+        subtitle="Setting up the viewport..."
+        hideProgress={true}
+        isFullscreen={true}
+      />
+
+      {/* SHOWCASE BRAND MARKETING TOP ROW */}
       <section className="rg-inline-showcase-section">
         <div className="rf-marketing-hero-banner">
           <h2>Plan Faster. Ride Smarter.</h2>
@@ -118,7 +168,6 @@ export default function RideGuide() {
         </div>
 
         <div className="rg-inline-funnel-container">
-          {/* TIER 1: INTEGRATED 4-COLUMN TRUST & PREVIEW STRIP */}
           <div className="prop-strip-matrix-bay tier-4-column-grid">
             <div className="prop-value-column-card">
               <div className="prop-card-header-strip">
@@ -161,7 +210,6 @@ export default function RideGuide() {
             </div>
           </div>
 
-          {/* TIER 2: FULL-WIDTH CONVERSION BANNER */}
           <div className="rg-conversion-banner-tier">
             {!showModal ? (
               <div className="capture-success-persistent-msg">
@@ -184,7 +232,6 @@ export default function RideGuide() {
             )}
           </div>
 
-          {/* TIER 3: HORIZONTAL ONBOARDING ROW & MICRO-HEADER */}
           <div className="rg-horizontal-instructions-tier">
             <div className="rg-instructions-micro-header">Get Your RideGuide in 3 Easy Steps...</div>
             <div className="rg-horizontal-steps-row">
@@ -210,8 +257,8 @@ export default function RideGuide() {
         </div>
       </section>
 
-      {/* ORIGINAL WORKSPACE DECK CONTAINER */}
-      <div className="discovery-dashboard-root">
+      {/* ─── 🎯 CONSOLE MODULE WRAPPER PLATFORM ─── */}
+      <div className="discovery-dashboard-root" ref={dashboardRef}>
         
         <RideFilterBar 
           engine={filterEngine} 
@@ -227,9 +274,7 @@ export default function RideGuide() {
           />
         )}
 
-        {/* THREE-COLUMN WORKSPACE FRAME CONTAINER */}
         <div className="discovery-center-container" style={{ position: "relative" }}>
-          {/* 🎯 ADDED: High-performance branding spinner takeover guard */}
           <LoadingOverlay 
             isLoading={isWorkspaceLoading} 
             progress={loadProgress} 
@@ -238,18 +283,13 @@ export default function RideGuide() {
 
           <div className="rg-retail-map-workspace-layout-deck">
             
-          
-            
-            {/* COLUMN 1: PERSISTENT LEFT STOREFRONT SIDEBAR CONTROLLER */}
             <aside className="rg-left-workspace-storefront-sidebar">
-              {/* 🎯 FIXED: Equipped panel with the live master dataset prop reference */}
               <PersistentLeftShopPanel 
                 activeRouteProperties={selectedRouteFeature ? selectedRouteFeature.properties : null} 
                 allRoutes={masterRoutes}
               />
             </aside>
 
-            {/* COLUMN 2: CENTRAL MAP Viewport ANCHOR PLATFORM */}
             <div className="discovery-map-main-viewport">
               <GravelGuide
                 activeHoverId={activeHoverId}     
@@ -261,10 +301,10 @@ export default function RideGuide() {
                 onRoutesLoaded={handleRoutesLoaded}
                 onRegisterResetFn={(fn) => { mapResetFnRef.current = fn; }}
                 onRegisterZoomFn={(fn) => { mapZoomFnRef.current = fn; }}
+                onExitFullscreen={handleExitFullscreen}
               />
             </div>
 
-            {/* COLUMN 3: PERSISTENT RIGHT RESULTS FINDER GALLERY */}
             <RideResultGallery 
               routes={filteredRoutes} 
               activeHoverId={activeHoverId}
@@ -279,7 +319,7 @@ export default function RideGuide() {
         </div>
       </div>
 
-      {/* DEDICATED FEATURED PRODUCTS CONTAINER */}
+      {/* COMPONENT FOOTER END BAR */}
       <div className="rf-featured-products-footer-container">
         <span className="rf-section-label">Featured Affiliate Gear</span>
         <div className="rf-product-cards-row">

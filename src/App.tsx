@@ -3,21 +3,21 @@ import { Routes, Route, useParams, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-
 // APPLICATION INTENT-DRIVEN MULTI-PAGE WORKSPACES
 import Home from "./pages/Home";
 import RideGuide from "./pages/RideGuide"; 
 import BikeFinder from "./pages/BikeFinder";
 import Shop from "./pages/Shop";
 import Community from "./pages/Community";
-import RedirectGateway from "./pages/RedirectGateway"; // NEW TRANSITION COMPONENT IMPORT
-import DownloadGuide from "./pages/DownloadGuide"
+import RedirectGateway from "./pages/RedirectGateway"; 
+import DownloadGuide from "./pages/DownloadGuide";
 import Legals from "./pages/Legals";
+// 🎯 ADDED: Import your new sample pack distribution page component
+import SampleGiveaway from "./pages/SamplePack"; 
 
 // SHOPIFY CUSTOMER AUTHENTICATION INFRASTRUCTURE
-// 🎯 UPDATE: Added useShopifyAuth to consume the authenticated user state directly
 import { ShopifyAuthProvider, useShopifyAuth } from "./store/ShopifyAuthContext";
-import { ShopifyCartProvider } from "./store/ShopifyCartContext"; // 🎯 Integrated shared cart state context provider
+import { ShopifyCartProvider } from "./store/ShopifyCartContext"; 
 import AccountCallback from "./pages/AccountCallback";
 
 // Modal system
@@ -83,10 +83,8 @@ function IframeReportWrapper() {
 
 function PrinterWrapper() {
   const { routeID } = useParams<{ routeID: string }>();
-  // 🎯 THE FIX: Retrieve the active customer session object from context
   const { customer } = useShopifyAuth(); 
   
-  // Pass the verified customer ID string down to clear the TypeScript requirement
   return <RideGuidePrinter routeID={routeID || "28-2_S1"} customerID={customer?.id || ""} />;
 }
 
@@ -97,11 +95,10 @@ export default function App() {
 
   // Check page identity contexts
   const isShopPage = location.pathname.toLowerCase() === "/shop";
-  const isGatewayPage = location.pathname.toLowerCase() === "/redirect-gateway"; // CAPTURE GATEWAY IDENTITY
+  const isGatewayPage = location.pathname.toLowerCase() === "/redirect-gateway"; 
 
   return (
     <ShopifyAuthProvider>
-      {/* 🎯 NESTED PROVIDER TREE: Wraps core layout elements to provide site-wide cart data connectivity */}
       <ShopifyCartProvider>
         <Routes>
           {/* DETACHED OPERATIONAL SYSTEM PATHS */}
@@ -109,8 +106,6 @@ export default function App() {
           <Route path="/download-guide" element={<DownloadGuide />} />
           <Route path="/account/callback" element={<AccountCallback />} />
           
-          {/* ISOLATED COMPLIANCE PIPELINE REDIRECT GATEWAY ROUTE:
-             Bypasses standard site layouts entirely so it acts as an autonomous sandbox canvas tab */}
           <Route path="/redirect-gateway" element={<RedirectGateway />} />
 
           {/* STANDARD CONSUMER WEB INTERFACE LAYOUT ROUTING CONTAINER */}
@@ -129,7 +124,6 @@ export default function App() {
                   <Route path="/shop" element={<Shop />} />
                 </Routes>
               ) : isGatewayPage ? (
-                /* Fallback safety capture node context path logic protection */
                 <Routes>
                   <Route path="/redirect-gateway" element={<RedirectGateway />} />
                 </Routes>
@@ -144,6 +138,9 @@ export default function App() {
                       <Route path="/bikes" element={<BikeFinder />} />
                       <Route path="/community" element={<Community />} />
                       <Route path="/legals" element={<Legals />} />
+                      {/* 🎯 ADDED: The live workspace entry path for your lead-generation funnel page */}
+                      <Route path="/samples" element={<SampleGiveaway />} />
+                      
                       <Route path="/report/:routeID" element={<ReportWrapper />} />
                       <Route path="/route-report" element={<RouteReport_v3 routeID="28-2_S1" />} />
                     </Routes>

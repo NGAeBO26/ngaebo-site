@@ -81,6 +81,22 @@ export default function FeaturedProducts({
       .catch((err) => console.error("❌ Featured Mask Sync Error:", err));
   }, []);
 
+  /* ─── 🎯 NEW: MODAL OBSERVER WINDOW HOOK ─── 
+   Appends a structural class to the body when a card is selected, 
+   safely cleanup-removing it upon lightbox dismissal loops. */
+useEffect(() => {
+  if (selectedProduct) {
+    document.body.classList.add("rg-product-modal-active");
+  } else {
+    document.body.classList.remove("rg-product-modal-active");
+  }
+  
+  // Guard system: Ensures classes disappear safely if the user changes pages
+  return () => {
+    document.body.classList.remove("rg-product-modal-active");
+  };
+}, [selectedProduct]);
+
   const getPrimaryGalleryImage = (images: GalleryImage[]): string => {
     if (!images || images.length === 0) return "";
     const primaryObj = images.find((img) => img.role_tag === "primary");

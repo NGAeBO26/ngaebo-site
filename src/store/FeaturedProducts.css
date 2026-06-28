@@ -146,3 +146,12 @@
     font-size: 1.85rem;
   }
 }
+
+/* ─── 🎯 STICKY HEADER LIGHTBOX MITIGATION INTERCEPTOR ─── 
+   When the product modal is active, this rule cleanly matches your global 
+   navigation selector chains to temporarily turn off visibility over the backdrop sheet. */
+body.rg-product-modal-active header,
+body.rg-product-modal-active .site-header,
+body.rg-product-modal-active .rg-site-header-nav {
+  display: none !important;
+}

@@ -1,5 +1,5 @@
 /* src/features/Discovery/GravelGuide.tsx */
-import { useRef, useMemo, useEffect } from "react"; // 🎯 ADDED EFFECT LISTENER HERE
+import { useRef, useMemo, useEffect } from "react"; 
 import maplibregl from "maplibre-gl";
 import type { Map as MaplibreMap } from "maplibre-gl";
 
@@ -8,7 +8,7 @@ import usePois from "./hooks/usePois";
 import { useHighlight } from "./hooks/useHighlight"; 
 import useMapController from "./hooks/useMapController"; 
 
-import "../../styles/trail-map.css";
+import "../../styles/GravelGuide.css"; 
 import NorthArrow from "../../components/RideGuide/widgets/RouteMap/NorthArrow";
 
 window.maplibregl = maplibregl;
@@ -23,6 +23,7 @@ interface GravelGuideProps {
   isTakeoverActive?: boolean;
   onRegisterResetFn?: (resetFn: () => void) => void;
   onRegisterZoomFn?: (zoomFn: (feature: any) => void) => void; 
+  onExitFullscreen?: () => void; // 🎯 RECEIVES UNIFIED PROP CALLBACK CLOSURE
 }
 
 export default function GravelGuide({ 
@@ -34,7 +35,8 @@ export default function GravelGuide({
   onRouteHover,
   isTakeoverActive = false,
   onRegisterResetFn,
-  onRegisterZoomFn 
+  onRegisterZoomFn,
+  onExitFullscreen
 }: GravelGuideProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MaplibreMap | null>(null);
@@ -62,20 +64,12 @@ export default function GravelGuide({
     onRegisterZoomFn
   });
 
-  // ============================================================================
-  // 🎯 UPDATE: ANCHORED RESIZE INTERCEPTOR & DIAGNOSTIC OBSERVATION HOOK
-  // Listens to layout changes. Automatically captures bounding canvas tracking
-  // metrics while prompting an asset redraw to completely clear rendering bugs.
-  // ============================================================================
+  // ResizeObserver map layout rendering
   useEffect(() => {
     if (!mapRef.current || !mapReady) return;
 
-    // 📊 CONSOLE DIAGNOSTIC TRACKER: Hooks directly into browser runtime layout mutations
     const observer = new ResizeObserver((entries) => {
-      for (let entry of entries) {
-        const { width, height } = entry.contentRect;
-        console.log(`📊 [DIAGNOSTIC] Map bounding box shifted metrics to: ${width}px × ${height}px`);
-        // Forces the internal MapLibre canvas engine layer to adapt coordinate paths instantly
+      if (entries.length > 0) {
         mapRef.current?.resize();
       }
     });
@@ -84,27 +78,34 @@ export default function GravelGuide({
       observer.observe(containerRef.current);
     }
 
-    // Small 500ms fallback transition timeout tracking manual state transformations
-    const resizeTimer = setTimeout(() => {
-      console.log("🗺️ Layout transition detected. Redrawing MapLibre view bounding matrix tracks...");
-      mapRef.current?.resize();
-    }, 500);
-
-    // Clean execution pipelines safely tearing down listeners on unmount
-    return () => {
-      observer.disconnect();
-      clearTimeout(resizeTimer);
-    };
-  }, [isTakeoverActive, mapReady]); // Fires tracking triggers whenever shop columns shift space parameters
+    return () => observer.disconnect();
+  }, [isTakeoverActive, mapReady]);
 
   usePois(mapRef, mapReady); 
   useHighlight(mapRef, mapReady); 
 
   return (
-    <div className="gravel-guide-container" style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden" }}>
+    <div 
+      className="gravel-guide-container" 
+      style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden" }}
+    >
       <NorthArrow map={mapRef.current} />
+      
       <div ref={containerRef} id="map" style={{ width: "100%", height: "100%" }} /> 
+      
       {!mapReady && <div className="map-loading-overlay">Loading Discovery Map...</div>}
+
+      {/* ─── 🎯 CENTERED ATTACHED INTERACTION DECK ─── */}
+      <div className="map-dashboard-attribution-overlay">
+        <button 
+          onClick={onExitFullscreen}
+          className="btn-exit-fullscreen-pill"
+          title="Restore global navigation menu layers and return to top"
+        >
+          Exit Fullscreen
+        </button>
+        <div className="powered-by-attribution"></div>
+      </div>
     </div>
   );
 }
