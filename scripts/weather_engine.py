@@ -42,11 +42,11 @@ VIS_DIR     = get_env_path("PYTHON_VIS_DIR", os.path.join(BASE_LOCAL, "visualiza
 TAX_DIR     = get_env_path("PYTHON_TAX_DIR", os.path.join(BASE_LOCAL, "effortgauges"))
 
 ANCHOR_PATH = os.path.join(ROOT_DIR, 'public', 'data', 'weather_anchors.json')
-FEATURES_PATH = os.path.join(ROOT_DIR, 'public', 'data', 'v3_large_sample_testfeatures.geojson')
+FEATURES_PATH = os.path.join(ROOT_DIR, 'public', 'data', 'rideguide_routes_v3.geojson')
 
 if not os.path.exists(ANCHOR_PATH):
     ANCHOR_PATH = os.path.join(ROOT_DIR, 'dist', 'data', 'weather_anchors.json')
-    FEATURES_PATH = os.path.join(ROOT_DIR, 'dist', 'data', 'v3_large_sample_testfeatures.geojson')
+    FEATURES_PATH = os.path.join(ROOT_DIR, 'dist', 'data', 'rideguide_routes_v3.geojson')
 
 # Standard user identity parameters
 USER_AGENT  = 'RideGuideV3/1.0 (contact@rideguide.id)'

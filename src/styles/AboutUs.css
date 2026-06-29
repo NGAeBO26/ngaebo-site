@@ -1,0 +1,206 @@
+/* src/styles/AboutUs.css */
+
+/* ─── 🎯 FULL WORKSPACE CANVAS LAYER BACKGROUND ─── */
+.about-us-workspace-funnel {
+  background-image: 
+    linear-gradient(color-mix(in srgb, var(--brand-deep-green) 75%, transparent), color-mix(in srgb, var(--brand-deep-green) 65%, transparent)),
+    url("/images/map-background.png") !important; /* References your persistent background map architecture */
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important; /* Locks structural layout imagery during document scroll */
+  padding: 0 20px 100px 20px !important;
+  box-sizing: border-box;
+}
+
+/* ─── 🎯 FLOATING CARD SHEET CONTROLS ─── */
+.about-section-floating-card,
+.about-section-split-grid {
+  max-width: 1200px !important;
+  margin: 40px auto !important; /* Matches floating framework spacing */
+  border-radius: 16px !important; /* Consistent block corner curves */
+  padding: 40px 60px !important;
+  background: color-mix(in srgb, var(--brand-deep-green) 65%, transparent);
+  border: 1px solid var(--brand-deep-green);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Typography Baseline Rules */
+.about-hero-headline-block h1 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin: 0 0 20px 0;
+  line-height: 1.2;
+}
+
+.about-intro-p {
+  color: var(--brand-bone) !important;
+  font-size: 1.1rem;
+  line-height: 1.65;
+}
+
+.about-section-floating-card h2,
+.about-section-split-grid h2 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* ─── 🎯 SPLIT SECTION NARRATIVE MATRIX LOOK ─── */
+.about-section-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+@media (max-width: 768px) {
+  .about-section-split-grid {
+    grid-template-columns: 1fr;
+    padding: 30px 24px !important;
+  }
+  .about-section-floating-card {
+    padding: 30px 24px !important;
+  }
+}
+
+.about-technical-bio-p {
+  color: var(--brand-bone);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.about-green-tagline {
+  color: var(--brand-sky, #236ea0);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.about-narrative-p {
+color: var(--brand-amber);
+
+}
+
+.about-philosophy-quote {
+  margin: 24px 0 0 0;
+  padding-left: 20px;
+  border-left: 3px solid var(--brand-amber, #d88a3a);
+  font-style: italic;
+  color: #cbd5e1;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+/* ─── 🎯 IMAGE WRAPPERS & SCENIC SUB-TEXTS ─── */
+.about-media-frame {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.about-scenic-img-asset {
+  width: 100%;
+  height: auto;
+  max-height: 380px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.about-image-caption {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #94a3b8;
+  letter-spacing: 0.2px;
+}
+
+/* ─── 🎯 ASYMMETRICAL FLOATING CARD GRID ─── */
+.about-tabletop-cards-grid {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 24px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.about-travel-card-frame {
+  background: rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  border-radius: 12px;
+  width: 160px;
+  box-sizing: border-box;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.about-thumbnail-box {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background-color: #0f172a;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.about-thumbnail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-card-label {
+  width: 100%;
+  margin-top: 10px;
+  background-color: color-mix(in srgb, var(--brand-deep-green) 40%, #000000);
+  padding: 6px 4px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.about-card-label span {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ASYMMETRICAL ROTATION ANGLES */
+.card-rotation-neg { transform: rotate(-3deg) translateY(6px); }
+.card-rotation-pos-mid { transform: rotate(1.5deg) translateY(-4px); }
+.card-rotation-pos-high { transform: rotate(4deg) translateY(8px); }
+.card-rotation-neg-mid { transform: rotate(-1.5deg) translateY(-2px); }
+.card-rotation-pos { transform: rotate(2.5deg) translateY(5px); }
+.card-rotation-neg-high { transform: rotate(-4deg) translateY(-6px); }
+
+/* INTERACTIVE HOVER TRACKS */
+.about-travel-card-frame:hover {
+  background: rgba(15, 23, 42, 0.75);
+  border-color: rgba(255, 255, 255, 0.25);
+  z-index: 10 !important;
+  transform: scale(1.08) rotate(0deg) translateY(-10px) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.about-travel-card-frame:hover .about-card-label {
+  background-color: var(--brand-sky, #236ea0);
+}

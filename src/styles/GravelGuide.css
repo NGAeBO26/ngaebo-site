@@ -1,0 +1,221 @@
+.trail-map {
+  width: 100%;
+  /* FIXED: Changed from strict aspect-ratio to auto so the 800px child component mounts without layout clipping */
+  height: auto; 
+  max-height: 90vh;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  border-radius: var(--ng-radius-sm);
+  margin-bottom: 24px;
+  
+}
+
+/* ensure the #map element fills the container */
+.trail-map #map {
+  position: relative;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ensure canvas exactly fills the container */
+.trail-map .maplibregl-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0;
+  pointer-events: auto;
+}
+
+/* loading overlay (keeps existing naming) */
+.map-loading-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.6);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* ── Custom POI popup ──────────────────────────────── */
+.poi-custom-popup {
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+  padding: 10px 14px 10px 12px;
+  min-width: 160px;
+  max-width: 240px;
+  font-size: 13px;
+  line-height: 1.4;
+  /* so the arrow sits flush at the bottom */
+  margin-bottom: 8px;
+}
+
+.poi-custom-popup__close {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #666;
+  line-height: 1;
+  padding: 0;
+}
+
+.poi-custom-popup__name {
+  display: block;
+  margin-bottom: 4px;
+  color: #1a1a1a;
+}
+
+.poi-custom-popup__desc {
+  color: #444;
+  font-size: 12px;
+  word-break: break-word;
+}
+
+.poi-custom-popup__desc a {
+  color: #3f5a3c;
+  text-decoration: underline;
+}
+
+/* Downward arrow pointing to the marker */
+.poi-custom-popup__arrow {
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 8px solid #fff;
+  /* shadow to match box */
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.12));
+}
+
+/* ─── 🎯 ANIMATED FIXED APPLICATION OVERLAY CONTROLS ─── */
+
+body.dashboard-view-active {
+  overflow: hidden !important; /* Locks background page movement during focus */
+}
+
+/* 🎯 FIXED OVERLAY BASE LAYER */
+body.dashboard-view-active .discovery-dashboard-root {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 99999 !important;
+  background: #111827; /* Core brand deep dark canvas background */
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  
+  /* Hardware acceleration flags to keep map rendering butter-smooth during transitions */
+  will-change: transform, opacity;
+}
+
+/* 🚀 TIER A: SMOOTH ENTRANCE ANIMATION (Fires when scrolling into view) */
+body.dashboard-view-active:not(.dashboard-view-exiting) .discovery-dashboard-root {
+  animation: dashboardSlideIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 🚀 TIER B: SMOOTH EXIT ANIMATION (Fires when clicking Exit) */
+body.dashboard-view-exiting .discovery-dashboard-root {
+  animation: dashboardSlideOut 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes dashboardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px); /* Glides upward into screen real estate */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dashboardSlideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(24px); /* Drops away cleanly as it fades */
+  }
+}
+
+/* Central container allocates space perfectly below filter row */
+body.dashboard-view-active .discovery-center-container {
+  flex: 1 !important;
+  height: calc(100vh - 74px) !important; /* Prevents layout clipping */
+  overflow: hidden !important;
+}
+
+/* Scopes display protection strictly away from finder filter components */
+body.dashboard-view-active header:not(.finder-header-row),
+body.dashboard-view-active .site-header,
+body.dashboard-view-active .rg-site-header-nav {
+  display: none !important;
+}
+
+/* ─── 🎯 CENTERED ATTRIBUTION OVERLAY ─── */
+.map-dashboard-attribution-overlay {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 999999 !important;
+  pointer-events: auto !important;
+}
+
+.btn-exit-fullscreen-pill {
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid var(--brand-amber, #d88a3a);
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 10px 22px;
+  border-radius: 24px;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+.btn-exit-fullscreen-pill:hover {
+  background: var(--brand-amber, #d88a3a);
+  box-shadow: 0 6px 20px rgba(216, 138, 58, 0.5);
+  transform: scale(1.04);
+}
+
+.btn-exit-fullscreen-pill:active {
+  transform: scale(0.98);
+}
+
+.powered-by-attribution {
+  font-family: monospace;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}

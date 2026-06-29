@@ -1,7 +1,7 @@
 {
   "profile_id": "365_S1",
   "route_id": "365",
-  "ssdi_score": 7.5,
+  "ssdi_score": 8.9,
   "v3_terrain_score": 5.5,
   "v3_terrain_class": "Strenuous",
   "badge_type": "wet",
@@ -17,8 +17,8 @@
     "value": 0.29
   },
   "environment": {
-    "current_temp": 77,
-    "saturation_index": 20.6,
+    "current_temp": 80,
+    "saturation_index": 32.2,
     "soil_status": "Saturated",
     "precip_24h": 0.0,
     "saturation_trend": "stable",

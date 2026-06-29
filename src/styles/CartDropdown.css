@@ -1,0 +1,203 @@
+/* src/styles/CartDropdown.css */
+
+.rg-cart-dropdown-popover {
+  position: absolute;
+  /* 🎯 PERFECTLY FLUSH: Fits precisely against the absolute bottom edge of the header track */
+  top: 100%;
+  left: -2px; 
+  width: 340px;
+  background-color: var(--brand-bone);
+  
+  /* 🎯 SOLID BLACK FRAME OUTLINE: Continuous side and base framing lines enclosing the layout */
+  border: 2px solid #000000;
+  border-top: none; 
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.35);
+  z-index: 99999;
+  box-sizing: border-box;
+
+  /* Accordion curtain slide mechanics */
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease-in-out, max-height 0.3s ease-in-out;
+  transform-origin: top;
+  transform: scaleY(0);
+  opacity: 0;
+  max-height: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Reveal state class modifier */
+.rg-cart-dropdown-popover.rg-cart-reveal {
+  transform: scaleY(1);
+  opacity: 1;
+  max-height: 600px;
+  pointer-events: auto;
+}
+
+/* 🌲 PRESERVED HEADLESS BRAND GREEN HEADER STRIP */
+.rg-cart-dropdown-header {
+  background-color: #1e3a34; /* Retained your custom color choice perfectly */
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rg-cart-dropdown-header-meta {
+  display: block;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  align-items: center;
+  
+}
+
+.rg-cart-dropdown-header-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-top: 1px;
+  text-align: center;
+}
+
+/* 🎯 REMOVED: Old dropdown button selectors cleaned out to avoid code redundancy */
+
+/* 🟢 PRIMARY BODY CONTAINER */
+.rg-cart-dropdown-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.rg-cart-scroll-container {
+  max-height: 220px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 4px;
+}
+
+.rg-cart-empty-state {
+  color: #64748b;
+  font-size: 13px;
+  padding: 24px 0;
+  text-align: center;
+}
+
+/* 🟢 CUSTOM MATERIAL CARD ROWS */
+.rg-cart-item-row-card {
+  background-color: rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  padding: 12px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* NEW SUB-GROUP LAYOUT STRUCTURES */
+.rg-cart-item-left-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.rg-cart-item-right-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+/* REPOSITIONED BADGE GRAPHIC STYLE PARAMETERS */
+.rg-cart-item-badge-left {
+  width: 26px;
+  height: auto;
+  display: block;
+  flex-shrink: 0;
+}
+
+.rg-cart-item-title {
+  font-size: 13px;
+  font-weight: bold;
+  color: #0f172a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rg-cart-item-subtitle {
+  font-size: 11px;
+  color: #475569;
+  margin-top: 3px;
+}
+
+.rg-cart-item-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--brand-forest);
+}
+
+/* HOVER TRASHCAN ACTION UTILITY TRIGGERS */
+.rg-cart-item-remove-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+.rg-cart-item-remove-btn:hover {
+  color: #ef4444; 
+  background-color: rgba(239, 68, 68, 0.08);
+}
+
+/* CALCULATION FOOTER ARCHITECTURE */
+.rg-cart-calculation-summary-block {
+  margin-top: 16px;
+  border-top: 1px solid rgba(15, 23, 42, 0.1);
+  padding-top: 14px;
+}
+
+.rg-cart-subtotal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.rg-cart-subtotal-label {
+  font-size: 13px;
+  color: #475569;
+  font-weight: 600;
+}
+
+.rg-cart-subtotal-value {
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.rg-cart-checkout-cta-btn {
+  width: 100%;
+  background-color: #d88a3a;
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}

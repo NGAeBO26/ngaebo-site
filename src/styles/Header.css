@@ -1,0 +1,167 @@
+/* src/styles/Header.css */
+
+.site-header {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.nav-desktop {
+  display: flex !important;
+  align-items: center !important;
+  align-self: stretch !important;
+  justify-content: flex-end !important; /* Pushes user capsule cleanly to the absolute right hand side */
+  flex: 1 !important;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   🎯 RESPONSIVE GLOBAL HEADER CENTER ENGINE
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* ABSOLUTE VIEWPORT CONTAINER: Forces the layout bounds to span the full width of 
+   Header.tsx to guarantee calculation alignment from absolute center */
+.nav-desktop-links-wrapper {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  pointer-events: none !important; /* Allows mouse clicks to pass through empty regions safely */
+  z-index: 50 !important;
+}
+
+/* 🎯 NAVIGATION LINKS TRACK: Updated to handle responsive wrapping parameters cleanly */
+.nav-desktop-links-track {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important; /* Keeps wrapped lines perfectly centered internally */
+  
+  /* Added an 8px row-gap to prevent lines from crowding vertically when wrapped */
+  gap: 8px 24px !important; 
+  
+  /* Replaced flex-shrink: 0 with wrap permissions to allow clean line-breaking */
+  flex-wrap: wrap !important; 
+  
+  /* 🎯 FIXED VISUAL COLLISION: Updated from -600px to -760px. This creates a solid 
+     buffer that forces text wrap behaviors immediately before hitting the capsule. */
+  max-width: calc(100vw - 760px) !important; 
+  
+  pointer-events: auto !important; /* Restores click functionality to individual text links */
+}
+
+/* Shuts off old reactive spacer elements so they do not conflict with absolute coordinate logic */
+.nav-spacer-left,
+.nav-spacer-right {
+  display: none !important;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   🔒 ENCAPSULATION SHIELD PROFILE
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* AUTHENTICATED USER PORTAL CAPSULE SHIELD */
+.rg-header-user-capsule {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+  margin-left: auto !important; /* Extra security to lock item right-aligned */
+  z-index: 100000 !important;
+  position: relative !important;
+  width: 340px !important;
+  padding: 0 16px !important;
+  box-sizing: border-box !important;
+  
+  /* Sizing height to make it compact and clean */
+  height: 64px !important; 
+  border: 2px solid var(--brand-deep-green) !important;
+  border-radius: 12px !important;
+  
+  background-color: transparent !important;
+  transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-radius 0.15s ease-in-out !important;
+  flex-shrink: 0 !important; /* Keeps your user workspace box locked at 340px wide */
+}
+
+.rg-header-user-capsule.rg-capsule-active {
+  height: 100px !important;   
+  border: 2px solid #000000 !important;
+  border-bottom: none !important; /* Drops base border outline to connect seamlessly into the cart dropdown cards */
+  border-radius: 12px 12px 0 0 !important;
+  background-color: #1e3a34 !important; /* Preserved your custom slate-green selection flawlessly */
+}
+
+/* USER TEXT COMPONENT ELEMENTS */
+.rg-header-greeting-text {
+  font-size: 14px !important;
+  color: #e2e8f0 !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+}
+
+.rg-header-signout-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  font: inherit !important;
+}
+
+/* HEADLESS CART INTERACTIVE ICON TRIGGER */
+.rg-header-cart-trigger {
+  background: none !important;
+  border: none !important;
+  color: inherit !important;
+  display: flex !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  position: relative !important;
+}
+
+.rg-header-cart-badge {
+  position: absolute !important;
+  top: -8px !important;
+  right: -10px !important;
+  background-color: #d88a3a !important;
+  color: #ffffff !important;
+  font-size: 10px !important;
+  font-weight: bold !important;
+  border-radius: 50% !important;
+  padding: 2px 6px !important;
+}
+
+/* NEWLY TRANSLATED HEADER ARROW ACTION TOGGLE CONTROL */
+.rg-header-toggle-arrow-btn {
+  background-color: #0f172a !important;
+  border: 1px solid #1e293b !important;
+  border-radius: 6px !important;
+  width: 24px !important;
+  height: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  transition: all 0.15s ease-in-out !important;
+}
+
+.rg-header-toggle-arrow-btn:hover {
+  background-color: #1e293b !important;
+  transform: scale(1.05) !important;
+}
+
+.rg-header-toggle-arrow-svg {
+  color: #f59e0b !important;
+  fill: currentColor !important;
+  transition: transform 0.25s ease-in-out !important;
+  transform: rotate(0deg);
+}
+
+/* Rotates to point cleanly upwards when the active card sheet drops down */
+.rg-header-toggle-arrow-svg.active {
+  transform: rotate(180deg) !important;
+}

@@ -4,12 +4,35 @@ import { jsPDF } from "jspdf";
 import { domToPng } from "modern-screenshot"; 
 import RouteReport_v3 from "./RouteReport_v3"; 
 
-export default function RideGuidePrinter({ routeID }: { routeID: string }) {
+// 🎯 UNIFIED IMPORTERS: Hook into layout loader and auth context engines
+import { LoadingOverlay } from "../LoadingOverlay";
+import { useShopifyAuth } from "../../store/ShopifyAuthContext"; 
+import "../../styles/RideGuidePrinter.css"; // Clean CSS migration target
+
+interface RideGuidePrinterProps {
+  routeID: string;
+  customerID: string; 
+}
+
+export default function RideGuidePrinter({ routeID, customerID }: RideGuidePrinterProps) {
+  const { login, isLoading: authIsLoading } = useShopifyAuth(); 
+  
   const [isPrinting, setIsPrinting] = useState(false);
   const [hasAutoFired, setHasAutoFired] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(true);
+  const [accessDeniedMessage, setAccessDeniedMessage] = useState<string | null>(null);
   const printCanvasRef = useRef<HTMLDivElement>(null);
 
-  // 🎯 CORE RENDERING COMPATIBILITY SPECIFICATION SHEET LAYER
+  // 🎯 LIFECYCLE MANAGEMENT STATES
+  const [overlayProgress, setOverlayProgress] = useState(0);
+  const [overlayMessage, setOverlayMessage] = useState("Initializing PDF Generation Pipeline...");
+  const [showOverlay, setShowOverlay] = useState(true);
+  
+  // 🎯 TERMS & DISCLOSURE GATEWAY STATES
+  const [showTermsModal, setShowTermsModal] = useState(false);
+  const [hasAcceptedTerms, setHasAcceptedTerms] = useState(false);
+
+  // LAYER 1: ABSOLUTELY ALIGN CORE PRINT RENDERING PROPERTIES
   useEffect(() => {
     const origHtmlMargin = document.documentElement.style.margin;
     const origHtmlPadding = document.documentElement.style.padding;
@@ -29,48 +52,13 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
         overflow: visible !important;
         display: block !important;
       }
-      
-      .rr-isolation-shell {
-        padding: 0 !important;
-        margin: 0 !important;
-        background-color: transparent !important;
+      .rr-isolation-shell { padding: 0 !important; margin: 0 !important; background-color: transparent !important; }
+      .rr-metrics-column-sidebar div, .rr-metrics-column-sidebar span, .rr-metrics-column-sidebar p { white-space: nowrap !important; }
+      .rr-weather-condition-node, .rr-weather-condition-label, .rr-weather-temp-node, .rr-weather-precip-node {
+        white-space: nowrap !important; display: block !important; width: 100% !important; text-align: center !important; margin-left: auto !important; margin-right: auto !important; overflow: visible !important;
       }
-
-      /* 🟢 PREVENT SIDEBAR CRADLE LAYOUT ROUNDING WRAP CHECKS */
-      .rr-metrics-column-sidebar div,
-      .rr-metrics-column-sidebar span,
-      .rr-metrics-column-sidebar p {
-        white-space: nowrap !important;
-      }
-
-      /* 🟢 COUPLING SELECTORS: PREVENT ALL WEATHER TEXT NODES FROM WRAPPING/SHIFTING IN PDF */
-      /* Targets condition labels, temp fields, and precipitation rows to guarantee inline horizontal centering */
-      .rr-weather-condition-node,
-      .rr-weather-condition-label,
-      .rr-weather-temp-node,
-      .rr-weather-precip-node {
-        white-space: nowrap !important;
-        display: block !important;
-        width: 100% !important;          /* Extends bounding box full width to support alignment calculations */
-        max-width: none !important;
-        text-align: center !important;    /* Forces absolute horizontal centering vectors */
-        margin-left: auto !important;
-        margin-right: auto !important;
-        overflow: visible !important;
-      }
-
-      /* Ensure parent box parameters inherit sub-pixel layout overflow bounds */
-      .rr-widget-weather-root,
-      .rr-overview-module {
-        overflow: visible !important;
-        display: flex !important;         /* Preserves active widget flexbox model templates */
-        flex-direction: column !important;
-        align-items: center !important;
-      }
-
-      body {
-        background-color: #0f172a !important; 
-      }
+      .rr-widget-weather-root, .rr-overview-module { overflow: visible !important; display: flex !important; flex-direction: column !important; align-items: center !important; }
+      body { background-color: var(--brand-sand) !important; }
     `;
     document.head.appendChild(styleElement);
 
@@ -80,37 +68,132 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
       document.body.style.margin = origBodyMargin;
       document.body.style.padding = origBodyPadding;
       document.body.style.backgroundColor = origBg;
-
       const existing = document.getElementById("rg-printer-absolute-alignment-hotfix");
       if (existing) existing.remove();
     };
   }, []);
 
-  // 🎯 VERIFICATION POLL CONSOLE ENGINE
+  // LAYER 2: STATEFUL ACCOUNT VERIFICATION CHECK
+  useEffect(() => {
+    if (authIsLoading) {
+      setIsVerifying(true);
+      setOverlayProgress(10);
+      setOverlayMessage("Synchronizing Shopify Secure Session...");
+      return;
+    }
+
+    const verifyOwnershipAccess = async () => {
+      try {
+        setIsVerifying(true);
+        setOverlayProgress(25);
+        setOverlayMessage("Verifying Security Credentials...");
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const activeSecureToken = urlParams.get("secureToken") || "";
+
+        const response = await fetch("/api/tokens/verify-ownership", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ 
+            customerId: customerID, 
+            routeId: routeID,
+            secureToken: activeSecureToken 
+          })
+        });
+        const data = await response.json();
+
+        if (!response.ok || !data.hasAccess) {
+          setAccessDeniedMessage(data.error || "🚨 Access Denied: Invalid signature credentials.");
+          setShowOverlay(false);
+        } else {
+          setAccessDeniedMessage(null);
+          setOverlayProgress(50);
+          setOverlayMessage("Initializing Geospatial Engine & Weather Sync...");
+        }
+      } catch (err) {
+        setAccessDeniedMessage("🚨 Identity Matrix Timeout: Failed connecting to authentication firewall.");
+        setShowOverlay(false);
+      } finally {
+        setIsVerifying(false);
+      }
+    };
+
+    if (customerID && routeID) {
+      verifyOwnershipAccess();
+    } else if (!customerID) {
+      setIsVerifying(true);
+      setOverlayProgress(5);
+      setOverlayMessage("Redirecting to secure login gateway...");
+      
+      sessionStorage.setItem("auth_redirect_back_target", window.location.href);
+      login();
+    }
+  }, [customerID, routeID, authIsLoading, login]);
+
+  // PHASE 3 STABILIZER EFFECT
+  useEffect(() => {
+    if (!showOverlay || isVerifying || accessDeniedMessage || overlayProgress < 50) return;
+
+    const progressTimer = setInterval(() => {
+      setOverlayProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(progressTimer);
+          
+          setTimeout(() => {
+            setShowOverlay(false);
+            setShowTermsModal(true);
+          }, 500);
+
+          return 100;
+        }
+        
+        if (prev >= 80) {
+          setOverlayMessage("Compiling Premium Document PDF...");
+        } else {
+          setOverlayMessage("Compiling GIS Render Maps...");
+        }
+
+        return prev + 5;
+      });
+    }, 150);
+
+    return () => clearInterval(progressTimer);
+  }, [showOverlay, isVerifying, accessDeniedMessage, overlayProgress]);
+
+  // LAYER 3: VERIFICATION MAP HOOK CHECK & EVENT LISTENERS
   useEffect(() => {
     let pollingInterval: NodeJS.Timeout;
     let maximumSafetyTimeout: NodeJS.Timeout;
 
-    if (printCanvasRef.current && !hasAutoFired && !isPrinting) {
+    if (printCanvasRef.current && !hasAutoFired && !isPrinting && !isVerifying && !accessDeniedMessage) {
       setHasAutoFired(true);
 
       pollingInterval = setInterval(() => {
-        // Query the MapLibre engine to see if the vector layer compilation task has gone idle
         const isMapRenderFinished = (window as any).mapLoaded === true;
-        
         if (isMapRenderFinished) {
-          console.log("✅ Map state tracking passed. Initiating snapshot compiler engine...");
           clearInterval(pollingInterval);
           clearTimeout(maximumSafetyTimeout);
-          executePdfDownload();
+
+          setOverlayMessage("Compiling Premium Document PDF...");
+          setOverlayProgress(100);
+
+          setTimeout(() => {
+            setShowOverlay(false);
+            setShowTermsModal(true);
+          }, 800);
+        } else {
+          setOverlayMessage("Compiling GIS Render Maps...");
         }
       }, 200); 
 
-      // 6-second safety timeout limits prevent absolute loops if map assets time out
       maximumSafetyTimeout = setTimeout(() => {
-        console.warn("⚠️ Pipeline Timeout: GIS took too long to fire idle state. Proceeding with print.");
         clearInterval(pollingInterval);
-        executePdfDownload();
+        setOverlayMessage("Compiling Premium Document PDF...");
+        setOverlayProgress(100);
+        setTimeout(() => {
+          setShowOverlay(false);
+          setShowTermsModal(true);
+        }, 600);
       }, 6000);
     }
 
@@ -118,10 +201,16 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
       if (pollingInterval) clearInterval(pollingInterval);
       if (maximumSafetyTimeout) clearTimeout(maximumSafetyTimeout);
     };
-  }, [printCanvasRef, hasAutoFired]);
+  }, [printCanvasRef, hasAutoFired, isVerifying, accessDeniedMessage]);
 
   const executePdfDownload = async () => {
-    if (!printCanvasRef.current) return;
+    if (!printCanvasRef.current || isVerifying || accessDeniedMessage) return;
+    
+    setShowTermsModal(false);
+    setOverlayProgress(100);
+    setOverlayMessage("Compiling Vector Coordinates & Exporting Map...");
+    setShowOverlay(true);
+    
     setIsPrinting(true);
     window.scrollTo(0, 0);
 
@@ -130,22 +219,14 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
 
     if (mapInstance) {
       Object.defineProperty(window, 'devicePixelRatio', {
-        get: () => 3, // Upsamples device metrics to eliminate card and text rasterization blur
+        get: () => 3, 
         configurable: true
       });
       mapInstance.resize();
     }
 
     await document.fonts.ready;
-    // Buffer delay allows the WebGL map frame loop to redraw perfectly inside the new 3x boundary limits
     await new Promise((resolve) => setTimeout(resolve, 600));
-
-    // ==========================================================================
-    // 🔍 INTERACTIVE LAYOUT BREAKPOINT DEBUGGER
-    // ==========================================================================
-    // Open your browser DevTools (F12) BEFORE hitting "Generate PDF".
-    // Execution will freeze right here! Go inspect the weather widget elements.
-    debugger;
 
     try {
       const dataUrl = await domToPng(printCanvasRef.current, {
@@ -162,7 +243,6 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
       });
 
       pdf.addImage(dataUrl, "PNG", 0, 0, 816, 1056);
-      
       const blobString = pdf.output("bloburl");
       window.open(blobString, "_blank");
 
@@ -177,85 +257,106 @@ export default function RideGuidePrinter({ routeID }: { routeID: string }) {
         mapInstance.resize();
       }
       setIsPrinting(false);
+      setShowOverlay(false);
     }
   };
 
+  if (accessDeniedMessage) {
+    return (
+      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "100vh", color: "#f87171", backgroundColor: "#0f172a", padding: "20px", textAlign: "center", fontFamily: "sans-serif" }}>
+        <h1 style={{ fontSize: "64px", margin: "0" }}>🔒</h1>
+        <h2>{accessDeniedMessage}</h2>
+        <p style={{ color: "#94a3b8" }}>Please navigate back to the mapping panel to initialize an updated 7-day access key token.</p>
+      </div>
+    );
+  }
+
   return (
-    <div 
-      className="rg-printer-root-canvas"
-      style={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        boxSizing: "border-box",
-        paddingBottom: "160px" // Adds clear layout spacing for your floating HUD panel
-      }}
-    >
-      {/* 🗺️ FIXED RIGID PRINT PAGE SHEET CANVAS BOUNDS */}
-      <div
-        ref={printCanvasRef}
-        className="rg-print-capture-target"
-        style={{
-          width: "816px",    
-          height: "1056px",  
-          position: "relative",
-          backgroundColor: "#ffffff",
-          boxSizing: "border-box",
-          overflow: "hidden",
-          margin: "40px auto 0 auto", 
-          padding: "0",
-          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.7)"
-        }}
-      >
-        <div style={{
-          transform: "scale(1)", 
-          transformOrigin: "top center",
-          width: "816px",
-          height: "1056px",
-          position: "absolute",
-          top: 0,
-          left: 0
-        }}>
+    <div className="rg-printer-root-canvas">
+      
+      <LoadingOverlay 
+        isLoading={showOverlay} 
+        progress={overlayProgress} 
+        message={overlayMessage} 
+      />
+
+      {/* 🎯 EXTRACTED STYLES: Terms overlay backdrop frame handles layout via mapped classes */}
+      {showTermsModal && (
+        <div className="rg-printer-backdrop-overlay">
+          <div className="rg-printer-modal-card">
+            
+            <div className="rg-printer-logo-wrapper">
+              <img 
+                src="/images/RideGuide_embroid-v1.svg" 
+                alt="NGAeBO System Verification" 
+                className={`rg-printer-logo-asset ${isPrinting ? "is-spinning" : ""}`}
+              />
+            </div>
+
+            <h3 className="rg-printer-modal-title">
+              Rider Policy & Safety Agreement
+            </h3>
+
+            <div className="rg-modal-scroller-box">
+              <p className="rg-printer-scroller-text-p1">
+                <strong>RideGuide </strong>is a digital product delivered instantly after purchase. No physical item will be shipped. <strong>RideGuide </strong> is provided for informational purposes only and may not reflect real‑time road or terrain conditions. Outdoor activities involve inherent risks. <strong> Use at your own discretion</strong>"
+              </p>
+              <p className="rg-printer-scroller-text-p2">
+                When you purchase a <strong>digital product</strong>, you receive a non-exclusive, non-transferable, revocable license for <strong>personal use only</strong>, granted by <strong>AdventureGeoLab LLC </strong>and distributed by <strong>North Georgia eBike Outfitters LLC</strong>. You may not resell, redistribute files, share them publicly or privately, repackage them into commercial products, or claim ownership or authorship. <strong>Violations may result in license termination and legal action</strong>.
+              </p>
+              <p className="rg-printer-scroller-text-p3">
+                <strong>Digital products </strong> are delivered instantly via <strong>download link or email</strong>. For support, contact{" "}
+                  <a href="mailto:support@northgeorgiaebikes.com" className="rg-legals-link">
+                    support@northgeorgiaebikes.com
+                  </a>.
+              </p>
+            </div>
+
+            <label className="rg-printer-checkbox-label">
+              <input 
+                type="checkbox" 
+                checked={hasAcceptedTerms}
+                onChange={(e) => setHasAcceptedTerms(e.target.checked)}
+                className="rg-printer-checkbox-input"
+              />
+              <span className="rg-printer-checkbox-text">
+                I agree to the Terms & Conditions and acknowledge the legal ownership, safety, and digital download parameters.
+              </span>
+            </label>
+
+            <button
+              onClick={executePdfDownload}
+              disabled={!hasAcceptedTerms || isPrinting}
+              className={`rg-printer-modal-submit-btn ${hasAcceptedTerms ? "mod-accepted" : "mod-disabled"}`}
+            >
+              {isPrinting ? "Compiling Document Vector Maps... ⏳" : "Generate Premium PDF ➔"}
+            </button>
+
+          </div>
+        </div>
+      )}
+
+      <div ref={printCanvasRef} className="rg-print-capture-target">
+        <div className="rg-print-inner-scale-box">
           <RouteReport_v3 routeID={routeID} />
         </div>
       </div>
 
-      {/* 🎯 FLOATING CONTROLLER HUD: Perfectly centered at the bottom of the viewport */}
-      <div 
-        style={{ 
-          position: "fixed", 
-          bottom: "40px", 
-          left: "50%",
-          transform: "translateX(-50%)",
-          zIndex: 99999, // Guarantees this overlay layer is excluded from the target snapshot node elements
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "10px",
-          width: "auto"
-        }}
-      >
-        <button
-          onClick={executePdfDownload}
-          disabled={isPrinting}
-          style={{
-            padding: "14px 40px",
-            backgroundColor: isPrinting ? "#475569" : "#10b981", 
-            color: "#ffffff",
-            border: "1px solid rgba(255, 255, 255, 0.15)",
-            borderRadius: "50px", 
-            fontWeight: "bold",
-            fontSize: "14px",
-            letterSpacing: "0.02em",
-            cursor: isPrinting ? "not-allowed" : "pointer",
-            boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4)",
-            transition: "all 0.2s ease-in-out"
-          }}
-        >
-          {isPrinting ? "GENERATING RIDEGUIDE PDF..." : "GENERATE PDF"}
-        </button>
-      </div>
+      {/* Floating Action Backup Trigger Elements */}
+      {!showOverlay && !showTermsModal && (
+        <div className="rg-printer-floating-action-wrapper">
+          <button
+            onClick={() => {
+              setHasAcceptedTerms(false);
+              setShowTermsModal(true);
+            }}
+            disabled={isPrinting || isVerifying}
+            className={`rg-printer-floating-action-btn ${(isPrinting || isVerifying) ? "mod-disabled" : "mod-ready"}`}
+          >
+            GENERATE PDF
+          </button>
+        </div>
+      )}
     </div>
   );
 }

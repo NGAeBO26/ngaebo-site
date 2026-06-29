@@ -1,0 +1,157 @@
+/* src/components/FeaturedProducts.css */
+
+/* --- DYNAMIC ASYMMETRICAL COLUMN HEADER BLOCKS --- */
+.featured-section-split-grid {
+  display: grid;
+  grid-template-columns: 38% 62%;
+  gap: 56px;
+  align-items: flex-start;
+  padding: 60px;
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--brand-bone);
+  margin-bottom: 40px;
+}
+
+.featured-problem-block h2 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.25;
+  margin: 0;
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+
+.featured-solution-block {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.featured-orange-tagline {
+  font-weight: 800;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 8px 0;
+  display: block;
+  color: #e36622;
+}
+
+.featured-narrative-p {
+  color: #475569;
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.65;
+}
+
+/* --- GLOBAL GEAR TRANSITION STRIP (GREEN BOX AREA) --- */
+.featured-global-navigation-strip {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -20px;   /* Pulls tightly beneath the split-grid banner */
+  
+}
+
+.btn-shop-all-gear {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #0f172a; /* Dark sleek slate matching your layout base tokens */
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 16px;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+  font-family: "Montserrat", sans-serif;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  margin:20px
+}
+
+.btn-shop-all-gear:hover {
+  background-color: #e36622; /* Snaps to brand orange accents on engagement */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(227, 102, 34, 0.3);
+}
+
+.btn-shop-all-gear .arrow-transition {
+  transition: transform 0.2s ease;
+}
+
+.btn-shop-all-gear:hover .arrow-transition {
+  transform: translateX(4px);
+}
+
+/* --- MID-GRID VALUE REASSURANCE STRIP --- */
+.featured-mid-trust-strip {
+  grid-column: 1 / -1; 
+  background: #f8fafc; 
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px 24px;
+  margin: 40px 0 24px 0;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.featured-trust-pill {
+  color: #334155; 
+  font-weight: 600; 
+  font-size: 0.9rem; 
+  display: flex; 
+  align-items: center; 
+  gap: 6px;
+}
+
+.featured-checkmark-accent {
+  color: #1b7f3a;
+}
+
+/* --- WRAPPER COLUMN GRID INTERIOR CONTROLS --- */
+.featured-full-width-ribbon {
+  grid-column: 1 / -1;
+  margin: 28px;
+}
+
+.featured-following-ribbon {
+  grid-column: 1 / -1;
+  margin-bottom: 28px;
+  margin-top: 32px;
+}
+
+.featured-shop-section-pad {
+  padding-bottom: 80px;
+  background: #ffffff;
+}
+
+.featured-grid-padding-reset {
+  padding: 0;
+}
+
+/* --- COLLAPSIBLE TABLET AND MOBILE MEDIA OVERRIDES --- */
+@media (max-width: 768px) {
+  .featured-section-split-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin: 40px;
+  }
+  .featured-problem-block h2 {
+    font-size: 1.85rem;
+  }
+}
+
+/* ─── 🎯 STICKY HEADER LIGHTBOX MITIGATION INTERCEPTOR ─── 
+   When the product modal is active, this rule cleanly matches your global 
+   navigation selector chains to temporarily turn off visibility over the backdrop sheet. */
+body.rg-product-modal-active header,
+body.rg-product-modal-active .site-header,
+body.rg-product-modal-active .rg-site-header-nav {
+  display: none !important;
+}

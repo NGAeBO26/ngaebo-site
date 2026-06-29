@@ -1,7 +1,7 @@
 {
   "profile_id": "69_S1",
   "route_id": "69",
-  "ssdi_score": 5.6,
+  "ssdi_score": 7.1,
   "v3_terrain_score": 3.6,
   "v3_terrain_class": "Cruiser",
   "badge_type": "wet",
@@ -17,17 +17,17 @@
     "value": 0.15
   },
   "environment": {
-    "current_temp": 78,
-    "saturation_index": 10,
+    "current_temp": 76,
+    "saturation_index": 28.4,
     "soil_status": "Saturated",
     "precip_24h": 0.04,
     "saturation_trend": "stable",
     "alerts": []
   },
   "physics": {
-    "live_traction": 0.65,
-    "live_wh_per_km": 10.92,
-    "energy_penalty_pct": 10.0,
+    "live_traction": 0.69,
+    "live_wh_per_km": 10.72,
+    "energy_penalty_pct": 8.0,
     "v3_base_intensity": 3.6
   },
   "connectivity": {

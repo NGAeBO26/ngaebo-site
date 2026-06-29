@@ -1,7 +1,7 @@
 {
   "profile_id": "28F_S1",
   "route_id": "28F",
-  "ssdi_score": 13.1,
+  "ssdi_score": 15.2,
   "v3_terrain_score": 6.7,
   "v3_terrain_class": "Strenuous",
   "badge_type": "muddy",
@@ -17,8 +17,8 @@
     "value": 0.19
   },
   "environment": {
-    "current_temp": 79,
-    "saturation_index": 19.2,
+    "current_temp": 66,
+    "saturation_index": 40.8,
     "soil_status": "Saturated",
     "precip_24h": 0.0,
     "saturation_trend": "stable",

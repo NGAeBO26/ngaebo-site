@@ -1,5 +1,5 @@
 /* src/features/Discovery/GravelGuide.tsx */
-import { useRef, useMemo, useEffect } from "react"; // 🎯 ADDED EFFECT LISTENER HERE
+import { useRef, useMemo, useEffect } from "react"; 
 import maplibregl from "maplibre-gl";
 import type { Map as MaplibreMap } from "maplibre-gl";
 
@@ -8,7 +8,7 @@ import usePois from "./hooks/usePois";
 import { useHighlight } from "./hooks/useHighlight"; 
 import useMapController from "./hooks/useMapController"; 
 
-import "../../styles/trail-map.css";
+import "../../styles/GravelGuide.css"; 
 import NorthArrow from "../../components/RideGuide/widgets/RouteMap/NorthArrow";
 
 window.maplibregl = maplibregl;
@@ -23,6 +23,7 @@ interface GravelGuideProps {
   isTakeoverActive?: boolean;
   onRegisterResetFn?: (resetFn: () => void) => void;
   onRegisterZoomFn?: (zoomFn: (feature: any) => void) => void; 
+  onExitFullscreen?: () => void; 
 }
 
 export default function GravelGuide({ 
@@ -34,7 +35,8 @@ export default function GravelGuide({
   onRouteHover,
   isTakeoverActive = false,
   onRegisterResetFn,
-  onRegisterZoomFn 
+  onRegisterZoomFn,
+  onExitFullscreen
 }: GravelGuideProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MaplibreMap | null>(null);
@@ -62,20 +64,57 @@ export default function GravelGuide({
     onRegisterZoomFn
   });
 
-  // ============================================================================
-  // 🎯 UPDATE: ANCHORED RESIZE INTERCEPTOR & DIAGNOSTIC OBSERVATION HOOK
-  // Listens to layout changes. Automatically captures bounding canvas tracking
-  // metrics while prompting an asset redraw to completely clear rendering bugs.
-  // ============================================================================
+  // ─── 🎯 REFINED: LIVE GEO-WORKSPACE FILTER MAP SYNCHRONIZER ───
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !mapReady || !filteredRoutes) return;
+
+    // 1. Gather all active profile_id values matching the current filter state
+    const activeIds = filteredRoutes
+      .map((route) => String(route.properties?.profile_id || route.id || route.properties?.id || ""))
+      .filter(Boolean);
+
+    // 2. Query all active visualization style layers currently mounted to the map canvas
+    const style = map.getStyle();
+    if (!style || !style.layers) return;
+
+    // 3. Loop through layers to update base visibility while protecting selection states
+    style.layers.forEach((layer) => {
+      const isRouteLayer = 
+        layer.id.includes("road") || 
+        layer.id.includes("route") || 
+        layer.id.includes("line") || 
+        layer.id.includes("trail");
+
+      const isInteractionLayer =
+        layer.id.includes("highlight") || 
+        layer.id.includes("hover") || 
+        layer.id.includes("select") || 
+        layer.id.includes("active");
+
+      if (isRouteLayer && !isInteractionLayer) {
+        if (activeIds.length === 0) {
+          // Hide all features on the layer if there are no matches
+          map.setFilter(layer.id, ["==", ["to-string", ["coalesce", ["get", "profile_id"], ["get", "id"], ""]], "____no_matches_found____"]);
+        } else {
+          // 🎯 FIXED: Casts feature identifiers strictly to strings using 'to-string' and 'coalesce'.
+          // This allows features to safely re-appear on the map canvas as the array widens.
+          map.setFilter(layer.id, [
+            "in", 
+            ["to-string", ["coalesce", ["get", "profile_id"], ["get", "id"], ""]], 
+            ["literal", activeIds]
+          ]);
+        }
+      }
+    });
+  }, [filteredRoutes, mapReady]);
+
+  // ResizeObserver map layout rendering
   useEffect(() => {
     if (!mapRef.current || !mapReady) return;
 
-    // 📊 CONSOLE DIAGNOSTIC TRACKER: Hooks directly into browser runtime layout mutations
     const observer = new ResizeObserver((entries) => {
-      for (let entry of entries) {
-        const { width, height } = entry.contentRect;
-        console.log(`📊 [DIAGNOSTIC] Map bounding box shifted metrics to: ${width}px × ${height}px`);
-        // Forces the internal MapLibre canvas engine layer to adapt coordinate paths instantly
+      if (entries.length > 0) {
         mapRef.current?.resize();
       }
     });
@@ -84,27 +123,34 @@ export default function GravelGuide({
       observer.observe(containerRef.current);
     }
 
-    // Small 500ms fallback transition timeout tracking manual state transformations
-    const resizeTimer = setTimeout(() => {
-      console.log("🗺️ Layout transition detected. Redrawing MapLibre view bounding matrix tracks...");
-      mapRef.current?.resize();
-    }, 500);
-
-    // Clean execution pipelines safely tearing down listeners on unmount
-    return () => {
-      observer.disconnect();
-      clearTimeout(resizeTimer);
-    };
-  }, [isTakeoverActive, mapReady]); // Fires tracking triggers whenever shop columns shift space parameters
+    return () => observer.disconnect();
+  }, [isTakeoverActive, mapReady]);
 
   usePois(mapRef, mapReady); 
   useHighlight(mapRef, mapReady); 
 
   return (
-    <div className="gravel-guide-container" style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden" }}>
+    <div 
+      className="gravel-guide-container" 
+      style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden" }}
+    >
       <NorthArrow map={mapRef.current} />
+      
       <div ref={containerRef} id="map" style={{ width: "100%", height: "100%" }} /> 
+      
       {!mapReady && <div className="map-loading-overlay">Loading Discovery Map...</div>}
+
+      {/* ─── 🎯 CENTERED ATTACHED INTERACTION DECK ─── */}
+      <div className="map-dashboard-attribution-overlay">
+        <button 
+          onClick={onExitFullscreen}
+          className="btn-exit-fullscreen-pill"
+          title="Restore global navigation menu layers and return to top"
+        >
+          Exit Fullscreen
+        </button>
+        <div className="powered-by-attribution"></div>
+      </div>
     </div>
   );
 }

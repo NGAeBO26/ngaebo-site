@@ -1,5 +1,5 @@
 /* src/App.tsx */
-import { Routes, Route, useParams, useSearchParams, useLocation } from "react-router-dom";
+import { Routes, Route, useParams, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -9,12 +9,23 @@ import RideGuide from "./pages/RideGuide";
 import BikeFinder from "./pages/BikeFinder";
 import Shop from "./pages/Shop";
 import Community from "./pages/Community";
-import RedirectGateway from "./pages/RedirectGateway"; // NEW TRANSITION COMPONENT IMPORT
+import RedirectGateway from "./pages/RedirectGateway"; 
+import DownloadGuide from "./pages/DownloadGuide";
+import Legals from "./pages/Legals";
+import SampleGiveaway from "./pages/SamplePack"; 
+// 🎯 ADDED: Import your new customized first-person About page platform component
+import AboutUs from "./pages/AboutUs";
+
+// SHOPIFY CUSTOMER AUTHENTICATION INFRASTRUCTURE
+import { ShopifyAuthProvider, useShopifyAuth } from "./store/ShopifyAuthContext";
+import { ShopifyCartProvider } from "./store/ShopifyCartContext"; 
+import AccountCallback from "./pages/AccountCallback";
 
 // Modal system
 import UnlockModal from "./components/modal/UnlockModal";
 import RouteReport_v3 from "./components/RideGuide/RouteReport_v3";
 import RideGuidePrinter from "./components/RideGuide/RideGuidePrinter";
+import CookieBanner from "./pages/CookieBanner";
 
 // Tracking canvas layer
 import TelemetryOverlayTracker from "./components/RideGuide/TelemetryOverlayTracker";
@@ -73,23 +84,9 @@ function IframeReportWrapper() {
 
 function PrinterWrapper() {
   const { routeID } = useParams<{ routeID: string }>();
-  return <RideGuidePrinter routeID={routeID || "28-2_S1"} />;
-}
-
-function DownloadGuideWrapper() {
-  const [searchParams] = useSearchParams();
-  const routeID = searchParams.get("routeID");
-
-  if (!routeID) {
-    return (
-      <div style={{ color: "white", textAlign: "center", padding: "80px", fontFamily: "sans-serif" }}>
-        <h2>Invalid Asset Link</h2>
-        <p style={{ color: "#9ca3af" }}>We couldn't detect a valid route ID parameter in your request link.</p>
-      </div>
-    );
-  }
-
-  return <RideGuidePrinter routeID={routeID} />;
+  const { customer } = useShopifyAuth(); 
+  
+  return <RideGuidePrinter routeID={routeID || "28-2_S1"} customerID={customer?.id || ""} />;
 }
 
 export default function App() {
@@ -99,60 +96,69 @@ export default function App() {
 
   // Check page identity contexts
   const isShopPage = location.pathname.toLowerCase() === "/shop";
-  const isGatewayPage = location.pathname.toLowerCase() === "/redirect-gateway"; // CAPTURE GATEWAY IDENTITY
+  const isGatewayPage = location.pathname.toLowerCase() === "/redirect-gateway"; 
 
   return (
-    <>
-      <Routes>
-        {/* DETACHED OPERATIONAL SYSTEM PATHS */}
-        <Route path="/print/:routeID" element={<PrinterWrapper />} />
-        <Route path="/download-guide" element={<DownloadGuideWrapper />} />
-        
-        {/* ISOLATED COMPLIANCE PIPELINE REDIRECT GATEWAY ROUTE:
-           Bypasses standard site layouts entirely so it acts as an autonomous sandbox canvas tab */}
-        <Route path="/redirect-gateway" element={<RedirectGateway />} />
+    <ShopifyAuthProvider>
+      <ShopifyCartProvider>
+        <Routes>
+          {/* DETACHED OPERATIONAL SYSTEM PATHS */}
+          <Route path="/print/:routeID" element={<PrinterWrapper />} />
+          <Route path="/download-guide" element={<DownloadGuide />} />
+          <Route path="/account/callback" element={<AccountCallback />} />
+          
+          <Route path="/redirect-gateway" element={<RedirectGateway />} />
 
-        {/* STANDARD CONSUMER WEB INTERFACE LAYOUT ROUTING CONTAINER */}
-        <Route
-          path="/*"
-          element={
-            isIframePreviewActive ? (
-              <main className="page iframe-preview-clean-canvas" style={{ padding: 0, margin: 0, backgroundColor: "#ffffff" }}>
-                <Routes>
-                  <Route path="/report/:routeID" element={<IframeReportWrapper />} />
-                  <Route path="/route-report" element={<RouteReport_v3 routeID="28-2_S1" />} />
-                </Routes>
-              </main>
-            ) : isShopPage ? (
-              <Routes>
-                <Route path="/shop" element={<Shop />} />
-              </Routes>
-            ) : isGatewayPage ? (
-              /* Fallback safety capture node context path logic protection */
-              <Routes>
-                <Route path="/redirect-gateway" element={<RedirectGateway />} />
-              </Routes>
-            ) : (
-              /* STANDARD GLOBAL TEMPLATE FRAME FOR REMAINING COMPONENT MAPPINGS */
-              <>
-                <Header />
-                <main className="page" style={{ flex: 1 }}>
+          {/* STANDARD CONSUMER WEB INTERFACE LAYOUT ROUTING CONTAINER */}
+          <Route
+            path="/*"
+            element={
+              isIframePreviewActive ? (
+                <main className="page iframe-preview-clean-canvas" style={{ padding: 0, margin: 0, backgroundColor: "#ffffff" }}>
                   <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/rides" element={<RideGuide />} />
-                    <Route path="/bikes" element={<BikeFinder />} />
-                    <Route path="/community" element={<Community />} />
-                    <Route path="/report/:routeID" element={<ReportWrapper />} />
+                    <Route path="/report/:routeID" element={<IframeReportWrapper />} />
                     <Route path="/route-report" element={<RouteReport_v3 routeID="28-2_S1" />} />
                   </Routes>
                 </main>
-                <Footer />
-              </>
-            )
-          }
-        />
-      </Routes>
-      <UnlockModal />
-    </>
+              ) : isShopPage ? (
+                <Routes>
+                  <Route path="/shop" element={<Shop />} />
+                </Routes>
+              ) : isGatewayPage ? (
+                <Routes>
+                  <Route path="/redirect-gateway" element={<RedirectGateway />} />
+                </Routes>
+              ) : (
+                /* STANDARD GLOBAL TEMPLATE FRAME FOR REMAINING COMPONENT MAPPINGS */
+                <>
+                  <Header />
+                  <main className="page" style={{ flex: 1 }}>
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/rides" element={<RideGuide />} />
+                      <Route path="/shop" element={<Shop />} />
+                      
+                      {/* 🎯 ADDED: The live workspace deployment target path for the new About page */}
+                      <Route path="/about" element={<AboutUs />} />
+                      
+                      <Route path="/bikes" element={<BikeFinder />} />
+                      <Route path="/community" element={<Community />} />
+                      <Route path="/legals" element={<Legals />} />
+                      <Route path="/samples" element={<SampleGiveaway />} />
+                      
+                      <Route path="/report/:routeID" element={<ReportWrapper />} />
+                      <Route path="/route-report" element={<RouteReport_v3 routeID="28-2_S1" />} />
+                    </Routes>
+                  </main>
+                  <Footer />
+                </>
+              )
+            }
+          />
+        </Routes>
+        <UnlockModal />
+        <CookieBanner />
+      </ShopifyCartProvider>
+    </ShopifyAuthProvider>
   );
 }

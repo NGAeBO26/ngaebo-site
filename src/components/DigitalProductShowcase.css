@@ -1,0 +1,531 @@
+/* --- SECTION 3: INTERACTIVE BLUEPRINT ACCORDION & ICONS --- */
+.digital-product-showcase-section {
+  padding: 20px 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--brand-deep-green) 75%, transparent), color-mix(in srgb, var(--brand-deep-green) 65%, transparent)),
+    url("/images/map-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.digital-product-showcase-section .funnel-container {
+  max-width: 960px;
+}
+
+.showcase-brand-logo {
+align-items: center;
+justify-content: center;
+width: 180px;
+
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.section-header h2 {
+  font-size: 2.2rem;
+  margin: 0 0 6px 0;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+}
+
+.sub-tagline-lowercase {
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-shadow: 2px 1px 1px #236ea0;
+}
+
+/* --- VALUE MATRIX PROP STRIP ICON HOOKS --- */
+.prop-strip-matrix-bay {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 46px;
+  width: 100%;
+  max-width: 840px;
+  margin: 8px auto 16px auto;
+}
+
+/* Icon layout adjustments for clean horizontal alignment */
+.prop-value-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.prop-card-header-strip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.text-prop-heavy {
+  color: var(--brand-mellow);
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* Sizing constraints for nested prop asset image elements */
+.prop-value-icon-box img.ng-prop-graphic-asset {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.prop-value-column-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--brand-deep-green) 50%, transparent);
+  border: 1px solid var(--brand-deep-green);
+  box-sizing: border-box;
+}
+
+.prop-value-column-card h5 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 6px 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+}
+
+.prop-value-column-card p {
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* --- ACCORDION SYSTEM LAYOUT CHANNELS --- */
+.blueprint-interactive-bay {
+  display: grid;
+  grid-template-columns: 42% 58%;
+  gap: 54px;
+  font-variant: JIS04;
+  width: 100%;
+  max-width: 760px;
+  height: 380px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.product-pillars-tab-stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  box-sizing: border-box;
+  max-height: 380px;
+}
+
+.feature-pillar-tab-card {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 10px 14px 10px 42px; /* 🎯 INCREASED: Shifted from 32px to 42px to clear the wider gutter smoothly */
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+.feature-pillar-tab-card h4 {
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+.pillar-eyebrow-accent {
+  font-family: monospace;
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1px;
+  display: block;
+  transition: color 0.2s ease;
+}
+
+.accordion-title-block {
+  display: flex;
+  flex-direction: column;
+  flex: 1; 
+}
+
+.accordion-content-overflow-wrapper {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  max-height: 0;
+  visibility: hidden;
+  margin-top: 0;
+}
+
+.feature-pillar-tab-card p {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.accordion-tab-header-strip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+/* GLOW INDICATOR SIDE BAR MECHANISM */
+.accordion-left-indicator-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 32px; /* 🎯 WIDENED: Increased from 24px to create an 8px clearance safety buffer */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 🎯 AUTOMATIC CENTERING: Centers the chevron perfectly within the remaining space */
+  box-sizing: border-box;
+  border-left: 12px solid var(--brand-amber);
+  transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 5;
+}
+
+/* --- 3. ACCORDION CHEVRON (STRIPPED ASYMMETRIC PADDING) --- */
+.accordion-tab-chevron-indicator {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--brand-amber);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  padding: 0; /* 🎯 RESOLVED: Removed padding-left to guarantee a clean, locked 3D spin on its true center axis */
+}
+
+/* Base accordion image layout framework container */
+.accordion-tab-vector-placeholder {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+/* Target properties handling raw accordion asset img elements */
+.accordion-tab-vector-placeholder img.ng-accordion-graphic-asset {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  transition: filter 0.25s ease;
+}
+
+.pillar-benefit-bullet-list {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.2);
+  padding-top: 6px;
+}
+
+.pillar-benefit-bullet-list li {
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pillar-benefit-bullet-list li::before {
+  content: "✓";
+  color: var(--brand-verdant);
+  font-weight: 900;
+}
+
+/* --- STATE A: ACTIVE CARD RULES (LIGHT GLOWING REVISION) --- */
+.feature-pillar-tab-card.active-pillar {
+  flex: 4;
+  background: linear-gradient(180deg, #ffffff 0%, #f4f9ff 100%);
+  border-color: var(--brand-sky);
+  box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.2);
+}
+
+.feature-pillar-tab-card.active-pillar h4 {
+  color: var(--brand-sky);
+  margin-bottom: 2px;
+}
+.feature-pillar-tab-card.active-pillar .pillar-eyebrow-accent {
+  color: var(--brand-amber);
+}
+.feature-pillar-tab-card.active-pillar p {
+  color: var(--brand-graphite);
+}
+.feature-pillar-tab-card.active-pillar .pillar-benefit-bullet-list li {
+  color: var(--brand-verdant);
+}
+
+/* Transitions active border and active chevron directly to brand forest green */
+.feature-pillar-tab-card.active-pillar .accordion-left-indicator-bar {
+  border-left-color: var(--brand-sky);
+   
+}
+.feature-pillar-tab-card.active-pillar .accordion-tab-chevron-indicator {
+  transform: rotate(90deg);
+  color: var(--brand-sky); 
+}
+
+/* THE ACCORDION IMAGE INVERSION CONTROLLER */
+.feature-pillar-tab-card.active-pillar
+  .accordion-tab-vector-placeholder
+  img.ng-accordion-graphic-asset {
+  filter: brightness(0) saturate(100%) invert(48%) sepia(13%) saturate(941%)
+    hue-rotate(178deg) brightness(93%) contrast(87%);
+}
+
+.feature-pillar-tab-card.active-pillar .accordion-content-overflow-wrapper {
+  opacity: 1;
+  max-height: 200px;
+  visibility: visible;
+  margin-top: 4px;
+}
+
+/* --- STATE B: COLLAPSED CARD RULES (MISTED GLASS CHANNELS) --- */
+.feature-pillar-tab-card.collapsed-pillar {
+  flex: 1;
+  border-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: color-mix(in srgb, var(--brand-deep-green) 50%, transparent);
+  border: 1px solid var(--brand-deep-green);
+  border-radius: 12px;
+}
+
+/* Collapsed white text presentation paths matching image layout viewports */
+.feature-pillar-tab-card.collapsed-pillar h4 {
+  color: var(--brand-white);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+}
+.feature-pillar-tab-card.collapsed-pillar .pillar-eyebrow-accent {
+  color: #94a3b8;
+}
+.feature-pillar-tab-card.collapsed-pillar
+  .accordion-tab-vector-placeholder
+  img.ng-accordion-graphic-asset {
+  filter: none; 
+}
+
+/* Illuminates indicator line and chevron to forest green on hover engagements */
+.feature-pillar-tab-card.collapsed-pillar:hover .accordion-left-indicator-bar {
+  border-left-color: var(--brand-deep-green); 
+}
+.feature-pillar-tab-card.collapsed-pillar:hover .accordion-tab-chevron-indicator {
+  color: var(--brand-deep-green); 
+}
+
+.feature-pillar-tab-card.collapsed-pillar:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.blueprint-viewport-display-contain {
+  position: relative;
+  background: var(--brand-white);
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 0;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  max-height: 380px;
+  aspect-ratio: 3 / 4;
+  margin: 0 auto;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.blueprint-main-map-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* HOVER LAYER CHANNELS ON MAP IMAGE SENSORS */
+.blueprint-hotspot-interactive-zone {
+  position: absolute;
+  z-index: 20;
+  cursor: crosshair;
+  background: rgba(255, 255, 255, 0);
+  pointer-events: auto !important;
+}
+
+.blueprint-hotspot-highlight-overlay {
+  position: absolute;
+  border-radius: 4px;
+  border: 3px solid var(--brand-sky);
+  background: rgba(255, 255, 255, 0);
+  box-shadow: 0 0 0 9999px rgba(15, 23, 42, 0.55);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ─── 🎯 OVERLAY HOVER METRICS ACCENT TOOLTIP (RESPONSIVE WRAPPING FIX) ─── */
+.blueprint-hotspot-highlight-overlay .map-overlay-tooltip {
+  position: absolute;
+  bottom: 8px; /* Sits cleanly inside the unvignetted spotlight window box */
+  left: 50%;
+  transform: translateX(-50%);
+  background: color-mix(in srgb, var(--brand-verdant) 85%, transparent);
+  border: 1px solid var(--brand-verdant);
+  color: #ffffff;
+  font-family: monospace;
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-shadow: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  
+  /* 🎯 WRAPPING ENGINE: Drops nowrap constraint to allow safe multi-line breaks inside narrow zones */
+  white-space: normal;
+  text-align: center;
+  width: max-content;
+  max-width: 90%; /* Prevents text from leaking past left/right border bounds */
+  box-sizing: border-box;
+}
+
+/* --- LOWER FOOTER TRANSITIONAL LAYOUT CHAINS --- */
+.isolated-cta-clear-way {
+  width: 100%;
+  padding: 24px 0 0 0;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 20;
+}
+
+.cta-inner-alignment-shield {
+  width: 100%;
+  max-width: 550px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn-cta-oversized {
+  padding: 14px 24px;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+/* --- CAPTURE STATE INSTRUCTIONS OVERLAY DECK --- */
+.capture-instructions-deck {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  height: 100%;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  background-color: var(--brand-white);
+  border: 1px solid #fff;
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.capture-instructions-deck-header {
+  background: var(--brand-sky);
+  text-align: center;
+  width: 100%;
+  height: 28px;
+  box-sizing: border-box;
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+}
+
+.capture-instructions-deck h3 {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--brand-white);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-align: center;
+  margin: 0;
+}
+
+.capture-instructions-deck p {
+  font-size: 0.75rem;
+  line-height: 1.55;
+  font-weight: 500;
+  padding: 6px 8px; 
+  margin: 0; 
+  color: var(--brand-sky);
+  border-bottom: 2px solid var(--brand-amber);
+}
+
+.capture-instructions-deck-numeral {
+  font-size: 0.75rem;
+  line-height: 1.55;
+  font-weight: 700;
+  color: var(--brand-sky);
+}
+
+.capture-form-inline-container {
+  padding: 8px;
+  width: 100%;
+}
+
+.capture-legal-disclaimer {
+  display: block;
+  font-size: 0.68rem;
+  line-height: 1.4;
+  color: #64748b; 
+  text-align: center;
+  margin-top: 14px;
+  padding: 0 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.capture-instructions-deck-footer {
+  background: var(--brand-sky);
+  width: 100%;
+  height: 20px;
+  margin-top: auto;
+}

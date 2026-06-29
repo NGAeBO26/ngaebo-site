@@ -1,0 +1,170 @@
+/* src/styles/LoadingOverlay.css */
+
+.ngaebo-global-loading-takeover-screen {
+  position: absolute !important; /* 🎯 SWAPPED: Now binds directly to .discovery-center-container */
+  inset: 0 !important; /* Stretches tightly edge-to-edge within the relative container boundaries */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 9999 !important; /* Remains above internal sidebars and map stacks */
+  background: color-mix(in srgb, var(--brand-deep-green) 75%, transparent);
+  border: 1px solid var(--brand-deep-green);
+  width: 100% !important; /* Fills parent canvas box horizontally */
+  height: 100% !important; /* Fills parent canvas box vertically */
+}
+
+.ngaebo-spinner-assembly-box {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 30%;
+  gap: 20px !important;
+  padding-top: 20px;
+  background: color-mix(in srgb, var(--brand-white) 80%, transparent);
+  border: 1px solid rgba(255, 255, 255, 0.4); 
+box-shadow: 
+  0 4px 30px rgba(0, 0, 0, 0.1), /* Ambient soft drop */
+  inset 0 1px 0 rgba(255, 255, 255, 0.6); /* Crisp top rim highlight */
+  border-radius: 8px;
+}
+
+.ngaebo-spinner-composite-container {
+  position: relative !important;
+  width: 180px !important;
+  height: 180px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.ngaebo-spinner-logo-core {
+  position: absolute !important;
+  width: 120px !important;
+  height: 120px !important;
+  object-fit: contain !important;
+  z-index: 2 !important;
+}
+
+.ngaebo-spinner-wheel-rotating-element {
+  position: absolute !important;
+  width: 160px !important;
+  height: 160px !important;
+  object-fit: contain !important;
+  z-index: 1 !important;
+  animation: ngaeboWheelRotationTransform 4.5s linear infinite !important;
+}
+
+.ngaebo-loading-telemetry-text-deck {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.ngaebo-loading-status-message {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  color: var(--brand-amber) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+}
+
+.ngaebo-loading-percentage-counter {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 900 !important;
+  color: var(--brand-amber) !important; 
+  letter-spacing: 0.5px !important;
+}
+
+/* ─── 🎯 STRUCTURAL STRUCT OVERRIDE MODIFIERS ─── */
+
+/* 🎯 Switches the container from container-scoped absolute flow to fixed application viewports */
+.ngaebo-global-loading-takeover-screen.is-fullscreen-takeover {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 9999999 !important; /* Forces layout stacking above navigation menus */
+  
+  /* Glassmorphic backdrop blur tracking */
+  backdrop-filter: blur(12px) !important;
+ 
+  
+  /* Binds directly to your pre-existing palette background blend configuration */
+  background: color-mix(in srgb, var(--brand-deep-green) 70%, transparent) !important;
+}
+
+/* Structural sizing override for center card presentation scale rules */
+.ngaebo-global-loading-takeover-screen.is-fullscreen-takeover .ngaebo-spinner-assembly-box {
+  width: 90% !important;
+  max-width: 440px !important;
+  padding: 40px 24px !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Layout typography row rule configuration for subtitle additions */
+.ngaebo-loading-subtitle-message {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  color: var(--brand-charcoal) !important;
+  opacity: 0.75;
+  text-align: center !important;
+  margin-top: 6px !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.2px !important;
+}
+
+/* ─── 🎯 STRUCTURAL TIMELINE PROGRESS EXTENSIONS ─── */
+
+/* Ensures absolute child positions anchor cleanly inside the floating boundary card layout */
+.ngaebo-global-loading-takeover-screen.is-fullscreen-takeover .ngaebo-spinner-assembly-box {
+  position: relative !important;
+  width: 90% !important;
+  max-width: 440px !important;
+  padding: 40px 24px !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+  overflow: hidden !important; /* Clips the animated progress bar flush to the card's rounded corners */
+}
+
+/* Base horizontal track runner */
+.ngaebo-loading-bar-track {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 4px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  overflow: hidden !important;
+}
+
+/* 🎯 Progress indicator: Synchronized to fill across exactly 2.5 seconds on mount */
+.ngaebo-loading-bar-progress {
+  width: 0%;
+  height: 100%;
+  background: var(--brand-sky, #236ea0) !important; /* Locks onto your brand sky accent token */
+  will-change: width;
+  animation: ngaeboTimelineFillLinear 2.5s linear forwards !important;
+}
+
+@keyframes ngaeboTimelineFillLinear {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes ngaeboWheelRotationTransform {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
