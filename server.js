@@ -852,7 +852,9 @@ app.post("/api/webhooks/shopify/orders-paid", async (req, res) => {
     const retailSecureToken = generateSecureDownloadToken(targetRouteID, fallbackCustomerGid);
 
     // Safely append the secureToken signature to prevent 401 rejections from the gateway
-    const targetDownloadUrl = `https://ngaebo-staging-bym3w.ondigitalocean.app/download-guide?routeID=${targetRouteID}&secureToken=${retailSecureToken}`;
+    const host = req.headers.host || "northgeorgiaebikes.com";
+    const protocol = req.headers['x-forwarded-proto'] === 'https' ? 'https' : 'http';
+    const targetDownloadUrl = `${protocol}://${host}/download-guide?routeID=${targetRouteID}&secureToken=${retailSecureToken}`;
 
     if (MAILERSEND_API_KEY) {
       const mailersendPayload = {
