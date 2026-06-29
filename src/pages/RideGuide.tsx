@@ -318,29 +318,7 @@ export default function RideGuide() {
           </div>
         </div>
       </div>
-
-      {/* COMPONENT FOOTER END BAR */}
-      <div className="rf-featured-products-footer-container">
-        <span className="rf-section-label">Featured Affiliate Gear</span>
-        <div className="rf-product-cards-row">
-          <div className="rf-affiliate-product-card">
-            <div className="rf-product-icon-wrapper">🚲</div>
-            <div>
-              <div className="rf-product-title">Maxxis Rambler 40c</div>
-              <div className="rf-product-subtitle">Premium Gravel Tire</div>
-            </div>
-          </div>
-
-          <div className="rf-affiliate-product-card">
-            <div className="rf-product-icon-wrapper">📟</div>
-            <div>
-              <div className="rf-product-title">Garmin Edge 540</div>
-              <div className="rf-product-subtitle">GPS Mapping Computer</div>
-            </div>
-          </div>
-        </div>
-      </div>
-        
+              
     </div>
   ); 
 }

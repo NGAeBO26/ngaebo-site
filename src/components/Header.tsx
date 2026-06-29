@@ -3,14 +3,13 @@ import { useState } from "react";
 import { useShopifyAuth } from "../store/ShopifyAuthContext";
 import { useShopifyCart } from "../store/ShopifyCartContext";
 import CartDropdown from "./CartDropdown"; 
-import "../styles/Header.css"; // Link our style definitions explicitly
+import "../styles/Header.css"; 
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { login, logout, isAuthenticated, customer, isLoading: authLoading } = useShopifyAuth();
   const { cartCount, isCartOpen, setIsCartOpen } = useShopifyCart();
 
-  // 🎯 FIXED: Decoupled isAuthenticated restriction so both guests and logged-in users can operate the popover view
   const isCartActive = isCartOpen;
 
   return (
@@ -25,27 +24,24 @@ export default function Header() {
       {/* Desktop Navigation */}
       <nav className="nav-desktop">
         
-        {/* Transition slide hooks mapped to a semantic layout modifier class */}
         <div className="nav-desktop-links-wrapper">
           <div className="nav-desktop-links-track">
             <a href="/" className="nav-link">Home</a>
             <a href="/rides" className="nav-link">RideGuides</a>
             <a href="/shop" className="nav-link">Shop</a>
-            <a href="#pillars" className="nav-link">Our Mission</a>
+            <a href="/about" className="nav-link">About Us</a>
           </div>
         </div>
 
-        {/* 🔒 SHIELDED SHOPIFY IDENTITY GATEWAY LAYER (DESKTOP) */}
+        {/* SHIELDED SHOPIFY IDENTITY GATEWAY LAYER (DESKTOP) */}
         {!authLoading && (
-          /* 🎯 FIXED: User capsule structure now renders persistently for guest and authenticated states */
           <div className={`rg-header-user-capsule ${isCartActive ? "rg-capsule-active" : ""}`}>
             
-            {/* 🎯 FIXED: Dynamic string updates greeting token seamlessly based on active login status */}
             <span className="rg-header-greeting-text">
               {isAuthenticated && customer?.firstName ? `Hi, ${customer.firstName}` : "Hi, Guest"}
             </span>
 
-            {/* 🛒 Headless Cart Icon Toggle Link Trigger */}
+            {/* Headless Cart Icon Toggle Link Trigger */}
             <button 
               onClick={() => setIsCartOpen(!isCartOpen)}
               className="rg-header-cart-trigger"
@@ -63,7 +59,6 @@ export default function Header() {
               )}
             </button>
 
-            {/* 🎯 FIXED: Toggles primary display text context and execution hooks responsively */}
             {isAuthenticated ? (
               <button 
                 onClick={logout} 
@@ -80,7 +75,6 @@ export default function Header() {
               </button>
             )}
 
-            {/* Moved arrow action trigger up to the header line to the right of Sign Out */}
             <button
               onClick={() => setIsCartOpen(!isCartOpen)}
               className="rg-header-toggle-arrow-btn"
@@ -96,7 +90,6 @@ export default function Header() {
               </svg>
             </button>
 
-            {/* STATE ENGINE ROUTER DROPDOWN HOOK */}
             <CartDropdown isOpen={isCartActive} />
           </div>
         )}
@@ -125,11 +118,11 @@ export default function Header() {
           <a href="/shop" className="nav-mobile-link" onClick={() => setMobileOpen(false)}>
             Shop
           </a>
-          <a href="#pillars" className="nav-mobile-link" onClick={() => setMobileOpen(false)}>
-            Our Mission
+          <a href="/about" className="nav-mobile-link" onClick={() => setMobileOpen(false)}>
+            About Us
           </a>
 
-          {/* 🔒 SHIELDED SHOPIFY IDENTITY GATEWAY LAYER (MOBILE) */}
+          {/* SHIELDED SHOPIFY IDENTITY GATEWAY LAYER (MOBILE) */}
           {!authLoading && (
             isAuthenticated ? (
               <>

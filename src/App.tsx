@@ -12,8 +12,9 @@ import Community from "./pages/Community";
 import RedirectGateway from "./pages/RedirectGateway"; 
 import DownloadGuide from "./pages/DownloadGuide";
 import Legals from "./pages/Legals";
-// 🎯 ADDED: Import your new sample pack distribution page component
 import SampleGiveaway from "./pages/SamplePack"; 
+// 🎯 ADDED: Import your new customized first-person About page platform component
+import AboutUs from "./pages/AboutUs";
 
 // SHOPIFY CUSTOMER AUTHENTICATION INFRASTRUCTURE
 import { ShopifyAuthProvider, useShopifyAuth } from "./store/ShopifyAuthContext";
@@ -135,10 +136,14 @@ export default function App() {
                     <Routes>
                       <Route path="/" element={<Home />} />
                       <Route path="/rides" element={<RideGuide />} />
+                      <Route path="/shop" element={<Shop />} />
+                      
+                      {/* 🎯 ADDED: The live workspace deployment target path for the new About page */}
+                      <Route path="/about" element={<AboutUs />} />
+                      
                       <Route path="/bikes" element={<BikeFinder />} />
                       <Route path="/community" element={<Community />} />
                       <Route path="/legals" element={<Legals />} />
-                      {/* 🎯 ADDED: The live workspace entry path for your lead-generation funnel page */}
                       <Route path="/samples" element={<SampleGiveaway />} />
                       
                       <Route path="/report/:routeID" element={<ReportWrapper />} />
