@@ -47,7 +47,12 @@ export function useRideFinderEngine(routesData: any[], onFilterChange: (filtered
       return matchesName && matchesClass && matchesDistance && matchesGrade;
     });
 
-    return result;
+    // 🎯 SORT ENGINE: Orders the matched tracks alphabetically by properties.NAME on application load & filter updates
+    return result.sort((a, b) => {
+      const nameA = String(a.properties?.NAME || "").trim().toLowerCase();
+      const nameB = String(b.properties?.NAME || "").trim().toLowerCase();
+      return nameA.localeCompare(nameB);
+    });
   }, [routesData, searchName, selectedClass, maxDistance, maxGrade]);
 
   useEffect(() => {
