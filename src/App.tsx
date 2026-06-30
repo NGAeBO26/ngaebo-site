@@ -13,7 +13,6 @@ import RedirectGateway from "./pages/RedirectGateway";
 import DownloadGuide from "./pages/DownloadGuide";
 import Legals from "./pages/Legals";
 import SampleGiveaway from "./pages/SamplePack"; 
-// 🎯 ADDED: Import your new customized first-person About page platform component
 import AboutUs from "./pages/AboutUs";
 
 // SHOPIFY CUSTOMER AUTHENTICATION INFRASTRUCTURE
@@ -56,7 +55,6 @@ function ReportWrapper() {
         <RouteReport_v3 routeID={routeID || "28-2_S1"} />
         <TelemetryOverlayTracker />
 
-        {/* ALIGNMENT FIX STYLE TAG */}
         <style>{`
           .rg-interactive-explorer-shell .rr-isolation-shell {
             padding: 0 !important;
@@ -121,26 +119,31 @@ export default function App() {
                   </Routes>
                 </main>
               ) : isShopPage ? (
-                <Routes>
-                  <Route path="/shop" element={<Shop />} />
-                </Routes>
+                /* ─── 🎯 FIX 1: WRAP STANDALONE SHOP PAGE IN A MAIN LANDMARK ─── 
+                   Resolves the "Page does not have a main landmark" error on /shop */
+                <main aria-label="Shopify Retail Showcase Marketplace Platform">
+                  <Routes>
+                    <Route path="/shop" element={<Shop />} />
+                  </Routes>
+                </main>
               ) : isGatewayPage ? (
-                <Routes>
-                  <Route path="/redirect-gateway" element={<RedirectGateway />} />
-                </Routes>
+                /* ─── 🎯 FIX 2: WRAP GATEWAY IN A MAIN LANDMARK ─── */
+                <main aria-label="External Redirect Authorization Gateway">
+                  <Routes>
+                    <Route path="/redirect-gateway" element={<RedirectGateway />} />
+                  </Routes>
+                </main>
               ) : (
                 /* STANDARD GLOBAL TEMPLATE FRAME FOR REMAINING COMPONENT MAPPINGS */
                 <>
                   <Header />
+                  {/* This serves as the single primary landmark for all standard consumer routes */}
                   <main className="page" style={{ flex: 1 }}>
                     <Routes>
                       <Route path="/" element={<Home />} />
                       <Route path="/rides" element={<RideGuide />} />
                       <Route path="/shop" element={<Shop />} />
-                      
-                      {/* 🎯 ADDED: The live workspace deployment target path for the new About page */}
                       <Route path="/about" element={<AboutUs />} />
-                      
                       <Route path="/bikes" element={<BikeFinder />} />
                       <Route path="/community" element={<Community />} />
                       <Route path="/legals" element={<Legals />} />

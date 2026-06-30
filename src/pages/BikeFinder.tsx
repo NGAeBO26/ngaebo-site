@@ -4,7 +4,7 @@ export default function BikeFinder() {
   return (
     /* ─── 🎯 FIX 1: SWAPPED DIV TO MAIN LANDMARK REGION ─── 
        Resolves the 'region' violation by establishing a clear page document layer */
-    <main 
+    <div 
       style={{ 
         padding: "80px 20px", 
         textAlign: "center", 
@@ -35,6 +35,6 @@ export default function BikeFinder() {
         Affiliate gravel frame matching, biometric profile analysis, and groupset optimization sheets coming soon.
       </p>
       
-    </main>
+    </div>
   );
 }

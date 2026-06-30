@@ -13,7 +13,7 @@ export default function Home() {
   const gradeEmptyStart = 100 - Math.min(100, Math.max(0, gradeFill));
 
   return (
-    <main className="page funnel-landing-page">
+    <div className="page funnel-landing-page">
 
       {/* SECTION 1: HERO SPLIT & FOCUS (Above the Fold) */}
       {/* ─── 🎯 FIX 1: DEFINE LANDMARK REGION SCOPE ─── */}
@@ -285,6 +285,6 @@ export default function Home() {
         </div>
       </section>
 
-    </main>
+    </div>
   );
 }

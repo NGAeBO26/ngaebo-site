@@ -84,7 +84,7 @@
   /* ─── 🎯 FIXED FOOTER COMPLIANCE CONTRAST ─── 
      Shifted color from orange-amber to slate gray to establish high 
      visibility when displaying over dark forest green background sections */
-  color: var(--brand-amber) !important;
+  color: var(--brand-graphite) !important;
 }
 
 /* Smart Visual State Border Modifiers */

@@ -6,7 +6,7 @@ export default function AboutUs() {
   return (
     /* ─── 🎯 FIX 1: SWAPPED DIV TO MAIN LANDMARK REGION ─── 
        Ensures that the entire page's informational structure is fully contained within a valid landmark boundary. */
-    <main className="about-us-funnel-container-shell" style={{ width: "100%", display: "block" }}>
+    <div className="about-us-funnel-container-shell" style={{ width: "100%", display: "block" }}>
       
       {/* SYSTEM CORE INJECTOR ─── */}
       <div className="about-us-workspace-funnel" style={{ width: "100%", display: "flex", flexDirection: "column" }}>
@@ -261,6 +261,6 @@ export default function AboutUs() {
         </section>
 
       </div>
-    </main>
+    </div>
   );
 }
