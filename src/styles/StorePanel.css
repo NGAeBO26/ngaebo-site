@@ -138,7 +138,7 @@
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
-  background-color: var(--brand-bone) !important;
+  background-color: var(--brand-white) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   padding: 6px !important;
   border-radius: var(--ng-radius-sm) !important;
@@ -309,7 +309,7 @@
   justify-content: center !important;
   padding: 20px 12px !important;
   background-color: var(--brand-white) !important;
-  border: 1px dashed var(--brand-gray) !important;
+  border: 1px dashed var(--brand-graphite) !important;
   border-radius: var(--ng-radius-md) !important;
   text-align: center;
 }
@@ -711,7 +711,7 @@
 
 .rg-tab-nav-trigger-btn.active {
   background-color: var(--brand-white) !important;
-  color: var(--brand-amber) !important;
+  color: var(--brand-graphite) !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
 }
 

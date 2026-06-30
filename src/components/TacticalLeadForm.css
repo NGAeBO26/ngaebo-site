@@ -24,12 +24,17 @@
   width: 100%;
 }
 
+.tactical-lead-wrapper.variant-row .lead-disclaimer {
+  color: var(--brand-bone) !important;
+}
+
 .tactical-lead-wrapper.variant-stacked .lead-disclaimer {
   display: flex;
   flex-direction: row;
   gap: 12px;
   width: 100%;
   text-align: center;
+  color: var(--brand-graphite)
 }
 
 /* Standardized Form Components */
@@ -74,17 +79,12 @@
   color: var(--brand-charcoal) !important;
 }
 
+/* ─── 🎯 BASE DISCLAIMER FONTS ─── */
 .lead-disclaimer {
   display: block;
-  font-size: 0.7rem;
-  margin-top: 2px;
-  width: 100%;
-  text-align: left;
-  
-  /* ─── 🎯 FIXED FOOTER COMPLIANCE CONTRAST ─── 
-     Shifted color from orange-amber to slate gray to establish high 
-     visibility when displaying over dark forest green background sections */
-  color: var(--brand-graphite) !important;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  margin-top: 8px;
 }
 
 /* Smart Visual State Border Modifiers */

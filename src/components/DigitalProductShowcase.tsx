@@ -25,14 +25,13 @@ export default function DigitalProductShowcase({
     terrain: { top: "79.6%", left: "3.2%", width: "94%", height: "15%" }
   };
 
-  // ─── 🎯 UPDATED: INFINITE PASSIVE AUTO-CYCLE DESCENT PIPELINE ───
+  // ─── INFINITE PASSIVE AUTO-CYCLE DESCENT PIPELINE ───
   useEffect(() => {
     if (hasInteracted || mode !== "landing") return;
 
     const pillarsOrder = ["analytics", "weather", "terrain"];
 
     const autoCycleTimer = setInterval(() => {
-      // Functional tracker reads context implicitly and mods length to loop infinitely
       setActivePillar((currentPillar) => {
         const currentIndex = pillarsOrder.indexOf(currentPillar);
         const nextIndex = (currentIndex + 1) % pillarsOrder.length;
@@ -55,9 +54,9 @@ export default function DigitalProductShowcase({
         <div className="section-header">
           <h2>Every Adventure Starts with a Plan</h2>
           <img
-          src="/images/RideGuide_embroid-v1.svg"
-          alt="RideGuide Logo"
-          className="showcase-brand-logo"
+            src="/images/RideGuide_embroid-v1.svg"
+            alt="RideGuide Logo"
+            className="showcase-brand-logo"
           />
           <p className="sub-tagline-lowercase">
             HIGH ACCURACY TERRAIN - CUSTOM ANALYTICS - WEATHER AWARE <br /> GUIDE FOR YOUR RIDE
@@ -66,12 +65,14 @@ export default function DigitalProductShowcase({
 
         {/* Proposition Strip */}
         <div className="prop-strip-matrix-bay">
+          
           <div className="prop-value-column-card">
             <div className="prop-card-header-strip">
               <div className="prop-value-icon-box">
-                <img src="/data/assets/icon_no_cell_signal.svg" className="ng-prop-graphic-asset" alt="Offline Independent" />
+                <img src="/data/assets/icon_no_cell_signal.svg" className="ng-prop-graphic-asset" alt="Offline Independent Icon" />
               </div>
-              <h5>Offline Independent</h5>
+              {/* ─── 🎯 FIX 1: CONVERTED H5 TO STYLED COMPLIANT PARAGRAPH ─── */}
+              <span className="prop-card-header-title">Offline Independent</span>
             </div>
             <p>Pre-rendered field guides that load instantly without requiring <strong className="text-prop-heavy">cell network data or map syncs</strong>.</p>
           </div>
@@ -79,9 +80,10 @@ export default function DigitalProductShowcase({
           <div className="prop-value-column-card">
             <div className="prop-card-header-strip">
               <div className="prop-value-icon-box">
-                <img src="/data/assets/icon_credit_card.svg" className="ng-prop-graphic-asset" alt="No Subscription Required" />
+                <img src="/data/assets/icon_credit_card.svg" className="ng-prop-graphic-asset" alt="No Subscription Required Icon" />
               </div>
-              <h5>No Required Subscription</h5>
+              {/* ─── 🎯 FIX 2: CONVERTED H5 TO STYLED COMPLIANT PARAGRAPH ─── */}
+              <span className="prop-card-header-title">No Required Subscription</span>
             </div>
             <p>Don't get caught in subscription based route services. <strong className="text-prop-heavy">Buy only what you want, when you want.</strong></p>
           </div>
@@ -89,9 +91,10 @@ export default function DigitalProductShowcase({
           <div className="prop-value-column-card">
             <div className="prop-card-header-strip">
               <div className="prop-value-icon-box">
-                <img src="/data/assets/icon_safety.svg" className="ng-prop-graphic-asset" alt="Peace of Mind" />
+                <img src="/data/assets/icon_safety.svg" className="ng-prop-graphic-asset" alt="Peace of Mind Icon" />
               </div>
-              <h5>Peace of Mind</h5>
+              {/* ─── 🎯 FIX 3: CONVERTED H5 TO STYLED COMPLIANT PARAGRAPH ─── */}
+              <span className="prop-card-header-title">Peace of Mind</span>
             </div>
             <p>The backcountry can be dangerous if you are not prepared. <strong className="text-prop-heavy">Understand your risk and ride safely.</strong></p>
           </div>
@@ -107,19 +110,19 @@ export default function DigitalProductShowcase({
                 className={`feature-pillar-tab-card ${activePillar === "analytics" ? "active-pillar" : "collapsed-pillar"}`} 
                 onClick={() => handleTabInteraction("analytics")} 
                 onMouseEnter={() => handleTabInteraction("analytics")}
+                aria-expanded={activePillar === "analytics"}
               >
-                {/* Left Structural Indicator bar containing chevrons */}
                 <div className="accordion-left-indicator-bar">
                   <span className="accordion-tab-chevron-indicator">❯</span>
                 </div>
 
                 <div className="accordion-tab-header-strip">
                   <span className="accordion-tab-vector-placeholder">
-                    <img src="/data/assets/icon_route.svg" className="ng-accordion-graphic-asset" alt="Route Analytics" />
+                    <img src="/data/assets/icon_route.svg" className="ng-accordion-graphic-asset" alt="Route Analytics Symbol" />
                   </span>
                   <div className="accordion-title-block">
-                    
-                    <h4>Know the Route Before You Head Out</h4>
+                    {/* ─── 🎯 FIX 4: CONVERTED H4 TO ACCORDION LABEL PARAGRAPH ─── */}
+                    <p className="accordion-title-text">Know the Route Before You Head Out</p>
                   </div>
                 </div>
                 
@@ -137,19 +140,19 @@ export default function DigitalProductShowcase({
                 className={`feature-pillar-tab-card ${activePillar === "weather" ? "active-pillar" : "collapsed-pillar"}`} 
                 onClick={() => handleTabInteraction("weather")} 
                 onMouseEnter={() => handleTabInteraction("weather")}
+                aria-expanded={activePillar === "weather"}
               >
-                {/* Left Structural Indicator bar containing chevrons */}
                 <div className="accordion-left-indicator-bar">
                   <span className="accordion-tab-chevron-indicator">❯</span>
                 </div>
 
                 <div className="accordion-tab-header-strip">
                   <span className="accordion-tab-vector-placeholder">
-                    <img src="/data/assets/icon_precip.svg" className="ng-accordion-graphic-asset" alt="Weather Engine" />
+                    <img src="/data/assets/icon_precip.svg" className="ng-accordion-graphic-asset" alt="Weather Engine Symbol" />
                   </span>
                   <div className="accordion-title-block">
-                    
-                    <h4>Target Your Optimal Ride Window</h4>
+                    {/* ─── 🎯 FIX 5: CONVERTED H4 TO ACCORDION LABEL PARAGRAPH ─── */}
+                    <p className="accordion-title-text">Target Your Optimal Ride Window</p>
                   </div>
                 </div>
                 
@@ -167,19 +170,19 @@ export default function DigitalProductShowcase({
                 className={`feature-pillar-tab-card ${activePillar === "terrain" ? "active-pillar" : "collapsed-pillar"}`} 
                 onClick={() => handleTabInteraction("terrain")} 
                 onMouseEnter={() => handleTabInteraction("terrain")}
+                aria-expanded={activePillar === "terrain"}
               >
-                {/* Left Structural Indicator bar containing chevrons */}
                 <div className="accordion-left-indicator-bar">
                   <span className="accordion-tab-chevron-indicator">❯</span>
                 </div>
 
                 <div className="accordion-tab-header-strip">
                   <span className="accordion-tab-vector-placeholder">
-                    <img src="/data/assets/icon_motor.svg" className="ng-accordion-graphic-asset" alt="Terrain Analysis" />
+                    <img src="/data/assets/icon_motor.svg" className="ng-accordion-graphic-asset" alt="Terrain Analysis Symbol" />
                   </span>
                   <div className="accordion-title-block">
-                    
-                    <h4>Will Your Motor and Battery Hold Out?</h4>
+                    {/* ─── 🎯 FIX 6: CONVERTED H4 TO ACCORDION LABEL PARAGRAPH ─── */}
+                    <p className="accordion-title-text">Will Your Motor and Battery Hold Out?</p>
                   </div>
                 </div>
                 
@@ -195,7 +198,11 @@ export default function DigitalProductShowcase({
           ) : (
             <div className="capture-instructions-deck">
               <div className="capture-instructions-deck-header">
-                <h3>{showEmailForm ? "Get Your Free Sample Pack" : "Get Your RideGuide in 3 Steps"}</h3> 
+                {/* ─── 🎯 FIX 7: CONVERTED H3 TO CAPTURE HEADER PARAGRAPH ─── 
+                    Prevents heading order skipping errors when embedded inside various page components. */}
+                <p className="capture-instructions-title">
+                  {showEmailForm ? "Get Your Free Sample Pack" : "Get Your RideGuide in 3 Steps"}
+                </p> 
               </div>
               
               {!showEmailForm ? (
@@ -245,7 +252,6 @@ export default function DigitalProductShowcase({
                   height: overlayCoordinates[activePillar].height 
                 }} 
               >
-                {/* ─── 🎯 NEW: INTERACTIVE HOVER TEXT PILL INJECTION AREA ─── */}
                 <span className="map-overlay-tooltip">Hover to Learn More</span>
               </div>
             )}
@@ -265,7 +271,7 @@ export default function DigitalProductShowcase({
               />
             ))}
 
-            <img src="/data/assets/RideGuide_Sample.png" alt="RideGuide Field Map Dashboard Mockup Blueprint" className="blueprint-main-map-image" />
+            <img src="/data/assets/RideGuide_Sample.png" alt="RideGuide Field Map Dashboard Mockup Blueprint Blueprint Panel" className="blueprint-main-map-image" />
           </div>
         </div>  
 

@@ -39,7 +39,7 @@
 
 .rg-legals-meta {
   /* Retains clear amber tone over your header's dark background layer */
-  color: var(--brand-amber);
+  color: var(--brand-bone);
   margin: 4px 0 0 0;
   font-size: 12px;
   font-weight: bold;

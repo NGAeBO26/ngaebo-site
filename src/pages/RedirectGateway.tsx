@@ -131,7 +131,7 @@ export default function RedirectGateway() {
                 )}
               </p>
               <TacticalLeadForm 
-                  layout="row"
+                  layout="stacked"
                   sourceGroupTag={parsedIntentTag}
                   placeholderText="Enter your email address..."
                   buttonLabel={isAccessoryItem ? "Claim Free Maps ➔" : "Claim Free Maps ➔"}

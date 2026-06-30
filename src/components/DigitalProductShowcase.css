@@ -14,10 +14,9 @@
 }
 
 .showcase-brand-logo {
-align-items: center;
-justify-content: center;
-width: 180px;
-
+  align-items: center;
+  justify-content: center;
+  width: 180px;
 }
 
 .section-header {
@@ -54,7 +53,6 @@ width: 180px;
   margin: 8px auto 16px auto;
 }
 
-/* Icon layout adjustments for clean horizontal alignment */
 .prop-value-icon-box {
   width: 44px;
   height: 44px;
@@ -79,7 +77,6 @@ width: 180px;
   line-height: 1.2;
 }
 
-/* Sizing constraints for nested prop asset image elements */
 .prop-value-icon-box img.ng-prop-graphic-asset {
   width: 36px;
   height: 36px;
@@ -98,7 +95,9 @@ width: 180px;
   box-sizing: border-box;
 }
 
-.prop-value-column-card h5 {
+/* ─── 🎯 REMAPPED: VALUE CARD HEADER TITLE ─── */
+.prop-card-header-title {
+  display: block;
   font-size: 1.05rem;
   font-weight: 800;
   color: #ffffff;
@@ -138,7 +137,7 @@ width: 180px;
 .feature-pillar-tab-card {
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 10px;
-  padding: 10px 14px 10px 42px; /* 🎯 INCREASED: Shifted from 32px to 42px to clear the wider gutter smoothly */
+  padding: 10px 14px 10px 42px; 
   cursor: pointer;
   text-align: left;
   display: flex;
@@ -150,7 +149,8 @@ width: 180px;
   position: relative;
 }
 
-.feature-pillar-tab-card h4 {
+/* ─── 🎯 REMAPPED: ACCORDION LABELS TEXT ─── */
+.feature-pillar-tab-card .accordion-title-text {
   font-size: 1rem;
   font-weight: 800;
   margin: 0;
@@ -193,25 +193,24 @@ width: 180px;
   align-items: center;
   gap: 8px;
   width: 100%;
+  
 }
 
-/* GLOW INDICATOR SIDE BAR MECHANISM */
 .accordion-left-indicator-bar {
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 32px; /* 🎯 WIDENED: Increased from 24px to create an 8px clearance safety buffer */
+  width: 32px; 
   display: flex;
   align-items: center;
-  justify-content: center; /* 🎯 AUTOMATIC CENTERING: Centers the chevron perfectly within the remaining space */
+  justify-content: center; 
   box-sizing: border-box;
   border-left: 12px solid var(--brand-amber);
   transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 5;
 }
 
-/* --- 3. ACCORDION CHEVRON (STRIPPED ASYMMETRIC PADDING) --- */
 .accordion-tab-chevron-indicator {
   font-size: 0.75rem;
   font-weight: 800;
@@ -222,10 +221,9 @@ width: 180px;
   justify-content: center;
   width: 12px;
   height: 12px;
-  padding: 0; /* 🎯 RESOLVED: Removed padding-left to guarantee a clean, locked 3D spin on its true center axis */
+  padding: 0; 
 }
 
-/* Base accordion image layout framework container */
 .accordion-tab-vector-placeholder {
   width: 18px;
   height: 18px;
@@ -236,7 +234,6 @@ width: 180px;
   transition: all 0.25s ease;
 }
 
-/* Target properties handling raw accordion asset img elements */
 .accordion-tab-vector-placeholder img.ng-accordion-graphic-asset {
   width: 24px;
   height: 24px;
@@ -277,7 +274,8 @@ width: 180px;
   box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.2);
 }
 
-.feature-pillar-tab-card.active-pillar h4 {
+/* ─── 🎯 REMAPPED: ACTIVE STATE ACCORDION LABELS TEXT ─── */
+.feature-pillar-tab-card.active-pillar .accordion-title-text {
   color: var(--brand-sky);
   margin-bottom: 2px;
 }
@@ -291,20 +289,15 @@ width: 180px;
   color: var(--brand-verdant);
 }
 
-/* Transitions active border and active chevron directly to brand forest green */
 .feature-pillar-tab-card.active-pillar .accordion-left-indicator-bar {
   border-left-color: var(--brand-sky);
-   
 }
 .feature-pillar-tab-card.active-pillar .accordion-tab-chevron-indicator {
   transform: rotate(90deg);
   color: var(--brand-sky); 
 }
 
-/* THE ACCORDION IMAGE INVERSION CONTROLLER */
-.feature-pillar-tab-card.active-pillar
-  .accordion-tab-vector-placeholder
-  img.ng-accordion-graphic-asset {
+.feature-pillar-tab-card.active-pillar .accordion-tab-vector-placeholder img.ng-accordion-graphic-asset {
   filter: brightness(0) saturate(100%) invert(48%) sepia(13%) saturate(941%)
     hue-rotate(178deg) brightness(93%) contrast(87%);
 }
@@ -328,21 +321,18 @@ width: 180px;
   border-radius: 12px;
 }
 
-/* Collapsed white text presentation paths matching image layout viewports */
-.feature-pillar-tab-card.collapsed-pillar h4 {
+/* ─── 🎯 REMAPPED: COLLAPSED STATE ACCORDION LABELS TEXT ─── */
+.feature-pillar-tab-card.collapsed-pillar .accordion-title-text {
   color: var(--brand-white);
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
 }
 .feature-pillar-tab-card.collapsed-pillar .pillar-eyebrow-accent {
   color: #94a3b8;
 }
-.feature-pillar-tab-card.collapsed-pillar
-  .accordion-tab-vector-placeholder
-  img.ng-accordion-graphic-asset {
+.feature-pillar-tab-card.collapsed-pillar .accordion-tab-vector-placeholder img.ng-accordion-graphic-asset {
   filter: none; 
 }
 
-/* Illuminates indicator line and chevron to forest green on hover engagements */
 .feature-pillar-tab-card.collapsed-pillar:hover .accordion-left-indicator-bar {
   border-left-color: var(--brand-deep-green); 
 }
@@ -380,7 +370,6 @@ width: 180px;
   display: block;
 }
 
-/* HOVER LAYER CHANNELS ON MAP IMAGE SENSORS */
 .blueprint-hotspot-interactive-zone {
   position: absolute;
   z-index: 20;
@@ -400,10 +389,9 @@ width: 180px;
   z-index: 10;
 }
 
-/* ─── 🎯 OVERLAY HOVER METRICS ACCENT TOOLTIP (RESPONSIVE WRAPPING FIX) ─── */
 .blueprint-hotspot-highlight-overlay .map-overlay-tooltip {
   position: absolute;
-  bottom: 8px; /* Sits cleanly inside the unvignetted spotlight window box */
+  bottom: 8px; 
   left: 50%;
   transform: translateX(-50%);
   background: color-mix(in srgb, var(--brand-verdant) 85%, transparent);
@@ -418,12 +406,10 @@ width: 180px;
   border-radius: 4px;
   text-shadow: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-  
-  /* 🎯 WRAPPING ENGINE: Drops nowrap constraint to allow safe multi-line breaks inside narrow zones */
   white-space: normal;
   text-align: center;
   width: max-content;
-  max-width: 90%; /* Prevents text from leaking past left/right border bounds */
+  max-width: 90%; 
   box-sizing: border-box;
 }
 
@@ -478,7 +464,8 @@ width: 180px;
   justify-content: center;
 }
 
-.capture-instructions-deck h3 {
+/* ─── 🎯 REMAPPED: CAPTURE INSTRUCTIONS HEADER TITLE ─── */
+.capture-instructions-title {
   font-family: "Montserrat", sans-serif !important;
   font-size: 1rem;
   font-weight: 800;
