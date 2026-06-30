@@ -400,3 +400,27 @@
   font-size: 12px;
   margin-top: 2px;
 }
+
+/* RideGuide Component Structural Accessibility Adjustments */
+
+/* ─── 🎯 VALUE MATRIX ITEM HEADER OVERRIDES ─── */
+.prop-value-column-card .prop-card-header-title {
+  display: block; /* Forces the span onto its own header row lane layout */
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 6px 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+}
+
+/* ─── 🎯 BOTTOM SUMMARY INSTRUCTION CALLOUT ─── */
+.rg-horizontal-instructions-tier .rg-instructions-micro-header-callout {
+  display: block;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.4;
+  text-align: center;
+  margin-top: 16px;
+  color: var(--brand-mellow);
+}

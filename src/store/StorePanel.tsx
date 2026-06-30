@@ -1,9 +1,9 @@
 /* src/store/StorePanel.tsx */
 import { useState, useEffect } from "react";
-import { useShopifyCart } from "./ShopifyCartContext"; //
-import { useShopifyAuth } from "./ShopifyAuthContext"; //
+import { useShopifyCart } from "./ShopifyCartContext"; 
+import { useShopifyAuth } from "./ShopifyAuthContext"; 
 
-const BADGES_BASE = "/images/badges/fcs"; //
+const BADGES_BASE = "/images/badges/fcs"; 
 
 interface CartItem {
   id: string;
@@ -26,19 +26,19 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
   console.log("3. Current Length:", allRoutes ? allRoutes.length : "undefined/null");
   console.log("======================================");
 
-  const { isAuthenticated, customer, refreshProfile, login, logout } = useShopifyAuth(); //
-  const { addRouteToCart, removeCartItem, cartItems, checkoutUrl } = useShopifyCart(); //
+  const { isAuthenticated, customer, refreshProfile, login, logout } = useShopifyAuth(); 
+  const { addRouteToCart, removeCartItem, cartItems, checkoutUrl } = useShopifyCart(); 
 
-  const [isAdding, setIsAdding] = useState(false); //
-  const [isRedeeming, setIsRedeeming] = useState(false);  //
+  const [isAdding, setIsAdding] = useState(false); 
+  const [isRedeeming, setIsRedeeming] = useState(false);  
   const [cachedRoute, setCachedRoute] = useState<any | null>(null); //
-  const [activeTab, setActiveTab] = useState<"cart" | "catalog">("cart"); //
-  const [activeCatalogHoverId, setActiveCatalogHoverId] = useState<string | null>(null); //
+  const [activeTab, setActiveTab] = useState<"cart" | "catalog">("cart"); 
+  const [activeCatalogHoverId, setActiveCatalogHoverId] = useState<string | null>(null); 
 
-  const isFullyAuthenticated = isAuthenticated && customer !== null; //
+  const isFullyAuthenticated = isAuthenticated && customer !== null; 
 
-  const rawUnlockedGuides = customer?.unlocked_guides || "{}"; //
-  let unlockedMap: Record<string, any> = {}; //
+  const rawUnlockedGuides = customer?.unlocked_guides || "{}"; 
+  let unlockedMap: Record<string, any> = {}; 
   
   try {
     if (typeof rawUnlockedGuides === "string") {
@@ -55,9 +55,9 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     unlockedMap = {};
   }
 
-  const currentTimestamp = Date.now(); //
+  const currentTimestamp = Date.now(); 
 
-  // 🎯 DEFENSIVE DICTIONARY EXTRACTORS: Safely handles objects and raw fallback timestamps
+  // DEFENSIVE DICTIONARY EXTRACTORS
   const getRouteExpiry = (id: string): number => {
     const entry = unlockedMap[id];
     if (!entry) return 0;
@@ -67,32 +67,32 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
 
   const hasActivePass = customer?.passExpiresAt 
     ? new Date() < new Date(customer.passExpiresAt) 
-    : false; //
+    : false; 
 
-  const hasActiveSelection = cachedRoute !== null; //
-  const routeProps = cachedRoute?.properties || cachedRoute || {}; //
+  const hasActiveSelection = cachedRoute !== null; 
+  const routeProps = cachedRoute?.properties || cachedRoute || {}; 
 
   const routeTitle = hasActiveSelection
     ? (routeProps.NAME || routeProps.title || "Selected Route")
-    : "No Route Selected"; //
+    : "No Route Selected"; 
 
   const rawRouteId = hasActiveSelection 
     ? String(routeProps.profile_id || cachedRoute.id || routeProps.id || routeProps.ID || "")
-    : ""; //
+    : ""; 
 
-  const miles = routeProps.GIS_MILES ? parseFloat(routeProps.GIS_MILES).toFixed(1) : null; //
-  const distanceMetric = miles ? `${miles} MILES` : (routeProps.distance ? `${routeProps.distance} mi` : "Premium Data"); //
-  const avgGrade = routeProps.v3_avg_grade || "0"; //
-  const fcsLabel = routeProps.v3_fcs_label ? String(routeProps.v3_fcs_label).toLowerCase() : ""; //
-  const fcsBadgePath = fcsLabel ? `${BADGES_BASE}/fcs-badge-${fcsLabel}.png` : ""; //
+  const miles = routeProps.GIS_MILES ? parseFloat(routeProps.GIS_MILES).toFixed(1) : null; 
+  const distanceMetric = miles ? `${miles} MILES` : (routeProps.distance ? `${routeProps.distance} mi` : "Premium Data"); 
+  const avgGrade = routeProps.v3_avg_grade || "0"; 
+  const fcsLabel = routeProps.v3_fcs_label ? String(routeProps.v3_fcs_label).toLowerCase() : ""; 
+  const fcsBadgePath = fcsLabel ? `${BADGES_BASE}/fcs-badge-${fcsLabel}.png` : ""; 
 
-  const tokenBalance = customer?.tokens || 0; //
-  const hasTokens = tokenBalance > 0; //
-  const isTokenUser = isFullyAuthenticated && hasTokens;  //
+  const tokenBalance = customer?.tokens || 0; 
+  const hasTokens = tokenBalance > 0; 
+  const isTokenUser = isFullyAuthenticated && hasTokens;  
 
-  const isThisRouteExplicitlyUnlocked = hasActivePass || (getRouteExpiry(rawRouteId) > currentTimestamp); //
+  const isThisRouteExplicitlyUnlocked = hasActivePass || (getRouteExpiry(rawRouteId) > currentTimestamp); 
 
-  // 🎯 SCHEMATIC OBJECT ENTRY PARSING
+  // SCHEMATIC OBJECT ENTRY PARSING
   const activeCatalogPasses = Object.entries(unlockedMap)
     .map(([routeId, entry]) => {
       const expiresAt = typeof entry === "object" && entry !== null ? Number(entry.expiresAt || 0) : Number(entry || 0);
@@ -109,13 +109,13 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     const targetId = item.routeId || "";
     const isLineRouteUnlocked = hasActivePass || (getRouteExpiry(targetId) > currentTimestamp);
     return !isLineRouteUnlocked;
-  }); //
+  }); 
 
-  const totalCartCount = visibleCartItems.length; //
-  const computedPriceTotal = (totalCartCount * 6.99).toFixed(2); //
-  const computedTokenTotal = totalCartCount;  //
+  const totalCartCount = visibleCartItems.length; 
+  const computedPriceTotal = (totalCartCount * 6.99).toFixed(2); 
+  const computedTokenTotal = totalCartCount;  
 
-  const isAlreadyInCart = visibleCartItems.some((item: CartItem) => String(item.routeId) === rawRouteId); //
+  const isAlreadyInCart = visibleCartItems.some((item: CartItem) => String(item.routeId) === rawRouteId); 
 
   useEffect(() => {
     if (isFullyAuthenticated && refreshProfile) {
@@ -123,7 +123,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
       window.addEventListener("focus", handleTabFocusSync);
       return () => window.removeEventListener("focus", handleTabFocusSync);
     }
-  }, [isFullyAuthenticated, refreshProfile]); //
+  }, [isFullyAuthenticated, refreshProfile]); 
 
   useEffect(() => {
     if (activeRouteProperties !== null) {
@@ -137,14 +137,14 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
         setActiveTab("catalog");
       }
     }
-  }, [activeRouteProperties, unlockedMap, hasActivePass]); //
+  }, [activeRouteProperties, unlockedMap, hasActivePass]); 
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       (window as any).debugCatalog = activeCatalogPasses;
       (window as any).debugRoutes = allRoutes;
     }
-  }, [activeCatalogPasses, allRoutes]); //
+  }, [activeCatalogPasses, allRoutes]); 
 
   const handleAddToCartAction = async () => {
     if (!hasActiveSelection || isAdding) return;
@@ -158,7 +158,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     const targetVariantId = "gid://shopify/ProductVariant/51045122146524"; 
     await addRouteToCart(targetVariantId, rawRouteId, routeTitle, distanceMetric, fcsLabel);
     setIsAdding(false);
-  }; //
+  }; 
 
   const handleTokenRedemption = async (targetId: string, targetTitle: string) => {
     if (isRedeeming || !customer) return;
@@ -191,7 +191,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     } finally {
       setIsRedeeming(false);
     }
-  }; //
+  }; 
 
   const handleBatchTokenRedemption = async () => {
     if (isRedeeming || !customer || totalCartCount === 0) return;
@@ -224,13 +224,11 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     } finally {
       setIsRedeeming(false);
     }
-  }; //
+  }; 
 
-  // 🎯 THE CHECKOUT GATE KEEPER INTERCEPTOR
   const handlePrimaryCheckoutDispatch = () => {
     if (totalCartCount === 0) return;
     
-    // Intercept guest checkouts and redirect them to authenticate first
     if (!isFullyAuthenticated) {
       login();
       return;
@@ -284,17 +282,19 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
         
         {hasActiveSelection && (
           <div className="rg-active-map-selection-panel">
-            <h4 className="rg-panel-section-title">Selected Route Details</h4>
+            {/* ─── 🎯 FIX A: CONVERTED H4 TO ACCESSIBLE ELEMENT CLASS SPAN ─── */}
+            <span className="rg-panel-section-title" style={{ display: 'block' }}>Selected Route Details</span>
             <div className="route-finder-card-vertical">
               <div className="card-left-details-block">
-                <h3 className="card-route-title">{routeTitle}</h3>
+                {/* ─── 🎯 FIX B: CONVERTED H3 TO COMPLIANT ELEMENT CLASS SPAN ─── */}
+                <span className="card-route-title" style={{ display: 'block' }}>{routeTitle}</span>
                 <div className="card-metrics-grid">
                   <div className="metric-column"><span className="metric-label">Distance</span><span className="metric-value">{distanceMetric}</span></div>
                   <div className="metric-column"><span className="metric-label">Avg Grade</span><span className="metric-value">{avgGrade}%</span></div>
                 </div>
               </div>
               <div className="card-right-badge-bay">
-                {fcsBadgePath && <img src={fcsBadgePath} alt="badge" className="card-route-badge-image-scaled" />}
+                {fcsBadgePath && <img src={fcsBadgePath} alt="FCS Difficulty Badge Graphic" className="card-route-badge-image-scaled" />}
               </div>
             </div>
 
@@ -337,8 +337,38 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
             {activeTab === "cart" && (
               <div className="rg-persistent-cart-panel">
                 {totalCartCount === 0 ? (
-                  <div className="rg-cart-empty-placeholder">
-                    <span>No route items staged. Select a route line on the map to fill your cart.</span>
+                  /* ─── 🎯 FIX C: REPLICATED INSTRUCTION GUIDE CARDS STRIP INTO THE EMPTY STATE PANEL ─── 
+                     This clears the low-contrast warning entirely while dramatically improving empty-state UX! */
+                  <div className="rg-cart-empty-placeholder text-deck-injection">
+                    <div className="rg-horizontal-instructions-tier panel-optimized-deck">
+                      <span className="rg-instructions-micro-header font-weight-heavy" style={{ display: 'block', marginBottom: '12px' }}>
+                        Get Your RideGuide in 3 Easy Steps:
+                      </span>
+                      <span className="rg-instructions-micro-header-callout panel-empty-state-sub-caption">
+                        Select any route line on the map to begin. →
+                      </span>
+                      <div className="rg-horizontal-steps-row vertical-stack-fallback-panel">
+                        <div className="rg-step-column-item">
+                          <span className="rg-step-badge-number">1</span>
+                          <p className="rg-step-item-text">
+                            <strong>Filter tracks</strong> by class, mileage, or average trail grading.
+                          </p>
+                        </div>
+                        <div className="rg-step-column-item" style={{ marginTop: '4px' }}>
+                          <span className="rg-step-badge-number">2</span>
+                          <p className="rg-step-item-text">
+                            <strong>Select a route</strong> by clicking list cards or lines on the map canvas.
+                          </p>
+                        </div>
+                        <div className="rg-step-column-item" style={{ marginTop: '4px' }}>
+                          <span className="rg-step-badge-number">3</span>
+                          <p className="rg-step-item-text">
+                            <strong>Unlock maps</strong> to instantly download continuous telemetry profiles.
+                          </p>
+                        </div>
+                      </div>
+                      
+                    </div>
                   </div>
                 ) : (
                   <div className="rg-cart-items-list-container">
@@ -408,19 +438,21 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
                           onMouseLeave={() => setActiveCatalogHoverId(null)}
                         >
                           <div className="rg-catalog-item-meta-left">
-                            <h3 
-                              className="card-route-title"
+                            {/* ─── 🎯 FIX D: CONVERTED LOOP H3 TO ACTIVE CLASS COMPLIANT ELEMENT SPAN ─── */}
+                            <span 
+                              className="card-route-title catalog-vault-item-title-text"
                               style={{ 
                                 color: isCurrentlyHovered ? "#f59e0b" : "#334155",
                                 margin: 0,
                                 fontSize: "10.5px",
                                 fontWeight: 800,
+                                display: "block",
                                 textTransform: "uppercase",
                                 fontFamily: "Montserrat, sans-serif"
                               }}
                             >
                               {displayTitle}
-                            </h3>
+                            </span>
                             <span className="rg-catalog-item-countdown-tag">⏰ {pass.daysLeft} days remaining</span>
                           </div>
                           <div className="rg-catalog-item-actions-right">

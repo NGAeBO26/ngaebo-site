@@ -325,7 +325,7 @@ export function RideResultGallery({
                     <div className="card-id-row">
                       <h3
                         className="card-route-title"
-                        style={{ color: isCurrentlyHovered ? "#f59e0b" : "#334155" }}
+                        style={{ color: isCurrentlyHovered ? "var(--brand-white)" : "#334155" }}
                       >
                         {name}
                       </h3>

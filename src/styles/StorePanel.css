@@ -315,8 +315,8 @@
 }
 
 .rg-cart-empty-placeholder span {
-  font-size: 9.5px !important;
-  color: var(--brand-slate) !important;
+  font-size: 9.5px !important;  
+  font-weight: 500;
   line-height: 1.4 !important;
   font-family: "Montserrat", sans-serif !important;
 }
@@ -824,4 +824,90 @@
   overflow: hidden !important; /* Changed from visible to allow truncation */
   text-overflow: ellipsis !important; /* Appends the '...' when text runs out of room */
   white-space: nowrap !important; /* Keeps text locked tightly to a single line */
+}
+
+/* StorePanel Modular Accessibility & Style Remapping Overrides */
+
+/* Remaps styles for the section layout details descriptor row */
+.rg-checkout-hub-card .rg-panel-section-title {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--brand-charcoal, #334155);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* Remaps card titles to retain font layout parameters without using header tags */
+.rg-checkout-hub-card .card-route-title {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--brand-charcoal, #0f172a);
+  font-family: "Montserrat", sans-serif;
+}
+
+/* ─── 🎨 SIDEBAR INSTRUCTIONAL EMPTY STATE CARD FORMATTING ─── */
+.rg-cart-empty-placeholder.text-deck-injection {
+  padding: 12px 6px !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.panel-optimized-deck .font-weight-heavy {
+  font-size: 0.85rem !important;
+  font-weight: 800 !important;
+  color: var(--brand-sky) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* Formats list blocks inside the side panel card module */
+.vertical-stack-fallback-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+
+.vertical-stack-fallback-panel .rg-step-column-item {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.vertical-stack-fallback-panel .rg-step-badge-number {
+  width: 18px;
+  height: 18px;
+  background: var(--brand-sky, #38bdf8);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.vertical-stack-fallback-panel .rg-step-item-text {
+  font-size: 0.72rem !important;
+  line-height: 1.4 !important;
+  color: #475569 !important;
+  margin: 0 !important;
+}
+
+.panel-empty-state-sub-caption {
+  color: var(--brand-verdant) !important;
+  font-weight: 600;
+  margin-bottom: 8px;
 }

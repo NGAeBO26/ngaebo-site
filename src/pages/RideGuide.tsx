@@ -61,7 +61,7 @@ export default function RideGuide() {
     return () => clearInterval(progressTimer);
   }, [isWorkspaceLoading]);
 
-  // ─── 🎯 UNIFIED STAGGERED ANIMATION ESCAPE OUTLET PIPELINE ───
+  // ─── UNIFIED STAGGERED ANIMATION ESCAPE OUTLET PIPELINE ───
   const handleExitFullscreen = useCallback(() => {
     ignoreObserverRef.current = true;
 
@@ -77,7 +77,7 @@ export default function RideGuide() {
     }, 350);
   }, []);
 
-  // ─── 🎯 LOOP-PROOF SCROLL CAPTURE TRACKING ENGINE ───
+  // ─── LOOP-PROOF SCROLL CAPTURE TRACKING ENGINE ───
   useEffect(() => {
     const handleScrollEntryTrigger = () => {
       if (ignoreObserverRef.current) return;
@@ -106,9 +106,6 @@ export default function RideGuide() {
     });
     return () => window.removeEventListener("scroll", handleScrollEntryTrigger);
   }, []);
-
-  // ─── 🎯 REVISED: GESTURE COOLDOWN ENGINE ───
-  // Mouse wheel listeners removed to let users scroll galleries, sidebars, and filters safely.
 
   const handleLeadSuccess = () => {
     localStorage.setItem("rideguide_lead_submitted", "true");
@@ -178,7 +175,7 @@ export default function RideGuide() {
       }}>
         North Georgia Backcountry Route Explorer and Telemetry Workspace
       </h1>
-      {/* HUD TARGET FULL SCREEN COUNTDOWN TIMELINE OVERLAY */}
+      
       <LoadingOverlay
         isLoading={isEnteringFullscreen}
         progress={0}
@@ -189,17 +186,18 @@ export default function RideGuide() {
       />
 
       {/* SHOWCASE BRAND MARKETING TOP ROW */}
-      <section className="rg-inline-showcase-section">
+      <section className="rg-inline-showcase-section" aria-label="Product Benefit Overview Section">
         <div className="rf-marketing-hero-banner">
           <h2>Plan Faster. Ride Smarter.</h2>
           <p>
-            HIGH ACCURACY TERRAIN - CUSTOM ANALYTICS - WEATHER AWARE - GUIDE FOR
-            YOUR RIDE
+            HIGH ACCURACY TERRAIN - CUSTOM ANALYTICS - WEATHER AWARE - GUIDE FOR YOUR RIDE
           </p>
         </div>
 
         <div className="rg-inline-funnel-container">
           <div className="prop-strip-matrix-bay tier-4-column-grid">
+            
+            {/* Card 1 */}
             <div className="prop-value-column-card">
               <div className="prop-card-header-strip">
                 <div className="rg-preview-img-contain-rotated">
@@ -209,7 +207,8 @@ export default function RideGuide() {
                     className="rg-mini-thumbnail-rotated"
                   />
                 </div>
-                <span className="prop-card-header-title-fallback" >
+                {/* ─── 🎯 REMAPPED COMPLIANT HEADER SPAN ─── */}
+                <span className="prop-card-header-title">
                   Know Before You Go
                 </span>
               </div>
@@ -223,16 +222,18 @@ export default function RideGuide() {
               </p>
             </div>
 
+            {/* Card 2 */}
             <div className="prop-value-column-card">
               <div className="prop-card-header-strip">
                 <div className="prop-value-icon-box ng-prop-icon-offline">
                   <img
                     src="data\assets\icon_no_cell_signal.svg"
                     className="ng-prop-graphic-asset"
-                    alt="Offline Independent"
+                    alt="Offline Independent Icon"
                   />
                 </div>
-                <h5>Offline Independent</h5>
+                {/* ─── 🎯 FIX 1: CONVERTED H5 TO COMPLIANT CLASS SPAN ─── */}
+                <span className="prop-card-header-title">Offline Independent</span>
               </div>
               <p>
                 Pre-rendered field guides that load instantly without requiring{" "}
@@ -243,16 +244,18 @@ export default function RideGuide() {
               </p>
             </div>
 
+            {/* Card 3 */}
             <div className="prop-value-column-card">
               <div className="prop-card-header-strip">
                 <div className="prop-value-icon-box window-icon ng-prop-icon-motor">
                   <img
                     src="data\assets\icon_credit_card.svg"
                     className="ng-prop-graphic-asset"
-                    alt="No Subscription Required"
+                    alt="No Subscription Required Icon"
                   />
                 </div>
-                <h5>No Required Subscription </h5>
+                {/* ─── 🎯 FIX 2: CONVERTED H5 TO COMPLIANT CLASS SPAN ─── */}
+                <span className="prop-card-header-title">No Required Subscription</span>
               </div>
               <p>
                 Don't get caught in subscription based route services.{" "}
@@ -262,16 +265,18 @@ export default function RideGuide() {
               </p>
             </div>
 
+            {/* Card 4 */}
             <div className="prop-value-column-card">
               <div className="prop-card-header-strip">
                 <div className="prop-value-icon-box ng-prop-icon-insurance">
                   <img
                     src="data\assets\icon_safety.svg"
                     className="ng-prop-graphic-asset"
-                    alt="Peace of Mind"
+                    alt="Peace of Mind Icon"
                   />
                 </div>
-                <h5>Peace of Mind</h5>
+                {/* ─── 🎯 FIX 3: CONVERTED H5 TO COMPLIANT CLASS SPAN ─── */}
+                <span className="prop-card-header-title">Peace of Mind</span>
               </div>
               <p>
                 The backcountry can be dangerous if you are not prepared.{" "}
@@ -284,7 +289,7 @@ export default function RideGuide() {
 
           <div className="rg-conversion-banner-tier">
             {!showModal ? (
-              <div className="capture-success-persistent-msg">
+              <div className="capture-success-persistent-msg" role="status" aria-live="polite">
                 ✓ Free 3-Pack Sample Unlocked! Check your email inbox for your
                 instant backcountry download link.
               </div>
@@ -292,7 +297,7 @@ export default function RideGuide() {
               <>
                 <p className="rg-lead-magnet-pitch-text-center">
                   Planning your bike's maiden voyage? We've mapped out the
-                  ultimate 3-pack sample series of Fire Service routes perfectly
+                  the ultimate 3-pack sample series of Fire Service routes perfectly
                   suited for this bike. Instant download package delivered
                   straight to your email.
                 </p>
@@ -308,7 +313,7 @@ export default function RideGuide() {
             )}
           </div>
 
-          <div className="rg-horizontal-instructions-tier">
+          <div className="rg-horizontal-instructions-tier" role="region" aria-label="Application Usage Instructions">
             <div className="rg-instructions-micro-header">
               Get Your RideGuide in 3 Easy Steps...
             </div>
@@ -320,7 +325,7 @@ export default function RideGuide() {
                   or grade using the RideFinder filtering controls.
                 </p>
               </div>
-              <div className="rg-step-step-divider">➔</div>
+              <div className="rg-step-step-divider" role="presentation">➔</div>
               <div className="rg-step-column-item">
                 <span className="rg-step-badge-number">2</span>
                 <p className="rg-step-item-text">
@@ -328,7 +333,7 @@ export default function RideGuide() {
                   cards or targeting pins directly on the live map canvas.
                 </p>
               </div>
-              <div className="rg-step-step-divider">➔</div>
+              <div className="rg-step-step-divider" role="presentation">➔</div>
               <div className="rg-step-column-item">
                 <span className="rg-step-badge-number">3</span>
                 <p className="rg-step-item-text">
@@ -337,15 +342,17 @@ export default function RideGuide() {
                 </p>
               </div>
             </div>
-            <h4 className="rg-instructions-micro-header">
+            {/* ─── 🎯 FIX 4: CONVERTED H4 CALLOUT TO A COMPLIANT CLASS DIV ─── 
+                Removes the heading skipping issue near the bottom of the section tree layout. */}
+            <div className="rg-instructions-micro-header-callout">
               Use the interactive map below to discover routes, then get your
               offline guide delivered to your inbox!
-            </h4>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ─── 🎯 CONSOLE MODULE WRAPPER PLATFORM ─── */}
+      {/* CONSOLE MODULE WRAPPER PLATFORM */}
       <div className="discovery-dashboard-root" ref={dashboardRef}>
         <RideFilterBar
           engine={filterEngine}
@@ -378,6 +385,7 @@ export default function RideGuide() {
                   selectedRouteFeature ? selectedRouteFeature.properties : null
                 }
                 allRoutes={masterRoutes}
+                aria-label="Route Telemetry Workspace Data Feed"
               />
             </aside>
 

@@ -55,7 +55,7 @@ export default function FeaturedProducts({
   const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
 
   useEffect(() => {
-    // 📡 Pipeline Target A: Express Database Product Compiler[cite: 21]
+    // 📡 Pipeline Target A: Express Database Product Compiler
     fetch("/api/products")
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP network error! status: ${res.status}`);
@@ -69,7 +69,7 @@ export default function FeaturedProducts({
       })
       .catch((err) => console.error("❌ Products Sync Error:", err));
 
-    // 📡 Pipeline Target B: Static Config Filter File[cite: 21]
+    // 📡 Pipeline Target B: Static Config Filter File
     fetch("/data/featured_products.json")
       .then((res) => {
         if (!res.ok) throw new Error(`Failed to load featured mask configuration array: ${res.status}`);
@@ -81,21 +81,18 @@ export default function FeaturedProducts({
       .catch((err) => console.error("❌ Featured Mask Sync Error:", err));
   }, []);
 
-  /* ─── 🎯 NEW: MODAL OBSERVER WINDOW HOOK ─── 
-   Appends a structural class to the body when a card is selected, 
-   safely cleanup-removing it upon lightbox dismissal loops. */
-useEffect(() => {
-  if (selectedProduct) {
-    document.body.classList.add("rg-product-modal-active");
-  } else {
-    document.body.classList.remove("rg-product-modal-active");
-  }
-  
-  // Guard system: Ensures classes disappear safely if the user changes pages
-  return () => {
-    document.body.classList.remove("rg-product-modal-active");
-  };
-}, [selectedProduct]);
+  /* ─── MODAL OBSERVER WINDOW HOOK ─── */
+  useEffect(() => {
+    if (selectedProduct) {
+      document.body.classList.add("rg-product-modal-active");
+    } else {
+      document.body.classList.remove("rg-product-modal-active");
+    }
+    
+    return () => {
+      document.body.classList.remove("rg-product-modal-active");
+    };
+  }, [selectedProduct]);
 
   const getPrimaryGalleryImage = (images: GalleryImage[]): string => {
     if (!images || images.length === 0) return "";
@@ -117,30 +114,30 @@ useEffect(() => {
     return "";
   };
 
-  const handleCardClick = (row: RelationalProductRow) => {
-    const safeTags = typeof row.tags === "string" ? JSON.parse(row.tags) : row.tags;
+  const handleCardClick = (product: RelationalProductRow) => {
+    const safeTags = typeof product.tags === "string" ? JSON.parse(product.tags) : product.tags;
 
     setSelectedProduct({
-      id: row.id,
-      brand: row.brand,
-      category: row.category,
-      subCategory: row.sub_category,
-      galleryImages: row.gallery_images || [],
-      productFeatures: row.product_features || [],
-      productName: cleanTitle(row.product_name),
-      rating: Number(row.rating) || 5.0,
-      price: Number(row.price),
-      originalPrice: Number(row.original_price),
-      description: row.description,
-      motorDetails: row.motor_details,
-      batteryDetails: row.battery_details,
-      drivetrainDetails: row.drivetrain_details,
-      brakingDetails: row.braking_details,
-      weightDetails: row.weight_details,
-      ulCert: row.ul_certification,
+      id: product.id,
+      brand: product.brand,
+      category: product.category,
+      subCategory: product.sub_category,
+      galleryImages: product.gallery_images || [],
+      productFeatures: product.product_features || [],
+      productName: cleanTitle(product.product_name),
+      rating: Number(product.rating) || 5.0,
+      price: Number(product.price),
+      originalPrice: Number(product.original_price),
+      description: product.description,
+      motorDetails: product.motor_details,
+      batteryDetails: product.battery_details,
+      drivetrainDetails: product.drivetrain_details,
+      brakingDetails: product.braking_details,
+      weightDetails: product.weight_details,
+      ulCert: product.ul_certification,
       tags: safeTags || [],
-      rawTrackingUrl: row.custom_affiliate_link,
-      ctaText: row.cta_label || "Check Price"
+      rawTrackingUrl: product.custom_affiliate_link,
+      ctaText: product.cta_label || "Check Price"
     });
   };
 
@@ -156,6 +153,17 @@ useEffect(() => {
         key={product.id}
         className={`product-grid-card ${isAccessoryItem ? "accessory-compact-card" : ""}`}
         onClick={() => handleCardClick(product)}
+        /* ─── 🎯 FIX 1: KEYBOARD NAVIGATION ENGINE INJECTED ─── 
+           Adds interactive focus support to the card container so keyboard users can navigate to it. */
+        role="button"
+        tabIndex={0}
+        aria-label={`View full technical specifications and pricing for ${formattedTitle}`}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleCardClick(product);
+          }
+        }}
       >
         <div className="card-premium-accent-header">
           <span>{product.sub_category || "Verified Configuration"}</span>
@@ -163,7 +171,7 @@ useEffect(() => {
 
         <div className="card-image-box">
           {primaryDisplayImage ? (
-            <img src={primaryDisplayImage} alt={formattedTitle} />
+            <img src={primaryDisplayImage} alt={`Showcase photo of ${formattedTitle}`} />
           ) : (
             <div className="card-image-empty-state">Image Empty</div>
           )}
@@ -172,13 +180,15 @@ useEffect(() => {
         <div className="card-details-box">
           <div className="grid-brand-logo-frame">
             {brandLogoUrl ? (
-              <img className="grid-brand-logo-img" src={brandLogoUrl} alt={`${product.brand} Brand`} />
+              <img className="grid-brand-logo-img" src={brandLogoUrl} alt={`${product.brand} Brand Logo`} />
             ) : (
               <span className="brand-lbl-fallback">{product.brand}</span>
             )}
           </div>
 
-          <h3 className="main-title">{formattedTitle}</h3>
+          {/* ─── 🎯 FIX 2: CONVERTED H3 TO COMPLIANT CLASS SPAN ─── 
+              Removes heading outline card skipping errors on layout paths. */}
+          <span className="product-card-main-title">{formattedTitle}</span>
 
           <div className="card-bottom-action-row">
             <div className="card-price-stack">
@@ -208,21 +218,26 @@ useEffect(() => {
 
   return (
     <section className="featured-shop-section-pad">
-      <section className="shop-hero-banner">
-            <h1>New Gear. New Adventures.</h1>
-            <p>Shop bikes, gear, accessories and more.</p>
-          </section>
-        {/* 🎯 NEW CTA ACTION STRIP PLACED DIRECTLY BELOW BANNER */}
-        <div className="featured-global-navigation-strip">
-          <a href="/shop" className="btn-shop-all-gear">
-            Shop All Gear <span className="arrow-transition">→</span>
-          </a>
-        </div>      
-        <div className="funnel-container">
+      
+      {/* ─── 🎯 FIX 3: MAP COMPONENT REGIONS TO NAMED SECTIONS ─── */}
+      <section className="shop-hero-banner" aria-label="Storefront Announcement Banner">
+        {/* Converted to a class string to prevent duplicate page-level h1 conflicts when rendered on home routes */}
+        <span className="shop-hero-banner-main-headline">New Gear. New Adventures.</span>
+        <p>Shop bikes, gear, accessories and more.</p>
+      </section>
+
+      <div className="featured-global-navigation-strip">
+        <a href="/shop" className="btn-shop-all-gear">
+          Shop All Gear <span className="arrow-transition">→</span>
+        </a>
+      </div>      
+      
+      <div className="funnel-container">
         <div className="shop-grid-workspace featured-grid-padding-reset">
+          
           {/* Row loop A: Electric Bikes Layer */}
           {bikeProducts.length > 0 && (
-            <div className="shop-accessories-divider-ribbon featured-full-width-ribbon">
+            <div className="shop-accessories-divider-ribbon featured-full-width-ribbon" role="presentation">
               <div className="shop-accessories-divider-label">
                 Off Road Capable Bikes to Tackle Steep Grades on Gravel and Clay
               </div>
@@ -231,7 +246,7 @@ useEffect(() => {
           {bikeProducts.map((product) => renderProductCard(product, "ebike"))}
 
           {/* Reassurance value strip banner */}
-          <div className="featured-mid-trust-strip">
+          <div className="featured-mid-trust-strip" role="region" aria-label="Product Quality Assurances">
             <span className="featured-trust-pill">
               <span className="featured-checkmark-accent">✓</span> Street and Off-Road Legal Bikes
             </span>
@@ -245,7 +260,7 @@ useEffect(() => {
 
           {/* Row loop B: Accessories and Gear Layer */}
           {accessoryProducts.length > 0 && (
-            <div className="shop-accessories-divider-ribbon section-following-divider featured-following-ribbon">
+            <div className="shop-accessories-divider-ribbon section-following-divider featured-following-ribbon" role="presentation">
               <div className="shop-accessories-divider-label">
                 Trail Tested Gear For Tough Backcountry Routes
               </div>
@@ -256,8 +271,14 @@ useEffect(() => {
 
         {/* Product Spec Lightbox Modal Container Context */}
         {selectedProduct && (
-          <div className="modal-blur-overlay" onClick={() => setSelectedProduct(null)}>
-            <div className="modal-scroll-shell">
+          <div 
+            className="modal-blur-overlay" 
+            onClick={() => setSelectedProduct(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Product Specification Lightbox Window"
+          >
+            <div className="modal-scroll-shell" onClick={(e) => e.stopPropagation()}>
               <EditorialProductLayout {...selectedProduct} onClose={() => setSelectedProduct(null)} />
             </div>
           </div>
