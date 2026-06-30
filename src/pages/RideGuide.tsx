@@ -1,23 +1,31 @@
 /* src/pages/RideGuide.tsx */
-import { useState, useCallback, useRef, useEffect } from "react"; 
+import { useState, useCallback, useRef, useEffect } from "react";
 import GravelGuide from "../features/Discovery/GravelGuide";
-import { useRideFinderEngine, RideFilterBar, RideResultGallery } from "../features/Discovery/components/RideFinder";
+import {
+  useRideFinderEngine,
+  RideFilterBar,
+  RideResultGallery,
+} from "../features/Discovery/components/RideFinder";
 import GravelPopup from "../features/Discovery/components/GravelPopup";
 import TacticalLeadForm from "../components/TacticalLeadForm";
 import { LoadingOverlay } from "../components/LoadingOverlay";
 import PersistentLeftShopPanel from "../store/StorePanel";
 
-import "../styles/store.css";
-import "../features/Discovery/DiscoveryContainer.css"; 
-import "../styles/RideGuide.css"; 
+import "../styles/StorePanel.css";
+import "../features/Discovery/DiscoveryContainer.css";
+import "../styles/RideGuide.css";
 
 export default function RideGuide() {
   const [activeHoverId, setActiveHoverId] = useState<string | null>(null);
   const [masterRoutes, setMasterRoutes] = useState<any[]>([]);
   const [filteredRoutes, setFilteredRoutes] = useState<any[]>([]);
-  
-  const [selectedRouteFeature, setSelectedRouteFeature] = useState<any | null>(null);
-  const [activeTakeoverRouteId, setActiveTakeoverRouteId] = useState<string | null>(null);
+
+  const [selectedRouteFeature, setSelectedRouteFeature] = useState<any | null>(
+    null,
+  );
+  const [activeTakeoverRouteId, setActiveTakeoverRouteId] = useState<
+    string | null
+  >(null);
 
   const [isPopupClosing, setIsPopupClosing] = useState(false);
   const mapResetFnRef = useRef<(() => void) | null>(null);
@@ -31,14 +39,15 @@ export default function RideGuide() {
   });
 
   // Layout Coordination Anchors
-  const [isEnteringFullscreen, setIsEnteringFullscreen] = useState<boolean>(false);
+  const [isEnteringFullscreen, setIsEnteringFullscreen] =
+    useState<boolean>(false);
 
   const dashboardRef = useRef<HTMLDivElement | null>(null);
   const ignoreObserverRef = useRef<boolean>(false);
 
   useEffect(() => {
     if (!isWorkspaceLoading) return;
-    
+
     const progressTimer = setInterval(() => {
       setLoadProgress((prev) => {
         if (prev >= 85) {
@@ -55,11 +64,14 @@ export default function RideGuide() {
   // ─── 🎯 UNIFIED STAGGERED ANIMATION ESCAPE OUTLET PIPELINE ───
   const handleExitFullscreen = useCallback(() => {
     ignoreObserverRef.current = true;
-    
+
     document.body.classList.add("dashboard-view-exiting");
-    
+
     setTimeout(() => {
-      document.body.classList.remove("dashboard-view-active", "dashboard-view-exiting");
+      document.body.classList.remove(
+        "dashboard-view-active",
+        "dashboard-view-exiting",
+      );
       window.scrollTo({ top: 0 });
       ignoreObserverRef.current = false;
     }, 350);
@@ -89,7 +101,9 @@ export default function RideGuide() {
       }
     };
 
-    window.addEventListener("scroll", handleScrollEntryTrigger, { passive: true });
+    window.addEventListener("scroll", handleScrollEntryTrigger, {
+      passive: true,
+    });
     return () => window.removeEventListener("scroll", handleScrollEntryTrigger);
   }, []);
 
@@ -118,8 +132,10 @@ export default function RideGuide() {
     setSelectedRouteFeature(feature);
     if (feature) {
       const props = feature.properties || {};
-      const primitiveId = String(props.profile_id || feature.id || props.id || "");
-      
+      const primitiveId = String(
+        props.profile_id || feature.id || props.id || "",
+      );
+
       setIsPopupClosing(false);
       setActiveTakeoverRouteId(primitiveId);
 
@@ -136,12 +152,12 @@ export default function RideGuide() {
     setTimeout(() => {
       setSelectedRouteFeature(null);
       setActiveTakeoverRouteId(null);
-      setIsPopupClosing(false); 
+      setIsPopupClosing(false);
 
       if (mapResetFnRef.current) {
         mapResetFnRef.current();
       }
-    }, 400); 
+    }, 400);
   }, []);
 
   const filterEngine = useRideFinderEngine(masterRoutes, handleFilterUpdate);
@@ -149,9 +165,21 @@ export default function RideGuide() {
 
   return (
     <div className="ride-finder-page-container">
-      
+      <h1 style={{
+        position: 'absolute',
+        width: '1px',
+        height: '1px',
+        padding: '0',
+        margin: '-1px',
+        overflow: 'hidden',
+        clip: 'rect(0, 0, 0, 0)',
+        whiteSpace: 'nowrap',
+        border: '0'
+      }}>
+        North Georgia Backcountry Route Explorer and Telemetry Workspace
+      </h1>
       {/* HUD TARGET FULL SCREEN COUNTDOWN TIMELINE OVERLAY */}
-      <LoadingOverlay 
+      <LoadingOverlay
         isLoading={isEnteringFullscreen}
         progress={0}
         message="Entering Full Screen Mode"
@@ -164,7 +192,10 @@ export default function RideGuide() {
       <section className="rg-inline-showcase-section">
         <div className="rf-marketing-hero-banner">
           <h2>Plan Faster. Ride Smarter.</h2>
-          <p>HIGH ACCURACY TERRAIN - CUSTOM ANALYTICS - WEATHER AWARE - GUIDE FOR YOUR RIDE</p>
+          <p>
+            HIGH ACCURACY TERRAIN - CUSTOM ANALYTICS - WEATHER AWARE - GUIDE FOR
+            YOUR RIDE
+          </p>
         </div>
 
         <div className="rg-inline-funnel-container">
@@ -172,53 +203,98 @@ export default function RideGuide() {
             <div className="prop-value-column-card">
               <div className="prop-card-header-strip">
                 <div className="rg-preview-img-contain-rotated">
-                  <img src="/data/assets/RideGuide_Sample.png" alt="RideGuide Premium PDF Pack" className="rg-mini-thumbnail-rotated" />
+                  <img
+                    src="/data/assets/RideGuide_Sample.png"
+                    alt="RideGuide Premium PDF Pack"
+                    className="rg-mini-thumbnail-rotated"
+                  />
                 </div>
-                <h5>Know Before You Go</h5>
+                <span className="prop-card-header-title-fallback" >
+                  Know Before You Go
+                </span>
               </div>
-              <p>High-resolution elevation mapping, route metrics, and surface saturation tracking dials, <strong className="text-prop-heavy">so you are prepared for every ride!</strong>.</p>
+              <p>
+                High-resolution elevation mapping, route metrics, and surface
+                saturation tracking dials,{" "}
+                <strong className="text-prop-heavy">
+                  so you are prepared for every ride!
+                </strong>
+                .
+              </p>
             </div>
 
             <div className="prop-value-column-card">
               <div className="prop-card-header-strip">
                 <div className="prop-value-icon-box ng-prop-icon-offline">
-                  <img src="data\assets\icon_no_cell_signal.svg" className="ng-prop-graphic-asset" alt="Offline Independent" />
+                  <img
+                    src="data\assets\icon_no_cell_signal.svg"
+                    className="ng-prop-graphic-asset"
+                    alt="Offline Independent"
+                  />
                 </div>
                 <h5>Offline Independent</h5>
               </div>
-              <p>Pre-rendered field guides that load instantly without requiring <strong className="text-prop-heavy">cell network data or map syncs</strong>.</p>
+              <p>
+                Pre-rendered field guides that load instantly without requiring{" "}
+                <strong className="text-prop-heavy">
+                  cell network data or map syncs
+                </strong>
+                .
+              </p>
             </div>
 
             <div className="prop-value-column-card">
               <div className="prop-card-header-strip">
                 <div className="prop-value-icon-box window-icon ng-prop-icon-motor">
-                  <img src="data\assets\icon_credit_card.svg" className="ng-prop-graphic-asset" alt="No Subscription Required" />
+                  <img
+                    src="data\assets\icon_credit_card.svg"
+                    className="ng-prop-graphic-asset"
+                    alt="No Subscription Required"
+                  />
                 </div>
                 <h5>No Required Subscription </h5>
               </div>
-              <p>Don't get caught in subscription based route services. <strong className="text-prop-heavy">Buy only what you want, when you want.</strong></p>
+              <p>
+                Don't get caught in subscription based route services.{" "}
+                <strong className="text-prop-heavy">
+                  Buy only what you want, when you want.
+                </strong>
+              </p>
             </div>
 
             <div className="prop-value-column-card">
               <div className="prop-card-header-strip">
                 <div className="prop-value-icon-box ng-prop-icon-insurance">
-                  <img src="data\assets\icon_safety.svg" className="ng-prop-graphic-asset" alt="Peace of Mind" />
+                  <img
+                    src="data\assets\icon_safety.svg"
+                    className="ng-prop-graphic-asset"
+                    alt="Peace of Mind"
+                  />
                 </div>
                 <h5>Peace of Mind</h5>
               </div>
-              <p>The backcountry can be dangerous if you are not prepared. <strong className="text-prop-heavy">Understand your risk and ride safely.</strong></p>
+              <p>
+                The backcountry can be dangerous if you are not prepared.{" "}
+                <strong className="text-prop-heavy">
+                  Understand your risk and ride safely.
+                </strong>
+              </p>
             </div>
           </div>
 
           <div className="rg-conversion-banner-tier">
             {!showModal ? (
               <div className="capture-success-persistent-msg">
-                ✓ Free 3-Pack Sample Unlocked! Check your email inbox for your instant backcountry download link.
+                ✓ Free 3-Pack Sample Unlocked! Check your email inbox for your
+                instant backcountry download link.
               </div>
             ) : (
               <>
                 <p className="rg-lead-magnet-pitch-text-center">
-                  Planning your bike's maiden voyage? We've mapped out the ultimate 3-pack sample series of Fire Service routes perfectly suited for this bike. Instant download package delivered straight to your email.
+                  Planning your bike's maiden voyage? We've mapped out the
+                  ultimate 3-pack sample series of Fire Service routes perfectly
+                  suited for this bike. Instant download package delivered
+                  straight to your email.
                 </p>
                 <div className="capture-form-full-width-container">
                   <TacticalLeadForm
@@ -227,31 +303,43 @@ export default function RideGuide() {
                     buttonLabel="Unlock Free Sample Maps ➔"
                     onSuccess={handleLeadSuccess}
                   />
-                </div>      
+                </div>
               </>
             )}
           </div>
 
           <div className="rg-horizontal-instructions-tier">
-            <div className="rg-instructions-micro-header">Get Your RideGuide in 3 Easy Steps...</div>
+            <div className="rg-instructions-micro-header">
+              Get Your RideGuide in 3 Easy Steps...
+            </div>
             <div className="rg-horizontal-steps-row">
               <div className="rg-step-column-item">
                 <span className="rg-step-badge-number">1</span>
-                <p className="rg-step-item-text"><strong>Filter routes</strong> by name, route class, distance, or grade using the RideFinder filtering controls.</p>
+                <p className="rg-step-item-text">
+                  <strong>Filter routes</strong> by name, route class, distance,
+                  or grade using the RideFinder filtering controls.
+                </p>
               </div>
               <div className="rg-step-step-divider">➔</div>
               <div className="rg-step-column-item">
                 <span className="rg-step-badge-number">2</span>
-                <p className="rg-step-item-text"><strong>Select your route</strong> by clicking on the list cards or targeting pins directly on the live map canvas.</p>
+                <p className="rg-step-item-text">
+                  <strong>Select your route</strong> by clicking on the list
+                  cards or targeting pins directly on the live map canvas.
+                </p>
               </div>
               <div className="rg-step-step-divider">➔</div>
               <div className="rg-step-column-item">
                 <span className="rg-step-badge-number">3</span>
-                <p className="rg-step-item-text"><strong>Unlock your RideGuide</strong> pack to download full continuous telemetry, profiles, and safety matrices.</p>
+                <p className="rg-step-item-text">
+                  <strong>Unlock your RideGuide</strong> pack to download full
+                  continuous telemetry, profiles, and safety matrices.
+                </p>
               </div>
             </div>
             <h4 className="rg-instructions-micro-header">
-              Use the interactive map below to discover routes, then get your offline guide delivered to your inbox!
+              Use the interactive map below to discover routes, then get your
+              offline guide delivered to your inbox!
             </h4>
           </div>
         </div>
@@ -259,54 +347,61 @@ export default function RideGuide() {
 
       {/* ─── 🎯 CONSOLE MODULE WRAPPER PLATFORM ─── */}
       <div className="discovery-dashboard-root" ref={dashboardRef}>
-        
-        <RideFilterBar 
-          engine={filterEngine} 
-          totalCount={masterRoutes.length} 
+        <RideFilterBar
+          engine={filterEngine}
+          totalCount={masterRoutes.length}
           isTakeoverActive={isTakeoverCurrentlyActive}
         />
 
         {isTakeoverCurrentlyActive && selectedRouteFeature && (
-          <GravelPopup 
-            feature={selectedRouteFeature} 
+          <GravelPopup
+            feature={selectedRouteFeature}
             onClose={handleExitTakeover}
             className={isPopupClosing ? "popup-dismissing" : "popup-entering"}
           />
         )}
 
-        <div className="discovery-center-container" style={{ position: "relative" }}>
-          <LoadingOverlay 
-            isLoading={isWorkspaceLoading} 
-            progress={loadProgress} 
+        <div
+          className="discovery-center-container"
+          style={{ position: "relative" }}
+        >
+          <LoadingOverlay
+            isLoading={isWorkspaceLoading}
+            progress={loadProgress}
             message="Loading Map Data..."
           />
 
           <div className="rg-retail-map-workspace-layout-deck">
-            
             <aside className="rg-left-workspace-storefront-sidebar">
-              <PersistentLeftShopPanel 
-                activeRouteProperties={selectedRouteFeature ? selectedRouteFeature.properties : null} 
+              <PersistentLeftShopPanel
+                activeRouteProperties={
+                  selectedRouteFeature ? selectedRouteFeature.properties : null
+                }
                 allRoutes={masterRoutes}
               />
             </aside>
 
             <div className="discovery-map-main-viewport">
               <GravelGuide
-                activeHoverId={activeHoverId}     
-                onRouteHover={setActiveHoverId}   
-                activeRouteId={activeTakeoverRouteId}   
-                onRouteSelect={handleRouteSelect}       
+                activeHoverId={activeHoverId}
+                onRouteHover={setActiveHoverId}
+                activeRouteId={activeTakeoverRouteId}
+                onRouteSelect={handleRouteSelect}
                 isTakeoverActive={isTakeoverCurrentlyActive}
                 filteredRoutes={filteredRoutes}
                 onRoutesLoaded={handleRoutesLoaded}
-                onRegisterResetFn={(fn) => { mapResetFnRef.current = fn; }}
-                onRegisterZoomFn={(fn) => { mapZoomFnRef.current = fn; }}
+                onRegisterResetFn={(fn) => {
+                  mapResetFnRef.current = fn;
+                }}
+                onRegisterZoomFn={(fn) => {
+                  mapZoomFnRef.current = fn;
+                }}
                 onExitFullscreen={handleExitFullscreen}
               />
             </div>
 
-            <RideResultGallery 
-              routes={filteredRoutes} 
+            <RideResultGallery
+              routes={filteredRoutes}
               activeHoverId={activeHoverId}
               onHoverChange={setActiveHoverId}
               isCollapsed={false}
@@ -314,11 +409,9 @@ export default function RideGuide() {
               onRouteSelect={handleRouteSelect}
               isTakeoverActive={false}
             />
-
           </div>
         </div>
       </div>
-              
     </div>
-  ); 
+  );
 }

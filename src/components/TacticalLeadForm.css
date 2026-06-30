@@ -11,7 +11,7 @@
 /* 🎯 VARIANT A: INLINE ROW STYLE (Perfect for footers and headers) */
 .tactical-lead-wrapper.variant-row .capture-form-flex-row {
   display: flex; 
-  justify-content: center; /* Centers the input field and button horizontally inside the row wrapper */
+  justify-content: center;
   gap: 12px; 
   width: 100%; 
 }
@@ -37,16 +37,29 @@
   padding: 12px 16px; 
   border-radius: 6px; 
   border: 1px solid #334155; 
-  background: var(--brand-bone); 
-  color: #ffffff; 
+  background: var(--brand-bone);
+  
+  /* ─── 🎯 FIXED CONTRAST TYPOGRAPHY ─── 
+     Swapped typed text color from #ffffff to deep charcoal to provide 
+     high legibility against your light cream --brand-bone background */
+  color: #0f172a !important; 
+  
   font-size: 0.95rem;
   flex-grow: 1;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
+/* ─── 🎯 NEW PLACEHOLDER SELECTOR INTERCEPT ─── 
+   Forces the fallback helper placeholder text layout to use a high-contrast 
+   slate gray that safely clears the WCAG 4.5:1 minimum criteria barrier */
+.capture-input-styled::placeholder {
+  color: #475569 !important;
+  opacity: 1; /* Normalizes hidden browser shadow masks */
+}
+
 .capture-input-styled:focus {
   outline: none;
-  border-color: #e36622; /* Snaps directly to brand accent on click */
+  border-color: #e36622;
   box-shadow: 0 0 0 2px rgba(227, 102, 34, 0.15);
 }
 
@@ -54,22 +67,31 @@
   white-space: nowrap; 
   padding: 12px 24px;
   font-weight: 700;
+  
+  /* ─── 🎯 FIXED BUTTON CONTRAST ─── 
+     Forces text on the primary brand amber background color to render using dark slate, 
+     instantly vaulting color contrast levels above a safe 5.2:1 ratio */
+  color: var(--brand-charcoal) !important;
 }
 
 .lead-disclaimer {
   display: block;
   font-size: 0.7rem;
-  color: var(--brand-amber);
   margin-top: 2px;
   width: 100%;
   text-align: left;
+  
+  /* ─── 🎯 FIXED FOOTER COMPLIANCE CONTRAST ─── 
+     Shifted color from orange-amber to slate gray to establish high 
+     visibility when displaying over dark forest green background sections */
+  color: #cbd5e1 !important;
 }
 
 /* Smart Visual State Border Modifiers */
 .capture-input-styled.input-success-border {
   border-color: #10b981 !important;
   background-color: rgba(16, 185, 129, 0.03);
-  color: #a7f3d0;
+  color: #0f172a !important; /* Retains rich readable text on form successes */
 }
 
 /* Informational state captions below form boundaries */
@@ -89,4 +111,3 @@
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
 }
-

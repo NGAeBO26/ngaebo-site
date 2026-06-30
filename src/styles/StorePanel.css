@@ -1,4 +1,4 @@
-/* src/styles/store.css */
+/* src/styles/StorePanel.css */
 
 /* ==========================================================================
    1. GLOBAL SIDEBAR WIREFRAME & SYSTEM ALIGNMENT DECK
@@ -10,7 +10,7 @@
   justify-content: space-between !important;
   gap: 0px !important;
   width: 100% !important;
-  height: 100% !important; 
+  height: 100% !important;
   box-sizing: border-box !important;
   min-height: 0 !important;
   position: relative !important;
@@ -29,7 +29,7 @@
 }
 
 .discovery-map-main-viewport {
-  flex: 1 !important; 
+  flex: 1 !important;
   height: 100% !important;
   position: relative !important;
   background-color: var(--brand-charcoal) !important;
@@ -40,15 +40,15 @@
 
 .discovery-center-container .side-drawer-panel {
   position: relative !important;
-  transform: none !important; 
+  transform: none !important;
   margin-left: 0 !important;
-  width: 260px !important; 
+  width: 260px !important;
   max-width: 260px !important;
   height: 100% !important;
   flex-shrink: 0 !important;
   box-sizing: border-box !important;
   transition: none !important;
-  border-radius: 0px !important; 
+  border-radius: 0px !important;
   border-top: none !important;
   border-bottom: none !important;
 }
@@ -66,10 +66,10 @@
 .rg-left-workspace-storefront-sidebar .rg-checkout-hub-card {
   width: 100% !important;
   height: 100% !important;
-  background-color: var(--brand-bone) !important; 
-  border: none !important; 
-  border-right: 2px solid var(--brand-sky) !important; 
-  border-radius: 0px !important; 
+  background-color: var(--brand-bone) !important;
+  border: none !important;
+  border-right: 2px solid var(--brand-sky) !important;
+  border-radius: 0px !important;
   padding: 16px !important;
   box-sizing: border-box !important;
   display: flex !important;
@@ -78,19 +78,19 @@
 }
 
 .rg-checkout-hub-card .drawer-header-title {
-  padding: 14px 12px !important;
+  padding: 16px 12px !important;
   border-bottom: 1px solid var(--brand-charcoal) !important;
-  background-color: var(--brand-sky) !important; 
+  background-color: var(--brand-sky) !important;
   text-align: center !important;
   z-index: 12 !important;
-  margin: -16px -16px 0 -16px !important; 
+  margin: -16px -16px 0 -16px !important;
   width: auto !important;
   flex-shrink: 0 !important;
   border-radius: 0 0 8px 8px;
 }
 
 .rg-checkout-hub-card .drawer-header-title h2 {
-  font-size: 11px !important;
+  font-size: 12px !important;
   text-transform: uppercase !important;
   letter-spacing: 0.1em !important;
   font-family: "Montserrat", sans-serif !important;
@@ -99,13 +99,13 @@
 }
 
 .rg-unified-top-profile-deck {
-  background-color: var(--brand-sky) !important; 
+  background-color: var(--brand-sky) !important;
   padding: 12px 14px !important;
-  margin: 0 -16px 0 -16px !important; 
+  margin: 0 -16px 0 -16px !important;
   display: flex !important;
   flex-direction: column !important;
   gap: 6px !important;
-  border-bottom: 1px solid var(--brand-gray) !important; 
+  border-bottom: 1px solid var(--brand-gray) !important;
   flex-shrink: 0 !important;
   border-radius: 8px;
 }
@@ -138,7 +138,7 @@
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
-  background-color: rgba(0, 0, 0, 0.15) !important;
+  background-color: var(--brand-bone) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   padding: 6px !important;
   border-radius: var(--ng-radius-sm) !important;
@@ -149,7 +149,7 @@
   font-family: "Montserrat", sans-serif !important;
   font-size: 8px !important;
   font-weight: 700 !important;
-  color: var(--brand-sand) !important;
+  color: var(--brand-graphite) !important;
   text-transform: uppercase !important;
   letter-spacing: 0.8px !important;
   margin-bottom: 1px !important;
@@ -159,14 +159,14 @@
   font-family: "Montserrat", sans-serif !important;
   font-size: 16px !important;
   font-weight: 900 !important;
-  color: var(--brand-mellow) !important;
+  color: var(--brand-verdant) !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
 }
 
 .rg-ledger-balance-subtext {
   font-size: 8px !important;
-  color: var(--brand-sand) !important;
+  color: var(--brand-graphite) !important;
   margin-top: 1px !important;
   font-weight: 500 !important;
 }
@@ -181,7 +181,7 @@
   display: flex !important;
   flex-direction: column !important;
   gap: 12px !important;
-  margin-top: 12px !important; 
+  margin-top: 12px !important;
   margin-bottom: 8px !important;
   box-sizing: border-box !important;
 }
@@ -190,7 +190,7 @@
   font-family: "Montserrat", sans-serif !important;
   font-size: 10px !important;
   font-weight: 800 !important;
-  color: var(--brand-amber) !important; 
+  color: var(--brand-amber) !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
   margin: 0 0 6px 0 !important;
@@ -237,7 +237,10 @@
   border-left: 1px solid var(--brand-gray) !important;
 }
 
-.rg-checkout-hub-card .rg-selection-card-space .route-finder-card-vertical .card-route-title {
+.rg-checkout-hub-card
+  .rg-selection-card-space
+  .route-finder-card-vertical
+  .card-route-title {
   color: var(--brand-sky) !important;
 }
 
@@ -256,9 +259,15 @@
   letter-spacing: 0.3px !important;
 }
 
-.rg-inline-card-action-btn.print-green { background-color: var(--brand-verdant) !important; }
-.rg-inline-card-action-btn.unlock-verdant { background-color: var(--brand-verdant) !important; }
-.rg-inline-card-action-btn.add-verdant { background-color: var(--brand-verdant) !important; }
+.rg-inline-card-action-btn.print-green {
+  background-color: var(--brand-verdant) !important;
+}
+.rg-inline-card-action-btn.unlock-verdant {
+  background-color: var(--brand-verdant) !important;
+}
+.rg-inline-card-action-btn.add-verdant {
+  background-color: var(--brand-verdant) !important;
+}
 .rg-inline-card-action-btn:disabled {
   background-color: #cbd5e1 !important;
   color: #64748b !important;
@@ -270,15 +279,15 @@
   display: flex !important;
   flex-direction: column !important;
   width: 100% !important;
-  flex: 1 !important; 
+  flex: 1 !important;
   min-height: 0 !important;
 }
 
 .rg-cart-items-list-container {
   flex: 1 !important;
-  overflow-y: auto !important; 
+  overflow-y: auto !important;
   overflow-x: hidden !important;
-  min-height: 0 !important; 
+  min-height: 0 !important;
   display: flex !important;
   flex-direction: column !important;
   gap: 5px !important;
@@ -320,7 +329,7 @@
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.01) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.01) !important;
   flex-shrink: 0 !important;
 }
 
@@ -373,8 +382,8 @@
   line-height: 1 !important;
 }
 
-.rg-cart-remove-line-item-btn:hover { 
-  color: var(--brand-amber) !important; 
+.rg-cart-remove-line-item-btn:hover {
+  color: var(--brand-amber) !important;
 }
 
 /* ==========================================================================
@@ -383,7 +392,7 @@
 
 .rg-checkout-hub-card .rg-premium-buy-btn {
   width: 100% !important;
-  margin-top: auto !important; 
+  margin-top: auto !important;
   margin-bottom: 0px !important;
   border: none !important;
   font-family: "Montserrat", sans-serif !important;
@@ -391,7 +400,7 @@
   font-weight: 800 !important;
   color: var(--brand-white) !important;
   padding: 13px 8px !important;
-  border-radius: 999px !important; 
+  border-radius: 999px !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
   transition: background-color 100ms ease !important;
@@ -431,7 +440,7 @@
 }
 
 .rg-disclaimer-note {
-  color: var(--brand-amber) !important;
+  color: var(--brand-graphite) !important;
   font-size: 9px !important;
   text-align: center !important;
   font-style: italic !important;
@@ -457,7 +466,7 @@
   font-family: "Montserrat", sans-serif !important;
   font-size: 9.5px !important;
   font-weight: 700 !important;
-  color: var(--brand-white) !important; 
+  color: var(--brand-white) !important;
   text-transform: uppercase !important;
   text-decoration: underline !important;
   cursor: pointer !important;
@@ -477,21 +486,23 @@
   justify-content: center !important;
   background: none !important;
   border: none !important;
-  color: var(--brand-slate) !important; 
+  color: var(--brand-slate) !important;
   cursor: pointer !important;
   padding: 4px !important;
-  transition: color 100ms ease, transform 100ms ease !important;
+  transition:
+    color 100ms ease,
+    transform 100ms ease !important;
 }
 
 .rg-cart-remove-line-item-btn:hover {
-  color: #ef4444 !important; 
+  color: #ef4444 !important;
   transform: scale(1.05) !important;
 }
 
 .rg-profile-right-side-dock {
   display: flex !important;
   align-items: center !important;
-  gap: 12px !important; 
+  gap: 12px !important;
 }
 
 .rg-profile-user-group-left {
@@ -511,7 +522,9 @@
   cursor: pointer !important;
   text-transform: uppercase !important;
   letter-spacing: 0.3px !important;
-  transition: background-color 100ms ease-in-out, transform 100ms ease !important;
+  transition:
+    background-color 100ms ease-in-out,
+    transform 100ms ease !important;
   flex-shrink: 0 !important;
 }
 
@@ -596,7 +609,7 @@
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.01) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.01) !important;
   flex-shrink: 0 !important;
 }
 
@@ -610,7 +623,9 @@
 .rg-catalog-item-title-text {
   font-size: 10.5px !important;
   font-weight: 800 !important;
-  color: var(--brand-charcoal) !important; /* High-contrast visibility restore link */
+  color: var(
+    --brand-charcoal
+  ) !important; /* High-contrast visibility restore link */
   text-transform: uppercase !important;
   white-space: nowrap !important;
   overflow: hidden !important;
@@ -620,7 +635,7 @@
 
 .rg-catalog-item-countdown-tag {
   font-size: 8.5px !important;
-  color: var(--brand-verdant) !important; 
+  color: var(--brand-verdant) !important;
   font-weight: 600 !important;
   font-family: "Montserrat", sans-serif !important;
 }
@@ -643,7 +658,9 @@
   cursor: pointer !important;
   text-transform: uppercase !important;
   letter-spacing: 0.3px !important;
-  transition: background-color 100ms ease-in-out, transform 100ms ease !important;
+  transition:
+    background-color 100ms ease-in-out,
+    transform 100ms ease !important;
   flex-shrink: 0 !important;
 }
 
@@ -700,9 +717,9 @@
 
 .rg-storefront-tab-active-content-pane {
   flex: 1 !important;
-  overflow-y: auto !important; 
+  overflow-y: auto !important;
   overflow-x: hidden !important;
-  min-height: 0 !important; 
+  min-height: 0 !important;
   display: flex !important;
   flex-direction: column !important;
   box-sizing: border-box !important;
@@ -797,14 +814,14 @@
   width: 100% !important;
   height: auto !important;
   margin: 0 !important;
-  
+
   /* 🛑 Fixes Vertical Clipping */
-  line-height: 1.4 !important; 
-  padding-top: 6px !important;  
+  line-height: 1.4 !important;
+  padding-top: 6px !important;
   padding-bottom: 4px !important;
-  
+
   /* ➔ Fixes Horizontal Overflow & Forces Ellipsis */
-  overflow: hidden !important;        /* Changed from visible to allow truncation */
+  overflow: hidden !important; /* Changed from visible to allow truncation */
   text-overflow: ellipsis !important; /* Appends the '...' when text runs out of room */
-  white-space: nowrap !important;     /* Keeps text locked tightly to a single line */
+  white-space: nowrap !important; /* Keeps text locked tightly to a single line */
 }

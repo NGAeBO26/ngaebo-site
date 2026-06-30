@@ -115,6 +115,15 @@
   margin-bottom: 24px !important;
 }
 
+  .prop-card-header-title-fallback {
+    font-size: 1.05rem;
+    color: #ffffff;
+    font-weight: 700;
+    display: block;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+  }
+
+
 .rg-inline-showcase-section .prop-value-column-card {
   display: flex;
   flex-direction: column;

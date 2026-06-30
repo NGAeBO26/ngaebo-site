@@ -1,6 +1,7 @@
 /* src/pages/Shop.tsx */
 import { useState, useEffect } from 'react';
 import { EditorialProductLayout } from '../store/ProductLayout';
+import TacticalLeadForm from '../components/TacticalLeadForm';
 import Header from '../components/Header'; 
 import Footer from '../components/Footer'; 
 import './Shop.css';
@@ -255,7 +256,29 @@ export default function Shop() {
           </div>
         )}
       </div>
-
+      {/* SECTION 6: THE FOOTER SAFETY NET */}
+      <section className="lead-capture-footer">
+        <div className="funnel-container">
+          <div className="capture-split-layout">
+            <div className="capture-text-stack">
+              <h3 style={{ margin: "0 0 8px 0", fontFamily: "'Montserrat', sans-serif", fontWeight: 800, fontSize: "1.65rem" }}>
+                Get Your Free Sample Pack.
+              </h3>
+              <p style={{ margin: 0, color: "#94a3b8", fontSize: "0.95rem", lineHeight: 1.5 }}>
+                Planning your bike's maiden voyage? We've mapped out the ultimate 3-pack sample of our favorite Fire Service Road routes, perfect for eBike adventures. Instant download package delivered to your email.
+              </p>
+            </div>
+            <div>
+              {/* Live Embedded Reusable Lead Form System */}
+              <TacticalLeadForm 
+                buttonLabel="Get Free Maps ➔"
+                sourceGroupTag="home_footer_checklist"
+                layout="row"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
       <Footer />
 
     </div>

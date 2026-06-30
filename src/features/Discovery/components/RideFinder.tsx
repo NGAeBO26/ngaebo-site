@@ -136,6 +136,7 @@ export function RideFilterBar({
                   onFocus={() => setShowSuggestions(true)}
                   className="finder-text-input autocomplete-input-field"
                   autoComplete="off"
+                  aria-label="Search backcountry trails by route name"
                 />
                 <span
                   className="autocomplete-dropdown-arrow-icon"
@@ -168,6 +169,7 @@ export function RideFilterBar({
                 value={engine.selectedClass}
                 onChange={(e) => engine.setSelectedClass(e.target.value)}
                 className="finder-select-input"
+                aria-label="Filter routes by trail difficulty classification"
               >
                 {engine.routeClasses.map((cls: string) => (
                   <option key={cls} value={cls}>
@@ -181,7 +183,7 @@ export function RideFilterBar({
 
           <div className="control-slider-group">
             <div className="slider-header-labels">
-              <span style={{ color: "#94a3b8" }}>Max Distance</span>
+              <span >Max Distance</span>
               <span style={{ color: "#f59e0b", fontWeight: "bold" }}>{engine.maxDistance} MI</span>
             </div>
             <input
@@ -195,12 +197,13 @@ export function RideFilterBar({
               style={{
                 ["--value-percent" as any]: `${((engine.maxDistance - 1) / (30 - 1)) * 100}%`,
               }}
+              aria-label="Filter routes by maximum distance range in miles"
             />
           </div>
 
           <div className="control-slider-group">
             <div className="slider-header-labels">
-              <span style={{ color: "#94a3b8" }}>Max Grade</span>
+              <span>Max Grade</span>
               <span style={{ color: "#f59e0b", fontWeight: "bold" }}>{engine.maxGrade}%</span>
             </div>
             <input
@@ -214,6 +217,7 @@ export function RideFilterBar({
               style={{
                 ["--value-percent" as any]: `${((engine.maxGrade - 2) / (25 - 2)) * 100}%`,
               }}
+              aria-label="Filter routes by maximum incline grade slope percentage"
             />
           </div>
         {/* 🎯 THE FIX: Closed the controls container wrapper right here! */}
