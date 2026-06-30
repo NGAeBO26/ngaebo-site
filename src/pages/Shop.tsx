@@ -261,9 +261,7 @@ export default function Shop() {
         <div className="funnel-container">
           <div className="capture-split-layout">
             <div className="capture-text-stack">
-              <h3 style={{ margin: "0 0 8px 0", fontFamily: "'Montserrat', sans-serif", fontWeight: 800, fontSize: "1.65rem" }}>
-                Get Your Free Sample Pack.
-              </h3>
+              <span className="shop-sample-headline">Get Your Free Sample Pack.</span>
               <p style={{ margin: 0, color: "#94a3b8", fontSize: "0.95rem", lineHeight: 1.5 }}>
                 Planning your bike's maiden voyage? We've mapped out the ultimate 3-pack sample of our favorite Fire Service Road routes, perfect for eBike adventures. Instant download package delivered to your email.
               </p>

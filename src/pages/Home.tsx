@@ -206,7 +206,7 @@ export default function Home() {
                   />
                 </div>
                 {/* ─── 🎯 FIX 5: RECONCILED HEADING WEIGHT STEPS (h5 -> h3) ─── */}
-                <h3>Community Building</h3>
+                <span className="authority-matrix-title">Community Building</span>
                 <p>We connect North Georgia riders with group rides, route intel, and a crew that actually knows the mountains.</p>
               </div>
             </a>
@@ -222,7 +222,7 @@ export default function Home() {
                   />
                 </div>
                 {/* ─── 🎯 FIX 6: RECONCILED HEADING WEIGHT STEPS (h5 -> h3) ─── */}
-                <h3>Rider Education</h3>
+                <span className="authority-matrix-title">Rider Education</span>
                 <p>We help riders understand terrain, slope, weather windows, and equipment choices so every outing feels intentional and safe.</p>
               </div>
             </a>
@@ -238,7 +238,7 @@ export default function Home() {
                   />
                 </div>
                 {/* ─── 🎯 FIX 7: RECONCILED HEADING WEIGHT STEPS (h5 -> h3) ─── */}
-                <h3>Local Partnerships</h3>
+                <span className="authority-matrix-title">Local Partnerships</span>
                 <p>We collaborate with shops, land stewards, and regional outdoor groups to strengthen access and trail stewardship across North Georgia.</p>
               </div>
             </a>

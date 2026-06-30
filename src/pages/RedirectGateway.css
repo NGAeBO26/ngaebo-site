@@ -45,7 +45,7 @@
 }
 
 .gateway-form-payload {
-  padding: 40px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -61,7 +61,7 @@
   width: 100%;
   margin-bottom: 20px;
   padding-bottom: 16px;
-  border-bottom: 1px dashed #e2e8f0;
+  border-bottom: 1px dashed var(--brand-amber);
 }
 
 .gateway-identity-main-logo {
@@ -145,7 +145,7 @@
 /* 🎯 THE LEAD MAGNET REWARD DISPLAY CARD SYSTEM */
 .gateway-rideguide-lead-incentive-card {
   background-color: #f8fafc;; /* Safe, welcoming organic green tint card theme */
-  border: 1px solid #bbf7d0;
+  border: 1px solid var(--brand-amber);
   border-radius: 8px;
   padding: 20px;
   box-sizing: border-box;
@@ -228,7 +228,7 @@
 .gateway-form-optional-caption {
   display: block;
   font-size: 10.5px;
-  color: #166534;
+  color: var(--brand-deep-green);
   opacity: 0.75;
   font-style: italic;
   margin-top: 10px;
@@ -237,22 +237,41 @@
 /* LEGAL DISCLOSURE PANELS RULES */
 .gateway-scrollable-disclosure-pane {
   width: 100%;
-  max-height: 140px; /* Trimmed slightly to leave adequate room for the new banner sections */
+  max-height: 140px; 
   overflow-y: auto;
   background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--brand-amber);
   border-radius: 8px;
-  padding: 16px;
+  padding: 16px 26px 16px 16px;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
   margin-bottom: 20px;
+  display: block;
 }
 
-.gateway-scrollable-disclosure-pane::-webkit-scrollbar { width: 6px; }
-.gateway-scrollable-disclosure-pane::-webkit-scrollbar-track { background: #f1f5f9; }
-.gateway-scrollable-disclosure-pane::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+.gateway-scrollable-disclosure-pane > * {
+  margin: 0 0 16px 0;
+}
+.gateway-scrollable-disclosure-pane > *:last-child {
+  margin-bottom: 0;
+}
+
+/* ─── 🎛️ CUSTOM SCROLLBAR CONFIGURATION ─── */
+.gateway-scrollable-disclosure-pane::-webkit-scrollbar { 
+  width: 6px; 
+}
+
+/* ─── 🎯 FIX: ADD BORDER RADIUS TO THE TRACK ─── 
+   This rounds off the sharp corners of the scrollbar background track,
+   preventing it from leaking past the container's 8px rounded borders. */
+.gateway-scrollable-disclosure-pane::-webkit-scrollbar-track { 
+  background: var(--brand-gray); 
+  border-radius: 0 8px 8px 0; /* Rounds just the outer right corners to match the frame */
+}
+
+.gateway-scrollable-disclosure-pane::-webkit-scrollbar-thumb { 
+  background: var(--brand-amber); 
+  border-radius: 3px; 
+}
 
 .gateway-legal-section { text-align: left; }
 .gateway-legal-section h4 { font-size: 13px; font-weight: 800; color: #1e293b; margin: 0 0 6px 0; text-transform: uppercase; letter-spacing: 0.02em; }
