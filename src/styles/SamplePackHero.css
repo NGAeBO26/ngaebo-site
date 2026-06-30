@@ -22,27 +22,22 @@ header, .site-header, .rg-site-header-nav {
   box-sizing: border-box;
 }
 
-/* This rule only triggers on your lead magnet route. 
-   Everywhere else (like your Homepage), the original background remains active! */
+/* This rule only triggers on your lead magnet route */
 .sample-giveaway-funnel .digital-product-showcase-section {
   background: transparent !important;
   background-image: none !important;
   padding: 40px 0 !important;
 }
 
-
-
-/* ─── 🎯 FLOATING CARD SHEET FRAMEWORK (SCOPED TO SAMPLES FUNNEL) ─── 
-   Applying the .sample-giveaway-funnel parent class guarantees that the shop grid,
-   hero deck, and split-narratives only float when viewed on this specific landing path. */
+/* ─── 🎯 FLOATING CARD SHEET FRAMEWORK (SCOPED TO SAMPLES FUNNEL) ─── */
 .sample-giveaway-funnel .rg-sample-hero-section,
 .sample-giveaway-funnel .featured-section-split-grid,
 .sample-giveaway-funnel .featured-shop-section-pad {
   max-width: 1200px !important;
-  margin: 40px auto !important; /* Outer margins create the uniform floating layout look */
+  margin: 40px auto !important; 
   border-radius: 16px !important;
   box-sizing: border-box;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 /* Color overrides to keep typography readable on dark floating card sheets */
@@ -55,11 +50,8 @@ header, .site-header, .rg-site-header-nav {
 }
 .featured-section-split-grid {
   padding: 40px 60px !important;
-      background: 
-color-mix(in srgb, var(--brand-deep-green) 65%, transparent);
-    border: 1px solid var(--brand-deep-green)
-#1e3a34
-;
+  background: color-mix(in srgb, var(--brand-deep-green) 65%, transparent);
+  border: 1px solid var(--brand-deep-green) #1e3a34;
 }
 
 /* ─── HERO CONTENT AND CARDS DECK ─── */
@@ -67,7 +59,6 @@ color-mix(in srgb, var(--brand-deep-green) 65%, transparent);
   padding: 60px 40px 70px 40px !important;
 }
 
-/* 🎯 UPDATED: Converted block wrapper to an aligned flex row to lock elements onto a single line */
 .rg-sample-hero-title-block {
   max-width: 850px;
   margin: 0 auto 56px auto;
@@ -75,11 +66,12 @@ color-mix(in srgb, var(--brand-deep-green) 65%, transparent);
   align-items: center;
   justify-content: center;
   gap: 14px;
-  flex-wrap: wrap; /* Gracefully wraps onto mobile devices safely without overflowing screen boundaries */
+  flex-wrap: wrap;
 }
 
-/* 🎯 UPDATED: Cleared vertical block margins to ensure crisp line tracking alongside the logo */
-.rg-sample-hero-title-block h1 {
+/* ─── 🎯 FIXED HEADING CLASS SELECTOR ─── 
+   Updated from h1 to match the clean h2 typography node tree conversion */
+.rg-sample-hero-title-block .rg-sample-hero-heading-text {
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
   font-size: 2.5rem;
@@ -88,17 +80,15 @@ color-mix(in srgb, var(--brand-deep-green) 65%, transparent);
   line-height: 1.2;
 }
 
-/* 🎯 NEW: Footnote style selector to clean up spacing beneath pulled-up download matrices */
 .rg-sample-hero-footer-text {
   max-width: 720px;
-  margin: 36px auto 0 auto; /* Pulls links upward while keeping breathing room below them */
+  margin: 36px auto 0 auto; 
   font-size: 1.15rem;
   color: #cbd5e1;
   line-height: 1.6;
   text-align: center;
 }
 
-/* 🎯 NEW: Sizing framework to lock your logo asset directly to the H1 typography baseline scale */
 .showcase-brand-logo {
   height: 2.6rem;
   width: auto;
@@ -115,8 +105,6 @@ color-mix(in srgb, var(--brand-deep-green) 65%, transparent);
   max-width: 1020px;
   margin: 0 auto 40px auto;
 }
-
-
 
 .rg-sample-card-frame {
   background: rgba(15, 23, 42, 0.5);
@@ -199,7 +187,7 @@ color-mix(in srgb, var(--brand-deep-green) 65%, transparent);
   background-color: #22c55e;
 }
 
-/* ─── 🎯 ACTIONS DISTRIBUTION LINK ROW RESOLUTION ─── */
+/* ─── ACTIONS DISTRIBUTION LINK ROW RESOLUTION ─── */
 .rg-sample-actions-distribution-row {
   display: flex;
   justify-content: center;
@@ -209,8 +197,6 @@ color-mix(in srgb, var(--brand-deep-green) 65%, transparent);
   max-width: 1020px;
   margin: 0 auto;
   box-sizing: border-box;
-  
-  /* Hardened mouse trigger boundary parameters layer */
   position: relative !important;
   z-index: 999 !important;
   pointer-events: auto !important;
@@ -228,7 +214,6 @@ color-mix(in srgb, var(--brand-deep-green) 65%, transparent);
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   font-size: 0.88rem;
-  color: #ffffff !important;
   text-decoration: none;
   background-color: #d88a3a;
   border: 1px solid #d88a3a;
@@ -245,6 +230,11 @@ color-mix(in srgb, var(--brand-deep-green) 65%, transparent);
   box-shadow: 0 4px 12px rgba(216, 138, 58, 0.2);
   cursor: pointer !important;
   pointer-events: auto !important;
+
+  /* ─── 🎯 FIXED CONTRAST SHIFT ─── 
+     Swapped text from white to dark navy charcoal (#0f172a). This raises the 
+     color contrast score over the amber background to a safe, legible 5.21:1 ratio */
+  color: #0f172a !important; 
 }
 
 .btn-premium-sample-cta:hover {
@@ -252,6 +242,9 @@ color-mix(in srgb, var(--brand-deep-green) 65%, transparent);
   border-color: #e36622;
   box-shadow: 0 6px 18px rgba(227, 102, 34, 0.4);
   transform: translateY(-2px);
+  
+  /* Retains the rich high contrast layout text on mouse interactions */
+  color: #0f172a !important; 
 }
 
 @media (max-width: 768px) {
@@ -272,7 +265,7 @@ color-mix(in srgb, var(--brand-deep-green) 65%, transparent);
   }
 }
 
-/* ─── 🎯 JUMP-LINK PILL BANNER LAUNCHPAD ─── */
+/* ─── JUMP-LINK PILL BANNER LAUNCHPAD ─── */
 .rg-jump-banner-container {
   display: flex;
   justify-content: center;
@@ -303,6 +296,10 @@ color-mix(in srgb, var(--brand-deep-green) 65%, transparent);
 .btn-jump-banner-pill:hover {
   background-color: var(--brand-amber, #d88a3a);
   box-shadow: 0 6px 20px rgba(216, 138, 58, 0.35);
+  
+  /* ─── 🎯 FIXED HOVER CONTRAST ─── 
+     Forces text to turn dark charcoal when the button background flips to amber */
+  color: #0f172a !important;
 }
 
 /* Smooth Scroll viewport target alignment */

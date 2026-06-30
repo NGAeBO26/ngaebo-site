@@ -144,7 +144,7 @@
 
 /* 🎯 THE LEAD MAGNET REWARD DISPLAY CARD SYSTEM */
 .gateway-rideguide-lead-incentive-card {
-  background-color: #f0fdf4; /* Safe, welcoming organic green tint card theme */
+  background-color: #f8fafc;; /* Safe, welcoming organic green tint card theme */
   border: 1px solid #bbf7d0;
   border-radius: 8px;
   padding: 20px;
@@ -166,17 +166,6 @@
   letter-spacing: 0.5px;
   margin-bottom: 10px;
   line-height: 1;
-}
-
-.gateway-rideguide-lead-incentive-card {
-  background-color: #f8fafc; /* Swapped out the raw green backdrop to a clean slate-neutral */
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 14px; /* Reduced padding height footprint */
-  box-sizing: border-box;
-  width: 100%;
-  margin-bottom: 16px;
-  text-align: left;
 }
 
 .gateway-lead-description-copy {

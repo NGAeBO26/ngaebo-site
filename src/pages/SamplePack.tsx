@@ -8,12 +8,32 @@ export default function SampleGiveaway() {
   return (
     <div className="sample-giveaway-funnel-container-shell" style={{ width: "100%", display: "block" }}>
       
-      {/* ─── SYSTEM CORE INJECTOR ─── 
-         Alters the outer parent container class properties to spread background imagery maps site-wide */}
+      {/* ─── 🎯 FIX 1: PRIMARY LEVEL-ONE HEADING INFRASTRUCTURE ─── 
+          Resolves page-has-heading-one. Keeps the root title perfectly legible 
+          to screen readers while keeping it invisible on-screen. */}
+      <h1 style={{
+        position: 'absolute',
+        width: '1px',
+        height: '1px',
+        padding: '0',
+        margin: '-1px',
+        overflow: 'hidden',
+        clip: 'rect(0, 0, 0, 0)',
+        whiteSpace: 'nowrap',
+        border: '0'
+      }}>
+        Free Offline Backcountry Map Sample Pack and Tactical Field Guides
+      </h1>
+
+      {/* ─── SYSTEM CORE INJECTOR ─── */}
       <div className="sample-giveaway-funnel" style={{ width: "100%", display: "flex", flexDirection: "column" }}>
         
-        {/* ─── STEP 1: THE ACCELERATED VALUE INTRUDER HOOK (Narrative Block A) ─── */}
-        <section className="featured-section-split-grid" style={{ marginTop: "60px" }}>
+        {/* ─── 🎯 FIX 2: NAMED ACCESSIBILITY LANDMARK REGION ─── */}
+        <section 
+          className="featured-section-split-grid" 
+          style={{ marginTop: "60px" }}
+          aria-label="Backcountry Risk and Physics Overview"
+        >
           <div className="featured-problem-block">
             <h2>The Backcountry is Unforgiving. Don't Rely on Guesswork.</h2>
           </div>
@@ -25,21 +45,25 @@ export default function SampleGiveaway() {
           </div>
         </section>
 
-        {/* ─── 🎯 ANCHOR JUMP-LINK PILL BANNER ─── */}
+        {/* ─── ANCHOR JUMP-LINK PILL BANNER ─── */}
         <div className="rg-jump-banner-container">
           <button
             onClick={() => document.getElementById("free-samples-download")?.scrollIntoView({ behavior: "smooth" })}
             className="btn-jump-banner-pill"
           >
-            Get Your Samples Now ↓
+            {/* ─── 🎯 FIX 3: ESCAPE ICON NOISE FOR SCREEN READERS ─── */}
+            Get Your Samples Now <span aria-hidden="true">↓</span>
           </button>
         </div>
 
         {/* ─── STEP 2: THE INTERACTIVE SYSTEM PROOF (Digital Showcase) ─── */}
         <DigitalProductShowcase mode="landing" intentTag="sample_pack_nurture" />
 
-        {/* ─── STEP 4: THE MARKETPLACES TRANSITION BRIDGE (Narrative Block B) ─── */}
-        <section className="featured-section-split-grid">
+        {/* ─── 🎯 FIX 4: NAMED ACCESSIBILITY LANDMARK REGION ─── */}
+        <section 
+          className="featured-section-split-grid"
+          aria-label="E-Bike Hardware Grade Optimization"
+        >
           <div className="featured-problem-block">
             <h2>Serious Adventures Demand Premium Hardware.</h2>
           </div>
@@ -59,15 +83,17 @@ export default function SampleGiveaway() {
           <SamplePackHero />
         </div>
 
-        {/* ─── 🎯 SECTION 6: FULL-WIDTH NESTLED FOOTER SAFETY NET ─── */}
+        {/* ─── SECTION 6: FULL-WIDTH NESTLED FOOTER SAFETY NET ─── */}
+        {/* ─── 🎯 FIX 5: HYDRATE THE FOOTER LANDMARK REGION ─── */}
         <section 
           className="lead-capture-footer"
+          aria-label="Newsletter Subscription Form"
           style={{
             width: "calc(100% + 40px)",
             marginLeft: "-20px",
             marginRight: "-20px",
-            marginBottom: "-100px", /* Counteracts parent layout padding-bottom to rest flush on the global site footer */
-            backgroundColor: "color-mix(in srgb, var(--brand-deep-green) 92%, #000000)", /* Perfectly aligns with your brand forest green backdrop tones */
+            marginBottom: "-100px", 
+            backgroundColor: "color-mix(in srgb, var(--brand-deep-green) 92%, #000000)", 
             padding: "48px 40px",
             boxSizing: "border-box",
             display: "block"
