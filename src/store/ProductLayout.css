@@ -372,7 +372,7 @@
 .msrp-label {
   font-size: 11px;
   text-decoration: line-through;
-  color: #cbd5e1;
+  color: var(--brand-graphite);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
