@@ -49,8 +49,6 @@ export default function Shop() {
   const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
 
   useEffect(() => {
-    // 🎯 CLEANEST PATHING SECURED: Relative paths dynamically match whatever domain 
-    // the user is currently on (Local, DO Staging, or DO Production).
     fetch('/api/products')
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP network error! status: ${res.status}`);
@@ -128,6 +126,16 @@ export default function Shop() {
         key={product.id} 
         className={`product-grid-card ${isAccessoryItem ? 'accessory-compact-card' : ''}`} 
         onClick={() => handleCardClick(product)}
+        /* ─── 🎯 FIX 1: FULL KEYBOARD NAVIGATION ATTACHED TO RETAIL CARDS ─── */
+        role="button"
+        tabIndex={0}
+        aria-label={`View pricing and full operational parameters for ${formattedTitle}`}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleCardClick(product);
+          }
+        }}
       >
         <div className="card-premium-accent-header">
           <span>{product.sub_category || 'Verified Configuration'}</span>
@@ -135,7 +143,7 @@ export default function Shop() {
 
         <div className="card-image-box">
           {primaryDisplayImage ? (
-            <img src={primaryDisplayImage} alt={formattedTitle} />
+            <img src={primaryDisplayImage} alt={`Showcase snapshot of ${formattedTitle}`} />
           ) : (
             <div className="card-image-empty-state">Image Array Empty</div>
           )}
@@ -144,13 +152,14 @@ export default function Shop() {
         <div className="card-details-box">
           <div className="grid-brand-logo-frame">
             {brandLogoUrl ? (
-              <img className="grid-brand-logo-img" src={brandLogoUrl} alt={`${product.brand} Brand`} />
+              <img className="grid-brand-logo-img" src={brandLogoUrl} alt={`${product.brand} Brand Logo`} />
             ) : (
               <span className="brand-lbl-fallback">{product.brand}</span>
             )}
           </div>
 
-          <h3 className="main-title">{formattedTitle}</h3>
+          {/* ─── 🎯 FIX 2: CONVERTED H3 TO TARGETED CLASS SPAN ELEMENT ─── */}
+          <span className="product-card-main-title">{formattedTitle}</span>
           
           <div className="card-bottom-action-row">
             <div className="card-price-stack">
@@ -185,15 +194,15 @@ export default function Shop() {
       <div className="shop-container">
         
         <div className="shop-persistent-header-stack">
-          <section className="shop-hero-banner">
+          <section className="shop-hero-banner" aria-label="Retail Storefront Welcome Banner">
             <h1>New Gear. New Adventures.</h1>
             <p>Shop bikes, gear, accessories and more.</p>
           </section>
 
-          <div className="shop-filter-bar">
-            <button className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`} onClick={() => setActiveFilter('all')}>All Gear</button>
-            <button className={`filter-btn ${activeFilter === 'ebike' ? 'active' : ''}`} onClick={() => setActiveFilter('ebike')}>Verified E-Bikes</button>
-            <button className={`filter-btn ${activeFilter === 'accessories' ? 'active' : ''}`} onClick={() => setActiveFilter('accessories')}>Accessories</button>
+          <div className="shop-filter-bar" role="tablist" aria-label="Product Category Filter Matrix">
+            <button className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`} onClick={() => setActiveFilter('all')} role="tab" aria-selected={activeFilter === 'all'}>All Gear</button>
+            <button className={`filter-btn ${activeFilter === 'ebike' ? 'active' : ''}`} onClick={() => setActiveFilter('ebike')} role="tab" aria-selected={activeFilter === 'ebike'}>Verified E-Bikes</button>
+            <button className={`filter-btn ${activeFilter === 'accessories' ? 'active' : ''}`} onClick={() => setActiveFilter('accessories')} role="tab" aria-selected={activeFilter === 'accessories'}>Accessories</button>
           </div>
         </div>
 
@@ -202,7 +211,7 @@ export default function Shop() {
           {activeFilter === 'all' && (
             <>
               {bikeProducts.length > 0 && (
-                <div className="shop-accessories-divider-ribbon">
+                <div className="shop-accessories-divider-ribbon" role="presentation">
                   <div className="shop-accessories-divider-label">
                     Electric Bikes
                   </div>
@@ -211,7 +220,7 @@ export default function Shop() {
               {bikeProducts.map(product => renderProductCard(product))}
 
               {accessoryProducts.length > 0 && (
-                <div className="shop-accessories-divider-ribbon section-following-divider">
+                <div className="shop-accessories-divider-ribbon section-following-divider" role="presentation">
                   <div className="shop-accessories-divider-label">
                     Accessories and Gear
                   </div>
@@ -223,7 +232,7 @@ export default function Shop() {
 
           {activeFilter === 'ebike' && (
             <>
-              <div className="shop-accessories-divider-ribbon">
+              <div className="shop-accessories-divider-ribbon" role="presentation">
                 <div className="shop-accessories-divider-label">
                   Electric Bikes
                 </div>
@@ -234,7 +243,7 @@ export default function Shop() {
 
           {activeFilter === 'accessories' && (
             <>
-              <div className="shop-accessories-divider-ribbon">
+              <div className="shop-accessories-divider-ribbon" role="presentation">
                 <div className="shop-accessories-divider-label">
                   Accessories and Gear
                 </div>
@@ -245,9 +254,16 @@ export default function Shop() {
 
         </div>
 
+        {/* ─── 🎯 FIX 3: ADDED PROGRAMMATIC ACCESSIBILITY ROLES TO MODAL POPUPS ─── */}
         {selectedProduct && (
-          <div className="modal-blur-overlay" onClick={() => setSelectedProduct(null)}>
-            <div className="modal-scroll-shell">
+          <div 
+            className="modal-blur-overlay" 
+            onClick={() => setSelectedProduct(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Retail Product Specification Lightbox Focus Module"
+          >
+            <div className="modal-scroll-shell" onClick={(e) => e.stopPropagation()}>
               <EditorialProductLayout 
                 {...selectedProduct} 
                 onClose={() => setSelectedProduct(null)} 
@@ -256,8 +272,9 @@ export default function Shop() {
           </div>
         )}
       </div>
-      {/* SECTION 6: THE FOOTER SAFETY NET */}
-      <section className="lead-capture-footer">
+
+      {/* FOOTER LEAD CHANNEL */}
+      <section className="lead-capture-footer" aria-label="Premium Map Sample Lead Capture Section">
         <div className="funnel-container">
           <div className="capture-split-layout">
             <div className="capture-text-stack">
@@ -267,7 +284,6 @@ export default function Shop() {
               </p>
             </div>
             <div>
-              {/* Live Embedded Reusable Lead Form System */}
               <TacticalLeadForm 
                 buttonLabel="Get Free Maps ➔"
                 sourceGroupTag="home_footer_checklist"
@@ -277,8 +293,8 @@ export default function Shop() {
           </div>
         </div>
       </section>
+      
       <Footer />
-
     </div>
   );
 }
