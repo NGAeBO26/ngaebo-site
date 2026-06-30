@@ -416,6 +416,25 @@
   font-weight: 700; 
 }
 
+/* Core Storefront Accessibility Typography Remapping Overrides */
+
+.product-grid-card .product-card-main-title {
+  display: block; /* Forces block layout functionality exactly like an h3 tag */
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--brand-charcoal, #0f172a);
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+/* ─── KEYBOARD NAVIGATION OUTLINE OVERLAYS ─── */
+.product-grid-card:focus-visible {
+  outline: 3px solid var(--brand-sky, #38bdf8);
+  outline-offset: 4px;
+  transform: translateY(-4px); /* Preserves hover lift animations on keyboard focus events */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+}
+
 /* ==========================================================================
    📱 RESPONSIVE COHESIVE MOBILE MEDIA BREAKPOINTS
    ========================================================================== */

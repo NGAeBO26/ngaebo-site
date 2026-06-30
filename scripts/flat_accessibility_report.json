@@ -1,33 +1,11 @@
 [
     {
-        "Component / File Context": "Page: Homepage Grid Panel",
-        "Page Path": "/",
+        "Component / File Context": "Page: Shopify Retail Showcase Marketplace",
+        "Page Path": "/shop",
         "Impact Severity": "MODERATE",
         "Issue Type": "heading-order",
-        "Target CSS Selector": ".product-grid-card:nth-child(2) > .card-details-box > .main-title",
-        "HTML Code Snippet": "<h3 class=\"main-title\">TrailRush</h3>",
-        "How to Fix / Failure Summary": "Fix any of the following:   Heading order invalid",
-        "Source File Line Reference": "MANUAL CHECK (Vite Bundled)",
-        "Documentation / Help Link": "https://dequeuniversity.com/rules/axe/3.1/heading-order?application=axeAPI"
-    },
-    {
-        "Component / File Context": "Page: RideGuides Telemetry Map Workspace",
-        "Page Path": "/rides",
-        "Impact Severity": "SERIOUS",
-        "Issue Type": "color-contrast",
-        "Target CSS Selector": ".rg-cart-empty-placeholder > span",
-        "HTML Code Snippet": "<span>No route items staged. Select a route line on the map to fill your cart.</span>",
-        "How to Fix / Failure Summary": "Fix any of the following:   Element has insufficient color contrast of 2.33 (foreground color: #9badad, background color: #ffffff, font size: 7.1pt, font weight: normal). Expected contrast ratio of 4.5:1",
-        "Source File Line Reference": "MANUAL CHECK (Vite Bundled)",
-        "Documentation / Help Link": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI"
-    },
-    {
-        "Component / File Context": "Page: RideGuides Telemetry Map Workspace",
-        "Page Path": "/rides",
-        "Impact Severity": "MODERATE",
-        "Issue Type": "heading-order",
-        "Target CSS Selector": ".prop-value-column-card:nth-child(2) > .prop-card-header-strip > h5",
-        "HTML Code Snippet": "<h5>Offline Independent</h5>",
+        "Target CSS Selector": ".product-grid-card:nth-child(2) > .card-details-box > h3",
+        "HTML Code Snippet": "<h3 class=\"main-title\">Portola</h3>",
         "How to Fix / Failure Summary": "Fix any of the following:   Heading order invalid",
         "Source File Line Reference": "MANUAL CHECK (Vite Bundled)",
         "Documentation / Help Link": "https://dequeuniversity.com/rules/axe/3.1/heading-order?application=axeAPI"
