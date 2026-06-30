@@ -1,21 +1,29 @@
 /* src/features/Discovery/DiscoveryContainer.tsx */
 import { useState, useCallback, useRef, useEffect } from "react";
 import GravelGuide from "./GravelGuide";
-import { useRideFinderEngine, RideFilterBar, RideResultGallery } from "./components/RideFinder";
+import {
+  useRideFinderEngine,
+  RideFilterBar,
+  RideResultGallery,
+} from "./components/RideFinder";
 import GravelPopup from "./components/GravelPopup";
 import PersistentLeftShopPanel from "../../store/StorePanel";
 import { LoadingOverlay } from "../../components/LoadingOverlay";
 
-import "../../styles/store.css";
-import "./DiscoveryContainer.css"; 
+import "../../styles/StorePanel.css";
+import "./DiscoveryContainer.css";
 
 export default function DiscoveryContainer() {
   const [activeHoverId, setActiveHoverId] = useState<string | null>(null);
   const [masterRoutes, setMasterRoutes] = useState<any[]>([]);
   const [filteredRoutes, setFilteredRoutes] = useState<any[]>([]);
-  
-  const [selectedRouteFeature, setSelectedRouteFeature] = useState<any | null>(null);
-  const [activeTakeoverRouteId, setActiveTakeoverRouteId] = useState<string | null>(null);
+
+  const [selectedRouteFeature, setSelectedRouteFeature] = useState<any | null>(
+    null,
+  );
+  const [activeTakeoverRouteId, setActiveTakeoverRouteId] = useState<
+    string | null
+  >(null);
 
   const [isPopupClosing, setIsPopupClosing] = useState(false);
   const mapResetFnRef = useRef<(() => void) | null>(null);
@@ -27,7 +35,7 @@ export default function DiscoveryContainer() {
   // Simulated progressive loader baseline sync
   useEffect(() => {
     if (!isWorkspaceLoading) return;
-    
+
     const progressTimer = setInterval(() => {
       setLoadProgress((prev) => {
         if (prev >= 85) {
@@ -55,11 +63,13 @@ export default function DiscoveryContainer() {
 
   const handleRoutesLoaded = useCallback((routes: any[]) => {
     console.log("=== 🗺️ MAP ENGINE DISPATCHED DATA ===");
-    console.log(`Successfully received ${routes.length} features from MapLibre canvas layers.`);
-    
+    console.log(
+      `Successfully received ${routes.length} features from MapLibre canvas layers.`,
+    );
+
     setMasterRoutes(routes);
     setFilteredRoutes(routes);
-    
+
     setLoadProgress(100);
     setTimeout(() => {
       setIsWorkspaceLoading(false);
@@ -70,8 +80,10 @@ export default function DiscoveryContainer() {
     setSelectedRouteFeature(feature);
     if (feature) {
       const props = feature.properties || {};
-      const primitiveId = String(props.profile_id || feature.id || props.id || "");
-      
+      const primitiveId = String(
+        props.profile_id || feature.id || props.id || "",
+      );
+
       setIsPopupClosing(false);
       setActiveTakeoverRouteId(primitiveId);
 
@@ -89,12 +101,12 @@ export default function DiscoveryContainer() {
     setTimeout(() => {
       setSelectedRouteFeature(null);
       setActiveTakeoverRouteId(null);
-      setIsPopupClosing(false); 
+      setIsPopupClosing(false);
 
       if (mapResetFnRef.current) {
         mapResetFnRef.current();
       }
-    }, 400); 
+    }, 400);
   }, []);
 
   const filterEngine = useRideFinderEngine(masterRoutes, handleFilterUpdate);
@@ -102,22 +114,21 @@ export default function DiscoveryContainer() {
 
   return (
     <div className="discovery-dashboard-root" style={{ position: "relative" }}>
-      
-      <LoadingOverlay 
-        isLoading={isWorkspaceLoading} 
-        progress={loadProgress} 
+      <LoadingOverlay
+        isLoading={isWorkspaceLoading}
+        progress={loadProgress}
         message="Hydrating Backcountry Telemetry..."
       />
 
-      <RideFilterBar 
-        engine={filterEngine} 
-        totalCount={masterRoutes.length} 
+      <RideFilterBar
+        engine={filterEngine}
+        totalCount={masterRoutes.length}
         isTakeoverActive={isTakeoverCurrentlyActive}
       />
 
       {isTakeoverCurrentlyActive && selectedRouteFeature && (
-        <GravelPopup 
-          feature={selectedRouteFeature} 
+        <GravelPopup
+          feature={selectedRouteFeature}
           onClose={handleExitTakeover}
           className={isPopupClosing ? "popup-dismissing" : "popup-entering"}
         />
@@ -125,41 +136,44 @@ export default function DiscoveryContainer() {
 
       <div className="discovery-center-container">
         <div className="rg-retail-map-workspace-layout-deck">
-          
           <aside className="rg-left-workspace-storefront-sidebar">
-            <PersistentLeftShopPanel 
-              activeRouteProperties={selectedRouteFeature ? selectedRouteFeature.properties : null} 
-              allRoutes={masterRoutes} 
+            <PersistentLeftShopPanel
+              activeRouteProperties={
+                selectedRouteFeature ? selectedRouteFeature.properties : null
+              }
+              allRoutes={masterRoutes}
             />
           </aside>
 
           <div className="discovery-map-main-viewport">
             <GravelGuide
-              activeHoverId={activeHoverId}     
-              onRouteHover={setActiveHoverId}   
-              activeRouteId={activeTakeoverRouteId}   
-              onRouteSelect={handleRouteSelect}       
+              activeHoverId={activeHoverId}
+              onRouteHover={setActiveHoverId}
+              activeRouteId={activeTakeoverRouteId}
+              onRouteSelect={handleRouteSelect}
               isTakeoverActive={isTakeoverCurrentlyActive}
               filteredRoutes={filteredRoutes}
               onRoutesLoaded={handleRoutesLoaded}
-              onRegisterResetFn={(fn) => { mapResetFnRef.current = fn; }}
-              onRegisterZoomFn={(fn) => { mapZoomFnRef.current = fn; }}
+              onRegisterResetFn={(fn) => {
+                mapResetFnRef.current = fn;
+              }}
+              onRegisterZoomFn={(fn) => {
+                mapZoomFnRef.current = fn;
+              }}
             />
           </div>
 
-          <RideResultGallery 
-            routes={filteredRoutes} 
+          <RideResultGallery
+            routes={filteredRoutes}
             activeHoverId={activeHoverId}
             onHoverChange={setActiveHoverId}
-            isCollapsed={false} 
-            onToggleCollapse={() => {}} 
+            isCollapsed={false}
+            onToggleCollapse={() => {}}
             onRouteSelect={handleRouteSelect}
-            isTakeoverActive={false} 
+            isTakeoverActive={false}
           />
-
         </div>
       </div>
-
     </div>
-  ); 
+  );
 }

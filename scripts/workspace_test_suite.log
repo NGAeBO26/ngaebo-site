@@ -1,0 +1,26 @@
+2026-06-29 13:54:02,878 [INFO] ==================================================
+2026-06-29 13:54:02,878 [INFO] ==================================================
+2026-06-29 13:55:39,273 [INFO] [START] Beginning End-to-End System Audit for: https://northgeorgiaebikes.com
+2026-06-29 13:55:39,273 [INFO] [RUN] Testing: Homepage Base Render -> https://northgeorgiaebikes.com/
+2026-06-29 13:55:39,826 [INFO] [PASS] Response received cleanly (HTTP 200)
+2026-06-29 13:55:39,826 [INFO] [RUN] Testing: About Us Floating Canvas View -> https://northgeorgiaebikes.com/about
+2026-06-29 13:55:40,439 [INFO] [PASS] Response received cleanly (HTTP 200)
+2026-06-29 13:55:40,443 [INFO] [RUN] Testing: Shopify Static Products Pipeline -> https://northgeorgiaebikes.com/api/products
+2026-06-29 13:55:40,621 [INFO] [PASS] Response received cleanly (HTTP 200)
+2026-06-29 13:55:40,621 [INFO] [RUN] Testing: MailerLite Lead Capture Form Gateway -> https://northgeorgiaebikes.com/api/subscribe
+2026-06-29 13:55:41,742 [INFO] [PASS] Response received cleanly (HTTP 200)
+2026-06-29 13:55:41,742 [INFO] ==================================================
+2026-06-29 13:55:41,742 [INFO] [SUMMARY] AUDIT COMPLETE: 4 Passed | 0 Failed/Blocked
+2026-06-29 13:55:41,742 [INFO] ==================================================
+2026-06-29 13:56:29,791 [INFO] [START] Beginning End-to-End System Audit for: https://northgeorgiaebikes.com
+2026-06-29 13:56:29,792 [INFO] [RUN] Testing: Homepage Base Render -> https://northgeorgiaebikes.com/
+2026-06-29 13:56:30,077 [INFO] [PASS] Response received cleanly (HTTP 200)
+2026-06-29 13:56:30,078 [INFO] [RUN] Testing: About Us Floating Canvas View -> https://northgeorgiaebikes.com/about
+2026-06-29 13:56:30,425 [INFO] [PASS] Response received cleanly (HTTP 200)
+2026-06-29 13:56:30,425 [INFO] [RUN] Testing: Shopify Static Products Pipeline -> https://northgeorgiaebikes.com/api/products
+2026-06-29 13:56:30,719 [INFO] [PASS] Response received cleanly (HTTP 200)
+2026-06-29 13:56:30,719 [INFO] [RUN] Testing: MailerLite Lead Capture Form Gateway -> https://northgeorgiaebikes.com/api/subscribe
+2026-06-29 13:56:31,700 [INFO] [PASS] Response received cleanly (HTTP 200)
+2026-06-29 13:56:31,700 [INFO] ==================================================
+2026-06-29 13:56:31,700 [INFO] [SUMMARY] AUDIT COMPLETE: 4 Passed | 0 Failed/Blocked
+2026-06-29 13:56:31,700 [INFO] ==================================================

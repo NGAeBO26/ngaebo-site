@@ -1,0 +1,239 @@
+[
+    {
+        "description": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds",
+        "help": "Elements must have sufficient color contrast",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/color-contrast?application=axeAPI",
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": [
+            {
+                "all": [],
+                "any": [
+                    {
+                        "data": {
+                            "bgColor": "#f4f1eb",
+                            "contrastRatio": 1.12,
+                            "expectedContrastRatio": "4.5:1",
+                            "fgColor": "#ffffff",
+                            "fontSize": "11.4pt",
+                            "fontWeight": "normal",
+                            "missingData": null
+                        },
+                        "id": "color-contrast",
+                        "impact": "serious",
+                        "message": "Element has insufficient color contrast of 1.12 (foreground color: #ffffff, background color: #f4f1eb, font size: 11.4pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                        "relatedNodes": [
+                            {
+                                "html": "<input placeholder=\"Enter your email address\" class=\"capture-input-styled \" required=\"\" type=\"email\" value=\"\">",
+                                "target": [
+                                    "input"
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.12 (foreground color: #ffffff, background color: #f4f1eb, font size: 11.4pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                "html": "<input placeholder=\"Enter your email address\" class=\"capture-input-styled \" required=\"\" type=\"email\" value=\"\">",
+                "impact": "serious",
+                "none": [],
+                "target": [
+                    "input"
+                ]
+            },
+            {
+                "all": [],
+                "any": [
+                    {
+                        "data": {
+                            "bgColor": "#d88a3a",
+                            "contrastRatio": 2.75,
+                            "expectedContrastRatio": "4.5:1",
+                            "fgColor": "#ffffff",
+                            "fontSize": "10.0pt",
+                            "fontWeight": "bold",
+                            "missingData": null
+                        },
+                        "id": "color-contrast",
+                        "impact": "serious",
+                        "message": "Element has insufficient color contrast of 2.75 (foreground color: #ffffff, background color: #d88a3a, font size: 10.0pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                        "relatedNodes": [
+                            {
+                                "html": "<button type=\"submit\" class=\"btn btn-primary capture-button-whitespace\">Sign Up \u2794</button>",
+                                "target": [
+                                    ".btn"
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.75 (foreground color: #ffffff, background color: #d88a3a, font size: 10.0pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                "html": "<button type=\"submit\" class=\"btn btn-primary capture-button-whitespace\">Sign Up \u2794</button>",
+                "impact": "serious",
+                "none": [],
+                "target": [
+                    ".btn"
+                ]
+            },
+            {
+                "all": [],
+                "any": [
+                    {
+                        "data": {
+                            "bgColor": "#d88a3a",
+                            "contrastRatio": 2.75,
+                            "expectedContrastRatio": "4.5:1",
+                            "fgColor": "#ffffff",
+                            "fontSize": "9.0pt",
+                            "fontWeight": "bold",
+                            "missingData": null
+                        },
+                        "id": "color-contrast",
+                        "impact": "serious",
+                        "message": "Element has insufficient color contrast of 2.75 (foreground color: #ffffff, background color: #d88a3a, font size: 9.0pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                        "relatedNodes": [
+                            {
+                                "html": "<button class=\"rg-cookie-banner-accept-btn\">Accept &amp; Continue</button>",
+                                "target": [
+                                    ".rg-cookie-banner-accept-btn"
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.75 (foreground color: #ffffff, background color: #d88a3a, font size: 9.0pt, font weight: bold). Expected contrast ratio of 4.5:1",
+                "html": "<button class=\"rg-cookie-banner-accept-btn\">Accept &amp; Continue</button>",
+                "impact": "serious",
+                "none": [],
+                "target": [
+                    ".rg-cookie-banner-accept-btn"
+                ]
+            }
+        ],
+        "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143"
+        ]
+    },
+    {
+        "description": "Ensures every form element has a label",
+        "help": "Form elements must have labels",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/label?application=axeAPI",
+        "id": "label",
+        "impact": "critical",
+        "nodes": [
+            {
+                "all": [],
+                "any": [
+                    {
+                        "data": null,
+                        "id": "aria-label",
+                        "impact": "serious",
+                        "message": "aria-label attribute does not exist or is empty",
+                        "relatedNodes": []
+                    },
+                    {
+                        "data": null,
+                        "id": "aria-labelledby",
+                        "impact": "serious",
+                        "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                        "relatedNodes": []
+                    },
+                    {
+                        "data": null,
+                        "id": "implicit-label",
+                        "impact": "critical",
+                        "message": "Form element does not have an implicit (wrapped) <label>",
+                        "relatedNodes": []
+                    },
+                    {
+                        "data": null,
+                        "id": "explicit-label",
+                        "impact": "critical",
+                        "message": "Form element does not have an explicit <label>",
+                        "relatedNodes": []
+                    },
+                    {
+                        "data": null,
+                        "id": "non-empty-title",
+                        "impact": "serious",
+                        "message": "Element has no title attribute or the title attribute is empty",
+                        "relatedNodes": []
+                    }
+                ],
+                "failureSummary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <label>\n  Element has no title attribute or the title attribute is empty",
+                "html": "<input placeholder=\"Enter your email address\" class=\"capture-input-styled \" required=\"\" type=\"email\" value=\"\">",
+                "impact": "critical",
+                "none": [],
+                "target": [
+                    "input"
+                ]
+            }
+        ],
+        "tags": [
+            "cat.forms",
+            "wcag2a",
+            "wcag332",
+            "wcag131",
+            "section508",
+            "section508.22.n"
+        ]
+    },
+    {
+        "description": "Ensures all page content is contained by landmarks",
+        "help": "All page content must be contained by landmarks",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/3.1/region?application=axeAPI",
+        "id": "region",
+        "impact": "moderate",
+        "nodes": [
+            {
+                "all": [],
+                "any": [
+                    {
+                        "data": null,
+                        "id": "region",
+                        "impact": "moderate",
+                        "message": "Some page content is not contained by landmarks",
+                        "relatedNodes": [
+                            {
+                                "html": "<h4 class=\"rg-cookie-banner-heading\"><img class=\"rg-cookie-img\" alt=\"Cookies\" src=\"/data/assets/icon_cookie.svg\">Cookie Tracking Notice</h4>",
+                                "target": [
+                                    "h4"
+                                ]
+                            },
+                            {
+                                "html": "<p class=\"rg-cookie-banner-description\">This website uses cookies to improve the user experience. By using our website you consent to all cookies in accordance with our privacy policy.</p>",
+                                "target": [
+                                    ".rg-cookie-banner-description"
+                                ]
+                            },
+                            {
+                                "html": "<a href=\"/legals#privacy\" class=\"rg-cookie-banner-privacy-link\">Review Privacy Policy \u2794</a>",
+                                "target": [
+                                    ".rg-cookie-banner-privacy-link"
+                                ]
+                            },
+                            {
+                                "html": "<button class=\"rg-cookie-banner-accept-btn\">Accept &amp; Continue</button>",
+                                "target": [
+                                    ".rg-cookie-banner-accept-btn"
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks",
+                "html": "<html lang=\"en\">",
+                "impact": "moderate",
+                "none": [],
+                "target": [
+                    "html"
+                ]
+            }
+        ],
+        "tags": [
+            "cat.keyboard",
+            "best-practice"
+        ]
+    }
+]

@@ -1,82 +1,91 @@
-/* src/styles/CookieBanner.css */
+/* src/pages/CookieBanner.css */
 
-.rg-cookie-banner-overlay {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 40px);
-  max-width: 580px;
-  background-color: var(--brand-charcoal);
-  border: 2px solid #000000;
-  border-radius: 12px;
-  padding: 16px 20px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  z-index: 999999;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  font-family: sans-serif;
-  box-sizing: border-box;
+.rg-cookie-banner-container {
+  position: fixed !important;
+  bottom: 24px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: calc(100% - 40px) !important;
+  max-width: 850px !important;
+  background-color: var(--brand-charcoal) !important; /* Deep forest green branding token */
+  border: 1px solid var(--brand-graphite) !important; /* Subtle amber border hint */
+  border-radius: 12px !important;
+  padding: 20px 24px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4) !important;
+  z-index: 999999 !important;
+  box-sizing: border-box !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-/* 🎯 THE FIX: Transformed into a flex container for absolute vertical centering */
+.rg-cookie-banner-content {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  width: 100% !important;
+}
+
+/* ─── 🎯 FIXED HEADING SELECTOR ─── */
 .rg-cookie-banner-heading {
-  color: var(--brand-bone);
-  margin: 0 0 4px 0;
-  font-size: 14px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Provides clean breathing room between icon and text */
+  font-size: 1.2rem !important; 
+  font-weight: 700 !important;
+  color: var(--brand-white) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin: 0 !important;
 }
 
 .rg-cookie-img {
-  width: 36px;
-  height: auto;
-  display: block;
+  height: 22px !important;
+  width: auto !important;
 }
 
 .rg-cookie-banner-description {
-  color: var(--brand-slate);
-  margin: 0;
-  font-size: 12px;
-  line-height: 1.5;
+  font-size: 0.9rem !important;
+  line-height: 1.5 !important;
+  color: var(--brand-bone) !important; /* Soft bone text selection */
+  margin: 0 !important;
 }
 
-.rg-cookie-banner-actions-panel {
-  display: flex;
-  justify-content: flex-end;
-  gap: 14px;
-  align-items: center;
+/* ─── 🎯 ROW ALIGNMENT FRAMEWORK ─── */
+.rg-cookie-banner-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 20px !important;
+  margin-top: 4px !important;
+  flex-wrap: wrap !important; /* Safely handles mobile viewport breaks */
 }
 
 .rg-cookie-banner-privacy-link {
-  color: var(--brand-gray);
-  font-size: 11px;
-  font-weight: bold;
-  text-decoration: underline;
-  transition: color 0.15s ease-in-out;
+  color: var(--brand-slate) !important;
+  font-size: 0.85rem !important;
+  text-decoration: underline !important;
+  transition: color 0.15s ease !important;
 }
 
 .rg-cookie-banner-privacy-link:hover {
-  color: #ffffff;
+  color: var(--brand-white) !important;
 }
 
+/* ─── 🎯 HIGH CONTRAST COMPLIANT BUTTON ─── */
 .rg-cookie-banner-accept-btn {
-  background-color: #d88a3a;
-  color: #ffffff;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.15s ease;
+  background-color: var(--brand-amber) !important; /* Brand Amber preserved */
+  border: 1px solid var(--brand-amber) !important;
+  padding: 10px 20px !important;
+  border-radius: 6px !important;
+  font-weight: 700 !important;
+  font-size: 0.88rem !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  transition: all 0.2s ease !important;
+  
+  /* ─── 🎯 SHARP READABILITY RATIO SHIFT ─── */
+  color: var(--brand-charcoal) !important; 
 }
 
 .rg-cookie-banner-accept-btn:hover {
-  background-color: #b45309;
+  background-color: #e36622 !important; /* Clean visual feedback accent shift */
+  border-color: #e36622 !important;
+  box-shadow: 0 4px 12px rgba(227, 102, 34, 0.2) !important;
 }

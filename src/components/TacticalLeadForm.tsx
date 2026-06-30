@@ -1,21 +1,21 @@
 /* src/components/forms/TacticalLeadForm.tsx */
 import React, { useState } from "react";
-import "./TacticalLeadForm.css"; // 🎯 ISOLATED NATIVE STYLING IMPORT
+import "./TacticalLeadForm.css"; 
 
 interface TacticalLeadFormProps {
   buttonLabel?: string;
   placeholderText?: string;
   sourceGroupTag?: string;
-  layout?: "row" | "stacked"; // 🎯 CONTROLS VISUAL FLOW
-  onSuccess?: () => void;     // 🎯 EXTENDED CALLBACK HOOK FOR THEATER TRIGGERING
+  layout?: "row" | "stacked"; 
+  onSuccess?: () => void;     
 }
 
 export default function TacticalLeadForm({
   buttonLabel = "Download Setup Checklist",
   placeholderText = "Enter your email address",
   sourceGroupTag = "home_footer_nurture",
-  layout = "row", // Defaults to horizontal row layout
-  onSuccess       // Gathered from incoming execution props
+  layout = "row", 
+  onSuccess       
 }: TacticalLeadFormProps) {
   const [emailInput, setEmailInput] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -46,7 +46,6 @@ export default function TacticalLeadForm({
         setFeedbackMsg("Sample Pack Link Sent! Check your inbox shortly.");
         setEmailInput("");
 
-        // 🎯 FIRE CALLBACK IF REGISTERED BY PARENT GATEWAY WRAPPER
         if (onSuccess) {
           onSuccess();
         }
@@ -62,7 +61,6 @@ export default function TacticalLeadForm({
   };
 
   return (
-    /* Dynamic variant class allocation based on components props */
     <div className={`tactical-lead-wrapper variant-${layout}`}>
       <form onSubmit={handleLeadSubmit} className="capture-form-flex-row">
         <input
@@ -73,6 +71,8 @@ export default function TacticalLeadForm({
           className={`capture-input-styled ${isSuccess ? "input-success-border" : ""}`}
           disabled={isSubmitting || isSuccess}
           required
+          /* ─── 🎯 ADDED: ACCESSIBLE FORM IDENTIFIER ─── */
+          aria-label="Email address for newsletter and backcountry safety updates"
         />
         
         <button
@@ -86,10 +86,15 @@ export default function TacticalLeadForm({
       </form>
       <span className="lead-disclaimer">
         By entering your email address, you agree to receiving email marketing
-        </span>
+      </span>
 
+      {/* ─── 🎯 ADDED: ACCESSIBLE LIVE REGION ANNOUNCEMENTS ─── */}
       {feedbackMsg && (
-        <div className={`form-feedback-caption ${isSuccess ? "status-success" : "status-error"}`}>
+        <div 
+          role="status"
+          aria-live="polite"
+          className={`form-feedback-caption ${isSuccess ? "status-success" : "status-error"}`}
+        >
           {isSuccess ? "✓ " : "⚠️ "}{feedbackMsg}
         </div>
       )}
