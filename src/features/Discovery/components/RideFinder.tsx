@@ -184,7 +184,7 @@ export function RideFilterBar({
           <div className="control-slider-group">
             <div className="slider-header-labels">
               <span >Max Distance</span>
-              <span style={{ color: "#f59e0b", fontWeight: "bold" }}>{engine.maxDistance} MI</span>
+              <span>{engine.maxDistance} MI</span>
             </div>
             <input
               type="range"
@@ -204,7 +204,7 @@ export function RideFilterBar({
           <div className="control-slider-group">
             <div className="slider-header-labels">
               <span>Max Grade</span>
-              <span style={{ color: "#f59e0b", fontWeight: "bold" }}>{engine.maxGrade}%</span>
+              <span >{engine.maxGrade}%</span>
             </div>
             <input
               type="range"

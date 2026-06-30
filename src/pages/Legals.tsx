@@ -30,7 +30,7 @@ export default function Legals() {
   return (
     /* ─── 🎯 FIX 1: SWAPPED DIV TO MAIN LANDMARK REGION ─── 
        This completely resolves the landmark 'region' violation on the legals track */
-    <main className="rg-legals-page-fluid-shell" style={{ paddingTop: "40px" }}>
+    <div className="rg-legals-page-fluid-shell" style={{ paddingTop: "40px" }}>
       
       {/* DOCUMENT CARD CONTAINER: Keeps policies perfectly centered at 800px max width */}
       <div className="rg-legals-central-canvas" style={{ marginBottom: "60px" }}>
@@ -177,6 +177,6 @@ export default function Legals() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
