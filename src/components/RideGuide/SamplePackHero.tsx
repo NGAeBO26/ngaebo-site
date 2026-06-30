@@ -1,4 +1,5 @@
 /* src/components/RideGuide/SamplePackHero.tsx */
+import React from "react";
 import "../../styles/SamplePackHero.css";
 
 export default function SamplePackHero() {
@@ -36,18 +37,32 @@ export default function SamplePackHero() {
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
+  /* ─── 🎯 FIX 1: KEYBOARD NAVIGATION FOR CLICKABLE CARDS ─── 
+     Allows non-mouse users to activate the maps using Enter or Spacebar */
+  const handleKeyDown = (e: React.KeyboardEvent, url: string) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleOpenPdf(url);
+    }
+  };
+
   return (
     <section className="rg-sample-hero-section">
       
-      {/* 🎯 RESOLVED: Flex layout holds h1 components and logo inline on a single line */}
+      {/* ─── 🎯 FIX 2: UNIFIED HEADING TREE ─── 
+          Consolidates the title into a single semantic <h2> layout block 
+          (since SamplePack.tsx now holds the primary hidden <h1>). 
+          The embedded logo image uses inline text-equivalent formatting. */}
       <div className="rg-sample-hero-title-block">
-        <h1>Your Free</h1> 
-        <img
-          src="/images/RideGuide_embroid-v1.svg"
-          alt="RideGuide Logo"
-          className="showcase-brand-logo"
-        /> 
-        <h1>Sample Pack</h1>        
+        <h2 className="rg-sample-hero-heading-text">
+          Your Free{" "}
+          <img
+            src="/images/RideGuide_embroid-v1.svg"
+            alt="RideGuide"
+            className="showcase-brand-logo"
+          />{" "}
+          Sample Pack
+        </h2>        
       </div>
 
       {/* ASYMMETRICAL PORTRAIT SPREAD GRID CONTAINER */}
@@ -57,7 +72,12 @@ export default function SamplePackHero() {
             key={route.id}
             className={`rg-sample-card-frame ${route.frameClass}`}
             onClick={() => handleOpenPdf(route.pdfUrl)}
-            title={`Open printable ${route.title} field guide in a new tab`}
+            
+            /* ─── 🎯 FIX 3: INJECT CORE INTERACTIVE ATTRIBUTES ─── */
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => handleKeyDown(e, route.pdfUrl)}
+            aria-label={`Open and print ${route.title} field guide layout sheet`}
           >
             <div className="rg-sample-thumbnail-box">
               <img 
@@ -70,13 +90,14 @@ export default function SamplePackHero() {
 
             {/* Verdant Feature Highlights Panel */}
             <div className="rg-sample-bottom-verdant-pill">
-              <span>✓ {route.highlightText}</span>
+              {/* ─── 🎯 FIX 4: MASK THE RAW GLYPH CHARACTER ─── */}
+              <span><span aria-hidden="true">✓</span> {route.highlightText}</span>
             </div>
           </div>
         ))}
       </div>
 
-      {/* ─── 🎯 RESOLVED HITBOX ACCESS ROW ─── */}
+      {/* ─── RESOLVED HITBOX ACCESS ROW ─── */}
       <div className="rg-sample-actions-distribution-row">
         {sampleRoutes.map((route) => (
           <div key={`action-link-${route.id}`} className="rg-individual-action-column">
@@ -85,19 +106,18 @@ export default function SamplePackHero() {
               className="btn-premium-sample-cta"
               title={`Download transparent vector maps template file for ${route.title}`}
             >
-              Get {route.shortName} Map ➔
+              {/* ─── 🎯 FIX 5: ESCAPE ARROW AUDIO OVERHEAD ─── */}
+              Get {route.shortName} Map <span aria-hidden="true">➔</span>
             </button>
           </div>
         ))}
       </div>
 
-      {/* 🎯 RESOLVED: Paragraph moved underneath triggers with dedicated footer utility styling */}
+      {/* Paragraph moved underneath triggers with dedicated footer utility styling */}
       <p className="rg-sample-hero-footer-text">
         Your sample field maps are ready for download! Click any sample image or button above to explore your first RideGuide!
       </p>
       
     </section>
-    
-    
   );
 }

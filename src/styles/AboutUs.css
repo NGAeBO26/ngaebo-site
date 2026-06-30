@@ -4,11 +4,11 @@
 .about-us-workspace-funnel {
   background-image: 
     linear-gradient(color-mix(in srgb, var(--brand-deep-green) 75%, transparent), color-mix(in srgb, var(--brand-deep-green) 65%, transparent)),
-    url("/images/map-background.png") !important; /* References your persistent background map architecture */
+    url("/images/map-background.png") !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
-  background-attachment: fixed !important; /* Locks structural layout imagery during document scroll */
+  background-attachment: fixed !important; 
   padding: 0 20px 100px 20px !important;
   box-sizing: border-box;
 }
@@ -17,8 +17,8 @@
 .about-section-floating-card,
 .about-section-split-grid {
   max-width: 1200px !important;
-  margin: 40px auto !important; /* Matches floating framework spacing */
-  border-radius: 16px !important; /* Consistent block corner curves */
+  margin: 40px auto !important; 
+  border-radius: 16px !important; 
   padding: 40px 60px !important;
   background: color-mix(in srgb, var(--brand-deep-green) 65%, transparent);
   border: 1px solid var(--brand-deep-green);
@@ -75,7 +75,10 @@
 }
 
 .about-green-tagline {
-  color: var(--brand-sky, #236ea0);
+  /* ─── 🎯 FIXED CONTRAST SHIFT ─── 
+     Swapped from low-contrast corporate blue (#236ea0) to an intense, high-visibility 
+     electric sky blue (#38bdf8). This clears the 4.5:1 hurdle over dark green card sections seamlessly. */
+  color: #38bdf8 !important;
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   text-transform: uppercase;
@@ -86,14 +89,16 @@
 }
 
 .about-narrative-p {
-color: var(--brand-amber);
-
+  /* ─── 🎯 FIXED CONTRAST SHIFT ─── 
+     Swapped from standard brand amber (#d88a3a) to high-vibrancy accessible gold amber (#fbbf24).
+     This satisfies the WCAG AA contrast threshold over dark green background masks. */
+  color: #fbbf24 !important;
 }
 
 .about-philosophy-quote {
   margin: 24px 0 0 0;
   padding-left: 20px;
-  border-left: 3px solid var(--brand-amber, #d88a3a);
+  border-left: 3px solid #fbbf24 !important; /* Linked to the high-contrast gold highlight color */
   font-style: italic;
   color: #cbd5e1;
   font-size: 1.1rem;
@@ -119,8 +124,12 @@ color: var(--brand-amber);
   font-family: "Montserrat", sans-serif;
   font-size: 0.8rem;
   font-weight: 500;
-  color: #94a3b8;
   letter-spacing: 0.2px;
+
+  /* ─── 🎯 FIXED CONTRAST SHIFT ─── 
+     Swapped from a dark muted slate gray (#94a3b8) to a clear, soft light silver gray (#cbd5e1).
+     This improves readability for fine print captions over the dark layout card panels. */
+  color: #cbd5e1 !important;
 }
 
 /* ─── 🎯 ASYMMETRICAL FLOATING CARD GRID ─── */

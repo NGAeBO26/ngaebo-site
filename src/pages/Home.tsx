@@ -2,30 +2,28 @@
 
 import FeaturedProducts from "../store/FeaturedProducts";
 import TacticalLeadForm from "../components/TacticalLeadForm";
-import DigitalProductShowcase from "../components/DigitalProductShowcase"; // 🎯 ADD THIS NEW IMPORT LINE
+import DigitalProductShowcase from "../components/DigitalProductShowcase"; 
 import "./Home.css";
 
 export default function Home() {
-  // --- MASTER STATE SYSTEM FOR ACCORDION SWITCHES ---
-  
   // Telemetry Conic Arc Math Loops
   const elevFill = (754 / 1500) * 100;
   const elevEmptyStart = 100 - Math.min(100, Math.max(0, elevFill));
   const gradeFill = (18.6 / 45) * 100;
   const gradeEmptyStart = 100 - Math.min(100, Math.max(0, gradeFill));
 
-  
   return (
     <main className="page funnel-landing-page">
 
       {/* SECTION 1: HERO SPLIT & FOCUS (Above the Fold) */}
-      <section className="hero-funnel-section">
+      {/* ─── 🎯 FIX 1: DEFINE LANDMARK REGION SCOPE ─── */}
+      <section className="hero-funnel-section" aria-label="Introduction and Telemetry HUD Dashboard">
         <div className="funnel-container">
           <div className="hero-split-layout">
             
             <div className="hero-content-stack">
               <h1 className="hero-home-title">
-                Master the Backcountry.<br></br> Ride with Confidence.
+                Master the Backcountry.<br /> Ride with Confidence.
               </h1>
               <h2 className="hero-tagline-blue">
                 Plan Faster. Ride Smarter.
@@ -143,7 +141,8 @@ export default function Home() {
       <hr className="funnel-divider" />
 
       {/* SECTION 2: THE CORE PROBLEM / VALUE HOOK */}
-      <section className="problem-hook-section">
+      {/* ─── 🎯 FIX 2: DEFINE LANDMARK REGION SCOPE ─── */}
+      <section className="problem-hook-section" aria-label="Backcountry Challenges Overview">
         <div className="funnel-container">
           <div className="problem-split-grid">
             <div className="problem-challenge-block">
@@ -158,28 +157,30 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       <hr className="funnel-divider" />
     
-        <DigitalProductShowcase mode="landing" />
-            
+      <DigitalProductShowcase mode="landing" />
+        
       <hr className="funnel-divider" />
-      <section className="problem-hook-section">
+
+      {/* ─── 🎯 FIX 3: DEFINE LANDMARK REGION SCOPE ─── */}
+      <section className="problem-hook-section" aria-label="Curated Adventure Hardware Breakdown">
         <div className="funnel-container">
-          {/* 🎯 THE ASYMMETRICAL SPLIT HOOK HEADER PANEL (No inline layout attributes) */}
           <div className="problem-split-grid">
             <div className="problem-challenge-block">
               <h2>Vetted Adventure-Ready Equipment for Cargo, Safety, Comfort and More.</h2>
             </div>
             <div className="problem-solution-block">
               <span className="problem-tagline-amber">Accessories and Gear selected specifically for off-road adventures.</span>
-              <p>Our curratted selection of <span className="txt-bold-heavy">outdoor-proven gear </span>is hand selected for the backcountry trails across North Georgia. These <span className="txt-bold-heavy">featured items </span>aren't just compatible—they are <span className="txt-bold-heavy">capable, durable </span> and built to survive deep <span className="txt-bold-heavy">off-road expeditions</span>, ensuring your mechanical and electrical configurations hold out when situations change rapidly.
+              <p>Our curated selection of <span className="txt-bold-heavy">outdoor-proven gear </span>is hand selected for the backcountry trails across North Georgia. These <span className="txt-bold-heavy">featured items </span>aren't just compatible—they are <span className="txt-bold-heavy">capable, durable </span> and built to survive deep <span className="txt-bold-heavy">off-road expeditions</span>, ensuring your mechanical and electrical configurations hold out when situations change rapidly.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 🚀 SECTION 4: CURATED SHARED ECOSYSTEM GRID CARD MATRIX */}
+      {/* SECTION 4: CURATED SHARED ECOSYSTEM GRID CARD MATRIX */}
       <FeaturedProducts 
         sectionTitle="Vetted Backcountry Equipment"
         sectionSubtitle="Tested components optimized specifically for North Georgia gap profiles."
@@ -188,53 +189,56 @@ export default function Home() {
       <hr className="funnel-divider" />
 
       {/* 🏛️ SECTION 5: TRUST & AUTHORITY MATRIX */}
-      <section className="trust-authority-matrix">
+      {/* ─── 🎯 FIX 4: DEFINE LANDMARK REGION SCOPE ─── */}
+      <section className="trust-authority-matrix" aria-label="Brand Mission and Stewardship Authority">
         <div className="funnel-container">
           
-          {/* Horizontal Row Wrapper hosting 3 side-by-side components */}
           <div className="authority-pillars-row matrix-columns-layout">
             
             {/* CARD 1: COMMUNITY BUILDING */}
-            <a href="/community" className="authority-cell-link-card">
+            <a href="/community" className="authority-cell-link-card" aria-label="Explore our community building efforts">
               <div className="authority-cell layout-vertical-stack">
                 <div className="authority-icon-container">
                   <img 
                     src="/images/icons/community.png" 
-                    alt="Community Building Icon" 
+                    alt="" /* Decorative icon inside link text header layout remains empty to prevent double voicing */
                     className="authority-pillar-icon"
                   />
                 </div>
-                <h5>Community Building</h5>
+                {/* ─── 🎯 FIX 5: RECONCILED HEADING WEIGHT STEPS (h5 -> h3) ─── */}
+                <h3>Community Building</h3>
                 <p>We connect North Georgia riders with group rides, route intel, and a crew that actually knows the mountains.</p>
               </div>
             </a>
 
             {/* CARD 2: RIDER EDUCATION */}
-            <a href="/community" className="authority-cell-link-card">
+            <a href="/community" className="authority-cell-link-card" aria-label="Learn about rider education programs">
               <div className="authority-cell layout-vertical-stack">
                 <div className="authority-icon-container">
                   <img 
                     src="/images/icons/education.png" 
-                    alt="Rider Education Icon" 
+                    alt="" 
                     className="authority-pillar-icon"
                   />
                 </div>
-                <h5>Rider Education</h5>
+                {/* ─── 🎯 FIX 6: RECONCILED HEADING WEIGHT STEPS (h5 -> h3) ─── */}
+                <h3>Rider Education</h3>
                 <p>We help riders understand terrain, slope, weather windows, and equipment choices so every outing feels intentional and safe.</p>
               </div>
             </a>
 
             {/* CARD 3: LOCAL PARTNERSHIPS */}
-            <a href="/community" className="authority-cell-link-card">
+            <a href="/community" className="authority-cell-link-card" aria-label="View local partnership actions">
               <div className="authority-cell layout-vertical-stack">
                 <div className="authority-icon-container">
                   <img 
                     src="/images/icons/partnerships.png" 
-                    alt="Local Partnerships Icon" 
+                    alt="" 
                     className="authority-pillar-icon"
                   />
                 </div>
-                <h5>Local Partnerships</h5>
+                {/* ─── 🎯 FIX 7: RECONCILED HEADING WEIGHT STEPS (h5 -> h3) ─── */}
+                <h3>Local Partnerships</h3>
                 <p>We collaborate with shops, land stewards, and regional outdoor groups to strengthen access and trail stewardship across North Georgia.</p>
               </div>
             </a>
@@ -247,7 +251,7 @@ export default function Home() {
               "Our goal is to provide the most reliable and up-to-date information, alongside vetted gear recommendations for riders exploring the backcountry."
             </blockquote>
             <cite className="social-author-citation">
-              — Jeff,North Georgia eBike Outfitters, owner.
+              — Jeff, North Georgia eBike Outfitters, owner.
             </cite>
           </div>
 
@@ -257,7 +261,8 @@ export default function Home() {
       <hr className="funnel-divider" />
 
       {/* SECTION 6: THE FOOTER SAFETY NET */}
-      <section className="lead-capture-footer">
+      {/* ─── 🎯 FIX 8: DEFINE LANDMARK REGION SCOPE ─── */}
+      <section className="lead-capture-footer" aria-label="Free Map Sample Giveaway Registration">
         <div className="funnel-container">
           <div className="capture-split-layout">
             <div className="capture-text-stack">
@@ -271,7 +276,7 @@ export default function Home() {
             <div>
               {/* Live Embedded Reusable Lead Form System */}
               <TacticalLeadForm 
-                buttonLabel="Get Free Maps ➔"
+                buttonLabel="Get Free Maps" /* Reusable form component will overlay safety spans safely */
                 sourceGroupTag="home_footer_checklist"
                 layout="row"
               />

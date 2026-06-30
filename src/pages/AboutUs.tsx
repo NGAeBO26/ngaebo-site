@@ -4,16 +4,22 @@ import "../styles/AboutUs.css";
 
 export default function AboutUs() {
   return (
-    <div className="about-us-funnel-container-shell" style={{ width: "100%", display: "block" }}>
+    /* ─── 🎯 FIX 1: SWAPPED DIV TO MAIN LANDMARK REGION ─── 
+       Ensures that the entire page's informational structure is fully contained within a valid landmark boundary. */
+    <main className="about-us-funnel-container-shell" style={{ width: "100%", display: "block" }}>
       
-      {/* ─── SYSTEM CORE INJECTOR ─── 
-         Applies a persistent background texture map across the full layout canvas layer */}
+      {/* SYSTEM CORE INJECTOR ─── */}
       <div className="about-us-workspace-funnel" style={{ width: "100%", display: "flex", flexDirection: "column" }}>
         
         {/* ─── HERO INTRO SECTION (Floating Card A) ─── */}
-        <section className="about-section-floating-card" style={{ marginTop: "60px" }}>
+        {/* ─── 🎯 FIX 2: NAMED LANDMARK REGION LINKED TO ID ─── */}
+        <section 
+          className="about-section-floating-card" 
+          style={{ marginTop: "60px" }}
+          aria-labelledby="about-main-headline"
+        >
           <div className="about-hero-headline-block">
-            <h1>Driven by Data. Built for the Backcountry.</h1>
+            <h1 id="about-main-headline">Driven by Data. Built for the Backcountry.</h1>
             <p className="about-intro-p">
               Hey there, and welcome to <strong>North Georgia eBike Outfitters</strong>. 
               If you're anything like me, you can't stand being cooped up inside for too long. 
@@ -47,9 +53,10 @@ export default function AboutUs() {
         </section>
 
         {/* ─── SECTION 2: THE IMMERSIVE OUTDOORS GALLERY PANEL (Floating Card B) ─── */}
-        <section className="about-section-floating-card">
+        {/* ─── 🎯 FIX 3: NAMED LANDMARK REGION LINKED TO ID ─── */}
+        <section className="about-section-floating-card" aria-labelledby="about-gallery-headline">
           <div className="about-text-content-header" style={{ textAlign: "center", marginBottom: "40px" }}>
-            <h2>A Lifetime of Chasing Horizons</h2>
+            <h2 id="about-gallery-headline">A Lifetime of Chasing Horizons</h2>
             <p style={{ color: "var(--brand-bone)", maxWidth: "800px", margin: "12px auto 0 auto", lineHeight: 1.6 }}>
               My love for travel and the great outdoors isn't just a weekend hobby—it's been my entire life's anchor. 
               From tracking arid desert blooms to paddling deep southern swamps, I've spent decades documenting 
@@ -134,9 +141,10 @@ export default function AboutUs() {
         </section>
 
         {/* ─── SECTION 3: THE PROFESSIONAL PEDIGREE (Floating Split Grid Card C) ─── */}
-        <section className="about-section-split-grid">
+        {/* ─── 🎯 FIX 4: NAMED LANDMARK REGION LINKED TO ID ─── */}
+        <section className="about-section-split-grid" aria-labelledby="about-pedigree-headline">
           <div className="about-problem-block">
-            <h2>The Mapping Guy: My 25-Year Day Job</h2>
+            <h2 id="about-pedigree-headline">The Mapping Guy: My 25-Year Day Job</h2>
             <p className="about-technical-bio-p">
               When I’m not out riding or traveling, I’m a total map geek. I hold a <strong>B.S. in Computer Information Systems from the University of South Alabama</strong>, and I’ve spent the last <strong>25 years</strong> working deeply with spatial data and Geographical Information Systems (GIS).
             </p>
@@ -147,7 +155,7 @@ export default function AboutUs() {
           <div className="about-solution-block">
             <span className="about-green-tagline">Federal-Grade Spatial Precision</span>
             <p className="about-narrative-p">
-              I've I've dedicated my career to protecting our natural beauty, spending decades modeling complex environments, assessing terrain risks, and mapping out remote river corridors and mountain valleys. 
+              I've dedicated my career to protecting our natural beauty, spending decades modeling complex environments, assessing terrain risks, and mapping out remote river corridors and mountain valleys. 
             </p>
             <blockquote className="about-philosophy-quote">
               "I strive to combine my technical knowledge and communication skills to integrate spatial datasets with user friendly design to promote risk awareness and communication in the communities I serve."
@@ -156,7 +164,8 @@ export default function AboutUs() {
         </section>
 
         {/* ─── SECTION 4: BOTANY & CREEK BED DETAIL (Floating Card D) ─── */}
-        <section className="about-section-floating-card">
+        {/* ─── 🎯 FIX 5: INJECT DIRECT STRING ATTRIBUTE FOR HEADERLESS SECTIONS ─── */}
+        <section className="about-section-floating-card" aria-label="Field Scouting and Botany Imagery Grid">
           <div className="about-split-media-deck" style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
             <div className="about-media-frame" style={{ flex: "1.5", minWidth: "280px" }}>
               <img 
@@ -178,7 +187,12 @@ export default function AboutUs() {
         </section>
 
         {/* ─── SECTION 5: WHERE DATA MEETS DIRT (Floating Card E) ─── */}
-        <section className="about-section-floating-card" style={{ marginBottom: "60px" }}>
+        {/* ─── 🎯 FIX 6: NAMED LANDMARK REGION LINKED TO ID ─── */}
+        <section 
+          className="about-section-floating-card" 
+          style={{ marginBottom: "60px" }}
+          aria-labelledby="about-dirt-headline"
+        >
           <div className="about-split-media-deck" style={{ display: "flex", alignItems: "center", gap: "40px", flexWrap: "wrap" }}>
             
             <div style={{ flex: "1", minWidth: "300px" }}>
@@ -191,7 +205,7 @@ export default function AboutUs() {
             </div>
 
             <div style={{ flex: "1.2", minWidth: "300px" }}>
-              <h2>Where Data Meets Dirt</h2>
+              <h2 id="about-dirt-headline">Where Data Meets Dirt</h2>
               <p style={{ color: "var(--brand-bone)", fontSize: "1.05rem", lineHeight: 1.6, margin: "16px 0 0 0" }}>
                 That’s the exact philosophy behind our <strong>RideFinder Pro</strong> platform and the printable <strong>RideGuides</strong> we’ve been working on. I didn't just copy-paste some generic trail lines from a public forum. I took that same federal-grade spatial precision I use in my day job and applied it directly to our backcountry bike routes.
               </p>
@@ -207,8 +221,10 @@ export default function AboutUs() {
         </section>
 
         {/* ─── SECTION 6: FULL-WIDTH NESTLED FOOTER SAFETY NET ─── */}
+        {/* ─── 🎯 FIX 7: NAMED LANDMARK REGION LINKED TO ID ─── */}
         <section 
           className="lead-capture-footer-about"
+          aria-labelledby="about-footer-headline"
           style={{
             width: "calc(100% + 40px)",
             marginLeft: "-20px",
@@ -224,7 +240,7 @@ export default function AboutUs() {
             <div className="about-capture-split-layout" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "40px", flexWrap: "wrap" }}>
               
               <div className="about-capture-text-stack" style={{ flex: "1", minWidth: "280px", textAlign: "left" }}>
-                <h3 style={{ margin: "0 0 8px 0", fontFamily: "'Montserrat', sans-serif", fontWeight: 800, fontSize: "2rem", color: "#ffffff" }}>
+                <h3 id="about-footer-headline" style={{ margin: "0 0 8px 0", fontFamily: "'Montserrat', sans-serif", fontWeight: 800, fontSize: "2rem", color: "#ffffff" }}>
                   Stay Up to Date.
                 </h3>
                 <p style={{ margin: 0, color: "#cbd5e1", fontSize: "0.95rem", lineHeight: 1.6 }}>
@@ -234,7 +250,7 @@ export default function AboutUs() {
 
               <div style={{ minWidth: "320px" }}>
                 <TacticalLeadForm 
-                  buttonLabel="Sign Up ➔"
+                  buttonLabel="Sign Up" /* Clean label text handles screen readers seamlessly */
                   sourceGroupTag="about_page_newsletter"
                   layout="row"
                 />
@@ -245,6 +261,6 @@ export default function AboutUs() {
         </section>
 
       </div>
-    </div>
+    </main>
   );
 }

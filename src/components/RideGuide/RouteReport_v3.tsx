@@ -43,6 +43,24 @@ export default function RouteReport_v3({ routeID }: { routeID: string }) {
   if (loading) {
     return (
       <div className="animate-pulse space-y-6 p-8 max-w-7xl mx-auto bg-slate-900 min-h-screen">
+        
+        {/* ─── 🎯 FIX 1: ASYNCHRONOUS LOADING STATE HEADING COMPLIANCE ─── 
+            Prevents page-has-heading-one errors if automated scanners crawl 
+            the dashboard view before asynchronous data fetches complete. */}
+        <h1 style={{
+          position: 'absolute',
+          width: '1px',
+          height: '1px',
+          padding: '0',
+          margin: '-1px',
+          overflow: 'hidden',
+          clip: 'rect(0, 0, 0, 0)',
+          whiteSpace: 'nowrap',
+          border: '0'
+        }}>
+          Loading Trail Telemetry Report and Environmental Analysis...
+        </h1>
+
         <div className="h-[400px] bg-slate-800/50 rounded-xl border border-slate-700 flex flex-col items-center justify-center space-y-4">
           <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
           <span className="text-slate-400 font-medium tracking-widest uppercase text-sm">Initializing Geospatial Engine...</span>
@@ -63,13 +81,18 @@ export default function RouteReport_v3({ routeID }: { routeID: string }) {
         <div className="rr-header-blue-cap-bleed-node"></div>
         <header className="rr-title-bar-tier">
            <div className="rr-logo-slot">
-              <img src="/images/RideGuide_embroid-v1.svg" className="rr-img-logo-v3" alt="RideGuide Logo" />
+              <img src="/images/RideGuide_embroid-v1.svg" className="rr-img-logo-v3" alt="RideGuide System Logo" />
            </div>
            <div className="rr-name-slot">
               <h1 className="rr-route-name-header-node">FS {geoData?.ID} - {geoData?.NAME || 'NIMBLEWILL'}</h1>
            </div>
            <div className="rr-badge-slot">
-              <img src={fcsBadgePath} className="rr-img-badge-v3" alt="Badge" />
+              {/* ─── 🎯 FIX 2: CONTEXT-RICH ACCESSIBLE ALT DATA INJECTION ─── */}
+              <img 
+                src={fcsBadgePath} 
+                className="rr-img-badge-v3" 
+                alt={`${geoData?.v3_fcs_label || 'Route Classification'} Difficulty Badge`} 
+              />
            </div>
         </header>
 
@@ -88,7 +111,9 @@ export default function RouteReport_v3({ routeID }: { routeID: string }) {
            </div>
         </div>
 
-        <div className="rr-tier-overview-root">
+        {/* ─── 🎯 FIX 3: CONVERTED CONTAINER FROM DIV TO LAYOUT-SAFE SECTION LANDMARK ─── 
+            Natively maps content into valid landmark regions without triggering size grid errors. */}
+        <section className="rr-tier-overview-root" aria-label="Current Environmental Conditions and Trail Status Summary">
           <div className="rr-overview-label-banner">
             <div>CURRENT CONDITIONS</div>
             <div>PRIME RIDE TIME</div>
@@ -99,9 +124,10 @@ export default function RouteReport_v3({ routeID }: { routeID: string }) {
             <div className="rr-overview-module"><PrimeRideTime routeID={routeID} /></div>
             <div className="rr-overview-module"><RouteConditions routeID={routeID} /></div>
           </div>
-        </div>
+        </section>
 
-        <div className="rr-tier-body-root">
+        {/* ─── 🎯 FIX 4: CONVERTED CONTAINER FROM DIV TO LAYOUT-SAFE SECTION LANDMARK ─── */}
+        <section className="rr-tier-body-root" aria-label="Core Route Telemetry Metrics, Spatial Mapping, and Staging Coordinates">
           <div className="rr-body-label-banner">
             <div>ROUTE METRICS</div>
             <div>ROUTE MAP</div>
@@ -136,31 +162,43 @@ export default function RouteReport_v3({ routeID }: { routeID: string }) {
                 <div className="rr-guide-module-container" style={{ height: '50mm' }}>
                     <div className="rr-guide-module-header">MAP LEGEND</div>
                     <div className="rr-legend-main-content">
-                        <img src={`${ASSET_BASE}/rideguide-legend.svg`} className="rr-legend-svg-asset" alt="Legend" />
+                        {/* ─── 🎯 FIX 5: REPLACED DECORATIVE ALT STRING WITH COMPLIANT DETAIL ─── */}
+                        <img 
+                          src={`${ASSET_BASE}/rideguide-legend.svg`} 
+                          className="rr-legend-svg-asset" 
+                          alt="Detailed Map Legend panel displaying vector path lines, topo features, and terrain markers" 
+                        />
                     </div>
                 </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div className="rr-tier-sparkline-root">
+        {/* ─── 🎯 FIX 6: CONVERTED CONTAINER FROM DIV TO LAYOUT-SAFE SECTION LANDMARK ─── */}
+        <section className="rr-tier-sparkline-root" aria-label="High Resolution Elevation Profile Sparkline Graph">
           <div className="rr-sparkline-label-banner">ELEVATION PROFILE</div>
           <div className="rr-sparkline-widget-container">
               <Sparkline routeID={routeID} />
           </div>
-        </div>
+        </section>
 
         <footer className="rr-metadata-footer-bleed">
           <div className="rr-footer-grid">
             <div className="rr-footer-assets-left">
-              <img src="/images/site-logo.png" className="rr-footer-logo" alt="Site Logo" />
+              {/* ─── 🎯 FIX 7: ACCESSIBLE BRAND IDENTITY REINFORCEMENT ─── */}
+              <img src="/images/site-logo.png" className="rr-footer-logo" alt="North Georgia eBike Outfitters Official Logo" />
             </div>
             <div className="rr-footer-center-stack">
               <div className="rr-footer-line">ID: {routeID} - RideGuide V3 Analysis</div>
               <div className="rr-footer-line">Created: {new Date().toLocaleDateString()}</div>
             </div>
             <div className="rr-footer-assets-right">
-              <img src="/data/assets/ngaebo-qr-code.png" className="rr-footer-qr" alt="QR Code" />
+              {/* ─── 🎯 FIX 8: EXPLICIT QR CODE UTILITY DESCRIPTION ─── */}
+              <img 
+                src="/data/assets/ngaebo-qr-code.png" 
+                className="rr-footer-qr" 
+                alt="Scan this QR code with a smartphone camera to sync this telemetry report directly to your mobile live-tracking GPS coordinates" 
+              />
             </div>
           </div>
         </footer>
