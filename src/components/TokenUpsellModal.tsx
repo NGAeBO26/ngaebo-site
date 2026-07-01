@@ -1,13 +1,19 @@
 /* src/components/TokenUpsellModal.tsx */
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useShopifyCart } from "../store/ShopifyCartContext";
-import { useShopifyAuth } from "../store/ShopifyAuthContext"; // 🎯 Added Auth Context import
+import { useShopifyAuth } from "../store/ShopifyAuthContext";
 import "../styles/TokenUpsellModal.css";
 
 interface TokenUpsellModalProps {
   isOpen: boolean;
   onClose: () => void;
   onBypass: () => void;
+  targetRoute: { id: string; title: string } | null;
+  isTokenUser: boolean;
+  tokenBalance: number;
+  onRedeemSingle: (targetId: string, targetTitle: string) => Promise<void>;
+  onRedeemBatch: () => Promise<void>;
+  isMutating: boolean;
 }
 
 interface UpsellTier {
@@ -20,10 +26,19 @@ interface UpsellTier {
   badgeText?: string;
 }
 
-export default function TokenUpsellModal({ isOpen, onClose, onBypass }: TokenUpsellModalProps) {
-  const { customer } = useShopifyAuth(); // 🎯 Extract customer for access pass validation
-  const { cartItems, removeCartItem, addRouteToCart, checkoutUrl } = useShopifyCart(); // 🎯 Removed local auth helpers from here
-  const [isMutating, setIsMutating] = useState(false);
+export default function TokenUpsellModal({
+  isOpen,
+  onClose,
+  onBypass,
+  targetRoute,
+  isTokenUser,
+  tokenBalance,
+  onRedeemSingle,
+  onRedeemBatch,
+  isMutating
+}: TokenUpsellModalProps) {
+  const { customer } = useShopifyAuth();
+  const { cartItems, removeCartItem, addRouteToCart, checkoutUrl } = useShopifyCart();
   
   const modalRef = useRef<HTMLDivElement>(null);
   const triggerElementRef = useRef<HTMLElement | null>(null);
@@ -58,41 +73,25 @@ export default function TokenUpsellModal({ isOpen, onClose, onBypass }: TokenUps
     }
   ];
 
-  // 🎯 Defensive parsing framework matching app specifications
-  const rawUnlockedGuides = customer?.unlocked_guides || "{}";
-  let unlockedMap: Record<string, any> = {};
-  
-  try {
-    if (typeof rawUnlockedGuides === "string") {
-      let parsed = JSON.parse(rawUnlockedGuides);
-      if (typeof parsed === "string") {
-        parsed = JSON.parse(parsed);
-      }
-      unlockedMap = parsed || {};
-    } else {
-      unlockedMap = rawUnlockedGuides || {};
-    }
-  } catch (e) {
-    console.error("Silent parse catch fallback invoked inside upsell modal:", e);
-    unlockedMap = {};
-  }
-
-  const getRouteExpiry = (id: string): number => {
-    const entry = unlockedMap[id];
-    if (!entry) return 0;
-    if (typeof entry === "object" && entry !== null) return Number(entry.expiresAt || 0);
-    return Number(entry || 0);
-  };
-
-  const hasActivePass = customer?.passExpiresAt 
-    ? new Date() < new Date(customer.passExpiresAt) 
-    : false;
-
   // Derive cash-only items to calculate current subtotal and identify tracks to clear
   const currentTimestamp = Date.now();
   const cashCartItems = cartItems.filter((item: any) => {
     const targetId = item.routeId || "";
-    const isLineRouteUnlocked = hasActivePass || (getRouteExpiry(targetId) > currentTimestamp);
+    // Check unlocked via customer context directly to align hooks cleanly
+    const rawUnlocked = customer?.unlocked_guides || "{}";
+    let parsedMap: Record<string, any> = {};
+    try {
+      parsedMap = typeof rawUnlocked === "string" ? JSON.parse(rawUnlocked) : rawUnlocked;
+      if (typeof parsedMap === "string") parsedMap = JSON.parse(parsedMap);
+    } catch {
+      parsedMap = {};
+    }
+    
+    const entry = parsedMap[targetId];
+    const expiresAt = typeof entry === "object" && entry !== null ? Number(entry.expiresAt || 0) : Number(entry || 0);
+    const hasActivePass = customer?.passExpiresAt ? new Date() < new Date(customer.passExpiresAt) : false;
+    
+    const isLineRouteUnlocked = hasActivePass || (expiresAt > currentTimestamp);
     return !isLineRouteUnlocked && targetId !== "TOKEN_BUNDLE";
   });
 
@@ -158,7 +157,6 @@ export default function TokenUpsellModal({ isOpen, onClose, onBypass }: TokenUps
 
   const handleUpgradeAction = async (tier: UpsellTier) => {
     if (isMutating) return;
-    setIsMutating(true);
 
     try {
       // 1. Flush all baseline cash tracks from cart layout context sequentially
@@ -187,17 +185,12 @@ export default function TokenUpsellModal({ isOpen, onClose, onBypass }: TokenUps
       console.error("Failed to execute cart mutation pipeline upgrade:", error);
       alert("There was an issue processing your upgrade selection. Please try again.");
     } finally {
-      setIsMutating(false);
       onClose();
     }
   };
 
   return (
-    <div 
-      className="rg-upsell-backdrop" 
-      onClick={onClose}
-      role="presentation"
-    >
+    <div className="rg-upsell-backdrop" onClick={onClose} role="presentation">
       <div 
         className="rg-upsell-container"
         role="dialog"
@@ -217,30 +210,77 @@ export default function TokenUpsellModal({ isOpen, onClose, onBypass }: TokenUps
           &times;
         </button>
 
-        <div className="rg-upsell-header-block">
-          <span className="rg-upsell-badge-pill">Smart Rider Deal</span>
-          <h2 id="rg-upsell-title" className="rg-upsell-main-title">
-            Unlock More For Less Money
-          </h2>
-          <p id="rg-upsell-description" className="rg-upsell-subcaption">
-            Your current selection costs <strong className="rg-highlight-text">${computedCashSubtotal}</strong> for {totalCashCount} individual track{totalCashCount > 1 ? "s" : ""}. Upgrade to a bundle to instantly unlock your tracks and keep leftover credits for future maps.
-          </p>
+        {/* 🎯 CONTEXT-AWARE DYNAMIC HERO CARD DISPLAY */}
+        {isTokenUser ? (
+          <div className="rg-upsell-header-block" style={{ borderBottom: "1px solid #e2e8f0", paddingBottom: "20px" }}>
+            <span className="rg-upsell-badge-pill" style={{ backgroundColor: "#dcfce7", color: "#15803d" }}>
+              🎫 Wallet Balance: {tokenBalance} Credits
+            </span>
+            
+            {targetRoute ? (
+              <>
+                <h2 id="rg-upsell-title" className="rg-upsell-main-title">Confirm RideGuide Activation</h2>
+                <p id="rg-upsell-description" className="rg-upsell-subcaption">
+                  You are about to use <strong className="rg-highlight-text">1 token credit</strong> to unlock continuous telemetry mapping for: <br />
+                  <strong style={{ color: "#0f172a", fontSize: "16px" }}>"{targetRoute.title}"</strong>
+                </p>
+                <button
+                  onClick={() => onRedeemSingle(targetRoute.id, targetRoute.title)}
+                  disabled={isMutating}
+                  className="rg-upsell-tier-cta-action-btn"
+                  style={{ maxWidth: "320px", margin: "20px auto 0 auto", backgroundColor: "#16a34a", fontSize: "14px", padding: "12px" }}
+                >
+                  {isMutating ? "Unlocking Vault... ⏳" : "Confirm Instant Unlock ➔"}
+                </button>
+              </>
+            ) : (
+              <>
+                <h2 id="rg-upsell-title" className="rg-upsell-main-title">Batch Credit Activation</h2>
+                <p id="rg-upsell-description" className="rg-upsell-subcaption">
+                  You have <strong className="rg-highlight-text">{totalCashCount} tracks</strong> waiting in your cart inventory selection.
+                </p>
+                <button
+                  onClick={onRedeemBatch}
+                  disabled={isMutating || totalCashCount === 0}
+                  className="rg-upsell-tier-cta-action-btn"
+                  style={{ maxWidth: "320px", margin: "20px auto 0 auto", backgroundColor: "#16a34a", fontSize: "14px", padding: "12px" }}
+                >
+                  {isMutating ? "Processing Batch... ⏳" : `Unlock All (${totalCashCount} Credits) ➔`}
+                </button>
+              </>
+            )}
+          </div>
+        ) : (
+          <div className="rg-upsell-header-block">
+            <span className="rg-upsell-badge-pill">Smart Rider Deal</span>
+            <h2 id="rg-upsell-title" className="rg-upsell-main-title">Unlock More For Less Money</h2>
+            <p id="rg-upsell-description" className="rg-upsell-subcaption">
+              Your current selection costs <strong className="rg-highlight-text">${computedCashSubtotal}</strong> for {totalCashCount} individual track{totalCashCount > 1 ? "s" : ""}. Upgrade to a bundle to instantly unlock your tracks and keep leftover credits for future maps.
+            </p>
+          </div>
+        )}
+
+        {/* 🎯 BUNDLE SELECTION MATRIX (Funnel all users into purchase tiers) */}
+        <div className="rg-upsell-matrix-heading" style={{ textAlign: "center", margin: isTokenUser ? "24px 0 12px 0" : "0 0 16px 0", fontSize: "12px", fontWeight: 800, textTransform: "uppercase", color: "#64748b", letterSpacing: "0.5px" }}>
+          {isTokenUser ? "Need more tokens? Purchase bundle packs below:" : "Compare and Choose Your Option:"}
         </div>
 
         <div className="rg-upsell-matrix-grid">
-          {/* Baseline Current State Tracker */}
-          <div className="rg-upsell-tier-card mod-current-baseline">
-            <div className="rg-upsell-card-inner">
-              <span className="rg-upsell-tier-label">As-Staged Selection</span>
-              <div className="rg-upsell-price-callout">${computedCashSubtotal}</div>
-              <span className="rg-upsell-math-subtext">$6.99 per single track</span>
-              <span className="rg-upsell-savings-tag mod-neutral">Standard Price</span>
+          {/* Baseline Current State Tracker (Only displayed for cash users) */}
+          {!isTokenUser && (
+            <div className="rg-upsell-tier-card mod-current-baseline">
+              <div className="rg-upsell-card-inner">
+                <span className="rg-upsell-tier-label">As-Staged Selection</span>
+                <div className="rg-upsell-price-callout">${computedCashSubtotal}</div>
+                <span className="rg-upsell-math-subtext">$6.99 per single track</span>
+                <span className="rg-upsell-savings-tag mod-neutral">Standard Price</span>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Premium Bundle Generation Cards */}
           {UPSELL_TIERS.map((tier) => (
-            <div key={tier.id} className="rg-upsell-tier-card mod-bundle-premium">
+            <div key={tier.id} className="rg-upsell-tier-card mod-bundle-premium" style={{ gridColumn: isTokenUser ? "span 1" : undefined }}>
               {tier.badgeText && (
                 <span className="rg-upsell-card-ribbon-tag">{tier.badgeText}</span>
               )}
@@ -255,22 +295,25 @@ export default function TokenUpsellModal({ isOpen, onClose, onBypass }: TokenUps
                   className="rg-upsell-tier-cta-action-btn"
                   disabled={isMutating}
                 >
-                  {isMutating ? "Updating..." : "Choose Upgrade ➔"}
+                  Buy Pack ➔
                 </button>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="rg-upsell-footer-actions-tray">
-          <button 
-            onClick={onBypass} 
-            className="rg-upsell-dismiss-bypass-btn"
-            disabled={isMutating}
-          >
-            No thanks, proceed with individual tracks (${computedCashSubtotal})
-          </button>
-        </div>
+        {/* 🎯 SEAMLESS BYPASS DRAWER ACTIONS */}
+        {!isTokenUser && (
+          <div className="rg-upsell-footer-actions-tray">
+            <button 
+              onClick={onBypass} 
+              className="rg-upsell-dismiss-bypass-btn"
+              disabled={isMutating}
+            >
+              No thanks, proceed with individual tracks (${computedCashSubtotal})
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

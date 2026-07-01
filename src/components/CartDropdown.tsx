@@ -1,9 +1,9 @@
 /* src/components/CartDropdown.tsx */
-import { useState } from "react";
+import { useState} from "react";
 import { useShopifyAuth } from "../store/ShopifyAuthContext"; 
 import { useShopifyCart } from "../store/ShopifyCartContext";
+import TokenUpsellModal from "./TokenUpsellModal"; // 🎯 Import the updated modal
 import "../styles/CartDropdown.css"; 
-import TokenUpsellModal from "./TokenUpsellModal";
 
 interface CartDropdownProps {
   isOpen: boolean; 
@@ -11,19 +11,20 @@ interface CartDropdownProps {
 }
 
 export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownProps) {
-  // 🎯 THE FIX: Destructured the native login gateway method directly from auth context
   const { customer, isAuthenticated, refreshProfile, login } = useShopifyAuth();
   const { cartItems, cartSubtotal, checkoutUrl, removeCartItem } = useShopifyCart();
 
   const [activeTab, setActiveTab] = useState<"cart" | "catalog">("cart");
   const [activeCatalogHoverId, setActiveCatalogHoverId] = useState<string | null>(null);
   const [isRedeeming, setIsRedeeming] = useState(false);
+  
+  // 🎯 CENTRALIZED WORKFLOW STATE
   const [isUpsellOpen, setIsUpsellOpen] = useState(false);
 
-  const isFullyAuthenticated = isAuthenticated && customer !== null; //
+  const isFullyAuthenticated = isAuthenticated && customer !== null; 
 
   const rawUnlockedGuides = customer?.unlocked_guides || "{}";
-  let unlockedMap: Record<string, any> = {}; //
+  let unlockedMap: Record<string, any> = {}; 
   
   try {
     if (typeof rawUnlockedGuides === "string") {
@@ -40,9 +41,9 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
     unlockedMap = {};
   }
 
-  const currentTimestamp = Date.now(); //
+  const currentTimestamp = Date.now(); 
   
-  // 🎯 DEFENSIVE DICTIONARY EXTRACTORS: Safely unwraps nested shapes
+  // DEFENSIVE DICTIONARY EXTRACTORS
   const getRouteExpiry = (id: string): number => {
     const entry = unlockedMap[id];
     if (!entry) return 0;
@@ -50,24 +51,24 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
     return Number(entry || 0);
   };
 
-  const tokenBalance = customer?.tokens || 0; //
+  const tokenBalance = customer?.tokens || 0; 
   const hasActivePass = customer?.passExpiresAt 
     ? new Date() < new Date(customer.passExpiresAt) 
-    : false; //
+    : false; 
 
-  const hasTokens = tokenBalance > 0; //
-  const isTokenUser = isFullyAuthenticated && hasTokens; //
+  const hasTokens = tokenBalance > 0; 
+  const isTokenUser = isFullyAuthenticated && hasTokens; 
 
-  // 🎯 VISIBLE LINE ITEM MATRIX: Filters out assets that are already paid or unlocked
+  // VISIBLE LINE ITEM MATRIX
   const visibleCartItems = cartItems.filter((item: any) => {
     const targetId = item.routeId || "";
     const isLineRouteUnlocked = hasActivePass || (getRouteExpiry(targetId) > currentTimestamp);
     return !isLineRouteUnlocked;
   });
 
-  const totalCartCount = visibleCartItems.length; //
+  const totalCartCount = visibleCartItems.length; 
 
-  // 🎯 SCHEMATIC OBJECT DICTIONARY PARSING
+  // SCHEMATIC OBJECT DICTIONARY PARSING
   const activeCatalogPasses = Object.entries(unlockedMap)
     .map(([routeId, entry]) => {
       const expiresAt = typeof entry === "object" && entry !== null ? Number(entry.expiresAt || 0) : Number(entry || 0);
@@ -80,6 +81,7 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
       daysLeft: Math.ceil((pass.expiresAt - currentTimestamp) / (1000 * 60 * 60 * 24))
     }));
 
+  // 🎯 PURE ENDPOINT EXECUTOR (Native browser alert popups removed)
   const handleTokenRedemption = async (targetId: string, targetTitle: string) => {
     if (isRedeeming || !customer) return;
 
@@ -97,6 +99,7 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
       if (!response.ok) throw new Error(data.error || "Server rejected balance transaction.");
       
       if (refreshProfile) await refreshProfile();
+      setIsUpsellOpen(false);
       if (data.success && data.downloadUrl) window.open(data.downloadUrl, "_blank");
 
     } catch (err: any) {
@@ -106,12 +109,9 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
     }
   };
 
-  // 🎯 BATCH REDEMPTION ENGINE: Iterates through current selections using token ledger rules
+  // 🎯 BATCH REDEMPTION ENGINE (Native browser confirm popups removed)
   const handleBatchTokenRedemption = async () => {
     if (isRedeeming || !customer || totalCartCount === 0) return;
-
-    const confirmPrompt = `Use ${totalCartCount} credit tokens to instantly unlock all selected routes in your cart?`;
-    if (!window.confirm(confirmPrompt)) return;
 
     setIsRedeeming(true);
     const API_BASE_TARGET = window.location.hostname === "localhost" ? "http://localhost:5000" : "";
@@ -132,6 +132,7 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
 
       if (refreshProfile) await refreshProfile();
       setActiveTab("catalog");
+      setIsUpsellOpen(false);
       alert(`🎉 Successfully activated ${processedCount} new RideGuides inside your vault! Use the individual row print triggers to generate your PDFs.`);
     } catch (err: any) {
       alert(`Batch Generation Encountered an Error: ${err.message}`);
@@ -140,7 +141,7 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
     }
   };
 
-  // 🎯 THE CHECKOUT GATE KEEPER INTERCEPTOR
+  // 🎯 UNIFIED CHECKOUT INTERCEPT GATEWAY
   const handleCheckoutRedirect = () => {
     if (totalCartCount === 0) return;
 
@@ -149,20 +150,21 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
       return;
     }
 
-    // Guard Clause: Escape upsell logic if a bundle is present
     const hasBundleInCart = cartItems.some((item: any) => item.routeId === "TOKEN_BUNDLE");
     if (hasBundleInCart) {
-      if (checkoutUrl) window.open(checkoutUrl, "_blank");
+      if (checkoutUrl) window.open(checkoutUrl, "_blank"); 
       return;
     }
 
+    // Direct all logged-in interactions to open the modal
     setIsUpsellOpen(true);
   };
 
-  // Add the explicit dropdown bypass trigger:
   const handleBypassCheckout = () => {
     setIsUpsellOpen(false);
-    if (checkoutUrl) window.open(checkoutUrl, "_blank");
+    if (checkoutUrl) {
+      window.open(checkoutUrl, "_blank"); 
+    }
   };
 
   return (
@@ -266,21 +268,14 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
                   </span>
                 </div>
                 
-                {/* 🎯 WORKFLOW GATEWAY: Intercepts checkout actions and prompts login */}
-                {isTokenUser ? (
-                  <button 
-                    onClick={handleBatchTokenRedemption}
-                    disabled={isRedeeming}
-                    className="rg-cart-checkout-cta-btn"
-                    style={{ backgroundColor: "#16a34a" }} 
-                  >
-                    {isRedeeming ? "PROCESSING VAULT... ⏳" : `UNLOCK WITH ${totalCartCount} CREDITS ➔`}
-                  </button>
-                ) : (
-                  <button onClick={handleCheckoutRedirect} className="rg-cart-checkout-cta-btn">
-                    {!isFullyAuthenticated ? "SIGN IN TO CHECKOUT ➔" : "PROCEED TO CHECKOUT ➔"}
-                  </button>
-                )}
+                {/* 🎯 UNIFIED CTA DISPATCH POINT FOR ALL CHECKOUT STATES */}
+                <button onClick={handleCheckoutRedirect} className="rg-cart-checkout-cta-btn">
+                  {!isFullyAuthenticated 
+                    ? "SIGN IN TO CHECKOUT ➔" 
+                    : isTokenUser 
+                      ? "MANAGE & UNLOCK WITH CREDITS ➔" 
+                      : "PROCEED TO CHECKOUT ➔"}
+                </button>
               </div>
             )}
           </>
@@ -349,10 +344,17 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
 
       </div>
 
+      {/* 🎯 SHOWN AT THE DROPDOWN CONTAINER BASE FOR COMPLIANT PROP MATCHING */}
       <TokenUpsellModal 
         isOpen={isUpsellOpen}
         onClose={() => setIsUpsellOpen(false)}
         onBypass={handleBypassCheckout}
+        targetRoute={null} // Dropdown click acts on the broader batch cart contents
+        isTokenUser={isTokenUser}
+        tokenBalance={tokenBalance}
+        onRedeemSingle={handleTokenRedemption}
+        onRedeemBatch={handleBatchTokenRedemption}
+        isMutating={isRedeeming}
       />
     </div>
   );
