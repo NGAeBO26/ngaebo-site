@@ -1,5 +1,5 @@
 /* src/components/TokenUpsellModal.tsx */
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useShopifyCart } from "../store/ShopifyCartContext";
 import { useShopifyAuth } from "../store/ShopifyAuthContext";
 import "../styles/TokenUpsellModal.css";
@@ -13,7 +13,7 @@ interface TokenUpsellModalProps {
   tokenBalance: number;
   onRedeemSingle: (targetId: string, targetTitle: string) => Promise<void>;
   onRedeemBatch: () => Promise<void>;
-  isMutating: boolean;
+  isMutating: boolean; // Represents backend token redemption status
 }
 
 interface UpsellTier {
@@ -40,13 +40,17 @@ export default function TokenUpsellModal({
   const { customer } = useShopifyAuth();
   const { cartItems, removeCartItem, addRouteToCart, checkoutUrl } = useShopifyCart();
   
+  // Local processing state specifically for handling cart-to-bundle transitions
+  const [isUpgrading, setIsUpgrading] = useState(false);
+  
   const modalRef = useRef<HTMLDivElement>(null);
   const triggerElementRef = useRef<HTMLElement | null>(null);
 
+  // 🎯 FIXED: Embedded raw variant numbers directly inside legitimate Shopify GraphQL GID schemas
   const UPSELL_TIERS: UpsellTier[] = [
     {
       id: "3-pack",
-      variantId: "51619975069916",
+      variantId: "gid://shopify/ProductVariant/51619975069916",
       title: "Starter 3-Pack",
       price: 14.99,
       perTrackPrice: "$5.00",
@@ -55,7 +59,7 @@ export default function TokenUpsellModal({
     },
     {
       id: "5-pack",
-      variantId: "51620055089372",
+      variantId: "gid://shopify/ProductVariant/51620055089372",
       title: "Explorer 5-Pack",
       price: 19.99,
       perTrackPrice: "$4.00",
@@ -64,7 +68,7 @@ export default function TokenUpsellModal({
     },
     {
       id: "15-pack",
-      variantId: "51620150837468",
+      variantId: "gid://shopify/ProductVariant/51620150837468",
       title: "Backcountry Master 15-Pack",
       price: 34.99,
       perTrackPrice: "$2.33",
@@ -77,7 +81,6 @@ export default function TokenUpsellModal({
   const currentTimestamp = Date.now();
   const cashCartItems = cartItems.filter((item: any) => {
     const targetId = item.routeId || "";
-    // Check unlocked via customer context directly to align hooks cleanly
     const rawUnlocked = customer?.unlocked_guides || "{}";
     let parsedMap: Record<string, any> = {};
     try {
@@ -156,19 +159,28 @@ export default function TokenUpsellModal({
   if (!isOpen) return null;
 
   const handleUpgradeAction = async (tier: UpsellTier) => {
-    if (isMutating) return;
+    if (isUpgrading || isMutating) return;
+    setIsUpgrading(true);
+
+    console.group("🛒 [SHOPIFY BUNDLE UPGRADE PIPELINE]");
+    console.log("1. Target Tier Selection:", tier);
+    console.log("2. Staged Cash Items to Remove:", cashCartItems);
 
     try {
       // 1. Flush all baseline cash tracks from cart layout context sequentially
       for (const item of cashCartItems) {
+        console.log(`   -> Attempting removal of cash item: "${item.title}" (Line ID: ${item.id})`);
         if (removeCartItem) {
-          await removeCartItem(item.id);
+          const removed = await removeCartItem(item.id);
+          console.log(`   -> Shopify removal status for "${item.title}":`, removed ? "✅ Success" : "❌ Failed");
         }
       }
 
       // 2. Insert designated Shopify Credit Pack Token Variant Entry
+      console.log(`3. Sending Bundle GID to Storefront API: ${tier.variantId}`);
+      let mutationSuccess = false;
       if (addRouteToCart) {
-        await addRouteToCart(
+        mutationSuccess = await addRouteToCart(
           tier.variantId,
           "TOKEN_BUNDLE",
           tier.title,
@@ -177,17 +189,31 @@ export default function TokenUpsellModal({
         );
       }
 
-      // 3. Dispatch to final checkout pipeline
-      if (checkoutUrl) {
+      console.log("4. Shopify Bundle Injection Result:", mutationSuccess ? "✅ Success" : "❌ Denied");
+      console.log("5. Evaluated Checkout URL in Context:", checkoutUrl);
+
+      // 3. Wrapped downstream redirect in a defensive check
+      if (mutationSuccess && checkoutUrl) {
+        console.log("🚀 PIPELINE COMPLETE: Opening secure checkout tab layout.");
+        console.groupEnd();
+        
         window.open(checkoutUrl, "_blank");
+        onClose();
+      } else {
+        throw new Error(`Mutation succeeded layout but checkoutUrl is missing or invalid. Success flag: ${mutationSuccess}`);
       }
-    } catch (error) {
-      console.error("Failed to execute cart mutation pipeline upgrade:", error);
-      alert("There was an issue processing your upgrade selection. Please try again.");
+    } catch (error: any) {
+      console.error("❌ CRITICAL ERROR IN UPGRADE PIPELINE:", error);
+      console.groupEnd();
+      
+      alert("There was an issue processing your upgrade selection. Please try again or checkout with individual items.");
+      window.location.reload();
     } finally {
-      onClose();
+      setIsUpgrading(false);
     }
   };
+
+  const isProcessingAnyAction = isMutating || isUpgrading;
 
   return (
     <div className="rg-upsell-backdrop" onClick={onClose} role="presentation">
@@ -205,12 +231,11 @@ export default function TokenUpsellModal({
           className="rg-upsell-close-x" 
           onClick={onClose} 
           aria-label="Close promotion dialog"
-          disabled={isMutating}
+          disabled={isProcessingAnyAction}
         >
           &times;
         </button>
 
-        {/* 🎯 CONTEXT-AWARE DYNAMIC HERO CARD DISPLAY */}
         {isTokenUser ? (
           <div className="rg-upsell-header-block" style={{ borderBottom: "1px solid #e2e8f0", paddingBottom: "20px" }}>
             <span className="rg-upsell-badge-pill" style={{ backgroundColor: "#dcfce7", color: "#15803d" }}>
@@ -226,11 +251,11 @@ export default function TokenUpsellModal({
                 </p>
                 <button
                   onClick={() => onRedeemSingle(targetRoute.id, targetRoute.title)}
-                  disabled={isMutating}
+                  disabled={isProcessingAnyAction}
                   className="rg-upsell-tier-cta-action-btn"
                   style={{ maxWidth: "320px", margin: "20px auto 0 auto", backgroundColor: "#16a34a", fontSize: "14px", padding: "12px" }}
                 >
-                  {isMutating ? "Unlocking Vault... ⏳" : "Confirm Instant Unlock ➔"}
+                  {isProcessingAnyAction ? "Unlocking Vault... ⏳" : "Confirm Instant Unlock ➔"}
                 </button>
               </>
             ) : (
@@ -241,11 +266,11 @@ export default function TokenUpsellModal({
                 </p>
                 <button
                   onClick={onRedeemBatch}
-                  disabled={isMutating || totalCashCount === 0}
+                  disabled={isProcessingAnyAction || totalCashCount === 0}
                   className="rg-upsell-tier-cta-action-btn"
                   style={{ maxWidth: "320px", margin: "20px auto 0 auto", backgroundColor: "#16a34a", fontSize: "14px", padding: "12px" }}
                 >
-                  {isMutating ? "Processing Batch... ⏳" : `Unlock All (${totalCashCount} Credits) ➔`}
+                  {isProcessingAnyAction ? "Processing Batch... ⏳" : `Unlock All (${totalCashCount} Credits) ➔`}
                 </button>
               </>
             )}
@@ -260,13 +285,11 @@ export default function TokenUpsellModal({
           </div>
         )}
 
-        {/* 🎯 BUNDLE SELECTION MATRIX (Funnel all users into purchase tiers) */}
         <div className="rg-upsell-matrix-heading" style={{ textAlign: "center", margin: isTokenUser ? "24px 0 12px 0" : "0 0 16px 0", fontSize: "12px", fontWeight: 800, textTransform: "uppercase", color: "#64748b", letterSpacing: "0.5px" }}>
           {isTokenUser ? "Need more tokens? Purchase bundle packs below:" : "Compare and Choose Your Option:"}
         </div>
 
         <div className="rg-upsell-matrix-grid">
-          {/* Baseline Current State Tracker (Only displayed for cash users) */}
           {!isTokenUser && (
             <div className="rg-upsell-tier-card mod-current-baseline">
               <div className="rg-upsell-card-inner">
@@ -278,7 +301,6 @@ export default function TokenUpsellModal({
             </div>
           )}
 
-          {/* Premium Bundle Generation Cards */}
           {UPSELL_TIERS.map((tier) => (
             <div key={tier.id} className="rg-upsell-tier-card mod-bundle-premium" style={{ gridColumn: isTokenUser ? "span 1" : undefined }}>
               {tier.badgeText && (
@@ -293,22 +315,21 @@ export default function TokenUpsellModal({
                 <button
                   onClick={() => handleUpgradeAction(tier)}
                   className="rg-upsell-tier-cta-action-btn"
-                  disabled={isMutating}
+                  disabled={isProcessingAnyAction}
                 >
-                  Buy Pack ➔
+                  {isUpgrading ? "Adding..." : "Buy Pack ➔"}
                 </button>
               </div>
             </div>
           ))}
         </div>
 
-        {/* 🎯 SEAMLESS BYPASS DRAWER ACTIONS */}
         {!isTokenUser && (
           <div className="rg-upsell-footer-actions-tray">
             <button 
               onClick={onBypass} 
               className="rg-upsell-dismiss-bypass-btn"
-              disabled={isMutating}
+              disabled={isProcessingAnyAction}
             >
               No thanks, proceed with individual tracks (${computedCashSubtotal})
             </button>
