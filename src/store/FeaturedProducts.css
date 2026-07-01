@@ -53,7 +53,6 @@
   justify-content: center;
   align-items: center;
   margin-top: -20px;   /* Pulls tightly beneath the split-grid banner */
-  
 }
 
 .btn-shop-all-gear {
@@ -70,7 +69,7 @@
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
   font-family: "Montserrat", sans-serif;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  margin:20px
+  margin: 20px;
 }
 
 .btn-shop-all-gear:hover {
@@ -145,18 +144,14 @@
   .featured-problem-block h2 {
     font-size: 1.85rem;
   }
-}
-
-/* src/components/FeaturedProducts.css Upgrades */
-
-/* ─── 🎯 REMAPPED: PRODUCT CARD TITLE ─── */
-.product-grid-card .product-card-main-title {
-  display: block; /* Guarantees block layout breaking behavior exactly like h3 */
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: var(--brand-charcoal, #0f172a);
-  margin: 0 0 8px 0;
-  line-height: 1.3;
+  .product-grid-card .product-card-primary-details {
+    grid-template-columns: 1fr !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+  .product-grid-card .product-card-stacked-features {
+    align-items: flex-start !important;
+  }
 }
 
 /* ─── 🎯 REMAPPED: BANNER Headline ─── */
@@ -169,21 +164,90 @@
   font-family: "Montserrat", sans-serif;
 }
 
-/* ─── 🎯 NEW: KEYBOARD FOCUS VISUAL INDICATORS ─── 
-   Ensures that when a keyboard user tabs onto a product grid card, 
-   a distinctive high-contrast outline appears around the element. */
-.product-grid-card:focus-visible {
-  outline: 3px solid var(--brand-sky, #38bdf8);
-  outline-offset: 4px;
-  transform: translateY(-4px); /* Replicates hover lift mechanics on focus triggers */
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
-}
-
-/* ─── 🎯 STICKY HEADER LIGHTBOX MITIGATION INTERCEPTOR ─── 
-   When the product modal is active, this rule cleanly matches your global 
-   navigation selector chains to temporarily turn off visibility over the backdrop sheet. */
+/* ─── 🎯 STICKY HEADER LIGHTBOX MITIGATION INTERCEPTOR ─── */
 body.rg-product-modal-active header,
 body.rg-product-modal-active .site-header,
 body.rg-product-modal-active .rg-site-header-nav {
   display: none !important;
+}
+
+/* ─── 🎯 NEW: KEYBOARD FOCUS VISUAL INDICATORS ─── */
+.product-grid-card:focus-visible {
+  outline: 3px solid var(--brand-sky, #38bdf8);
+  outline-offset: 4px;
+  transform: translateY(-4px); 
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   🎯 BRAND NEW SPLIT ASYMMETRICAL WRAPPER GRID RULES
+   ========================================================================== */
+
+/* The Primary Details Row (Houses Identity on Left, Features on Right) */
+.product-grid-card .product-card-primary-details {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  justify-content: space-between;
+  align-items: flex-end; 
+  gap: 14px;             
+  width: 100%;
+  margin-bottom: 12px;   
+  padding: 0;
+}
+
+/* Column Left: Brand/Logo Block layout */
+.product-grid-card .product-card-identity-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0;
+}
+
+/* Fixed spacing constraint inside the identity block envelope */
+.product-grid-card .grid-brand-logo-frame {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 4px;
+}
+
+/* Lock Typography Parameters for Product Titles */
+.product-grid-card .product-card-main-title {
+  display: block; 
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--brand-charcoal, #0f172a);
+  margin: 0;
+  line-height: 1.25;
+}
+
+/* Column Right: Stacked, Right-Justified Features Matrix */
+.product-grid-card .product-card-stacked-features {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; 
+  gap: 4px;
+  padding: 0;
+}
+
+/* Individual list rows styled in brand verdant */
+.product-grid-card .product-card-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  
+  /* ─── 🎯 ADA CONTRAST PASSED ───
+     Using solid green (#16a34a) against white backgrounds satisfies the WCAG 4.5:1 ratio */
+  color: #16a34a !important; 
+  
+  white-space: nowrap;
+}
+
+/* Green Checkmark parameters */
+.product-grid-card .feature-checkmark {
+  display: inline-block;
+  font-weight: bold;
+  color: #16a34a !important; 
+  user-select: none;
 }

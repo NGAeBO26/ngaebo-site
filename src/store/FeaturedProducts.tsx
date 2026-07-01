@@ -28,6 +28,7 @@ interface RelationalProductRow {
   product_features?: ProductFeatureRow[];
   tags: string[] | string;
   description: string;
+  notes_snippets: string; /* Verified relational pipeline field hook */
   rating: number;
   ul_certification: string;
   motor_details?: string;
@@ -142,73 +143,96 @@ export default function FeaturedProducts({
   };
 
   const renderProductCard = (product: RelationalProductRow, expectedCategory: string) => {
-    const isOnSale = Number(product.original_price) > Number(product.price);
-    const primaryDisplayImage = getPrimaryGalleryImage(product.gallery_images);
-    const formattedTitle = cleanTitle(product.product_name);
-    const brandLogoUrl = getGridBrandLogoUrl(product.brand);
-    const isAccessoryItem = expectedCategory === "accessories";
+  const isOnSale = Number(product.original_price) > Number(product.price);
+  const primaryDisplayImage = getPrimaryGalleryImage(product.gallery_images);
+  const formattedTitle = cleanTitle(product.product_name);
+  const brandLogoUrl = getGridBrandLogoUrl(product.brand);
+  const isAccessoryItem = expectedCategory === "accessories";
 
-    return (
-      <div
-        key={product.id}
-        className={`product-grid-card ${isAccessoryItem ? "accessory-compact-card" : ""}`}
-        onClick={() => handleCardClick(product)}
-        /* ─── 🎯 FIX 1: KEYBOARD NAVIGATION ENGINE INJECTED ─── 
-           Adds interactive focus support to the card container so keyboard users can navigate to it. */
-        role="button"
-        tabIndex={0}
-        aria-label={`View full technical specifications and pricing for ${formattedTitle}`}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            handleCardClick(product);
-          }
-        }}
-      >
-        <div className="card-premium-accent-header">
-          <span>{product.sub_category || "Verified Configuration"}</span>
-        </div>
+  /* ─── 🎯 STEP A: PARSE SEMI-COLON SPLIT CHANNELS SAFELY ─── */
+  const parsedSnippets = product.notes_snippets
+    ? product.notes_snippets.split(';').map(s => s.trim()).filter(Boolean)
+    : [];
 
-        <div className="card-image-box">
-          {primaryDisplayImage ? (
-            <img src={primaryDisplayImage} alt={`Showcase photo of ${formattedTitle}`} />
-          ) : (
-            <div className="card-image-empty-state">Image Empty</div>
+  return (
+    <div
+      key={product.id}
+      className={`product-grid-card ${isAccessoryItem ? "accessory-compact-card" : ""}`}
+      onClick={() => handleCardClick(product)}
+      role="button"
+      tabIndex={0}
+      aria-label={`View full technical specifications and pricing for ${formattedTitle}`}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleCardClick(product);
+        }
+      }}
+    >
+      <div className="card-premium-accent-header">
+        <span>{product.sub_category || "Verified Configuration"}</span>
+      </div>
+
+      <div className="card-image-box">
+        {primaryDisplayImage ? (
+          <img src={primaryDisplayImage} alt={`Showcase photo of ${formattedTitle}`} />
+        ) : (
+          <div className="card-image-empty-state">Image Empty</div>
+        )}
+      </div>
+
+      {/* ─── 🎯 THE CARD DETAILS CONTAINER OVERHAUL ─── */}
+      <div className="card-details-box">
+        
+        {/* ─── FIX 1: NEW PARENT GRID WRAPPER FOR LOGO/NAME (LEFT) AND FEATURES (RIGHT) ─── */}
+        <div className="product-card-primary-details">
+          
+          {/* COLUMN A (LEFT): Brand Identity Block */}
+          <div className="product-card-identity-block">
+            <div className="grid-brand-logo-frame">
+              {brandLogoUrl ? (
+                <img className="grid-brand-logo-img" src={brandLogoUrl} alt={`${product.brand} Brand Logo`} />
+              ) : (
+                <span className="brand-lbl-fallback">{product.brand}</span>
+              )}
+            </div>
+            <span className="product-card-main-title">{formattedTitle}</span>
+          </div>
+
+          {/* COLUMN B (RIGHT): Stacked, Right-Justified Features Matrix (Verdant theme) */}
+          {/* ─── 🎯 GATED: ONLY RENDER STACKED SNIPPETS IF IT IS NOT AN ACCESSORY ITEM ─── */}
+          {!isAccessoryItem && parsedSnippets.length > 0 && (
+            <div className="product-card-stacked-features" aria-label="Product features">
+              {parsedSnippets.map((snippet, index) => (
+                <div key={`${product.id}-snippet-${index}`} className="product-card-feature-item">
+                  <span className="feature-checkmark">✓</span>
+                  <span className="feature-text">{snippet}</span>
+                </div>
+              ))}
+            </div>
           )}
         </div>
 
-        <div className="card-details-box">
-          <div className="grid-brand-logo-frame">
-            {brandLogoUrl ? (
-              <img className="grid-brand-logo-img" src={brandLogoUrl} alt={`${product.brand} Brand Logo`} />
-            ) : (
-              <span className="brand-lbl-fallback">{product.brand}</span>
-            )}
-          </div>
-
-          {/* ─── 🎯 FIX 2: CONVERTED H3 TO COMPLIANT CLASS SPAN ─── 
-              Removes heading outline card skipping errors on layout paths. */}
-          <span className="product-card-main-title">{formattedTitle}</span>
-
-          <div className="card-bottom-action-row">
-            <div className="card-price-stack">
-              {isOnSale && (
-                <span className="card-msrp-label">
-                  MSRP: ${Number(product.original_price).toFixed(2)}
-                </span>
-              )}
-              <span className={`card-price-value ${isOnSale ? "sale" : "normal"}`}>
-                ${Number(product.price).toFixed(2)}
+        {/* The existing card action/price row sits below the primary details grid */}
+        <div className="card-bottom-action-row">
+          <div className="card-price-stack">
+            {isOnSale && (
+              <span className="card-msrp-label">
+                MSRP: ${Number(product.original_price).toFixed(2)}
               </span>
-            </div>
-            <span className="card-spec-pill-cta">
-              {isAccessoryItem ? "View Specs ↗" : "View Technical Specs ↗"}
+            )}
+            <span className={`card-price-value ${isOnSale ? "sale" : "normal"}`}>
+              ${Number(product.price).toFixed(2)}
             </span>
           </div>
+          <span className="card-spec-pill-cta">
+            {isAccessoryItem ? "View Specs ↗" : "View Technical Specs ↗"}
+          </span>
         </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
   const bikeIds = featuredConfig.filter((item) => item.category === "ebike").map((item) => item.id);
   const accessoryIds = featuredConfig.filter((item) => item.category === "accessories").map((item) => item.id);
@@ -219,9 +243,7 @@ export default function FeaturedProducts({
   return (
     <section className="featured-shop-section-pad">
       
-      {/* ─── 🎯 FIX 3: MAP COMPONENT REGIONS TO NAMED SECTIONS ─── */}
       <section className="shop-hero-banner" aria-label="Storefront Announcement Banner">
-        {/* Converted to a class string to prevent duplicate page-level h1 conflicts when rendered on home routes */}
         <span className="shop-hero-banner-main-headline">New Gear. New Adventures.</span>
         <p>Shop bikes, gear, accessories and more.</p>
       </section>
