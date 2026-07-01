@@ -1,0 +1,255 @@
+/* src/styles/TokenUpsellModal.css */
+
+.rg-upsell-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.rg-upsell-container {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 960px;
+  border-radius: 12px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  position: relative;
+  padding: 40px;
+  box-sizing: border-box;
+  outline: none;
+  animation: rgUpsellFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes rgUpsellFadeIn {
+  from { opacity: 0; transform: scale(0.97) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.rg-upsell-close-x {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  color: #64748b;
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.15s ease;
+}
+
+.rg-upsell-close-x:hover:not(:disabled) {
+  color: #0f172a;
+}
+
+.rg-upsell-header-block {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.rg-upsell-badge-pill {
+  display: inline-block;
+  background-color: #fef3c7;
+  color: #b45309;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  letter-spacing: 0.6px;
+  margin-bottom: 12px;
+}
+
+.rg-upsell-main-title {
+  color: #0f172a;
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.5px;
+}
+
+.rg-upsell-subcaption {
+  color: #334155;
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.rg-highlight-text {
+  color: #16a34a;
+  font-weight: 700;
+}
+
+.rg-upsell-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 900px) {
+  .rg-upsell-matrix-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 550px) {
+  .rg-upsell-matrix-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.rg-upsell-tier-card {
+  background-color: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+}
+
+.rg-upsell-tier-card.mod-current-baseline {
+  background-color: #f1f5f9;
+  border-style: dashed;
+}
+
+.rg-upsell-tier-card.mod-bundle-premium {
+  background-color: #ffffff;
+}
+
+.rg-upsell-tier-card.mod-bundle-premium:hover {
+  border-color: #16a34a;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.rg-upsell-card-ribbon-tag {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #16a34a;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+}
+
+.rg-upsell-card-inner {
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.rg-upsell-tier-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+
+.rg-upsell-price-callout {
+  font-size: 32px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.rg-upsell-math-subtext {
+  font-size: 11px;
+  color: #64748b;
+  margin-bottom: 16px;
+}
+
+.rg-upsell-savings-tag {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.rg-upsell-savings-tag.mod-neutral {
+  background-color: #e2e8f0;
+  color: #475569;
+}
+
+.rg-upsell-savings-tag.mod-active-green {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+.rg-upsell-tier-cta-action-btn {
+  width: 100%;
+  background-color: #0f172a;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: auto;
+  transition: background-color 0.15s ease;
+}
+
+.rg-upsell-tier-cta-action-btn:hover:not(:disabled) {
+  background-color: #16a34a;
+}
+
+.rg-upsell-tier-cta-action-btn:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.rg-upsell-footer-actions-tray {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 24px;
+  text-align: center;
+}
+
+.rg-upsell-dismiss-bypass-btn {
+  background: transparent;
+  border: none;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 6px 12px;
+  transition: color 0.15s ease;
+}
+
+.rg-upsell-dismiss-bypass-btn:hover:not(:disabled) {
+  color: #0f172a;
+}
+
+.rg-upsell-dismiss-bypass-btn:disabled {
+  color: #94a3b8;
+  cursor: not-allowed;
+}

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useShopifyAuth } from "../store/ShopifyAuthContext"; 
 import { useShopifyCart } from "../store/ShopifyCartContext";
 import "../styles/CartDropdown.css"; 
+import TokenUpsellModal from "./TokenUpsellModal";
 
 interface CartDropdownProps {
   isOpen: boolean; 
@@ -17,6 +18,7 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
   const [activeTab, setActiveTab] = useState<"cart" | "catalog">("cart");
   const [activeCatalogHoverId, setActiveCatalogHoverId] = useState<string | null>(null);
   const [isRedeeming, setIsRedeeming] = useState(false);
+  const [isUpsellOpen, setIsUpsellOpen] = useState(false);
 
   const isFullyAuthenticated = isAuthenticated && customer !== null; //
 
@@ -142,15 +144,25 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
   const handleCheckoutRedirect = () => {
     if (totalCartCount === 0) return;
 
-    // Intercept guest checkouts and redirect them to authenticate first
     if (!isFullyAuthenticated) {
       login();
       return;
     }
 
-    if (checkoutUrl) {
-      window.open(checkoutUrl, "_blank"); 
+    // Guard Clause: Escape upsell logic if a bundle is present
+    const hasBundleInCart = cartItems.some((item: any) => item.routeId === "TOKEN_BUNDLE");
+    if (hasBundleInCart) {
+      if (checkoutUrl) window.open(checkoutUrl, "_blank");
+      return;
     }
+
+    setIsUpsellOpen(true);
+  };
+
+  // Add the explicit dropdown bypass trigger:
+  const handleBypassCheckout = () => {
+    setIsUpsellOpen(false);
+    if (checkoutUrl) window.open(checkoutUrl, "_blank");
   };
 
   return (
@@ -336,6 +348,12 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
         )}
 
       </div>
+
+      <TokenUpsellModal 
+        isOpen={isUpsellOpen}
+        onClose={() => setIsUpsellOpen(false)}
+        onBypass={handleBypassCheckout}
+      />
     </div>
   );
 }

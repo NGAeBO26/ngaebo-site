@@ -1,7 +1,8 @@
 /* src/store/StorePanel.tsx */
 import { useState, useEffect } from "react";
 import { useShopifyCart } from "./ShopifyCartContext"; 
-import { useShopifyAuth } from "./ShopifyAuthContext"; 
+import { useShopifyAuth } from "./ShopifyAuthContext";
+import TokenUpsellModal from "../components/TokenUpsellModal";
 
 const BADGES_BASE = "/images/badges/fcs"; 
 
@@ -34,6 +35,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
   const [cachedRoute, setCachedRoute] = useState<any | null>(null); //
   const [activeTab, setActiveTab] = useState<"cart" | "catalog">("cart"); 
   const [activeCatalogHoverId, setActiveCatalogHoverId] = useState<string | null>(null); 
+  const [isUpsellOpen, setIsUpsellOpen] = useState(false);
 
   const isFullyAuthenticated = isAuthenticated && customer !== null; 
 
@@ -234,6 +236,21 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
       return;
     }
 
+    // Guard Clause: Escape upsell modal workflow loop if token bundles are already present
+    const hasBundleInCart = cartItems.some((item: any) => item.routeId === "TOKEN_BUNDLE");
+    if (hasBundleInCart) {
+      if (!checkoutUrl) return;
+      window.open(checkoutUrl, "_blank");
+      return;
+    }
+
+    // Intercept checkout to offer token bundle deals
+    setIsUpsellOpen(true);
+  };
+
+  // Add the explicit bypass method to route around the promotion:
+  const handleBypassCheckout = () => {
+    setIsUpsellOpen(false);
     if (!checkoutUrl) return;
     window.open(checkoutUrl, "_blank");
   };
@@ -505,6 +522,11 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
       <span className="rg-disclaimer-note">
         By purchasing, you agree to our terms and conditions.<br />
       </span>
+      <TokenUpsellModal 
+        isOpen={isUpsellOpen}
+        onClose={() => setIsUpsellOpen(false)}
+        onBypass={handleBypassCheckout}
+      />
     </div>
   );
 }
