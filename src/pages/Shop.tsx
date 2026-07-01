@@ -121,12 +121,16 @@ export default function Shop() {
     const brandLogoUrl = getGridBrandLogoUrl(product.brand);
     const isAccessoryItem = product.category === 'accessories';
 
+    /* ─── 🎯 STEP A: PARSE SEMI-COLON SPLIT CHANNELS SAFELY ─── */
+    const parsedSnippets = product.notes_snippets
+      ? product.notes_snippets.split(';').map(snippet => snippet.trim()).filter(Boolean)
+      : [];
+
     return (
       <div 
         key={product.id} 
         className={`product-grid-card ${isAccessoryItem ? 'accessory-compact-card' : ''}`} 
         onClick={() => handleCardClick(product)}
-        /* ─── 🎯 FIX 1: FULL KEYBOARD NAVIGATION ATTACHED TO RETAIL CARDS ─── */
         role="button"
         tabIndex={0}
         aria-label={`View pricing and full operational parameters for ${formattedTitle}`}
@@ -149,18 +153,38 @@ export default function Shop() {
           )}
         </div>
         
+        {/* ─── 🎯 THE COMPREHENSIVE REALIGNED RE-SPECIFICATION CARD DETAILS ─── */}
         <div className="card-details-box">
-          <div className="grid-brand-logo-frame">
-            {brandLogoUrl ? (
-              <img className="grid-brand-logo-img" src={brandLogoUrl} alt={`${product.brand} Brand Logo`} />
-            ) : (
-              <span className="brand-lbl-fallback">{product.brand}</span>
+          
+          {/* ─── NEW PARENT ROW WRAPPER CONTEXT FOR SPLIT ASYMMETRICAL COLUMN DESCENT ─── */}
+          <div className="product-card-primary-details">
+            
+            {/* COLUMN LEFT: Brand Logo & Title Frame Block */}
+            <div className="product-card-identity-block">
+              <div className="grid-brand-logo-frame">
+                {brandLogoUrl ? (
+                  <img className="grid-brand-logo-img" src={brandLogoUrl} alt={`${product.brand} Brand Logo`} />
+                ) : (
+                  <span className="brand-lbl-fallback">{product.brand}</span>
+                )}
+              </div>
+              <span className="product-card-main-title">{formattedTitle}</span>
+            </div>
+
+            {/* COLUMN RIGHT: Stacked Right-Justified Features Grid Checklist (E-Bikes Only) */}
+            {!isAccessoryItem && parsedSnippets.length > 0 && (
+              <div className="product-card-stacked-features" aria-label="Product features">
+                {parsedSnippets.map((snippet, index) => (
+                  <div key={`${product.id}-snippet-${index}`} className="product-card-feature-item">
+                    <span className="feature-checkmark">✓</span>
+                    <span className="feature-text">{snippet}</span>
+                  </div>
+                ))}
+              </div>
             )}
           </div>
-
-          {/* ─── 🎯 FIX 2: CONVERTED H3 TO TARGETED CLASS SPAN ELEMENT ─── */}
-          <span className="product-card-main-title">{formattedTitle}</span>
           
+          {/* The pricing row remains nested cleanly beneath the primary details grid wrapper */}
           <div className="card-bottom-action-row">
             <div className="card-price-stack">
               {isOnSale && (
@@ -186,13 +210,11 @@ export default function Shop() {
 
   return (
     <div className="shop-master-layout-wrapper">
-      
       <div className="shop-sticky-site-nav-port">
         <Header />
       </div>
 
       <div className="shop-container">
-        
         <div className="shop-persistent-header-stack">
           <section className="shop-hero-banner" aria-label="Retail Storefront Welcome Banner">
             <h1>New Gear. New Adventures.</h1>
@@ -200,20 +222,19 @@ export default function Shop() {
           </section>
 
           <div className="shop-filter-bar" role="tablist" aria-label="Product Category Filter Matrix">
-            <button className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`} onClick={() => setActiveFilter('all')} role="tab" aria-selected={activeFilter === 'all'}>All Gear</button>
-            <button className={`filter-btn ${activeFilter === 'ebike' ? 'active' : ''}`} onClick={() => setActiveFilter('ebike')} role="tab" aria-selected={activeFilter === 'ebike'}>Verified E-Bikes</button>
-            <button className={`filter-btn ${activeFilter === 'accessories' ? 'active' : ''}`} onClick={() => setActiveFilter('accessories')} role="tab" aria-selected={activeFilter === 'accessories'}>Accessories</button>
+            <button className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`} onClick={() => setActiveFilter('all')} role="tab" aria-selected={activeFilter === 'all'}>All Products</button>
+            <button className={`filter-btn ${activeFilter === 'ebike' ? 'active' : ''}`} onClick={() => setActiveFilter('ebike')} role="tab" aria-selected={activeFilter === 'ebike'}>Vetted E-Bikes</button>
+            <button className={`filter-btn ${activeFilter === 'accessories' ? 'active' : ''}`} onClick={() => setActiveFilter('accessories')} role="tab" aria-selected={activeFilter === 'accessories'}>Trail-Tested Gear</button>
           </div>
         </div>
 
         <div className="shop-grid-workspace">
-          
           {activeFilter === 'all' && (
             <>
               {bikeProducts.length > 0 && (
                 <div className="shop-accessories-divider-ribbon" role="presentation">
                   <div className="shop-accessories-divider-label">
-                    Electric Bikes
+                    Off Road Capable Bikes to Tackle Steep Grades on Gravel and Clay
                   </div>
                 </div>
               )}
@@ -222,7 +243,7 @@ export default function Shop() {
               {accessoryProducts.length > 0 && (
                 <div className="shop-accessories-divider-ribbon section-following-divider" role="presentation">
                   <div className="shop-accessories-divider-label">
-                    Accessories and Gear
+                    Trail Tested Gear For Tough Backcountry Routes
                   </div>
                 </div>
               )}
@@ -234,7 +255,7 @@ export default function Shop() {
             <>
               <div className="shop-accessories-divider-ribbon" role="presentation">
                 <div className="shop-accessories-divider-label">
-                  Electric Bikes
+                  Off Road Capable Bikes to Tackle Steep Grades on Gravel and Clay
                 </div>
               </div>
               {bikeProducts.map(product => renderProductCard(product))}
@@ -245,16 +266,14 @@ export default function Shop() {
             <>
               <div className="shop-accessories-divider-ribbon" role="presentation">
                 <div className="shop-accessories-divider-label">
-                  Accessories and Gear
+                  Trail Tested Gear For Tough Backcountry Routes
                 </div>
               </div>
               {accessoryProducts.map(product => renderProductCard(product))}
             </>
           )}
-
         </div>
 
-        {/* ─── 🎯 FIX 3: ADDED PROGRAMMATIC ACCESSIBILITY ROLES TO MODAL POPUPS ─── */}
         {selectedProduct && (
           <div 
             className="modal-blur-overlay" 
@@ -273,7 +292,6 @@ export default function Shop() {
         )}
       </div>
 
-      {/* FOOTER LEAD CHANNEL */}
       <section className="lead-capture-footer" aria-label="Premium Map Sample Lead Capture Section">
         <div className="funnel-container">
           <div className="capture-split-layout">

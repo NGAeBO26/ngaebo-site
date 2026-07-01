@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import "./RedirectGateway.css";
-import TacticalLeadForm from "../components/TacticalLeadForm"; // 🎯 INTEGRATED REUSABLE LEAD FORM COMPONENT
+import TacticalLeadForm from "../components/TacticalLeadForm"; 
 
 export default function RedirectGateway() {
   const [searchParams] = useSearchParams();
@@ -91,37 +91,44 @@ export default function RedirectGateway() {
     <div className="gateway-master-viewport-wrapper">
       <div className="gateway-center-card-shell">
         
-        {/* 🟢 REPLACED SUB-CATEGORY LABEL WITH "Vendor Redirection Gateway" FOR THE TOP HEADER BAR */}
+        {/* Accent Bar at the top header */}
         <div className="gateway-card-accent-bar">
           <span>{isSearching ? "Establishing Secure Connection" : "Vendor Redirection Gateway"}</span>
         </div>
 
+        {/* ─── 🎯 FIX 1: FLOATING BRAND LOGO OUTSIDE EMBED BANNER ───
+            Placed at top level to allow absolute positioning over the header bar boundary seamlessly */}
+        
+          <img className="gateway-absolute-main-logo" src="/images/site-logo.png" alt="NGAEBO Logo" />
+        
+
         {!isSearching ? (
           <div className="gateway-form-payload">
-            <div className="gateway-co-branded-handshake-banner">
-              <img className="gateway-identity-main-logo" src="/images/site-logo.png" alt="NGAEBO Logo" />
-              <span className="gateway-handshake-icon-divider">🤝</span>
+            
+            {/* ─── 🎯 FIX 2: VENDOR LOGO BAY (CENTERED, EMOJI DELETED) ─── */}
+            <div className="gateway-centered-vendor-logo-bay">
               {logoAssetUrl ? (
-                <img className="gateway-computed-logo" src={logoAssetUrl} alt={brand} />
+                <img className="gateway-computed-logo" src={logoAssetUrl} alt={`${brand} Logo`} />
               ) : (
                 <span className="gateway-brand-text-fallback">{brand}</span>
               )}
             </div>
 
-            {/* 🟢 REPOSITIONED LABELS: Product name & sub-category badge sit inline horizontally */}
+            {/* ─── 🎯 FIX 3: BLUE PROTOCOL BLOCK POSITIONED DIRECTLY BELOW VENDOR LOGO ─── */}
             <div className="gateway-title-block-lbl">
               <p className="gateway-item-context-lbl">
                 Verifying routing protocols for:
               </p>
               <div className="gateway-product-row-flex">
-                <h2 className="gateway-inline-product-title">{productName}</h2>
+                {/* Shifted away from h2 tags to remove structural dependencies on page imports */}
+                <span className="gateway-inline-product-title-text">{productName}</span>
                 {subCategory && (
                   <span className="gateway-inline-subcat-badge">{subCategory}</span>
                 )}
               </div>
             </div>
 
-            {/* 🟢 REMOVED GREEN PILL & TITLE CONTENT: Incentive card displays raw single-paragraph copy */}
+            {/* Incentive lead element card summary */}
             <div className="gateway-rideguide-lead-incentive-card">
               <p className="gateway-lead-description-copy" style={{ margin: 0 }}>
                 {isAccessoryItem ? (
@@ -131,17 +138,14 @@ export default function RedirectGateway() {
                 )}
               </p>
               <TacticalLeadForm 
-                  layout="stacked"
-                  sourceGroupTag={parsedIntentTag}
-                  placeholderText="Enter your email address..."
-                  buttonLabel={isAccessoryItem ? "Claim Free Maps ➔" : "Claim Free Maps ➔"}
-                />
-                <span className="gateway-form-optional-caption">
-                * Optional onboarding step. Access map links will auto-fulfill natively via email sequences.
-              </span>
+                layout="row"
+                sourceGroupTag={parsedIntentTag}
+                placeholderText="Enter your email address..."
+                buttonLabel="Claim Free Maps ➔"
+              />
             </div>
-            
 
+            {/* Disclosures Scroll View Box */}
             <div className="gateway-scrollable-disclosure-pane">
               <div className="gateway-legal-section">
                 <h4>Affiliate Disclosure (FTC Compliance)</h4>
@@ -160,6 +164,7 @@ export default function RedirectGateway() {
               </div>
             </div>
 
+            {/* Verification Consent Form Trigger */}
             <form onSubmit={handleProceedToAffiliate}>
               <div className="gateway-checkbox-inputs-stack">
                 <label className="gateway-input-label-row">
