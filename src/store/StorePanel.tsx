@@ -36,7 +36,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
   const [activeTab, setActiveTab] = useState<"cart" | "catalog">("cart"); 
   const [activeCatalogHoverId, setActiveCatalogHoverId] = useState<string | null>(null); 
   
-  // 🎯 CENTRALIZED WORKFLOW STATE
   const [isUpsellOpen, setIsUpsellOpen] = useState(false);
   const [upsellTargetRoute, setUpsellTargetRoute] = useState<{ id: string; title: string } | null>(null);
 
@@ -151,11 +150,74 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     }
   }, [activeCatalogPasses, allRoutes]); 
 
-  // 🛠️ CONSOLE DIAGNOSTIC TOOLBACK
+  // 🎯 AUTOMATED POST-PURCHASE WORKFLOW ENGINE
+  useEffect(() => {
+    const processAutomatedFulfillment = async () => {
+      const savedIntendedRoutes = localStorage.getItem("rg_intended_routes");
+      if (!savedIntendedRoutes || !isFullyAuthenticated || isRedeeming) return;
+
+      // Scan for the leftover bundle package in the current cart session
+      const bundleItem = cartItems.find((item: any) => item.routeId === "TOKEN_BUNDLE");
+
+      // Execute fulfillment once the webhook completes and updates the credit ledger balance
+      if (tokenBalance > 0) {
+        try {
+          const intendedRoutes = JSON.parse(savedIntendedRoutes);
+          console.log("🚀 [AUTOMATION ENGINE]: Capturing return from checkout. Running auto-unlock tracks:", intendedRoutes);
+          
+          setIsRedeeming(true);
+          let processedCount = 0;
+          const API_BASE_TARGET = window.location.hostname === "localhost" ? "http://localhost:5000" : "";
+
+          // Sequentially fulfill each track automatically using backend token workflows
+          for (const route of intendedRoutes) {
+            if (route.routeId) {
+              console.log(`   -> Executing background redemption for: ${route.title} (${route.routeId})`);
+              const response = await fetch(`${API_BASE_TARGET}/api/tokens/redeem`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ 
+                  customerId: customer.id, 
+                  routeId: route.routeId, 
+                  routeTitle: route.title 
+                })
+              });
+              if (response.ok) processedCount++;
+            }
+          }
+
+          // Force update the local authentication context profile parameters
+          if (refreshProfile) {
+            await refreshProfile();
+          }
+
+          // Remove the processed bundle item from the user's active cart lines
+          if (bundleItem && removeCartItem) {
+            console.log("   -> Automatically removing bundle package from cart lines:", bundleItem.id);
+            await removeCartItem(bundleItem.id);
+          }
+
+          // Clear the local storage cache keys
+          localStorage.removeItem("rg_intended_routes");
+          
+          // Force view to catalog panel and alert success
+          setActiveTab("catalog");
+          alert(`🎉 Success! Bought credits applied: ${processedCount} routes unlocked and added to your catalog. Check your email (${customer.email}) for links!`);
+          
+        } catch (err) {
+          console.error("❌ Post-purchase automation processing exception:", err);
+        } finally {
+          setIsRedeeming(false);
+        }
+      }
+    };
+
+    processAutomatedFulfillment();
+  }, [cartItems, tokenBalance, isFullyAuthenticated, customer, removeCartItem, refreshProfile]);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       (window as any).forceOpenUpsell = (targetId?: string, targetTitle?: string) => {
-        console.log("🎯 [CONSOLED OVERRIDE]: Opening workflow overlay.");
         if (targetId && targetTitle) {
           setUpsellTargetRoute({ id: targetId, title: targetTitle });
         } else {
@@ -185,7 +247,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     setIsAdding(false);
   }; 
 
-  // 🎯 CORE MUTATOR: Pure endpoint executor (Native browser popups removed)
   const handleTokenRedemption = async (targetId: string, targetTitle: string) => {
     if (isRedeeming || !customer) return;
     setIsRedeeming(true);
@@ -214,7 +275,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     }
   }; 
 
-  // 🎯 BATCH MUTATOR: Pure endpoint executor (Native browser popups removed)
   const handleBatchTokenRedemption = async () => {
     if (isRedeeming || !customer || totalCartCount === 0) return;
     setIsRedeeming(true);
@@ -245,7 +305,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     }
   }; 
 
-  // 🎯 MASTER INTERCEPT GATEWAY
+  // 🎯 MASTER INTERCEPT GATEWAY: Stashes target paths into local storage state
   const handlePrimaryCheckoutDispatch = (targetId?: string, targetTitle?: string) => {
     if (!isFullyAuthenticated) {
       login();
@@ -253,13 +313,20 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     }
 
     if (targetId && targetTitle) {
-      // Direct track interaction from credit user
+      // User tapped an individual track's unlock link
+      localStorage.setItem("rg_intended_routes", JSON.stringify([{ routeId: targetId, title: targetTitle }]));
       setUpsellTargetRoute({ id: targetId, title: targetTitle });
       setIsUpsellOpen(true);
       return;
     }
 
     if (totalCartCount === 0) return;
+
+    // User clicked the global master checkout link button with multiple tracks inside their cart
+    localStorage.setItem(
+      "rg_intended_routes", 
+      JSON.stringify(visibleCartItems.map(item => ({ routeId: item.routeId, title: item.title })))
+    );
 
     const hasBundleInCart = cartItems.some((item: any) => item.routeId === "TOKEN_BUNDLE");
     if (hasBundleInCart) {
@@ -268,7 +335,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
       return;
     }
 
-    // Capture standard bottom checkout click (Could be single item checkout or batch checkout)
     setUpsellTargetRoute(null);
     setIsUpsellOpen(true);
   };
@@ -342,7 +408,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
                 PRINT RIDEGUIDE NOW ➔
               </button>
             ) : isTokenUser ? (
-              /* 🎯 REDIRECTED THROUGH INTERCEPT OVERLAY ENGINE */
               <button className="rg-inline-card-action-btn unlock-verdant" disabled={isRedeeming} onClick={() => handlePrimaryCheckoutDispatch(rawRouteId, routeTitle)}>
                 INSTANT UNLOCK (1 CREDIT) ➔
               </button>
@@ -419,7 +484,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
                           </div>
                           <div className="rg-cart-item-actions-right">
                             {isTokenUser ? (
-                              /* 🎯 REDIRECTED THROUGH INTERCEPT OVERLAY ENGINE */
                               <button 
                                 className="rg-cart-inline-unlock-btn"
                                 disabled={isRedeeming}
@@ -512,13 +576,11 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
         </div>
       </div>
 
-      {/* SECTION 3: UNIFIED CTA HOOKS PANEL */}
       {activeTab === "catalog" ? (
         <button disabled={true} className="rg-premium-buy-btn mod-disabled">
           Click the Print Link Above to Get Your Guide
         </button>
       ) : (
-        /* 🎯 UNIFIED PRIMARY CTAs FOR ALL USERS */
         <button 
           onClick={() => handlePrimaryCheckoutDispatch()} 
           disabled={totalCartCount === 0} 
@@ -538,7 +600,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
         By purchasing, you agree to our terms and conditions.<br />
       </span>
 
-      {/* 🎯 INTEGRATED COMPONENT HANDSHAKE PROPS */}
       <TokenUpsellModal 
         isOpen={isUpsellOpen}
         onClose={() => {
