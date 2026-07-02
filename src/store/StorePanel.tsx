@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useShopifyCart } from "./ShopifyCartContext"; 
 import { useShopifyAuth } from "./ShopifyAuthContext";
 import TokenUpsellModal from "../components/TokenUpsellModal";
+import TransactionOverlay, { type TransactionState } from "../components/TransactionOverlay";
 
 const BADGES_BASE = "/images/badges/fcs"; 
 
@@ -20,7 +21,6 @@ interface StorePanelProps {
 }
 
 export default function StorePanel({ activeRouteProperties, allRoutes = [] }: StorePanelProps) {
-  // ACTIVE RENDERING LOG: Tracks prop data updates on every cycle
   console.log("=== ⚡ STOREPANEL RE-RENDER AUDIT ===");
   console.log("1. Raw allRoutes Prop Reference:", allRoutes);
   console.log("2. Array.isArray Check:", Array.isArray(allRoutes));
@@ -38,6 +38,9 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
   
   const [isUpsellOpen, setIsUpsellOpen] = useState(false);
   const [upsellTargetRoute, setUpsellTargetRoute] = useState<{ id: string; title: string } | null>(null);
+
+  // 🎯 UNIVERSAL GATEWAY MASTER STATE CONTROLLER
+  const [transactionState, setTransactionState] = useState<TransactionState | null>(null);
 
   const isFullyAuthenticated = isAuthenticated && customer !== null; 
 
@@ -61,7 +64,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
 
   const currentTimestamp = Date.now(); 
 
-  // DEFENSIVE DICTIONARY EXTRACTORS
   const getRouteExpiry = (id: string): number => {
     const entry = unlockedMap[id];
     if (!entry) return 0;
@@ -96,7 +98,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
 
   const isThisRouteExplicitlyUnlocked = hasActivePass || (getRouteExpiry(rawRouteId) > currentTimestamp); 
 
-  // SCHEMATIC OBJECT ENTRY PARSING
   const activeCatalogPasses = Object.entries(unlockedMap)
     .map(([routeId, entry]) => {
       const expiresAt = typeof entry === "object" && entry !== null ? Number(entry.expiresAt || 0) : Number(entry || 0);
@@ -150,29 +151,33 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     }
   }, [activeCatalogPasses, allRoutes]); 
 
-  // 🎯 AUTOMATED POST-PURCHASE WORKFLOW ENGINE
+  // 🎯 INTERCEPT AUTOMATION ENGINE: Post-Purchase Full Checkout Loop Fulfillment
   useEffect(() => {
     const processAutomatedFulfillment = async () => {
       const savedIntendedRoutes = localStorage.getItem("rg_intended_routes");
       if (!savedIntendedRoutes || !isFullyAuthenticated || isRedeeming) return;
 
-      // Scan for the leftover bundle package in the current cart session
       const bundleItem = cartItems.find((item: any) => item.routeId === "TOKEN_BUNDLE");
 
-      // Execute fulfillment once the webhook completes and updates the credit ledger balance
       if (tokenBalance > 0) {
         try {
           const intendedRoutes = JSON.parse(savedIntendedRoutes);
           console.log("🚀 [AUTOMATION ENGINE]: Capturing return from checkout. Running auto-unlock tracks:", intendedRoutes);
           
           setIsRedeeming(true);
+          // 🎯 SEED PREFLOW STATE OVERLAY
+          setTransactionState({
+            status: 'processing',
+            type: 'checkout_fulfillment',
+            title: 'Sychronizing Token Ledger',
+            message: 'Verifying checkout parameters with Shopify and generating your encrypted download links. Please do not close this window.'
+          });
+
           let processedCount = 0;
           const API_BASE_TARGET = window.location.hostname === "localhost" ? "http://localhost:5000" : "";
 
-          // Sequentially fulfill each track automatically using backend token workflows
           for (const route of intendedRoutes) {
             if (route.routeId) {
-              console.log(`   -> Executing background redemption for: ${route.title} (${route.routeId})`);
               const response = await fetch(`${API_BASE_TARGET}/api/tokens/redeem`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -186,26 +191,33 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
             }
           }
 
-          // Force update the local authentication context profile parameters
           if (refreshProfile) {
             await refreshProfile();
           }
 
-          // Remove the processed bundle item from the user's active cart lines
           if (bundleItem && removeCartItem) {
-            console.log("   -> Automatically removing bundle package from cart lines:", bundleItem.id);
             await removeCartItem(bundleItem.id);
           }
 
-          // Clear the local storage cache keys
           localStorage.removeItem("rg_intended_routes");
-          
-          // Force view to catalog panel and alert success
           setActiveTab("catalog");
-          alert(`🎉 Success! Bought credits applied: ${processedCount} routes unlocked and added to your catalog. Check your email (${customer.email}) for links!`);
           
-        } catch (err) {
+          // 🎯 ROUTE SUCCESS TO GATEWAY
+          setTransactionState({
+            status: 'success',
+            type: 'checkout_fulfillment',
+            title: 'Account Synchronized',
+            message: `Success! Your bundle tokens have been verified. ${processedCount} telemetry maps have been successfully unlocked and attached to your permanent vault catalog. Clean copies have been dispatched to ${customer.email}.`
+          });
+          
+        } catch (err: any) {
           console.error("❌ Post-purchase automation processing exception:", err);
+          setTransactionState({
+            status: 'failure',
+            type: 'checkout_fulfillment',
+            title: 'Sync Interrupted',
+            message: err.message || 'The checkout completed successfully but the automatic route unlock loop timed out. Please hard refresh to reload your profile tokens.'
+          });
         } finally {
           setIsRedeeming(false);
         }
@@ -247,10 +259,18 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     setIsAdding(false);
   }; 
 
+  // 🎯 SINGLE REDEMPTION ENGINE OVERHAUL
   const handleTokenRedemption = async (targetId: string, targetTitle: string) => {
     if (isRedeeming || !customer) return;
     setIsRedeeming(true);
     const API_BASE_TARGET = window.location.hostname === "localhost" ? "http://localhost:5000" : "";
+
+    setTransactionState({
+      status: 'processing',
+      type: 'single_unlock',
+      title: 'Deducting Token Credit',
+      message: `Communicating transaction coordinates with security vault to unlock: "${targetTitle}"...`
+    });
 
     try {
       const response = await fetch(`${API_BASE_TARGET}/api/tokens/redeem`, {
@@ -266,20 +286,40 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
       setActiveTab("catalog");
       setIsUpsellOpen(false);
       
-      if (data.success && data.downloadUrl) window.open(data.downloadUrl, "_blank");
+      // 🎯 DISPATCH SUCCESS TO GATEWAY WITH DOWNLOAD LINK ATTACHED
+      setTransactionState({
+        status: 'success',
+        type: 'single_unlock',
+        title: 'RideGuide Unlocked',
+        message: `Successfully redeemed 1 token credit. "${targetTitle}" has been moved to your permanent Catalog vault library.`,
+        meta: { downloadUrl: data.downloadUrl }
+      });
 
     } catch (err: any) {
-      alert(`Transaction Failed: ${err.message || "Insufficient balance."}`);
+      setTransactionState({
+        status: 'failure',
+        type: 'single_unlock',
+        title: 'Vault Request Declined',
+        message: err.message || "Insufficient profile wallet credit balance. Please purchase a bundle pack to unlock."
+      });
     } finally {
       setIsRedeeming(false);
     }
   }; 
 
+  // 🎯 BATCH REDEMPTION ENGINE OVERHAUL
   const handleBatchTokenRedemption = async () => {
     if (isRedeeming || !customer || totalCartCount === 0) return;
     setIsRedeeming(true);
     const API_BASE_TARGET = window.location.hostname === "localhost" ? "http://localhost:5000" : "";
     let processedCount = 0;
+
+    setTransactionState({
+      status: 'processing',
+      type: 'batch_unlock',
+      title: 'Processing Batch Generation',
+      message: `Executing concurrent data-deductions for ${totalCartCount} tracks from your token balance...`
+    });
 
     try {
       for (const item of visibleCartItems) {
@@ -297,15 +337,27 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
       await refreshProfile();
       setActiveTab("catalog");
       setIsUpsellOpen(false);
-      alert(`🎉 Successfully activated ${processedCount} new RideGuides inside your vault! Use the individual row print triggers to generate your PDFs.`);
+
+      // 🎯 ROUTE SUCCESS BATCH STATE TO GATEWAY
+      setTransactionState({
+        status: 'success',
+        type: 'batch_unlock',
+        title: 'Batch Assets Provisioned',
+        message: `Successfully provisioned ${processedCount} maps! All elements have been dropped cleanly inside your Catalog tab. Open rows below to compile your localized telemetry sheets.`
+      });
+
     } catch (err: any) {
-      alert(`Batch Generation Encountered an Error: ${err.message}`);
+      setTransactionState({
+        status: 'failure',
+        type: 'batch_unlock',
+        title: 'Batch Compilation Interrupted',
+        message: err.message || "An exception block broken the map verification execution loop sequence thread."
+      });
     } finally {
       setIsRedeeming(false);
     }
   }; 
 
-  // 🎯 MASTER INTERCEPT GATEWAY: Stashes target paths into local storage state
   const handlePrimaryCheckoutDispatch = (targetId?: string, targetTitle?: string) => {
     if (!isFullyAuthenticated) {
       login();
@@ -313,7 +365,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     }
 
     if (targetId && targetTitle) {
-      // User tapped an individual track's unlock link
       localStorage.setItem("rg_intended_routes", JSON.stringify([{ routeId: targetId, title: targetTitle }]));
       setUpsellTargetRoute({ id: targetId, title: targetTitle });
       setIsUpsellOpen(true);
@@ -322,7 +373,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
 
     if (totalCartCount === 0) return;
 
-    // User clicked the global master checkout link button with multiple tracks inside their cart
     localStorage.setItem(
       "rg_intended_routes", 
       JSON.stringify(visibleCartItems.map(item => ({ routeId: item.routeId, title: item.title })))
@@ -556,7 +606,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
                             </span>
                             <span className="rg-catalog-item-countdown-tag">⏰ {pass.daysLeft} days remaining</span>
                           </div>
-                          <div className="rg-catalog-item-actions-right">
+                          <div className="rg-catalog-item-countdown-tag">
                             <button 
                               className="rg-catalog-inline-print-btn" 
                               disabled={isRedeeming} 
@@ -613,6 +663,12 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
         onRedeemSingle={handleTokenRedemption}
         onRedeemBatch={handleBatchTokenRedemption}
         isMutating={isRedeeming}
+      />
+
+      {/* 🎯 UNIVERSAL OVERLAY ANCHOR CONNECTOR BIND */}
+      <TransactionOverlay 
+        state={transactionState}
+        onClose={() => setTransactionState(null)}
       />
     </div>
   );
