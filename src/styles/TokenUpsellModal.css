@@ -1,0 +1,577 @@
+/* src/styles/TokenUpsellModal.css */
+
+:root {
+  --brand-sky: #2b7cb6;
+  --brand-verdant: #16a34a;
+  --brand-gray: #064e3b;
+  --brand-amber: #047857;
+  --brand-sky-light: #dcfce7;
+  --brand-deep-green: #ffffff;
+}
+
+.rg-upsell-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 999999 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.rg-upsell-container {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 1040px;
+  max-height: 94vh; 
+  border-radius: 12px;
+  border: 2px solid var(--brand-sky); 
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  outline: none;
+  animation: rgUpsellSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes rgUpsellSlideIn {
+  from { opacity: 0; transform: scale(0.97) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.rg-upsell-brand-banner {
+  background-color: var(--brand-sky);
+  width: 100%;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.rg-upsell-banner-logo {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}
+
+.rg-upsell-banner-branding-svg {
+  height: 34px;
+  width: auto;
+  object-fit: contain;
+}
+
+.rg-upsell-split-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.42fr;
+  gap: 32px;
+  padding: 16px 28px;
+  box-sizing: border-box;
+  overflow-y: auto; 
+  align-items: stretch; /* 🎯 UPDATED: Forces the right container to match the left column height */
+}
+
+.rg-upsell-left-panel-copy {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  height: 100%;
+}
+
+.rg-upsell-main-title.mod-home-punchy {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1.25;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.5px;
+}
+
+.rg-upsell-banner-subheader {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--brand-sky);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.rg-upsell-right-panel-cards {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;        /* 🎯 ADDED: Inherits the full vertical layout height */
+}
+
+.rg-upsell-close-x {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  z-index: 10;
+}
+
+.rg-upsell-close-x:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.rg-upsell-header-block {
+  margin: 0;
+}
+
+.rg-upsell-header-block.id-token-header {
+  background-color: #f8fafc;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* 🎯 FIXED: Pulls content up instead of spacing it out */
+  gap: 10px;                    /* 🎯 FIXED: Keeps a tight, uniform gap between items */
+  box-sizing: border-box;
+}
+
+/* 2. Tighten up the subcaption line spacing inside the left card */
+.id-token-header .rg-upsell-subcaption {
+  margin: 4px 0 0 0 !important; /* Compresses unnecessary text-block clearance padding */
+  line-height: 1.45;
+}
+
+.rg-token-activation-content-block {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: flex-start; /* 🎯 FIXED: Changed from space-between to stack elements close together */
+  gap: 12px;                   /* 🎯 FIXED: Provides a tight, clean vertical separation gap */
+}
+
+/* 🎯 REMOVED PADDING & OPTIMIZED WINDOW: Fits vertical map dimensions perfectly */
+.rg-upsell-left-preview-frame {
+  width: 100px;        /* 🎯 FIXED: Locked down to a clean, vertical card aspect ratio */
+  height: 135px;       /* 🎯 FIXED: Removes the unstable 50% height calculation loop */
+  margin: 6px auto;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+  background-color: #ffffff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; 
+  flex-shrink: 0;
+}
+
+.rg-upsell-left-preview-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Eliminates the empty white letterbox side columns */
+  object-position: top center;
+}
+
+/* 🎯 ABSOLUTE POSITIONING LAYER OVERLAY: Centers single token right on top of the document */
+.rg-upsell-preview-token-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;         /* 🎯 FIXED: Scaled down from 44px to frame inside the tighter view window */
+  height: 64px;
+  z-index: 5;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
+  pointer-events: none;
+}
+.rg-upsell-deal-tag {
+  display: inline-block;
+  background-color: #ef4444;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.rg-upsell-badge-pill {
+  display: inline-block;
+  background-color: var(--brand-sky-light);
+  color: var(--brand-verdant);
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  margin-bottom: 4px;
+  align-self: center;
+}
+
+.rg-upsell-subcaption {
+  color: #475569;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.rg-upsell-left-bypass-holder {
+  margin-top: 20px;
+}
+
+.rg-target-route-emphasis {
+  display: inline-block;
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 800;
+  margin-top: 2px;
+  background-color: #f1f5f9;
+  padding: 4px 8px;
+  border-radius: 4px;
+  line-height: 1.3;
+}
+
+.rg-highlight-text {
+  color: #16a34a;
+  font-weight: 800;
+}
+
+.rg-upsell-instant-redeem-btn {
+  background-color: var(--brand-verdant);
+  color: #ffffff;
+  border: none;
+  font-weight: 800;
+  font-size: 12px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.15s ease;
+  width: 100%;
+}
+
+.rg-upsell-matrix-heading {
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--brand-forest);
+  letter-spacing: 0.5px;
+  border: var(--brand-verdant) 1px solid;
+  background-color: var(--brand-sky-light);
+}
+
+/* 🎯 MATRIX FULL HEIGHT DISTRIBUTION GRID */
+.rg-upsell-matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr); /* 🎯 ADDED: Forces both rows to scale to exactly half the height */
+  gap: 8px; 
+  flex-grow: 1;        /* 🎯 ADDED: Instructs the grid to fill all available vertical space */
+}
+
+.rg-upsell-tier-card {
+  background-color: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;        /* 🎯 ADDED: Fills the entire grid row cell volume */
+}
+
+.rg-upsell-tier-card.mod-current-baseline {
+  background-color: #f8fafc;
+  border-style: dashed;
+}
+
+.rg-upsell-tier-card.mod-matrix-heading-blank-card {
+  background-color: #f8fafc;
+  border: 1.5px dashed #cbd5e1;
+  height: 100%;
+}
+
+.rg-upsell-card-inner.content-vertical-centered {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.rg-upsell-inline-matrix-heading-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--brand-sky);
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  text-align: center;
+  gap: 6px;
+}
+
+.rg-upsell-inline-matrix-heading-text p {
+  margin: 0;
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--brand-graphite);
+}
+
+.rg-upsell-left-panel-copy strong {
+  color: var(--brand-graphite);
+  font-weight: 700;
+}
+
+.rg-upsell-left-panel-copy strong.rg-highlight-text {
+  color: var(--brand-verdant);
+  font-size: 14px;
+}
+
+.rg-upsell-tier-card.mod-bundle-premium:hover {
+  border-color: var(--brand-sky);
+}
+
+.rg-upsell-card-ribbon-tag {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--brand-sky);
+  color: #ffffff;
+  font-size: 8.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.rg-upsell-card-inner {
+  padding: 8px 12px; 
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 100%;                 /* 🎯 ADDED: Fills the card chassis */
+  justify-content: space-between; /* 🎯 UPDATED: Drives a wedge to lock the Buy button to the exact card baseline */
+  gap: 6px; 
+}
+
+.rg-upsell-tier-label {
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #475569;
+  margin-bottom: 4px;
+}
+
+.rg-upsell-horizontal-card-body {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 14px;
+  margin-bottom: 8px;
+}
+
+.rg-upsell-card-meta-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  flex: 1;
+}
+
+.rg-upsell-product-image-frame {
+  width: 86px; /* Compacted from 76px */
+  height: 86px; /* Compacted from 76px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent; 
+  border-radius: 0;
+  border: none; 
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.rg-upsell-product-media {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+}
+
+.rg-upsell-product-media.mod-map-sheet {
+  object-fit: contain;
+}
+
+.rg-upsell-price-callout {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--brand-verdant);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.rg-upsell-math-subtext {
+  font-size: 9.5px;
+  color: #64748b;
+  margin-bottom: 4px;
+  white-space: nowrap;
+}
+
+.rg-upsell-savings-tag {
+  font-size: 8.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.rg-upsell-savings-tag.mod-neutral {
+  background-color: #e2e8f0;
+  color: #475569;
+}
+
+.rg-upsell-savings-tag.mod-active-green {
+  background-color: var(--brand-sky-light);
+  color: #15803d;
+}
+
+.rg-upsell-tier-cta-action-btn {
+  width: 100%;
+  background-color: var(--brand-verdant);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: auto; /* Aligns all buttons cleanly along the absolute base line */
+  transition: background-color 0.15s ease;
+}
+
+.rg-upsell-tier-cta-action-btn:hover:not(:disabled) {
+  background-color: var(--brand-sky);
+}
+
+.rg-upsell-tier-cta-action-btn.mod-baseline-btn {
+  background-color: #f1f5f9;
+  color: #94a3b8;
+  cursor: not-allowed;
+  border: 1px solid #e2e8f0;
+}
+
+/* SCOPED FOOTER PANEL SPECIFICATIONS */
+.rg-upsell-container .lead-capture-footer.mod-upsell-override {
+  background-color: var(--brand-gray) !important; 
+  padding: 12px 28px !important;
+  box-sizing: border-box;
+  border-top: 1px solid var(--brand-amber);
+  flex-shrink: 0;
+}
+
+.rg-upsell-container .mod-upsell-override .lead-footer-headline {
+  margin: 0 0 2px 0 !important; 
+  font-family: 'Montserrat', sans-serif; 
+  font-weight: 800; 
+  font-size: 1.05rem !important;
+  color: var(--brand-sky) !important;
+}
+
+.rg-upsell-container .mod-upsell-override .lead-footer-subcaption {
+  margin: 0 !important; 
+  color: var(--brand-graphite) !important; 
+  font-size: 0.78rem !important; 
+  line-height: 1.4 !important;
+}
+
+.rg-upsell-container .mod-upsell-override input,
+.rg-upsell-container .mod-upsell-override button {
+  padding: 6px 12px !important;
+  font-size: 0.8rem !important;
+  height: auto !important;
+}
+
+.rg-upsell-container .mod-upsell-override .lead-disclaimer,
+.rg-upsell-container .mod-upsell-override .capture-disclaimer,
+.rg-upsell-container .mod-upsell-override [class*="disclaimer"] {
+  font-size: 11px !important;
+  color: var(--brand-graphite) !important;
+  opacity: 0.85;
+  margin-top: 6px !important;
+  line-height: 1.3 !important;
+  text-align: left !important;
+  width: 100% !important;
+  display: block !important;
+}
+
+.rg-upsell-dismiss-bypass-btn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+}
+
+.rg-upsell-dismiss-bypass-btn:hover:not(:disabled) {
+  color: #0f172a;
+}
+
+@media (max-width: 820px) {
+  .rg-upsell-split-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 12px;
+  }
+  .rg-upsell-container {
+    max-height: 98vh;
+  }
+  .rg-upsell-horizontal-card-body {
+    justify-content: center;
+  }
+  .rg-upsell-card-meta-right {
+    flex: initial;
+  }
+  .capture-split-layout {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .rg-upsell-dismiss-bypass-btn {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+  }
+  .rg-upsell-container .mod-upsell-override .lead-disclaimer,
+  .rg-upsell-container .mod-upsell-override .capture-disclaimer,
+  .rg-upsell-container .mod-upsell-override [class*="disclaimer"] {
+    text-align: center !important;
+  }
+}
