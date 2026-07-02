@@ -21,12 +21,6 @@ interface StorePanelProps {
 }
 
 export default function StorePanel({ activeRouteProperties, allRoutes = [] }: StorePanelProps) {
-  console.log("=== ⚡ STOREPANEL RE-RENDER AUDIT ===");
-  console.log("1. Raw allRoutes Prop Reference:", allRoutes);
-  console.log("2. Array.isArray Check:", Array.isArray(allRoutes));
-  console.log("3. Current Length:", allRoutes ? allRoutes.length : "undefined/null");
-  console.log("======================================");
-
   const { isAuthenticated, customer, refreshProfile, login, logout } = useShopifyAuth(); 
   const { addRouteToCart, removeCartItem, cartItems, checkoutUrl } = useShopifyCart(); 
 
@@ -38,27 +32,21 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
   
   const [isUpsellOpen, setIsUpsellOpen] = useState(false);
   const [upsellTargetRoute, setUpsellTargetRoute] = useState<{ id: string; title: string } | null>(null);
-
-  // 🎯 UNIVERSAL GATEWAY MASTER STATE CONTROLLER
   const [transactionState, setTransactionState] = useState<TransactionState | null>(null);
 
   const isFullyAuthenticated = isAuthenticated && customer !== null; 
-
   const rawUnlockedGuides = customer?.unlocked_guides || "{}"; 
   let unlockedMap: Record<string, any> = {}; 
   
   try {
     if (typeof rawUnlockedGuides === "string") {
       let parsed = JSON.parse(rawUnlockedGuides);
-      if (typeof parsed === "string") {
-        parsed = JSON.parse(parsed);
-      }
+      if (typeof parsed === "string") parsed = JSON.parse(parsed);
       unlockedMap = parsed || {};
     } else {
       unlockedMap = rawUnlockedGuides || {};
     }
   } catch (e) {
-    console.error("Silent parse catch fallback invoked:", e);
     unlockedMap = {};
   }
 
@@ -71,21 +59,11 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     return Number(entry || 0);
   };
 
-  const hasActivePass = customer?.passExpiresAt 
-    ? new Date() < new Date(customer.passExpiresAt) 
-    : false; 
-
+  const hasActivePass = customer?.passExpiresAt ? new Date() < new Date(customer.passExpiresAt) : false; 
   const hasActiveSelection = cachedRoute !== null; 
   const routeProps = cachedRoute?.properties || cachedRoute || {}; 
-
-  const routeTitle = hasActiveSelection
-    ? (routeProps.NAME || routeProps.title || "Selected Route")
-    : "No Route Selected"; 
-
-  const rawRouteId = hasActiveSelection 
-    ? String(routeProps.profile_id || cachedRoute.id || routeProps.id || routeProps.ID || "")
-    : ""; 
-
+  const routeTitle = hasActiveSelection ? (routeProps.NAME || routeProps.title || "Selected Route") : "No Route Selected"; 
+  const rawRouteId = hasActiveSelection ? String(routeProps.profile_id || cachedRoute.id || routeProps.id || routeProps.ID || "") : ""; 
   const miles = routeProps.GIS_MILES ? parseFloat(routeProps.GIS_MILES).toFixed(1) : null; 
   const distanceMetric = miles ? `${miles} MILES` : (routeProps.distance ? `${routeProps.distance} mi` : "Premium Data"); 
   const avgGrade = routeProps.v3_avg_grade || "0"; 
@@ -95,7 +73,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
   const tokenBalance = customer?.tokens || 0; 
   const hasTokens = tokenBalance > 0; 
   const isTokenUser = isFullyAuthenticated && hasTokens;  
-
   const isThisRouteExplicitlyUnlocked = hasActivePass || (getRouteExpiry(rawRouteId) > currentTimestamp); 
 
   const activeCatalogPasses = Object.entries(unlockedMap)
@@ -119,7 +96,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
   const totalCartCount = visibleCartItems.length; 
   const computedPriceTotal = (totalCartCount * 6.99).toFixed(2); 
   const computedTokenTotal = totalCartCount;  
-
   const isAlreadyInCart = visibleCartItems.some((item: CartItem) => String(item.routeId) === rawRouteId); 
 
   useEffect(() => {
@@ -133,25 +109,15 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
   useEffect(() => {
     if (activeRouteProperties !== null) {
       setCachedRoute(activeRouteProperties);
-      
       const routeProps = activeRouteProperties.properties || activeRouteProperties || {};
       const clickedRouteId = String(routeProps.profile_id || activeRouteProperties.id || routeProps.id || routeProps.ID || "");
-      
-      const isRoutePaidFor = hasActivePass || (getRouteExpiry(clickedRouteId) > Date.now());
-      if (isRoutePaidFor) {
+      if (hasActivePass || (getRouteExpiry(clickedRouteId) > Date.now())) {
         setActiveTab("catalog");
       }
     }
   }, [activeRouteProperties, unlockedMap, hasActivePass]); 
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      (window as any).debugCatalog = activeCatalogPasses;
-      (window as any).debugRoutes = allRoutes;
-    }
-  }, [activeCatalogPasses, allRoutes]); 
-
-  // 🎯 INTERCEPT AUTOMATION ENGINE: Post-Purchase Full Checkout Loop Fulfillment
+  // 🎯 AUTOMATED POST-PURCHASE WORKFLOW ENGINE
   useEffect(() => {
     const processAutomatedFulfillment = async () => {
       const savedIntendedRoutes = localStorage.getItem("rg_intended_routes");
@@ -162,14 +128,11 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
       if (tokenBalance > 0) {
         try {
           const intendedRoutes = JSON.parse(savedIntendedRoutes);
-          console.log("🚀 [AUTOMATION ENGINE]: Capturing return from checkout. Running auto-unlock tracks:", intendedRoutes);
-          
           setIsRedeeming(true);
-          // 🎯 SEED PREFLOW STATE OVERLAY
           setTransactionState({
             status: 'processing',
             type: 'checkout_fulfillment',
-            title: 'Sychronizing Token Ledger',
+            title: 'Synchronizing Token Ledger',
             message: 'Verifying checkout parameters with Shopify and generating your encrypted download links. Please do not close this window.'
           });
 
@@ -181,28 +144,18 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
               const response = await fetch(`${API_BASE_TARGET}/api/tokens/redeem`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ 
-                  customerId: customer.id, 
-                  routeId: route.routeId, 
-                  routeTitle: route.title 
-                })
+                body: JSON.stringify({ customerId: customer.id, routeId: route.routeId, routeTitle: route.title })
               });
               if (response.ok) processedCount++;
             }
           }
 
-          if (refreshProfile) {
-            await refreshProfile();
-          }
-
-          if (bundleItem && removeCartItem) {
-            await removeCartItem(bundleItem.id);
-          }
+          if (refreshProfile) await refreshProfile();
+          if (bundleItem && removeCartItem) await removeCartItem(bundleItem.id);
 
           localStorage.removeItem("rg_intended_routes");
           setActiveTab("catalog");
           
-          // 🎯 ROUTE SUCCESS TO GATEWAY
           setTransactionState({
             status: 'success',
             type: 'checkout_fulfillment',
@@ -211,7 +164,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
           });
           
         } catch (err: any) {
-          console.error("❌ Post-purchase automation processing exception:", err);
           setTransactionState({
             status: 'failure',
             type: 'checkout_fulfillment',
@@ -239,9 +191,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
       };
     }
     return () => {
-      if (typeof window !== "undefined") {
-        delete (window as any).forceOpenUpsell;
-      }
+      if (typeof window !== "undefined") delete (window as any).forceOpenUpsell;
     };
   }, []);
 
@@ -255,11 +205,15 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
 
     setIsAdding(true);
     const targetVariantId = "gid://shopify/ProductVariant/51045122146524"; 
-    await addRouteToCart(targetVariantId, rawRouteId, routeTitle, distanceMetric, fcsLabel);
+    const success = await addRouteToCart(targetVariantId, rawRouteId, routeTitle, distanceMetric, fcsLabel);
     setIsAdding(false);
+    
+    // 🎯 VIEW UPDATE: Snaps the user over to the Cart tab matrix view container panel instantly
+    if (success) {
+      setActiveTab("cart");
+    }
   }; 
 
-  // 🎯 SINGLE REDEMPTION ENGINE OVERHAUL
   const handleTokenRedemption = async (targetId: string, targetTitle: string) => {
     if (isRedeeming || !customer) return;
     setIsRedeeming(true);
@@ -282,11 +236,10 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Server rejected balance transaction.");
       
-      await refreshProfile();
+      if (refreshProfile) await refreshProfile();
       setActiveTab("catalog");
       setIsUpsellOpen(false);
       
-      // 🎯 DISPATCH SUCCESS TO GATEWAY WITH DOWNLOAD LINK ATTACHED
       setTransactionState({
         status: 'success',
         type: 'single_unlock',
@@ -307,7 +260,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     }
   }; 
 
-  // 🎯 BATCH REDEMPTION ENGINE OVERHAUL
   const handleBatchTokenRedemption = async () => {
     if (isRedeeming || !customer || totalCartCount === 0) return;
     setIsRedeeming(true);
@@ -334,11 +286,10 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
         }
       }
 
-      await refreshProfile();
+      if (refreshProfile) await refreshProfile();
       setActiveTab("catalog");
       setIsUpsellOpen(false);
 
-      // 🎯 ROUTE SUCCESS BATCH STATE TO GATEWAY
       setTransactionState({
         status: 'success',
         type: 'batch_unlock',
@@ -351,7 +302,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
         status: 'failure',
         type: 'batch_unlock',
         title: 'Batch Compilation Interrupted',
-        message: err.message || "An exception block broken the map verification execution loop sequence thread."
+        message: err.message || "An exception block broke the map verification execution loop sequence thread."
       });
     } finally {
       setIsRedeeming(false);
@@ -436,7 +387,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
       </div>
 
       <div className="rg-storefront-workspace-container">
-        
         {hasActiveSelection && (
           <div className="rg-active-map-selection-panel">
             <span className="rg-panel-section-title" style={{ display: 'block' }}>Selected Route Details</span>
@@ -470,19 +420,12 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
         )}
 
         <div className="rg-tabs-window-container">
-          
           <div className="rg-storefront-tabs-nav-bar">
-            <button 
-              className={`rg-tab-nav-trigger-btn ${activeTab === "cart" ? "active" : ""}`}
-              onClick={() => setActiveTab("cart")}
-            >
+            <button className={`rg-tab-nav-trigger-btn ${activeTab === "cart" ? "active" : ""}`} onClick={() => setActiveTab("cart")}>
               Cart ({totalCartCount})
             </button>
             {isFullyAuthenticated && (
-              <button 
-                className={`rg-tab-nav-trigger-btn ${activeTab === "catalog" ? "active" : ""}`}
-                onClick={() => setActiveTab("catalog")}
-              >
+              <button className={`rg-tab-nav-trigger-btn ${activeTab === "catalog" ? "active" : ""}`} onClick={() => setActiveTab("catalog")}>
                 Catalog ({activeCatalogPasses.length})
               </button>
             )}
@@ -503,21 +446,15 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
                       <div className="rg-horizontal-steps-row vertical-stack-fallback-panel">
                         <div className="rg-step-column-item">
                           <span className="rg-step-badge-number">1</span>
-                          <p className="rg-step-item-text">
-                            <strong>Filter tracks</strong> by class, mileage, or average trail grading.
-                          </p>
+                          <p className="rg-step-item-text"><strong>Filter tracks</strong> by class, mileage, or grading.</p>
                         </div>
                         <div className="rg-step-column-item" style={{ marginTop: '4px' }}>
                           <span className="rg-step-badge-number">2</span>
-                          <p className="rg-step-item-text">
-                            <strong>Select a route</strong> by clicking list cards or lines on the map canvas.
-                          </p>
+                          <p className="rg-step-item-text"><strong>Select a route</strong> by clicking list cards or lines.</p>
                         </div>
                         <div className="rg-step-column-item" style={{ marginTop: '4px' }}>
                           <span className="rg-step-badge-number">3</span>
-                          <p className="rg-step-item-text">
-                            <strong>Unlock maps</strong> to instantly download continuous telemetry profiles.
-                          </p>
+                          <p className="rg-step-item-text"><strong>Unlock maps</strong> to instantly downloadTelemetry profiles.</p>
                         </div>
                       </div>
                     </div>
@@ -534,20 +471,14 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
                           </div>
                           <div className="rg-cart-item-actions-right">
                             {isTokenUser ? (
-                              <button 
-                                className="rg-cart-inline-unlock-btn"
-                                disabled={isRedeeming}
-                                onClick={() => handlePrimaryCheckoutDispatch(targetId, item.title)}
-                              >
+                              <button className="rg-cart-inline-unlock-btn" disabled={isRedeeming} onClick={() => handlePrimaryCheckoutDispatch(targetId, item.title)}>
                                 Unlock
                               </button>
                             ) : (
-                              <span className="rg-cart-item-price-tag">
-                                ${item.price.toFixed(2)}
-                              </span>
+                              <span className="rg-cart-item-price-tag">${item.price.toFixed(2)}</span>
                             )}
-                            <button className="rg-cart-remove-line-item-btn" onClick={() => removeCartItem && removeCartItem(item.id)} title="Remove route from cart">
-                              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <button className="rg-cart-remove-line-item-btn" onClick={() => removeCartItem && removeCartItem(item.id)}>
+                              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                                 <polyline points="3 6 5 6 21 6"></polyline>
                                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                               </svg>
@@ -565,7 +496,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
               <div className="rg-catalog-vault-panel">
                 {activeCatalogPasses.length === 0 ? (
                   <div className="rg-catalog-empty-placeholder">
-                    <span>No active passes owned. Completed checkouts or spent credits populate here for 7 days.</span>
+                    <span>No active passes owned. Spent credits populate here for 7 days.</span>
                   </div>
                 ) : (
                   <div className="rg-catalog-items-list-container">
@@ -574,44 +505,19 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
                         const id = String(r.properties?.profile_id || r.id || r.properties?.id || r.ID || "");
                         return id === pass.routeId;
                       });
-
-                      const displayTitle = pass.name || 
-                                           matchedMatch?.properties?.NAME || 
-                                           matchedMatch?.title || 
-                                           (rawRouteId === pass.routeId ? routeTitle : `Route Access #${pass.routeId}`);
-                      
+                      const displayTitle = pass.name || matchedMatch?.properties?.NAME || matchedMatch?.title || `Route Access #${pass.routeId}`;
                       const isCurrentlyHovered = pass.routeId === activeCatalogHoverId;
 
                       return (
-                        <div 
-                          key={pass.routeId} 
-                          className="rg-catalog-row-item"
-                          onMouseEnter={() => setActiveCatalogHoverId(pass.routeId)}
-                          onMouseLeave={() => setActiveCatalogHoverId(null)}
-                        >
+                        <div key={pass.routeId} className="rg-catalog-row-item" onMouseEnter={() => setActiveCatalogHoverId(pass.routeId)} onMouseLeave={() => setActiveCatalogHoverId(null)}>
                           <div className="rg-catalog-item-meta-left">
-                            <span 
-                              className="card-route-title catalog-vault-item-title-text"
-                              style={{ 
-                                color: isCurrentlyHovered ? "#f59e0b" : "#334155",
-                                margin: 0,
-                                fontSize: "10.5px",
-                                fontWeight: 800,
-                                display: "block",
-                                textTransform: "uppercase",
-                                fontFamily: "Montserrat, sans-serif"
-                              }}
-                            >
+                            <span className="card-route-title catalog-vault-item-title-text" style={{ color: isCurrentlyHovered ? "#f59e0b" : "#334155", margin: 0, fontSize: "10.5px", fontWeight: 800, display: "block", textTransform: "uppercase", fontFamily: "Montserrat, sans-serif" }}>
                               {displayTitle}
                             </span>
                             <span className="rg-catalog-item-countdown-tag">⏰ {pass.daysLeft} days remaining</span>
                           </div>
                           <div className="rg-catalog-item-countdown-tag">
-                            <button 
-                              className="rg-catalog-inline-print-btn" 
-                              disabled={isRedeeming} 
-                              onClick={() => handleTokenRedemption(pass.routeId, displayTitle)}
-                            >
+                            <button className="rg-catalog-inline-print-btn" disabled={isRedeeming} onClick={() => handleTokenRedemption(pass.routeId, displayTitle)}>
                               Print ➔
                             </button>
                           </div>
@@ -627,35 +533,18 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
       </div>
 
       {activeTab === "catalog" ? (
-        <button disabled={true} className="rg-premium-buy-btn mod-disabled">
-          Click the Print Link Above to Get Your Guide
-        </button>
+        <button disabled={true} className="rg-premium-buy-btn mod-disabled">Click the Print Link Above to Get Your Guide</button>
       ) : (
-        <button 
-          onClick={() => handlePrimaryCheckoutDispatch()} 
-          disabled={totalCartCount === 0} 
-          className={`rg-premium-buy-btn ${totalCartCount > 0 ? "mod-ready" : "mod-disabled"}`}
-        >
-          {totalCartCount === 0 
-            ? "SELECT ROUTE TO CHECKOUT" 
-            : !isFullyAuthenticated 
-              ? "SIGN IN TO CHECKOUT ➔" 
-              : isTokenUser 
-                ? "MANAGE & UNLOCK WITH CREDITS ➔" 
-                : "PROCEED TO CHECKOUT ➔"}
+        <button onClick={() => handlePrimaryCheckoutDispatch()} disabled={totalCartCount === 0} className={`rg-premium-buy-btn ${totalCartCount > 0 ? "mod-ready" : "mod-disabled"}`}>
+          {totalCartCount === 0 ? "SELECT ROUTE TO CHECKOUT" : !isFullyAuthenticated ? "SIGN IN TO CHECKOUT ➔" : isTokenUser ? "MANAGE & UNLOCK WITH CREDITS ➔" : "PROCEED TO CHECKOUT ➔"}
         </button>
       )}
 
-      <span className="rg-disclaimer-note">
-        By purchasing, you agree to our terms and conditions.<br />
-      </span>
+      <span className="rg-disclaimer-note">By purchasing, you agree to our terms and conditions.</span>
 
       <TokenUpsellModal 
         isOpen={isUpsellOpen}
-        onClose={() => {
-          setIsUpsellOpen(false);
-          setUpsellTargetRoute(null);
-        }}
+        onClose={() => { setIsUpsellOpen(false); setUpsellTargetRoute(null); }}
         onBypass={handleBypassCheckout}
         targetRoute={upsellTargetRoute}
         isTokenUser={isTokenUser}
@@ -666,10 +555,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
       />
 
       {/* 🎯 UNIVERSAL OVERLAY ANCHOR CONNECTOR BIND */}
-      <TransactionOverlay 
-        state={transactionState}
-        onClose={() => setTransactionState(null)}
-      />
+      <TransactionOverlay state={transactionState} onClose={() => setTransactionState(null)} />
     </div>
   );
 }

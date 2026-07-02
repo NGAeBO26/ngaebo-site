@@ -631,6 +631,26 @@ app.post("/api/tokens/redeem", redemptionLimiter, async (req, res) => {
       }).catch(err => console.error("⚠️ Non-fatal email transmission glitch:", err));
     }
 
+    // 🎯 THE COMPLETENESS FIX: Sync token redeemers to MailerLite as well!
+    if (MAILERLITE_API_KEY) {
+      fetch("https://connect.mailerlite.com/api/subscribers", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json", 
+          "Accept": "application/json", 
+          "Authorization": `Bearer ${MAILERLITE_API_KEY}` 
+        },
+        body: JSON.stringify({
+          email: customerEmail,
+          status: "active",
+          groups: [183580786152178921], 
+          fields: {
+            purchased_route_title: routeTitle || "Token Redeemed Track"
+          }
+        })
+      }).catch(err => console.error("❌ Non-blocking MailerLite sync error during redemption:", err));
+    }
+
     return res.status(200).json({ success: true, downloadUrl });
 
   } catch (err) {
@@ -829,14 +849,44 @@ app.post("/api/webhooks/shopify/orders-paid", async (req, res) => {
             }
           }
         `;
+        // ... Your existing GraphQL metafield code that awards the 3, 5, or 15 tokens ...
         await shopifyAdminFetch(setMetafieldsMutation, { metafields: mutationsArray });
         console.log(`✓ PROVISIONING EVENT FINALIZED: Balance modifications committed successfully for order ${orderNumber}.`);
-        return res.status(200).send("Account Balance Incremented Successfully");
+
+        // 🎯 THE FIX: Fire MailerLite synchronization for Bundle Buyers before returning!
+        if (MAILERLITE_API_KEY && buyerAcceptsMarketing === true) {
+          try {
+            console.log(`🚀 [BUNDLE LIFECYCLE]: Syncing token purchaser ${customerEmail} to MailerLite...`);
+            await fetch("https://connect.mailerlite.com/api/subscribers", {
+              method: "POST",
+              headers: { 
+                "Content-Type": "application/json", 
+                "Accept": "application/json", 
+                "Authorization": `Bearer ${MAILERLITE_API_KEY}` 
+              },
+              body: JSON.stringify({
+                email: customerEmail,
+                status: "active",
+                groups: [183580786152178921], // Directs them to your active purchaser group segment
+                fields: {
+                  name: payload.billing_address?.first_name || "Rider",
+                  last_order_id: orderNumber,
+                  purchased_route_title: purchasedItem.title // Log the specific bundle name they chose
+                }
+              })
+            });
+          } catch (mlErr) {
+            console.error("❌ Non-blocking MailerLite sync error for bundle:", mlErr);
+          }
+        }
+
+        // Now it is perfectly safe to return and release the webhook response stream!
+        return res.status(200).send("Account Balance Incremented and MailerLite Synced Successfully");
       }
     }
 
     // ──────────────────────────────────────────────────────────────────────
-    // 🛍️ STANDARD RETAIL FALLBACK ROUTE: RETAINS SINGLE GUIDE EMAIL ENGINE
+    // 🛍️ STANDARD RETAIL FALLBACK ROUTE: MODIFIED TO COMMITT DATABASE METAFIELED ENTRIES
     // ──────────────────────────────────────────────────────────────────────
     const customProperties = purchasedItem.properties || [];
     const routeIDAttr = customProperties.find(attr => attr.name === "SelectedRouteID");
@@ -847,11 +897,61 @@ app.post("/api/webhooks/shopify/orders-paid", async (req, res) => {
     const targetRouteID = routeIDAttr.value; 
     const targetRouteTitle = routeTitleAttr ? routeTitleAttr.value : "Your Custom Route";
 
-    // 🚀 THE FIX: Generate a real, cryptographically signed token for this specific retail buyer
+    // 🎯 METAFIELED BRIDGE ATTACHMENT GATEWAY:
+    // If the retail buyer is logged into an account, save the route ID to their permanent catalog history database
+    if (shopifyCustomerId) {
+      try {
+        console.log(`🛍️ [RETAIL CASH LIFECYCLE]: Appending track "${targetRouteTitle}" (${targetRouteID}) to profile account: ${shopifyCustomerId}`);
+        
+        const normalizedCustomerId = shopifyCustomerId.replace("CustomerAccount/Customer", "Customer");
+        
+        const currentMetafieldsQuery = `
+          query getCustomerMetafields($id: ID!) {
+            customer(id: $id) {
+              unlocked: metafield(namespace: "custom", key: "unlocked_guides") { value }
+            }
+          }
+        `;
+        const profileData = await shopifyAdminFetch(currentMetafieldsQuery, { id: normalizedCustomerId });
+        const rawUnlockedJson = profileData?.customer?.unlocked?.value || "{}";
+        
+        let unlockedMap = {};
+        try { unlockedMap = JSON.parse(rawUnlockedJson); } catch (e) { unlockedMap = {}; }
+        
+        // Seed 7 days access window matching token redemptions rules
+        unlockedMap[targetRouteID] = {
+          expiresAt: Date.now() + (7 * 24 * 60 * 60 * 1000),
+          name: targetRouteTitle
+        };
+
+        const setMetafieldsMutation = `
+          mutation metafieldsSet($metafields: [MetafieldsSetInput!]!) {
+            metafieldsSet(metafields: $metafields) {
+              userErrors { message }
+            }
+          }
+        `;
+        
+        await shopifyAdminFetch(setMetafieldsMutation, {
+          metafields: [{
+            ownerId: normalizedCustomerId,
+            namespace: "custom",
+            key: "unlocked_guides",
+            type: "json",
+            value: JSON.stringify(unlockedMap)
+          }]
+        });
+        console.log(`✓ [RETAIL CASH LIFECYCLE]: Database entry wrote successfully for order ${orderNumber}.`);
+      } catch (gqlErr) {
+        console.error("❌ Failed to automatically append cash guide to customer metafield database layers:", gqlErr);
+        // Non-blocking catch parameters to ensure the transaction continues down to mailersend dispatches
+      }
+    }
+
+    // Generate secure link tokens matching parameters
     const fallbackCustomerGid = shopifyCustomerId || "gid://shopify/Customer/anonymous_retail";
     const retailSecureToken = generateSecureDownloadToken(targetRouteID, fallbackCustomerGid);
 
-    // Safely append the secureToken signature to prevent 401 rejections from the gateway
     const host = req.headers.host || "northgeorgiaebikes.com";
     const protocol = req.headers['x-forwarded-proto'] === 'https' ? 'https' : 'http';
     const targetDownloadUrl = `${protocol}://${host}/download-guide?routeID=${targetRouteID}&secureToken=${retailSecureToken}`;
@@ -891,6 +991,7 @@ app.post("/api/webhooks/shopify/orders-paid", async (req, res) => {
 
     return res.status(200).send("Fulfillment Lifecycle Complete");
   } catch (error) {
+    console.error("Webhook processing error:", error);
     return res.status(400).send("Webhook exceptional failure.");
   }
 });
