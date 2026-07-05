@@ -511,6 +511,7 @@ app.post("/api/tokens/redeem", redemptionLimiter, async (req, res) => {
   // 🎯 PARAMETERS CAPTURE: Process the customer identity, requested route vector, and descriptive title
   const { customerId, routeId, routeTitle } = req.body;
   const MAILERSEND_API_KEY = process.env.MAILERSEND_API_KEY;
+  const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY;
 
   if (!customerId || !routeId) {
     return res.status(400).json({ error: "Missing identity constraints." });
