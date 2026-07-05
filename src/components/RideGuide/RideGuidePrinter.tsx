@@ -289,7 +289,7 @@ export default function RideGuidePrinter({ routeID, customerID }: RideGuidePrint
               <img 
                 src="/images/RideGuide_embroid-v1.svg" 
                 alt="NGAeBO System Verification" 
-                className={`rg-printer-logo-asset ${isPrinting ? "is-spinning" : ""}`}
+                className="rg-printer-logo-asset"
               />
             </div>
 
