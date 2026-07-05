@@ -623,12 +623,22 @@ app.post("/api/tokens/redeem", redemptionLimiter, async (req, res) => {
         html: getRideGuideHTML(targetRouteTitle, downloadUrl)  
       };
 
-      // Fire the email asynchronously so we don't hold up the user's browser tab redirection
+      console.log(`\n✉️ [MAILERSEND] Dispatching token redemption email to: ${customerEmail}`);
       fetch("https://api.mailersend.com/v1/email", {
         method: "POST",
         headers: { "Content-Type": "application/json", "Authorization": `Bearer ${MAILERSEND_API_KEY}` },
         body: JSON.stringify(mailersendPayload)
-      }).catch(err => console.error("⚠️ Non-fatal email transmission glitch:", err));
+      })
+      .then(async (msRes) => {
+        console.log(`✉️ [MAILERSEND] Response Status Code: ${msRes.status}`);
+        if (!msRes.ok) {
+          const bodyErr = await msRes.text();
+          console.error(`❌ [MAILERSEND] API Rejected Request: ${bodyErr}`);
+        } else {
+          console.log(`✓ [MAILERSEND] Email sent successfully.`);
+        }
+      })
+      .catch(err => console.error("⚠️ [MAILERSEND] Network layer transmission exception:", err));
     }
 
     // 🎯 THE COMPLETENESS FIX: Sync token redeemers to MailerLite as well!
@@ -752,6 +762,8 @@ app.post("/api/tokens/verify-ownership", verificationLimiter, async (req, res) =
 // 🚀 PRODUCTION WEBHOOK FULL LIFECYCLE MONITOR ENGINE
 // ==========================================================================
 app.post("/api/webhooks/shopify/orders-paid", async (req, res) => {
+  console.log("\n⚠️ [WEBHOOK INCOMING] Shopify fired an orders-paid notification! Processing request payload stream...");
+  
   const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY;
   const MAILERSEND_API_KEY = process.env.MAILERSEND_API_KEY; 
   const SHOPIFY_WEBHOOK_SECRET = process.env.SHOPIFY_WEBHOOK_SECRET;
@@ -948,6 +960,17 @@ app.post("/api/webhooks/shopify/orders-paid", async (req, res) => {
       }
     }
 
+    console.log(`\n🔍 [DIAGNOSTIC TRACE] Checking MailerSend Variable Parameters:`);
+    console.log(`   - Raw Type Check: ${typeof MAILERSEND_API_KEY}`);
+    console.log(`   - Is Truthy Value?: ${!!MAILERSEND_API_KEY}`);
+    if (MAILERSEND_API_KEY) {
+      console.log(`   - String Length: ${MAILERSEND_API_KEY.length} characters`);
+      console.log(`   - Prefix Check: ${MAILERSEND_API_KEY.substring(0, 7)}...`);
+    } else {
+      console.log(`   - Warning: process.env.MAILERSEND_API_KEY returned undefined or null empty memory slot`);
+    }
+    console.log(`───────────────────────────────────────────────────────\n`);
+
     // Generate secure link tokens matching parameters
     const fallbackCustomerGid = shopifyCustomerId || "gid://shopify/Customer/anonymous_retail";
     const retailSecureToken = generateSecureDownloadToken(targetRouteID, fallbackCustomerGid);
@@ -964,11 +987,25 @@ app.post("/api/webhooks/shopify/orders-paid", async (req, res) => {
         text: getRideGuideText(targetRouteTitle, targetDownloadUrl), 
         html: getRideGuideHTML(targetRouteTitle, targetDownloadUrl)  
       };
-      await fetch("https://api.mailersend.com/v1/email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${MAILERSEND_API_KEY}` },
-        body: JSON.stringify(mailersendPayload)
-      });
+
+      console.log(`\n✉️ [MAILERSEND] Dispatching cash checkout email to: ${customerEmail}`);
+      try {
+        const msRes = await fetch("https://api.mailersend.com/v1/email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Authorization": `Bearer ${MAILERSEND_API_KEY}` },
+          body: JSON.stringify(mailersendPayload)
+        });
+        
+        console.log(`✉️ [MAILERSEND] Response Status Code: ${msRes.status}`);
+        if (!msRes.ok) {
+          const bodyErr = await msRes.text();
+          console.error(`❌ [MAILERSEND] API Webhook Loop Rejected Request: ${bodyErr}`);
+        } else {
+          console.log(`✓ [MAILERSEND] Cash checkout email sent successfully.`);
+        }
+      } catch (err) {
+        console.error("⚠️ [MAILERSEND] Webhook transaction catch exception thrown:", err);
+      }
     }
 
     if (MAILERLITE_API_KEY && buyerAcceptsMarketing === true) {

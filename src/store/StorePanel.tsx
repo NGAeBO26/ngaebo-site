@@ -123,12 +123,12 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
       const savedIntendedRoutes = localStorage.getItem("rg_intended_routes");
       if (!savedIntendedRoutes || !isFullyAuthenticated || isRedeeming) return;
 
-      const bundleItem = cartItems.find((item: any) => item.routeId === "TOKEN_BUNDLE");
+      try {
+        const intendedRoutes = JSON.parse(savedIntendedRoutes);
+        setIsRedeeming(true);
 
-      if (tokenBalance > 0) {
-        try {
-          const intendedRoutes = JSON.parse(savedIntendedRoutes);
-          setIsRedeeming(true);
+        // 🟢 TRACK A: Token Balances exist - execute redemption endpoints
+        if (tokenBalance > 0 && cartItems.some((item: any) => item.routeId !== "TOKEN_BUNDLE")) {
           setTransactionState({
             status: 'processing',
             type: 'checkout_fulfillment',
@@ -149,12 +149,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
               if (response.ok) processedCount++;
             }
           }
-
-          if (refreshProfile) await refreshProfile();
-          if (bundleItem && removeCartItem) await removeCartItem(bundleItem.id);
-
-          localStorage.removeItem("rg_intended_routes");
-          setActiveTab("catalog");
           
           setTransactionState({
             status: 'success',
@@ -162,17 +156,37 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
             title: 'Account Synchronized',
             message: `Success! Your bundle tokens have been verified. ${processedCount} telemetry maps have been successfully unlocked and attached to your permanent vault catalog. Clean copies have been dispatched to ${customer.email}.`
           });
-          
-        } catch (err: any) {
-          setTransactionState({
-            status: 'failure',
-            type: 'checkout_fulfillment',
-            title: 'Sync Interrupted',
-            message: err.message || 'The checkout completed successfully but the automatic route unlock loop timed out. Please hard refresh to reload your profile tokens.'
-          });
-        } finally {
-          setIsRedeeming(false);
         }
+
+        // 🎯 TRACK B: CLEAR THE SHOPPING CART BADGE FOR BOTH CASH & TOKEN FLOWS
+        // Explicitly matches stashed checkout items and deletes them from Shopify backend line lines
+        for (const route of intendedRoutes) {
+          const matchedCartItem = cartItems.find((item: any) => String(item.routeId) === String(route.routeId));
+          if (matchedCartItem && removeCartItem) {
+            await removeCartItem(matchedCartItem.id);
+          }
+        }
+
+        // If a bundle product variant package wrapper itself is present, clear it
+        const bundleItem = cartItems.find((item: any) => item.routeId === "TOKEN_BUNDLE");
+        if (bundleItem && removeCartItem) {
+          await removeCartItem(bundleItem.id);
+        }
+
+        if (refreshProfile) await refreshProfile();
+        localStorage.removeItem("rg_intended_routes");
+        setActiveTab("catalog");
+        
+      } catch (err: any) {
+        console.error("Fulfillment execution error:", err);
+        setTransactionState({
+          status: 'failure',
+          type: 'checkout_fulfillment',
+          title: 'Sync Interrupted',
+          message: err.message || 'The checkout completed successfully but the automated synchronization timed out.'
+        });
+      } finally { // 🎯 FIX: Changed 'companion' back to 'finally'
+        setIsRedeeming(false);
       }
     };
 
@@ -208,7 +222,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
     const success = await addRouteToCart(targetVariantId, rawRouteId, routeTitle, distanceMetric, fcsLabel);
     setIsAdding(false);
     
-    // 🎯 VIEW UPDATE: Snaps the user over to the Cart tab matrix view container panel instantly
     if (success) {
       setActiveTab("cart");
     }
@@ -294,7 +307,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
         status: 'success',
         type: 'batch_unlock',
         title: 'Batch Assets Provisioned',
-        message: `Successfully provisioned ${processedCount} maps! All elements have been dropped cleanly inside your Catalog tab. Open rows below to compile your localized telemetry sheets.`
+        message: `Successfully provisioned ${processedCount} maps! All elements have been dropped cleanly inside your Catalog tab.`
       });
 
     } catch (err: any) {
@@ -554,7 +567,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [] }: St
         isMutating={isRedeeming}
       />
 
-      {/* 🎯 UNIVERSAL OVERLAY ANCHOR CONNECTOR BIND */}
       <TransactionOverlay state={transactionState} onClose={() => setTransactionState(null)} />
     </div>
   );
