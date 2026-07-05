@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useShopifyAuth } from "../store/ShopifyAuthContext"; 
 import { useShopifyCart } from "../store/ShopifyCartContext";
+import { createPortal } from "react-dom";
 import TokenUpsellModal from "./TokenUpsellModal"; 
 import TransactionOverlay, { type TransactionState } from "./TransactionOverlay";
 import "../styles/CartDropdown.css"; 
@@ -305,20 +306,27 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
         )}
       </div>
 
-      <TokenUpsellModal 
-        isOpen={isUpsellOpen}
-        onClose={() => setIsUpsellOpen(false)}
-        onBypass={handleBypassCheckout}
-        targetRoute={null}
-        isTokenUser={isTokenUser}
-        tokenBalance={tokenBalance}
-        onRedeemSingle={handleTokenRedemption}
-        onRedeemBatch={handleBatchTokenRedemption}
-        isMutating={isRedeeming}
-      />
+      {/* 🎯 PORTAL TARGET A: Escapes the restricted dropdown popover space to cover the whole screen layout */}
+      {createPortal(
+        <TokenUpsellModal 
+          isOpen={isUpsellOpen}
+          onClose={() => setIsUpsellOpen(false)}
+          onBypass={handleBypassCheckout}
+          targetRoute={null}
+          isTokenUser={isTokenUser}
+          tokenBalance={tokenBalance}
+          onRedeemSingle={handleTokenRedemption}
+          onRedeemBatch={handleBatchTokenRedemption}
+          isMutating={isRedeeming}
+        />,
+        document.body
+      )}
 
-      {/* 🎯 DROPDOWN CONNECTOR BIND FOR OVERLAY LIFE-CYCLES */}
-      <TransactionOverlay state={transactionState} onClose={() => setTransactionState(null)} />
+      {/* 🎯 PORTAL TARGET B: Escapes tracking parent overflow parameters to cleanly layer above navigation headers */}
+      {createPortal(
+        <TransactionOverlay state={transactionState} onClose={() => setTransactionState(null)} />,
+        document.body
+      )}
     </div>
   );
 }
