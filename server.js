@@ -510,8 +510,9 @@ app.get("/api/download-secure-guide", (req, res) => {
 app.post("/api/tokens/redeem", redemptionLimiter, async (req, res) => {
   // 🎯 PARAMETERS CAPTURE: Process the customer identity, requested route vector, and descriptive title
   const { customerId, routeId, routeTitle } = req.body;
-  const MAILERSEND_API_KEY = process.env.MAILERSEND_API_KEY;
-  const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY;
+  // 🎯 SANITIZATION FIX: Protects token redemptions from header crashes
+  const MAILERSEND_API_KEY = process.env.MAILERSEND_API_KEY?.trim().replace(/[\r\n]/g, "");
+  const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY?.trim().replace(/[\r\n]/g, "");
 
   if (!customerId || !routeId) {
     return res.status(400).json({ error: "Missing identity constraints." });
@@ -765,9 +766,10 @@ app.post("/api/tokens/verify-ownership", verificationLimiter, async (req, res) =
 app.post("/api/webhooks/shopify/orders-paid", async (req, res) => {
   console.log("\n⚠️ [WEBHOOK INCOMING] Shopify fired an orders-paid notification! Processing request payload stream...");
   
-  const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY;
-  const MAILERSEND_API_KEY = process.env.MAILERSEND_API_KEY; 
-  const SHOPIFY_WEBHOOK_SECRET = process.env.SHOPIFY_WEBHOOK_SECRET;
+  // 🎯 SANITIZATION FIX: Strips away hidden trailing whitespaces or carriage returns
+  const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY?.trim().replace(/[\r\n]/g, "");
+  const MAILERSEND_API_KEY = process.env.MAILERSEND_API_KEY?.trim().replace(/[\r\n]/g, ""); 
+  const SHOPIFY_WEBHOOK_SECRET = process.env.SHOPIFY_WEBHOOK_SECRET?.trim();
 
   try {
     if (!req.body || !Buffer.isBuffer(req.body)) throw new Error("Request body stream invalid.");

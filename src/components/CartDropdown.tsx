@@ -1,5 +1,5 @@
 /* src/components/CartDropdown.tsx */
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react"; 
 import { useShopifyAuth } from "../store/ShopifyAuthContext"; 
 import { useShopifyCart } from "../store/ShopifyCartContext";
 import { createPortal } from "react-dom";
@@ -19,8 +19,10 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
   const [activeTab, setActiveTab] = useState<"cart" | "catalog">("cart");
   const [activeCatalogHoverId, setActiveCatalogHoverId] = useState<string | null>(null);
   const [isRedeeming, setIsRedeeming] = useState(false);
-  
   const [isUpsellOpen, setIsUpsellOpen] = useState(false);
+
+  // 🎯 STICKY TRACKING STATE TO BRIDGE ASYNC RACE CONDITIONS
+  const [cleanupPending, setCleanupPending] = useState(false);
 
   // 🎯 CENTRALIZED INTERCEPT WORKFLOW ENGINE STATE
   const [transactionState, setTransactionState] = useState<TransactionState | null>(null);
@@ -53,7 +55,12 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
   const tokenBalance = customer?.tokens || 0; 
   const hasActivePass = customer?.passExpiresAt ? new Date() < new Date(customer.passExpiresAt) : false; 
   const hasTokens = tokenBalance > 0; 
-  const isTokenUser = isFullyAuthenticated && hasTokens; 
+  
+  // 🎯 UNIFIED BUNDLE MATCH LAYER: Catch both explicitly set string routes and title metadata parameters
+  const hasBundleInCart = cartItems.some((item: any) => item.routeId === "TOKEN_BUNDLE" || item.title?.toLowerCase().includes("pack"));
+
+  // 🎯 FIX B: Force token checkout layout to stay FALSE if the item inside the cart is a commercial cash asset bundle
+  const isTokenUser = isFullyAuthenticated && hasTokens && !hasBundleInCart; 
 
   const visibleCartItems = cartItems.filter((item: any) => {
     const targetId = item.routeId || "";
@@ -62,6 +69,42 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
   });
 
   const totalCartCount = visibleCartItems.length; 
+
+  // 🎯 LOGGING TRACK A: Monitors balance shifts and activates the sticky cleanup gate
+  const prevTokenBalanceRef = useRef(tokenBalance);
+  useEffect(() => {
+    console.log("🛒 [CART TRACE] Wallet Balance Update Sync:", { current: tokenBalance, previouslyRemembered: prevTokenBalanceRef.current });
+    if (tokenBalance > prevTokenBalanceRef.current) {
+      console.log("🎫 [CART TRACE] Balance increment verified! Activating sticky cleanup flag...");
+      setCleanupPending(true);
+    }
+    prevTokenBalanceRef.current = tokenBalance;
+  }, [tokenBalance]);
+
+  // 🎯 LOGGING TRACK B: Monitors async cart items loading and executes item clearing
+  useEffect(() => {
+    console.log("🛒 [CART TRACE] Checking Sticky Cleanup Status:", { cleanupPending, cartItemsInCache: cartItems.length });
+    if (cleanupPending && cartItems.length > 0) {
+      console.log(`🗑️ [CART TRACE] Execution criteria met! Sweeping active inventory items...`);
+      let itemPurged = false;
+
+      cartItems.forEach((item: any) => {
+        const isTokenBundleItem = item.routeId === "TOKEN_BUNDLE" || item.title?.toLowerCase().includes("pack");
+        console.log(`📦 [CART TRACE] Testing line data: "${item.title}" | Identified Bundle?: ${isTokenBundleItem}`);
+        
+        if (isTokenBundleItem && removeCartItem) {
+          console.log(`🗑️ [CART TRACE] Match validated. Firing removeCartItem for target ID: ${item.id}`);
+          removeCartItem(item.id);
+          itemPurged = true;
+        }
+      });
+
+      if (itemPurged || !cartItems.some((item: any) => item.routeId === "TOKEN_BUNDLE" || item.title?.toLowerCase().includes("pack"))) {
+        console.log("✅ [CART TRACE] Sweeping cycle complete. Dropping sticky cleanup flag to false.");
+        setCleanupPending(false);
+      }
+    }
+  }, [cleanupPending, cartItems, removeCartItem]);
 
   const activeCatalogPasses = Object.entries(unlockedMap)
     .map(([routeId, entry]) => {
@@ -80,7 +123,6 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
     const API_BASE_TARGET = window.location.hostname === "localhost" ? "http://localhost:5000" : "";
     setIsRedeeming(true);
 
-    // 🎯 ROUTE LOADING STATE TO OVERLAY
     setTransactionState({
       status: 'processing',
       type: 'single_unlock',
@@ -101,7 +143,6 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
       if (refreshProfile) await refreshProfile();
       setIsUpsellOpen(false);
 
-      // 🎯 ROUTE SUCCESS TO OVERLAY
       setTransactionState({
         status: 'success',
         type: 'single_unlock',
@@ -130,7 +171,6 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
     const API_BASE_TARGET = window.location.hostname === "localhost" ? "http://localhost:5000" : "";
     let processedCount = 0;
 
-    // 🎯 ROUTE PROCESSING BATCH STATE TO OVERLAY
     setTransactionState({
       status: 'processing',
       type: 'batch_unlock',
@@ -155,7 +195,6 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
       setActiveTab("catalog");
       setIsUpsellOpen(false);
 
-      // 🎯 ROUTE BATCH SUCCESS TO OVERLAY
       setTransactionState({
         status: 'success',
         type: 'batch_unlock',
@@ -181,7 +220,6 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
       login();
       return;
     }
-    const hasBundleInCart = cartItems.some((item: any) => item.routeId === "TOKEN_BUNDLE");
     if (hasBundleInCart) {
       if (checkoutUrl) window.open(checkoutUrl, "_blank"); 
       return;
@@ -279,7 +317,7 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
             ) : (
               activeCatalogPasses.map((pass) => {
                 const matchedMatch = allRoutes.find((r: any) => {
-                  const id = String(r.properties?.profile_id || r.id || r.properties?.id || r.ID || "");
+                  const id = String(r.properties?.profile_id || r.id || r.properties?.id || r.properties?.ID || "");
                   return id === pass.routeId;
                 });
                 const displayTitle = pass.name || matchedMatch?.properties?.NAME || matchedMatch?.title || `Route Access #${pass.routeId}`;
@@ -306,7 +344,6 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
         )}
       </div>
 
-      {/* 🎯 PORTAL TARGET A: Escapes the restricted dropdown popover space to cover the whole screen layout */}
       {createPortal(
         <TokenUpsellModal 
           isOpen={isUpsellOpen}
@@ -322,7 +359,6 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
         document.body
       )}
 
-      {/* 🎯 PORTAL TARGET B: Escapes tracking parent overflow parameters to cleanly layer above navigation headers */}
       {createPortal(
         <TransactionOverlay state={transactionState} onClose={() => setTransactionState(null)} />,
         document.body
