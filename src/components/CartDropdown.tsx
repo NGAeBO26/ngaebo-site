@@ -1,5 +1,5 @@
 /* src/components/CartDropdown.tsx */
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react"; // 🎯 Added useEffect and useRef
 import { useShopifyAuth } from "../store/ShopifyAuthContext"; 
 import { useShopifyCart } from "../store/ShopifyCartContext";
 import { createPortal } from "react-dom";
@@ -53,7 +53,10 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
   const tokenBalance = customer?.tokens || 0; 
   const hasActivePass = customer?.passExpiresAt ? new Date() < new Date(customer.passExpiresAt) : false; 
   const hasTokens = tokenBalance > 0; 
-  const isTokenUser = isFullyAuthenticated && hasTokens; 
+  const hasBundleInCart = cartItems.some((item: any) => item.routeId === "TOKEN_BUNDLE");
+
+  // 🎯 FIX B: Force token payment layout to stay FALSE if the user is purchasing a cash bundle asset
+  const isTokenUser = isFullyAuthenticated && hasTokens && !hasBundleInCart; 
 
   const visibleCartItems = cartItems.filter((item: any) => {
     const targetId = item.routeId || "";
@@ -62,6 +65,48 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
   });
 
   const totalCartCount = visibleCartItems.length; 
+
+  // 🎯 FIX A: SELF-HEALING EFFECT — Purges token bundles from cart when token balance increments
+  const prevTokenBalanceRef = useRef(tokenBalance);
+  useEffect(() => {
+    console.log("🛒 [CART TRACE] Lifecycle sync triggered:", {
+      currentBalance: tokenBalance,
+      previousRefBalance: prevTokenBalanceRef.current,
+      totalItemsInCartArray: cartItems.length
+    });
+
+    if (tokenBalance > prevTokenBalanceRef.current) {
+      console.log("🎫 [CART TRACE] Balance increase verified! Iterating through line items...");
+      
+      cartItems.forEach((item: any) => {
+        const matchesRouteId = item.routeId === "TOKEN_BUNDLE";
+        const matchesTitleKeywords = item.title?.toLowerCase().includes("pack");
+        const isTokenBundleItem = matchesRouteId || matchesTitleKeywords;
+        
+        console.log(`📦 [CART TRACE] Inspecting Line Asset: "${item.title}"`, {
+          itemId: item.id,
+          itemRouteId: item.routeId,
+          matchesRouteId: matchesRouteId,
+          matchesTitleKeywords: matchesTitleKeywords,
+          isAnyMatchTruthy: isTokenBundleItem,
+          hasRemoveCartItemFunction: typeof removeCartItem === "function"
+        });
+
+        if (isTokenBundleItem) {
+          if (typeof removeCartItem === "function") {
+            console.log(`🗑️ [CART TRACE] Match found! Executing removeCartItem for: "${item.title}" (ID: ${item.id})`);
+            removeCartItem(item.id);
+          } else {
+            console.error("❌ [CART TRACE] Core Engine Error: removeCartItem method is undefined inside your ShopifyCartContext!");
+          }
+        }
+      });
+    } else {
+      console.log("⏭️ [CART TRACE] Cleanup bypassed: token balance did not increment during this state update.");
+    }
+    
+    prevTokenBalanceRef.current = tokenBalance;
+  }, [tokenBalance, cartItems, removeCartItem]);
 
   const activeCatalogPasses = Object.entries(unlockedMap)
     .map(([routeId, entry]) => {
@@ -80,7 +125,6 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
     const API_BASE_TARGET = window.location.hostname === "localhost" ? "http://localhost:5000" : "";
     setIsRedeeming(true);
 
-    // 🎯 ROUTE LOADING STATE TO OVERLAY
     setTransactionState({
       status: 'processing',
       type: 'single_unlock',
@@ -101,7 +145,6 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
       if (refreshProfile) await refreshProfile();
       setIsUpsellOpen(false);
 
-      // 🎯 ROUTE SUCCESS TO OVERLAY
       setTransactionState({
         status: 'success',
         type: 'single_unlock',
@@ -130,7 +173,6 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
     const API_BASE_TARGET = window.location.hostname === "localhost" ? "http://localhost:5000" : "";
     let processedCount = 0;
 
-    // 🎯 ROUTE PROCESSING BATCH STATE TO OVERLAY
     setTransactionState({
       status: 'processing',
       type: 'batch_unlock',
@@ -155,7 +197,6 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
       setActiveTab("catalog");
       setIsUpsellOpen(false);
 
-      // 🎯 ROUTE BATCH SUCCESS TO OVERLAY
       setTransactionState({
         status: 'success',
         type: 'batch_unlock',
@@ -181,7 +222,6 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
       login();
       return;
     }
-    const hasBundleInCart = cartItems.some((item: any) => item.routeId === "TOKEN_BUNDLE");
     if (hasBundleInCart) {
       if (checkoutUrl) window.open(checkoutUrl, "_blank"); 
       return;
@@ -279,7 +319,7 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
             ) : (
               activeCatalogPasses.map((pass) => {
                 const matchedMatch = allRoutes.find((r: any) => {
-                  const id = String(r.properties?.profile_id || r.id || r.properties?.id || r.ID || "");
+                  const id = String(r.properties?.profile_id || r.id || r.properties?.id || r.properties?.ID || "");
                   return id === pass.routeId;
                 });
                 const displayTitle = pass.name || matchedMatch?.properties?.NAME || matchedMatch?.title || `Route Access #${pass.routeId}`;
@@ -306,7 +346,6 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
         )}
       </div>
 
-      {/* 🎯 PORTAL TARGET A: Escapes the restricted dropdown popover space to cover the whole screen layout */}
       {createPortal(
         <TokenUpsellModal 
           isOpen={isUpsellOpen}
@@ -322,7 +361,6 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
         document.body
       )}
 
-      {/* 🎯 PORTAL TARGET B: Escapes tracking parent overflow parameters to cleanly layer above navigation headers */}
       {createPortal(
         <TransactionOverlay state={transactionState} onClose={() => setTransactionState(null)} />,
         document.body
