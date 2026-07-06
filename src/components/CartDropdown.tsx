@@ -1,5 +1,5 @@
 /* src/components/CartDropdown.tsx */
-import { useState, useEffect, useRef } from "react"; // 🎯 Added useEffect and useRef
+import { useState, useEffect, useRef } from "react"; 
 import { useShopifyAuth } from "../store/ShopifyAuthContext"; 
 import { useShopifyCart } from "../store/ShopifyCartContext";
 import { createPortal } from "react-dom";
@@ -19,8 +19,10 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
   const [activeTab, setActiveTab] = useState<"cart" | "catalog">("cart");
   const [activeCatalogHoverId, setActiveCatalogHoverId] = useState<string | null>(null);
   const [isRedeeming, setIsRedeeming] = useState(false);
-  
   const [isUpsellOpen, setIsUpsellOpen] = useState(false);
+
+  // 🎯 STICKY TRACKING STATE TO BRIDGE ASYNC RACE CONDITIONS
+  const [cleanupPending, setCleanupPending] = useState(false);
 
   // 🎯 CENTRALIZED INTERCEPT WORKFLOW ENGINE STATE
   const [transactionState, setTransactionState] = useState<TransactionState | null>(null);
@@ -53,9 +55,11 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
   const tokenBalance = customer?.tokens || 0; 
   const hasActivePass = customer?.passExpiresAt ? new Date() < new Date(customer.passExpiresAt) : false; 
   const hasTokens = tokenBalance > 0; 
-  const hasBundleInCart = cartItems.some((item: any) => item.routeId === "TOKEN_BUNDLE");
+  
+  // 🎯 UNIFIED BUNDLE MATCH LAYER: Catch both explicitly set string routes and title metadata parameters
+  const hasBundleInCart = cartItems.some((item: any) => item.routeId === "TOKEN_BUNDLE" || item.title?.toLowerCase().includes("pack"));
 
-  // 🎯 FIX B: Force token payment layout to stay FALSE if the user is purchasing a cash bundle asset
+  // 🎯 FIX B: Force token checkout layout to stay FALSE if the item inside the cart is a commercial cash asset bundle
   const isTokenUser = isFullyAuthenticated && hasTokens && !hasBundleInCart; 
 
   const visibleCartItems = cartItems.filter((item: any) => {
@@ -66,47 +70,41 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
 
   const totalCartCount = visibleCartItems.length; 
 
-  // 🎯 FIX A: SELF-HEALING EFFECT — Purges token bundles from cart when token balance increments
+  // 🎯 LOGGING TRACK A: Monitors balance shifts and activates the sticky cleanup gate
   const prevTokenBalanceRef = useRef(tokenBalance);
   useEffect(() => {
-    console.log("🛒 [CART TRACE] Lifecycle sync triggered:", {
-      currentBalance: tokenBalance,
-      previousRefBalance: prevTokenBalanceRef.current,
-      totalItemsInCartArray: cartItems.length
-    });
-
+    console.log("🛒 [CART TRACE] Wallet Balance Update Sync:", { current: tokenBalance, previouslyRemembered: prevTokenBalanceRef.current });
     if (tokenBalance > prevTokenBalanceRef.current) {
-      console.log("🎫 [CART TRACE] Balance increase verified! Iterating through line items...");
-      
-      cartItems.forEach((item: any) => {
-        const matchesRouteId = item.routeId === "TOKEN_BUNDLE";
-        const matchesTitleKeywords = item.title?.toLowerCase().includes("pack");
-        const isTokenBundleItem = matchesRouteId || matchesTitleKeywords;
-        
-        console.log(`📦 [CART TRACE] Inspecting Line Asset: "${item.title}"`, {
-          itemId: item.id,
-          itemRouteId: item.routeId,
-          matchesRouteId: matchesRouteId,
-          matchesTitleKeywords: matchesTitleKeywords,
-          isAnyMatchTruthy: isTokenBundleItem,
-          hasRemoveCartItemFunction: typeof removeCartItem === "function"
-        });
+      console.log("🎫 [CART TRACE] Balance increment verified! Activating sticky cleanup flag...");
+      setCleanupPending(true);
+    }
+    prevTokenBalanceRef.current = tokenBalance;
+  }, [tokenBalance]);
 
-        if (isTokenBundleItem) {
-          if (typeof removeCartItem === "function") {
-            console.log(`🗑️ [CART TRACE] Match found! Executing removeCartItem for: "${item.title}" (ID: ${item.id})`);
-            removeCartItem(item.id);
-          } else {
-            console.error("❌ [CART TRACE] Core Engine Error: removeCartItem method is undefined inside your ShopifyCartContext!");
-          }
+  // 🎯 LOGGING TRACK B: Monitors async cart items loading and executes item clearing
+  useEffect(() => {
+    console.log("🛒 [CART TRACE] Checking Sticky Cleanup Status:", { cleanupPending, cartItemsInCache: cartItems.length });
+    if (cleanupPending && cartItems.length > 0) {
+      console.log(`🗑️ [CART TRACE] Execution criteria met! Sweeping active inventory items...`);
+      let itemPurged = false;
+
+      cartItems.forEach((item: any) => {
+        const isTokenBundleItem = item.routeId === "TOKEN_BUNDLE" || item.title?.toLowerCase().includes("pack");
+        console.log(`📦 [CART TRACE] Testing line data: "${item.title}" | Identified Bundle?: ${isTokenBundleItem}`);
+        
+        if (isTokenBundleItem && removeCartItem) {
+          console.log(`🗑️ [CART TRACE] Match validated. Firing removeCartItem for target ID: ${item.id}`);
+          removeCartItem(item.id);
+          itemPurged = true;
         }
       });
-    } else {
-      console.log("⏭️ [CART TRACE] Cleanup bypassed: token balance did not increment during this state update.");
+
+      if (itemPurged || !cartItems.some((item: any) => item.routeId === "TOKEN_BUNDLE" || item.title?.toLowerCase().includes("pack"))) {
+        console.log("✅ [CART TRACE] Sweeping cycle complete. Dropping sticky cleanup flag to false.");
+        setCleanupPending(false);
+      }
     }
-    
-    prevTokenBalanceRef.current = tokenBalance;
-  }, [tokenBalance, cartItems, removeCartItem]);
+  }, [cleanupPending, cartItems, removeCartItem]);
 
   const activeCatalogPasses = Object.entries(unlockedMap)
     .map(([routeId, entry]) => {
