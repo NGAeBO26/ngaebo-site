@@ -17,7 +17,7 @@ interface CalculatedTrackMetrics {
 }
 
 // ============================================================================
-// 📐 ORIENTATION-ADAPTIVE GEOMETRIC PROJECTION ENGINE
+// 🗺️ ORIENTATION-ADAPTIVE GEOMETRIC PROJECTION ENGINE
 // Extracts raw geometry strings and computes precise coordinate boundaries
 // ============================================================================
 function calculateAdvancedTrackMetrics(feature: any): CalculatedTrackMetrics | null {
@@ -116,7 +116,6 @@ interface MapControllerOptions {
 export default function useMapController(opts: MapControllerOptions) {
   const [mapReady, setMapReady] = useState(false);
   const stateRef = useRef(opts);
-  const cameraTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const activeGeometryCacheRef = useRef<CalculatedTrackMetrics | null>(null);
 
   useEffect(() => {
@@ -140,30 +139,48 @@ export default function useMapController(opts: MapControllerOptions) {
   }, []);
 
   // ==========================================================================
-  // 🚀 UNIFIED CAMERA MOVEMENT PIPELINE (RETAIL BALANCE ADAPTED)
-  // Moves the viewport and offsets calculations to clear left column cards[cite: 18]
+  // 🎯 SYNCHRONOUS CAMERA MOVEMENT PIPELINE (ANTI-THRASING PROJECTION ENGINE)
+  // Lock container dimensions inline to protect the canvas from parent layout shifts.
   // ==========================================================================
-  /* Inside src/features/Discovery/hooks/useMapController.tsx */
-
   const fitRoutePadded = useCallback((incomingFeature: any) => {
     const currentMap = stateRef.current.mapRef.current;
     if (!currentMap || !incomingFeature) return;
 
+    (currentMap as any)._rgCameraFlying = true;
+
+    const mapContainer = currentMap.getContainer();
+    const mapCanvas = currentMap.getCanvas();
+    
+    // ─── 🛑 THE BOUNDARY SHIELD ───
+    // Read current pixel constraints and lock them inline. This stops incoming layout panel
+    // insertions from shifting the container height and causing a context reset flash.
+    if (mapContainer) {
+      const rect = mapContainer.getBoundingClientRect();
+      mapContainer.style.width = `${rect.width}px`;
+      mapContainer.style.height = `${rect.height}px`;
+      mapContainer.style.flex = "none";
+      mapContainer.style.pointerEvents = "none";
+    }
+    if (mapCanvas) mapCanvas.style.pointerEvents = "none";
+
+    // Safely restore responsive styling parameters once the flight settles smoothly
+    currentMap.once('moveend', () => {
+      (currentMap as any)._rgCameraFlying = false;
+      if (mapContainer) {
+        mapContainer.style.width = "100%";
+        mapContainer.style.height = "100%";
+        mapContainer.style.flex = "";
+        mapContainer.style.pointerEvents = "auto";
+      }
+      if (mapCanvas) mapCanvas.style.pointerEvents = "auto";
+    });
+
     const targetId = String(incomingFeature.properties?.profile_id || incomingFeature.id || "");
 
-    // 🎯 SYMMETRICAL REBALANCING: Left slot takes 260px, Right slot takes 260px.
-    // This perfectly aligns the center calculation track across your layout columns.
-    const retailLayoutPadding = { top: 24, right: 260, bottom: 24, left: 260 };
-
-    try { 
-      currentMap.stop(); 
-      currentMap.setPadding(retailLayoutPadding); 
-    } catch {}
-
-    if (cameraTimeoutRef.current) {
-      clearTimeout(cameraTimeoutRef.current);
-      cameraTimeoutRef.current = null;
-    }
+    const isMobileViewport = window.matchMedia('(max-width: 767px)').matches;
+    const retailLayoutPadding = isMobileViewport
+      ? { top: 40, right: 16, bottom: 280, left: 16 }
+      : { top: 24, right: 260, bottom: 24, left: 260 };
 
     const masterFeatureMatch = stateRef.current.routesData.find(
       (r: any) => r && String(r.properties?.profile_id || r.id) === targetId
@@ -171,70 +188,76 @@ export default function useMapController(opts: MapControllerOptions) {
 
     const activeTargetFeature = masterFeatureMatch || incomingFeature;
     const metrics = calculateAdvancedTrackMetrics(activeTargetFeature);
-    if (!metrics) return;
+    
+    if (!metrics) {
+      (currentMap as any)._rgCameraFlying = false;
+      if (mapContainer) {
+        mapContainer.style.width = "100%"; mapContainer.style.height = "100%"; mapContainer.style.flex = ""; mapContainer.style.pointerEvents = "auto";
+      }
+      if (mapCanvas) mapCanvas.style.pointerEvents = "auto";
+      return;
+    }
 
     activeGeometryCacheRef.current = metrics;
 
-    cameraTimeoutRef.current = setTimeout(() => {
-      try {
-        if (!currentMap) return;
-        currentMap.resize();
+    try {
+      let targetCenter: maplibregl.LngLat = metrics.center;
+      let finalZoom = metrics.targetZoom;
 
-        let targetCenter: maplibregl.LngLat = metrics.center;
-        let finalZoom = metrics.targetZoom;
+      const computedCamera = currentMap.cameraForBounds(metrics.bounds, {
+        padding: { top: 0, right: 0, bottom: 0, left: 0 }
+      });
 
-        if (!metrics.isHorizontal) {
-          const computedCamera = currentMap.cameraForBounds(metrics.bounds, {
-            padding: { top: 0, right: 0, bottom: 0, left: 0 }
-          });
-          if (computedCamera && computedCamera.center) {
-            const convertedCenter = maplibregl.LngLat.convert(computedCamera.center);
-            targetCenter = new maplibregl.LngLat(convertedCenter.lng, convertedCenter.lat);
-            finalZoom = Math.min(computedCamera.zoom ?? 13.40, 13.40);
-          }
-        }
-
-        currentMap.easeTo({
-          center: targetCenter,
-          zoom: finalZoom - 0.2, // Back off zoom slightly to account for the tighter symmetrical margins
-          bearing: 0,
-          pitch: 0,
-          duration: 750, 
-          essential: true
-        });
-
-        requestAnimationFrame(repaintViewportHUDOverlay);
-
-      } catch (err) {
-        console.error("Single pass viewport camera calculation crashed:", err);
-      } finally {
-        cameraTimeoutRef.current = null;
+      if (computedCamera && computedCamera.center) {
+        const convertedCenter = maplibregl.LngLat.convert(computedCamera.center);
+        targetCenter = new maplibregl.LngLat(convertedCenter.lng, convertedCenter.lat);
+        
+        const maxZoomCap = metrics.isHorizontal ? 13.80 : 13.40;
+        finalZoom = Math.min(computedCamera.zoom ?? maxZoomCap, maxZoomCap);
       }
-    }, 65); 
+
+      const zoomOffsetCushion = isMobileViewport ? 0.35 : 0.20;
+
+      currentMap.easeTo({
+        center: targetCenter,
+        zoom: finalZoom - zoomOffsetCushion,
+        padding: retailLayoutPadding, 
+        bearing: 0,
+        pitch: 0,
+        duration: 750,
+        essential: true
+      });
+
+      requestAnimationFrame(repaintViewportHUDOverlay);
+
+    } catch (err) {
+      console.error("Single pass viewport camera calculation crashed:", err);
+      (currentMap as any)._rgCameraFlying = false;
+      if (mapContainer) {
+        mapContainer.style.width = "100%"; mapContainer.style.height = "100%"; mapContainer.style.flex = ""; mapContainer.style.pointerEvents = "auto";
+      }
+      if (mapCanvas) mapCanvas.style.pointerEvents = "auto";
+    }
   }, [repaintViewportHUDOverlay]);
 
   const resetToInitialExtent = useCallback(() => {
     const map = opts.mapRef.current;
     if (!map) return;
 
-    if (cameraTimeoutRef.current) {
-      clearTimeout(cameraTimeoutRef.current);
-      cameraTimeoutRef.current = null;
-    }
-
     activeGeometryCacheRef.current = null;
     const oldCanvas = document.getElementById('discovery-canvas-hud-overlay');
     if (oldCanvas) oldCanvas.remove();
 
     try {
-      map.stop();
-      // Apply matching balanced initial edge padding dimensions
-      map.setPadding({ top: 0, right: 260, bottom: 0, left: 260 });
-      map.resize();
-      
+      const isMobileViewport = window.matchMedia('(max-width: 767px)').matches;
+      const initialPadding = isMobileViewport
+        ? { top: 40, right: 16, bottom: 280, left: 16 }
+        : { top: 0, right: 260, bottom: 0, left: 260 };
+
       map.easeTo({
         center: new maplibregl.LngLat(-84.3, 34.2),
         zoom: 8,
+        padding: initialPadding,
         pitch: 0,
         bearing: 0,
         duration: 800,
@@ -246,7 +269,7 @@ export default function useMapController(opts: MapControllerOptions) {
   }, [opts.mapRef]);
 
   // ==========================================================================
-  // VIEWPORT LIFECYCLE HOOK BINDINGS[cite: 18]
+  // VIEWPORT LIFECYCLE HOOK BINDINGS
   // ==========================================================================
   useEffect(() => {
     if (!opts.containerRef.current || opts.mapRef.current) return;
@@ -276,15 +299,12 @@ export default function useMapController(opts: MapControllerOptions) {
 
       mapInstance.on('move', repaintViewportHUDOverlay);
       mapInstance.on('zoom', repaintViewportHUDOverlay);
-      mapInstance.on('render', repaintViewportHUDOverlay);
 
     } catch (err) {
       console.error("Canvas instantiation crash caught safely:", err);
     }
 
     return () => {
-      if (cameraTimeoutRef.current) clearTimeout(cameraTimeoutRef.current);
-      
       if (opts.mapRef.current) {
         try { opts.mapRef.current.remove(); } catch {}
         opts.mapRef.current = null;

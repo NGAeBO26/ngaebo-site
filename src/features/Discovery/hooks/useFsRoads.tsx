@@ -106,6 +106,10 @@ export default function useFsRoads(
   options?: FsRoadsOptions,
 ) {
   const [routesData, setRoutesData] = useState<any[]>([]);
+  
+  // 🎯 THE CLOSING ANCHOR REF: Keeps our asynchronous click closure handlers 
+  // securely synced with our pristine high-resolution source feature collection arrays.
+  const routesDataRef = useRef<any[]>([]);
   const optionsRef = useRef(options);
   const blinkIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -117,6 +121,9 @@ export default function useFsRoads(
   useEffect(() => {
     if (!map || !mapReady) return;
 
+    // Pauses React lifecycle style updates while the camera is moving
+    if ((map as any)._rgCameraFlying) return;
+
     if (blinkIntervalRef.current) {
       clearInterval(blinkIntervalRef.current);
       blinkIntervalRef.current = null;
@@ -125,38 +132,19 @@ export default function useFsRoads(
     const opts = optionsRef.current;
 
     // --- 1. MANAGE THE STATIC SOLID BLUE SELECTION LAYER ---
-    if (map.getLayer("fs-roads-selected")) {
-      try {
-        map.setPaintProperty("fs-roads-selected", "line-width", [
-          "interpolate",
-          ["linear"],
-          ["zoom"],
-          6,
-          3,
-          10,
-          5,
-          13,
-          8,
-        ]);
-        map.setPaintProperty("fs-roads-selected", "line-blur", 0);
-        map.setPaintProperty("fs-roads-selected", "line-opacity", 1.0);
-        map.setPaintProperty(
-          "fs-roads-selected",
-          "line-color",
-          HOVER_GLOW_STYLE.color,
+    const selectedSrc = map.getSource("fs-roads-selected-source") as GeoJSONSource | undefined;
+    if (selectedSrc) {
+      if (opts?.isTakeoverActive && opts?.selectedRouteId && routesData.length > 0) {
+        const match = routesData.find(
+          (r: any) => r && String(r.properties?.profile_id || r.id) === String(opts.selectedRouteId)
         );
-
-        if (opts?.isTakeoverActive && opts?.selectedRouteId) {
-          map.setFilter("fs-roads-selected", [
-            "==",
-            ["get", "profile_id"],
-            opts.selectedRouteId,
-          ]);
+        if (match) {
+          selectedSrc.setData({ type: "FeatureCollection", features: [match] });
         } else {
-          map.setFilter("fs-roads-selected", ["==", ["get", "profile_id"], ""]);
+          selectedSrc.setData({ type: "FeatureCollection", features: [] });
         }
-      } catch (err) {
-        console.warn("Static selection filter assignment failed:", err);
+      } else {
+        selectedSrc.setData({ type: "FeatureCollection", features: [] });
       }
     }
 
@@ -185,7 +173,6 @@ export default function useFsRoads(
         if (match?.properties) {
           const uniqueId = match.properties.profile_id || String(match.id);
 
-          // Apply the active hover filter to both layers simultaneously
           hoverLayers.forEach((id) => {
             if (map.getLayer(id)) {
               map.setFilter(id, ["==", ["get", "profile_id"], uniqueId]);
@@ -194,7 +181,6 @@ export default function useFsRoads(
           return;
         }
       } else {
-        // Clear filters cleanly when mouse leaves interactive hitboxes
         hoverLayers.forEach((id) => {
           if (map.getLayer(id)) {
             map.setFilter(id, ["==", ["get", "profile_id"], ""]);
@@ -205,9 +191,7 @@ export default function useFsRoads(
       console.warn("Dynamic hover layer filter assignment failed:", err);
     }
 
-    return () => {
-      // Cleaned up completely - no more interval clearing leaks!
-    };
+    return () => {};
   }, [
     map,
     mapReady,
@@ -227,6 +211,8 @@ export default function useFsRoads(
     let attached = false;
 
     const onMouseMove = (e: MapLayerMouseEvent) => {
+      if (map.isMoving() || (map as any)._rgCameraFlying) return;
+
       const opts = optionsRef.current;
       map.getCanvas().style.cursor = "pointer";
 
@@ -235,34 +221,16 @@ export default function useFsRoads(
 
       const uniqueId = f.properties?.profile_id || String(f.id);
 
-      // If the user hovers over the already locked/selected route, clear the temporary hover lines safely
       if (opts?.isTakeoverActive && uniqueId === opts?.selectedRouteId) {
-        map.setFilter("fs-roads-hover-outer", [
-          "==",
-          ["get", "profile_id"],
-          "",
-        ]);
-        map.setFilter("fs-roads-hover-inner", [
-          "==",
-          ["get", "profile_id"],
-          "",
-        ]);
+        map.setFilter("fs-roads-hover-outer", ["==", ["get", "profile_id"], ""]);
+        map.setFilter("fs-roads-hover-inner", ["==", ["get", "profile_id"], ""]);
         if (opts?.onRouteHover) opts.onRouteHover(uniqueId);
         return;
       }
 
-      // 🎯 ACTIVE EVALUATION: Only trigger state changes if shifting to a brand NEW route vector
       if (String(uniqueId) !== String(opts?.activeHoverId)) {
-        map.setFilter("fs-roads-hover-outer", [
-          "==",
-          ["get", "profile_id"],
-          uniqueId,
-        ]);
-        map.setFilter("fs-roads-hover-inner", [
-          "==",
-          ["get", "profile_id"],
-          uniqueId,
-        ]);
+        map.setFilter("fs-roads-hover-outer", ["==", ["get", "profile_id"], uniqueId]);
+        map.setFilter("fs-roads-hover-inner", ["==", ["get", "profile_id"], uniqueId]);
 
         if (f.properties && opts?.onRouteHover) {
           opts.onRouteHover(uniqueId);
@@ -271,43 +239,45 @@ export default function useFsRoads(
     };
 
     const onMouseLeave = () => {
-      // 🎯 THE HOVER PERSISTENCE REVISION:
-      // We restore the native arrow crosshair cursor on the map frame, but we completely
-      // remove the old 'opts.onRouteHover(null)' and 'setFilter("")' actions. This keeps
-      // the card highlighted in your side gallery panel until a new route overwrite event lands.
       map.getCanvas().style.cursor = "";
     };
 
     const onRouteClick = (e: MapLayerMouseEvent) => {
       if (!e.features || e.features.length === 0) return;
+
+      // Set the camera flight access guard state timing instantly
+      (map as any)._rgCameraFlying = true;
+
+      const mapContainer = map.getContainer();
+      const mapCanvas = map.getCanvas();
+      if (mapContainer) mapContainer.style.pointerEvents = 'none';
+      if (mapCanvas) mapCanvas.style.pointerEvents = 'none';
+
       const f = e.features[0];
       const opts = optionsRef.current;
       const uniqueId = f.properties?.profile_id || String(f.id);
 
+      // 🎯 THE ANTI-FLICKER CORE CURE: Instead of pushing the fragmented, clipped feature geometry
+      // directly into our source layer, we match it against our pristine high-resolution ref cache.
+      const pristineFeature = routesDataRef.current.find(
+        (r: any) => r && String(r.properties?.profile_id || r.id) === String(uniqueId)
+      );
+
+      const selectedSrc = map.getSource("fs-roads-selected-source") as GeoJSONSource | undefined;
+      if (selectedSrc && pristineFeature) {
+        selectedSrc.setData({ type: "FeatureCollection", features: [pristineFeature] });
+      }
+
       try {
-        if (map.getLayer("fs-roads-selected")) {
-          map.setFilter("fs-roads-selected", [
-            "==",
-            ["get", "profile_id"],
-            uniqueId,
-          ]);
-        }
-        map.setFilter("fs-roads-hover-outer", [
-          "==",
-          ["get", "profile_id"],
-          "",
-        ]);
-        map.setFilter("fs-roads-hover-inner", [
-          "==",
-          ["get", "profile_id"],
-          "",
-        ]);
+        map.setFilter("fs-roads-hover-outer", ["==", ["get", "profile_id"], ""]);
+        map.setFilter("fs-roads-hover-inner", ["==", ["get", "profile_id"], ""]);
       } catch (err) {
         console.warn("Synchronous route filter crash guarded:", err);
       }
 
+      // Passes the full pristine geometry upstream so camera projection bounding metrics execute perfectly
       if (opts?.onRouteSelect) {
-        opts.onRouteSelect(f);
+        opts.onRouteSelect(pristineFeature || f);
       }
     };
 
@@ -378,7 +348,9 @@ export default function useFsRoads(
         finalGeo = normalizeFeatureIds(finalGeo);
         if (cancelled) return;
 
+        // Synchronize state tracking properties
         setRoutesData(finalGeo.features);
+        routesDataRef.current = finalGeo.features;
 
         try {
           const src = map.getSource("fs-roads") as GeoJSONSource | undefined;
@@ -389,9 +361,15 @@ export default function useFsRoads(
               type: "geojson",
               data: finalGeo as any,
               generateId: true,
-              // Restores high-performance background caching
               tolerance: 0.375,
               buffer: 64,
+            });
+          }
+
+          if (!map.getSource("fs-roads-selected-source")) {
+            map.addSource("fs-roads-selected-source", {
+              type: "geojson",
+              data: { type: "FeatureCollection", features: [] }
             });
           }
         } catch (e) {
@@ -416,7 +394,7 @@ export default function useFsRoads(
                     ["==", ["geometry-type"], "MultiLineString"],
                   ],
                   layout: {
-                    "line-join": "round", // FIXED: Eradicates miter spike exploded vertices!
+                    "line-join": "round",
                     "line-cap": "round",
                   },
                   paint: {
@@ -468,8 +446,8 @@ export default function useFsRoads(
                     ["==", ["geometry-type"], "MultiLineString"],
                   ],
                   layout: {
-                    "line-join": "round", // FIXED: Smooths out the base layer's jagged sharp corners!
-                    "line-cap": "round", // FIXED: Prevents boxy clipping artifacts on track termination nodes
+                    "line-join": "round",
+                    "line-cap": "round",
                   },
                   paint: {
                     "line-color": "#d97706",
@@ -491,10 +469,6 @@ export default function useFsRoads(
               );
             }
 
-            // 2. INTERACTIVE HOVER GLOW LAYER UPGRADE
-            // ================================================================
-            // 2A. INTERACTIVE HOVER LAYER - OUTER HALO (WIDE & FAINT)
-            // ================================================================
             if (!map.getLayer("fs-roads-hover-outer")) {
               map.addLayer(
                 {
@@ -518,9 +492,6 @@ export default function useFsRoads(
               );
             }
 
-            // ================================================================
-            // 2B. INTERACTIVE HOVER LAYER - INNER CORE (TIGHT & SOLID)
-            // ================================================================
             if (!map.getLayer("fs-roads-hover-inner")) {
               map.addLayer(
                 {
@@ -544,16 +515,14 @@ export default function useFsRoads(
               );
             }
 
-            // 3. SELECTION LAYER UPGRADE
             if (!map.getLayer("fs-roads-selected")) {
               map.addLayer(
                 {
                   id: "fs-roads-selected",
                   type: "line",
-                  source: "fs-roads",
-                  filter: ["==", ["get", "profile_id"], ""],
+                  source: "fs-roads-selected-source", // Binds clean sub-source data layer targets
                   layout: {
-                    "line-join": "round", // FIXED: Keeps selected routes completely smooth
+                    "line-join": "round", 
                     "line-cap": "round",
                   },
                   paint: {
