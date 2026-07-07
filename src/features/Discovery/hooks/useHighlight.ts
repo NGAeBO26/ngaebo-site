@@ -32,6 +32,10 @@ export function useHighlight(
 
     // --- SELF-CONTAINED INTERACTIVE POI MOUSE HANDLERS ---
     const onPoiHover = (e: MapLayerMouseEvent) => {
+      // 🎯 THE FLIGHT LOCK GATE: If the camera controller is executing a flight calculation,
+      // halt instantly. This blocks lookups from passing down to map.setFilter during high-speed zooms.
+      if ((map as any)._rgCameraFlying) return;
+
       map.getCanvas().style.cursor = "pointer";
       const f = e.features?.[0];
       if (!f) return;
@@ -54,6 +58,10 @@ export function useHighlight(
     };
 
     const onPoiLeave = () => {
+      // 🎯 THE FLIGHT LOCK GATE: Block pointer-leave resets from forcing a tile tree calculation
+      // while the camera projection metrics are shifting center targets.
+      if ((map as any)._rgCameraFlying) return;
+
       map.getCanvas().style.cursor = "";
       try {
         if (map.getLayer(HIGHLIGHT_LAYER_ID)) {
