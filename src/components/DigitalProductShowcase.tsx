@@ -127,10 +127,10 @@ export default function DigitalProductShowcase({
                 </div>
                 
                 <div className="accordion-content-overflow-wrapper">
-                  <p>Instantly evaluate hard metrics across the Gap. Verify exact route mileage, localized difficulty rankings, and real-world cellular signal drop zones so you never get stranded blind <strong>without a backup plan</strong>.</p>
+                  <p>Instantly evaluate route metrics. Verify exact route mileage, difficulty rankings, and real-world cellular signal drop zones so you never get stranded blind <strong>without a backup plan</strong>.</p>
                   <ul className="pillar-benefit-bullet-list">
                     <li>Isolates cell drops before you enter a valley</li>
-                    <li>Tracks exact difficulty scores and baseline route miles</li>
+                    <li>Tracks route difficulty scores, elevation gain, and average grade.</li>
                   </ul>
                 </div>
               </button>
@@ -157,10 +157,10 @@ export default function DigitalProductShowcase({
                 </div>
                 
                 <div className="accordion-content-overflow-wrapper">
-                  <p>Stop guessing how much rain a trail took. Real-time precipitation tracking with our surface saturation matrix calculates the prime departure window, ensuring you hit <strong>tacky dirt instead of slick mud</strong>.</p>
+                  <p>Stop guessing how much rain the surface took. Real-time precipitation tracking uses our surface saturation matrix to determine the prime departure window, ensuring you hit <strong>tacky dirt instead of slick mud</strong>.</p>
                   <ul className="pillar-benefit-bullet-list">
                     <li>Locks in the precise hour to stage your ride</li>
-                    <li>Flags soft/muddy tracking variables that sap eBike voltage</li>
+                    <li>Flags soft/muddy tracking surfaces that sap eBike voltage</li>
                   </ul>
                 </div>
               </button>
@@ -187,10 +187,10 @@ export default function DigitalProductShowcase({
                 </div>
                 
                 <div className="accordion-content-overflow-wrapper">
-                  <p>Scan continuous elevation gain trends alongside maximum incline severity metrics. Know exactly when your motor will face sharp grade spikes over 15% so you can <strong>preserve battery cells</strong> and manage system heat.</p>
+                  <p>Know exactly when your motor will face sharp grade spikes so you can <strong>preserve battery cells</strong> and manage system heat.</p>
                   <ul className="pillar-benefit-bullet-list">
                     <li>Plots high-resolution vertical profile trends across the trip</li>
-                    <li>Displays average grade percentages for accurate power mapping</li>
+                    <li>Displays precise accents and decents for accurate power mapping</li>
                   </ul>
                 </div>
               </button>

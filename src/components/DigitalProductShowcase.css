@@ -516,3 +516,249 @@
   height: 20px;
   margin-top: auto;
 }
+
+/* ==========================================================================
+   📱 DIGITAL PRODUCT SHOWCASE MOBILE UTILITY LAYOUT (MAX-WIDTH: 767px)
+   Safely handles columns, text wrapping, and image stacking strictly on mobile.
+   ========================================================================== */
+@media (max-width: 767px) {
+
+  /* Section headers and padding limits */
+  .digital-product-showcase-section {
+    padding: 16px 0 !important;
+  }
+
+  .section-header {
+    margin-bottom: 16px !important;
+  }
+
+  .section-header h2 {
+    font-size: 1.6rem !important;
+    line-height: 1.2 !important;
+    padding: 0 8px !important;
+  }
+
+  .sub-tagline-lowercase {
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
+    padding: 0 12px !important;
+  }
+
+  /* Flatten the three value cards into a clean vertical stack */
+  .prop-strip-matrix-bay {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    padding: 0 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  .prop-value-column-card {
+    width: 100% !important;
+    align-items: flex-start !important;
+    padding: 14px !important;
+  }
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     🎯 REVISED SINGLE-FOLD VIEWPORT ENGINE (WITH EXPANDED TEXT OVERWRITES)
+     ────────────────────────────────────────────────────────────────────────── */
+  
+  .blueprint-interactive-bay {
+    display: flex !important;
+    flex-direction: column !important; /* Stacks the Tab Row vertically above the Map Canvas */
+    gap: 16px !important;
+    height: auto !important;
+    max-height: none !important;
+    padding: 0 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 🛰️ THE TAB ROW (Allocates the upper row workspace) */
+  .product-pillars-tab-stack {
+    display: flex !important;
+    flex-direction: row !important; 
+    justify-content: space-between !important;
+    width: 100% !important;
+    height: 64px !important; 
+    position: relative !important; 
+    gap: 6px !important;
+    
+    /* 🎯 THE CEILING FIX: Expanded from 125px to 165px. This creates a slightly 
+       deeper, safer structural pocket to comfortably hold your wrapped text blocks 
+       without letting them spill onto the map below. */
+    margin-bottom: 165px !important; 
+  }
+
+  /* Individual Tab Button Element Geometry */
+  .feature-pillar-tab-card {
+    flex: 1 !important; 
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 8px 4px !important;
+    height: 64px !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    border-radius: 8px 8px 4px 4px !important; /* Slightly squared at base for border alignment */
+    position: static !important;   
+    overflow: visible !important;  
+  }
+
+  /* Hides the desktop vertical anchor bar */
+  .accordion-left-indicator-bar {
+    display: none !important;
+  }
+
+  /* Aligns icon assets and text vertically inside the button tab */
+  .accordion-tab-header-strip {
+    flex-direction: column !important;
+    gap: 2px !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .accordion-tab-vector-placeholder {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  .accordion-tab-vector-placeholder img.ng-accordion-graphic-asset {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* Tab Title Micro-adjustments */
+  .feature-pillar-tab-card .accordion-title-text {
+    font-size: 8px !important;
+    line-height: 1.1 !important;
+    white-space: normal !important;
+    display: block !important;
+  }
+
+  /* Active/Collapsed Horizontal Tab State Shifting */
+  .feature-pillar-tab-card.active-pillar {
+    background: #ffffff !important;
+    border-color: var(--brand-sky) !important;
+    
+    /* 🎯 THE FIX: Maps the desktop blue indicator bar to a clean bottom tab border */
+    border-bottom: 4px solid var(--brand-sky) !important;
+  }
+  .feature-pillar-tab-card.collapsed-pillar {
+    background: color-mix(in srgb, var(--brand-deep-green) 45%, transparent) !important;
+    border-color: var(--brand-deep-green) !important;
+    
+    /* 🎯 THE FIX: Maps the desktop orange/amber indicator bar to a clean bottom tab border */
+    border-bottom: 4px solid var(--brand-amber) !important;
+  }
+
+  /* ──────────────────────────────────────────────────────────────────────────
+     📝 ABSOLUTE TEXT BREAKOUT ACTION
+     Pulls the description wrapper out of the button layout flow and drops it below.
+     ────────────────────────────────────────────────────────────────────────── */
+  
+  /* Collapsed items remain safely hidden */
+  .feature-pillar-tab-card.collapsed-pillar .accordion-content-overflow-wrapper {
+    display: none !important;
+    max-height: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  /* Active item rolls open underneath the tab row elements */
+  /* ─── 📝 ACCORDION DESCRIPTION BREAKOUT DROPDOWN CARD ─── */
+  .feature-pillar-tab-card.active-pillar .accordion-content-overflow-wrapper {
+    display: block !important;
+    position: absolute !important;
+    
+    /* 🎯 THE GAP FIX: Swapped from 64px to 100% and explicitly wiped out the 
+       inherited desktop margin-top rule. This forces the card to pin itself 
+       mathematically flush against the bottom border of the tab line. */
+    top: 100% !important; 
+    margin-top: 0px !important; 
+    
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+    z-index: 80 !important;
+    background: linear-gradient(180deg, #ffffff 0%, #f4f9ff 100%) !important;
+    padding: 12px !important; 
+    box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.15) !important;
+
+    /* 🎯 THE DESIGN FIX: Injects your clean blue top border and flattens out 
+       the upper corners so it connects like a continuous native drop-panel. */
+    border: 1px solid var(--brand-sky) !important;
+    border-top: 8px solid var(--brand-sky) !important; 
+    border-radius: 0 0 8px 8px !important; 
+  }
+
+  /* Typography color overrides to guarantee high-contrast legibility against 
+     the section's dark forest background wrapper scene */
+  .feature-pillar-tab-card.active-pillar .accordion-content-overflow-wrapper p {
+    /* 🎯 THE FIX: Restores original desktop dark graphite color for clear readability 
+       against the newly added light background container */
+    color: var(--brand-graphite) !important; 
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
+    margin: 0 0 8px 0 !important;
+  }
+
+  .feature-pillar-tab-card.active-pillar .pillar-benefit-bullet-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+    margin: 8px 0 0 0 !important;
+    padding: 6px 0 0 0 !important;
+    border-top: 1px dashed rgba(15, 23, 42, 0.15) !important; /* Darkened divider line for light theme */
+  }
+
+  .feature-pillar-tab-card.active-pillar .pillar-benefit-bullet-list li {
+    /* 🎯 THE FIX: Restores desktop dark forest green text for bullet point items */
+    color: var(--brand-verdant) !important; 
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+  }
+
+  /* 🗺️ MAP BLUEPRINT CANVAS (Sits cleanly below the 135px text envelope) */
+  .blueprint-viewport-display-contain {
+    width: 100% !important;
+    
+    /* 🎯 THE SINGLE-FOLD FIX: Compressed down to 200px wide. Because the mockup 
+       uses a strict 3:4 aspect-ratio, dropping the width down to 200px automatically 
+       scales the height down to 266px, saving a massive 60px of vertical space! 
+       This completely absorbs the new text space and pulls the whole showcase 
+       natively into one single device fold. */
+    max-width: 200px !important; 
+    
+    height: auto !important;
+    aspect-ratio: 3 / 4 !important; /* Preserves pixel-perfect overlay coordinates */
+    margin: 0 auto !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .blueprint-main-map-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .blueprint-hotspot-highlight-overlay .map-overlay-tooltip {
+    font-size: 6px !important;
+    padding: 2px 4px !important;
+    bottom: 2px !important;
+  }
+
+  /* Lower CTA button layout mappings */
+  .isolated-cta-clear-way {
+    padding: 16px 12px 0 12px !important;
+  }
+  .btn-cta-oversized {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 12px 16px !important;
+    font-size: 0.95rem !important;
+  }
+}

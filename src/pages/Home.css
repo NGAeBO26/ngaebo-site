@@ -584,3 +584,169 @@
   gap: 32px;
   align-items: center;
 }
+
+/* ==========================================================================
+   📱 APPEND-ONLY MOBILE UTILITY LAYOUT (MAX-WIDTH: 767px)
+   This block safely shuffles and scales elements ONLY on mobile viewports.
+   ========================================================================== */
+@media (max-width: 767px) {
+  
+  /* 1. HERO RE-ORDERING VIEWPORT ENGINE */
+  .hero-split-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 32px !important;
+  }
+
+  /* Unlocks the elements wrapper so we can change the layout order on mobile */
+  .hero-content-stack {
+    display: contents !important;
+  }
+
+  /* Structural document order sequence */
+  .hero-home-title { order: 1 !important; text-align: center !important; font-size: 2.2rem !important; }
+  .hero-tagline-blue { order: 2 !important; text-align: center !important; margin-top: 8px !important; }
+  .hero-text { order: 3 !important; text-align: center !important; margin: 16px 0 !important; font-size: 1rem !important; }
+
+  /* Moves the unbroken cockpit graphics block up above the CTA buttons */
+  .hero-visual-block {
+    order: 4 !important;
+    height: auto !important; /* Unlocks vertical growth constraints */
+    min-height: auto !important; 
+    padding: 12px !important;
+    gap: 12px !important;
+    background-position: center !important;
+  }
+
+  /* Pushes the button array directly beneath the cockpit graphic */
+  .hero-actions-stack {
+    order: 5 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 10px !important;
+  }
+
+  /* 2. COCKPIT INSTRUMENT GRID SYSTEM SCALING */
+  .hero-hud-3x3-container {
+    grid-template-columns: 36% 28% 36% !important;
+    position: relative !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    
+    /* 🎯 THE FIX: Changes the rigid 105px rows to dynamic minmax tracks. 
+       This allows rows to grow automatically to match the height of your longest text string! */
+    grid-template-rows: minmax(105px, auto) 30px minmax(105px, auto) !important; 
+    height: auto !important; /* Removes the 240px structural ceiling */
+  }
+
+  /* 🎯 THE FIX: Declares the quadrant card inside mobile to enforce backgrounds and 100% row height matching */
+  .hud-quadrant-card {
+    border-radius: 12px !important; /* Fixed typo here */
+    padding: 8px !important; 
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important; 
+    align-items: flex-start !important;
+    width: 100% !important;
+    height: 100% !important; 
+    
+    background: color-mix(in srgb, var(--brand-white) 35%, transparent) !important;
+    border: 1px solid var(--brand-white) !important;
+  }
+
+  /* Compresses internal metric cards to prevent layout breaks */
+  .hero-metric-inline-card-centered {
+    height: 62px !important; 
+    margin: 8px 0 0 0 !important; /* Pushes element down away from the text header block */
+  }
+
+  .hero-metric-inline-card {
+    height: 28px !important;
+    gap: 6px !important;
+    padding: 4px 8px !important;
+  }
+
+  /* Proportional vector image scaling */
+  .svg-size-joy-dial     { width: 75px !important; height: 48px !important; }
+  .svg-size-sparkline    { height: 24px !important; }
+  .svg-size-effort-gauge { height: 22px !important; }
+  
+  .hero-dial-wrapper { width: 20px !important; height: 20px !important; }
+  .hero-dial-icon    { width: 11px !important; height: 11px !important; }
+  .hero-dial-mask    { inset: 2px !important; }
+  
+  .hud-metric-readout-bold { font-size: 0.62rem !important; }
+  .hud-metric-label-micro  { font-size: 5px !important; }
+
+  /* 🎯 THE FIX: Forces text wrapping on long labels without clipping */
+  .hud-panel-label {
+    font-size: 7.5px !important; 
+    white-space: normal !important; /* Allows natural multi-line wrapping */
+    line-height: 1.25 !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    display: block !important;
+    margin-bottom: 2px !important;
+  }
+
+  /* 🎯 THE FIX: Syncs mobile text styling directly with your desktop amber color and drop shadow values */
+  .hud-panel-title {
+    font-size: 8.5px !important;
+    white-space: nowrap !important; 
+    overflow: hidden !important;   
+    text-overflow: ellipsis !important;
+    letter-spacing: 0px !important;
+    margin-top: 1px !important;
+    color: var(--brand-amber) !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95) !important; /* Perfectly mirrors desktop shadow settings */
+  }
+
+  /* Mathematical radar centering engine */
+  .hud-center-radar-anchor {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) scale(0.68) !important; 
+    width: 110px !important;
+    height: 110px !important;
+    margin: 0 !important;
+    z-index: 100 !important;
+  }
+
+  .hud-spider-wrapper {
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  .svg-size-risk-radar {
+    width: 95px !important;
+    height: 95px !important;
+  }
+
+  /* Readout map label scales */
+  .hud-axis-label {
+    font-size: 6.5px !important;
+  }
+  .axis-right-side   { right: -24px !important; }
+  .axis-left-side    { left: -22px !important; }
+  .axis-center-title { bottom: -14px !important; font-size: 8px !important; }
+
+  /* 3. SECTION 2: PROBLEM-HOOK STACKING RESTRUCTURE */
+  .problem-split-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+
+  .problem-challenge-block h2 {
+    font-size: 1.8rem !important; 
+    line-height: 1.3 !important;
+    text-align: left !important;
+  }
+
+  .problem-solution-block p {
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+  }
+}

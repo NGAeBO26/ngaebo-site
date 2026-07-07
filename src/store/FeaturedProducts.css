@@ -157,11 +157,14 @@
 /* ─── 🎯 REMAPPED: BANNER Headline ─── */
 .shop-hero-banner .shop-hero-banner-main-headline {
   display: block;
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 10px;
-  font-family: "Montserrat", sans-serif;
+  color: #af5519 !important;
+  margin: 0 0 6px 0 !important;
+  font-size: 1.5rem !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.01em !important;
+  text-transform: uppercase !important;
+  font-family: "Montserrat", sans-serif !important;
+  text-shadow: 0 1px 2px #fff !important;
 }
 
 /* ─── 🎯 STICKY HEADER LIGHTBOX MITIGATION INTERCEPTOR ─── */
@@ -250,4 +253,73 @@ body.rg-product-modal-active .rg-site-header-nav {
   font-weight: bold;
   color: #16a34a !important; 
   user-select: none;
+}
+
+/* ==========================================================================
+   📱 FEATURED PRODUCTS STOREFRONT MOBILE ADAPTATION (MAX-WIDTH: 767px)
+   Protects all desktop layout structures while fixing mobile viewport bleed.
+   ========================================================================== */
+@media (max-width: 767px) {
+
+  /* 1. SHOP ACCESSORIES DIVIDER RIBBON COMPRESSION
+     Forces the global text labels to wrap cleanly on multiple rows instead 
+     of spilling out past the edge of the smartphone frame. */
+  .shop-accessories-divider-ribbon {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 12px 16px !important;
+    margin: 24px 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .shop-accessories-divider-label {
+    /* Uses a responsive fluid scale to downsize the heading text size slightly */
+    font-size: clamp(0.95rem, 4.5vw, 1.15rem) !important; 
+    white-space: normal !important; /* THE BLEED FIX: Forces text to break onto multiple lines */
+    text-align: center !important;
+    line-height: 1.4 !important;
+    width: 100% !important;
+    display: block !important;
+    padding: 0 8px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. SIDE-BY-SIDE PRODUCT DETAILS ALIGNMENT
+     Overrides the tablet stacking rule to position the green feature checkmarks 
+     directly to the right side of the product name container. */
+  .product-grid-card .product-card-primary-details {
+    display: flex !important;
+    flex-direction: row !important; /* THE LAYOUT FIX: Aligns title and checks horizontally */
+    justify-content: space-between !important;
+    align-items: flex-end !important; /* Keeps base levels perfectly level */
+    gap: 12px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Stabilizes column widths so long product text lines don't push checkmarks off-screen */
+  .product-grid-card .product-card-identity-block {
+    flex: 1 !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-end !important;
+  }
+
+  /* Retains clean right-alignment parameters for the checkmark rows on mobile screens */
+  .product-grid-card .product-card-stacked-features {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important; /* Pushes list items flush against the right margin */
+    gap: 4px !important;
+    flex-shrink: 0 !important; /* Blocks checkmarks from shrinking or compressing */
+  }
+
+  .product-grid-card .product-card-feature-item {
+    font-size: 0.68rem !important; /* Slight drop to optimize spacing inside columns */
+    justify-content: flex-end !important;
+  }
 }

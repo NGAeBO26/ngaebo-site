@@ -361,3 +361,184 @@
   .gateway-theater-loading-wrapper .gateway-static-theater-headline { font-size: 24px; }
   .gateway-absolute-main-logo { width: 90px; top: -10px; left: 12px; }
 }
+
+/* ==========================================================================
+   📱 REDIRECT GATEWAY NATIVE FULL-SCREEN BOTTOM SHEET (MAX-WIDTH: 767px)
+   Preserves widescreen layouts while converting mobile view into a smooth overlay.
+   ========================================================================== */
+@media (max-width: 767px) {
+
+  /* 1. VIEWPORT WINDOW BOUNDARY ANCHORS */
+  .gateway-master-viewport-wrapper {
+    padding: 0 !important; /* Wipes out desktop margins to claim full width */
+    background-color: #0f172a !important; /* Preserves the deep dark background backdrop scene */
+    overflow: hidden !important; /* Prevents the underlying body frame from dual-scrolling */
+    position: relative !important;
+  }
+
+  /* 🏛️ THE CONVERTED BOTTOM SHEET CANVAS
+     Transforms the desktop card shell into an immersive, full-height scrolling panel */
+  .gateway-center-card-shell {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100vh !important; /* Spans full height like the ProductLayout panel overlay */
+    max-height: 100vh !important;
+    border-radius: 0 !important; /* Flattens corners for an integrated app view */
+    border: none !important;
+    overflow-y: auto !important; /* Enables smooth native scrolling down the page stream */
+    -webkit-overflow-scrolling: touch !important;
+    z-index: 99999 !important;
+
+    /* ─── 🏎️ THE BOTTOM-UP TRANSITION TUNING ENGINE ─── */
+    transform: translateY(100%); /* Staged completely hidden below the browser viewport floor */
+    animation: rgSlideOverSheetEntry 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  }
+
+  /* 2. HEADER BRANDING COMPRESSION */
+  .gateway-card-accent-bar {
+    height: 48px !important; /* Enlarges header bar thickness for balanced mobile spacing */
+    flex-shrink: 0 !important;
+    padding-left: 100px !important; /* Clears layout real estate so text never clips under the logo */
+    justify-content: flex-start !important;
+  }
+
+  .gateway-card-accent-bar span {
+    font-size: 10px !important;
+    letter-spacing: 0.04em !important;
+  }
+
+  /* Scales down the floating left-pinned logo to sit neatly within the mobile header bar bounds */
+  .gateway-absolute-main-logo {
+    height: 38px !important;
+    top: 5px !important;
+    left: 12px !important;
+  }
+
+  /* 3. INTERIOR PAYLOAD SPACE CALIBRATION */
+  .gateway-form-payload {
+    padding: 16px 14px 40px 14px !important;
+    gap: 16px !important;
+  }
+
+  .gateway-centered-vendor-logo-bay {
+    margin: 8px 0 !important;
+  }
+  .gateway-centered-vendor-logo-bay .gateway-computed-logo {
+    max-height: 32px !important; /* Keeps partner logos compact and proportional */
+  }
+
+  /* Protocol Destination Sub-Header */
+  .gateway-title-block-lbl {
+    padding: 10px !important;
+    margin-bottom: 0 !important;
+  }
+  .gateway-product-row-flex .gateway-inline-product-title-text {
+    font-size: 15px !important; /* Downscales long titles to stop clipping */
+    line-height: 1.3 !important;
+  }
+
+  /* 4. HORIZONTAL INPUT STACKING FLATTENER
+     Forces the side-by-side lead fields to stack into clear mobile blocks */
+  .gateway-rideguide-lead-incentive-card {
+    padding: 14px !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Dynamic selector targeting the inner form container layout of TacticalLeadForm */
+  .gateway-rideguide-lead-incentive-card form,
+  .gateway-rideguide-lead-incentive-card .tactical-lead-wrapper {
+    display: flex !important;
+    flex-direction: column !important; /* Overrides row behavior to stack elements vertically */
+    gap: 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .gateway-rideguide-lead-incentive-card input[type="email"] {
+    width: 100% !important;
+    height: 44px !important;
+    padding: 10px 14px !important;
+    font-size: 0.95rem !important;
+    border-radius: 6px !important;
+    box-sizing: border-box !important;
+  }
+
+  .gateway-rideguide-lead-incentive-card button {
+    width: 100% !important;
+    height: 44px !important;
+    font-size: 0.95rem !important;
+    border-radius: 6px !important;
+    justify-content: center !important;
+    margin: 0 !important;
+  }
+
+  /* 5. LEGAL CHECKS & FIXED DISCLOSURE HEIGHTS */
+  .gateway-scrollable-disclosure-pane {
+    max-height: 110px !important; /* Constrains legal block height to preserve folder visibility */
+    margin-bottom: 0 !important;
+    padding: 10px 20px 10px 10px !important;
+  }
+
+  .gateway-checkbox-inputs-stack {
+    margin-bottom: 4px !important;
+    gap: 12px !important;
+  }
+  .gateway-checkbox-text-token {
+    font-size: 11.5px !important; /* Optimizes readability scale for smaller phone frames */
+    line-height: 1.35 !important;
+  }
+
+  /* 6. CONVERSION FOOTER ACTIONS STACK
+     Flattens buttons into easily clickable, full-width touch targets */
+  .gateway-form-actions-footer {
+    flex-direction: column-reverse !important; /* Places confirmation button on top for easier thumbs access */
+    gap: 10px !important;
+    padding-top: 16px !important;
+    border-top: 1px solid #f1f5f9 !important;
+    width: 100% !important;
+  }
+
+  .gateway-submit-action-btn {
+    width: 100% !important;
+    height: 46px !important;
+    font-size: 14px !important;
+    justify-content: center !important;
+    border-radius: 6px !important;
+  }
+
+  .gateway-cancel-close-btn {
+    width: 100% !important;
+    height: 40px !important;
+    font-size: 12.5px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Loading State Performance Theater Mobile Adjustments */
+  .gateway-theater-loading-wrapper {
+    padding: 30px 16px !important;
+    min-height: auto !important;
+    flex: 1 !important;
+  }
+  .gateway-theater-loading-wrapper .gateway-static-theater-headline {
+    font-size: 22px !important;
+  }
+  .gateway-server-handshake-lbl {
+    font-size: 13px !important;
+  }
+}
+
+/* ─── 🎬 HARDWARE-ACCELERATED BOTTOM-TO-TOP ENTRY STAGE (0.4s VELOCITY CURVE) ─── */
+@keyframes rgSlideOverSheetEntry {
+  from { 
+    transform: translateY(100%); 
+  }
+  to { 
+    transform: translateY(0); 
+  }
+}

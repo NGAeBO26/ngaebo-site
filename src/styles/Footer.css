@@ -48,3 +48,21 @@
   text-align: center;
   color: var(--brand-bone);
 }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   📱 MOBILE FOOTER ADAPTATION OVERRIDE (MAX-WIDTH: 767px)
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  /* Transforms the link block from a squished horizontal row into a clean vertical stack */
+  .rg-footer-links-block {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 16px !important; /* Provides touch target clearance between links */
+  }
+
+  /* Ensures the copyright notice layout remains balanced at the base of the column stack */
+  .rg-footer-copyright-text {
+    margin-top: 8px !important;
+    line-height: 1.5 !important;
+  }
+}

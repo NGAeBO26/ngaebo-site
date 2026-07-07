@@ -1,7 +1,7 @@
 /* src/store/ProductLayout.css */
 
 /* ==========================================================================
-   🏛️ EDITORIAL LIGHTBOX INNER MODAL INTERIOR RULES (UNIFIED VISUAL EDITIONS)
+   🖥️ SACRED DESKTOP LIGHTBOX MODAL CONSOLE VIEW (100% UNTOUCHED)
    ========================================================================== */
 .modal-blur-overlay {
   position: fixed;
@@ -35,7 +35,6 @@
   flex-direction: column;
 }
 
-/* ACCENT HEADER: Keeps content centered perfectly while handling right-aligned absolute triggers */
 .modal-premium-accent-header {
   background: linear-gradient(90deg, #ebc850 0%, #f59e0b 100%);
   width: 100%;
@@ -59,7 +58,6 @@
   text-align: center;
 }
 
-/* VERTICALLY CENTERED CLOSE TRIGGER: Pinned directly inside the right boundary line */
 .modal-close-trigger-right-pinned {
   position: absolute;
   right: 16px;
@@ -88,7 +86,6 @@
   border-color: #ffffff;
 }
 
-/* THE SCROLLBACK FIX: Scroll navigation lives safely inside this inner body container */
 .modal-content-scroll-container {
   width: 100%;
   flex: 1;
@@ -133,9 +130,6 @@
   align-items: center;
 }
 
-/* 🎯 FIXED LOGO SIZE CONSTRAINT:
-   Enforces a clean max-height profile with flexible automatic width values 
-   so brand logos scale down safely instead of blowing up to their native size. */
 .manufacturer-badge-logo {
   height: 100%;
   max-height: 28px;
@@ -145,17 +139,9 @@
   mix-blend-mode: multiply;
 }
 
-/* Specific proportional layout scaling overrides for wide textual brand logo markers */
-.manufacturer-badge-logo[src*="Ride1Up"] {
-  max-height: 22px;
-}
+.manufacturer-badge-logo[src*="Ride1Up"] { max-height: 22px; }
+.manufacturer-badge-logo[src*="rockbros_text_logo"] { max-height: 18px; }
 
-.manufacturer-badge-logo[src*="rockbros_text_logo"] {
-  max-height: 18px;
-}
-
-/* 🎯 THE DYNAMIC SINGLE-LINE MODAL TITLE SCALER:
-   Isolated cleanly here on your unique class token to avoid layout leaks. */
 .header-text-block .modal-editorial-title {
   margin: 0;
   color: #1e293b;
@@ -164,11 +150,9 @@
   letter-spacing: -0.5px;
   font-family: "Montserrat", sans-serif !important;
   width: 100%;
-
   white-space: nowrap;
   overflow: hidden;
   text-overflow: clip;
-
   font-size: clamp(14px, 2.2vw, 28px) !important;
 }
 
@@ -302,186 +286,354 @@
   box-sizing: border-box;
 }
 
-.editorial-description-text p {
-  margin: 0;
-}
+.editorial-description-text p { margin: 0; }
+.right-content { width: 52%; display: flex; flex-direction: column; box-sizing: border-box; }
+.features-section { display: flex; flex-direction: column; gap: 8px; text-align: left; height: auto; margin-bottom: 24px; }
+.feature-title { font-size: 16px; font-weight: 800; color: #0b132a; margin: 0; }
+.check-line { display: flex; align-items: start; gap: 10px; font-size: 11px; color: #333333; font-weight: 500; }
+.check-icon { color: #16a34a; font-weight: 900; font-size: 15px; }
+.action-footer { display: flex; flex-direction: column; box-sizing: border-box; margin-bottom: 24px; height: auto; }
+.action-horizontal-row { display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 20px; width: 100%; margin-bottom: 8px; }
+.price-block-wrapper { display: flex; flex-direction: column; text-align: left; flex-shrink: 0; }
+.msrp-label { font-size: 11px; text-decoration: line-through; color: var(--brand-graphite); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.2; }
+.price-value-label { font-size: 36px; font-weight: 900; font-family: "Montserrat", sans-serif !important; line-height: 1; }
+.price-sale { color: #1b7f3a; }
+.price-normal { color: #0b132a; }
+.cta-button-link { flex: 1; max-width: 280px; background-color: #e36622; color: #ffffff; padding: 14px 24px; border: none; border-radius: 4px; text-align: center; font-weight: 700; font-size: 15px; box-sizing: border-box; cursor: pointer; font-family: "Montserrat", sans-serif !important; margin-top: 0; white-space: nowrap; }
+.cta-button-link:hover { background-color: #c55317; }
+.disclosure-text { display: block; font-size: 11px; color: #94a3b8; font-style: italic; line-height: 1.35; text-align: left; }
+.specs-list-box { border: 1px solid #e2e8f0; background-color: #fafafa; padding: 14px 24px; border-radius: 8px; display: flex; flex-direction: column; gap: 12px; box-sizing: border-box; width: 100%; margin-bottom: 20px; }
+.spec-line-item { display: flex; align-items: baseline; font-size: 14px; }
+.spec-title-key { width: 120px; color: #1e293b; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+.spec-desc-value { color: #334155; font-weight: 500; flex: 1; line-height: 1.4; }
 
-.right-content {
-  width: 52%;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
 
-.features-section {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  text-align: left;
-  height: auto;
-  margin-bottom: 24px;
-}
-
-.feature-title {
-  font-size: 16px;
-  font-weight: 800;
-  color: #0b132a;
-  margin: 0;
-}
-
-.check-line {
-  display: flex;
-  align-items: start;
-  gap: 10px;
-  font-size: 11px;
-  color: #333333;
-  font-weight: 500;
-}
-
-.check-icon {
-  color: #16a34a;
-  font-weight: 900;
-  font-size: 15px;
-}
-
-.action-footer {
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  margin-bottom: 24px;
-  height: auto;
-}
-
-.action-horizontal-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  width: 100%;
-  margin-bottom: 8px;
-}
-
-.price-block-wrapper {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  flex-shrink: 0;
-}
-
-.msrp-label {
-  font-size: 11px;
-  text-decoration: line-through;
-  color: var(--brand-graphite);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  line-height: 1.2;
-}
-
-.price-value-label {
-  font-size: 36px;
-  font-weight: 900;
-  font-family: "Montserrat", sans-serif !important;
-  line-height: 1;
-}
-
-.price-sale {
-  color: #1b7f3a;
-}
-
-.price-normal {
-  color: #0b132a;
-}
-
-.cta-button-link {
-  flex: 1;
-  max-width: 280px;
-  background-color: #e36622;
-  color: #ffffff;
-  padding: 14px 24px;
-  border: none;
-  border-radius: 4px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 15px;
-  box-sizing: border-box;
-  cursor: pointer;
-  font-family: "Montserrat", sans-serif !important;
-  margin-top: 0;
-  white-space: nowrap;
-}
-
-.cta-button-link:hover {
-  background-color: #c55317;
-}
-
-.disclosure-text {
-  display: block;
-  font-size: 11px;
-  color: #94a3b8;
-  font-style: italic;
-  line-height: 1.35;
-  text-align: left;
-}
-
-.specs-list-box {
-  border: 1px solid #e2e8f0;
-  background-color: #fafafa;
-  padding: 14px 24px;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  box-sizing: border-box;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.spec-line-item {
-  display: flex;
-  align-items: baseline;
-  font-size: 14px;
-}
-
-.spec-title-key {
-  width: 120px;
-  color: #1e293b;
-  font-weight: 700;
-  font-size: 14px;
-  flex-shrink: 0;
-}
-
-.spec-desc-value {
-  color: #334155;
-  font-weight: 500;
-  flex: 1;
-  line-height: 1.4;
-}
-
-@media (max-width: 768px) {
-  .layout-split {
-    flex-direction: column;
-    gap: 24px;
+/* ==========================================================================
+   📱 DETACHED NATIVE FULL-SCREEN SLIDE-OVER ARCHITECTURE (MAX-WIDTH: 767px)
+   ========================================================================== */
+@media (max-width: 767px) {
+  
+  /* Reset overlay wrapping targets for complete mobile isolation */
+  .modal-blur-overlay {
+    padding: 0 !important;
+    background: rgba(15, 23, 42, 0.8) !important;
   }
-  .left-media,
-  .right-content {
-    width: 100%;
+
+  .modal-scroll-shell {
+    max-width: 100% !important;
+    width: 100vw !important;
+    max-height: 100vh !important;
+    height: 100vh !important;
+    border-radius: 0 !important;
+    border: none !important;
   }
-  .layout-header-row {
-    flex-direction: column;
-    gap: 16px;
+
+  /* 🏛️ THE SEPARATE SHEET CANVAS */
+  .rg-mobile-fullscreen-sheet {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background-color: #ffffff !important;
+    font-family: "Montserrat", sans-serif !important;
+    box-sizing: border-box !important;
+    
+    /* Dynamic full screen drawer entry transition */
+    transform: translateY(100%);
+    animation: rgSlideOverSheetEntry 1s forwards cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .header-logo-block {
-    align-items: flex-start;
+
+  /* Fixed Mobile Header Strip */
+  .rg-mobile-sheet-header {
+    background: linear-gradient(90deg, #ebc850 0%, #f59e0b 100%) !important;
+    height: 48px !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    flex-shrink: 0 !important;
+    padding: 0 48px 0 16px !important;
+    box-sizing: border-box !important;
   }
-  .action-horizontal-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+
+  .rg-mobile-header-sub {
+    color: #ffffff !important;
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    text-shadow: 0 1px 2px #af5519 !important;
   }
-  .cta-button-link {
-    max-width: 100%;
-    width: 100%;
+
+  /* 🎯 THE EXIT FIX: Re-established percentage coordinate containment 
+     to perfectly center the exit button vertically in the header bar */
+  .rg-mobile-sheet-close-btn {
+    position: absolute !important;
+    right: 12px !important;
+    top: 50% !important; 
+    transform: translateY(-50%) !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+    color: #ffffff !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
+
+  /* 🎯 THE SINGLE-FOLD GRID ENGINE:
+     Converts the body layout from a vertical flex column into an asymmetric grid container.
+     This moves elements side-by-side cleanly without breaking the original HTML structure. */
+  .rg-mobile-sheet-body {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    padding: 16px 14px 40px 14px !important;
+    box-sizing: border-box !important;
+    
+    display: grid !important;
+    grid-template-columns: 56px 1fr !important; /* 56px left column for thumbnails, remainder for showcase */
+    column-gap: 12px !important;
+    row-gap: 16px !important;
+  }
+
+  /* Layout Row 1: Heading Block (Spans full width across both columns) */
+  .rg-mobile-product-meta-block {
+    grid-column: 1 / -1 !important;
+    grid-row: 1 !important;
+    text-align: left !important;
+    width: 100% !important;
+  }
+
+  .rg-mobile-brand-frame {
+    height: 24px !important;
+    margin-bottom: 6px !important;
+    display: flex !important;
+    align-items: center;
+  }
+  .rg-mobile-brand-frame img {
+    height: 100% !important;
+    max-height: 24px !important;
+    width: auto !important;
+    object-fit: contain !important;
+  }
+
+  .rg-mobile-product-title {
+    font-size: 1.4rem !important;
+    font-weight: 900 !important;
+    color: #0f172a !important;
+    line-height: 1.25 !important;
+    margin: 0 0 4px 0 !important;
+    white-space: normal !important;
+  }
+
+  .rg-mobile-stars-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-size: 12px !important;
+  }
+  .rg-mobile-stars { color: #f59e0b !important; }
+  .rg-mobile-reviews-lbl { color: #64748b !important; font-weight: 500; }
+
+  /* 🎯 THE VERTICAL GALLERY FIX: Placed in Left Column, Row 2 */
+  .rg-mobile-thumbs-row-slider {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    display: flex !important;
+    flex-direction: column !important; /* Overrides row behavior to stack thumbnail cards vertically */
+    gap: 6px !important;
+    overflow-y: auto !important; /* Restores vertical scrolling mechanics for hidden items */
+    overflow-x: hidden !important;
+    height: 200px !important; /* Matches shrunken showcase display window precisely */
+    width: 100% !important;
+    padding: 2px !important;
+    box-sizing: border-box !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  .rg-mobile-thumb-card {
+    width: 100% !important; /* Claims the full 56px grid column width track */
+    height: 42px !important; /* Compact profile ensures multiple gallery images remain visible */
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 6px !important;
+    background: #fff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    padding: 3px !important;
+    box-sizing: border-box !important;
+  }
+  .rg-mobile-thumb-card.active {
+    border-color: #e36622 !important;
+    box-shadow: 0 0 0 1px #e36622 !important;
+  }
+  .rg-mobile-thumb-card img {
+    max-height: 100% !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+  }
+
+  /* 🎯 THE MAIN SHOWCASE DISPLAY: Placed in Right Column, Row 2 */
+  .rg-mobile-media-showcase {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    background-color: #f8fafc !important;
+    border-radius: 8px !important;
+    height: 200px !important; /* Reduced from 240px to safely clear the fold ceiling */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+    border: 1px solid #f1f5f9 !important;
+    margin: 0 !important;
+  }
+  .rg-mobile-display-img {
+    max-height: 176px !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    mix-blend-mode: multiply !important;
+  }
+
+  /* Layout Row 3: Commercial Transaction Module (Directly below the media blocks) */
+  .rg-mobile-action-card-footer {
+    grid-column: 1 / -1 !important;
+    grid-row: 3 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    background: #fdfdfd !important;
+    border: 2px solid #ebc850 !important;
+    padding: 14px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(227, 102, 34, 0.06) !important;
+  }
+  .rg-mobile-price-container {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .rg-mobile-msrp-crossed {
+    font-size: 11px !important;
+    text-decoration: line-through !important;
+    color: #64748b !important;
+    font-weight: 700;
+  }
+  .rg-mobile-current-price {
+    font-size: 2rem !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+  }
+  .rg-mobile-current-price.sale { color: #1b7f3a !important; }
+  .rg-mobile-current-price.normal { color: #0f172a !important; }
+
+  .rg-mobile-cta-action-btn {
+    width: 100% !important;
+    height: 48px !important; 
+    background-color: #e36622 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+  }
+  .rg-mobile-affiliate-disclosure {
+    font-size: 10px !important;
+    color: #94a3b8 !important;
+    font-style: italic !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+  }
+
+  /* Layout Rows 4+: Informational elements flow cleanly below the initial layout fold line */
+  .rg-mobile-description-block {
+    grid-column: 1 / -1 !important;
+    grid-row: 4 !important;
+  }
+  .rg-mobile-description-block p {
+    font-size: 0.88rem !important;
+    line-height: 1.55 !important;
+    color: #334155 !important;
+    margin: 0 !important;
+  }
+
+  .rg-mobile-block-section-title {
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    color: #0f172a !important;
+    margin: 0 0 10px 0 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.02em !important;
+  }
+
+  .rg-mobile-features-card-deck {
+    grid-column: 1 / -1 !important;
+    grid-row: 5 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    text-align: left !important;
+  }
+  .rg-mobile-check-line {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+    font-size: 13px !important;
+    color: #334155 !important;
+    line-height: 1.4 !important;
+  }
+  .rg-mobile-check-icon {
+    color: #16a34a !important;
+    font-weight: 900 !important;
+  }
+
+  .rg-mobile-specs-table-deck {
+    grid-column: 1 / -1 !important;
+    grid-row: 6 !important;
+    border: 1px solid #e2e8f0 !important;
+    background-color: #f8fafc !important;
+    padding: 14px !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  .rg-mobile-spec-row-node {
+    display: flex !important;
+    flex-direction: column !important; 
+    gap: 2px !important;
+    font-size: 13px !important;
+  }
+  .rg-mobile-spec-row-node .key {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: #64748b !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.02em !important;
+  }
+  .rg-mobile-spec-row-node .val {
+    color: #1e293b !important;
+    font-weight: 500 !important;
+    line-height: 1.4 !important;
+  }
+}
+
+
+
+/* Slide Entry Animation Keyframes */
+@keyframes rgSlideOverSheetEntry {
+  from { transform: translatey(100%); }
+  to { transform: translateY(0); }
 }

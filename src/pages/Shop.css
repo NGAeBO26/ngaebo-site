@@ -479,3 +479,106 @@
   white-space: nowrap;
   box-sizing: border-box;
 }
+
+/* ==========================================================================
+   📱 STOREFRONT FILTER & LEAD CAPTURE MOBILE OVERRIDES (MAX-WIDTH: 767px)
+   Maintains all desktop grids while aligning sticky tracks and form elements.
+   ========================================================================== */
+@media (max-width: 767px) {
+
+  /* 1. STICKY ALIGNMENT ENGINE 
+     Pulls the sticky sub-header bar up to sit perfectly flush right against 
+     the bottom edge of your 64px mobile navigation frame. */
+  .shop-persistent-header-stack {
+    top: 64px !important; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Compact padding for the mobile layout fold banner */
+  .shop-hero-banner {
+    padding: 16px 20px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .shop-hero-banner h1 {
+    font-size: 1.25rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .shop-hero-banner p {
+    font-size: 0.8rem !important;
+  }
+
+  /* Streamlines category filter button spacing to prevent screen wrap overlap */
+  .shop-filter-bar {
+    padding: 6px 12px !important;
+    gap: 8px !important;
+    margin-top: -12px !important;
+  }
+
+  .filter-btn {
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    flex: 1 !important;
+    text-align: center !important;
+  }
+
+  /* 2. THE TACTICAL LEAD FORM VERTICAL STACK
+     Flattens the horizontal form elements inside the footer into a clean, 
+     thumb-friendly layout box. */
+  .lead-capture-footer {
+    padding: 40px 16px !important;
+  }
+
+  .capture-split-layout {
+    display: flex !important;
+    flex-direction: column !important; /* Changes from row style to a single column */
+    gap: 24px !important;
+    text-align: center !important;
+  }
+
+  .shop-sample-headline {
+    font-size: 1.45rem !important;
+    text-align: center !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* Targets internal input containers inside TacticalLeadForm dynamically */
+  .capture-split-layout div,
+  .capture-split-layout form {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 🎯 THE FIX: Forces text inputs to span full width and enlarges tap boundaries */
+  .capture-split-layout input[type="email"],
+  .capture-split-layout .capture-input-styled {
+    width: 100% !important;
+    height: 48px !important; /* Optimal touch parameters */
+    padding: 12px 16px !important;
+    font-size: 1rem !important;
+    border-radius: 8px !important;
+    box-sizing: border-box !important;
+    display: block !important;
+  }
+
+  /* 🎯 THE FIX: Spans the action button full width right below the input box */
+  .capture-split-layout button,
+  .capture-split-layout .btn,
+  .capture-split-layout .capture-button-whitespace {
+    width: 100% !important;
+    height: 48px !important;
+    padding: 12px 24px !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+}

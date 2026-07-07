@@ -132,7 +132,7 @@ export default function RedirectGateway() {
             <div className="gateway-rideguide-lead-incentive-card">
               <p className="gateway-lead-description-copy" style={{ margin: 0 }}>
                 {isAccessoryItem ? (
-                  "Prepping for new gear setup runs? We've bundled our top 3 high-intensity North Georgia gravel trail loops to test out your new accessories. Enter your email to receive high-res printable maps straight to your inbox!"
+                  "Ready to try out your new gear? We've bundled our top 3 North Georgia gravel routes to test out your new accessories. Enter your email to get free guides delivered straight to your inbox!"
                 ) : (
                   "Planning your bike's maiden voyage? We've mapped out the ultimate 3-pack sample series of Fire Service routes perfectly suited for this bike. Instant download package delivered to your email."
                 )}
