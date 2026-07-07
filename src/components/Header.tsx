@@ -21,6 +21,12 @@ export default function Header() {
         className="site-logo"
       />
 
+      {/* 🎯 NEW: CENTERED MOBILE-ONLY BRAND HEADER TITLE */}
+      <div className="mobile-header-brand-title">
+        <span className="brand-title-line1">North Georgia</span>
+        <span className="brand-title-line2">eBike Outfitters</span>
+      </div>
+
       {/* Desktop Navigation */}
       <nav className="nav-desktop">
         
