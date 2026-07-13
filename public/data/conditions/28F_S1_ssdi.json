@@ -1,7 +1,7 @@
 {
   "profile_id": "28F_S1",
   "route_id": "28F",
-  "ssdi_score": 15.2,
+  "ssdi_score": 17.1,
   "v3_terrain_score": 6.7,
   "v3_terrain_class": "Strenuous",
   "badge_type": "muddy",
@@ -17,18 +17,18 @@
     "value": 0.19
   },
   "environment": {
-    "current_temp": 66,
-    "saturation_index": 40.8,
+    "current_temp": 82,
+    "saturation_index": 16.6,
     "soil_status": "Saturated",
     "precip_24h": 0.0,
     "saturation_trend": "stable",
     "alerts": []
   },
   "physics": {
-    "live_traction": 0.41,
-    "live_wh_per_km": 16.98,
+    "live_traction": 0.39,
+    "live_wh_per_km": 16.66,
     "energy_penalty_pct": 20.0,
-    "v3_base_intensity": 6.8
+    "v3_base_intensity": 6.6
   },
   "connectivity": {
     "signal_class": "Unknown",

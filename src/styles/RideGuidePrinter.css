@@ -23,10 +23,11 @@
 }
 
 .rg-printer-modal-card {
-  background-color: var(--brand-bone);
+  background-color: var(--brand-cream);
   border: 2px solid var(--brand-sky);
   border-radius: 16px;
   max-width: 540px;
+  max-height: 680px;
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -61,13 +62,13 @@
 }
 
 .rg-printer-modal-title {
-  margin: 0 0 16px 0;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
-  font-size: 1.25rem;
-  color: var(--brand-amber);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+    margin: 0 0 0px 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--brand-ember);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 /* 🎯 TEXT & SCROLLER COMPONENT INTERFACES */
@@ -131,12 +132,12 @@
   line-height: 1.4;
 }
 
-/* 🎯 INTERACTIVE SUBMIT AND MANUAL CTA TRiggers */
+/* 🎯 REFACTORED: Cleaned up submit button to sit natively inside the new layout wrap */
 .rg-printer-modal-submit-btn {
-  width: 85%;
+  width: 100% !important;     /* Forces button to consume the full wrapper width naturally */
   padding: 14px 24px;
   border: none;
-  margin: 20px;
+  margin: 12px 0 0 0 !important; /* Vaporizes the old independent 20px margins to prevent layout clipping */
   border-radius: 8px;
   font-weight: bold;
   font-size: 13px;
@@ -177,7 +178,7 @@
 }
 
 .rg-print-inner-scale-box {
-  transform: scale(1);
+  /* transform: scale(1); */
   transform-origin: top center;
   width: 816px;
   height: 1056px;
@@ -221,4 +222,94 @@
   color: #ffffff;
   cursor: pointer;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+}
+
+/* src/styles/RideGuidePrinter.css Baseline Expansions */
+
+.rg-printer-pipeline-stack {
+  width: 90%;
+  background-color: var(--brand-mist);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 0 auto 20px auto;
+  box-sizing: border-box;
+}
+
+.rg-printer-pipeline-header {
+  margin: 0 0 12px 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--brand-amber);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.rg-printer-pipeline-stack .pipeline-row {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+/* Row State Modifiers */
+.rg-printer-pipeline-stack .pipeline-row.mod-pending {
+  color: #334155; /* Hidden/dark slate until reached */
+}
+.rg-printer-pipeline-stack .pipeline-row.mod-active {
+  color: #fbbf24; /* Warning Amber */
+}
+.rg-printer-pipeline-stack .pipeline-row.mod-completed {
+  color: var(--brand-leaf); 
+}
+.rg-printer-pipeline-stack .pipeline-row.mod-ready {
+  color: #10b981 !important; /* Success Green */
+  font-weight: 800;
+}
+
+/* 🎯 REFACTORED: Cleaned up exit button to align with the refined button structure */
+.rg-printer-modal-exit-btn {
+  width: 100% !important;
+  background-color: transparent;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  padding: 12px 24px;
+  margin: 8px 0 0 0 !important; /* Even stacked tracking gap below the submit button */
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  box-sizing: border-box;
+}
+
+.rg-printer-modal-exit-btn:hover:not(:disabled) {
+  background-color: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.rg-printer-modal-exit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 🎯 NEW: Dedicated layout dock container selector for desktop controls */
+.rg-printer-bottom-docked-controls-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 20px 20px 20px; /* Pads the sides and bottom edge cleanly against the card frame */
+  margin-top: auto;           /* Pushes the entire control block flush to the bottom of the card */
 }

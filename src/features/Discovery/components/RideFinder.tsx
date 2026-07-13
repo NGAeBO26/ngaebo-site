@@ -1,5 +1,5 @@
 /* src/features/Discovery/components/RideFinder.tsx */
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useEffect, useRef, useCallback } from "react";
 
 const BADGES_BASE = "/images/badges/fcs";
 
@@ -47,7 +47,6 @@ export function useRideFinderEngine(routesData: any[], onFilterChange: (filtered
       return matchesName && matchesClass && matchesDistance && matchesGrade;
     });
 
-    // 🎯 SORT ENGINE: Orders the matched tracks alphabetically by properties.NAME on application load & filter updates
     return result.sort((a, b) => {
       const nameA = String(a.properties?.NAME || "").trim().toLowerCase();
       const nameB = String(b.properties?.NAME || "").trim().toLowerCase();
@@ -58,6 +57,13 @@ export function useRideFinderEngine(routesData: any[], onFilterChange: (filtered
   useEffect(() => {
     onFilterChange(filteredRoutes);
   }, [filteredRoutes, onFilterChange]);
+
+  const resetFilters = useCallback(() => {
+    setSearchName("");
+    setSelectedClass("ALL");
+    setSearchDistance(30);
+    setSearchGrade(25);
+  }, []);
 
   return {
     searchName,
@@ -71,6 +77,7 @@ export function useRideFinderEngine(routesData: any[], onFilterChange: (filtered
     autocompleteNames,
     routeClasses,
     filteredRoutes,
+    resetFilters,
   };
 }
 
@@ -78,12 +85,14 @@ interface FilterBarProps {
   engine: ReturnType<typeof useRideFinderEngine>;
   totalCount: number;
   isTakeoverActive?: boolean;
+  onSelectionComplete?: () => void; /* 🎯 Accept the new structural callback contract */
 }
 
 export function RideFilterBar({
   engine,
   totalCount,
   isTakeoverActive = false,
+  onSelectionComplete,
 }: FilterBarProps) {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -108,7 +117,6 @@ export function RideFilterBar({
 
   return (
     <header className={`finder-header-row ${isTakeoverActive ? "takeover-header-blue-blank" : ""}`}>
-      {/* COLUMN 1: LEFT BRAND GRAPHIC PLATFORM BLOCK */}
       <div className="finder-brand-block">
         <img
           src="/images/RideGuide_embroid-v1.svg"
@@ -120,7 +128,6 @@ export function RideFilterBar({
 
       {!isTakeoverActive ? (
         <>
-          {/* COLUMN 2: CENTRAL CONSOLE FILTER CONTROLS TRACK */}
           <div className="finder-controls-wrapper">
             <div className="control-input-group styleable-autocomplete-wrapper" ref={wrapperRef}>
               <label>Search Routes</label>
@@ -152,6 +159,11 @@ export function RideFilterBar({
                       onClick={() => {
                         engine.setSearchName(suggestionText);
                         setShowSuggestions(false);
+                        
+                        /* 🎯 THE TRIGGER: Fires the parent state shift to pull the matching card deck into view instantly */
+                        if (onSelectionComplete) {
+                          onSelectionComplete();
+                        }
                     }}
                     className="suggestion-interactive-item"
                   >
@@ -220,10 +232,8 @@ export function RideFilterBar({
               aria-label="Filter routes by maximum incline grade slope percentage"
             />
           </div>
-        {/* 🎯 THE FIX: Closed the controls container wrapper right here! */}
         </div>
 
-        {/* COLUMN 3: INDEPENDENT ANCHORED MATCHES CONTAINER */}
         <div className="yield-counter-panel">
           <label>Matches</label>
           <div className="yield-value">
@@ -294,16 +304,18 @@ export function RideResultGallery({
         ) : (
           routes.map((route) => {
             const props = route.properties || {};
-            
-            // FIXED: Standardize list item card identity values to map strictly via profile_id
             const id = String(props.profile_id || route.id || props.id || "");
-            
             const name = props.NAME || "Unnamed Route";
             const miles = props.GIS_MILES ? parseFloat(props.GIS_MILES).toFixed(1) : "0.0";
             const grade = props.v3_avg_grade || "0";
 
-            const fcsBadgePath = `${BADGES_BASE}/fcs-badge-${props.v3_fcs_label.toLowerCase()}.png`;
+            const badgeLabel = props.v3_fcs_label ? String(props.v3_fcs_label).toLowerCase() : "";
+            const fcsBadgePath = badgeLabel ? `${BADGES_BASE}/fcs-badge-${badgeLabel}.png` : "";
             const isCurrentlyHovered = String(id) === String(activeHoverId);
+
+            // Fetch surface data field criteria fallbacks
+            const routeVibe = props.v3_vibe || "Explore backcountry trails";
+            const routeSurface = props.v3_surface || "Gravel / Dirt";
 
             return (
               <div
@@ -317,8 +329,14 @@ export function RideResultGallery({
                   if (isTakeoverActive) return;
                   onHoverChange(null);
                 }}
+                /* 🎯 FIX 1: CAPTURES MOBILE TOUCH INITIATION GESTURES IMMEDIATELY */
+                onTouchStart={() => {
+                  if (isTakeoverActive) return;
+                  onHoverChange(String(id));
+                }}
                 onClick={() => onRouteSelect(route)}
-                className={`route-finder-card-vertical ${isCurrentlyHovered ? "card-active-hover" : ""}`}
+                /* 🎯 FIX 2: ALIGNS BOTH LEGACY CLASS CHANNELS AND DISCOVERY WEATHER FIREWALL SELECTORS */
+                className={`route-finder-card-vertical ${isCurrentlyHovered ? "card-active-hover is-hovered active-hover" : ""}`}
               >
                 <div className="card-left-details-block">
                   <div className="card-title-block">
@@ -329,6 +347,19 @@ export function RideResultGallery({
                       >
                         {name}
                       </h3>
+                    </div>
+                  </div>
+
+                  {/* ─── Renders surface and vibe into standard row cards ─── */}
+                  <div className="card-subtitle-banner-row">
+                    <div className="subtitle-item">
+                      <span className="subtitle-label">Vibe:</span>
+                      <strong className="mellow-highlight-value">{routeVibe}</strong>
+                    </div>
+                    <span className="banner-inline-divider">|</span>
+                    <div className="subtitle-item">
+                      <span className="subtitle-label">Type:</span>
+                      <strong className="mellow-highlight-value">{routeSurface}</strong>
                     </div>
                   </div>
 
@@ -345,14 +376,16 @@ export function RideResultGallery({
                 </div>
 
                 <div className="card-right-badge-bay">
-                  <img
-                    src={fcsBadgePath}
-                    alt="fcs classification badge"
-                    className="card-route-badge-image-scaled"
-                    onError={(e) => {
-                      (e.target as HTMLElement).style.display = "none";
-                    }}
-                  />
+                  {fcsBadgePath && (
+                    <img
+                      src={fcsBadgePath}
+                      alt="fcs classification badge"
+                      className="card-route-badge-image-scaled"
+                      onError={(e) => {
+                        (e.target as HTMLElement).style.display = "none";
+                      }}
+                    />
+                  )}
                 </div>
               </div>
             );

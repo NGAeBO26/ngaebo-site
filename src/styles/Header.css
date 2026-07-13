@@ -71,24 +71,20 @@
 /* AUTHENTICATED USER PORTAL CAPSULE SHIELD */
 .rg-header-user-capsule {
   display: flex !important;
+  /* Flexbox automatically handles the new DOM ordering across the horizontal axis */
+  flex-direction: row !important;
   align-items: center !important;
   justify-content: space-between !important;
   gap: 14px !important;
-  margin-left: auto !important; /* Extra security to lock item right-aligned */
-  z-index: 100000 !important;
+  margin-left: auto !important;
   position: relative !important;
   width: 340px !important;
+  height: 64px !important;
   padding: 0 16px !important;
   box-sizing: border-box !important;
-  
-  /* Sizing height to make it compact and clean */
-  height: 64px !important; 
+  flex-shrink: 0 !important;
   border: 2px solid var(--brand-deep-green) !important;
   border-radius: 12px !important;
-  
-  background-color: transparent !important;
-  transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-radius 0.15s ease-in-out !important;
-  flex-shrink: 0 !important; /* Keeps your user workspace box locked at 340px wide */
 }
 
 .rg-header-user-capsule.rg-capsule-active {
@@ -101,9 +97,11 @@
 
 /* USER TEXT COMPONENT ELEMENTS */
 .rg-header-greeting-text {
-  font-size: 14px !important;
-  color: #e2e8f0 !important;
-  font-weight: 500 !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 12px !important;
+  color: var(--brand-bone) !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
   white-space: nowrap !important;
 }
 
@@ -113,6 +111,23 @@
   cursor: pointer !important;
   padding: 0 !important;
   font: inherit !important;
+}
+
+/* Enforces identical baseline alignments for the text links and buttons */
+.rg-header-signout-btn.nav-link {
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  font-size: 12px !important;
+  color: var(--brand-bone) !important;
+  font-family: "Montserrat", sans-serif !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100% !important;
 }
 
 /* HEADLESS CART INTERACTIVE ICON TRIGGER */
@@ -221,7 +236,7 @@
 
   .mobile-menu-bar {
     display: block !important;
-    width: 100% !important;
+    width: 24px !important;
     height: 3px !important;
     background-color: #cbd5e1 !important;
     border-radius: 2px !important;
@@ -257,7 +272,7 @@
     font-weight: 700 !important;
     padding: 12px 16px !important; /* Maintains accessible 48px vertical touch target bounds */
     display: block !important;
-    border-radius: 6px !important;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important; /* Subtle divider line between links */
     transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out !important;
   }
 
@@ -267,26 +282,105 @@
     color: #d88a3a !important; /* Underlines selection with brand accent amber */
   }
 
-  /* 6. IDENTITY INTERCEPT: Targets inline-styled wrapper rows inside Header.tsx dynamically */
-  .nav-mobile div {
-    background-color: #1e3a34 !important; /* Converts the inline row into a matching brand green stripe */
-    border-radius: 6px !important;
+  /* 🎯 FIXED: Replaced .nav-mobile div with an isolated class selector path 
+     to protect CartDropdown layers from layout contamination */
+  .nav-mobile .rg-mobile-nav-user-row {
+    background-color: #1e3a34 !important; 
+    border-radius: 10px !important;
     border: none !important;
     margin-top: 10px !important;
     padding: 12px 16px !important;
     box-sizing: border-box !important;
+    
+    /* 🎯 Flexbox evenly distributes all 3 direct children horizontally */
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    
+    cursor: pointer !important;
+    width: 100% !important;
+    transition: border-radius 0.15s ease-in-out !important;
   }
 
-  /* Restores digital text link visibility across nested client greeting blocks */
-  .nav-mobile div span {
+  /* 🎯 FLUSH MOUNT REFACTOR: Flattens base card corners when expanded to integrate seamlessly with the cart content below */
+  .nav-mobile .rg-mobile-nav-user-row.mod-expanded {
+    border-radius: 10px 10px 0 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .nav-mobile .rg-mobile-nav-user-row:active {
+    background-color: #162c27 !important; /* Immediate touch click feedback */
+  }
+
+  /* ─── 📱 MOBILE LINK ACTIVE DESTINATION INDICATOR ─── */
+.nav-mobile .nav-mobile-link.active-destination {
+  color: #f59e0b !important;                       /* Matches your brand gold accent color exactly */
+  border-left: 4px solid #f59e0b !important;       /* Injects the left-aligned directional highlight border line */
+  padding-left: 12px !important;                   /* Slightly balances internal padding alignment offset mechanics */
+  background-color: rgba(15, 23, 42, 0.03) !important; /* Soft backdrop tint layer matching the active choice environment */
+}
+
+  /* 🎯 VERTICAL BALANCE: Center-aligns the authentication button text inline with siblings */
+  .nav-mobile .rg-mobile-inline-auth-btn {
+    background: none !important;
+    border: none !important;
+    font-size: 12px !important;
+    color: var(--brand-bone) !important;
+    font-family: "Montserrat", sans-serif !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.04em !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 100% !important;
+  }
+
+  .nav-mobile .rg-mobile-inline-auth-btn:active {
     color: #ffffff !important;
-    font-size: 13px !important;
+  }
+
+  /* Scoped username layout tags */
+  .nav-mobile .rg-mobile-nav-username {
+    font-size: 12px !important;
+    color: var(--brand-bone) !important;
+    font-family: "Montserrat", sans-serif !important;
+    text-transform: uppercase !important;
     font-weight: 700 !important;
   }
 
-  /* Normalizes header tracking actions inside the customer context stripe layout */
-  .nav-mobile div button {
+  .nav-mobile .rg-mobile-nav-cart-icon-box {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     color: #ffffff !important;
+    width: 24px !important;
+    height: 24px !important;
+    box-sizing: border-box !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Pin badge layout modifications tightly over the right shoulder of the basket icon */
+  .nav-mobile .rg-mobile-nav-cart-icon-box .rg-header-cart-badge.mobile-inline-badge {
+    position: absolute !important;
+    top: -8px !important;
+    right: -10px !important;
+    background-color: #d88a3a !important;
+    color: #ffffff !important;
+    font-size: 10px !important;
+    font-weight: bold !important;
+    border-radius: 50% !important;
+    padding: 2px 6px !important;
+    margin: 0 !important;
+    transform: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 10 !important;
   }
 
 /* ──────────────────────────────────────────────────────────────────────────

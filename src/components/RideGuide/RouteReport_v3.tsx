@@ -63,7 +63,7 @@ export default function RouteReport_v3({ routeID }: { routeID: string }) {
 
         <div className="h-[400px] bg-slate-800/50 rounded-xl border border-slate-700 flex flex-col items-center justify-center space-y-4">
           <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-          <span className="text-slate-400 font-medium tracking-widest uppercase text-sm">Initializing Geospatial Engine...</span>
+          <span className="text-slate-400 font-medium tracking-widest uppercase text-sm"></span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="h-64 bg-slate-800/30 rounded-xl border border-slate-700" />
@@ -115,7 +115,7 @@ export default function RouteReport_v3({ routeID }: { routeID: string }) {
             Natively maps content into valid landmark regions without triggering size grid errors. */}
         <section className="rr-tier-overview-root" aria-label="Current Environmental Conditions and Trail Status Summary">
           <div className="rr-overview-label-banner">
-            <div>CURRENT CONDITIONS</div>
+            <div>WEATHER CONDITIONS</div>
             <div>PRIME RIDE TIME</div>
             <div>TRAIL STATUS</div>
           </div>

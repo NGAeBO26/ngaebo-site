@@ -1,7 +1,7 @@
 {
   "profile_id": "58F_S1",
   "route_id": "58F",
-  "ssdi_score": 16.1,
+  "ssdi_score": 18.3,
   "v3_terrain_score": 7.8,
   "v3_terrain_class": "Epic",
   "badge_type": "muddy",
@@ -17,18 +17,18 @@
     "value": 0.32
   },
   "environment": {
-    "current_temp": 68,
-    "saturation_index": 28.6,
+    "current_temp": 67,
+    "saturation_index": 23.7,
     "soil_status": "Saturated",
     "precip_24h": 0.01,
     "saturation_trend": "stable",
     "alerts": []
   },
   "physics": {
-    "live_traction": 0.41,
-    "live_wh_per_km": 19.79,
+    "live_traction": 0.39,
+    "live_wh_per_km": 19.97,
     "energy_penalty_pct": 20.0,
-    "v3_base_intensity": 7.7
+    "v3_base_intensity": 7.8
   },
   "connectivity": {
     "signal_class": "Unknown",

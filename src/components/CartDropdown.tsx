@@ -10,10 +10,12 @@ import "../styles/CartDropdown.css";
 interface CartDropdownProps {
   isOpen: boolean; 
   allRoutes?: any[]; 
+  isMobile?: boolean;
+  onActionTriggered?: () => void; /* 🎯 Accept the action coordination link */
 }
 
-export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownProps) {
-  const { customer, isAuthenticated, refreshProfile, login } = useShopifyAuth();
+export default function CartDropdown({ isOpen, allRoutes = [] , isMobile = false,  onActionTriggered }: CartDropdownProps) {
+  const { customer, isAuthenticated, refreshProfile, login, logout } = useShopifyAuth();
   const { cartItems, cartSubtotal, checkoutUrl, removeCartItem } = useShopifyCart();
 
   const [activeTab, setActiveTab] = useState<"cart" | "catalog">("cart");
@@ -21,11 +23,11 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
   const [isRedeeming, setIsRedeeming] = useState(false);
   const [isUpsellOpen, setIsUpsellOpen] = useState(false);
 
-  // 🎯 STICKY TRACKING STATE TO BRIDGE ASYNC RACE CONDITIONS
   const [cleanupPending, setCleanupPending] = useState(false);
-
-  // 🎯 CENTRALIZED INTERCEPT WORKFLOW ENGINE STATE
   const [transactionState, setTransactionState] = useState<TransactionState | null>(null);
+  
+  /* 🎯 BACKUP STATE SYNCHRONIZER: Holds token bundle references on checkout abandonment */
+  const [localTokenPack, setLocalTokenPack] = useState<any | null>(null);
 
   const isFullyAuthenticated = isAuthenticated && customer !== null; 
   const rawUnlockedGuides = customer?.unlocked_guides || "{}";
@@ -55,56 +57,56 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
   const tokenBalance = customer?.tokens || 0; 
   const hasActivePass = customer?.passExpiresAt ? new Date() < new Date(customer.passExpiresAt) : false; 
   const hasTokens = tokenBalance > 0; 
+
+  /* 🎯 RE-SYNC TRIGGER: Restores the backup package item configuration on drop-down view mount loops */
+  useEffect(() => {
+    if (isOpen) {
+      const savedPack = localStorage.getItem("rg_active_token_pack");
+      if (savedPack) {
+        try {
+          setLocalTokenPack(JSON.parse(savedPack));
+        } catch {
+          setLocalTokenPack(null);
+        }
+      } else {
+        setLocalTokenPack(null);
+      }
+    }
+  }, [isOpen, cartItems]);
   
-  // 🎯 UNIFIED BUNDLE MATCH LAYER: Catch both explicitly set string routes and title metadata parameters
-  const hasBundleInCart = cartItems.some((item: any) => item.routeId === "TOKEN_BUNDLE" || item.title?.toLowerCase().includes("pack"));
+  // Combine base routes with the local state fallback
+  const baseVisibleItems = cartItems.filter((item: any) => {
+    /* 🎯 UTILITY BUNDLE PROTECTION: Token packs are account credits, not route tracks. 
+       We must skip route-unlock filters entirely so packs never disappear from the UI! */
+    if (item.routeId === "TOKEN_BUNDLE" || item.isTokenBundle || item.title?.toLowerCase().includes("pack")) {
+      return true;
+    }
 
-  // 🎯 FIX B: Force token checkout layout to stay FALSE if the item inside the cart is a commercial cash asset bundle
-  const isTokenUser = isFullyAuthenticated && hasTokens && !hasBundleInCart; 
-
-  const visibleCartItems = cartItems.filter((item: any) => {
     const targetId = item.routeId || "";
     const isLineRouteUnlocked = hasActivePass || (getRouteExpiry(targetId) > currentTimestamp);
     return !isLineRouteUnlocked;
   });
 
+  const contextHasBundle = cartItems.some((item: any) => 
+    item.routeId === "TOKEN_BUNDLE" || item.isTokenBundle || item.title?.toLowerCase().includes("pack")
+  );
+
+  const visibleCartItems = [...baseVisibleItems];
+  if (localTokenPack && !contextHasBundle) {
+    visibleCartItems.push(localTokenPack);
+  }
+
   const totalCartCount = visibleCartItems.length; 
 
-  // 🎯 LOGGING TRACK A: Monitors balance shifts and activates the sticky cleanup gate
-  const prevTokenBalanceRef = useRef(tokenBalance);
-  useEffect(() => {
-    console.log("🛒 [CART TRACE] Wallet Balance Update Sync:", { current: tokenBalance, previouslyRemembered: prevTokenBalanceRef.current });
-    if (tokenBalance > prevTokenBalanceRef.current) {
-      console.log("🎫 [CART TRACE] Balance increment verified! Activating sticky cleanup flag...");
-      setCleanupPending(true);
-    }
-    prevTokenBalanceRef.current = tokenBalance;
-  }, [tokenBalance]);
+  const hasBundleInCart = contextHasBundle || !!localTokenPack;
+  const isTokenUser = isFullyAuthenticated && hasTokens && !hasBundleInCart; 
 
-  // 🎯 LOGGING TRACK B: Monitors async cart items loading and executes item clearing
-  useEffect(() => {
-    console.log("🛒 [CART TRACE] Checking Sticky Cleanup Status:", { cleanupPending, cartItemsInCache: cartItems.length });
-    if (cleanupPending && cartItems.length > 0) {
-      console.log(`🗑️ [CART TRACE] Execution criteria met! Sweeping active inventory items...`);
-      let itemPurged = false;
-
-      cartItems.forEach((item: any) => {
-        const isTokenBundleItem = item.routeId === "TOKEN_BUNDLE" || item.title?.toLowerCase().includes("pack");
-        console.log(`📦 [CART TRACE] Testing line data: "${item.title}" | Identified Bundle?: ${isTokenBundleItem}`);
-        
-        if (isTokenBundleItem && removeCartItem) {
-          console.log(`🗑️ [CART TRACE] Match validated. Firing removeCartItem for target ID: ${item.id}`);
-          removeCartItem(item.id);
-          itemPurged = true;
-        }
-      });
-
-      if (itemPurged || !cartItems.some((item: any) => item.routeId === "TOKEN_BUNDLE" || item.title?.toLowerCase().includes("pack"))) {
-        console.log("✅ [CART TRACE] Sweeping cycle complete. Dropping sticky cleanup flag to false.");
-        setCleanupPending(false);
-      }
-    }
-  }, [cleanupPending, cartItems, removeCartItem]);
+  // Override context totals if backup state contains an uncommitted bundle row item
+  const finalDisplaySubtotal = contextHasBundle 
+    ? cartSubtotal 
+    : localTokenPack 
+      ? localTokenPack.price 
+      : cartSubtotal;
 
   const activeCatalogPasses = Object.entries(unlockedMap)
     .map(([routeId, entry]) => {
@@ -112,22 +114,65 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
       const name = typeof entry === "object" && entry !== null ? String(entry.name || "") : "";
       return { routeId, expiresAt, name };
     })
-    .filter((pass) => pass.expiresAt > currentTimestamp)
+    .filter((pass) => 
+      pass.expiresAt > currentTimestamp && 
+      pass.routeId !== "TOKEN_BUNDLE" &&
+      !pass.routeId.toLowerCase().includes("token") &&
+      !pass.name.toLowerCase().includes("token") &&
+      !pass.name.toLowerCase().includes("pack")
+    )
     .map((pass) => ({
       ...pass,
       daysLeft: Math.ceil((pass.expiresAt - currentTimestamp) / (1000 * 60 * 60 * 24))
     }));
 
+  const prevTokenBalanceRef = useRef(tokenBalance);
+  useEffect(() => {
+    if (tokenBalance > prevTokenBalanceRef.current) {
+      setCleanupPending(true);
+      /* 🎯 POST-PURCHASE CLEANUP: Wipe backup state on successful credit ledger transactions */
+      localStorage.removeItem("rg_active_token_pack");
+      setLocalTokenPack(null);
+    }
+    prevTokenBalanceRef.current = tokenBalance;
+  }, [tokenBalance]);
+
+  useEffect(() => {
+    if (cleanupPending && cartItems.length > 0) {
+      let itemPurged = false;
+      cartItems.forEach((item: any) => {
+        const isTokenBundleItem = item.routeId === "TOKEN_BUNDLE" || item.isTokenBundle || item.title?.toLowerCase().includes("pack");
+        if (isTokenBundleItem && removeCartItem) {
+          removeCartItem(item.id);
+          itemPurged = true;
+        }
+      });
+      if (itemPurged || !cartItems.some((item: any) => item.routeId === "TOKEN_BUNDLE" || item.isTokenBundle || item.title?.toLowerCase().includes("pack"))) {
+        setCleanupPending(false);
+        localStorage.removeItem("rg_active_token_pack");
+        setLocalTokenPack(null);
+      }
+    }
+  }, [cleanupPending, cartItems, removeCartItem]);
+
   const handleTokenRedemption = async (targetId: string, targetTitle: string) => {
     if (isRedeeming || !customer) return;
+
+    /* 🎯 CLOSE POP-OVER LAYER INSTANTLY */
+    if (onActionTriggered) onActionTriggered();
+
     const API_BASE_TARGET = window.location.hostname === "localhost" ? "http://localhost:5000" : "";
     setIsRedeeming(true);
 
+    const isReprint = hasActivePass || (getRouteExpiry(targetId) > Date.now());
+
     setTransactionState({
       status: 'processing',
-      type: 'single_unlock',
-      title: 'Deducting Wallet Balance',
-      message: `Communicating coordinates with secure token vault to activate: "${targetTitle}"...`
+      type: isReprint ? 'print_verification' : 'single_unlock',
+      title: isReprint ? 'Authenticating Access...' : 'Deducting Wallet Balance',
+      message: isReprint
+        ? `Verifying secure credentials and loading active data layers for: "${targetTitle}"...`
+        : `Communicating coordinates with secure token vault to activate: "${targetTitle}"...`
     });
 
     try {
@@ -143,22 +188,29 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
       if (refreshProfile) await refreshProfile();
       setIsUpsellOpen(false);
 
+      if (data.downloadUrl) {
+        window.open(data.downloadUrl, "_blank");
+      }
+
       setTransactionState({
         status: 'success',
-        type: 'single_unlock',
-        title: 'RideGuide Unlocked',
-        message: `Redeemed 1 credit code asset. "${targetTitle}" has been provisioned inside your permanent vault file array layout.`,
+        type: isReprint ? 'print_verification' : 'single_unlock',
+        title: isReprint ? 'Access Authenticated' : 'RideGuide Unlocked',
+        message: isReprint
+          ? `Vault clearance approved! Clean copies of your premium analytics sheets for "${targetTitle}" have been successfully launched in a new browser window tab.`
+          : `Redeemed 1 credit code asset. "${targetTitle}" has been provisioned inside your permanent vault file array layout.`,
         meta: { downloadUrl: data.downloadUrl }
       });
-
-      if (data.success && data.downloadUrl) window.open(data.downloadUrl, "_blank");
 
     } catch (err: any) {
       setTransactionState({
         status: 'failure',
-        type: 'single_unlock',
-        title: 'Transaction Interrupted',
-        message: err.message || 'Verification payload transaction rejected.'
+        type: isReprint ? 'print_verification' : 'single_unlock',
+        title: isReprint ? 'Clearance Request Declined' : 'Transaction Interrupted',
+        message: err.message || (isReprint
+          ? "Secured credential validation mapping loop failed to complete."
+          : "Verification payload transaction rejected."
+        )
       });
     } finally {
       setIsRedeeming(false);
@@ -168,6 +220,10 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
   const handleBatchTokenRedemption = async () => {
     if (isRedeeming || !customer || totalCartCount === 0) return;
     setIsRedeeming(true);
+
+    /* 🎯 CLOSE POP-OVER LAYER INSTANTLY */
+    if (onActionTriggered) onActionTriggered();
+
     const API_BASE_TARGET = window.location.hostname === "localhost" ? "http://localhost:5000" : "";
     let processedCount = 0;
 
@@ -179,7 +235,7 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
     });
 
     try {
-      for (const item of visibleCartItems) {
+      for (const item of baseVisibleItems) {
         const targetId = item.routeId || "";
         if (targetId) {
           const response = await fetch(`${API_BASE_TARGET}/api/tokens/redeem`, {
@@ -220,6 +276,10 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
       login();
       return;
     }
+
+    /* 🎯 CLOSE POP-OVER LAYER INSTANTLY */
+    if (onActionTriggered) onActionTriggered();
+
     if (hasBundleInCart) {
       if (checkoutUrl) window.open(checkoutUrl, "_blank"); 
       return;
@@ -240,12 +300,27 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
             {activeTab === "cart" ? "Selection Inventory" : "Your Activated Guides"}
           </div>
           {isFullyAuthenticated && !hasActivePass && (
-            <span style={{ fontSize: "11px", backgroundColor: "rgba(255, 255, 255, 0.12)", padding: "4px 10px", borderRadius: "20px", fontWeight: "bold", color: "#f59e0b", border: "1px solid rgba(255, 255, 255, 0.08)", textTransform: "uppercase" }}>
-              🎫 {tokenBalance} Credits
+            <span className="rg-mobile-wallet-balance-tag-badge">
+              🎫 {tokenBalance} Tokens
             </span>
           )}
         </div>
       </div>
+
+      {isMobile && (
+        <div className="rg-cart-mobile-profile-deck"> 
+          <div className="rg-profile-identity-row"> 
+            <span className="rg-profile-username-tag"> 
+              👤︎ {isFullyAuthenticated ? (customer?.firstName || "Rider") : "Guest Rider"} 
+            </span> 
+            <div className="rg-profile-right-side-dock"> 
+              <button type="button" onClick={isFullyAuthenticated ? logout : login} className="rg-profile-inline-auth-btn-link"> 
+                {isFullyAuthenticated ? "Sign Out" : "Sign In"} 
+              </button> 
+            </div> 
+          </div> 
+        </div>
+      )}
 
       <div className="rg-cart-dropdown-body">
         <div className="rg-storefront-tabs-nav-bar" style={{ margin: "0 0 12px 0", width: "100%" }}>
@@ -266,7 +341,7 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
                 <div className="rg-cart-empty-state">Your cart is empty. Select a route to add!</div>
               ) : (
                 visibleCartItems.map((item: any) => (
-                  <div key={item.id} className="rg-cart-item-row-card">
+                  <div key={item.id || item.routeId} className="rg-cart-item-row-card">
                     <div className="rg-cart-item-left-group">
                       {item.fcsLabel && (
                         <img src={`/images/badges/fcs/fcs-badge-${item.fcsLabel.toLowerCase()}.png`} alt="fcs classification" className="rg-cart-item-badge-left" onError={(e) => { (e.target as HTMLElement).style.display = "none"; }} />
@@ -278,7 +353,22 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
                     </div>
                     <div className="rg-cart-item-right-group">
                       <div className="rg-cart-item-price">${item.price.toFixed(2)}</div>
-                      <button onClick={() => removeCartItem?.(item.id)} className="rg-cart-item-remove-btn">
+                      <button 
+                        onClick={() => {
+                          /* 🎯 HOOK: Clear instances across local state, backups, and remote context checkouts */
+                          if (item.id === "TOKEN_BUNDLE_BACKUP_NODE" || item.routeId === "TOKEN_BUNDLE") {
+                            localStorage.removeItem("rg_active_token_pack");
+                            setLocalTokenPack(null);
+                          }
+                          const contextMatch = cartItems.find((c: any) => c.id === item.id || (item.routeId === "TOKEN_BUNDLE" && c.routeId === "TOKEN_BUNDLE"));
+                          if (contextMatch && removeCartItem) {
+                            removeCartItem(contextMatch.id);
+                          } else if (removeCartItem && item.id !== "TOKEN_BUNDLE_BACKUP_NODE") {
+                            removeCartItem(item.id);
+                          }
+                        }} 
+                        className="rg-cart-item-remove-btn"
+                      >
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <polyline points="3 6 5 6 21 6"></polyline>
                           <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -291,7 +381,7 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
             </div>
 
             {!isFullyAuthenticated && totalCartCount > 0 && (
-              <div style={{ padding: "10px 0 0 0", fontSize: "10px", color: "#b45309", fontWeight: "700", textTransform: "uppercase", textAlign: "center", marginTop: "10px" }}>
+              <div className="rg-cart-guest-warning">
                 ⚠️ Guest Mode: Login Required at Checkout
               </div>
             )}
@@ -300,7 +390,7 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
               <div className="rg-cart-calculation-summary-block">
                 <div className="rg-cart-subtotal-row">
                   <span className="rg-cart-subtotal-label">{isTokenUser ? "Required Cost:" : "Total Subtotal:"}</span>
-                  <span className="rg-cart-subtotal-value">{isTokenUser ? `${totalCartCount} Credits` : `$${cartSubtotal.toFixed(2)}`}</span>
+                  <span className="rg-cart-subtotal-value">{isTokenUser ? `${totalCartCount} Credits` : `$${finalDisplaySubtotal.toFixed(2)}`}</span>
                 </div>
                 <button onClick={handleCheckoutRedirect} className="rg-cart-checkout-cta-btn">
                   {!isFullyAuthenticated ? "SIGN IN TO CHECKOUT ➔" : isTokenUser ? "MANAGE & UNLOCK WITH CREDITS ➔" : "PROCEED TO CHECKOUT ➔"}
@@ -333,7 +423,7 @@ export default function CartDropdown({ isOpen, allRoutes = [] }: CartDropdownPro
                     </div>
                     <div className="rg-catalog-item-actions-right">
                       <button className="rg-catalog-inline-print-btn" disabled={isRedeeming} onClick={() => handleTokenRedemption(pass.routeId, displayTitle)} style={{ padding: "3px 8px", fontSize: "8.5px" }}>
-                        Print ➔
+                        PRINT ➔
                       </button>
                     </div>
                   </div>

@@ -15,9 +15,9 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: color-mix(in srgb, var(--brand-deep-green) 75%, transparent);
+  
+  
   z-index: 999999 !important;
   display: flex;
   justify-content: center;

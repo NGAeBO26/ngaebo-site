@@ -29,7 +29,7 @@ export default function Home() {
                 Plan Faster. Ride Smarter.
               </h2>
               <p className="hero-text">
-                Unlock precision off-road eBike flight charts and field maps. Featuring custom meteorological modeling, high-accuracy terrain profile tracking, and real-world physics engine calculators, you'll always know trail requirements before you leave the staging area.
+                Don't ride into the unknown. Featuring custom meteorological modeling, high-accuracy terrain profile tracking, and real-world physics engine calculators, you'll always know what to expect before you leave the staging area.
               </p>
               <div className="hero-actions-stack">
                 <a href="/rides" className="btn btn-funnel-main">
@@ -48,7 +48,7 @@ export default function Home() {
                   <h3 className="hud-pipeline-title">...PIPELINE INITIALIZED...</h3>
                   <div className="hud-pipeline-checklist">
                     <span>...WEATHER API SYNC ✓</span>
-                    <span>...DIGITER ELEVATION MODEL ACTIVE ✓</span>
+                    <span>...DIGITAL ELEVATION MODEL ACTIVE ✓</span>
                     <span>...PHYSICS ENGINE ENGAGED ✓</span>
                   </div>
                 </div>

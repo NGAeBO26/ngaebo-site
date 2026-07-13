@@ -23,8 +23,7 @@ ROOT_DIR = os.path.abspath(os.path.join(SCRIPT_DIR, '..'))
 DIST_DATA_DIR = os.path.join(ROOT_DIR, 'dist', 'data')
 PUBLIC_DATA_DIR = os.path.join(ROOT_DIR, 'public', 'data')
 
-# 🎯 IMMUTABLE PLATFORM GATEKEEPER:
-# Since Vite builds mean /dist always exists, we target the environment by operating system.
+# IMMUTABLE PLATFORM GATEKEEPER:
 # Windows machines force local workspace compilation. Linux containers target live production.
 IS_WINDOWS_DEV = SCRIPT_DIR.startswith("C:") or sys.platform == "win32"
 
@@ -96,7 +95,6 @@ def fetch_weather(lat, lon):
         print(f"Fetch Error: {e}")
         return None
 
-# 🎯 OPEN-METEO ARCHIVE CORE ACCUMULATION MATRIX INTEGRATION
 def get_historical_saturation(lat, lon):
     """Calculates Saturation Index (S) in mm and converts 24h precip to inches via a 10-day decay sum."""
     try:
@@ -146,7 +144,6 @@ def main():
     avg_grade = get_float(feat, "v3_avg_grade", 0.0)
     actual_miles = get_float(feat, "GIS_MILES", 3.9)
 
-    # 🎯 ALIGN CONTEXT MAPS TO YOUR SPECIFIC STRING VALUE ATTRIBUTES
     v3_surface = str(feat.get("v3_surface", "Improved Gravel")).strip()
     print(f"[ENGINE AUDIT] Mapping Profile: {route_id}")
     print(f"[ENGINE AUDIT] Grade: {avg_grade} | Surface Layer Label: {v3_surface} | Miles: {actual_miles}")
@@ -156,49 +153,84 @@ def main():
     if not periods:
         sys.exit(1)
 
-    # Triggering the integrated Open-Meteo Archive decay pipeline
     sat_idx, historical_precip_24h = get_historical_saturation(anchor['lat'], anchor['lon'])
     print(f"[ENGINE AUDIT] 10-Day Weighted Saturation Calculated: {sat_idx} mm | Last 24h: {historical_precip_24h} in")
 
     processed_hours = []
+    daily_rollups = {}
     p_prob_raw = periods[0].get('probabilityOfPrecipitation', {}).get('value', 0) or 0
     best_joy = 0.0
     p_start, p_end = 8, 11
 
-    for p in periods[:24]:
+    # ─── 🔒 EXTENDED PROCESSING Matrix (SCHEMA PROTECTION LAYER) ───
+    # We iterate up to 72 hours to build daily forecast summaries while restricting 
+    # the baseline hourly data payload to exactly 24 elements to prevent layout breaks.
+    for idx, p in enumerate(periods[:72]):
         temp = p['temperature']
         precip = p.get('probabilityOfPrecipitation', {}).get('value', 0) or 0
-        
-        # Calculate hourly context joy scores utilizing the historical saturation track metrics
-        try:
-            wind_speed = int(''.join(filter(str.isdigit, p.get('windSpeed', '5 mph'))))
-        except:
-            wind_speed = 5
+        forecast_text = p['shortForecast']
+        start_time_str = p['startTime']
+        date_key = start_time_str.split('T')[0]
 
-        thermal_joy = 40
-        if temp > 75: thermal_joy -= (temp - 75) * 2
-        if temp < 55: thermal_joy -= (55 - temp) * 1.5
+        # 1. Aggregate daily rollups for the new 3-day forecast root array
+        if date_key not in daily_rollups:
+            daily_rollups[date_key] = {
+                "date": date_key,
+                "temp_max": temp,
+                "temp_min": temp,
+                "max_precip_prob": precip,
+                "conditions_pool": []
+            }
+        else:
+            if temp > daily_rollups[date_key]["temp_max"]: daily_rollups[date_key]["temp_max"] = temp
+            if temp < daily_rollups[date_key]["temp_min"]: daily_rollups[date_key]["temp_min"] = temp
+            if precip > daily_rollups[date_key]["max_precip_prob"]: daily_rollups[date_key]["max_precip_prob"] = precip
         
-        surface_joy = 30
-        if sat_idx > 1.5: surface_joy -= 15 
-        elif sat_idx <= 0.5: surface_joy -= 10 
-        
-        aero_joy = 15 - (wind_speed * 0.5)
-        safety_joy = 15 - (precip * 0.15)
-        
-        joy = round(max(0, min(100, thermal_joy + surface_joy + aero_joy + safety_joy)), 1)
-        if joy > best_joy:
-            best_joy = joy
+        daily_rollups[date_key]["conditions_pool"].append(forecast_text)
 
-        processed_hours.append({
-            "number": p['number'],
-            "startTime": p['startTime'],
-            "temperature": temp,
-            "probabilityOfPrecipitation": p.get('probabilityOfPrecipitation', {}),
-            "windSpeed": p.get('windSpeed', '0 mph'),
-            "windDirection": p.get('windDirection', ''),
-            "shortForecast": p['shortForecast'],
-            "joy_score": round(max(0, joy), 1)
+        # 2. Build the standard 24-hour baseline (preserving exact original data schema)
+        if idx < 24:
+            try:
+                wind_speed = int(''.join(filter(str.isdigit, p.get('windSpeed', '5 mph'))))
+            except:
+                wind_speed = 5
+
+            thermal_joy = 40
+            if temp > 75: thermal_joy -= (temp - 75) * 2
+            if temp < 55: thermal_joy -= (55 - temp) * 1.5
+            
+            surface_joy = 30
+            if sat_idx > 1.5: surface_joy -= 15 
+            elif sat_idx <= 0.5: surface_joy -= 10 
+            
+            aero_joy = 15 - (wind_speed * 0.5)
+            safety_joy = 15 - (precip * 0.15)
+            
+            joy = round(max(0, min(100, thermal_joy + surface_joy + aero_joy + safety_joy)), 1)
+            if joy > best_joy:
+                best_joy = joy
+
+            processed_hours.append({
+                "number": p['number'],
+                "startTime": start_time_str,
+                "temperature": temp,
+                "probabilityOfPrecipitation": p.get('probabilityOfPrecipitation', {}),
+                "windSpeed": p.get('windSpeed', '0 mph'),
+                "windDirection": p.get('windDirection', ''),
+                "shortForecast": forecast_text,
+                "joy_score": round(max(0, joy), 1)
+            })
+
+    # Assemble the new 3-day forecast summary records array
+    three_day_forecast_payload = []
+    for d_key, summary in sorted(daily_rollups.items())[:3]:
+        most_frequent_condition = max(set(summary["conditions_pool"]), key=summary["conditions_pool"].count)
+        three_day_forecast_payload.append({
+            "date": summary["date"],
+            "temp_max": summary["temp_max"],
+            "temp_min": summary["temp_min"],
+            "precip_prob": summary["max_precip_prob"],
+            "condition": most_frequent_condition
         })
 
     # ==========================================================================
@@ -208,27 +240,24 @@ def main():
     current_temp = periods[0]['temperature']
     current_forecast = str(periods[0]['shortForecast']).lower()
 
-    # ☀️ Calculate the Dynamic Thermodynamic Evaporation Modifier (Em)
     evap_modifier = 1.0
     
     if "sunny" in current_forecast or "clear" in current_forecast:
         if current_temp >= 85:
-            evap_modifier = 0.4   # High thermal evaporation (Bakes surface crust)
+            evap_modifier = 0.4
         elif current_temp >= 70:
-            evap_modifier = 0.6   # Moderate evaporation
+            evap_modifier = 0.6
         else:
-            evap_modifier = 0.8   # Light evaporation
+            evap_modifier = 0.8
     elif "cloudy" in current_forecast or "overcast" in current_forecast:
         if current_temp >= 80:
-            evap_modifier = 0.8   # Warm cloud cover limits evaporation slightly
+            evap_modifier = 0.8
         else:
-            evap_modifier = 1.0   # Cool cloud cover traps ground moisture completely
+            evap_modifier = 1.0
             
-    # If it is actively raining or storming, force full penalty baseline
     if "rain" in current_forecast or "shower" in current_forecast or "thunderstorm" in current_forecast:
         evap_modifier = 1.0
 
-    # Apply Sensitivity Multipliers
     if "Native Red Clay" in v3_surface:
         sensitivity = 3.0
     elif "Improved Gravel" in v3_surface:
@@ -238,15 +267,11 @@ def main():
     else:
         sensitivity = 1.0
 
-    # Enforce QGIS capped saturation layer threshold
     effective_sat = min(3.5, sat_idx)
-
-    # Compute Balanced Thermodynamic SSDI Formula
     ssdi = round(v3_terrain_score + (effective_sat * sensitivity * evap_modifier), 1)
 
     print(f"[THERMO TRACE] Evap Mod: {evap_modifier} | Eff Sat: {effective_sat} | Final SSDI: {ssdi}")
 
-    # Decompressed Condition Gateways Mapped to New Balanced Output
     if "Paved / Chipseal" in v3_surface and sat_idx > 0.1:
         cond, badge, color, traction_mod = "WET PAVEMENT", "wet", "#e66e00", 0.90
     elif ssdi < 2.5: 
@@ -310,6 +335,7 @@ def main():
     with open(ssdi_path, 'w', encoding='utf-8') as f:
         json.dump(ssdi_data, f, indent=2)
 
+    # ─── WRITE BACK OUT TO EXSTING FILE TARGETS SURGICALLY ───
     weather_data["current_temp"] = periods[0]['temperature']
     weather_data["temp_avg"] = round(sum([p['temperature'] for p in processed_hours[:12]]) / 12)
     weather_data["precip_24h"] = historical_precip_24h
@@ -317,6 +343,9 @@ def main():
     weather_data["precip_prob"] = p_prob_raw
     weather_data["live_wh"] = live_wh
     weather_data["energy_penalty_pct"] = energy_penalty_pct
+
+    # Safe root expansion (Appends data without mutating standard values)
+    weather_data["three_day_forecast"] = three_day_forecast_payload
 
     weather_data["metadata"]["generated_at"] = datetime.now().isoformat()
     weather_data["metadata"]["saturation_index"] = round(sat_idx, 1)
