@@ -51,7 +51,7 @@
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
-    height: 100vh !important;
+    height: 100dvh !important;
     height: calc(var(--vh, 1vh) * 100) !important;
     overflow: hidden !important;
     display: flex !important;
@@ -2069,7 +2069,7 @@
     max-width: 100vw !important;
     width: 100vw !important;
     height: 100vh !important;            
-    max-height: 100vh !important;
+    max-height: 100dvh !important;
     overflow-x: hidden !important;       
     position: relative !important;
   }
@@ -2079,7 +2079,7 @@
   body.rg-printer-body-freeze #root,
   body.rg-printer-body-freeze .rg-printer-root-canvas {
     height: 100vh !important;
-    max-height: 100vh !important;
+    max-height: 100dvh !important;
     overflow: hidden !important;          
   }
 
@@ -2088,7 +2088,7 @@
     width: 100vw !important;
     max-width: 100vw !important;
     height: 100vh !important;
-    max-height: 100vh !important;
+    max-height: 100dvh !important;
     overflow: hidden !important;          
     position: relative !important;
     box-sizing: border-box !important;
@@ -2103,10 +2103,11 @@
     left: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
-    padding: 16px !important;
-    background: rgba(15, 23, 42, 0.85) !important; 
-    backdrop-filter: blur(8px) !important;
-    -webkit-backdrop-filter: blur(8px) !important;
+    height: 100dvh !important; /* 🎯 FIX: Snaps overlay boundary flush to Safari edge limits to block report background peek leakage */
+    padding: 12px !important;  /* Generous breathing cushion around the modal card layout perimeter */
+    background: rgba(15, 23, 42, 0.96) !important; /* Slightly darkened to completely mask underlying map fragments */
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -2118,8 +2119,8 @@
   body .rg-printer-modal-card {
     max-width: 400px !important;
     width: 100% !important;
-    height: 96vh !important;
-    max-height: 96vh !important;
+    height: 100% !important; 
+    max-height: calc(100dvh - 24px) !important; /* 🎯 FIX: Automatically flexes and scales context dimensions safely on any screen size */
     border-radius: 14px !important;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
     background-color: #ffffff !important; 
@@ -2127,7 +2128,7 @@
     padding: 16px 14px !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important; 
+    justify-content: flex-start !important; /* Switch to top-heavy distribution tracking to favor compression bounds */
     border: 1px solid var(--brand-sky) !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
@@ -2226,12 +2227,12 @@
     flex-shrink: 0 !important;
   }
 
-  /* 6. Legal Scroller Windows Padding Normalizers */
+ /* 6. Legal Scroller Windows Padding Normalizers */
   body .rg-modal-scroller-box {
     width: 100% !important;
-    flex: 1 !important;                 
-    max-height: none !important;        
-    margin: 0 0 14px 0 !important;
+    flex: 1 1 auto !important;          /* 🎯 FIX: Allows container box volume parameters to expand or shrink fluidly */
+    min-height: 0 !important;           /* 🎯 CRITICAL FOR SAFARI: Informs WebGL engines that this element can compress beneath content volume, unlocking the inner scrollbar track! */
+    margin: 0 0 12px 0 !important;
     padding: 8px 6px !important;
     font-size: 11px !important;
     line-height: 1.45 !important;
@@ -2241,7 +2242,7 @@
     box-sizing: border-box !important;
     text-align: left !important;
     overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important;
+    -webkit-overflow-scrolling: touch !important; /* Preserves organic scrolling acceleration mechanics on Apple touch hardware */
   }
 
   body .rg-modal-scroller-box p {
