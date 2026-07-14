@@ -30,6 +30,16 @@
     display: none !important;
   }
 
+  /* 🎯 THE GAP VAPORIZER: Strips inherited theme layout margins/paddings from base root nodes to fix the top screen shift */
+  body.rg-page-mounted,
+  body.rg-page-mounted #root,
+  body.rg-page-mounted .app-shell,
+  body.rg-page-mounted main {
+    margin: 0 !important;
+    padding: 0 !important;
+    top: 0 !important;
+  }
+
   /* Completely hide the drawer header title bar when mobile layout view is active */
   .discovery-dashboard-root .drawer-header-title {
     display: none !important;
@@ -51,8 +61,8 @@
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
-    height: 100dvh !important;
-    height: calc(var(--vh, 1vh) * 100) !important;
+    /* 🎯 FIXED SAFARI OVERLAP: Removed the competing custom fallback line to lock strict dvh dimensions on iOS systems */
+    height: 100dvh !important; 
     overflow: hidden !important;
     display: flex !important;
     flex-direction: column !important;
@@ -76,7 +86,7 @@
     position: fixed !important;
     inset: 0 !important;
     width: 100vw !important;
-    height: 100vh !important;
+    height: 100dvh !important; /* 🎯 FIXED: Keeps loading layers aligned flush inside dynamic viewports */
     background-color: #0f172a !important; 
     display: flex !important;
     flex-direction: column !important;
@@ -299,10 +309,6 @@
     background-color: rgba(15, 23, 42, 0.03) !important;
   }
 
-  /* ─── 📱 SITE NAVIGATION DROP-OVER TRAYS ─── */
-  
-  /* ... keep your existing site-navigation dropdown tray rules intact ... */
-
   /* 🎯 USER PROFILE & CART ROW CONTROLS FOR MOBILE HEADER NAVIGATION */
   .rg-mobile-nav-user-row {
     padding: 12px 16px !important;
@@ -330,8 +336,7 @@
     font-family: "Montserrat", sans-serif !important;
   }
 
-  /* 🎯 CO-ORDINATE BOX: Lock the icon frame into a perfect square layout 
-     so absolute badge offsets align correctly across all device engines */
+  /* 🎯 CO-ORDINATE BOX: Lock the icon frame into a perfect square layout */
   .rg-mobile-nav-cart-icon-wrapper {
     position: relative !important;
     display: inline-flex !important;
@@ -356,9 +361,7 @@
     justify-content: center !important;
   }
 
-  /* ─── 🛒 INLINE CART DROPDOWN ACCORDION FORMATTER ───
-     Overrides absolute dropdown styling when expanded inside the mobile menu,
-     allowing it to push menu elements down naturally without visual bugs */
+  /* ─── 🛒 INLINE CART DROPDOWN ACCORDION FORMATTER ─── */
   .rg-mobile-nav-cart-expansion-wrapper {
     width: 100% !important;
     box-sizing: border-box !important;
@@ -410,8 +413,7 @@
     border-bottom: 1px solid rgb(51, 65, 85) !important;
   }
 
-  /* Strips absolute positioning and scaling transformations out of CartDropdown 
-     when rendered inside the mobile menu accordion flow */
+  /* Strips absolute positioning and scaling transformations out of CartDropdown */
   .rg-mobile-nav-cart-accordion-content .rg-cart-dropdown-popover {
     position: static !important;
     opacity: 1 !important;
@@ -428,8 +430,6 @@
   }
 
   /* ─── 🛒 MOBILE MENU INLINE ACCORDION FORM OVERRIDES ─── */
-  /* 🎯 VAPORIZE PROFILE DECK: Scopes parent containers to drop the broken 
-     duplicate white username strings out of view entirely */
   .nav-mobile .rg-cart-mobile-profile-deck,
   .nav-mobile .rg-profile-identity-row {
     display: none !important;
@@ -439,18 +439,16 @@
     visibility: hidden !important;
   }
 
-  /* 🎯 CLEAN BASEROOT ANCHOR: Removes spacing padding gaps beneath the green trigger row button */
   .nav-mobile .rg-mobile-nav-cart-accordion-content {
     width: 100% !important;
     box-sizing: border-box !important;
     background-color: var(--brand-bone, #f4f1eb) !important; 
     border-radius: 0 0 10px 10px !important;
-    margin: 0 0 12px 0 !important; /* Locks baseline spacing balance */
-    padding: 0 !important;          /* Vaporizes layout padding overlap gaps */
+    margin: 0 0 12px 0 !important; 
+    padding: 0 !important;          
     overflow: hidden !important;
   }
 
-  /* Synchronizes layout cards to lock perfectly flush against the bottom edge of the user ribbon */
   .nav-mobile .rg-mobile-nav-cart-accordion-content .rg-cart-dropdown-popover {
     position: static !important;
     opacity: 1 !important;
@@ -460,7 +458,7 @@
     width: 100% !important;
     box-shadow: none !important;
     border: 2px solid #000000 !important;
-    border-top: none !important; /* Eliminates the double-border collision between panels */
+    border-top: none !important; 
     border-radius: 0 0 10px 10px !important;
     display: flex !important;
     flex-direction: column !important;
@@ -468,7 +466,6 @@
     overflow: visible !important;
   }
 
-  /* Re-maps text alignment constraints across the inner card layout fields */
   .nav-mobile .rg-mobile-nav-cart-accordion-content .rg-cart-dropdown-body {
     color: #0f172a !important;
     padding: 16px !important;
@@ -496,7 +493,6 @@
     height: 22px !important;
   }
 
-  /* Coordinates absolute counter indicator badges over the shopping basket icon graphics */
   .nav-mobile .rg-mobile-nav-cart-icon-box .rg-header-cart-badge.mobile-inline-badge {
     position: absolute !important;
     top: -8px !important;
@@ -514,8 +510,6 @@
     justify-content: center !important;
     z-index: 10 !important;
   }
-
-  
 
   /* ─── 🎛️ MOBILE CONTROL WORKSPACE: RIDEFINDER INDEPENDENT OVERRIDES ─── */
 
@@ -1098,7 +1092,7 @@
     display: flex !important;
     flex-direction: column !important;
     position: fixed !important; 
-    bottom: 0 !important; 
+    bottom: 0 !important; /* 🎯 FIX: Hard anchors the component chassis securely to the active screen floor layout */
     top: auto !important; 
     left: 0 !important;
     right: 0 !important;
@@ -1112,8 +1106,11 @@
     transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1) !important;
     pointer-events: auto !important;
     height: auto !important; 
-    max-height: calc(100vh - 70px) !important; 
+    /* 🎯 FIXED SAFARI CUT-OFF: Swapped from vh to explicit dvh tracking calculations to respect active URL expansions */
+    max-height: calc(100dvh - 84px) !important; 
     box-sizing: border-box !important;
+    /* Injects dynamic bottom cushioning clearance values safely accommodating modern home swipe indicators */
+    padding-bottom: env(safe-area-inset-bottom, 24px) !important; 
   }
 
   .discovery-dashboard-root .rg-mobile-unified-bottom-drawer.drawer-minimized {
@@ -1331,7 +1328,8 @@
 
   .discovery-dashboard-root .rg-mobile-unified-bottom-drawer.drawer-expanded.has-active-selection .rg-mobile-drawer-interior-scroll-pane {
     height: auto !important;
-    max-height: calc(100vh - 120px) !important;
+    /* 🎯 FIXED INTERNAL PORTAL HEIGHT: Recalibrated the layout scrolling tracking envelope to allow easy wallet reads */
+    max-height: calc(100dvh - 160px) !important; 
     padding: 14px !important; 
     display: flex !important;
     flex-direction: column !important;
@@ -1819,15 +1817,13 @@
   }
 
   /* ─── 🎫 MOBILE INDEPENDENT TOKEN UPSELL MODAL OVERRIDES ─── */
-
-  /* 1. Target the Portal directly on the body to enforce true vertical & horizontal centering */
   body .rg-upsell-backdrop {
     position: fixed !important;
     inset: 0 !important;
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
-    height: 100vh !important;
+    height: 100dvh !important; /* 🎯 FIXED SAFARI CUT-OFF */
     display: flex !important;
     align-items: center !important;     
     justify-content: center !important;    
@@ -1836,7 +1832,6 @@
     z-index: 9999999 !important;        
   }
 
-  /* 2. Clear out absolute shifts, inherited desktop margins, and scale heights uniformly */
   body .rg-upsell-container {
     position: relative !important;
     top: auto !important;               
@@ -1845,15 +1840,14 @@
     margin: 0 auto !important;          
     width: 100% !important;
     max-width: 440px !important;
-    height: 100vh !important;           
-    max-height: 96vh !important;
+    height: 100dvh !important;           
+    max-height: 96dvh !important; /* 🎯 FIXED SAFARI CUT-OFF */
     display: flex !important;
     flex-direction: column !important;
     box-sizing: border-box !important;
     background-color: #ffffff !important;
   }
 
-  /* Force side-by-side desktop columns to stack linearly */
   body .rg-upsell-split-layout {
     display: flex !important;
     flex-direction: column !important;
@@ -1866,7 +1860,6 @@
     box-sizing: border-box !important;
   }
 
-  /* 3. Scale Down Introductory Header Typography Layouts */
   body .rg-upsell-left-panel-copy {
     width: 100% !important;
     max-width: 100% !important;
@@ -1896,7 +1889,6 @@
     text-align: center !important;
   }
 
-  /* 4. Streamline Card Dimensions to Conserve Vertical Space */
   body .rg-upsell-right-panel-cards {
     width: 100% !important;
     height: auto !important;
@@ -1925,7 +1917,6 @@
     font-size: 11px !important;
   }
 
-  /* ─── 🎫 SPECIAL MATRIX TWO-COLUMN OVERRIDES FOR PREMIUM PACKS ─── */
   body .rg-upsell-tier-card.mod-bundle-premium .rg-upsell-card-inner {
     display: grid !important;
     grid-template-columns: auto 1fr !important; 
@@ -1977,7 +1968,6 @@
     align-self: end !important;
   }
 
-  /* 5. Compact Collapsible Lead Capture Footer Matrix */
   body .lead-capture-footer.mod-upsell-override {
     margin-top: auto !important;       
     width: 100% !important;
@@ -2060,16 +2050,12 @@
      🎫 PHASE 4: PORTAL ISOLATION - RIDEGUIDE PDF PRINTER TAKEOVER 
      ========================================================================== */
 
-  /* 1. Global Viewport Lock
-     🎯 FIX: Scoped tightly to the printer freeze class matrix. This completely removes the 
-     unconditional height overrides from the regular /rides page map explorer dashboard, 
-     preventing layout collapse and stopping the WebGL canvas blink when loading concludes! */
+  /* 1. Global Viewport Lock */
   body.rg-printer-body-freeze,
   body.rg-printer-body-freeze html {
     max-width: 100vw !important;
     width: 100vw !important;
-    height: 100vh !important;            
-    max-height: 100dvh !important;
+    height: 100dvh !important; /* 🎯 FIXED SAFARI CUT-OFF */
     overflow-x: hidden !important;       
     position: relative !important;
   }
@@ -2078,8 +2064,7 @@
   body.rg-printer-body-freeze html,
   body.rg-printer-body-freeze #root,
   body.rg-printer-body-freeze .rg-printer-root-canvas {
-    height: 100vh !important;
-    max-height: 100dvh !important;
+    height: 100dvh !important; /* 🎯 FIXED SAFARI CUT-OFF */
     overflow: hidden !important;          
   }
 
@@ -2087,8 +2072,7 @@
   .rg-printer-root-canvas {
     width: 100vw !important;
     max-width: 100vw !important;
-    height: 100vh !important;
-    max-height: 100dvh !important;
+    height: 100dvh !important; /* 🎯 FIXED SAFARI CUT-OFF */
     overflow: hidden !important;          
     position: relative !important;
     box-sizing: border-box !important;
@@ -2102,10 +2086,9 @@
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
-    height: 100vh !important;
-    height: 100dvh !important; /* 🎯 FIX: Snaps overlay boundary flush to Safari edge limits to block report background peek leakage */
-    padding: 12px !important;  /* Generous breathing cushion around the modal card layout perimeter */
-    background: rgba(15, 23, 42, 0.96) !important; /* Slightly darkened to completely mask underlying map fragments */
+    height: 100dvh !important; /* 🎯 FIXED SAFARI CUT-OFF */
+    padding: 12px !important;  
+    background: rgba(15, 23, 42, 0.96) !important; 
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
     display: flex !important;
@@ -2120,7 +2103,7 @@
     max-width: 400px !important;
     width: 100% !important;
     height: 100% !important; 
-    max-height: calc(100dvh - 24px) !important; /* 🎯 FIX: Automatically flexes and scales context dimensions safely on any screen size */
+    max-height: calc(100dvh - 24px) !important; /* 🎯 FIXED SAFARI CUT-OFF */
     border-radius: 14px !important;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
     background-color: #ffffff !important; 
@@ -2128,7 +2111,7 @@
     padding: 16px 14px !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: flex-start !important; /* Switch to top-heavy distribution tracking to favor compression bounds */
+    justify-content: flex-start !important; 
     border: 1px solid var(--brand-sky) !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
@@ -2230,8 +2213,8 @@
  /* 6. Legal Scroller Windows Padding Normalizers */
   body .rg-modal-scroller-box {
     width: 100% !important;
-    flex: 1 1 auto !important;          /* 🎯 FIX: Allows container box volume parameters to expand or shrink fluidly */
-    min-height: 0 !important;           /* 🎯 CRITICAL FOR SAFARI: Informs WebGL engines that this element can compress beneath content volume, unlocking the inner scrollbar track! */
+    flex: 1 1 auto !important;          
+    min-height: 0 !important;           /* 🎯 FIXED SAFARI INLINE SCROLL TRACKS */
     margin: 0 0 12px 0 !important;
     padding: 8px 6px !important;
     font-size: 11px !important;
@@ -2242,7 +2225,7 @@
     box-sizing: border-box !important;
     text-align: left !important;
     overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch !important; /* Preserves organic scrolling acceleration mechanics on Apple touch hardware */
+    -webkit-overflow-scrolling: touch !important; 
   }
 
   body .rg-modal-scroller-box p {
