@@ -1,0 +1,21 @@
+/* src/styles/mobile/DesktopOverrides.css */
+
+/* ─── 🖥️ REGRESSION FIREWALL: LARGE DESKTOP SCREEN ACTIONS OVERRIDES ─── */
+@media (min-width: 768px) {
+  /* Hide mobile navigation and application container components on large screens completely */
+  .rg-mobile-header-right-actions-dock,
+  .rg-mobile-app-header-strip,
+  .rg-mobile-unified-bottom-drawer {
+    display: none !important;
+  }
+
+  /* SACRED PROTECTION: Standard unselected gallery list rows hide subtitles on desktop viewports */
+  .route-finder-card-vertical:not(.mobile-header-banner-takeover) .card-subtitle-banner-row {
+    display: none !important;
+  }
+
+  /* Force the toggle chevron indicators to completely disappear on desktop screens */
+  .rg-accordion-indicator-arrow {
+    display: none !important;
+  }
+}

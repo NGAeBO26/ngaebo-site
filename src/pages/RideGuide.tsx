@@ -16,7 +16,10 @@ import { useShopifyCart } from "../store/ShopifyCartContext";
 import "../styles/StorePanel.css";
 import "../features/Discovery/DiscoveryContainer.css";
 import "../styles/RideGuide.css";
-import "../styles/RideGuideMobile.css";
+import "../styles/mobile/DesktopOverrides.css";
+import "../styles/mobile/MobileHeader.css";
+import "../styles/mobile/MobileDrawer.css";
+import "../styles/mobile/MobileModals.css";
 
 export default function RideGuide() {
   const { cartItems } = useShopifyCart();
@@ -52,6 +55,45 @@ export default function RideGuide() {
   const [isMobileCartOpen, setIsMobileCartOpen] = useState<boolean>(false);
   const [isSiteNavMenuOpen, setIsSiteNavMenuOpen] = useState<boolean>(false);
   const [isBottomDrawerExpanded, setIsBottomDrawerExpanded] = useState<boolean>(false);
+
+  // ─── 🔍 DIAGNOSTIC LIFECYCLE EXECUTION TRACE ───
+  useEffect(() => {
+    const logTrace = (phase: string) => {
+      const drawer = document.querySelector('.rg-mobile-unified-bottom-drawer');
+      const rootContainer = document.querySelector('.discovery-dashboard-root');
+      
+      console.log(`============= [TRACE: ${phase}] =============`);
+      console.log(`isWorkspaceLoading state is currently: ${isWorkspaceLoading}`);
+      
+      if (!drawer) {
+        console.warn("⚠️ [TRACE] Drawer element not found in the DOM!");
+      } else {
+        const drawerRect = drawer.getBoundingClientRect();
+        const parentRect = rootContainer?.getBoundingClientRect();
+        
+        console.log(`📁 Drawer Active Classes: "${drawer.className}"`);
+        console.log(`📐 Drawer Rendered Geometry:`, {
+          top: drawerRect.top,
+          bottom: drawerRect.bottom,
+          height: drawerRect.height,
+          computedHeightStyle: window.getComputedStyle(drawer).height,
+          computedTransform: window.getComputedStyle(drawer).transform
+        });
+        
+        if (parentRect) {
+          console.log(`🖥️ Parent Container Box Geometry:`, {
+            parentHeight: parentRect.height,
+            parentTop: parentRect.top,
+            parentBottom: parentRect.bottom
+          });
+        }
+      }
+    };
+
+    // Snapshot 1: Capture layout metrics while loading is true or false
+    logTrace(isWorkspaceLoading ? "LOADING OVERLAY ACTIVE" : "LOADER UNMOUNTED");
+
+  }, [isWorkspaceLoading]);
 
   // 🎯 REGRESSION FIREWALL: Mounts/unmounts an isolated body override signature scope to protect global styles
   useEffect(() => {
@@ -547,27 +589,21 @@ export default function RideGuide() {
             )}
 
             {/* ─── 📱 APPROVED ADAPTIVE MOBILE OVERLAY LOWER DRAWER CONTROLLER ─── */}
-            {isMobile && (
-              <div 
-                className={`rg-mobile-unified-bottom-drawer ${isBottomDrawerExpanded ? "drawer-expanded" : "drawer-minimized"} ${isTakeoverCurrentlyActive ? "has-active-selection" : ""}`}
-                style={isBottomDrawerExpanded && isTakeoverCurrentlyActive ? {
-                  transform: "none"
-                } : {}}
-              >
+            {/* Hidden during loading to prevent empty frames from flashing before vector data finishes compiling */}
+            {isMobile && !isWorkspaceLoading && (
+              <div className={`rg-mobile-unified-bottom-drawer ${isBottomDrawerExpanded ? "drawer-expanded" : "drawer-minimized"} ${isTakeoverCurrentlyActive ? "has-active-selection" : ""}`}>
+                
+                {/* INTERACTIVE DRAG HANDLE ROW */}
                 <div 
                   className="rg-mobile-drawer-drag-handle-bar"
                   onClick={() => setIsBottomDrawerExpanded(!isBottomDrawerExpanded)}
                 >
                   <div className="rg-drawer-horizontal-pill-indicator"></div>
                   
-                  {/* 🎯 COLLAPSE BUTTON INDICATOR (PINNED FAR LEFT AT 16px VIA CSS) */}
                   <div className="rg-drawer-toggle-arrow-indicator">
                     {isBottomDrawerExpanded ? '▼' : '▲'}
                   </div>
 
-                  
-                  
-                  {/* 🎯 THE HEADER REFACTOR: Centers route name dynamically and mounts the active badge inline */}
                   <div className="rg-drawer-status-title-text-wrapper">
                     <span className="rg-drawer-status-title-text">
                       {isTakeoverCurrentlyActive && selectedRouteFeature?.properties
@@ -585,15 +621,10 @@ export default function RideGuide() {
                   </div>
                 </div>
 
-                <div 
-                  className="rg-mobile-drawer-interior-scroll-pane"
-                  style={isBottomDrawerExpanded && isTakeoverCurrentlyActive ? {
-                    overflowY: "auto"
-                  } : {}}
-                >
+                {/* THE ADAPTIVE CONTENT ACCORDION PANE */}
+                <div className="rg-mobile-drawer-interior-scroll-pane">
                   {isTakeoverCurrentlyActive ? (
                     <aside className="rg-left-workspace-storefront-sidebar-mobile-portal">
-                      {/* 🎯 PORTAL DRAWER CLOSER INJECTION */}
                       <PersistentLeftShopPanel
                         activeRouteProperties={selectedRouteFeature ? selectedRouteFeature.properties : null}
                         allRoutes={masterRoutes}
@@ -613,8 +644,15 @@ export default function RideGuide() {
                     />
                   )}
                 </div>
+
+                {/* 🎯 THE PERSISTENT SYSTEM BEZEL FOOTER: Anchored directly below the content pane */}
+                <div className="rg-mobile-drawer-system-bezel-footer">
+                  <div className="rg-bezel-hardware-line" />
+                </div>
+
               </div>
             )}
+            
 
           </div>
         </div>

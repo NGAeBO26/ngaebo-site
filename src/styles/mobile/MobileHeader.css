@@ -1,0 +1,975 @@
+/* src/styles/mobile/MobileHeader.css */
+
+/* ─── 📱 MOBILE VIEWPORT APP INTERACTIVE WORKSPACE MATRIX ─── */
+@media (max-width: 767px) {
+  
+  /* PRECISION BODY OVERRIDE LOCK: Standard header is ONLY hidden on mobile when actively on this page */
+  body.rg-page-mounted .site-header, 
+  body.rg-page-mounted #site-header, 
+  body.rg-page-mounted .main-header {
+    display: none !important;
+  }
+
+  /* 🎯 THE GAP VAPORIZER: Strips inherited theme layout margins/paddings from base root nodes to fix the top screen shift */
+  body.rg-page-mounted,
+  body.rg-page-mounted #root,
+  body.rg-page-mounted .app-shell,
+  body.rg-page-mounted main {
+    margin: 0 !important;
+    padding: 0 !important;
+    top: 0 !important;
+  }
+
+  /* Completely hide the drawer header title bar when mobile layout view is active */
+  .discovery-dashboard-root .drawer-header-title {
+    display: none !important;
+  }
+
+  /* Constrain the initialization overlay container on mobile screens */
+  .discovery-dashboard-root .loading-overlay .loading-card,
+  .discovery-dashboard-root .map-loading-screen .loading-box,
+  .discovery-dashboard-root .rg-map-loading-overlay .spinner-container {
+    width: calc(100% - 32px) !important;
+    max-width: 320px !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important;
+  }
+
+  /* ─── PHASE 1: RESPONSIVE SCREEN ISOLATION & FULLSTAGE SCREEN LOCK ─── */
+  .discovery-dashboard-root {
+    position: fixed !important; 
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important; 
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background-color: #111827 !important;
+    border: none !important;
+    z-index: 9999 !important;
+  }
+
+  .discovery-center-container {
+    flex: 1 !important;
+    width: 100% !important;
+    height: auto !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  /* ─── 📱 INITIALIZATION & MAP LOADING OVERLAY TAKEOVER ─── */
+  .discovery-dashboard-root .loading-overlay,
+  .discovery-dashboard-root .map-loading-screen,
+  .discovery-dashboard-root .rg-map-loading-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important; 
+    background-color: #0f172a !important; 
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 200000 !important; 
+    padding: 24px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* MOBILE WIDTH CONTAINER ADJUSTMENT */
+  .discovery-dashboard-root .loading-overlay .loading-card,
+  .discovery-dashboard-root .map-loading-screen .loading-box,
+  .discovery-dashboard-root .rg-map-loading-overlay .spinner-container {
+    width: 100% !important;
+    max-width: 320px !important; 
+    padding: 24px 16px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    background: #1e293b !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+  }
+
+  .discovery-dashboard-root .loading-overlay h2,
+  .discovery-dashboard-root .map-loading-screen h3 {
+    font-size: 14px !important;
+    color: #ffffff !important;
+    font-family: "Montserrat", sans-serif !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    margin: 12px 0 6px 0 !important;
+  }
+
+  .discovery-dashboard-root .loading-overlay p,
+  .discovery-dashboard-root .map-loading-screen p {
+    font-size: 11px !important;
+    color: #94a3b8 !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+  }
+
+  /* ─── 📱 BRAND SKY BLUE NAVBAR & ACTION DOCKS ─── */
+  .rg-mobile-app-header-strip {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    height: 56px !important;
+    background-color: #236ea0 !important; 
+    border-bottom: 4px solid var(--brand-amber) !important;
+    padding: 0 16px !important;
+    box-sizing: border-box !important;
+    z-index: 100000 !important;
+    flex-shrink: 0 !important;
+    position: relative !important;
+  }
+
+  /* 🎯 SIDE FOOTPRINT LOCKS: Holds columns to a 78px width layout bounding box */
+  .rg-mobile-header-left-actions-dock,
+  .rg-mobile-header-right-actions-dock {
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;                        
+    width: 78px !important;                       
+    height: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .rg-mobile-header-left-actions-dock {
+    justify-content: flex-start !important;
+  }
+
+  .rg-mobile-header-right-actions-dock {
+    justify-content: flex-end !important;        
+  }
+
+  /* 🎯 UNIFIED CONTROLS GRID: Forces all 4 buttons to utilize matching 32px hitboxes */
+  .discovery-dashboard-root .rg-mobile-hamburger-drawer-trigger,
+  .discovery-dashboard-root .rg-drawer-reset-filters-btn,
+  .discovery-dashboard-root .rg-mobile-header-icon-action-btn,
+  .discovery-dashboard-root .rg-mobile-sitenav-drawer-trigger {
+    background: none !important;
+    border: none !important;
+    color: #ffffff !important;
+    cursor: pointer !important;
+    padding: 0 !important;                        
+    width: 32px !important;                       
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;                
+    outline: none !important;
+    line-height: 1 !important;
+    font-size: 20px !important;                   
+    transition: transform 0.1s ease !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 🎯 THE MOBILE HEADER NOTIFICATION BADGE SKIN */
+  .discovery-dashboard-root .rg-header-cart-badge {
+    position: absolute !important;
+    top: 0px !important;                         
+    right: 0px !important;                       
+    background-color: #d88a3a !important;        
+    color: #ffffff !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 8.5px !important;
+    font-weight: 700 !important;
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 50% !important;               
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    border: 1px solid #236ea0 !important;        
+    z-index: 5 !important;
+    pointer-events: none !important;             
+  }
+
+  /* Keep graphic layout components sized equally */
+  .discovery-dashboard-root .rg-mobile-hamburger-drawer-trigger img,
+  .discovery-dashboard-root .rg-drawer-reset-filters-btn img,
+  .discovery-dashboard-root .rg-mobile-header-icon-action-btn svg {
+    width: 22px !important;
+    height: 22px !important;
+    display: block !important;
+    object-fit: contain !important;
+    margin: 0 auto !important;
+  }
+
+  /* State color modifications */
+  .discovery-dashboard-root .rg-mobile-header-icon-action-btn.action-active,
+  .discovery-dashboard-root .rg-mobile-sitenav-drawer-trigger.action-active {
+    color: #f59e0b !important; 
+    transform: scale(1.06) !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-hamburger-drawer-trigger:active,
+  .discovery-dashboard-root .rg-drawer-reset-filters-btn:active,
+  .discovery-dashboard-root .rg-mobile-header-icon-action-btn:active,
+  .discovery-dashboard-root .rg-mobile-sitenav-drawer-trigger:active {
+    transform: scale(0.92) !important;
+  }
+
+  /* 🎯 CENTERED LOGO BOX MATRIX */
+  .discovery-dashboard-root .rg-mobile-app-centered-branding {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important; 
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 10 !important;
+    cursor: pointer !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-app-centered-branding img {
+    height: 22px !important;
+    width: auto !important;
+    display: block !important;
+    object-fit: contain !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-header-subtitle {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 8.5px !important;
+    font-weight: 800 !important;
+    color: rgba(255, 255, 255, 0.75) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    margin-top: 1px !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  /* ─── 📱 SITE NAVIGATION DROP-OVER TRAYS ─── */
+  .rg-mobile-sitenav-dropdown-overlay-tray {
+    position: absolute !important;
+    top: 56px !important;
+    right: 0 !important;
+    width: 160px !important;
+    background-color: #f5f5f4 !important; 
+    border-left: 2px solid var(--brand-deep-blue) !important;
+    border-bottom: 2px solid var(--brand-deep-blue)  !important;
+    border-radius: 0 0 0 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 8px 0 !important;
+    box-shadow: -4px 8px 24px rgba(0, 0, 0, 0.5) !important;
+    z-index: 100001 !important;
+  }
+
+  .rg-mobile-nav-link-item {
+    padding: 12px 20px !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    color: var(--brand-graphite) !important;
+    text-decoration: none !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    border-bottom: 1px solid var(--brand-gray) !important;
+    text-align: left !important;
+  }
+
+  .rg-mobile-nav-link-item.active-destination {
+    color: #f59e0b !important;
+    border-left: 4px solid #f59e0b !important;
+    background-color: rgba(15, 23, 42, 0.03) !important;
+  }
+
+  /* 🎯 USER PROFILE & CART ROW CONTROLS FOR MOBILE HEADER NAVIGATION */
+  .rg-mobile-nav-user-row {
+    padding: 12px 16px !important;
+    border-top: 1px solid #334155 !important;
+    margin-top: 8px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    background-color: transparent !important;
+    transition: background-color 0.15s ease-in-out !important;
+  }
+
+  .rg-mobile-nav-user-row:aria-label:active,
+  .rg-mobile-nav-user-row:active {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+  }
+
+  .rg-mobile-nav-username {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #cbd5e1 !important;
+    font-family: "Montserrat", sans-serif !important;
+  }
+
+  /* 🎯 CO-ORDINATE BOX: Lock the icon frame into a perfect square layout */
+  .rg-mobile-nav-cart-icon-wrapper {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #cbd5e1 !important;
+    width: 22px !important;
+    height: 22px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Precise offset alignment overrides for the cart badge */
+  .rg-mobile-nav-cart-icon-wrapper .rg-header-cart-badge.mobile-nav-badge {
+    position: absolute !important;
+    top: -5px !important;
+    right: -8px !important;
+    transform: none !important;
+    margin: 0 !important;
+    z-index: 10 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* ─── 🛒 INLINE CART DROPDOWN ACCORDION FORMATTER ─── */
+  .rg-mobile-nav-cart-expansion-wrapper {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    background-color: #1e293b !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.03) !important;
+    border-bottom: 1px solid #334155 !important;
+    padding: 4px 0 !important;
+  }
+
+  /* Force CartDropdown styles to render inline inside the mobile nav menu panel */
+  .rg-mobile-nav-cart-expansion-wrapper .rg-cart-dropdown-popover {
+    position: static !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    background-color: transparent !important;
+    transform: none !important;
+    display: flex !important;
+    max-height: none !important;
+  }
+
+  /* ─── 📱 MOBILE HEADER NAVIGATION ACCORDION TRIGGERS ─── */
+  .nav-mobile .rg-mobile-nav-user-row {
+    padding: 12px 16px !important;
+    border-top: 1px solid rgb(51, 65, 85) !important;
+    margin-top: 8px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    background-color: transparent;
+    transition: background-color 0.15s ease-in-out;
+  }
+
+  .nav-mobile .rg-mobile-nav-user-row:active {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+  }
+   
+  /* ─── 🛒 ACCORDION INLINE LAYOUT FORMATTER ─── */
+  .rg-mobile-nav-cart-accordion-content {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    background-color: var(--brand-bone, #f2efe9) !important;
+    border-bottom: 1px solid rgb(51, 65, 85) !important;
+  }
+
+  /* Strips absolute positioning and scaling transformations out of CartDropdown */
+  .rg-mobile-nav-cart-accordion-content .rg-cart-dropdown-popover {
+    position: static !important;
+    opacity: 1 !important;
+    max-height: none !important;
+    pointer-events: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background-color: transparent !important;
+  }
+
+  /* ─── 🛒 MOBILE MENU INLINE ACCORDION FORM OVERRIDES ─── */
+  .nav-mobile .rg-cart-mobile-profile-deck,
+  .nav-mobile .rg-profile-identity-row {
+    display: none !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    visibility: hidden !important;
+  }
+
+  .nav-mobile .rg-mobile-nav-cart-accordion-content {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    background-color: var(--brand-bone, #f4f1eb) !important;
+    border-radius: 0 0 10px 10px !important;
+    margin: 0 0 12px 0 !important; 
+    padding: 0 !important;          
+    overflow: hidden !important;
+  }
+
+  .nav-mobile .rg-mobile-nav-cart-accordion-content .rg-cart-dropdown-popover {
+    position: static !important;
+    opacity: 1 !important;
+    max-height: none !important;
+    pointer-events: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border: 2px solid #000000 !important;
+    border-top: none !important;
+    border-radius: 0 0 10px 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background-color: var(--brand-bone, #f4f1eb) !important; 
+    overflow: visible !important;
+  }
+
+  .nav-mobile .rg-mobile-nav-cart-accordion-content .rg-cart-dropdown-body {
+    color: #0f172a !important;
+    padding: 16px !important;
+  }
+
+  .nav-mobile .rg-mobile-nav-cart-accordion-content .rg-cart-item-title {
+    color: #0f172a !important;
+  }
+
+  .nav-mobile .rg-mobile-nav-cart-accordion-content .rg-cart-subtotal-value {
+    color: var(--brand-verdant) !important;
+  }
+  
+  .nav-mobile .rg-mobile-nav-cart-accordion-content .rg-cart-dropdown-header-title {
+    color: #ffffff !important;
+  }
+
+  .nav-mobile .rg-mobile-nav-cart-icon-box {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #ffffff !important;
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  .nav-mobile .rg-mobile-nav-cart-icon-box .rg-header-cart-badge.mobile-inline-badge {
+    position: absolute !important;
+    top: -8px !important;
+    right: -10px !important;
+    background-color: #d88a3a !important;
+    color: #ffffff !important;
+    font-size: 10px !important;
+    font-weight: bold !important;
+    border-radius: 50% !important;
+    padding: 2px 6px !important;
+    margin: 0 !important;
+    transform: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 10 !important;
+  }
+
+  /* ─── 🎛️ MOBILE CONTROL WORKSPACE: RIDEFINDER INDEPENDENT OVERRIDES ─── */
+
+  /* 1. MASTER DRAWER WRAPPER LAYOUT PANEL */
+  .discovery-dashboard-root .finder-header-row {
+    display: flex !important;
+    flex-direction: column !important;
+    position: absolute !important; 
+    top: 56px !important;          
+    left: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 20px 16px !important;
+    gap: 16px !important;
+    background-color: var(--brand-cream) !important; 
+    border: 2px solid var(--brand-deep-blue) !important;
+    border-top: none !important;
+    box-sizing: border-box !important;
+    border-radius: 0 0 24px 24px !important; 
+  }
+
+  .discovery-dashboard-root .finder-header-row.takeover-header-blue-blank {
+    display: none !important;
+    height: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    margin: 0 !important;
+  }
+
+  .discovery-dashboard-root .finder-header-row .finder-brand-block,
+  .discovery-dashboard-root .finder-header-row .yield-counter-panel,
+  .discovery-dashboard-root .finder-header-row .takeover-header-center-void-lane {
+    display: none !important;
+  }
+
+  /* 2. INNER FORM FIELDS SCROLL TRACK PATH CONTAINER */
+  .discovery-dashboard-root .finder-controls-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    gap: 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 3. INPUT ROWS & AUTOCOMPLETE SEARCH FIELDS MATRIX */
+  .discovery-dashboard-root .control-input-group {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 6px !important;
+  }
+
+  .discovery-dashboard-root .control-input-group label {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    color: var(--brand-sky) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  .discovery-dashboard-root .autocomplete-input-inner-row {
+    position: relative !important;
+    width: 100% !important;
+    display: flex !important;
+  }
+
+  .discovery-dashboard-root .autocomplete-input-inner-row input{
+    color: var(--brand-graphite) !important;
+  }
+
+  .discovery-dashboard-root .autocomplete-input-field {
+    width: 100% !important;
+    height: 40px !important;
+    padding: 0 36px 0 12px !important;
+    background-color: var(--brand-gray) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 6px !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 12px !important;
+    color: #ffffff !important;
+    box-sizing: border-box !important;
+  }
+
+  .discovery-dashboard-root .autocomplete-input-field::placeholder {
+    color: var(--brand-graphite) !important;
+    opacity: 1 !important; 
+  }
+
+  .discovery-dashboard-root .autocomplete-dropdown-arrow-icon {
+    position: absolute !important;
+    right: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    cursor: pointer !important;
+  }
+
+  /* 4. AUTOCOMPLETE FLYOUT SUGGESTIONS DROPDOWN PANEL */
+  .discovery-dashboard-root .autocomplete-suggestions-dropdown-overlay {
+    position: absolute !important;
+    top: 58px !important;
+    left: 0 !important;
+    width: 100% !important;
+    max-height: 200px !important;
+    overflow-y: auto !important;
+    background-color: var(--brand-white) !important;
+    border: 1px solid var(--brand-gray) !important;
+    border-radius: 8px !important;
+    border-top: none !important;
+    padding: 4px 0 !important;
+    margin: 0 !important;
+    list-style: none !important;
+    z-index: 100005 !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important;
+  }
+
+  .discovery-dashboard-root .suggestion-interactive-item {
+    padding: 10px 14px !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 11px !important;
+    color: var(--brand-graphite) !important;
+    cursor: pointer !important;
+    text-transform: uppercase !important;
+    border-bottom: 1px solid var(--brand-gray) !important;
+  }
+
+  .discovery-dashboard-root .suggestion-interactive-item:active {
+    background-color: #236ea0 !important;
+    color: #ffffff !important;
+  }
+
+  /* 5. DROP-DOWN SELECT SELECTION MATRICES */
+  .discovery-dashboard-root .class-select-input-inner-row {
+    position: relative !important;
+    width: 100% !important;
+  }
+
+  .discovery-dashboard-root .finder-select-input {
+    width: 100% !important;
+    height: 40px !important;
+    padding: 0 12px !important;
+    background-color: var(--brand-gray) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 6px !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 12px !important;
+    color: var(--brand-graphite) !important;
+    appearance: none !important;
+    box-sizing: border-box !important;
+  }
+
+  .discovery-dashboard-root .class-dropdown-arrow-icon {
+    position: absolute !important;
+    right: 14px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    pointer-events: none !important;
+  }
+
+  /* 6. TELEMETRY CONTROLS RANGE SLIDERS GRID */
+  .discovery-dashboard-root .control-slider-group {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 8px !important;
+  }
+
+  .discovery-dashboard-root .slider-header-labels {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  .discovery-dashboard-root .slider-header-labels span:first-of-type {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    color: var(--brand-sky) !important;
+    text-transform: uppercase !important;
+  }
+
+  .discovery-dashboard-root .slider-header-labels span:last-of-type {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    color: #f59e0b !important; 
+  }
+
+  .discovery-dashboard-root .finder-range-slider {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    width: 100% !important;
+    height: 20px !important;
+    background: transparent !important; 
+    outline: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    cursor: pointer !important;
+  }
+
+  .discovery-dashboard-root .finder-range-slider::-webkit-slider-runnable-track {
+    -webkit-appearance: none !important;
+    width: 100% !important;
+    height: 6px !important;
+    background: linear-gradient(to right, #f59e0b 0%, #f59e0b var(--value-percent), #0f172a var(--value-percent), #0f172a 100%) !important;
+    border-radius: 3px !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .discovery-dashboard-root .finder-range-slider::-moz-range-track {
+    width: 100% !important;
+    height: 6px !important;
+    background: linear-gradient(to right, #f59e0b 0%, #f59e0b var(--value-percent), #0f172a var(--value-percent), #0f172a 100%) !important;
+    border-radius: 3px !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .discovery-dashboard-root .finder-range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 50% !important;
+    background: #f59e0b !important;
+    cursor: pointer !important;
+    margin-top: -5px !important; 
+    border: none !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  .discovery-dashboard-root .finder-range-slider::-moz-range-thumb {
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 50% !important;
+    background: #f59e0b !important;
+    cursor: pointer !important;
+    border: none !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  /* 1. Master Overlay Frame Setup */
+  .rg-mobile-app-header-strip .rg-cart-dropdown-popover {
+    position: absolute !important;
+    top: 56px !important;              
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw !important;           
+    max-width: 100vw !important;       
+    height: auto !important;
+    max-height: calc(100vh - 56px) !important; 
+    background-color: var(--brand-cream) !important; 
+    border: 2px solid var(--brand-deep-blue) !important; 
+    border-top: none !important;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35) !important;
+    z-index: 100002 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+    transform: none !important;        
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 250ms ease-in-out !important;
+  }
+
+  .rg-mobile-app-header-strip .rg-cart-dropdown-popover.rg-cart-reveal {
+    opacity: 1 !important;
+    max-height: calc(100vh - 56px) !important;
+    pointer-events: auto !important;
+  }
+
+  /* 2. Top Header Title Elements */
+  .rg-mobile-app-header-strip .rg-cart-dropdown-header {
+    background-color: #236ea0 !important;
+    padding: 10px 16px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .rg-mobile-app-header-strip .rg-cart-dropdown-header-title {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+  }
+
+  .rg-mobile-app-header-strip .rg-mobile-wallet-balance-tag-badge {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 9.5px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    padding: 3px 10px !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    text-transform: uppercase !important;
+  }
+
+  /* 3. Shopify Authentication Portal Sub-Deck */
+  .rg-mobile-app-header-strip .rg-cart-mobile-profile-deck {
+    background-color: #1e293b !important;
+    padding: 8px 16px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .rg-mobile-app-header-strip .rg-profile-identity-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  .rg-mobile-app-header-strip .rg-profile-username-tag {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    color: #94a3b8 !important;
+    text-transform: uppercase !important;
+  }
+
+  .rg-mobile-app-header-strip .rg-profile-inline-auth-btn-link {
+    background: none !important;
+    border: none !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 800 !important;
+    color: #f59e0b !important; 
+    text-transform: uppercase !important;
+    cursor: pointer !important;
+    padding: 2px 0 !important;
+  }
+
+  /* 4. Navigation Tab Elements */
+  .rg-mobile-app-header-strip .rg-cart-dropdown-body {
+    padding: 14px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 !important;
+    overflow: hidden !important;
+  }
+
+  /* 5. Scroll Containers & Custom Track Fields */
+  .rg-mobile-app-header-strip .rg-cart-scroll-container {
+    max-height: 260px !important;
+    overflow-y: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    padding-right: 0 !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .rg-mobile-app-header-strip .rg-cart-empty-state {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 11px !important;
+    color: #64748b !important;
+    padding: 40px 16px !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+  }
+
+  /* 6. Product Item Row Sub-Cards */
+  .rg-mobile-app-header-strip .rg-cart-item-row-card {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    padding: 10px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
+  }
+
+  .rg-mobile-app-header-strip .rg-cart-item-title {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 11.5px !important;
+    font-weight: 800 !important;
+    color: #0f172a !important;
+  }
+
+  .rg-mobile-app-header-strip .rg-cart-item-subtitle {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 9.5px !important;
+    color: #64748b !important;
+    margin-top: 1px !important;
+  }
+
+  .rg-mobile-app-header-strip .rg-cart-item-price {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    color: var(--brand-verdant) !important;
+  }
+
+  /* 7. Warnings, Totals & Action CTAs */
+  .rg-mobile-app-header-strip .rg-cart-guest-warning {
+    background-color: #fffbeb !important;
+    border: 1px solid #fde68a !important;
+    border-radius: 6px !important;
+    padding: 8px !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 9px !important;
+    color: #b45309 !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+    margin-top: 12px !important;
+  }
+
+  .rg-mobile-app-header-strip .rg-cart-calculation-summary-block {
+    margin-top: 12px !important;
+    border-top: solid 1px #e2e8f0 !important;
+    padding-top: 12px !important;
+  }
+
+  .rg-mobile-app-header-strip .rg-cart-subtotal-row {
+    margin-bottom: 10px !important;
+  }
+
+  .rg-mobile-app-header-strip .rg-cart-subtotal-label {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+  }
+
+  .rg-mobile-app-header-strip .rg-cart-subtotal-value {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 900 !important;
+    color: var(--brand-verdant) !important;
+  }
+
+  .rg-mobile-app-header-strip .rg-cart-checkout-cta-btn {
+    padding: 14px 12px !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    color: var(--brand-charcoal) !important;
+    border-radius: 8px !important;
+    background-color: #f59e0b !important;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.02em !important;
+  }
+
+  /* Vault catalog list layouts */
+  .rg-mobile-app-header-strip .rg-catalog-row-item {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .rg-mobile-app-header-strip .rg-catalog-item-countdown-tag {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 8px !important;
+    font-weight: 700 !important;
+    color: #64748b !important;
+    margin-top: 2px !important;
+    display: inline-block !important;
+  }
+
+  .rg-mobile-app-header-strip .rg-catalog-inline-print-btn {
+    font-family: "Montserrat", sans-serif !important;
+    font-weight: 800 !important;
+    background-color: #16a34a !important; 
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 4px !important;
+    text-transform: uppercase !important;
+    cursor: pointer !important;
+  }
+}
