@@ -1,11 +1,11 @@
 /* src/components/TransactionOverlay.tsx */
 import { useEffect, useRef } from "react";
-import { createPortal } from "react-dom"; // 🎯 FIX: Import portal constructor
+import { createPortal } from "react-dom"; 
 import "../styles/TokenUpsellModal.css"; 
 
 export interface TransactionState {
   status: 'idle' | 'processing' | 'success' | 'failure';
-  type: 'checkout_fulfillment' | 'single_unlock' | 'batch_unlock';
+  type: 'checkout_fulfillment' | 'single_unlock' | 'batch_unlock' | 'print_verification'; // 🎯 Added print_verification type flag
   title: string;
   message: string;
   meta?: {
@@ -34,8 +34,8 @@ export default function TransactionOverlay({ state, onClose }: TransactionOverla
   const isProcessing = state.status === 'processing';
   const isSuccess = state.status === 'success';
   const isFailure = state.status === 'failure';
+  const isPrintVerification = state.type === 'print_verification'; // 🎯 Isolated presentation flag
 
-  // 🎯 FIX: Wrap return statement inside createPortal to mount directly to the document body layer
   return createPortal(
     <div className="rg-upsell-backdrop" onClick={isProcessing ? undefined : onClose} role="presentation">
       <div 
@@ -71,19 +71,35 @@ export default function TransactionOverlay({ state, onClose }: TransactionOverla
         <div className="rg-upsell-card-inner" style={{ padding: "32px", minHeight: "240px", justifyContent: "center" }}>
           {isProcessing && (
             <div style={{ textAlign: "center", width: "100%" }}>
-              <div className="rg-upsell-badge-pill" style={{ backgroundColor: "#f1f5f9", color: "#64748b", animation: "pulse 1.5s infinite" }}>
-                ⏳ Processing Transaction SECURE Handshake
+              {/* 🎯 CONTEXTUAL BADGE PILL: Swaps labels based on the active checkout vs reprint stream */}
+              <div 
+                className="rg-upsell-badge-pill" 
+                style={{ 
+                  backgroundColor: isPrintVerification ? "#e0f2fe" : "#f1f5f9", 
+                  color: isPrintVerification ? "#0369a1" : "#64748b", 
+                  animation: "pulse 1.5s infinite" 
+                }}
+              >
+                {isPrintVerification ? "🔒 Authenticating Secure Vault Access..." : "⏳ Processing Transaction SECURE Handshake"}
               </div>
               <h2 className="rg-upsell-main-title" style={{ marginTop: "16px" }}>{state.title}</h2>
               <p className="rg-upsell-subcaption" style={{ color: "#64748b" }}>{state.message}</p>
-              <div style={{ margin: "20px auto 0 auto", width: "32px", height: "32px", border: "3px solid #e2e8f0", borderTopColor: "#2b7cb6", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
+              <div style={{ margin: "20px auto 0 auto", width: "32px", height: "32px", border: "3px solid #e2e8f0", borderTopColor: isPrintVerification ? "#0284c7" : "#2b7cb6", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
             </div>
           )}
 
           {isSuccess && (
             <div style={{ textAlign: "center", width: "100%", display: "flex", flexDirection: "column", gap: "16px" }}>
-              <span className="rg-upsell-badge-pill" style={{ backgroundColor: "#dcfce7", color: "#16a34a", alignSelf: "center" }}>
-                🎉 {state.title || "Action Successful"}
+              {/* 🎯 CONTEXTUAL SUCCESS PILL: Colors shift to sky-blue context tracks for safe reprint approvals */}
+              <span 
+                className="rg-upsell-badge-pill" 
+                style={{ 
+                  backgroundColor: isPrintVerification ? "#e0f2fe" : "#dcfce7", 
+                  color: isPrintVerification ? "#0369a1" : "#16a34a", 
+                  alignSelf: "center" 
+                }}
+              >
+                {isPrintVerification ? "✓ Access Granted" : `🎉 ${state.title || "Action Successful"}`}
               </span>
               <div className="rg-upsell-left-preview-frame" style={{ width: "80px", height: "80px", border: "none", boxShadow: "none" }}>
                 <img src="/data/assets/rideguide-token.png" alt="Success Token" className="rg-upsell-product-media" style={{ width: "100%", height: "100%" }} />
@@ -112,7 +128,7 @@ export default function TransactionOverlay({ state, onClose }: TransactionOverla
           {isFailure && (
             <div style={{ textAlign: "center", width: "100%", display: "flex", flexDirection: "column", gap: "12px" }}>
               <span className="rg-upsell-badge-pill" style={{ backgroundColor: "#fee2e2", color: "#ef4444", alignSelf: "center" }}>
-                ⚠️ Transaction Interrupted
+                ⚠️ {isPrintVerification ? "Verification Interrupted" : "Transaction Interrupted"}
               </span>
               <h2 className="rg-upsell-main-title" style={{ color: "#991b1b", fontSize: "20px" }}>{state.title}</h2>
               <p className="rg-upsell-subcaption" style={{ color: "#475569", maxWidth: "460px", margin: "0 auto" }}>
@@ -126,6 +142,6 @@ export default function TransactionOverlay({ state, onClose }: TransactionOverla
         </div>
       </div>
     </div>,
-    document.body // 🎯 Target DOM Node Mount Injection
+    document.body 
   );
 }

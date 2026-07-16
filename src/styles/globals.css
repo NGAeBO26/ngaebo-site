@@ -7,16 +7,23 @@
   --brand-bone: #f4f1eb;
   --brand-sand: #e5d8c5;
   --brand-white: #ffffff;
+  --brand-off-white: #f4f3ef;
+  --brand-cream: #f5f5f4;
   --brand-gray: #d9d9d9;
+  --brand-mist: #ebebeb;
   --brand-olive: #4a5b3a;
   --brand-army: #3c4a2f;
   --brand-sky: #236ea0;
   --brand-slate: #9badad;
   --brand-mellow: #ebc850;
   --brand-verdant: #1b7f3a;
+  --brand-leaf: #10b981;
   --brand-amber: #d88a3a;
+  --brand-copper: #af5519;
+  --brand-ember:#a52d23;
   --brand-forest: #3f5a3c;
   --brand-deep-green: #1e3a34;
+  --brand-deep-blue: #1a547e;
   --brand-graphite: #4b4b4b;
 
   --color-bg: var(--brand-bone);

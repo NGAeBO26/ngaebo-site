@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="24mm"
+   height="19.900988mm"
+   viewBox="0 0 24 19.900988"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   sodipodi:docname="icon-reset.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     inkscape:zoom="4.0214615"
+     inkscape:cx="90.017025"
+     inkscape:cy="80.070393"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-10.257465,-29.637376)">
+    <path
+       style="font-variation-settings:'wght' 700;fill:#f4f3ef;stroke:#f4f3ef;stroke-width:0.0772038;stroke-linejoin:round;paint-order:stroke fill markers"
+       d="m 26.639547,43.239891 6.589603,0.03831 v 0 L 29.896037,38.336 Z"
+       id="path1"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="font-variation-settings:'wght' 700;fill:#f4f3ef;stroke:#f4f3ef;stroke-width:0.0772038;stroke-linejoin:round;paint-order:stroke fill markers"
+       d="m 17.543637,36.038207 -6.589645,-0.0301 v 0 l 3.339269,4.938043 z"
+       id="path1-2"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="font-variation-settings:'wght' 700;fill:none;stroke:#f4f3ef;stroke-width:1.5;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers"
+       d="m 13.752293,42.307311 c 0,0 2.368026,5.835491 8.457235,5.835491 6.089211,0 8.330378,-5.793206 8.330378,-5.793206"
+       id="path2" />
+    <path
+       style="font-variation-settings:'wght' 700;fill:none;stroke:#f4f3ef;stroke-width:1.5;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers"
+       d="m 30.540216,36.80962 c 0,0 -2.408608,-5.81886 -8.49767,-5.776453 -6.089063,0.04241 -8.28983,5.85108 -8.28983,5.85108"
+       id="path2-7" />
+  </g>
+</svg>

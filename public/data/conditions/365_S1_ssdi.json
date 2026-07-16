@@ -17,16 +17,16 @@
     "value": 0.29
   },
   "environment": {
-    "current_temp": 80,
-    "saturation_index": 32.2,
+    "current_temp": 73,
+    "saturation_index": 29.3,
     "soil_status": "Saturated",
     "precip_24h": 0.0,
     "saturation_trend": "stable",
     "alerts": []
   },
   "physics": {
-    "live_traction": 0.68,
-    "live_wh_per_km": 15.45,
+    "live_traction": 0.62,
+    "live_wh_per_km": 15.62,
     "energy_penalty_pct": 8.0,
     "v3_base_intensity": 5.4
   },

@@ -1,0 +1,285 @@
+/* src/styles/3DayForecast.css */
+
+@media (max-width: 767px) {
+  
+  /* ─── CORE WRAPPERS & PANEL SPACING ─── */
+  .discovery-dashboard-root .section-weather-row {
+    margin-top: 6px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .discovery-dashboard-root .rr-mobile-weather-panel-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 4px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* ─── TRANSIENT STATUS RIBBONS & SPINNER UTILITIES ─── */
+  .discovery-dashboard-root .rr-weather-transient-status {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 9px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+    line-height: 1 !important;
+    height: 12px !important;
+    box-sizing: border-box !important;
+  }
+  
+  .discovery-dashboard-root .rr-weather-transient-status.syncing {
+    color: #236ea0 !important;
+  }
+  
+  .discovery-dashboard-root .rr-weather-transient-status.success {
+    color: #16a34a !important;
+  }
+
+  .discovery-dashboard-root .rr-status-micro-spinner {
+    width: 11px !important;
+    height: 11px !important;
+    object-fit: contain !important;
+  }
+
+  .discovery-dashboard-root .rr-status-idle-spacer {
+    height: 12px !important;
+    display: block !important;
+  }
+
+  /* ─── 🌤️ REPAIRED CURRENT WEATHER ROW GRID LAYOUT ─── */
+  .discovery-dashboard-root .rr-widget-weather-root {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important; /* TRUE SYMMETRIC GRID: Locks tracks into 3 exact thirds */
+    gap: 4px !important;                           
+    align-items: center !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 52px !important;
+    padding: 4px 16px !important;                 /* 🎯 NATURAL LAYOUT INSET: Adds defensive padding around the weather icon and precip values */
+    box-sizing: border-box !important;
+    position: relative !important;
+    background: none !important;
+    border: none !important;                            /* 🎯 TRANSPARENT BACKGROUND: Allows the parent card to control the background color */
+  }
+
+  /* 🎯 COLUMN 1: COMPACT LEFT FLEX HUB (PULLS TEMP FURTHER LEFT) */
+  .discovery-dashboard-root .rr-weather-column-left {
+    grid-column: 1 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 4px !important;                          /* 🎯 TIGHTENED GAP: Pulls the temperature node left to eliminate text collision */
+  }
+
+ .discovery-dashboard-root .rr-weather-meta-left-group.horizontal-row-layout {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    position: relative !important;
+    transform: none !important;
+    max-width: 100% !important;                   /* 🎯 INLINE OFFSET: Sits temperature text right next to the icon box */
+    padding: 0 !important;
+  }
+
+  .discovery-dashboard-root .rr-weather-icon-box {
+    position: static !important;
+    transform: none !important;
+    width: 32px !important;                       /* Slightly more compact dimensions prevent column crowding */
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+  }
+
+  .discovery-dashboard-root .rr-weather-icon-svg {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .discovery-dashboard-root .rr-weather-temp-node {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 900 !important;
+    color: var(--brand-charcoal) !important; 
+    line-height: 1 !important;
+    flex-shrink: 0 !important;
+  }
+
+   /* 🎯 COLUMN 2: TRUE-CENTERED CONDITION LABEL (MAX CLEARANCE TO WRAP LONG STRINGS) */
+  .discovery-dashboard-root .rr-weather-condition-label.inline-position {
+    grid-column: 2 !important;
+    position: static !important;
+    transform: none !important;
+    text-align: center !important;
+    justify-self: center !important;               /* Locks the text string exactly over the center forecast column */
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 9px !important;                   /* Optimized micro-scaling protects cell boundaries from clipping */
+    font-weight: 800 !important;
+    color: var(--brand-graphite) !important; 
+    letter-spacing: 0.01em !important;
+    line-height: 1.2 !important;
+    max-width: 100% !important;
+    width: auto !important;
+    margin: 0 !important;
+    white-space: normal !important;                /* Clean wrapping engine accommodates wide descriptions */
+  }
+
+  /* 🎯 COLUMN 3: RIGHT-ALIGNED PRECIPITATION METRICS OVER RIGHT CARD */
+  .discovery-dashboard-root .rr-weather-precip-node-stacked {
+    grid-column: 3 !important;
+    position: static !important;
+    transform: none !important;
+    justify-self: flex-end !important;             /* Pushes data text cleanly against your outer right layout wall */
+    text-align: right !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+  }
+
+  .discovery-dashboard-root .rr-precip-line-primary {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 9.5px !important;
+    font-weight: 800 !important;
+    color: var(--brand-sky) !important;
+    line-height: 1.2 !important;
+  }
+
+  .discovery-dashboard-root .rr-precip-line-secondary {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 8.5px !important;
+    font-weight: 600 !important;
+    color: var(--brand-sky)  !important;
+    line-height: 1.2 !important;
+    margin-top: 1px !important;
+  }
+
+  /* ─── LAZY LOADING CORE FRAME PLACEHOLDERS ─── */
+  .discovery-dashboard-root .rr-forecast-loading-frame {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    width: 100% !important;
+    height: 86px !important;             
+    min-height: 86px !important;         
+    max-height: 86px !important;         
+    box-sizing: border-box !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    color: #475569 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    padding: 0 !important;
+  }
+
+  .discovery-dashboard-root .rr-forecast-loading-spinner {
+    width: 24px !important;
+    height: 24px !important;
+    object-fit: contain !important;
+  }
+
+  /* ─── STANDALONE 3-DAY FORECAST SUB-CARDS FLEX GRID ─── */
+  .discovery-dashboard-root .rr-weather-forecast-container {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    gap: 6px !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+  }
+
+  .discovery-dashboard-root .rr-weather-forecast-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 1 !important;
+    min-width: 0 !important;
+    background: radial-gradient(circle at center, #ffffff 0%, #f9f9f9 100%) !important;
+    border: 1px solid #e0e0e0 !important;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.02) !important;
+    border-radius: 8px !important;
+    padding: 4px 2px !important; 
+    box-sizing: border-box !important;
+    text-align: center !important;
+  }
+
+  .discovery-dashboard-root .rr-forecast-day-label {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 9.5px !important;
+    font-weight: 800 !important;
+    color: #475569 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.03em !important;
+    margin-bottom: 2px !important; 
+  }
+
+  .discovery-dashboard-root .rr-forecast-body-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin-bottom: 2px !important;
+  }
+
+  .discovery-dashboard-root .rr-forecast-icon-box {
+    width: 24px !important; 
+    height: 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 0 !important; 
+  }
+
+  .discovery-dashboard-root .rr-forecast-icon-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .discovery-dashboard-root .rr-forecast-temps-column {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important; 
+  }
+
+  .discovery-dashboard-root .rr-forecast-temp-max {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    color: #0f172a !important;
+  }
+
+  .discovery-dashboard-root .rr-forecast-temp-min {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 9px !important;
+    font-weight: 600 !important;
+    color: #94a3b8 !important;
+  }
+
+  .discovery-dashboard-root .rr-forecast-precip-text {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 8.5px !important;
+    font-weight: 700 !important;
+    color: #2563eb !important;
+  }
+}

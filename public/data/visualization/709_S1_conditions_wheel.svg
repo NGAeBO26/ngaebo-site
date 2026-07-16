@@ -1,0 +1,85 @@
+<svg width="100%" height="100%" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="topFillGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#e3f2fd" /><stop offset="100%" stop-color="#236ea0" />
+                </linearGradient>
+                <linearGradient id="bottomFillGrad" x1="100%" y1="0%" x2="0%" y2="0%">
+                    <stop offset="0%" stop-color="#d9cbb9" /><stop offset="100%" stop-color="#4d3a24" />
+                </linearGradient>
+                <path id="topTextPath" d="M 175.0,500 A 325.0,325.0 0 0,1 825.0,500" />
+                <path id="bottomTextPath" d="M 175.0,500 A 325.0,325.0 0 0,0 825.0,500" />
+            </defs>
+
+            <line x1="585.0" y1="500.0" x2="844.0" y2="500.0" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="573.6121593216773" y1="542.5" x2="797.912738901847" y2="672.0" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="542.5" y1="573.6121593216773" x2="672.0" y2="797.9127389018469" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="500.0" y1="585.0" x2="500.0" y2="844.0" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="457.5" y1="573.6121593216773" x2="328.0000000000001" y2="797.912738901847" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="426.38784067832273" y1="542.5" x2="202.08726109815308" y2="672.0" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="415.0" y1="500.0" x2="156.0" y2="500.00000000000006" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="426.38784067832273" y1="457.5" x2="202.08726109815314" y2="328.0" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="457.49999999999994" y1="426.38784067832273" x2="327.9999999999999" y2="202.08726109815314" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="500.0" y1="415.0" x2="499.99999999999994" y2="156.0" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="542.5" y1="426.38784067832273" x2="672.0" y2="202.08726109815314" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="573.6121593216773" y1="457.49999999999994" x2="797.9127389018468" y2="327.9999999999999" stroke="#333333" stroke-width="4" opacity="0.6" />
+            
+            <circle cx="500" cy="500" r="85" fill="white" stroke="#333333" stroke-width="2" />
+            <circle cx="500" cy="500" r="352.0" fill="none" stroke="#d1d1d1" stroke-width="16" />
+            
+            <g id="top"><circle cx="70.0" cy="500.0" r="25" fill="#e3f2fd" />
+<circle cx="73.7" cy="443.9" r="25" fill="#e3f2fd" />
+<circle cx="84.7" cy="388.7" r="25" fill="#e3f2fd" />
+<circle cx="102.7" cy="335.4" r="25" fill="#e3f2fd" />
+<circle cx="127.6" cy="285.0" r="25" fill="#e3f2fd" />
+<circle cx="158.9" cy="238.2" r="25" fill="#e3f2fd" />
+<circle cx="195.9" cy="195.9" r="25" fill="#e3f2fd" />
+<circle cx="238.2" cy="158.9" r="25" fill="#e3f2fd" />
+<circle cx="285.0" cy="127.6" r="25" fill="#e3f2fd" />
+<circle cx="335.4" cy="102.7" r="25" fill="#e3f2fd" />
+<circle cx="388.7" cy="84.7" r="25" fill="#e3f2fd" />
+<circle cx="443.9" cy="73.7" r="25" fill="#e3f2fd" />
+<circle cx="500.0" cy="70.0" r="25" fill="#e3f2fd" />
+<circle cx="556.1" cy="73.7" r="25" fill="#e3f2fd" />
+<circle cx="611.3" cy="84.7" r="25" fill="#e3f2fd" />
+<circle cx="664.6" cy="102.7" r="25" fill="#e3f2fd" />
+<circle cx="715.0" cy="127.6" r="25" fill="#e3f2fd" />
+<circle cx="761.8" cy="158.9" r="25" fill="#e3f2fd" />
+<circle cx="804.1" cy="195.9" r="25" fill="#e3f2fd" />
+<circle cx="841.1" cy="238.2" r="25" fill="#e3f2fd" />
+<circle cx="872.4" cy="285.0" r="25" fill="#e3f2fd" />
+<circle cx="897.3" cy="335.4" r="25" fill="#e3f2fd" />
+<circle cx="915.3" cy="388.7" r="25" fill="#e3f2fd" />
+<circle cx="926.3" cy="443.9" r="25" fill="#e3f2fd" />
+<circle cx="930.0" cy="500.0" r="25" fill="#e3f2fd" />
+
+                <path d="M 110,500 A 390,390 0 0,1 890,500" fill="none" stroke="#e3f2fd" stroke-width="60" />
+                <polygon points="80.0,500.0 80.0,496.5 80.1,493.1 80.1,489.6 80.2,486.1 80.4,482.7 80.5,479.2 80.7,475.8 80.9,472.3 81.2,468.9 81.4,465.4 81.7,462.0 82.1,458.5 82.4,455.1 82.8,451.6 83.2,448.2 83.7,444.7 84.1,441.3 84.6,437.9 85.1,434.5 85.7,431.0 86.3,427.6 86.9,424.2 87.5,420.8 88.2,417.4 88.9,414.0 89.6,410.6 90.4,407.3 91.1,403.9 92.0,400.5 92.8,397.1 93.7,393.8 94.5,390.4 95.5,387.1 96.4,383.8 97.4,380.5 98.4,377.1 99.4,373.8 100.5,370.5 101.5,367.2 102.6,364.0 159.4,383.4 158.5,386.2 157.5,389.0 156.6,391.9 155.7,394.7 154.9,397.5 154.1,400.4 153.2,403.2 152.5,406.1 151.7,409.0 151.0,411.8 150.2,414.7 149.6,417.6 148.9,420.5 148.2,423.4 147.6,426.3 147.0,429.2 146.5,432.1 145.9,435.0 145.4,438.0 144.9,440.9 144.4,443.8 144.0,446.8 143.5,449.7 143.1,452.6 142.8,455.6 142.4,458.5 142.1,461.5 141.8,464.4 141.5,467.4 141.2,470.3 141.0,473.3 140.8,476.3 140.6,479.2 140.4,482.2 140.3,485.2 140.2,488.1 140.1,491.1 140.0,494.1 140.0,497.0 140.0,500.0" fill="url(#topFillGrad)" />
+            </g>
+            <g id="bottom"><circle cx="930.0" cy="500.0" r="25" fill="#d9cbb9" />
+<circle cx="926.3" cy="556.1" r="25" fill="#d9cbb9" />
+<circle cx="915.3" cy="611.3" r="25" fill="#d9cbb9" />
+<circle cx="897.3" cy="664.6" r="25" fill="#d9cbb9" />
+<circle cx="872.4" cy="715.0" r="25" fill="#d9cbb9" />
+<circle cx="841.1" cy="761.8" r="25" fill="#d9cbb9" />
+<circle cx="804.1" cy="804.1" r="25" fill="#d9cbb9" />
+<circle cx="761.8" cy="841.1" r="25" fill="#d9cbb9" />
+<circle cx="715.0" cy="872.4" r="25" fill="#d9cbb9" />
+<circle cx="664.6" cy="897.3" r="25" fill="#d9cbb9" />
+<circle cx="611.3" cy="915.3" r="25" fill="#d9cbb9" />
+<circle cx="556.1" cy="926.3" r="25" fill="#d9cbb9" />
+<circle cx="500.0" cy="930.0" r="25" fill="#d9cbb9" />
+<circle cx="443.9" cy="926.3" r="25" fill="#d9cbb9" />
+<circle cx="388.7" cy="915.3" r="25" fill="#d9cbb9" />
+<circle cx="335.4" cy="897.3" r="25" fill="#d9cbb9" />
+<circle cx="285.0" cy="872.4" r="25" fill="#d9cbb9" />
+<circle cx="238.2" cy="841.1" r="25" fill="#d9cbb9" />
+<circle cx="195.9" cy="804.1" r="25" fill="#d9cbb9" />
+<circle cx="158.9" cy="761.8" r="25" fill="#d9cbb9" />
+<circle cx="127.6" cy="715.0" r="25" fill="#d9cbb9" />
+<circle cx="102.7" cy="664.6" r="25" fill="#d9cbb9" />
+<circle cx="84.7" cy="611.3" r="25" fill="#d9cbb9" />
+<circle cx="73.7" cy="556.1" r="25" fill="#d9cbb9" />
+<circle cx="70.0" cy="500.0" r="25" fill="#d9cbb9" />
+
+                <path d="M 890,500 A 390,390 0 0,1 110,500" fill="none" stroke="#d9cbb9" stroke-width="60" />
+                <polygon points="920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0" fill="url(#bottomFillGrad)" />
+            </g>
+            
+            <text font-family="Montserrat" font-size="70" font-weight="900" fill="#236ea0" letter-spacing="8">
+                <textPath href="#topTextPath" startOffset="50%" text-anchor="middle" dominant-baseline="hanging">SATURATED (10%)</textPath>
+            </text>
+            <text font-family="Montserrat" font-size="70" font-weight="900" fill="#4d3a24" letter-spacing="8">
+                <textPath href="#bottomTextPath" startOffset="50%" text-anchor="middle" dominant-baseline="auto">
+                    ROUGH (0.00)
+                </textPath>
+            </text>
+        </svg>

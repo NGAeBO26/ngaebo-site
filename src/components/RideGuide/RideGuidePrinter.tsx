@@ -2,12 +2,13 @@
 import { useRef, useState, useEffect } from "react";
 import { jsPDF } from "jspdf";
 import { domToPng } from "modern-screenshot"; 
+import { useNavigate } from "react-router-dom"; /* 🎯 NEW: Hook into the React Router navigation stack */
 import RouteReport_v3 from "./RouteReport_v3"; 
 
 // 🎯 UNIFIED IMPORTERS: Hook into layout loader and auth context engines
 import { LoadingOverlay } from "../LoadingOverlay";
 import { useShopifyAuth } from "../../store/ShopifyAuthContext"; 
-import "../../styles/RideGuidePrinter.css"; // Clean CSS migration target
+import "../../styles/RideGuidePrinter.css"; 
 
 interface RideGuidePrinterProps {
   routeID: string;
@@ -16,6 +17,7 @@ interface RideGuidePrinterProps {
 
 export default function RideGuidePrinter({ routeID, customerID }: RideGuidePrinterProps) {
   const { login, isLoading: authIsLoading } = useShopifyAuth(); 
+  const navigate = useNavigate(); /* 🎯 Initialize backplane router link tracking */
   
   const [isPrinting, setIsPrinting] = useState(false);
   const [hasAutoFired, setHasAutoFired] = useState(false);
@@ -31,6 +33,33 @@ export default function RideGuidePrinter({ routeID, customerID }: RideGuidePrint
   // 🎯 TERMS & DISCLOSURE GATEWAY STATES
   const [showTermsModal, setShowTermsModal] = useState(false);
   const [hasAcceptedTerms, setHasAcceptedTerms] = useState(false);
+
+  /* 📱 RESPONSIVE VIEWPORT ENGINE: Identifies mobile viewports to cleanly suppress background screens */
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaCondition = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mediaCondition.matches);
+    
+    const viewportListener = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mediaCondition.addEventListener("change", viewportListener);
+    return () => mediaCondition.removeEventListener("change", viewportListener);
+  }, []);
+
+  /* 🎯 SCROLL FREEZE LOCK: Tags the body layout to prevent mobile background drift */
+  useEffect(() => {
+    if (showTermsModal) {
+      document.body.classList.add("rg-printer-body-freeze");
+    } else {
+      document.body.classList.remove("rg-printer-body-freeze");
+    }
+    return () => document.body.classList.remove("rg-printer-body-freeze");
+  }, [showTermsModal]);
+
+  /* 🎯 ROUTE BACKTRACKING HANDLER: Gracefully steps the user back to the workspace they arrived from */
+  const handleExitWorkflow = () => {
+    navigate("/rides"); 
+  };
 
   // LAYER 1: ABSOLUTELY ALIGN CORE PRINT RENDERING PROPERTIES
   useEffect(() => {
@@ -52,6 +81,25 @@ export default function RideGuidePrinter({ routeID, customerID }: RideGuidePrint
         overflow: visible !important;
         display: block !important;
       }
+      
+      .rg-print-inner-scale-box {
+        transform: none !important;
+      }
+      
+      .rg-print-capture-target {
+        box-shadow: none !important;
+        border: none !important;
+      }
+      
+      header, [class*="header"], .rr-isolation-shell > div:first-child {
+        position: static !important;
+        position: relative !important;
+        transform: none !important;
+        will-change: auto !important;
+        filter: none !important;
+        backdrop-filter: none !important;
+      }
+
       .rr-isolation-shell { padding: 0 !important; margin: 0 !important; background-color: transparent !important; }
       .rr-metrics-column-sidebar div, .rr-metrics-column-sidebar span, .rr-metrics-column-sidebar p { white-space: nowrap !important; }
       .rr-weather-condition-node, .rr-weather-condition-label, .rr-weather-temp-node, .rr-weather-precip-node {
@@ -107,8 +155,11 @@ export default function RideGuidePrinter({ routeID, customerID }: RideGuidePrint
           setShowOverlay(false);
         } else {
           setAccessDeniedMessage(null);
-          setOverlayProgress(50);
+          setOverlayProgress(30);
           setOverlayMessage("Initializing Geospatial Engine & Weather Sync...");
+          
+          setShowTermsModal(true);
+          setShowOverlay(false);
         }
       } catch (err) {
         setAccessDeniedMessage("🚨 Identity Matrix Timeout: Failed connecting to authentication firewall.");
@@ -130,40 +181,34 @@ export default function RideGuidePrinter({ routeID, customerID }: RideGuidePrint
     }
   }, [customerID, routeID, authIsLoading, login]);
 
-  // PHASE 3 STABILIZER EFFECT
+  // PHASE 3 PROGRESS SIMULATION LINEAR STEPPER
   useEffect(() => {
-    if (!showOverlay || isVerifying || accessDeniedMessage || overlayProgress < 50) return;
+    if (isVerifying || accessDeniedMessage || overlayProgress < 30 || overlayProgress >= 100) return;
 
     const progressTimer = setInterval(() => {
       setOverlayProgress((prev) => {
         if (prev >= 100) {
           clearInterval(progressTimer);
-          
-          setTimeout(() => {
-            setShowOverlay(false);
-            setShowTermsModal(true);
-          }, 500);
-
           return 100;
         }
         
-        if (prev >= 80) {
-          setOverlayMessage("Compiling Premium Document PDF...");
-        } else {
-          setOverlayMessage("Compiling GIS Render Maps...");
-        }
+        const nextProgress = prev + 5;
+        if (nextProgress >= 100) setOverlayMessage("RideGuide Ready to Print!");
+        else if (nextProgress >= 75) setOverlayMessage("Generating Route Statistics");
+        else if (nextProgress >= 50) setOverlayMessage("Physics Engine Engaged");
+        else if (nextProgress >= 35) setOverlayMessage("Digital Elevation Model Rendering...");
+        else if (nextProgress >= 20) setOverlayMessage("Weather API Sync...");
 
-        return prev + 5;
+        return nextProgress;
       });
     }, 150);
 
     return () => clearInterval(progressTimer);
-  }, [showOverlay, isVerifying, accessDeniedMessage, overlayProgress]);
+  }, [isVerifying, accessDeniedMessage, overlayProgress]);
 
-  // LAYER 3: VERIFICATION MAP HOOK CHECK & EVENT LISTENERS
+  // LAYER 3: BACKGROUND MAP SYNCHRONIZATION HOOK
   useEffect(() => {
     let pollingInterval: NodeJS.Timeout;
-    let maximumSafetyTimeout: NodeJS.Timeout;
 
     if (printCanvasRef.current && !hasAutoFired && !isPrinting && !isVerifying && !accessDeniedMessage) {
       setHasAutoFired(true);
@@ -172,46 +217,22 @@ export default function RideGuidePrinter({ routeID, customerID }: RideGuidePrint
         const isMapRenderFinished = (window as any).mapLoaded === true;
         if (isMapRenderFinished) {
           clearInterval(pollingInterval);
-          clearTimeout(maximumSafetyTimeout);
-
-          setOverlayMessage("Compiling Premium Document PDF...");
           setOverlayProgress(100);
-
-          setTimeout(() => {
-            setShowOverlay(false);
-            setShowTermsModal(true);
-          }, 800);
-        } else {
-          setOverlayMessage("Compiling GIS Render Maps...");
+          setOverlayMessage("RideGuide Ready to Print!");
         }
       }, 200); 
-
-      maximumSafetyTimeout = setTimeout(() => {
-        clearInterval(pollingInterval);
-        setOverlayMessage("Compiling Premium Document PDF...");
-        setOverlayProgress(100);
-        setTimeout(() => {
-          setShowOverlay(false);
-          setShowTermsModal(true);
-        }, 600);
-      }, 6000);
     }
 
     return () => {
       if (pollingInterval) clearInterval(pollingInterval);
-      if (maximumSafetyTimeout) clearTimeout(maximumSafetyTimeout);
     };
   }, [printCanvasRef, hasAutoFired, isVerifying, accessDeniedMessage]);
 
   const executePdfDownload = async () => {
     if (!printCanvasRef.current || isVerifying || accessDeniedMessage) return;
     
-    setShowTermsModal(false);
-    setOverlayProgress(100);
-    setOverlayMessage("Compiling Vector Coordinates & Exporting Map...");
-    setShowOverlay(true);
-    
     setIsPrinting(true);
+    setOverlayMessage("Compiling Document Vector Maps...");
     window.scrollTo(0, 0);
 
     const mapInstance = (window as any).map;
@@ -243,8 +264,11 @@ export default function RideGuidePrinter({ routeID, customerID }: RideGuidePrint
       });
 
       pdf.addImage(dataUrl, "PNG", 0, 0, 816, 1056);
-      const blobString = pdf.output("bloburl");
-      window.open(blobString, "_blank");
+      
+      /* 🎯 TYPE-SAFE SAFARI BYPASS: Checks payload type before evaluation. 
+         This converts native URL objects to strings to completely bypass type-assignment errors. */
+      const blobTarget = pdf.output("bloburl");
+      window.location.href = typeof blobTarget === "string" ? blobTarget : blobTarget.toString();
 
     } catch (error) {
       console.error("Critical error executing dynamic template capture:", error);
@@ -257,7 +281,7 @@ export default function RideGuidePrinter({ routeID, customerID }: RideGuidePrint
         mapInstance.resize();
       }
       setIsPrinting(false);
-      setShowOverlay(false);
+      setOverlayMessage("RideGuide Ready to Print!");
     }
   };
 
@@ -267,6 +291,9 @@ export default function RideGuidePrinter({ routeID, customerID }: RideGuidePrint
         <h1 style={{ fontSize: "64px", margin: "0" }}>🔒</h1>
         <h2>{accessDeniedMessage}</h2>
         <p style={{ color: "#94a3b8" }}>Please navigate back to the mapping panel to initialize an updated 7-day access key token.</p>
+        <button type="button" onClick={handleExitWorkflow} style={{ marginTop: "16px", padding: "10px 20px", cursor: "pointer", fontWeight: "bold" }}>
+          Return to Workspace
+        </button>
       </div>
     );
   }
@@ -275,12 +302,11 @@ export default function RideGuidePrinter({ routeID, customerID }: RideGuidePrint
     <div className="rg-printer-root-canvas">
       
       <LoadingOverlay 
-        isLoading={showOverlay} 
+        isLoading={showOverlay && !isMobile} 
         progress={overlayProgress} 
         message={overlayMessage} 
       />
 
-      {/* 🎯 EXTRACTED STYLES: Terms overlay backdrop frame handles layout via mapped classes */}
       {showTermsModal && (
         <div className="rg-printer-backdrop-overlay">
           <div className="rg-printer-modal-card">
@@ -291,6 +317,30 @@ export default function RideGuidePrinter({ routeID, customerID }: RideGuidePrint
                 alt="NGAeBO System Verification" 
                 className="rg-printer-logo-asset"
               />
+            </div>
+
+            <div className="rg-printer-pipeline-stack">
+              <h4 className="rg-printer-pipeline-header">...Pipeline Initialized...</h4>
+              
+              <div className={`pipeline-row ${overlayProgress >= 35 ? "mod-completed" : overlayProgress >= 20 ? "mod-active" : "mod-pending"}`}>
+                <span className="check-node">{overlayProgress >= 35 ? "✓" : "⏳"}</span> Weather API Sync...
+              </div>
+              
+              <div className={`pipeline-row ${overlayProgress >= 50 ? "mod-completed" : overlayProgress >= 35 ? "mod-active" : "mod-pending"}`}>
+                <span className="check-node">{overlayProgress >= 50 ? "✓" : "⏳"}</span> Digital Elevation Model Rendering...
+              </div>
+              
+              <div className={`pipeline-row ${overlayProgress >= 75 ? "mod-completed" : overlayProgress >= 50 ? "mod-active" : "mod-pending"}`}>
+                <span className="check-node">{overlayProgress >= 75 ? "✓" : "⏳"}</span> Physics Engine Engaged
+              </div>
+              
+              <div className={`pipeline-row ${overlayProgress >= 100 ? "mod-completed" : overlayProgress >= 75 ? "mod-active" : "mod-pending"}`}>
+                <span className="check-node">{overlayProgress >= 100 ? "✓" : "⏳"}</span> Generating Route Statistics
+              </div>
+              
+              <div className={`pipeline-row ${overlayProgress === 100 ? "mod-completed mod-ready" : "mod-pending"}`}>
+                <span className="check-node">{overlayProgress === 100 ? "🎯" : "⏳"}</span> RideGuide Ready to Print!
+              </div>
             </div>
 
             <h3 className="rg-printer-modal-title">
@@ -312,25 +362,43 @@ export default function RideGuidePrinter({ routeID, customerID }: RideGuidePrint
               </p>
             </div>
 
-            <label className="rg-printer-checkbox-label">
-              <input 
-                type="checkbox" 
-                checked={hasAcceptedTerms}
-                onChange={(e) => setHasAcceptedTerms(e.target.checked)}
-                className="rg-printer-checkbox-input"
-              />
-              <span className="rg-printer-checkbox-text">
-                I agree to the Terms & Conditions and acknowledge the legal ownership, safety, and digital download parameters.
-              </span>
-            </label>
+            {/* 🎯 THE CONTROL WRAPPER LAYOUT DOCK */}
+            <div className="rg-printer-bottom-docked-controls-wrapper">
+              <label className="rg-printer-checkbox-label">
+                <input 
+                  type="checkbox" 
+                  checked={hasAcceptedTerms}
+                  onChange={(e) => setHasAcceptedTerms(e.target.checked)}
+                  className="rg-printer-checkbox-input"
+                  disabled={isPrinting}
+                />
+                <span className="rg-printer-checkbox-text">
+                  I agree to the Terms & Conditions and acknowledge the legal ownership, safety, and digital download parameters.
+                </span>
+              </label>
 
-            <button
-              onClick={executePdfDownload}
-              disabled={!hasAcceptedTerms || isPrinting}
-              className={`rg-printer-modal-submit-btn ${hasAcceptedTerms ? "mod-accepted" : "mod-disabled"}`}
-            >
-              {isPrinting ? "Compiling Document Vector Maps... ⏳" : "Generate Premium PDF ➔"}
-            </button>
+              <button
+                onClick={executePdfDownload}
+                disabled={!hasAcceptedTerms || isPrinting || overlayProgress < 100}
+                className={`rg-printer-modal-submit-btn ${hasAcceptedTerms && overlayProgress === 100 ? "mod-accepted" : "mod-disabled"}`}
+              >
+                {isPrinting 
+                  ? "Compiling Document Vector Maps... ⏳" 
+                  : overlayProgress < 100 
+                    ? "Loading Mapping Telemetry... ⏳" 
+                    : "Generate Premium PDF ➔"
+                }
+              </button>
+
+              <button
+                type="button"
+                onClick={handleExitWorkflow}
+                disabled={isPrinting}
+                className="rg-printer-modal-exit-btn"
+              >
+                Cancel & Return to App ➔
+              </button>
+            </div>
 
           </div>
         </div>

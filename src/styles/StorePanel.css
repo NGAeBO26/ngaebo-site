@@ -187,6 +187,7 @@
 }
 
 .rg-panel-section-title {
+  display: block !important;
   font-family: "Montserrat", sans-serif !important;
   font-size: 10px !important;
   font-weight: 800 !important;
@@ -237,10 +238,8 @@
   border-left: 1px solid var(--brand-gray) !important;
 }
 
-.rg-checkout-hub-card
-  .rg-selection-card-space
-  .route-finder-card-vertical
-  .card-route-title {
+.rg-checkout-hub-card .rg-selection-card-space .route-finder-card-vertical .card-route-title {
+  display: block !important;
   color: var(--brand-sky) !important;
 }
 
@@ -259,22 +258,19 @@
   letter-spacing: 0.3px !important;
 }
 
-.rg-inline-card-action-btn.print-green {
-  background-color: var(--brand-verdant) !important;
-}
-.rg-inline-card-action-btn.unlock-verdant {
-  background-color: var(--brand-verdant) !important;
-}
+.rg-inline-card-action-btn.print-green,
+.rg-inline-card-action-btn.unlock-verdant,
 .rg-inline-card-action-btn.add-verdant {
   background-color: var(--brand-verdant) !important;
 }
+
 .rg-inline-card-action-btn:disabled {
   background-color: #cbd5e1 !important;
   color: #64748b !important;
   cursor: not-allowed !important;
 }
 
-/* 🎯 REFACTORED: B. SCROLLING MINI-CART SELECTION LISTS (Remapped naming boundaries safely) */
+/* B. SCROLLING MINI-CART SELECTION LISTS */
 .rg-persistent-cart-panel {
   display: flex !important;
   flex-direction: column !important;
@@ -283,7 +279,8 @@
   min-height: 0 !important;
 }
 
-.rg-cart-items-list-container {
+.rg-cart-items-list-container,
+.rg-catalog-items-list-container {
   flex: 1 !important;
   overflow-y: auto !important;
   overflow-x: hidden !important;
@@ -291,13 +288,14 @@
   display: flex !important;
   flex-direction: column !important;
   gap: 5px !important;
-  padding-right: 2px !important;
 }
 
-.rg-cart-items-list-container::-webkit-scrollbar {
+.rg-cart-items-list-container::-webkit-scrollbar,
+.rg-catalog-items-list-container::-webkit-scrollbar {
   width: 4px;
 }
-.rg-cart-items-list-container::-webkit-scrollbar-thumb {
+.rg-cart-items-list-container::-webkit-scrollbar-thumb,
+.rg-catalog-items-list-container::-webkit-scrollbar-thumb {
   background: var(--brand-gray) !important;
   border-radius: 99px !important;
 }
@@ -330,17 +328,18 @@
   justify-content: space-between !important;
   align-items: center !important;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.01) !important;
-  flex-shrink: 0 !important;
 }
 
-.rg-cart-item-meta-left {
+.rg-cart-item-meta-left,
+.rg-catalog-item-meta-left {
   display: flex !important;
   flex-direction: column !important;
   min-width: 0 !important;
   flex: 1 !important;
 }
 
-.rg-cart-item-title-text {
+.rg-cart-item-title-text,
+.rg-catalog-item-title-text {
   font-size: 10.5px !important;
   font-weight: 800 !important;
   color: var(--brand-charcoal) !important;
@@ -349,16 +348,19 @@
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   font-family: "Montserrat", sans-serif !important;
+  transition: color 100ms ease !important;
 }
 
-.rg-cart-item-sub-metrics {
+.rg-cart-item-sub-metrics,
+.rg-catalog-item-sub-metrics {
   font-size: 8.5px !important;
   color: var(--brand-slate) !important;
   font-weight: 600 !important;
   font-family: "Montserrat", sans-serif !important;
 }
 
-.rg-cart-item-actions-right {
+.rg-cart-item-actions-right,
+.rg-catalog-item-actions-right {
   display: flex !important;
   align-items: center !important;
   gap: 6px !important;
@@ -368,22 +370,18 @@
   font-size: 10.5px !important;
   font-weight: 700 !important;
   color: var(--brand-verdant) !important;
-  font-family: "Montserrat", sans-serif !important;
 }
 
 .rg-cart-remove-line-item-btn {
   background: none !important;
   border: none !important;
   color: var(--brand-slate) !important;
-  font-size: 15px !important;
-  font-weight: 700 !important;
   cursor: pointer !important;
-  padding: 0 1px !important;
-  line-height: 1 !important;
+  padding: 4px !important;
 }
 
 .rg-cart-remove-line-item-btn:hover {
-  color: var(--brand-amber) !important;
+  color: #ef4444 !important;
 }
 
 /* ==========================================================================
@@ -407,21 +405,6 @@
   flex-shrink: 0 !important;
 }
 
-.rg-token-checkout-instruction-banner {
-  background-color: var(--brand-white) !important;
-  border: 1px solid var(--brand-gray) !important;
-  color: var(--brand-charcoal) !important;
-  font-size: 9.5px !important;
-  font-weight: 700 !important;
-  padding: 9px !important;
-  border-radius: var(--ng-radius-sm) !important;
-  text-align: center !important;
-  font-family: "Montserrat", sans-serif !important;
-  line-height: 1.3 !important;
-  margin-top: auto !important;
-  flex-shrink: 0 !important;
-}
-
 .rg-checkout-hub-card .rg-premium-buy-btn.mod-disabled {
   background-color: var(--brand-gray) !important;
   color: var(--brand-slate) !important;
@@ -432,11 +415,6 @@
 .rg-checkout-hub-card .rg-premium-buy-btn.mod-checkout {
   background-color: var(--brand-amber) !important;
   cursor: pointer !important;
-}
-
-.rg-checkout-hub-card .rg-premium-buy-btn.mod-ready:hover,
-.rg-checkout-hub-card .rg-premium-buy-btn.mod-checkout:hover {
-  background-color: var(--color-primary-dark) !important;
 }
 
 .rg-disclaimer-note {
@@ -450,9 +428,9 @@
   flex-shrink: 0 !important;
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   🎨 PROFILE GROUP LAYOUTS & INTERACTIVE TRASHCAN ICON EXTENSIONS
-   ────────────────────────────────────────────────────────────────────────── */
+/* ==========================================================================
+   5. PROFILE GROUP LAYOUTS & INTERACTIVE TRASHCAN ICON EXTENSIONS
+   ========================================================================== */
 
 .rg-profile-user-group-left {
   display: flex !important;
@@ -479,37 +457,12 @@
   color: var(--brand-amber) !important;
 }
 
-/* 🎯 REFACTORED: Interactive deletion vector targets remuted to matching standards */
-.rg-cart-remove-line-item-btn {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  background: none !important;
-  border: none !important;
-  color: var(--brand-slate) !important;
-  cursor: pointer !important;
-  padding: 4px !important;
-  transition:
-    color 100ms ease,
-    transform 100ms ease !important;
-}
-
-.rg-cart-remove-line-item-btn:hover {
-  color: #ef4444 !important;
-  transform: scale(1.05) !important;
-}
-
 .rg-profile-right-side-dock {
   display: flex !important;
   align-items: center !important;
   gap: 12px !important;
 }
 
-.rg-profile-user-group-left {
-  display: none !important;
-}
-
-/* 🎯 REFACTORED: Inline unlock trigger targets remap values */
 .rg-cart-inline-unlock-btn {
   background-color: var(--brand-amber) !important;
   color: var(--brand-white) !important;
@@ -522,9 +475,7 @@
   cursor: pointer !important;
   text-transform: uppercase !important;
   letter-spacing: 0.3px !important;
-  transition:
-    background-color 100ms ease-in-out,
-    transform 100ms ease !important;
+  transition: background-color 100ms ease-in-out, transform 100ms ease !important;
   flex-shrink: 0 !important;
 }
 
@@ -540,153 +491,17 @@
   transform: none !important;
 }
 
-.rg-cart-inline-unlock-btn.unlocked-green {
-  background-color: var(--brand-verdant) !important;
-}
-.rg-cart-inline-unlock-btn.unlocked-green:hover {
-  background-color: var(--brand-forest) !important;
-}
-
 /* ==========================================================================
-   5. VAULT CATALOG & DUAL PANELS SCROLL CONFIGURATIONS
-   ========================================================================== */
-
-.rg-storefront-dual-scroll-pane {
-  flex: 1 !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 16px !important;
-  padding-right: 2px !important;
-  min-height: 0 !important;
-}
-
-.rg-storefront-dual-scroll-pane::-webkit-scrollbar {
-  width: 4px;
-}
-.rg-storefront-dual-scroll-pane::-webkit-scrollbar-thumb {
-  background: var(--brand-gray) !important;
-  border-radius: 99px !important;
-}
-
-/* 🎯 REFACTORED: Unlocked child scroll layers flattened seamlessly */
-.rg-cart-items-list-container,
-.rg-catalog-items-list-container {
-  overflow: hidden !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 5px !important;
-}
-
-.rg-catalog-vault-panel {
-  display: flex !important;
-  flex-direction: column !important;
-  width: 100% !important;
-}
-
-.rg-catalog-empty-placeholder {
-  padding: 20px 12px !important;
-  background-color: var(--brand-white) !important;
-  border: 1px dashed var(--brand-gray) !important;
-  border-radius: var(--ng-radius-md) !important;
-  text-align: center;
-}
-
-.rg-catalog-empty-placeholder span {
-  font-size: 9.5px !important;
-  color: var(--brand-slate) !important;
-  line-height: 1.4 !important;
-  font-family: "Montserrat", sans-serif !important;
-}
-
-/* 🎯 THE VISUAL UNIFICATION FIX: Explicitly forced readable color parameters and structural layout boundaries */
-.rg-catalog-row-item {
-  background-color: var(--brand-white) !important;
-  border: 1px solid var(--brand-gray) !important;
-  padding: 7px 10px !important; /* Unified to match .rg-cart-row-item padding exactly */
-  border-radius: var(--ng-radius-sm) !important;
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.01) !important;
-  flex-shrink: 0 !important;
-}
-
-.rg-catalog-item-meta-left {
-  display: flex !important;
-  flex-direction: column !important;
-  min-width: 0 !important;
-  flex: 1 !important;
-}
-
-.rg-catalog-item-title-text {
-  font-size: 10.5px !important;
-  font-weight: 800 !important;
-  color: var(
-    --brand-charcoal
-  ) !important; /* High-contrast visibility restore link */
-  text-transform: uppercase !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  font-family: "Montserrat", sans-serif !important;
-}
-
-.rg-catalog-item-countdown-tag {
-  font-size: 8.5px !important;
-  color: var(--brand-verdant) !important;
-  font-weight: 600 !important;
-  font-family: "Montserrat", sans-serif !important;
-}
-
-.rg-catalog-item-actions-right {
-  display: flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-}
-
-.rg-catalog-inline-print-btn {
-  background-color: var(--brand-verdant) !important;
-  color: var(--brand-white) !important;
-  border: none !important;
-  font-family: "Montserrat", sans-serif !important;
-  font-size: 9px !important;
-  font-weight: 800 !important;
-  padding: 4px 8px !important; /* Scaled precisely to balance look of cart rows */
-  border-radius: var(--ng-radius-sm) !important;
-  cursor: pointer !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.3px !important;
-  transition:
-    background-color 100ms ease-in-out,
-    transform 100ms ease !important;
-  flex-shrink: 0 !important;
-}
-
-.rg-catalog-inline-print-btn:hover {
-  background-color: var(--brand-forest) !important;
-  transform: translateY(-1px) !important;
-}
-
-.rg-checkout-hub-card .price-verdant {
-  color: var(--brand-verdant) !important;
-  font-weight: 800 !important;
-}
-
-/* ==========================================================================
-   🎯 6. TWO-TAB SYSTEM NAVIGATION & VIEWPORT EXTENSIONS
+   6. TWO-TAB SYSTEM NAVIGATION & VIEWPORT EXTENSIONS
    ========================================================================== */
 
 .rg-storefront-tabs-nav-bar {
   display: flex !important;
-  align-items: stretch !important;
   background-color: rgba(15, 23, 42, 0.04) !important;
   border: 1px solid var(--brand-gray) !important;
   padding: 3px !important;
   border-radius: var(--ng-radius-sm) !important;
-  flex-shrink: 0 !important;
-  margin-bottom: 2px !important;
+  margin-bottom: 8px !important;
 }
 
 .rg-tab-nav-trigger-btn {
@@ -700,97 +515,46 @@
   padding: 8px 4px !important;
   cursor: pointer !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.3px !important;
   border-radius: 4px !important;
-  transition: all 120ms ease-in-out !important;
-}
-
-.rg-tab-nav-trigger-btn:hover {
-  color: var(--brand-charcoal) !important;
 }
 
 .rg-tab-nav-trigger-btn.active {
   background-color: var(--brand-white) !important;
   color: var(--brand-graphite) !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
 }
 
 .rg-storefront-tab-active-content-pane {
   flex: 1 !important;
   overflow-y: auto !important;
-  overflow-x: hidden !important;
   min-height: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  box-sizing: border-box !important;
 }
 
-.rg-storefront-tab-active-content-pane::-webkit-scrollbar {
-  width: 4px;
-}
-
-.rg-storefront-tab-active-content-pane::-webkit-scrollbar-thumb {
-  background: var(--brand-gray) !important;
-  border-radius: 99px !important;
-}
-
-/* Ensure the absolute root dashboard forces full viewport expansion */
-.discovery-dashboard-root {
-  position: relative !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  overflow: hidden !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-/* ==========================================================================
-   🎯 PREMIUM WORKSPACE CARDS & WINDOW BOUNDARY OVERRIDES
-   ========================================================================== */
-
-/* The Selected Route Frame with the Text-Clipping Protection Fix */
-.rg-active-map-selection-panel {
-  box-sizing: border-box !important;
-  width: 100% !important;
-  background-color: var(--brand-white, #ffffff) !important;
-  border: 1px solid var(--brand-gray, #e2e8f0) !important;
-  border-radius: 8px !important;
-  padding: 12px !important; /* Provides a protective gutter layer around titles and actions */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
-  overflow: visible !important; /* Prevents text layout bounds from being chopped at edges */
-}
-
-/* The New Tabs and Scroll Pane Window Box Frame Context */
 .rg-tabs-window-container {
   box-sizing: border-box !important;
   display: flex !important;
   flex-direction: column !important;
-  flex: 1 !important; /* Forces the box to dynamically stretch to match available lower area height */
-  min-height: 0 !important; /* Crucial anchor for preserving child scroll panes */
+  flex: 1 !important; 
+  min-height: 0 !important; 
   background-color: var(--brand-white, #ffffff) !important;
   border: 1px solid var(--brand-gray, #e2e8f0) !important;
   border-radius: 8px !important;
   padding: 10px !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
 }
 
-/* Smooth micro margins inside the pane wrapper box */
 .rg-tabs-window-container .rg-storefront-tabs-nav-bar {
   margin-top: 0 !important;
   margin-bottom: 8px !important;
 }
 
-/* Ensure active inner lists inherit the nested height controls beautifully */
 .rg-tabs-window-container .rg-storefront-tab-active-content-pane {
   flex: 1 !important;
   min-height: 0 !important;
 }
 
 /* ==========================================================================
-   💥 VERTICAL CLIPPING & HORIZONTAL ELLIPSIS TRUNCATION FIX
+   7. VERTICAL CLIPPING & HORIZONTAL ELLIPSIS TRUNCATION FIX
    ========================================================================== */
 
-/* Force layout details block to collapse correctly against flex boundaries */
 .rg-active-map-selection-panel .route-finder-card-vertical {
   display: flex !important;
   align-items: center !important;
@@ -803,32 +567,22 @@
 
 .rg-active-map-selection-panel .card-left-details-block {
   flex: 1 !important;
-  min-width: 0 !important; /* 🎯 CRITICAL: Tells flex item it's allowed to shrink smaller than text length */
+  min-width: 0 !important; 
   height: auto !important;
   overflow: visible !important;
 }
 
-/* Beautifully truncates long route names right before hitting the badge */
 .rg-active-map-selection-panel .card-route-title {
   display: block !important;
   width: 100% !important;
-  height: auto !important;
-  margin: 0 !important;
-
-  /* 🛑 Fixes Vertical Clipping */
   line-height: 1.4 !important;
   padding-top: 6px !important;
   padding-bottom: 4px !important;
-
-  /* ➔ Fixes Horizontal Overflow & Forces Ellipsis */
-  overflow: hidden !important; /* Changed from visible to allow truncation */
-  text-overflow: ellipsis !important; /* Appends the '...' when text runs out of room */
-  white-space: nowrap !important; /* Keeps text locked tightly to a single line */
+  overflow: hidden !important; 
+  text-overflow: ellipsis !important; 
+  white-space: nowrap !important; 
 }
 
-/* StorePanel Modular Accessibility & Style Remapping Overrides */
-
-/* Remaps styles for the section layout details descriptor row */
 .rg-checkout-hub-card .rg-panel-section-title {
   display: block;
   font-size: 0.95rem;
@@ -839,9 +593,8 @@
   letter-spacing: 0.02em;
 }
 
-/* Remaps card titles to retain font layout parameters without using header tags */
 .rg-checkout-hub-card .card-route-title {
-  display: block;
+  display: block !important;
   font-size: 11px;
   font-weight: 800;
   line-height: 1.25;
@@ -849,7 +602,6 @@
   font-family: "Montserrat", sans-serif;
 }
 
-/* ─── 🎨 SIDEBAR INSTRUCTIONAL EMPTY STATE CARD FORMATTING ─── */
 .rg-cart-empty-placeholder.text-deck-injection {
   padding: 12px 6px !important;
   background-color: transparent !important;
@@ -864,7 +616,6 @@
   letter-spacing: 0.02em;
 }
 
-/* Formats list blocks inside the side panel card module */
 .vertical-stack-fallback-panel {
   display: flex !important;
   flex-direction: column !important;
@@ -910,4 +661,83 @@
   color: var(--brand-verdant) !important;
   font-weight: 600;
   margin-bottom: 8px;
+}
+
+/* ==========================================================================
+   8. INTEGRATED HARMONIZED CATALOG SYSTEM LAYOUTS
+   ========================================================================== */
+
+.rg-catalog-vault-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+}
+
+.rg-catalog-empty-placeholder {
+  padding: 20px 12px !important;
+  background-color: var(--brand-white) !important;
+  border: 1px dashed var(--brand-gray) !important;
+  border-radius: var(--ng-radius-md) !important;
+  text-align: center;
+}
+
+.rg-catalog-empty-placeholder span {
+  font-size: 9.5px !important;
+  color: var(--brand-slate) !important;
+  line-height: 1.4 !important;
+  font-family: "Montserrat", sans-serif !important;
+}
+
+/* 🎯 MATCHED 1:1 WITH THE WIREFRAME METRICS OF THE CART TAB ROW ELEMENT */
+.rg-catalog-row-item {
+  background-color: var(--brand-white) !important;
+  border: 1px solid var(--brand-gray) !important;
+  padding: 7px 10px !important; 
+  border-radius: var(--ng-radius-sm) !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.01) !important;
+  flex-shrink: 0 !important;
+}
+
+/* 🎯 INTERACTIVE ILLUMINATION STRIP OVERLAYS */
+.rg-catalog-item-title-text.is-hovered {
+  color: var(--brand-mellow, #f59e0b) !important;
+}
+
+.rg-catalog-inline-print-btn {
+  background-color: var(--brand-verdant) !important;
+  color: var(--brand-white) !important;
+  border: none !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 800 !important;
+  padding: 4px 8px !important; 
+  border-radius: var(--ng-radius-sm) !important;
+  cursor: pointer !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.3px !important;
+  transition: background-color 100ms ease-in-out, transform 100ms ease !important;
+  flex-shrink: 0 !important;
+}
+
+.rg-catalog-inline-print-btn:hover {
+  background-color: var(--brand-forest) !important;
+  transform: translateY(-1px) !important;
+}
+
+.rg-mobile-consolidated-drawer-content {
+  
+  width: 100% !important;
+}
+
+/* .hud-console-section.section-metrics-row,
+.hud-console-section.section-elevation-graph {
+  margin-top: 12px !important;
+} */
+
+.rg-mobile-action-cta-button-wrapper {
+  margin-top: 16px !important;
+  width: 100% !important;
 }

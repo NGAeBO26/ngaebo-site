@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import { shopifyFetch } from "./shopifyClient";
 import { useShopifyAuth } from "./ShopifyAuthContext"; 
 
-interface CartItem {
+export interface CartItem {
   id: string;
   title: string;
   quantity: number;
@@ -11,6 +11,7 @@ interface CartItem {
   routeId?: string;
   distance?: string;
   fcsLabel?: string; 
+  isTokenBundle?: boolean; // 🎯 Added explicit type identifier flag
 }
 
 interface ShopifyCartContextType {
@@ -20,13 +21,28 @@ interface ShopifyCartContextType {
   checkoutUrl: string | null;
   isCartOpen: boolean;
   setIsCartOpen: (open: boolean) => void;
-  // 🎯 FIX A: Change context method definitions to return the raw updated URL string from Shopify
   addRouteToCart: (variantId: string, routeId: string, title: string, distance: string, fcsLabel: string) => Promise<string | null>; 
   removeCartItem: (lineId: string) => Promise<string | null>; 
   isLoading: boolean;
 }
 
 const ShopifyCartContext = createContext<ShopifyCartContextType | undefined>(undefined);
+
+// 🎯 UPDATED CORE FRAGMENT: Fetches titles and product variants to safely classify item types
+const MERCHANDISE_FRAGMENT = `
+  merchandise {
+    ... on ProductVariant {
+      id
+      title
+      price { amount }
+      product {
+        id
+        title
+        productType
+      }
+    }
+  }
+`;
 
 const GET_CART_QUERY = `
   query getCart($cartId: ID!) {
@@ -39,7 +55,7 @@ const GET_CART_QUERY = `
           node {
             id
             quantity
-            merchandise { ... on ProductVariant { price { amount } } }
+            ${MERCHANDISE_FRAGMENT}
             attributes { key value }
           }
         }
@@ -60,7 +76,7 @@ const CART_CREATE_MUTATION = `
             node {
               id
               quantity
-              merchandise { ... on ProductVariant { price { amount } } }
+              ${MERCHANDISE_FRAGMENT}
               attributes { key value }
             }
           }
@@ -83,7 +99,7 @@ const CART_LINES_ADD_MUTATION = `
             node {
               id
               quantity
-              merchandise { ... on ProductVariant { price { amount } } }
+              ${MERCHANDISE_FRAGMENT}
               attributes { key value }
             }
           }
@@ -106,7 +122,7 @@ const CART_LINES_REMOVE_MUTATION = `
             node {
               id
               quantity
-              merchandise { ... on ProductVariant { price { amount } } }
+              ${MERCHANDISE_FRAGMENT}
               attributes { key value }
             }
           }
@@ -143,9 +159,21 @@ export const ShopifyCartProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
     const parsedItems = cart.lines.edges.map((edge: any) => {
       const node = edge.node;
+      const merchandise = node.merchandise || {};
+      const productInfo = merchandise.product || {};
       const attrs = node.attributes || [];
-      const rTitle = attrs.find((a: any) => a.key === "RouteTitle")?.value || "Premium Route";
-      const rId = attrs.find((a: any) => a.key === "SelectedRouteID")?.value || "";
+      
+      const rawRouteId = attrs.find((a: any) => a.key === "SelectedRouteID")?.value || "";
+      
+      // 🎯 EVALUATE UTILITY TYPE: Flag item if it matches token bundle traits or metadata signatures
+      const isTokenBundle = 
+        productInfo.productType === "Token Pack" ||
+        String(productInfo.title).toLowerCase().includes("token") ||
+        String(merchandise.title).toLowerCase().includes("token") ||
+        rawRouteId === "TOKEN_BUNDLE";
+
+      const rTitle = attrs.find((a: any) => a.key === "RouteTitle")?.value || productInfo.title || "Premium Route";
+      const rId = isTokenBundle ? "TOKEN_BUNDLE" : rawRouteId;
       const rDist = attrs.find((a: any) => a.key === "TelemetryDistance")?.value || "Premium Data";
       const rFcs = attrs.find((a: any) => a.key === "FcsLabel")?.value || ""; 
 
@@ -153,10 +181,11 @@ export const ShopifyCartProvider: React.FC<{ children: React.ReactNode }> = ({ c
         id: node.id,
         title: rTitle,
         quantity: node.quantity,
-        price: Number(node.merchandise.price.amount),
+        price: Number(merchandise.price?.amount || 0),
         routeId: rId,
         distance: rDist,
-        fcsLabel: rFcs 
+        fcsLabel: rFcs,
+        isTokenBundle: isTokenBundle
       };
     });
 
@@ -205,7 +234,6 @@ export const ShopifyCartProvider: React.FC<{ children: React.ReactNode }> = ({ c
     syncCartBuyerIdentity();
   }, [cartId, accessToken]);
 
-  // 🎯 FIX B: Refactor mutation response logic to return the live checkoutUrl string
   const addRouteToCart = async (variantId: string, routeId: string, title: string, distance: string, fcsLabel: string): Promise<string | null> => {
     setIsLoading(true);
     
@@ -246,7 +274,7 @@ export const ShopifyCartProvider: React.FC<{ children: React.ReactNode }> = ({ c
       setCartId(cart.id);
       updateLocalCartState(cart);
       setIsLoading(false);
-      return cart.checkoutUrl; // 🎯 Return raw string directly
+      return cart.checkoutUrl; 
     }
 
     console.error("Shopify Storefront Cart Mutation rejected:", errors);
@@ -254,7 +282,6 @@ export const ShopifyCartProvider: React.FC<{ children: React.ReactNode }> = ({ c
     return null;
   };
 
-  // 🎯 FIX C: Refactor item deletion mutation to pass back the updated checkoutUrl string
   const removeCartItem = async (lineId: string): Promise<string | null> => {
     if (!cartId) return null;
     setIsLoading(true);
@@ -271,7 +298,7 @@ export const ShopifyCartProvider: React.FC<{ children: React.ReactNode }> = ({ c
       if (cart) {
         updateLocalCartState(cart);
         setIsLoading(false);
-        return cart.checkoutUrl; // 🎯 Return updated url string directly
+        return cart.checkoutUrl; 
       }
       console.error("Shopify Storefront Cart Line Removal rejected:", errors);
     } catch (err) {

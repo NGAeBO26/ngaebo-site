@@ -1,37 +1,37 @@
 {
-    "profile_id": "107_S1",
-    "route_id": "107",
-    "ssdi_score": 11.8,
-    "v3_terrain_score": 3.9,
-    "v3_terrain_class": "Cruiser",
-    "badge_type": "muddy",
-    "condition": "MUDDY / SOFT",
-    "style_color": "#a52d23",
-    "access": {
-        "label": "OPEN",
-        "vibe_context": "CLASSIC FOREST ROAD",
-        "status_code": "OPEN"
-    },
-    "ruggedness": {
-        "class": "Chattery",
-        "value": 0.22
-    },
-    "environment": {
-        "current_temp": 71,
-        "saturation_index": 39.48,
-        "soil_status": "Saturated",
-        "precip_24h": 0.12,
-        "saturation_trend": "stable",
-        "alerts": []
-    },
-    "physics": {
-        "live_traction": 0.4,
-        "live_wh_per_km": 12.62,
-        "energy_penalty_pct": 20.0,
-        "v3_base_intensity": 3.9
-    },
-    "connectivity": {
-        "signal_class": "Unknown",
-        "deadzone_max_meters": 0
-    }
+  "profile_id": "107_S1",
+  "route_id": "107",
+  "ssdi_score": 7.4,
+  "v3_terrain_score": 3.9,
+  "v3_terrain_class": "Cruiser",
+  "badge_type": "wet",
+  "condition": "WET / SLICK",
+  "style_color": "#e66e00",
+  "access": {
+    "label": "OPEN",
+    "vibe_context": "CLASSIC FOREST ROAD",
+    "status_code": "OPEN"
+  },
+  "ruggedness": {
+    "class": "Chattery",
+    "value": 0.22
+  },
+  "environment": {
+    "current_temp": 77,
+    "saturation_index": 19.8,
+    "soil_status": "Saturated",
+    "precip_24h": 0.12,
+    "saturation_trend": "stable",
+    "alerts": []
+  },
+  "physics": {
+    "live_traction": 0.63,
+    "live_wh_per_km": 11.36,
+    "energy_penalty_pct": 8.0,
+    "v3_base_intensity": 3.9
+  },
+  "connectivity": {
+    "signal_class": "Unknown",
+    "deadzone_max_meters": 0
+  }
 }

@@ -504,13 +504,12 @@ app.get("/api/download-secure-guide", (req, res) => {
 });
 
 /**
- * 🎰 ATOMIC TOKEN CONSUMPTION GATEWAY REDEMPTION ROUTE
- * Tracks time-locked JSON lifecycles, decrements tokens, and sends a MailerSend link receipt.
+ * 🎰 ATOMIC TOKEN CONSUMPTION & REPRINT ACCESS GATEWAY
+ * Evaluates time-locked access windows. Short-circuits instantly on active reprints,
+ * and only consumes wallet balances or modifies metafields for brand new unlocks.
  */
 app.post("/api/tokens/redeem", redemptionLimiter, async (req, res) => {
-  // 🎯 PARAMETERS CAPTURE: Process the customer identity, requested route vector, and descriptive title
   const { customerId, routeId, routeTitle } = req.body;
-  // 🎯 SANITIZATION FIX: Protects token redemptions from header crashes
   const MAILERSEND_API_KEY = process.env.MAILERSEND_API_KEY?.trim().replace(/[\r\n]/g, "");
   const MAILERLITE_API_KEY = process.env.MAILERLITE_API_KEY?.trim().replace(/[\r\n]/g, "");
 
@@ -537,7 +536,7 @@ app.post("/api/tokens/redeem", redemptionLimiter, async (req, res) => {
       return res.status(404).json({ error: "Customer profile matching context not found." });
     }
 
-    const customerEmail = data.customer.email; // 🎯 Extracted live from Shopify profile query
+    const customerEmail = data.customer.email;
     const passValue = data.customer.pass?.value;
     const tokenCount = parseInt(data.customer.tokens?.value || "0", 10);
     const rawUnlockedJson = data.customer.unlocked?.value || "{}";
@@ -547,8 +546,7 @@ app.post("/api/tokens/redeem", redemptionLimiter, async (req, res) => {
 
     const currentTimestamp = Date.now();
     
-    // 🎯 SCHEMATIC OBJECT ENTRY PARSER: Safely reads the new object properties, 
-    // while remaining fully backward-compatible with legacy primitive numbers.
+    // Parse the current database entry for the target route asset
     const entry = unlockedMap[routeId];
     let targetExpiration = 0;
     if (entry) {
@@ -559,14 +557,30 @@ app.post("/api/tokens/redeem", redemptionLimiter, async (req, res) => {
       }
     }
     
-    let accessGranted = targetExpiration > currentTimestamp;
+    // ─── 🎯 THE SHORT-CIRCUIT FIX: REPRINT VERIFICATION GATEWAY ───
+    // If the guide is already unlocked and sits safely inside the 7-day access window,
+    // return the secure link immediately. Do not touch tokens, metafields, or marketing syncs.
+    if (targetExpiration > currentTimestamp) {
+      console.log(`✓ REPRINT APPROVED: Route ${routeId} is already unlocked and active for user.`);
+      const downloadToken = generateSecureDownloadToken(routeId, customerId);
+      const host = req.headers.host || "bogged-nanometer-criteria.ngrok-free.dev";
+      const protocol = req.headers['x-forwarded-proto'] === 'https' ? 'https' : 'http';
+      const downloadUrl = `${protocol}://${host}/download-guide?routeID=${routeId}&secureToken=${downloadToken}`;
+      
+      return res.status(200).json({ success: true, downloadUrl });
+    }
+
+    // ─── TRANSACTION LAYER: ONLY EXECUTES FOR FRESH UNLOCK REQUESTS ───
+    let accessGranted = false;
     const mutationsArray = [];
 
-    if (!accessGranted && passValue && new Date() < new Date(passValue)) {
+    // Check Track A: Active membership pass coverage
+    if (passValue && new Date() < new Date(passValue)) {
       accessGranted = true;
       console.log(`✓ ACCESS APPROVED: Member ${customerId} owns a live active membership pass.`);
     } 
-    else if (!accessGranted && tokenCount > 0) {
+    // Check Track B: Consume 1 available wallet token credit balance
+    else if (tokenCount > 0) {
       const remainingTokens = tokenCount - 1;
       mutationsArray.push({
         ownerId: normalizedCustomerId,
@@ -582,7 +596,7 @@ app.post("/api/tokens/redeem", redemptionLimiter, async (req, res) => {
       return res.status(402).json({ error: "Insufficient account balance. Pack token depletion reached." });
     }
 
-    // 🎯 SCHEMATIC DICTIONARY WRITER: Seeds the explicit route names directly into the database payload object
+    // Update the local map with a brand new 7-day timestamp expiration window lease
     unlockedMap[routeId] = {
       expiresAt: currentTimestamp + (7 * 24 * 60 * 60 * 1000),
       name: routeTitle || `Route ${routeId}`
@@ -596,6 +610,7 @@ app.post("/api/tokens/redeem", redemptionLimiter, async (req, res) => {
       value: JSON.stringify(unlockedMap)
     });
 
+    // Commit balance deductions and catalog profile updates to Shopify servers securely
     if (mutationsArray.length > 0) {
       const setMetafieldsMutation = `
         mutation metafieldsSet($metafields: [MetafieldsSetInput!]!) {
@@ -609,12 +624,13 @@ app.post("/api/tokens/redeem", redemptionLimiter, async (req, res) => {
       if (errors.length > 0) throw new Error(errors[0].message);
     }
 
+    // Compile secure cryptographic authorization link payload structures
     const downloadToken = generateSecureDownloadToken(routeId, customerId);
     const host = req.headers.host || "bogged-nanometer-criteria.ngrok-free.dev";
     const protocol = req.headers['x-forwarded-proto'] === 'https' ? 'https' : 'http';
     const downloadUrl = `${protocol}://${host}/download-guide?routeID=${routeId}&secureToken=${downloadToken}`;
 
-    // 🚀 MAILERSEND DISPATCH ENGINE (Runs on every single verification loop block redemption)
+    // Dispatch transactional fulfillment confirmation email copies via MailerSend
     if (MAILERSEND_API_KEY && customerEmail) {
       const targetRouteTitle = routeTitle || "Your Requested Custom Route";
       const mailersendPayload = {
@@ -643,7 +659,7 @@ app.post("/api/tokens/redeem", redemptionLimiter, async (req, res) => {
       .catch(err => console.error("⚠️ [MAILERSEND] Network layer transmission exception:", err));
     }
 
-    // 🎯 THE COMPLETENESS FIX: Sync token redeemers to MailerLite as well!
+    // Log the transaction properties inside MailerLite customer lists
     if (MAILERLITE_API_KEY) {
       fetch("https://connect.mailerlite.com/api/subscribers", {
         method: "POST",
