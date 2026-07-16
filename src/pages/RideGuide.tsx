@@ -241,7 +241,11 @@ export default function RideGuide() {
 
       if (window.matchMedia("(max-width: 767px)").matches) {
         setIsBottomDrawerExpanded(true);
-        setIsFilterDrawerOpen(false); /* 🎯 STATE PROTECTION: Programmatically drops the filter tray layout when opening a route card */
+        setIsFilterDrawerOpen(false);
+        
+        /* 🎯 STATE PROTECTION: Programmatically drops the mobile cart 
+           dropdown overlay view frame when a new route card is selected */
+        setIsMobileCartOpen(false);
       }
 
       if (mapZoomFnRef.current) {
@@ -466,9 +470,16 @@ export default function RideGuide() {
                 type="button"
                 className={`rg-mobile-header-icon-action-btn ${isMobileCartOpen ? "action-active" : ""}`}
                 onClick={() => {
-                  setIsMobileCartOpen(!isMobileCartOpen);
+                  const nextCartState = !isMobileCartOpen;
+                  setIsMobileCartOpen(nextCartState);
                   setIsFilterDrawerOpen(false);
                   setIsSiteNavMenuOpen(false);
+                  
+                  /* 🎯 CO-ORDINATION FIX: Collapses the expanded route bottom drawer 
+                    when opening the cart to prevent the dropdown layout from being covered */
+                  if (nextCartState) {
+                    setIsBottomDrawerExpanded(false);
+                  }
                 }}
                 aria-expanded={isMobileCartOpen}
                 aria-label="Toggle Shopping Cart Dropdown Menu Drawer"
@@ -596,7 +607,16 @@ export default function RideGuide() {
                 {/* INTERACTIVE DRAG HANDLE ROW */}
                 <div 
                   className="rg-mobile-drawer-drag-handle-bar"
-                  onClick={() => setIsBottomDrawerExpanded(!isBottomDrawerExpanded)}
+                  onClick={() => {
+                    const nextExpandedState = !isBottomDrawerExpanded;
+                    setIsBottomDrawerExpanded(nextExpandedState);
+                    
+                    /* 🎯 CO-ORDINATION FIX: If the user explicitly expands the lower sheet 
+                       by tapping the handle bar, collapse the mobile cart dropdown tray */
+                    if (nextExpandedState) {
+                      setIsMobileCartOpen(false);
+                    }
+                  }}
                 >
                   <div className="rg-drawer-horizontal-pill-indicator"></div>
                   

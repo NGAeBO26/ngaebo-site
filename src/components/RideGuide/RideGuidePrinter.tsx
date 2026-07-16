@@ -264,8 +264,11 @@ export default function RideGuidePrinter({ routeID, customerID }: RideGuidePrint
       });
 
       pdf.addImage(dataUrl, "PNG", 0, 0, 816, 1056);
-      const blobString = pdf.output("bloburl");
-      window.open(blobString, "_blank");
+      
+      /* 🎯 TYPE-SAFE SAFARI BYPASS: Checks payload type before evaluation. 
+         This converts native URL objects to strings to completely bypass type-assignment errors. */
+      const blobTarget = pdf.output("bloburl");
+      window.location.href = typeof blobTarget === "string" ? blobTarget : blobTarget.toString();
 
     } catch (error) {
       console.error("Critical error executing dynamic template capture:", error);
@@ -279,8 +282,6 @@ export default function RideGuidePrinter({ routeID, customerID }: RideGuidePrint
       }
       setIsPrinting(false);
       setOverlayMessage("RideGuide Ready to Print!");
-      /* 🎯 PERSISTENCE OVERRIDE REMOVAL: Wiped the automatic modal unmounting block 
-         to guarantee the interface card remains locked in view on return tab focus sweeps */
     }
   };
 
