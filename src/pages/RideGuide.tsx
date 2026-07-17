@@ -95,12 +95,24 @@ export default function RideGuide() {
 
   }, [isWorkspaceLoading]);
 
-  // 🎯 REGRESSION FIREWALL: Mounts/unmounts an isolated body override signature scope to protect global styles
+
+
+  // 🎯 REGRESSION FIREWALL & ROOT SAFARI ENGINE TINT
   useEffect(() => {
     document.body.classList.add("rg-page-mounted");
-    return () => document.body.classList.remove("rg-page-mounted");
+    
+    /* 🌐 ROOT TINT FORCE: Explicitly colors the root HTML node to match your header blue.
+       This acts as Safari's primary layout fallback scanner layer. */
+    const originalHtmlBg = document.documentElement.style.backgroundColor;
+    document.documentElement.style.backgroundColor = "#236ea0";
+    
+    return () => {
+      document.body.classList.remove("rg-page-mounted");
+      document.documentElement.style.backgroundColor = originalHtmlBg;
+    };
   }, []);
 
+  // 📱 VIEWPORT MEDIA QUERY LISTENER (Left completely uncompromised)
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 767px)");
     setIsMobile(mediaQuery.matches);
@@ -393,7 +405,32 @@ export default function RideGuide() {
         {isMobile && (
           <div className="rg-mobile-app-header-strip">
             
-            {/* 🎯 LEFT ACTIONS DOCK */}
+            {/* 🎯 /RIDES FOREHEAD SHIM (BRAND BLUE): Pins the status bar to blue */}
+            <div style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '8px',
+              backgroundColor: '#236ea0',
+              zIndex: 2000000,
+              pointerEvents: 'none'
+            }} />
+
+            {/* 🎯 /RIDES CHIN SHIM (DARK SLATE): Forces the floating Safari URL bar 
+               to blend seamlessly into your dashboard backdrop panel color */}
+            <div style={{
+              position: 'fixed',
+              bottom: '-8px',
+              left: 0,
+              width: '100%',
+              height: '12px',
+              backgroundColor: '#236ea0',
+              zIndex: 2000000,
+              pointerEvents: 'none'
+            }} />
+            
+            {/* 🎯 LEFT ACTIONS DOCK (FIXED: Duplicate entry cleanly removed to fix tree compilation) */}
             <div className="rg-mobile-header-left-actions-dock">
               <button 
                 type="button" 
@@ -519,7 +556,6 @@ export default function RideGuide() {
                 <a href="/rides" className="rg-mobile-nav-link-item active-destination">RideGuides</a>
                 <a href="/shop" className="rg-mobile-nav-link-item">Shop Gear</a>
                 <a href="/about" className="rg-mobile-nav-link-item">About Us</a>
-                
               </nav>
             )}
 

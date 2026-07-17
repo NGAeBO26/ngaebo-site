@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { EditorialProductLayout } from '../store/ProductLayout';
 import TacticalLeadForm from '../components/TacticalLeadForm';
-import Header from '../components/Header'; 
+// import Header from '../components/Header'; 
 import Footer from '../components/Footer'; 
 import './Shop.css';
 
@@ -210,9 +210,7 @@ export default function Shop() {
 
   return (
     <div className="shop-master-layout-wrapper">
-      <div className="shop-sticky-site-nav-port">
-        <Header />
-      </div>
+      
 
       <div className="shop-container">
         <div className="shop-persistent-header-stack">

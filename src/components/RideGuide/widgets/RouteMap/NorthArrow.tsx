@@ -4,19 +4,19 @@ import type { Map as MaplibreMap } from "maplibre-gl";
 
 export default function NorthArrow({ map }: { map: MaplibreMap | null | undefined }) {
   const [bearing, setBearing] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
+  // 🧭 MAP HUDS LOGIC: Synced Map Rotation Listener
   useEffect(() => {
     if (!map) return;
 
     const syncCompass = () => {
-      // Invert the map bearing value so the HUD graphic tracks true North
       setBearing(-map.getBearing());
     };
 
     map.on("rotate", syncCompass);
     map.on("move", syncCompass);
     
-    // Initialize orientation match instantly
     setBearing(-map.getBearing());
 
     return () => {
@@ -24,6 +24,21 @@ export default function NorthArrow({ map }: { map: MaplibreMap | null | undefine
       map.off("move", syncCompass);
     };
   }, [map]);
+
+  // 📱 VIEWPORT LISTENER: Dynamic media listener matching global mobile layout bounds
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mediaQuery.matches);
+
+    const handleViewportChange = (e: MediaQueryListEvent) => {
+      setIsMobile(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleViewportChange);
+    return () => mediaQuery.removeEventListener("change", handleViewportChange);
+  }, []);
 
   return (
     // Outer HUD Parent Frame covers the map space to manage clean absolute layouts
@@ -41,21 +56,22 @@ export default function NorthArrow({ map }: { map: MaplibreMap | null | undefine
       }}
     >
       {/* ============================================================================
-          🧭 COMPASS CORNER: ROTATING NORTH ARROW (Top Right)
+          🧭 COMPASS CORNER: ROTATING NORTH ARROW
           ============================================================================ */}
       <div
         className="rr-map-north-arrow-needle"
         style={{
           position: 'absolute',
-          top: '12px',
+          top: isMobile ? '28px' : '12px',
           left: '12px',
-          width: '40px',
-          height: '40px',
+          width: isMobile ? '34px' : '40px',
+          height: isMobile ? '34px' : '40px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           transform: `rotate(${bearing}deg)`,
-          transition: 'transform 0.08s ease-out'
+          transition: 'transform 0.08s ease-out',
+          zIndex: 2
         }}
       >
         <img 
@@ -70,45 +86,47 @@ export default function NorthArrow({ map }: { map: MaplibreMap | null | undefine
       </div>
 
       {/* ============================================================================
-          🏷️ FULL-WIDTH ATTRIBUTION BAR: SNUG BOTTOM ANCHOR (Pure Opacity Image Style)
+          🏷️ SYMMETRIC ATTRIBUTION BAR: 3-COLUMN GEOMETRIC CENTER ENGINE
           ============================================================================ */}
       <div 
         className="rr-map-signature-attribution-bar"
         style={{
           position: 'absolute',
-          bottom: 0,
+          top: isMobile ? 0 : 'auto',
+          bottom: isMobile ? 'auto' : 0,
           left: 0,
           right: 0,
-          backgroundColor: 'rgba(255, 255, 255, 0.5)', // 50% clean transparent baseline visibility
+          backgroundColor: 'rgba(255, 255, 255, 0.5)', 
           padding: '3px 0', 
-          display: 'flex',
+          
+          // 🎯 THE CENTERING CRADLE: Swapped from flex to a balanced 3-part grid track
+          display: 'grid',
+          gridTemplateColumns: '1fr auto 1fr',
           alignItems: 'center',
-          justifyContent: 'center',
-          gap: '6px',
-          borderTop: '1px solid rgba(0, 0, 0, 0.12)',
+          
+          borderTop: isMobile ? 'none' : '1px solid rgba(0, 0, 0, 0.12)',
+          borderBottom: isMobile ? '1px solid rgba(0, 0, 0, 0.12)' : 'none',
           fontSize: '10px',
           fontFamily: 'Oswald, sans-serif',
           fontWeight: 600,
           color: '#343a40',
           letterSpacing: '0.04em',
-          textShadow: '0px 1px 1px rgba(255, 255, 255, 0.8)'
+          textShadow: '0px 1px 1px rgba(255, 255, 255, 0.8)',
+          zIndex: 1
         }}
       >
-        <span>Powered by:</span>
+        {/* LEFT COLUMN: Right-aligned text anchors exactly balanced from center */}
+        <span style={{ textAlign: 'right', paddingRight: '8px' }}>Powered by:</span>
         
-        {/* ============================================================================
-            🎯 CUSTOM BRAND WORDMARK SVG VECTOR BLIT
-            Renders your native corporate graphics asset directly in line within the ribbon
-            ============================================================================ */}
+        {/* CENTER COLUMN: Perfectly isolated branding wordmark logo asset */}
         <img 
           src="/data/assets/alg-wordmark.svg" 
           alt="Adventure GeoLab LLC Logo" 
           style={{
-            height: '18px', // Snug sizing matches the text line height profile seamlessly
-            display: 'inline-block',
+            height: '18px',
+            display: 'block',
+            margin: '0 auto', // Locks the vector layer inline within the center grid cell
             objectFit: 'contain',
-            verticalAlign: 'middle',
-            margin: '0 6px 0 4px',
             filter: `
               drop-shadow(1px 0px 0px #ffffff) 
               drop-shadow(-1px 0px 0px #ffffff) 
@@ -118,7 +136,9 @@ export default function NorthArrow({ map }: { map: MaplibreMap | null | undefine
             `
           }}
         />
-        <span>© 2026</span>
+        
+        {/* RIGHT COLUMN: Left-aligned text anchors exactly balanced from center */}
+        <span style={{ textAlign: 'left', paddingLeft: '8px' }}>© 2026</span>
       </div>
     </div>
   );

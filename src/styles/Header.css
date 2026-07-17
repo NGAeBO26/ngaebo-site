@@ -1,10 +1,21 @@
 /* src/styles/Header.css */
 
 .site-header {
-  position: relative !important;
+  /* 🎯 SITE-WIDE STICKY ENGINE ACTIVE: Locks the primary navigation bar to the top of the window */
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100000 !important;
+  background-color: #3b593a !important; /* Solid background ensures scrolled product text doesn't bleed through */
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
+}
+
+/* 🎯 DESKTOP SHIM KILL SWITCH: Completely removes the Safari notch optimization bars on large layouts */
+@media (min-width: 768px) {
+  .rg-safari-edge-shim {
+    display: none !important;
+  }
 }
 
 .nav-desktop {
@@ -192,14 +203,18 @@
 @media (max-width: 767px) {
   /* 1. Force explicit header height parameters to prevent absolute alignment collapse */
   .site-header {
-    position: relative !important; /* Establishes a reliable container boundary for absolute elements */
+    position: relative !important; 
     height: 64px !important;
     padding: 0 16px !important;
     box-sizing: border-box !important;
-    background-color: var(--brand-forest) !important; /* Preserves your custom header branding bar background */
+    
+    /* 🎯 FALLBACK INJECTION: Providing an explicit hex code fallback (#3b593a) ensures the header 
+       stays forest green even if root style sheets fail to compile. */
+    background-color: var(--brand-forest, #3b593a) !important; 
+    
     display: flex !important;
     align-items: center !important;
-    justify-content: flex-end !important; /* Pushes inline flex items cleanly to the right edge */
+    justify-content: flex-end !important; 
   }
 
   /* Shut down competing desktop navigation components */
@@ -408,12 +423,12 @@
   /* Line 1: North Georgia (Clean Slate Secondary Typography) */
   .brand-title-line1 {
     font-family: "Montserrat", sans-serif !important;
-    font-size: 12px !important;
-    font-weight: 500 !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
     color: var(--brand-bone) !important; /* Crisp off-white passing contrast metrics against dark forest green */
-    /* font-variant: small-caps !important; */
+    font-variant: small-caps !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.15em !important;
+    letter-spacing: 0.2em !important;
     line-height: 1.5 !important;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
   }
