@@ -295,7 +295,7 @@
   .discovery-dashboard-root .rg-mobile-drawer-system-bezel-footer {
     width: 100% !important;
     height: calc(var(--bezel-footer-height) + env(safe-area-inset-bottom, 0px)) !important; 
-    background-color: #0f172a !important; 
+    background-color: var(--brand-sky)!important; 
     display: flex !important;
     align-items: flex-start !important;
     justify-content: center !important;

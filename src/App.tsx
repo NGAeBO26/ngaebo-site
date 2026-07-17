@@ -1,5 +1,6 @@
 /* src/App.tsx */
-import { Routes, Route, useParams, useLocation } from "react-router-dom";
+
+import { Routes, Route, useParams } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -88,13 +89,11 @@ function PrinterWrapper() {
 }
 
 export default function App() {
-  const location = useLocation();
+  
   const isIframePreviewActive = typeof window !== "undefined" && 
     new URLSearchParams(window.location.search).get("preview") === "true";
 
-  // Check page identity contexts
-  const isShopPage = location.pathname.toLowerCase() === "/shop";
-  const isGatewayPage = location.pathname.toLowerCase() === "/redirect-gateway"; 
+  
 
   return (
     <ShopifyAuthProvider>
@@ -104,7 +103,6 @@ export default function App() {
           <Route path="/print/:routeID" element={<PrinterWrapper />} />
           <Route path="/download-guide" element={<DownloadGuide />} />
           <Route path="/account/callback" element={<AccountCallback />} />
-          
           <Route path="/redirect-gateway" element={<RedirectGateway />} />
 
           {/* STANDARD CONSUMER WEB INTERFACE LAYOUT ROUTING CONTAINER */}
@@ -118,27 +116,12 @@ export default function App() {
                     <Route path="/route-report" element={<RouteReport_v3 routeID="28-2_S1" />} />
                   </Routes>
                 </main>
-              ) : isShopPage ? (
-                /* ─── 🎯 FIX 1: WRAP STANDALONE SHOP PAGE IN A MAIN LANDMARK ─── 
-                   Resolves the "Page does not have a main landmark" error on /shop */
-                <main aria-label="Shopify Retail Showcase Marketplace Platform">
-                  <Routes>
-                    <Route path="/shop" element={<Shop />} />
-                  </Routes>
-                </main>
-              ) : isGatewayPage ? (
-                /* ─── 🎯 FIX 2: WRAP GATEWAY IN A MAIN LANDMARK ─── */
-                <main aria-label="External Redirect Authorization Gateway">
-                  <Routes>
-                    <Route path="/redirect-gateway" element={<RedirectGateway />} />
-                  </Routes>
-                </main>
               ) : (
-                /* STANDARD GLOBAL TEMPLATE FRAME FOR REMAINING COMPONENT MAPPINGS */
+                /* 🎯 UNIFIED LANDMARK MATRIX LAYER: Wraps all pages in the primary layout wrapper, 
+                   ensuring the <Header /> renders everywhere while remaining fully accessible. */
                 <>
                   <Header />
-                  {/* This serves as the single primary landmark for all standard consumer routes */}
-                  <main className="page" style={{ flex: 1 }}>
+                  <main className="page" style={{ flex: 1 }} aria-label="North Georgia Outfitters Consumer Portal">
                     <Routes>
                       <Route path="/" element={<Home />} />
                       <Route path="/rides" element={<RideGuide />} />

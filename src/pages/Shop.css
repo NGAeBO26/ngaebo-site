@@ -24,17 +24,20 @@
 /* ==========================================================================
    🏛️ PERSISTENT STACKED STICKY NAVIGATION ARCHITECTURE LOCKS
    ========================================================================== */
-.shop-sticky-site-nav-port {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  z-index: 50; 
-  background-color: #ffffff !important; 
+
+/* 🎯 STICKY ANCESTOR SAFEGUARDS: Forces parent containers to allow sticky 
+   positioning elements to calculate window bounds without breaking overflow loops. */
+main.page,
+.shop-master-layout-wrapper,
+.shop-container {
+  overflow: visible !important;
 }
 
 .shop-persistent-header-stack {
-  position: sticky;
-  top: 121.5px; 
+  position: sticky !important;
+  /* 🎯 DESKTOP STICKY OFFSET: Sets the container to lock cleanly directly 
+     beneath your 121.5px desktop site header bar on large viewports. */
+  top: 121.5px !important; 
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -87,6 +90,11 @@
 
 /* PERSISTENT CONTROLS FILTER BAR */
 .shop-filter-bar {
+    /* 🎯 TARGETED STICKY LOCK: Only the orange category bar hooks onto the viewport now */
+    position: sticky !important;
+    top: 64px !important; /* Docks perfectly flush beneath the site-wide navigation bar */
+    z-index: 40 !important;
+    
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid #e2e8f0;
@@ -97,6 +105,7 @@
     border-radius: 0 0 8px 8px;
     background: linear-gradient(0deg, #ebc850 0%, #f59e0b 65%);
     margin-top: -20px;
+    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
 }
 
 .filter-btn {
@@ -131,7 +140,9 @@
   column-gap: 32px; 
   row-gap: 16px;    
   
-  padding: 12px 24px 40px 24px; 
+  /* 🎯 RESOLVED VISUAL CLIPPING: Increased top padding from 12px to 24px. 
+     This pushes your text blocks down safely out of the sticky header's shadow. */
+  padding: 24px 24px 40px 24px; 
   grid-template-columns: repeat(12, minmax(0, 1fr)); 
 }
 
@@ -486,15 +497,13 @@
    ========================================================================== */
 @media (max-width: 767px) {
 
-  /* 1. STICKY ALIGNMENT ENGINE 
-     Pulls the sticky sub-header bar up to sit perfectly flush right against 
-     the bottom edge of your 64px mobile navigation frame. */
   .shop-persistent-header-stack {
-    top: 64px !important; 
+    top: 64px !important;
+    position: sticky !important;
+    z-index: 40 !important;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important;
   }
 
-  /* Compact padding for the mobile layout fold banner */
   .shop-hero-banner {
     padding: 16px 20px !important;
     margin-bottom: 12px !important;

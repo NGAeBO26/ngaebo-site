@@ -4,15 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host 127.0.0.1",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview --port $PORT --strictPort --host 0.0.0.0",
     "start": "node server.js",
-    "server": "node server.js",
-    "─► MASTER ECOSYSTEM RUNNERS ◄─": "",
     "dev:backend": "cd ngaebo-backend && npm run dev",
-    "dev:all": "concurrently --kill-others-on-fail --names \"FRONTEND,MAIN-SRV,PG-API,DOCKER-DB\" --prefix-colors \"cyan,blue,magenta,yellow\" \"npm run dev\" \"npm run server\" \"npm run dev:backend\" \"docker start ngaebo-postgres\""
+    "dev:all": "concurrently --kill-others-on-fail --names \"FRONTEND,MAIN-SRV,PG-API\" --prefix-colors \"cyan,blue,magenta\" \"npm run dev\" \"npm run start\" \"npm run dev:backend\""
   },
   "dependencies": {
     "chart.js": "^4.5.1",

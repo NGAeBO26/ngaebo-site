@@ -16,6 +16,31 @@ export default function Header() {
 
   return (
     <header className="site-header">
+
+      {/* 🎯 GLOBAL FOREST GREEN FOREHEAD SHIM (ADDED CLASS FOR DESKTOP HIDING) */}
+      <div className="rg-safari-edge-shim" style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '8px',
+        backgroundColor: '#3b593a',
+        zIndex: 2000000,
+        pointerEvents: 'none'
+      }} />
+
+      {/* 🎯 GLOBAL FOREST GREEN CHIN SHIM (ADDED CLASS FOR DESKTOP HIDING) */}
+      <div className="rg-safari-edge-shim" style={{
+        position: 'fixed',
+        bottom: '-8px',
+        left: 0,
+        width: '100%',
+        height: '12px',
+        backgroundColor: '#3b593a',
+        zIndex: 2000000,
+        pointerEvents: 'none'
+      }} />
+
       {/* Logo */}
       <img
         src="/images/site-logo.png"

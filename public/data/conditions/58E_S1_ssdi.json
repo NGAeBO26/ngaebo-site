@@ -1,7 +1,7 @@
 {
   "profile_id": "58E_S1",
   "route_id": "58E",
-  "ssdi_score": 7.1,
+  "ssdi_score": 8.5,
   "v3_terrain_score": 5.0,
   "v3_terrain_class": "Strenuous",
   "badge_type": "wet",
@@ -18,7 +18,7 @@
   },
   "environment": {
     "current_temp": 83,
-    "saturation_index": 26.3,
+    "saturation_index": 39.0,
     "soil_status": "Saturated",
     "precip_24h": 0.01,
     "saturation_trend": "stable",
