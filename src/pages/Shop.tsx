@@ -63,6 +63,21 @@ export default function Shop() {
       .catch((err) => console.error('❌ Frontend Data Pipeline Error:', err));
   }, []);
 
+  // 🎯 NAVIGATION SUPPRESSION DETECTOR: Automatically toggles a global body override 
+  //    signature class to coordinate layout tracking when a specification sheet modal mounts.
+  useEffect(() => {
+    if (selectedProduct) {
+      document.body.classList.add('product-modal-open');
+    } else {
+      document.body.classList.remove('product-modal-open');
+    }
+
+    // Comprehensive regression cleanup firewall loop when navigating away from the page
+    return () => {
+      document.body.classList.remove('product-modal-open');
+    };
+  }, [selectedProduct]);
+
   const getPrimaryGalleryImage = (images: GalleryImage[]): string => {
     if (!images || images.length === 0) return '';
     const primaryObj = images.find(img => img.role_tag === 'primary');
