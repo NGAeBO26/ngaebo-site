@@ -1,19 +1,24 @@
-/* src/styles/FilterMegaDropdown.css */
+/* src/styles/RideBuilder.css */
 
 /* ─── 0. TOP-LEVEL HEADER TRIGGER CTA BUTTON ─── */
 .finder-header-row .rg-mega-summary-trigger-btn {
   background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
   color: #0f172a !important;
   border: 2px solid #ffffff !important;
-  box-shadow: 0 0 18px rgba(245, 158, 11, 0.8), 0 0 6px rgba(255, 255, 255, 0.6) !important;
-  font-family: 'Montserrat', sans-serif !important;
+  box-shadow:
+    0 0 18px rgba(245, 158, 11, 0.8),
+    0 0 6px rgba(255, 255, 255, 0.6) !important;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 12px !important;
   font-weight: 900 !important;
   letter-spacing: 0.04em !important;
   padding: 8px 20px !important;
   border-radius: 8px !important;
   cursor: pointer !important;
-  transition: transform 150ms ease, box-shadow 200ms ease, background 200ms ease !important;
+  transition:
+    transform 150ms ease,
+    box-shadow 200ms ease,
+    background 200ms ease !important;
   animation: triggerBeaconGlow 2.5s infinite ease-in-out !important;
 }
 
@@ -21,7 +26,9 @@
   background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%) !important;
   color: var(--brand-cream) !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 0 24px rgba(245, 158, 11, 0.95), 0 0 10px rgba(255, 255, 255, 0.8) !important;
+  box-shadow:
+    0 0 24px rgba(245, 158, 11, 0.95),
+    0 0 10px rgba(255, 255, 255, 0.8) !important;
 }
 
 /* 🎯 QUIZ COMPLETE STATE (TRIGGER BUTTON WHEN TRAY IS CLOSED) */
@@ -33,18 +40,23 @@
   animation: none !important;
 }
 
-.finder-header-row .rg-mega-summary-trigger-btn.quiz-complete:not(.active):hover {
+.finder-header-row
+  .rg-mega-summary-trigger-btn.quiz-complete:not(.active):hover {
   background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
   border-color: #fbbf24 !important;
   box-shadow: 0 0 20px rgba(245, 158, 11, 0.7) !important;
   transform: translateY(-1px) !important;
 }
 
-.finder-header-row .rg-mega-summary-trigger-btn.quiz-complete:not(.active) .wishlist-label {
+.finder-header-row
+  .rg-mega-summary-trigger-btn.quiz-complete:not(.active)
+  .wishlist-label {
   color: #f59e0b !important;
 }
 
-.finder-header-row .rg-mega-summary-trigger-btn.quiz-complete:not(.active) .wishlist-phrase {
+.finder-header-row
+  .rg-mega-summary-trigger-btn.quiz-complete:not(.active)
+  .wishlist-phrase {
   color: #f8fafc !important;
 }
 
@@ -66,7 +78,7 @@
 }
 
 .finder-header-row .rg-mega-summary-trigger-btn .wishlist-label {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 11px !important;
   font-weight: 900 !important;
   color: #f59e0b !important;
@@ -75,24 +87,38 @@
 }
 
 .finder-header-row .rg-mega-summary-trigger-btn .wishlist-phrase {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 12px !important;
   color: #cbd5e1 !important;
 }
 
-.finder-header-row .rg-mega-summary-trigger-btn .wishlist-phrase strong.active-val {
+.finder-header-row
+  .rg-mega-summary-trigger-btn
+  .wishlist-phrase
+  strong.active-val {
   color: #ffffff !important;
   border-bottom: 2px solid #f59e0b !important;
 }
 
-.finder-header-row .rg-mega-summary-trigger-btn .wishlist-phrase strong.pending-val {
+.finder-header-row
+  .rg-mega-summary-trigger-btn
+  .wishlist-phrase
+  strong.pending-val {
   color: #64748b !important;
 }
 
 @keyframes triggerBeaconGlow {
-  0% { box-shadow: 0 0 10px rgba(245, 158, 11, 0.4); }
-  50% { box-shadow: 0 0 22px rgba(245, 158, 11, 0.85), 0 0 8px rgba(255, 255, 255, 0.7); }
-  100% { box-shadow: 0 0 10px rgba(245, 158, 11, 0.4); }
+  0% {
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 0 22px rgba(245, 158, 11, 0.85),
+      0 0 8px rgba(255, 255, 255, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+  }
 }
 
 /* ─── 1. TOP-LEVEL CONTAINER TRAY ─── */
@@ -116,8 +142,14 @@
 }
 
 @keyframes megaTraySlideDown {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* 🎯 TOP-LEVEL HEADER SEARCH INPUT WRAPPER */
@@ -151,14 +183,16 @@
   background: transparent !important;
   border: none !important;
   color: var(--brand-charcoal) !important;
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 11px !important;
   font-weight: 700 !important;
   width: 100% !important;
   outline: none !important;
 }
 
-.rg-mega-dropdown-tray .top-level-search .autocomplete-input-field::placeholder {
+.rg-mega-dropdown-tray
+  .top-level-search
+  .autocomplete-input-field::placeholder {
   color: #64748b !important;
 }
 
@@ -186,7 +220,7 @@
   background: transparent !important;
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
   color: #cbd5e1 !important;
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 11px !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
@@ -246,7 +280,7 @@
 
 /* LOCKED / DIMMED FUTURE STEP STATE */
 .rg-mega-dropdown-tray .rg-quiz-column.step-locked {
-  opacity: 0.30 !important;
+  opacity: 0.3 !important;
   filter: grayscale(90%) !important;
   pointer-events: none !important;
   border: 1px transparent solid !important;
@@ -302,9 +336,18 @@
 }
 
 @keyframes stepNumPulse {
-  0% { transform: scale(1); box-shadow: 0 0 8px rgba(245, 158, 11, 0.5); }
-  50% { transform: scale(1.1); box-shadow: 0 0 16px rgba(245, 158, 11, 0.9); }
-  100% { transform: scale(1); box-shadow: 0 0 8px rgba(245, 158, 11, 0.5); }
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 16px rgba(245, 158, 11, 0.9);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+  }
 }
 
 /* COMPLETED STEP NUMBER BADGE */
@@ -316,7 +359,7 @@
 }
 
 .rg-mega-dropdown-tray .rg-quiz-column-title h3 {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 12px !important;
   font-weight: 800 !important;
   text-transform: uppercase !important;
@@ -348,7 +391,7 @@
 }
 
 .rg-mega-dropdown-tray .rg-quiz-card:hover {
-  background: var(--brand-cream)!important;
+  background: var(--brand-cream) !important;
   border-color: rgba(245, 158, 11, 0.5) !important;
 }
 
@@ -364,14 +407,16 @@
 }
 
 .rg-mega-dropdown-tray .rg-quiz-card:hover .card-headline {
-  color: var(--brand-deep-blue) !important; /* Amber accent highlight on hover (adjust hex as desired) */
+  color: var(
+    --brand-deep-blue
+  ) !important; /* Amber accent highlight on hover (adjust hex as desired) */
 }
 
 .rg-mega-dropdown-tray .rg-quiz-card.selected .card-subtext {
   color: #334155 !important;
 }
 
-.rg-mega-dropdown-tray .card-icon { 
+.rg-mega-dropdown-tray .card-icon {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -394,7 +439,7 @@
 }
 
 .rg-mega-dropdown-tray .card-headline {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 11px !important;
   font-weight: 800 !important;
   color: #ffffff !important;
@@ -421,14 +466,18 @@
 }
 
 .rg-mega-dropdown-tray .rg-quiz-preview-locked-row.step-locked {
-  opacity: 0.30 !important;
+  opacity: 0.3 !important;
   filter: grayscale(90%) !important;
   pointer-events: none !important;
 }
 
 /* ─── 🎯 4. HIGH-DENSITY 3-COLUMN UNLOCK BANNER (PERFECTLY CENTERED) ─── */
 .rg-mega-dropdown-tray .rg-quiz-inline-unlock-banner {
-  background: linear-gradient(135deg, rgba(30, 58, 138, 0.5) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
+  background: linear-gradient(
+    135deg,
+    rgba(30, 58, 138, 0.5) 0%,
+    rgba(15, 23, 42, 0.95) 100%
+  ) !important;
   border: 2px solid #f59e0b !important;
   border-radius: 10px !important;
   padding: 12px 20px !important;
@@ -479,15 +528,15 @@
 }
 
 .rg-mega-dropdown-tray .benefits-card-badge {
-  font-family: 'Montserrat', sans-serif !important;
-    font-size: 12px !important;
-    font-weight: 900 !important;
-    color: #f59e0b !important;
-    background: rgba(245, 158, 11, 0.15) !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.1em !important;
-    box-shadow: 0 0 10px rgba(245, 158, 11, 0.25) !important;
-    text-align: center !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  color: #f59e0b !important;
+  background: rgba(245, 158, 11, 0.15) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.25) !important;
+  text-align: center !important;
 }
 
 .rg-mega-dropdown-tray .unlock-benefit-items-stack {
@@ -535,7 +584,7 @@
   height: 14px !important;
   margin-left: 6px !important;
   vertical-align: -2px !important;
-  background: url('/data/assets/icon_unlock.svg') no-repeat center / contain !important;
+  background: url("/data/assets/icon_unlock.svg") no-repeat center / contain !important;
 }
 
 .rg-mega-dropdown-tray .benefit-content-block {
@@ -546,7 +595,7 @@
 }
 
 .rg-mega-dropdown-tray .benefit-feature-title {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 10.5px !important;
   font-weight: 800 !important;
   color: #ffffff !important;
@@ -556,7 +605,7 @@
 }
 
 .rg-mega-dropdown-tray .benefit-feature-desc {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 9.5px !important;
   color: #cbd5e1 !important;
   margin: 0 !important;
@@ -584,7 +633,7 @@
   background: rgba(245, 158, 11, 0.2) !important;
   color: #f59e0b !important;
   border: 1px solid #f59e0b !important;
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 8.5px !important;
   font-weight: 800 !important;
   letter-spacing: 0.1em !important;
@@ -594,7 +643,7 @@
 }
 
 .rg-mega-dropdown-tray .unlock-col-center-stack h4 {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 12px !important;
   font-weight: 900 !important;
   color: #ffffff !important;
@@ -609,7 +658,7 @@
 
 /* 🎯 LEAD FORM DISCLAIMER OVERRIDE (SCOPED TO MEGA DROPDOWN TRAY) */
 .rg-mega-dropdown-tray .lead-disclaimer {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 8.5px !important;
   color: var(--brand-cream) !important;
   text-align: center !important;
@@ -659,7 +708,7 @@
 }
 
 .rg-mega-dropdown-tray .unlock-col-skip h4 {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 11px !important;
   font-weight: 800 !important;
   color: #94a3b8 !important;
@@ -678,7 +727,7 @@
   background: transparent !important;
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
   color: #ffffff !important;
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 11px !important;
   font-weight: 700 !important;
   padding: 9px 14px !important;
@@ -846,7 +895,7 @@
 }
 
 .rg-mega-dropdown-tray .rg-tuning-intro {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 11px !important;
   color: #cbd5e1 !important;
   margin: 0 0 14px 0 !important;
@@ -879,7 +928,7 @@
 }
 
 .rg-mega-dropdown-tray .rg-tuning-label {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 9px !important;
   font-weight: 800 !important;
   text-transform: uppercase !important;
@@ -887,7 +936,7 @@
 }
 
 .rg-mega-dropdown-tray .rg-tuning-value {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 10px !important;
   font-weight: 800 !important;
   color: #f59e0b !important;
@@ -911,7 +960,7 @@
 .rg-mega-dropdown-tray .rg-apply-quiz-btn {
   background: #f59e0b !important;
   color: #1e293b !important;
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 12px !important;
   font-weight: 900 !important;
   text-transform: uppercase !important;
@@ -936,15 +985,26 @@
 }
 
 .rg-mega-dropdown-tray .rg-apply-quiz-btn.highlighted {
-  background: linear-gradient(110deg, #f59e0b 0%, #fbbf24 25%, #ffffff 50%, #fbbf24 75%, #f59e0b 100%) !important;
+  background: linear-gradient(
+    110deg,
+    #f59e0b 0%,
+    #fbbf24 25%,
+    #ffffff 50%,
+    #fbbf24 75%,
+    #f59e0b 100%
+  ) !important;
   background-size: 200% 100% !important;
   animation: rgShimmerCta 2.5s infinite linear !important;
   box-shadow: 0 4px 18px rgba(245, 158, 11, 0.5) !important;
 }
 
 @keyframes rgShimmerCta {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 /* ─── 8. DUAL-THUMB RANGE SLIDER STYLES ─── */

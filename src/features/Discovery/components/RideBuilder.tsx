@@ -1,4 +1,4 @@
-/* src/features/Discovery/components/FilterMegaDropdown.tsx */
+/* src/features/Discovery/components/RideBuilder.tsx */
 import { useState, useMemo, useEffect, useRef } from "react";
 import {
   DIFFICULTY_STEPS,
@@ -7,7 +7,7 @@ import {
 } from "./RideFinder";
 import TacticalLeadForm from "../../../components/TacticalLeadForm";
 // import useIsochrone from "../../../hooks/useIsochrone";
-import "../../../styles/FilterMegaDropdown.css";
+import "../../../styles/RideBuilder.css";
 
 export interface QuizSelections {
   bikeType: "all_road" | "gravel" | "rugged" | null;
@@ -103,7 +103,7 @@ function DualRangeSlider({
   );
 }
 
-export default function FilterMegaDropdown({
+export default function RideBuilder({
   isOpen,
   onClose,
   engine,
@@ -140,7 +140,20 @@ export default function FilterMegaDropdown({
     const days = [];
     const today = new Date();
     const dayNames = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-    const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    const monthNames = [
+      "JAN",
+      "FEB",
+      "MAR",
+      "APR",
+      "MAY",
+      "JUN",
+      "JUL",
+      "AUG",
+      "SEP",
+      "OCT",
+      "NOV",
+      "DEC",
+    ];
 
     for (let i = 0; i < 10; i++) {
       const d = new Date(today);
@@ -771,21 +784,28 @@ export default function FilterMegaDropdown({
                     <h3>Best Ride Window?</h3>
                   </div>
                   <div className="rg-weather-days-row">
-                  {tenDayWindow.map((day) => {
-                    const isSelected = selections.selectedRideDay === day.iso;
-                    return (
-                      <div
-                        key={day.iso}
-                        className={`rg-weather-day-chip ${isSelected ? "selected" : ""}`}
-                        onClick={() => handleSelectOption("selectedRideDay", isSelected ? null : day.iso)}
-                      >
-                        <span className="chip-day">{day.label}</span>
-                        <span className="chip-joy">{day.icon} {day.temp}</span>
-                        <span className="chip-status">{day.status}</span>
-                      </div>
-                    );
-                  })}
-                </div>
+                    {tenDayWindow.map((day) => {
+                      const isSelected = selections.selectedRideDay === day.iso;
+                      return (
+                        <div
+                          key={day.iso}
+                          className={`rg-weather-day-chip ${isSelected ? "selected" : ""}`}
+                          onClick={() =>
+                            handleSelectOption(
+                              "selectedRideDay",
+                              isSelected ? null : day.iso,
+                            )
+                          }
+                        >
+                          <span className="chip-day">{day.label}</span>
+                          <span className="chip-joy">
+                            {day.icon} {day.temp}
+                          </span>
+                          <span className="chip-status">{day.status}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             ) : (
@@ -980,10 +1000,17 @@ export default function FilterMegaDropdown({
                       <div
                         key={day.iso}
                         className={`rg-weather-day-chip ${isSelected ? "selected" : ""}`}
-                        onClick={() => handleSelectOption("selectedRideDay", isSelected ? null : day.iso)}
+                        onClick={() =>
+                          handleSelectOption(
+                            "selectedRideDay",
+                            isSelected ? null : day.iso,
+                          )
+                        }
                       >
                         <span className="chip-day">{day.label}</span>
-                        <span className="chip-joy">{day.icon} {day.temp}</span>
+                        <span className="chip-joy">
+                          {day.icon} {day.temp}
+                        </span>
                         <span className="chip-status">{day.status}</span>
                       </div>
                     );

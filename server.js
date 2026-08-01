@@ -9,6 +9,7 @@ import { spawn } from "child_process";
 import crypto from "crypto"; 
 import fs from "fs";
 import { rateLimit } from "express-rate-limit";
+import { createProxyMiddleware } from "http-proxy-middleware"; 
 
 import { getRideGuideHTML, getRideGuideText } from "./src/lib/emailTemplates.js";
 
@@ -127,6 +128,19 @@ app.use((req, res, next) => {
     express.json()(req, res, next);
   }
 });
+
+// ==========================================================================
+// 🚗 OSRM DEDICATED DROPLET PROXY
+// ==========================================================================
+const OSRM_DROPLET_URL = process.env.OSRM_DROPLET_URL || 'http://142.93.192.70';
+
+app.use('/osrm-api', createProxyMiddleware({
+  target: OSRM_DROPLET_URL,
+  changeOrigin: true,
+  pathRewrite: {
+    '^/osrm-api': '', // Strips '/osrm-api' so Droplet receives '/table/v1/driving...'
+  },
+}));
 
 // ==========================================================================
 // 🎯 FORCE EXPRESS TO SERVE LIVE DISK CHANNELS FROM THE ACTIVE PUBLIC FOLDER

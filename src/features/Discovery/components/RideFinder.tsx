@@ -1,6 +1,6 @@
 /* src/features/Discovery/components/RideFinder.tsx */
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
-import FilterMegaDropdown, { type QuizSelections } from "./FilterMegaDropdown";
+import RideBuilder, { type QuizSelections } from "./RideBuilder";
 import useIsochrone, {
   type IsochroneBandResult,
 } from "../../../hooks/useIsochrone";
@@ -598,7 +598,7 @@ export function RideFilterBar({
         </button>
       </div>
 
-      <FilterMegaDropdown
+      <RideBuilder
         isOpen={isMegaOpen}
         onClose={() => setIsMegaOpen(false)}
         engine={engine}
@@ -733,18 +733,18 @@ function MetricDial({
 
   return (
     <div className="rg-card-dial-wrapper">
-      <div 
-        className="rg-card-dial-arc" 
-        style={{ 
+      <div
+        className="rg-card-dial-arc"
+        style={{
           background: `conic-gradient(from 180deg, #e0e0e0 0% ${emptyStartPercent}%, ${trackColor} ${emptyStartPercent}% 100%)`,
-          transform: 'scaleX(-1)'
+          transform: "scaleX(-1)",
         }}
       />
       <div className="rg-card-dial-mask">
-        <img 
-          src={`${assetBase}/${iconName}`} 
-          className="rg-card-dial-icon" 
-          alt={type} 
+        <img
+          src={`${assetBase}/${iconName}`}
+          className="rg-card-dial-icon"
+          alt={type}
         />
       </div>
     </div>
@@ -922,7 +922,9 @@ export function RideResultGallery({
               aria-expanded={isSortOpen}
             >
               <span className="trigger-label-val">{currentSortLabel}</span>
-              <span className="trigger-chevron-icon">{isSortOpen ? "▲" : "▼"}</span>
+              <span className="trigger-chevron-icon">
+                {isSortOpen ? "▲" : "▼"}
+              </span>
             </button>
 
             {isSortOpen && (
