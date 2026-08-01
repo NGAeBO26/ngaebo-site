@@ -11,8 +11,6 @@ import TransactionOverlay, { type TransactionState } from "../components/Transac
 import Sparkline from "../components/RideGuide/widgets/Sparkline"; 
 import MetricsTiles from "../components/RideGuide/widgets/MetricsTiles";
 
-const BADGES_BASE = "/images/badges/fcs"; 
-
 interface CartItem { 
   id: string; 
   routeId?: string; 
@@ -75,10 +73,8 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [], isMo
   const rawRouteId = hasActiveSelection ? String(routeProps.profile_id || cachedRoute.id || routeProps.id || routeProps.ID || "") : ""; 
   const miles = routeProps.GIS_MILES ? parseFloat(routeProps.GIS_MILES).toFixed(1) : null; 
   const distanceMetric = miles ? `${miles} MILES` : (routeProps.distance ? `${routeProps.distance} mi` : "Premium Data"); 
-  const avgGrade = routeProps.v3_avg_grade || "0"; 
   const fcsLabel = routeProps.v3_fcs_label ? String(routeProps.v3_fcs_label).toLowerCase() : ""; 
-  const fcsBadgePath = fcsLabel ? `${BADGES_BASE}/fcs-badge-${fcsLabel}.png` : ""; 
-
+ 
   // Approved Mobile Viewport Data Field Properties
   const routeVibe = routeProps.v3_vibe || "Explore backcountry trails";
   const routeSurface = routeProps.v3_surface || "Gravel / Dirt";
@@ -229,11 +225,16 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [], isMo
         } 
         setIsUpsellOpen(true); 
       }; 
+      // 🎯 EXPOSE PRINT/REDEEM HOOK FOR GRAVELPOPUP
+      (window as any).rgTriggerTokenRedemption = handleTokenRedemption;
     } 
     return () => { 
-      if (typeof window !== "undefined") delete (window as any).forceOpenUpsell; 
+      if (typeof window !== "undefined") {
+        delete (window as any).forceOpenUpsell; 
+        delete (window as any).rgTriggerTokenRedemption;
+      }
     }; 
-  }, []); 
+  });
 
   const handleAddToCartAction = async () => { 
     if (!hasActiveSelection || isAdding) return; 
@@ -438,7 +439,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [], isMo
             <div className="rg-mobile-drawer-data-body-group">
               <div className="hud-console-section section-metrics-row">
                 <div className="takeover-report-label-banner"><span>Route Metrics</span></div>
-                <div className="hud-section-body horizontal-metrics-grid-bay">
+                <div className="hud-section-body rg-mobile-metrics-grid-bay">
                   <MetricsTiles data={routeProps} />
                 </div>
               </div>
@@ -538,38 +539,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [], isMo
       </div> 
 
       <div className="rg-storefront-workspace-container"> 
-        {hasActiveSelection && ( 
-          <div className="rg-active-map-selection-panel"> 
-            <span className="rg-panel-section-title" style={{ display: 'block' }}>Selected Route Details</span> 
-            <div className="route-finder-card-vertical"> 
-              <div className="card-left-details-block"> 
-                <span className="card-route-title" style={{ display: 'block' }}>{routeTitle}</span> 
-                <div className="card-metrics-grid"> 
-                  <div className="metric-column"><span className="metric-label">Distance</span><span className="metric-value">{distanceMetric}</span></div> 
-                  <div className="metric-column"><span className="metric-label">Avg Grade</span><span className="metric-value">{avgGrade}%</span></div> 
-                </div> 
-              </div> 
-              <div className="card-right-badge-bay"> 
-                {fcsBadgePath && <img src={fcsBadgePath} alt="FCS Difficulty Badge Graphic" className="card-route-badge-image-scaled" />} 
-              </div> 
-            </div> 
-
-            {isThisRouteExplicitlyUnlocked ? ( 
-              <button className="rg-inline-card-action-btn print-green" onClick={() => handleTokenRedemption(rawRouteId, routeTitle)}> 
-                PRINT RIDEGUIDE NOW ➔ 
-              </button> 
-            ) : isTokenUser ? ( 
-              <button className="rg-inline-card-action-btn unlock-verdant" disabled={isRedeeming} onClick={() => handlePrimaryCheckoutDispatch(rawRouteId, routeTitle)}> 
-                INSTANT UNLOCK (1 CREDIT) ➔ 
-              </button> 
-            ) : ( 
-              <button className="rg-inline-card-action-btn add-verdant" disabled={isAdding || isAlreadyInCart} onClick={handleAddToCartAction}> 
-                {isAlreadyInCart ? "✓ ALREADY IN CART" : isAdding ? "ADDING... ⏳" : "ADD ROUTE TO CART +"} 
-              </button> 
-            )} 
-          </div> 
-        )} 
-
         <div className="rg-tabs-window-container"> 
           <div className="rg-storefront-tabs-nav-bar"> 
             <button className={`rg-tab-nav-trigger-btn ${activeTab === "cart" ? "active" : ""}`} onClick={() => setActiveTab("cart")}>Cart ({totalCartCount})</button> 
@@ -579,31 +548,11 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [], isMo
             {activeTab === "cart" && ( 
               <div className="rg-persistent-cart-panel"> 
                 {totalCartCount === 0 ? (
-                  <div className="rg-cart-empty-placeholder text-deck-injection"> 
-                    <div className="rg-horizontal-instructions-tier panel-optimized-deck"> 
-                      <span className="rg-instructions-micro-header font-weight-heavy" style={{ display: 'block', marginBottom: '12px' }}> 
-                        Get Your RideGuide in 3 Easy Steps: 
-                      </span> 
-                      <span className="rg-instructions-micro-header-callout panel-empty-state-sub-caption"> 
-                        Select any route line on the map to begin. → 
-                      </span> 
-                      <div className="rg-horizontal-steps-row vertical-stack-fallback-panel"> 
-                        <div className="rg-step-column-item"> 
-                          <span className="rg-step-badge-number">1</span> 
-                          <p className="rg-step-item-text"><strong>Filter tracks</strong> by class, mileage, or grading.</p> 
-                        </div> 
-                        <div className="rg-step-column-item" style={{ marginTop: '4px' }}> 
-                          <span className="rg-step-badge-number">2</span> 
-                          <p className="rg-step-item-text"><strong>Select a route</strong> by clicking list cards or lines.</p> 
-                        </div> 
-                        <div className="rg-step-column-item" style={{ marginTop: '4px' }}> 
-                          <span className="rg-step-badge-number">3</span> 
-                          <p className="rg-step-item-text"><strong>Unlock maps</strong> to instantly download Telemetry profiles.</p> 
-                        </div> 
-                      </div> 
-                    </div> 
-                  </div> 
-                ) : ( 
+        /* 🎯 REFACTORED: Wiped text steps deck completely, scaling text to standard placeholder css mappings */
+        <div className="rg-cart-empty-placeholder"> 
+          <span>Your selection cart is empty. Select any active route line on the map to begin. →</span>
+        </div> 
+      ) : (
                   <div className="rg-cart-items-list-container"> 
                     {visibleCartItems.map((item: CartItem) => { 
                       const targetId = item.routeId || ""; 

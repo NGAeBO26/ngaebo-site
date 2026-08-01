@@ -1,12 +1,12 @@
 {
   "profile_id": "256_S1",
   "route_id": "256",
-  "ssdi_score": 5.9,
+  "ssdi_score": 7.3,
   "v3_terrain_score": 3.9,
   "v3_terrain_class": "Cruiser",
-  "badge_type": "ideal",
-  "condition": "DAMP / PACK",
-  "style_color": "#1b5e20",
+  "badge_type": "wet",
+  "condition": "WET / SLICK",
+  "style_color": "#e66e00",
   "access": {
     "label": "OPEN",
     "vibe_context": "RESTRICTED EXPLORER",
@@ -17,17 +17,17 @@
     "value": 0.22
   },
   "environment": {
-    "current_temp": 78,
-    "saturation_index": 12.1,
+    "current_temp": 71,
+    "saturation_index": 16.3,
     "soil_status": "Saturated",
     "precip_24h": 0.09,
     "saturation_trend": "stable",
     "alerts": []
   },
   "physics": {
-    "live_traction": 0.8,
-    "live_wh_per_km": 10.53,
-    "energy_penalty_pct": 0.8,
+    "live_traction": 0.66,
+    "live_wh_per_km": 11.29,
+    "energy_penalty_pct": 8.0,
     "v3_base_intensity": 3.8
   },
   "connectivity": {

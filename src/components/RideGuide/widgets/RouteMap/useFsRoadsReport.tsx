@@ -27,28 +27,24 @@ function getRoadsBeforeLayerId(map: MaplibreMap): string | undefined {
   const style = map.getStyle?.();
   const layers = style?.layers ?? [];
   
-  // First attempt: Lock onto existing interactive landmarks or markers
   const poiLayer = layers.find((l: any) => /poi|cluster|marker/i.test(l.id));
   if (poiLayer) return poiLayer.id;
   
-  // FIXED FALLBACK FOR RASTER ARCHITECTURES: If no live fonts exist, 
-  // lock onto your transportation layer to float vectors safely on top
   const esriOverlayLayer = layers.find((l: any) => /transportation|overlay/i.test(l.id));
   if (esriOverlayLayer) {
     const activeIndex = layers.indexOf(esriOverlayLayer);
-    // If there's a layer positioned right above the raster sheet, return it to push vectors further up
     if (activeIndex < layers.length - 1) {
       return layers[activeIndex + 1].id;
     }
   }
   
-  return undefined; // Falls back to top-level layering safely if completely un-mapped
+  return undefined;
 }
 
 export default function useFsRoadsReport(
   map: MaplibreMap | null | undefined,
   mapReady: boolean | undefined,
-  options: { addLayers?: boolean; routeID: string }
+  options: { addLayers?: boolean; routeID: string; isPopupContext?: boolean }
 ) {
   useEffect(() => {
     if (!map || !mapReady || !options.routeID || options.routeID === "null" || options.routeID === "undefined") return;
@@ -70,6 +66,7 @@ export default function useFsRoadsReport(
         if (map.getLayer("rr-legend-poi-icons")) map.removeLayer("rr-legend-poi-icons");
         if (map.getSource("rr-legend-poi-source")) map.removeSource("rr-legend-poi-source");
         if (map.getLayer("fs-roads-selected")) map.removeLayer("fs-roads-selected");
+        if (map.getLayer("fs-roads-casing")) map.removeLayer("fs-roads-casing");
         if (map.getSource("fs-roads")) map.removeSource("fs-roads");
       } catch (e) {}
     };
@@ -83,12 +80,36 @@ export default function useFsRoadsReport(
         const segmentsDir = '/data/segments';
         
         // ----------------------------------------------------------------------------
-        // 💾 PHASE 1: FETCH RAW DATASET PAYLOADS
+        // 💾 PHASE 1: FETCH DATASET PAYLOADS (WITH EXTENSION FALLBACKS)
         // ----------------------------------------------------------------------------
-        const poiMetaRes = await fetch(`${locationsDir}/${options.routeID}_pois.json`, { cache: "no-store" });
-        const segmentsRes = await fetch(`${segmentsDir}/${options.routeID}_segments.json`, { cache: "no-store" });
+        let poiMetaRes: Response | null = null;
+        try {
+          poiMetaRes = await fetch(`${locationsDir}/${options.routeID}_pois.json`, { cache: "no-store" });
+          if (!poiMetaRes.ok) {
+            poiMetaRes = await fetch(`${locationsDir}/${options.routeID}_pois.geojson`, { cache: "no-store" });
+          }
+        } catch (e) {}
+
+        let segmentsRes: Response | null = null;
+        const segmentCandidates = [
+          `${segmentsDir}/${options.routeID}_segments.json`,
+          `${segmentsDir}/${options.routeID}_segments.geojson`,
+          `${segmentsDir}/${options.routeID}_segment.json`,
+          `${segmentsDir}/${options.routeID}_segment.geojson`
+        ];
+
+        for (const candidateUrl of segmentCandidates) {
+          try {
+            const res = await fetch(candidateUrl, { cache: "no-store" });
+            if (res.ok) {
+              segmentsRes = res;
+              break;
+            }
+          } catch (e) {}
+        }
         
         if (!segmentsRes || !segmentsRes.ok) return;
+
         const geo: GeoJSONFeatureCollection = await segmentsRes.json();
         if (!geo || geo.type !== "FeatureCollection" || !Array.isArray(geo.features)) return;
 
@@ -96,7 +117,7 @@ export default function useFsRoadsReport(
         cleanupHighlightLayers();
 
         // ----------------------------------------------------------------------------
-        // 🗺️ PHASE 2: INJECT TRAIL RIBBON LINEWORK FIRST (Anchored at the bottom)
+        // 🗺️ PHASE 2: INJECT TRAIL RIBBON LINEWORK
         // ----------------------------------------------------------------------------
         const epsg = parseEpsgFromCrs(geo.crs || (geo as any).properties?.crs);
         let finalGeo = geo;
@@ -124,7 +145,6 @@ export default function useFsRoadsReport(
         if (options.addLayers) {
           const baseAnchorId = getRoadsBeforeLayerId(map);
           
-          // LAYER 1: SOLID BASE UNDERLAY CASING (Compensates for map scale transitions)
           if (!map.getLayer("fs-roads-casing")) {
             map.addLayer({
               id: "fs-roads-casing",
@@ -136,22 +156,19 @@ export default function useFsRoadsReport(
               },
               paint: {
                 "line-color": "#333", 
-                // Inverse zoom interpolation: Boosts thickness when pulled back to 
-                // prevent long routes from turning into thin needles on screen
                 "line-width": [
                   "interpolate",
                   ["linear"],
                   ["zoom"],
-                  9,  7.5,   // Thick footprint for the 22mi outlier viewbox
-                  11, 6.0,   // Balanced mid-scale setting for 7mi routes
-                  13, 4.5,   // Clean profile when tightly zoomed on 4mi routes
-                  15, 4.0    // Protects close-up details from ballooning
+                  9,  7.5,
+                  11, 6.0,
+                  13, 4.5,
+                  15, 4.0
                 ]
               }
             }, baseAnchorId);
           }
 
-          // LAYER 2: UPPER CRISP DIFFIULTY GRADE LAYER (Perfect internal nesting alignment)
           if (!map.getLayer("fs-roads-selected")) {
             map.addLayer({
               id: "fs-roads-selected",
@@ -166,22 +183,21 @@ export default function useFsRoadsReport(
                 "line-color": [
                   "step",
                   ["get", "grade"],
-                  "#236ea0",      // < -4   ➔ sky_blue
-                  -4, "#4a5d23",  // < 0    ➔ leaf_green
-                  0, "#1b7f3a",   // < 4    ➔ verdant_green
-                  4, "#ebc850",   // < 8    ➔ mellow_yellow
-                  8, "#e66e00",   // < 12   ➔ sunset_orange
-                  12, "#a52d23"   // >= 12  ➔ flame_red
+                  "#236ea0",
+                  -4, "#4a5d23",
+                  0, "#1b7f3a",
+                  4, "#ebc850",
+                  8, "#e66e00",
+                  12, "#a52d23"
                 ],
-                // Nested inside the casing layer at a tight 1.5px inner safety margin
                 "line-width": [
                   "interpolate",
                   ["linear"],
                   ["zoom"],
-                  9,  6.0,   // Solid readable color ribbon at a macro distance
-                  11, 4.5,   // Standard intermediate scale thickness
-                  13, 3.0,   // Clean alignment targeting 4mi route configurations
-                  15, 2.5    // Safe border restraint values
+                  9,  6.0,
+                  11, 4.5,
+                  13, 3.0,
+                  15, 2.5
                 ]
               }
             }, baseAnchorId);
@@ -189,7 +205,7 @@ export default function useFsRoadsReport(
         }
 
         // ----------------------------------------------------------------------------
-        // 📍 PHASE 3: INJECT POI SYMBOLS AND TEXT OVERLAYS LAST (Anchored on top)
+        // 📍 PHASE 3: INJECT POI SYMBOLS AND TEXT OVERLAYS
         // ----------------------------------------------------------------------------
         let highlightGeoJson: GeoJSONFeatureCollection = {
           type: "FeatureCollection",
@@ -197,37 +213,39 @@ export default function useFsRoadsReport(
         };
         let poiCoordsList: [number, number][] = [];
 
-        if (poiMetaRes.ok) {
-          const poiMetaData = await poiMetaRes.json();
-          const locationsList = (poiMetaData.locations || []).slice(0, 5);
+        if (poiMetaRes && poiMetaRes.ok) {
+          try {
+            const poiMetaData = await poiMetaRes.json();
+            const locationsList = (poiMetaData.locations || []).slice(0, 5);
 
-          locationsList.forEach((loc: any, idx: number) => {
-            if (loc.lat !== undefined && loc.lng !== undefined) {
-              const lngNum = Number(loc.lng);
-              const latNum = Number(loc.lat);
-              const indexMarker = String(idx + 1);
+            locationsList.forEach((loc: any, idx: number) => {
+              if (loc.lat !== undefined && loc.lng !== undefined) {
+                const lngNum = Number(loc.lng);
+                const latNum = Number(loc.lat);
+                const indexMarker = String(idx + 1);
 
-              if (!isNaN(lngNum) && !isNaN(latNum) && Math.abs(latNum) <= 90) {
-                let cleanIconKey = "scenic";
-                const typeStr = String(loc.type || '').toLowerCase();
-                if (typeStr.includes("gap")) cleanIconKey = "gap";
-                else if (typeStr.includes("camp")) cleanIconKey = "camp";
-                else if (typeStr.includes("water") || typeStr.includes("fall")) cleanIconKey = "water";
-                else if (typeStr.includes("trail")) cleanIconKey = "trailhead";
+                if (!isNaN(lngNum) && !isNaN(latNum) && Math.abs(latNum) <= 90) {
+                  let cleanIconKey = "scenic";
+                  const typeStr = String(loc.type || '').toLowerCase();
+                  if (typeStr.includes("gap")) cleanIconKey = "gap";
+                  else if (typeStr.includes("camp")) cleanIconKey = "camp";
+                  else if (typeStr.includes("water") || typeStr.includes("fall")) cleanIconKey = "water";
+                  else if (typeStr.includes("trail")) cleanIconKey = "trailhead";
 
-                highlightGeoJson.features.push({
-                  type: "Feature",
-                  id: Number(indexMarker),
-                  geometry: { type: "Point", coordinates: [lngNum, latNum] },
-                  properties: {
-                    legend_index: indexMarker,
-                    icon_image_id: `icon-${cleanIconKey}`
-                  }
-                });
-                poiCoordsList.push([lngNum, latNum]);
+                  highlightGeoJson.features.push({
+                    type: "Feature",
+                    id: Number(indexMarker),
+                    geometry: { type: "Point", coordinates: [lngNum, latNum] },
+                    properties: {
+                      legend_index: indexMarker,
+                      icon_image_id: `icon-${cleanIconKey}`
+                    }
+                  });
+                  poiCoordsList.push([lngNum, latNum]);
+                }
               }
-            }
-          });
+            });
+          } catch (e) {}
         }
 
         if (highlightGeoJson.features.length > 0 && !cancelled) {
@@ -238,9 +256,7 @@ export default function useFsRoadsReport(
               try {
                 const img = await loadPng(`/icons/${type}.png`);
                 if (!cancelled) map.addImage(iconId, img, { pixelRatio: 2 });
-              } catch (e) {
-                console.warn(`Could not preload asset: ${type}`, e);
-              }
+              } catch (e) {}
             }
           }
 
@@ -252,7 +268,6 @@ export default function useFsRoadsReport(
             cluster: false
           });
 
-          // Pushes Symbols onto the top of the canvas layout stack
           map.addLayer({
             id: "rr-legend-poi-icons",
             type: "symbol",
@@ -266,7 +281,6 @@ export default function useFsRoadsReport(
             }
           });
 
-          // Pushes Number Text Labels absolute last to ensure zero clipping from linework
           map.addLayer({
             id: "rr-legend-poi-labels",
             type: "symbol",
@@ -289,7 +303,7 @@ export default function useFsRoadsReport(
         }
 
         // ----------------------------------------------------------------------------
-        // 📐 PHASE 4: BOUNDING BOX VIEWPORT COMPUTATION
+        // 📐 PHASE 4: BOUNDING BOX COMPUTATION & CAMERA FIT
         // ----------------------------------------------------------------------------
         map.resize();
 
@@ -338,12 +352,18 @@ export default function useFsRoadsReport(
           const boundsArray = [[finalMinLng, finalMinLat], [finalMaxLng, finalMaxLat]];
           const deltaLng = Math.abs(finalMaxLng - finalMinLng);
           const deltaLat = Math.abs(finalMaxLat - finalMinLat);
+
+          // 🎯 ORIENTATION-AWARE ROTATION ENGINE (VERTICAL MAP VIEWPORT MATCH):
+          // In tall vertical map viewports (both Report and GravelPopup middle column),
+          // horizontal routes (deltaLng > deltaLat) rotate by -90deg to orient vertically.
           const dynamicBearing = deltaLng > deltaLat ? -90 : 0;
 
           map.fitBounds(boundsArray as LngLatBoundsLike, {
             bearing: dynamicBearing,
             pitch: 0,
-            padding: { top: 50, right: 50, bottom: 50, left: 50 },
+            padding: options.isPopupContext
+              ? { top: 25, right: 25, bottom: 25, left: 25 }
+              : { top: 50, right: 50, bottom: 50, left: 50 },
             duration: 600,
             essential: true
           });
@@ -356,7 +376,6 @@ export default function useFsRoadsReport(
     const handleStyleSync = () => {
       if (map.isStyleLoaded()) {
         ensureSourceAndMaybeLayers();
-        // Once the layers are successfully attached to a fully compiled style sheet, clear the listener
         map.off("styledata", handleStyleSync); 
       }
     };
@@ -372,5 +391,5 @@ export default function useFsRoadsReport(
       cleanupHighlightLayers();
       map.off("styledata", handleStyleSync);
     };
-  }, [map, mapReady, options.routeID, options.addLayers]);
+  }, [map, mapReady, options.routeID, options.addLayers, options.isPopupContext]);
 }

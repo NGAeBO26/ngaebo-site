@@ -30,6 +30,7 @@ import CookieBanner from "./pages/CookieBanner";
 // Tracking canvas layer
 import TelemetryOverlayTracker from "./components/RideGuide/TelemetryOverlayTracker";
 
+
 function ReportWrapper() {
   const { routeID } = useParams<{ routeID: string }>();
   

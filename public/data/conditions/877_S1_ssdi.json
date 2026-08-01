@@ -1,8 +1,8 @@
 {
   "profile_id": "877_S1",
   "route_id": "877",
-  "ssdi_score": 16.9,
-  "v3_terrain_score": 6.4,
+  "ssdi_score": 12.7,
+  "v3_terrain_score": 6.3,
   "v3_terrain_class": "Strenuous",
   "badge_type": "muddy",
   "condition": "MUDDY / SOFT",
@@ -17,12 +17,14 @@
     "value": 0.11
   },
   "environment": {
-    "current_temp": 79,
-    "saturation_index": 29.3,
+    "current_temp": 82,
+    "saturation_index": 18.6,
     "soil_status": "Saturated",
-    "precip_24h": 0.01,
+    "precip_24h": 0.02,
     "saturation_trend": "stable",
-    "alerts": []
+    "alerts": [
+      "SAFETY ALERT: Cell Service is UNAVAILABLE."
+    ]
   },
   "physics": {
     "live_traction": 0.41,
@@ -31,7 +33,7 @@
     "v3_base_intensity": 6.4
   },
   "connectivity": {
-    "signal_class": "Unknown",
-    "deadzone_max_meters": 0
+    "signal_class": "Unavailable",
+    "deadzone_max_meters": 1407
   }
 }

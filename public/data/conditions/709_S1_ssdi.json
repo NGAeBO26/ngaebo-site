@@ -1,7 +1,7 @@
 {
   "profile_id": "709_S1",
   "route_id": "709",
-  "ssdi_score": 16.7,
+  "ssdi_score": 12.5,
   "v3_terrain_score": 2.7,
   "v3_terrain_class": "Cruiser",
   "badge_type": "muddy",
@@ -17,8 +17,8 @@
     "value": 0.0
   },
   "environment": {
-    "current_temp": 78,
-    "saturation_index": 10.5,
+    "current_temp": 80,
+    "saturation_index": 33.2,
     "soil_status": "Saturated",
     "precip_24h": 0.06,
     "saturation_trend": "stable",

@@ -1,12 +1,12 @@
 {
   "profile_id": "22_S2",
   "route_id": "22",
-  "ssdi_score": 7.3,
+  "ssdi_score": 5.9,
   "v3_terrain_score": 3.8,
   "v3_terrain_class": "Cruiser",
-  "badge_type": "wet",
-  "condition": "WET / SLICK",
-  "style_color": "#e66e00",
+  "badge_type": "ideal",
+  "condition": "DAMP / PACK",
+  "style_color": "#1b5e20",
   "access": {
     "label": "OPEN",
     "vibe_context": "INTERSTATE GRAVEL",
@@ -17,17 +17,17 @@
     "value": 0.28
   },
   "environment": {
-    "current_temp": 80,
-    "saturation_index": 28.2,
+    "current_temp": 73,
+    "saturation_index": 45.8,
     "soil_status": "Saturated",
     "precip_24h": 0.24,
     "saturation_trend": "stable",
     "alerts": []
   },
   "physics": {
-    "live_traction": 0.67,
-    "live_wh_per_km": 10.93,
-    "energy_penalty_pct": 8.0,
+    "live_traction": 0.82,
+    "live_wh_per_km": 10.2,
+    "energy_penalty_pct": 0.8,
     "v3_base_intensity": 3.8
   },
   "connectivity": {

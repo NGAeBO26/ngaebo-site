@@ -1,7 +1,7 @@
 {
   "profile_id": "34C_S1",
   "route_id": "34C",
-  "ssdi_score": 7.5,
+  "ssdi_score": 8.2,
   "v3_terrain_score": 6.1,
   "v3_terrain_class": "Strenuous",
   "badge_type": "wet",
@@ -17,8 +17,8 @@
     "value": 0.3
   },
   "environment": {
-    "current_temp": 86,
-    "saturation_index": 23.9,
+    "current_temp": 80,
+    "saturation_index": 24.6,
     "soil_status": "Saturated",
     "precip_24h": 0.01,
     "saturation_trend": "stable",

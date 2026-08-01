@@ -1,37 +1,37 @@
 {
-  "profile_id": "42A_S1",
-  "route_id": "42A",
-  "ssdi_score": 4.8,
-  "v3_terrain_score": 4.0,
-  "v3_terrain_class": "Strenuous",
-  "badge_type": "wet",
-  "condition": "WET / SLICK",
-  "style_color": "#e66e00",
-  "access": {
-    "label": "CLOSED",
-    "vibe_context": "TECHNICAL BACKCOUNTRY (CLOSED)",
-    "status_code": "RESTRICTED"
-  },
-  "ruggedness": {
-    "class": "Chattery",
-    "value": 0.18
-  },
-  "environment": {
-    "current_temp": 70,
-    "saturation_index": 5.7,
-    "soil_status": "Saturated",
-    "precip_24h": 0.04,
-    "saturation_trend": "stable",
-    "alerts": []
-  },
-  "physics": {
-    "live_traction": 0.65,
-    "live_wh_per_km": 11.14,
-    "energy_penalty_pct": 10.0,
-    "v3_base_intensity": 3.7
-  },
-  "connectivity": {
-    "signal_class": "Unknown",
-    "deadzone_max_meters": 0
-  }
+    "profile_id": "42A_S1",
+    "route_id": "42A",
+    "ssdi_score": 8.4,
+    "v3_terrain_score": 3.9,
+    "v3_terrain_class": "Cruiser",
+    "badge_type": "muddy",
+    "condition": "MUDDY / SOFT",
+    "style_color": "#a52d23",
+    "access": {
+        "label": "CLOSED",
+        "vibe_context": "TECHNICAL BACKCOUNTRY (CLOSED)",
+        "status_code": "RESTRICTED"
+    },
+    "ruggedness": {
+        "class": "Chattery",
+        "value": 0.18
+    },
+    "environment": {
+        "current_temp": 80,
+        "saturation_index": 22.29,
+        "soil_status": "Saturated",
+        "precip_24h": 0.02,
+        "saturation_trend": "stable",
+        "alerts": []
+    },
+    "physics": {
+        "live_traction": 0.43,
+        "live_wh_per_km": 12.78,
+        "energy_penalty_pct": 20.0,
+        "v3_base_intensity": 3.9
+    },
+    "connectivity": {
+        "signal_class": "Spotty",
+        "deadzone_max_meters": 751
+    }
 }

@@ -1,0 +1,575 @@
+/* src/styles/MapGuideOverlay.css */
+
+.rg-guide-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 999999 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   🏛️ CONTAINER DESKTOP FRAME ARCHITECTURE LOCK (COMPACT STABLE CHASSIS)
+   ========================================================================== */
+.rg-guide-container {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 980px;
+  height: 485px !important; 
+  min-height: 485px !important;
+  max-height: 485px !important;
+  border-radius: 12px;
+  border: 2px solid #3b593a;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  outline: none;
+}
+
+.rg-guide-brand-banner {
+  background-color: #3b593a;
+  width: 100%;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  padding: 0 24px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.rg-guide-banner-logo-left {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+}
+
+.rg-guide-brand-banner .rg-guide-banner-branding-svg-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  z-index: 1;
+}
+
+.rg-guide-close-x {
+  position: absolute;
+  top: 13px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  z-index: 10;
+}
+
+.rg-guide-close-x:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* ==========================================================================
+   📐 THE STABILIZED FIXED-HEIGHT INTERIOR ENGINE (DESKTOP WORKSPACE GRID)
+   ========================================================================== */
+.rg-guide-workspace-body {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas: 
+    "identity media"
+    "tabs     media"
+    "desc     media";
+  gap: 8px 36px;
+  padding: 24px 32px;
+  box-sizing: border-box;
+  overflow: hidden;
+  flex: 1;
+  align-items: start;
+  height: 365px !important; 
+  min-height: 365px !important;
+  max-height: 365px !important;
+}
+
+.rg-guide-identity-header { grid-area: identity; }
+.rg-guide-segmented-tabs-bar { grid-area: tabs; }
+
+.rg-guide-description-chassis {
+  grid-area: desc;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.rg-guide-media-screen-box { grid-area: media; align-self: center; width: 100%; }
+
+.rg-guide-segmented-tabs-bar.mod-hidden-placeholder {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* ─── 🏛️ WELCOME MATRIX GRID SPECIFIC COMPACTION BALANCING ─── */
+.rg-guide-workspace-body.mod-welcome-layout {
+  display: grid !important;
+  grid-template-columns: 1.05fr 0.95fr !important;
+  grid-template-rows: 1fr !important;
+  grid-template-areas: "welc-left welc-right" !important;
+  gap: 40px !important;
+  align-items: center !important;
+  height: 365px !important;
+  background-color: #0b130a !important; 
+  background-image: 
+    linear-gradient(rgba(11, 19, 10, 0.88), rgba(11, 19, 10, 0.82)), 
+    url("/images/map-background.png") !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.rg-guide-welcome-left-copy {
+  grid-area: welc-left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  height: 100%;
+}
+
+.rg-welcome-eyebrow-sub {
+  font-family: monospace;
+  font-size: 9px;
+  font-weight: 700;
+  color: #38bdf8; 
+  letter-spacing: 0.12em;
+  margin-bottom: 2px;
+}
+
+.rg-guide-main-title.mod-light-text {
+  color: #ffffff !important;
+  font-size: 26px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.rg-welcome-dynamic-benefit-injector {
+  height: 85px;
+  margin: 4px 0 12px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.rg-benefit-anim-node {
+  animation: rgBenefitFadeIn 0.2s ease-out forwards;
+}
+
+@keyframes rgBenefitFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.rg-benefit-injector-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #f59e0b; 
+  margin: 0 0 4px 0;
+}
+
+.rg-benefit-injector-text {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+.rg-welcome-horizontal-pill-carousel {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3px;
+  border-radius: 6px;
+  gap: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 4px;
+}
+
+.rg-welcome-carousel-pill {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 4px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rg-welcome-carousel-pill:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.rg-welcome-carousel-pill.active {
+  background-color: #3b593a;
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.rg-guide-welcome-quick-bullets-row {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.rg-guide-bullet-mini-badge.mod-dark-variant {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #a7f3d0; 
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(167, 243, 208, 0.15);
+}
+
+.rg-guide-welcome-right-showcase {
+  grid-area: welc-right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.rg-guide-interactive-blueprint-container {
+  position: relative;
+  width: 100%;
+  max-width: 230px;
+  aspect-ratio: 3 / 4;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+}
+
+.rg-guide-blueprint-base-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.blueprint-hotspot-highlight-overlay.mod-welcome-override {
+  position: absolute;
+  border-radius: 4px;
+  border: 2px solid #38bdf8; 
+  background: rgba(255, 255, 255, 0);
+  box-shadow: 0 0 0 9999px rgba(11, 19, 10, 0.45); 
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.blueprint-hotspot-interactive-zone.mod-welcome-reticle {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background-color: #f59e0b;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.blueprint-hotspot-interactive-zone.mod-welcome-reticle::after {
+  content: "";
+  position: absolute;
+  top: -6px; left: -6px; right: -6px; bottom: -6px;
+  border: 2px solid #f59e0b;
+  border-radius: 50%;
+  opacity: 1;
+  animation: rgReticlePulse 1.4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes rgReticlePulse {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.blueprint-hotspot-interactive-zone.mod-welcome-reticle:hover,
+.blueprint-hotspot-interactive-zone.mod-welcome-reticle.active {
+  transform: scale(1.2);
+  background-color: #38bdf8;
+  border-color: #ffffff;
+}
+
+.blueprint-hotspot-interactive-zone.mod-welcome-reticle.active::after {
+  border-color: #38bdf8;
+}
+
+.rg-guide-meta-badge-row { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+.rg-guide-deal-tag { background-color: #f59e0b; color: #ffffff; font-size: 10px; font-weight: 800; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; letter-spacing: 0.5px; }
+.rg-guide-step-indicator-lbl { font-family: 'Montserrat', sans-serif; color: #64748b; font-weight: 700; font-size: 11px; letter-spacing: 0.5px; }
+.rg-guide-main-title { font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 900; color: #0f172a; line-height: 1.15; margin: 0; letter-spacing: -0.5px; }
+
+/* ─── DESKTOP CENTERING AND CONSTRAINT MATRIX ─── */
+.rg-guide-segmented-tabs-bar {
+  display: flex;
+  background-color: #f1f5f9;
+  padding: 4px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 320px; 
+  margin: 4px auto 0 auto; 
+  box-sizing: border-box;
+}
+
+.rg-guide-tab-pill {
+  flex: 1;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748b;
+  padding: 10px 14px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.rg-guide-tab-pill.active-pill { background-color: #ffffff; color: #3b593a; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+.rg-guide-subcaption { color: #475569; font-size: 14px; line-height: 1.55; margin: 4px 0 0 0; flex-grow: 1; }
+.rg-guide-step-dots-row { display: flex; gap: 8px; margin-bottom: 0; margin-top: 12px; padding-top: 0; }
+.rg-guide-step-dot { width: 10px; height: 10px; border-radius: 50%; background-color: #cbd5e1; cursor: pointer; transition: all 0.2s ease; }
+.rg-guide-step-dot.active { background-color: #3b593a; transform: scale(1.1); width: 24px; border-radius: 6px; }
+.rg-guide-left-bypass-holder { padding-top: 6px; }
+.rg-guide-dismiss-bypass-btn { background: transparent; border: none; color: #64748b; font-size: 12px; font-weight: 600; text-decoration: underline; cursor: pointer; padding: 0; text-align: left; }
+.rg-guide-dismiss-bypass-btn:hover { color: #0f172a; }
+.rg-guide-video-window-chassis { width: 100%; aspect-ratio: 16 / 10; border-radius: 8px; border: 1px solid #cbd5e1; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); background-color: #000000; overflow: hidden; }
+.rg-guide-video-canvas { width: 100%; height: 100%; object-fit: cover; }
+
+.rg-guide-footer-dock-wrapper {
+  background-color: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  padding: 14px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  height: 66px;
+  box-sizing: border-box;
+}
+
+.rg-guide-checkbox-container-label { display: flex; align-items: center; cursor: pointer; position: relative; user-select: none; }
+.rg-guide-checkbox-container-label input { position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0; }
+.rg-guide-checkbox-custom-box { height: 18px; width: 18px; background-color: #ffffff; border: 2px solid #cbd5e1; border-radius: 4px; margin-right: 10px; display: inline-block; position: relative; transition: all 0.15s ease; }
+.rg-guide-checkbox-container-label input:checked ~ .rg-guide-checkbox-custom-box { background-color: #3b593a; border-color: #3b593a; }
+.rg-guide-checkbox-custom-box::after { content: ""; position: absolute; display: none; left: 5px; top: 1px; width: 5px; height: 10px; border: solid white; border-width: 0 2.5px 2.5px 0; transform: rotate(45deg); }
+.rg-guide-checkbox-container-label input:checked ~ .rg-guide-checkbox-custom-box::after { display: block; }
+.rg-guide-checkbox-text-label { font-size: 13px; font-weight: 600; color: #475569; }
+.rg-guide-footer-navigation-buttons-side { display: flex; gap: 12px; }
+.rg-guide-nav-btn { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; padding: 10px 20px; border-radius: 6px; cursor: pointer; transition: all 0.15s ease; border: none; }
+.rg-guide-nav-btn.mod-primary-action { background-color: #f59e0b; color: #ffffff; }
+.rg-guide-nav-btn.mod-primary-action:hover { background-color: #d97706; }
+.rg-guide-nav-btn.mod-secondary-back { background-color: #e2e8f0; color: #475569; }
+
+body.guide-overlay-active { overflow: hidden !important; }
+body.guide-highlight-filters .shop-filter-bar { position: relative !important; z-index: 1000005 !important; outline: 4px solid #f59e0b !important; outline-offset: 4px !important; box-shadow: 0 0 30px 10px rgba(245, 158, 11, 0.5) !important; }
+body.guide-highlight-map #map-viewport-container { position: relative !important; z-index: 1000005 !important; outline: 4px solid #f59e0b !important; outline-offset: -4px !important; box-shadow: 0 0 30px 10px rgba(245, 158, 11, 0.5) !important; }
+body.guide-highlight-popup .gravel-popup-surface-card { position: relative !important; z-index: 1000005 !important; outline: 4px solid #f59e0b !important; outline-offset: 4px !important; box-shadow: 0 0 30px 10px rgba(245, 158, 11, 0.5) !important; }
+body.guide-highlight-checkout .store-panel-sidebar-container { position: relative !important; z-index: 1000005 !important; outline: 4px solid #f59e0b !important; outline-offset: 4px !important; box-shadow: 0 0 30px 10px rgba(245, 158, 11, 0.5) !important; }
+
+/* ==========================================================================
+   📱 🔄 MASTER MOBILE APPLICATION VIEW RESETS BREAKPOINTS (MAX-WIDTH: 820px)
+   ========================================================================== */
+@media (max-width: 820px) {
+  
+  .rg-guide-container {
+    height: 660px !important; 
+    min-height: 660px !important;
+    max-height: 660px !important;
+    width: 95%;
+  }
+  
+  .rg-guide-brand-banner { padding: 0 16px; height: 48px; }
+  .rg-guide-banner-logo-left { height: 32px; }
+  .rg-guide-brand-banner .rg-guide-banner-branding-svg-center { height: 26px; }
+
+  .rg-guide-workspace-body {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    padding: 16px !important;
+    overflow-y: auto !important;
+    height: 546px !important;
+    min-height: 546px !important;
+    max-height: 546px !important;
+  }
+
+  /* Mobile Intro State 0 Spacing Optimization */
+  .rg-guide-workspace-body.mod-welcome-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important; 
+    padding: 10px 16px !important; 
+    height: 546px !important;
+  }
+  
+  .rg-guide-welcome-left-copy {
+    display: contents !important;
+  }
+
+  .rg-guide-workspace-body.mod-welcome-layout .rg-guide-deal-tag { order: 1 !important; margin-bottom: 2px !important; align-self: flex-start; }
+  .rg-guide-workspace-body.mod-welcome-layout .rg-welcome-eyebrow-sub { order: 2 !important; line-height: 1 !important; margin-bottom: 2px !important; }
+  
+  /* Main title font-size compressed to 16px to fit cleanly on one single viewport line */
+  .rg-guide-workspace-body.mod-welcome-layout .rg-guide-main-title { 
+    order: 3 !important; 
+    font-size: 16px !important; 
+    line-height: 1.15 !important;
+    margin: 2px 0 4px 0 !important;
+  }
+  
+  .rg-guide-workspace-body.mod-welcome-layout .rg-welcome-horizontal-pill-carousel { order: 4 !important; margin: 2px 0 !important; padding: 2px !important; }
+  .rg-guide-workspace-body.mod-welcome-layout .rg-welcome-carousel-pill { font-size: 10px !important; padding: 4px 2px !important; }
+  
+  .rg-guide-workspace-body.mod-welcome-layout .rg-welcome-dynamic-benefit-injector { order: 5 !important; height: auto !important; margin: 2px 0 4px 0 !important; }
+  .rg-guide-workspace-body.mod-welcome-layout .rg-benefit-injector-heading { font-size: 12px !important; margin-bottom: 1px !important; }
+  .rg-guide-workspace-body.mod-welcome-layout .rg-benefit-injector-text { font-size: 11px !important; line-height: 1.35 !important; }
+  
+  .rg-guide-workspace-body.mod-welcome-layout .rg-guide-welcome-right-showcase { 
+    order: 6 !important; 
+    display: flex !important; 
+    width: 100% !important; 
+    height: auto !important; 
+    margin: 4px 0 !important;
+    justify-content: center !important;
+  }
+
+  /* Scaled down by 10% (from 280px to 252px width) to guarantee full visibility above the fold line */
+  .rg-guide-workspace-body.mod-welcome-layout .rg-guide-interactive-blueprint-container {
+    width: 100% !important;
+    max-width: 252px !important; 
+    min-width: 252px !important;
+    height: 336px !important; 
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6) !important;
+  }
+
+  .rg-guide-workspace-body.mod-welcome-layout .rg-guide-welcome-quick-bullets-row { 
+    order: 7 !important; 
+    margin: 2px auto 4px auto !important; 
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  /* ==========================================================================
+     🎯 TOUR PAGES (STEPS 1-3) MOBILE INVERSION SEQUENCING MATRIX
+     ========================================================================== */
+  .rg-guide-workspace-body:not(.mod-welcome-layout) .rg-guide-description-chassis {
+    display: contents !important;
+  }
+
+  /* 01. Title Identity Blocks */
+  .rg-guide-workspace-body:not(.mod-welcome-layout) .rg-guide-identity-header { 
+    order: 1 !important; 
+    margin-bottom: 2px !important; 
+  }
+  
+  /* 02. Looping Video Element screen box chassis */
+  .rg-guide-workspace-body:not(.mod-welcome-layout) .rg-guide-media-screen-box { 
+    order: 2 !important; 
+    width: 100% !important; 
+    margin: 4px 0 !important; 
+  } 
+  
+  /* 03. Target Navigation pagination dots row element */
+  .rg-guide-workspace-body:not(.mod-welcome-layout) .rg-guide-step-dots-row {
+    order: 3 !important;
+    margin: 8px auto 2px auto !important;
+    padding-top: 0 !important;
+    justify-content: center !important;
+  }
+
+  /* 04. Symmetrical horizontal selector tab pills control tray track */
+  .rg-guide-workspace-body:not(.mod-welcome-layout) .rg-guide-segmented-tabs-bar { 
+    order: 4 !important; 
+    margin: 6px auto !important; 
+    display: flex !important; 
+    visibility: visible !important; 
+    width: 100% !important;
+    max-width: 320px !important; 
+  }
+
+  .rg-guide-segmented-tabs-bar.mod-hidden-placeholder {
+    display: none !important;
+  }
+
+  /* 05. Copy subcaption paragraph description strings layout lane */
+  .rg-guide-workspace-body:not(.mod-welcome-layout) .rg-guide-subcaption {
+    order: 5 !important;
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+    margin: 8px 0 4px 0 !important;
+    text-align: center !important;
+  }
+
+  /* 06. 🎯 FIXED SPECIFICITY BLOCK: Forces skip hyperlink row down below subcaption paragraphs */
+  .rg-guide-workspace-body:not(.mod-welcome-layout) .rg-guide-left-bypass-holder { 
+    order: 6 !important; 
+    padding-top: 0 !important; 
+    margin: 4px auto 12px auto !important; 
+    text-align: center !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .rg-guide-workspace-body:not(.mod-welcome-layout) .rg-guide-dismiss-bypass-btn {
+    text-align: center !important;
+    display: inline-block !important;
+    margin: 0 auto !important;
+  }
+
+  .rg-guide-main-title { font-size: 20px !important; line-height: 1.2; }
+  .rg-guide-deal-tag { font-size: 9px; padding: 1px 6px; }
+  .rg-guide-step-indicator-lbl { font-size: 9.5px; }
+  .rg-guide-video-window-chassis { aspect-ratio: 16 / 9; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+  .rg-guide-tab-pill { font-size: 11.5px; padding: 8px 6px; }
+
+  .rg-guide-footer-dock-wrapper { 
+    flex-direction: column-reverse; 
+    gap: 12px; 
+    padding: 12px 16px; 
+    background-color: #ffffff;
+    height: 96px;
+  }
+  .rg-guide-footer-checkbox-side, .rg-guide-footer-navigation-buttons-side { width: 100%; justify-content: center; display: flex; }
+  .rg-guide-checkbox-text-label { font-size: 12px; }
+  .rg-guide-nav-btn { flex: 1; text-align: center; padding: 11px; font-size: 12px; }
+}

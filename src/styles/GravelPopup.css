@@ -1,0 +1,783 @@
+/* src/features/Discovery/components/GravelPopup.css */
+
+/* ─── 0. FULL MAP VIEWPORT CONTAINER TAKEOVER OVERRIDE (EXPOSES MAIN 80px APP HEADER) ─── */
+.discovery-dashboard-root .takeover-hud-drop-down-tray-wrapper,
+.discovery-dashboard-root .takeover-hud-drop-down-tray-wrapper.popup-entering,
+.discovery-dashboard-root .takeover-hud-drop-down-tray-wrapper.popup-dismissing {
+  left: 260px !important;
+  right: 260px !important;
+  width: auto !important;
+  max-width: none !important;
+  height: calc(100% - 80px) !important; /* Exposes the top 80px app header row */
+  top: 80px !important;                 /* Anchors directly underneath 80px main app header */
+  transform: none !important;
+  border-radius: 0 !important;
+  box-sizing: border-box !important;
+  z-index: 45 !important;
+  overflow: hidden !important;           /* 🎯 Suppress tray outer scrollbars */
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper::-webkit-scrollbar,
+.takeover-hud-drop-down-tray-wrapper .takeover-hud-drop-down-tray-body::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper.popup-entering {
+  animation: hudPopupFullSlideIn 400ms cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper.popup-dismissing {
+  animation: hudPopupFullSlideOut 400ms cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+}
+
+@keyframes hudPopupFullSlideIn {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes hudPopupFullSlideOut {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
+}
+
+.takeover-hud-drop-down-tray-wrapper .takeover-hud-drop-down-tray-body {
+  height: calc(100% - 48px) !important;
+  flex: 1 !important;
+  overflow: hidden !important;          /* 🎯 Suppress tray body scrollbars in any state */
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+  padding: 0 !important;
+  background-color: #ffffff !important;
+  gap: 0 !important;
+  position: relative !important;
+}
+
+/* ─── 1. BLUE HEADER CAPSULE & FLOATING FCS BADGE (48px HEIGHT MATCH) ─── */
+.takeover-hud-drop-down-tray-wrapper .hud-integrated-blue-header-capsule {
+  height: 48px !important;
+  max-height: 48px !important;
+  min-height: 48px !important;
+  border-radius: 0px 0px 8px 8px !important;
+  background-color: var(--brand-sky) !important;
+  border-bottom: 1px solid #164e75 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  overflow: visible !important; /* Allows FCS badge to float down over vibe bar */
+  box-sizing: border-box !important;
+  padding: 0 60px !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .hud-header-text-stack {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .hud-route-title-node {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  margin: 0 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  line-height: 48px !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .takeover-hud-tray-up-chevron-btn {
+  position: absolute !important;
+  left: 16px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: transparent !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+}
+
+/* FLOATING FCS BADGE OVERLAPS BLUE HEADER & VIBE BAR */
+.takeover-hud-drop-down-tray-wrapper .hud-header-fcs-badge {
+  position: absolute !important;
+  right: 20px !important;
+  top: 4px !important;
+  height: 72px !important;
+  width: auto !important;
+  max-width: 80px !important;
+  object-fit: contain !important;
+  z-index: 50 !important;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35)) !important;
+}
+
+/* ─── 2. VIBE & SURFACE SUB-BAR ─── */
+.takeover-hud-drop-down-tray-wrapper .hud-header-vibe-surface-banner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #ffffff !important;
+  border-bottom: 2px solid #f59e0b !important;
+  padding: 6px 16px !important;
+  gap: 12px !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .hud-header-vibe-surface-banner .vibe-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .hud-header-vibe-surface-banner .vibe-label {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 8.5px !important;
+  font-weight: 800 !important;
+  color: #94a3b8 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .hud-header-vibe-surface-banner .vibe-value {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 10.5px !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  text-transform: uppercase !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .hud-header-vibe-surface-banner .vibe-divider {
+  color: #f59e0b !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+}
+
+/* ─── 3. BANNER HEADER TIER ─── */
+.takeover-hud-drop-down-tray-wrapper .hud-body-banner-header {
+  display: grid !important;
+  grid-template-columns: 240px 1fr 240px !important;
+  gap: 0 !important;
+  width: 100% !important;
+  background-color: #fdf4ce !important;
+  border-top: 1px solid #d88a3a !important;
+  border-bottom: 1px solid #d88a3a !important;
+  box-sizing: border-box !important;
+  padding: 6px 0 !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  color: #333333 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.25mm !important;
+  text-align: center !important;
+  flex-shrink: 0 !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .banner-toggle-btn {
+  background: transparent !important;
+  border: none !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  color: var(--brand-gray) !important;
+  text-transform: inherit !important;
+  letter-spacing: inherit !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  box-shadow: none !important;
+  cursor: default !important;
+}
+
+/* Hide chevrons on full desktop view */
+.takeover-hud-drop-down-tray-wrapper .banner-chevron {
+  display: none !important;
+  font-size: 10px !important;
+  color: #d88a3a !important;
+}
+
+/* Hide wing handles on full desktop view */
+.takeover-hud-drop-down-tray-wrapper .wing-handle-rail {
+  display: none !important;
+}
+
+/* ─── 4. 3-COLUMN REPORT TEASER GRID LAYOUT ─── */
+.takeover-hud-drop-down-tray-wrapper .hud-three-column-grid-layout {
+  display: grid !important;
+  grid-template-columns: 240px 1fr 240px !important;
+  gap: 0 !important;
+  width: 100% !important;
+  flex: 1 !important;
+  align-items: stretch !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  overflow: hidden !important;          /* 🎯 Suppress grid scrollbars */
+}
+
+.takeover-hud-drop-down-tray-wrapper .hud-grid-column {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  min-width: 0 !important;
+  height: 100% !important;
+}
+
+/* ─── 5. SECTION PANELS & SEAMLESS BOX BORDERS ─── */
+.takeover-hud-drop-down-tray-wrapper .hud-console-section {
+  background: #ffffff !important;
+  border-radius: 0 !important;
+  border-right: 1px solid #e2e8f0 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  border-top: none !important;
+  border-left: none !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+}
+
+/* ─── 6. COLUMN 1: ROUTE METRICS ─── */
+.takeover-hud-drop-down-tray-wrapper .col-telemetry .section-metrics {
+  height: 230px !important;
+  flex-shrink: 0 !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .col-telemetry .horizontal-metrics-grid-bay {
+  height: 100% !important;
+  padding: 0 !important;
+  background: #ffffff !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .col-telemetry .rr-metrics-tiles-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 230px !important;
+  width: 100% !important;
+  background: radial-gradient(circle at center, #ffffff 0%, #f9f9f9 100%) !important;
+  border: none !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+  padding-left: 56px !important; /* Spacing added on left to pull dials off container edge */
+}
+
+.takeover-hud-drop-down-tray-wrapper .col-telemetry .rr-metric-tile-row {
+  height: 46px !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  padding: 0 10px 0 0 !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  box-sizing: border-box !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .col-telemetry .rr-metric-tile-row:last-child {
+  border-bottom: none !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .col-telemetry .rr-metric-dial-wrapper,
+.takeover-hud-drop-down-tray-wrapper .col-telemetry .rr-metric-icon-column {
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  margin-right: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .col-telemetry .rr-metric-content-column {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  text-align: left !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .col-telemetry .rr-metric-value-display {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  color: #1e293b !important;
+  line-height: 1.1 !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .col-telemetry .rr-metric-label-display {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 7.5px !important;
+  font-weight: 700 !important;
+  color: #64748b !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15mm !important;
+}
+
+/* EFFORT TAX TEASER */
+.takeover-hud-drop-down-tray-wrapper .section-teaser-effort {
+  flex: 1 !important;
+  min-height: 120px !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .section-teaser-risk {
+  height: 180px !important;
+  flex-shrink: 0 !important;
+}
+
+/* ─── 7. COLUMN 2: SPATIAL MAP ─── */
+.takeover-hud-drop-down-tray-wrapper .col-spatial .section-rotated-map {
+  flex: 1 !important;
+  min-height: 340px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .rotated-map-viewport-containment {
+  width: 100% !important;
+  height: 100% !important;
+  flex: 1 !important;
+  background-color: #ffffff !important;
+  position: relative !important;
+  overflow: hidden !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove Map Control Chrome and Canvas Borders */
+.takeover-hud-drop-down-tray-wrapper .rg-map-tour-reopen-floating-trigger,
+.takeover-hud-drop-down-tray-wrapper .map-dashboard-attribution-overlay {
+  display: none !important;
+}
+
+/* ─── 8. COLUMN 2: ELEVATION SPARKLINE TIER (110px) ─── */
+.takeover-hud-drop-down-tray-wrapper .col-spatial .section-elevation-graph {
+  height: 110px !important;
+  flex-shrink: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  border-left: 1px solid #e2e8f0 !important;
+  border-right: 1px solid #e2e8f0 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .hud-sparkline-banner-header {
+  width: 100% !important;
+  height: 22px !important;
+  background-color: #fdf4ce !important;
+  border-top: 1px solid #d88a3a !important;
+  border-bottom: 1px solid #d88a3a !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  color: #333333 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.25mm !important;
+  text-align: center !important;
+  line-height: 22px !important;
+  box-sizing: border-box !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .sparkline-viewport-containment {
+  width: 100% !important;
+  height: 88px !important;
+  padding: 0 !important;
+  background: radial-gradient(circle at center, #ffffff 0%, #f9f9f9 100%) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+/* ─── 9. COLUMN 2: CENTERED MIDDLE CTA BAY (50px) ─── */
+.takeover-hud-drop-down-tray-wrapper .col-spatial .section-middle-cta {
+  height: 50px !important;
+  flex-shrink: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 4px 10px !important;
+  border-left: 1px solid #e2e8f0 !important;
+  border-right: 1px solid #e2e8f0 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  background-color: #ffffff !important;
+  box-sizing: border-box !important;
+}
+
+/* ─── 10. COLUMN 3: ROUTE GUIDE (PLACES TO SEE OVERRIDES) ─── */
+.takeover-hud-drop-down-tray-wrapper .col-guide .section-places-to-see {
+  height: 230px !important;
+  flex-shrink: 0 !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .col-guide .guide-places-bay {
+  padding: 6px 12px !important;
+  height: 100% !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .col-guide .rr-guide-module-container {
+  height: 100% !important;
+  width: 100% !important;
+  border: none !important;
+  background: transparent !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .col-guide .rr-poi-list-content {
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  padding-left: 20px !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .col-guide .rr-poi-item {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 2px 0 !important;
+  margin: 0 !important;
+}
+
+/* LIVE WEATHER & TRAIL STATUS TEASERS */
+.takeover-hud-drop-down-tray-wrapper .section-teaser-weather {
+  flex: 1 !important;
+  min-height: 120px !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .section-teaser-conditions {
+  height: 180px !important;
+  flex-shrink: 0 !important;
+}
+
+/* ─── 11. TEASER LOCKED CARDS (BLURRED OVERLAY & HOVER MORPH) ─── */
+.takeover-hud-drop-down-tray-wrapper .teaser-locked-card {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 0 !important;
+  background: radial-gradient(circle at center, #ffffff 0%, #f9f9f9 100%) !important;
+  box-sizing: border-box !important;
+  height: 100% !important;
+  width: 100% !important;
+  cursor: pointer !important;
+  transition: all 200ms ease !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .teaser-blurred-content {
+  filter: blur(4px) opacity(0.55) !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  transition: filter 200ms ease !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .teaser-locked-card:hover .teaser-blurred-content {
+  filter: blur(2px) opacity(0.7) !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .teaser-lock-badge {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  background: rgba(15, 23, 42, 0.92) !important;
+  border: 1px solid #f59e0b !important;
+  color: #ffffff !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  padding: 6px 12px !important;
+  border-radius: 20px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  z-index: 10 !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* LOCK SVG ICON INSIDE TEASER BADGE */
+.takeover-hud-drop-down-tray-wrapper .teaser-lock-icon {
+  width: 12px !important;
+  height: 12px !important;
+  object-fit: contain !important;
+  flex-shrink: 0 !important;
+  display: inline-block !important;
+  transition: transform 200ms ease !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .teaser-badge-label {
+  display: inline-block !important;
+}
+
+/* ─── 11. TEASER LOCKED CARDS (GREEN HOVER MORPH STATE) ─── */
+.takeover-hud-drop-down-tray-wrapper .teaser-badge-hover-label {
+  display: none !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+}
+
+/* TEASER HOVER MORPH BADGE (SOLID GREEN MATCH) */
+.takeover-hud-drop-down-tray-wrapper .teaser-locked-card:hover .teaser-lock-badge {
+  background-color: #10b981 !important;
+  color: #ffffff !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.85) !important;
+  transform: translate(-50%, -50%) scale(1.06) !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .teaser-locked-card:hover .teaser-badge-label {
+  display: none !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .teaser-locked-card:hover .teaser-badge-hover-label {
+  display: inline-block !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .teaser-locked-card:hover .teaser-lock-icon {
+  transform: rotate(-12deg) scale(1.1) !important;
+  filter: brightness(0) invert(1) !important; /* Converts SVG icon to pure white */
+}
+
+/* ─── 12. BUTTON CTA STYLING (RESTORED ORIGINAL IDLE & GREEN CROSS-HIGHLIGHT) ─── */
+.takeover-hud-drop-down-tray-wrapper .popup-cta-btn {
+  width: 85% !important;
+  height: 100% !important;
+  border: none !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  transition: transform 150ms ease, background-color 150ms ease, box-shadow 150ms ease !important;
+  background-color: var(--brand-verdant) !important;
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.8), 0 0 6px rgba(255, 255, 255, 0.6) !important;
+  background: linear-gradient(135deg, #10b981 0%, #1b7f3a 100%) !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .popup-cta-btn.mod-add {
+  
+  border-color: #ffffff !important;
+  animation: teaserCtaPulse 0.8s infinite alternate ease-in-out !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .popup-cta-btn:hover:not(:disabled) {
+  background-color: #10b981  !important;
+  /* transform: translateY(-1px) !important; */
+  color: var(--brand-charcoal) !important;
+}
+
+.takeover-hud-drop-down-tray-wrapper .popup-cta-btn:disabled {
+  background: none !important;
+  background-color: #cbd5e1 !important;
+  color: #64748b !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  animation: none !important;
+}
+
+/* 🎯 MATCHED GREEN CROSS-HIGHLIGHT PULSE WHEN HOVERING ANY LOCKED TEASER CARD */
+.takeover-hud-drop-down-tray-wrapper:has(.teaser-locked-card:hover) .popup-cta-btn.mod-add:not(:disabled) {
+  background-color: #10b981 !important;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.9), 0 0 8px rgba(255, 255, 255, 0.8) !important;
+  transform: scale(1.03) !important;
+}
+
+@keyframes ctaAddBeaconGlow {
+  0% { box-shadow: 0 0 10px rgba(16, 185, 129, 0.4); }
+  50% { box-shadow: 0 0 22px rgba(16, 185, 129, 0.85), 0 0 8px rgba(255, 255, 255, 0.7); }
+  100% { box-shadow: 0 0 10px rgba(16, 185, 129, 0.4); }
+}
+
+@keyframes teaserCtaPulseVerdant {
+  0% {
+    transform: scale(1.02);
+    box-shadow: 0 0 18px rgba(16, 185, 129, 0.75), 0 0 6px rgba(255, 255, 255, 0.6);
+  }
+  100% {
+    transform: scale(1.05);
+    box-shadow: 0 0 32px rgba(16, 185, 129, 1), 0 0 14px rgba(255, 255, 255, 0.95);
+  }
+}
+
+/* 🎯 CROSS-HIGHLIGHT ACTION: WHEN HOVERING ANY LOCKED TEASER CARD */
+.takeover-hud-drop-down-tray-wrapper:has(.teaser-locked-card:hover) .popup-cta-btn.mod-add:not(:disabled) {
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.8), 0 0 6px rgba(255, 255, 255, 0.6) !important;
+  color: #0f172a !important;
+  border-color: #ffffff !important;
+  animation: teaserCtaPulse 0.8s infinite alternate ease-in-out !important;
+}
+
+@keyframes teaserCtaPulse {
+  0% {
+    transform: scale(1.02);
+    box-shadow: 0 0 18px rgba(245, 158, 11, 0.7), 0 0 6px rgba(255, 255, 255, 0.6);
+  }
+  100% {
+    transform: scale(1.05);
+    box-shadow: 0 0 32px rgba(245, 158, 11, 1), 0 0 14px rgba(255, 255, 255, 0.95);
+  }
+}
+
+/* ==========================================================================
+   🎯 13. OPTION A: RESPONSIVE SIDE WING COLLAPSIBLE OVERRIDES (769px - 1300px)
+   ========================================================================== */
+
+@media (max-width: 1300px) and (min-width: 769px) {
+  /* 1. Header Banner Tier: Interactive Button Layout */
+  .takeover-hud-drop-down-tray-wrapper .hud-body-banner-header {
+    grid-template-columns: 140px 1fr 140px !important;
+  }
+
+  .takeover-hud-drop-down-tray-wrapper .banner-toggle-btn {
+    cursor: pointer !important;
+    border-radius: 4px !important;
+    padding: 2px 8px !important;
+    transition: background-color 150ms ease, color 150ms ease !important;
+  }
+
+  .takeover-hud-drop-down-tray-wrapper .banner-toggle-btn:hover,
+  .takeover-hud-drop-down-tray-wrapper .banner-toggle-btn.is-active {
+    color: var(--brand-charcoal) !important;
+  }
+
+  .takeover-hud-drop-down-tray-wrapper .banner-chevron {
+    display: inline-block !important;
+  }
+
+  /* 2. Grid Container: Single Center Map Column (100% Width) */
+  .takeover-hud-drop-down-tray-wrapper .hud-three-column-grid-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* 3. Outer Columns: Absolute Slide-Out Drawer Wings (z-index raised to 100 to sit on top of North Arrow) */
+  .takeover-hud-drop-down-tray-wrapper .col-telemetry {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: 250px !important;
+    z-index: 100 !important; /* 🎯 Layered above map canvas & North Arrow overlays */
+    background: #ffffff !important;
+    border-right: 2px solid #f59e0b !important;
+    box-shadow: 6px 0 20px rgba(0, 0, 0, 0.25) !important;
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .takeover-hud-drop-down-tray-wrapper .col-telemetry.wing-collapsed {
+    transform: translateX(-100%) !important;
+  }
+
+  .takeover-hud-drop-down-tray-wrapper .col-telemetry.wing-open {
+    transform: translateX(0) !important;
+  }
+
+  .takeover-hud-drop-down-tray-wrapper .col-guide {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 250px !important;
+    z-index: 100 !important; /* 🎯 Layered above map canvas & North Arrow overlays */
+    background: #ffffff !important;
+    border-left: 2px solid #f59e0b !important;
+    box-shadow: -6px 0 20px rgba(0, 0, 0, 0.25) !important;
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .takeover-hud-drop-down-tray-wrapper .col-guide.wing-collapsed {
+    transform: translateX(100%) !important;
+  }
+
+  .takeover-hud-drop-down-tray-wrapper .col-guide.wing-open {
+    transform: translateX(0) !important;
+  }
+
+  /* 4. Interactive Vertical Edge Handle Rails */
+  .takeover-hud-drop-down-tray-wrapper .wing-handle-rail {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    position: absolute !important;
+    top: 35% !important;
+    transform: translateY(-50%) !important;
+    width: 32px !important;
+    height: 110px !important;
+    background: var(--brand-deep-blue) !important;
+    border: 1px solid #164e75 !important;
+    color: var(--brand-cream) !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 9px !important;
+    font-weight: 800 !important;
+    cursor: pointer !important;
+    z-index: 105 !important; /* 🎯 Layered above drawer panel frame */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    transition: background-color 150ms ease, color 150ms ease !important;
+  }
+
+  .takeover-hud-drop-down-tray-wrapper .wing-handle-rail:hover {
+    background: #f59e0b !important;
+    color: #ffffff !important;
+  }
+
+  .takeover-hud-drop-down-tray-wrapper .wing-handle-rail.rail-left {
+    right: -32px !important;
+    border-radius: 0 8px 8px 0 !important;
+  }
+
+  .takeover-hud-drop-down-tray-wrapper .wing-handle-rail.rail-right {
+    left: -32px !important;
+    border-radius: 8px 0 0 8px !important;
+  }
+
+  .takeover-hud-drop-down-tray-wrapper .rail-label {
+    writing-mode: vertical-rl !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+  }
+
+  .takeover-hud-drop-down-tray-wrapper .rail-icon {
+    font-size: 10px !important;
+  }
+}

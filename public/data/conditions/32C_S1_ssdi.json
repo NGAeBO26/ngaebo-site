@@ -1,7 +1,7 @@
 {
   "profile_id": "32C_S1",
   "route_id": "32C",
-  "ssdi_score": 17.8,
+  "ssdi_score": 13.6,
   "v3_terrain_score": 2.6,
   "v3_terrain_class": "Cruiser",
   "badge_type": "muddy",
@@ -17,8 +17,8 @@
     "value": 0.0
   },
   "environment": {
-    "current_temp": 77,
-    "saturation_index": 31.7,
+    "current_temp": 81,
+    "saturation_index": 32.4,
     "soil_status": "Saturated",
     "precip_24h": 0.02,
     "saturation_trend": "stable",

@@ -1,0 +1,1025 @@
+/* src/styles/FilterMegaDropdown.css */
+
+/* ─── 0. TOP-LEVEL HEADER TRIGGER CTA BUTTON ─── */
+.finder-header-row .rg-mega-summary-trigger-btn {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  color: #0f172a !important;
+  border: 2px solid #ffffff !important;
+  box-shadow: 0 0 18px rgba(245, 158, 11, 0.8), 0 0 6px rgba(255, 255, 255, 0.6) !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.04em !important;
+  padding: 8px 20px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: transform 150ms ease, box-shadow 200ms ease, background 200ms ease !important;
+  animation: triggerBeaconGlow 2.5s infinite ease-in-out !important;
+}
+
+.finder-header-row .rg-mega-summary-trigger-btn:hover {
+  background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%) !important;
+  color: var(--brand-cream) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 0 24px rgba(245, 158, 11, 0.95), 0 0 10px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* 🎯 QUIZ COMPLETE STATE (TRIGGER BUTTON WHEN TRAY IS CLOSED) */
+.finder-header-row .rg-mega-summary-trigger-btn.quiz-complete:not(.active) {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+  color: #ffffff !important;
+  border: 2px solid #f59e0b !important;
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.4) !important;
+  animation: none !important;
+}
+
+.finder-header-row .rg-mega-summary-trigger-btn.quiz-complete:not(.active):hover {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+  border-color: #fbbf24 !important;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.7) !important;
+  transform: translateY(-1px) !important;
+}
+
+.finder-header-row .rg-mega-summary-trigger-btn.quiz-complete:not(.active) .wishlist-label {
+  color: #f59e0b !important;
+}
+
+.finder-header-row .rg-mega-summary-trigger-btn.quiz-complete:not(.active) .wishlist-phrase {
+  color: #f8fafc !important;
+}
+
+/* 🎯 CONSOLIDATED ACTIVE TRIGGER BUTTON & WISHLIST TYPOGRAPHY */
+.finder-header-row .rg-mega-summary-trigger-btn.active {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  background: rgba(15, 23, 42, 0.9) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(245, 158, 11, 0.4) !important;
+  border-left: 4px solid #f59e0b !important;
+  border-radius: 8px !important;
+  padding: 10px 18px !important;
+  box-sizing: border-box !important;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.35) !important;
+  animation: none !important;
+}
+
+.finder-header-row .rg-mega-summary-trigger-btn .wishlist-label {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  color: #f59e0b !important;
+  letter-spacing: 0.06em !important;
+  white-space: nowrap !important;
+}
+
+.finder-header-row .rg-mega-summary-trigger-btn .wishlist-phrase {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 12px !important;
+  color: #cbd5e1 !important;
+}
+
+.finder-header-row .rg-mega-summary-trigger-btn .wishlist-phrase strong.active-val {
+  color: #ffffff !important;
+  border-bottom: 2px solid #f59e0b !important;
+}
+
+.finder-header-row .rg-mega-summary-trigger-btn .wishlist-phrase strong.pending-val {
+  color: #64748b !important;
+}
+
+@keyframes triggerBeaconGlow {
+  0% { box-shadow: 0 0 10px rgba(245, 158, 11, 0.4); }
+  50% { box-shadow: 0 0 22px rgba(245, 158, 11, 0.85), 0 0 8px rgba(255, 255, 255, 0.7); }
+  100% { box-shadow: 0 0 10px rgba(245, 158, 11, 0.4); }
+}
+
+/* ─── 1. TOP-LEVEL CONTAINER TRAY ─── */
+.rg-mega-dropdown-tray {
+  grid-column: 1 / -1 !important;
+  position: absolute !important;
+  top: 80px !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  background: var(--brand-deep-blue) !important;
+  border-bottom: 3px solid #f59e0b !important;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5) !important;
+  border-radius: 8px;
+  z-index: 999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 16px 24px !important;
+  animation: megaTraySlideDown 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+@keyframes megaTraySlideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 🎯 TOP-LEVEL HEADER SEARCH INPUT WRAPPER */
+.rg-mega-dropdown-tray .top-level-search {
+  position: relative !important;
+  width: 240px !important;
+  flex-shrink: 0 !important;
+}
+
+.rg-mega-dropdown-tray .top-level-search .autocomplete-input-inner-row {
+  display: flex !important;
+  align-items: center !important;
+  width: 240px;
+  background: var(--brand-gray) !important;
+  border: 1px solid #334155 !important;
+  border-radius: 6px !important;
+  padding: 4px 10px !important;
+}
+
+/* 🎯 SEARCH MAGNIFYING GLASS PREFIX ICON */
+.rg-mega-dropdown-tray .top-level-search .search-input-prefix-icon {
+  width: 14px !important;
+  height: 14px !important;
+  margin-right: 6px !important;
+  flex-shrink: 0 !important;
+  object-fit: contain !important;
+  opacity: 0.75 !important;
+}
+
+.rg-mega-dropdown-tray .top-level-search .autocomplete-input-field {
+  background: transparent !important;
+  border: none !important;
+  color: var(--brand-charcoal) !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  width: 100% !important;
+  outline: none !important;
+}
+
+.rg-mega-dropdown-tray .top-level-search .autocomplete-input-field::placeholder {
+  color: #64748b !important;
+}
+
+.rg-mega-dropdown-tray .rg-mega-dropdown-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important; /* 🎯 PREVENTS ITEM WRAPPING */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding-bottom: 12px !important;
+  margin-bottom: 14px !important;
+  width: 100% !important;
+  gap: 16px !important;
+}
+
+.rg-mega-dropdown-tray .rg-mode-toggle-group {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex-wrap: nowrap !important;
+  flex-grow: 1 !important;
+}
+
+.rg-mega-dropdown-tray .rg-mode-tab-btn {
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #cbd5e1 !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  padding: 6px 14px !important;
+  border-radius: 20px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+.rg-mega-dropdown-tray .rg-mode-tab-btn.active,
+.rg-mega-dropdown-tray .rg-mode-tab-btn:hover {
+  background: #236ea0 !important;
+  color: #ffffff !important;
+  border-color: #236ea0 !important;
+}
+
+.rg-mega-dropdown-tray .rg-mega-close-btn {
+  background: transparent !important;
+  border: none !important;
+  color: #94a3b8 !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important; /* 🎯 PREVENTS BUTTON SQUEEZING/WRAPPING */
+  margin-left: auto !important; /* 🎯 ANCHORS TO FAR RIGHT */
+  white-space: nowrap !important;
+}
+
+.rg-mega-dropdown-tray .rg-mega-close-btn:hover {
+  color: #ffffff !important;
+}
+
+/* ─── 2. QUIZ GRID & DYNAMIC PROGRESSIVE STEP HIGHLIGHTING ─── */
+.rg-mega-dropdown-tray .rg-quiz-grid-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  width: 100% !important;
+  margin-bottom: 12px !important;
+}
+
+.rg-mega-dropdown-tray .rg-quiz-grid-body {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 20px !important;
+  width: 100% !important;
+}
+
+.rg-mega-dropdown-tray .rg-quiz-column {
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  border-radius: 10px !important;
+  padding: 8px !important;
+  transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* LOCKED / DIMMED FUTURE STEP STATE */
+.rg-mega-dropdown-tray .rg-quiz-column.step-locked {
+  opacity: 0.30 !important;
+  filter: grayscale(90%) !important;
+  pointer-events: none !important;
+  border: 1px transparent solid !important;
+}
+
+/* ACTIVE UNLOCKED STEP STATE */
+.rg-mega-dropdown-tray .rg-quiz-column.step-active {
+  opacity: 1 !important;
+  filter: none !important;
+  pointer-events: auto !important;
+  border: 1px transparent solid !important;
+}
+
+/* CURRENT ACTIVE STEP HIGHLIGHT (EXPLICIT GOLD ACCENT FOCUS) */
+.rg-mega-dropdown-tray .rg-quiz-column.step-current {
+  opacity: 1 !important;
+  filter: none !important;
+  pointer-events: auto !important;
+  background: var(--brand-sky) !important;
+  border: 2px solid rgba(245, 158, 11, 0.45) !important;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.15) !important;
+}
+
+.rg-mega-dropdown-tray .rg-quiz-column-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-bottom: 12px !important;
+}
+
+.rg-mega-dropdown-tray .rg-quiz-column-title .step-num {
+  background: #334155 !important;
+  color: #94a3b8 !important;
+  font-weight: 900 !important;
+  font-size: 10px !important;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  transition: all 200ms ease !important;
+}
+
+/* CURRENT STEP NUMBER BADGE */
+.rg-mega-dropdown-tray .rg-quiz-column-title .step-num.current {
+  background: #f59e0b !important;
+  color: #0f172a !important;
+  font-weight: 900 !important;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.7) !important;
+  animation: stepNumPulse 2s infinite ease-in-out !important;
+}
+
+@keyframes stepNumPulse {
+  0% { transform: scale(1); box-shadow: 0 0 8px rgba(245, 158, 11, 0.5); }
+  50% { transform: scale(1.1); box-shadow: 0 0 16px rgba(245, 158, 11, 0.9); }
+  100% { transform: scale(1); box-shadow: 0 0 8px rgba(245, 158, 11, 0.5); }
+}
+
+/* COMPLETED STEP NUMBER BADGE */
+.rg-mega-dropdown-tray .rg-quiz-column-title .step-num.completed {
+  background: #10b981 !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.6) !important;
+}
+
+.rg-mega-dropdown-tray .rg-quiz-column-title h3 {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  color: #ffffff !important;
+  margin: 0 !important;
+}
+
+.rg-mega-dropdown-tray .rg-quiz-cards-stack {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+
+.rg-mega-dropdown-tray .rg-quiz-card {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  background: var(--brand-deep-blue) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-left: 6px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 8px !important;
+  padding: 10px 12px !important;
+  cursor: pointer !important;
+  text-align: left !important;
+  transition: all 0.15s ease !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.rg-mega-dropdown-tray .rg-quiz-card:hover {
+  background: var(--brand-cream)!important;
+  border-color: rgba(245, 158, 11, 0.5) !important;
+}
+
+/* 🎯 SELECTED CARD CONTAINER AND TEXT STYLES */
+.rg-mega-dropdown-tray .rg-quiz-card.selected {
+  background: var(--brand-cream) !important;
+  border: 2px solid #f59e0b !important;
+  border-left: 6px solid #f59e0b !important;
+}
+
+.rg-mega-dropdown-tray .rg-quiz-card.selected .card-headline {
+  color: var(--brand-deep-blue) !important;
+}
+
+.rg-mega-dropdown-tray .rg-quiz-card:hover .card-headline {
+  color: var(--brand-deep-blue) !important; /* Amber accent highlight on hover (adjust hex as desired) */
+}
+
+.rg-mega-dropdown-tray .rg-quiz-card.selected .card-subtext {
+  color: #334155 !important;
+}
+
+.rg-mega-dropdown-tray .card-icon { 
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  width: 40px !important;
+  height: 28px !important;
+}
+
+.rg-mega-dropdown-tray .quiz-card-svg-icon {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  flex-shrink: 0 !important;
+}
+
+.rg-mega-dropdown-tray .card-text {
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+}
+
+.rg-mega-dropdown-tray .card-headline {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+}
+
+.rg-mega-dropdown-tray .card-subtext {
+  font-size: 9.5px !important;
+  color: #94a3b8 !important;
+  margin-top: 2px !important;
+  line-height: 1.2 !important;
+}
+
+/* ─── 3. PREVIEW DIMMED ROW DURING STEPS 1–3 ─── */
+.rg-mega-dropdown-tray .rg-quiz-preview-locked-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 20px !important;
+  background: rgba(15, 23, 42, 0.6) !important;
+  border: 1px dashed rgba(245, 158, 11, 0.4) !important;
+  border-radius: 10px !important;
+  padding: 14px 16px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.rg-mega-dropdown-tray .rg-quiz-preview-locked-row.step-locked {
+  opacity: 0.30 !important;
+  filter: grayscale(90%) !important;
+  pointer-events: none !important;
+}
+
+/* ─── 🎯 4. HIGH-DENSITY 3-COLUMN UNLOCK BANNER (PERFECTLY CENTERED) ─── */
+.rg-mega-dropdown-tray .rg-quiz-inline-unlock-banner {
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.5) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
+  border: 2px solid #f59e0b !important;
+  border-radius: 10px !important;
+  padding: 12px 20px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+/* 🎯 TOP CENTERED BADGE HEADER CONTAINER */
+.rg-mega-dropdown-tray .unlock-banner-top-header {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin-bottom: 10px !important;
+}
+
+/* SYMMETRIC GRID (minmax(0, 1fr) 320px minmax(0, 1fr)): Mathematically centers Column 2 */
+.rg-mega-dropdown-tray .unlock-banner-three-cols {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 320px minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 20px !important;
+  width: 100% !important;
+}
+
+/* 🎯 COLUMN 1: STACKED FEATURE CARD (DIGITAL SHOWCASE STYLE) */
+.rg-mega-dropdown-tray .unlock-benefits-card {
+  background: rgba(15, 23, 42, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 10px !important;
+  padding: 12px 14px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+.rg-mega-dropdown-tray .benefits-card-header {
+  display: flex !important;
+  align-items: center !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding-bottom: 6px !important;
+}
+
+.rg-mega-dropdown-tray .benefits-card-badge {
+  font-family: 'Montserrat', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 900 !important;
+    color: #f59e0b !important;
+    background: rgba(245, 158, 11, 0.15) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.25) !important;
+    text-align: center !important;
+}
+
+.rg-mega-dropdown-tray .unlock-benefit-items-stack {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  width: 100% !important;
+}
+
+.rg-mega-dropdown-tray .unlock-benefit-feature-row {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  width: 100% !important;
+}
+
+/* CIRCULAR ICON BADGE (MATCHES SHOWCASE CARDS) */
+.rg-mega-dropdown-tray .benefit-icon-circle {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  margin-top: 1px !important;
+  padding: 4px !important;
+  box-sizing: border-box !important;
+}
+
+.rg-mega-dropdown-tray .benefit-svg-icon {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+/* 🎯 LEAD FORM UNLOCK BUTTON ICON OVERRIDE (SCOPED TO MEGA DROPDOWN TRAY) */
+.rg-mega-dropdown-tray .unlock-form-container button::after {
+  content: "" !important;
+  display: inline-block !important;
+  width: 14px !important;
+  height: 14px !important;
+  margin-left: 6px !important;
+  vertical-align: -2px !important;
+  background: url('/data/assets/icon_unlock.svg') no-repeat center / contain !important;
+}
+
+.rg-mega-dropdown-tray .benefit-content-block {
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  flex: 1 !important;
+}
+
+.rg-mega-dropdown-tray .benefit-feature-title {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 10.5px !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  margin: 0 0 2px 0 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.02em !important;
+}
+
+.rg-mega-dropdown-tray .benefit-feature-desc {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 9.5px !important;
+  color: #cbd5e1 !important;
+  margin: 0 !important;
+  line-height: 1.3 !important;
+}
+
+.rg-mega-dropdown-tray .benefit-feature-desc .mellow-highlight {
+  color: #f59e0b !important;
+  font-weight: 700 !important;
+}
+
+/* 🎯 COLUMN 2: CENTERED STACK */
+.rg-mega-dropdown-tray .unlock-col-center-stack {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  gap: 6px !important;
+  width: 100% !important;
+  max-width: 320px !important;
+  margin: 0 auto !important;
+}
+
+.rg-mega-dropdown-tray .unlock-badge-pill {
+  background: rgba(245, 158, 11, 0.2) !important;
+  color: #f59e0b !important;
+  border: 1px solid #f59e0b !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 8.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.1em !important;
+  padding: 3px 8px !important;
+  border-radius: 12px !important;
+  text-transform: uppercase !important;
+}
+
+.rg-mega-dropdown-tray .unlock-col-center-stack h4 {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  margin: 0 !important;
+  text-transform: uppercase !important;
+}
+
+.rg-mega-dropdown-tray .unlock-col-center-stack .unlock-form-container {
+  width: 100% !important;
+  margin-top: 4px !important;
+}
+
+/* 🎯 LEAD FORM DISCLAIMER OVERRIDE (SCOPED TO MEGA DROPDOWN TRAY) */
+.rg-mega-dropdown-tray .lead-disclaimer {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 8.5px !important;
+  color: var(--brand-cream) !important;
+  text-align: center !important;
+  margin-top: 6px !important;
+  line-height: 1.2 !important;
+  font-style: italic !important;
+  opacity: 0.85 !important;
+}
+
+/* 🎯 COLUMN 3: RIGHT GROUP (DIVIDER + SKIP) */
+.rg-mega-dropdown-tray .unlock-col-right-group {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  width: 100% !important;
+}
+
+.rg-mega-dropdown-tray .unlock-col-divider {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  height: 100% !important;
+  padding: 0 2px !important;
+}
+
+.rg-mega-dropdown-tray .unlock-col-divider .divider-line {
+  width: 1px !important;
+  flex-grow: 1 !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.rg-mega-dropdown-tray .unlock-col-divider .divider-text {
+  color: #64748b !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+}
+
+.rg-mega-dropdown-tray .unlock-col-skip {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  gap: 6px !important;
+  flex-grow: 1 !important;
+}
+
+.rg-mega-dropdown-tray .unlock-col-skip h4 {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  color: #94a3b8 !important;
+  margin: 0 !important;
+  text-transform: uppercase !important;
+}
+
+.rg-mega-dropdown-tray .unlock-col-skip .skip-subtext {
+  font-size: 9.5px !important;
+  color: #64748b !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+}
+
+.rg-mega-dropdown-tray .rg-skip-show-routes-btn {
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: #ffffff !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  padding: 9px 14px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  width: 100% !important;
+  transition: all 150ms ease !important;
+}
+
+.rg-mega-dropdown-tray .rg-skip-show-routes-btn:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: #f59e0b !important;
+}
+
+/* ─── 5. UNLOCKED STEPS 4 & 5 ROW ─── */
+.rg-mega-dropdown-tray .rg-quiz-unlocked-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 20px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 10px !important;
+  padding: 14px 16px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.rg-mega-dropdown-tray .rg-origin-input-box {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-bottom: 8px !important;
+}
+
+.rg-mega-dropdown-tray .origin-label {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  color: #cbd5e1 !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+
+.rg-mega-dropdown-tray .rg-origin-text-input {
+  background: #0f172a !important;
+  border: 1px solid #334155 !important;
+  color: #ffffff !important;
+  font-size: 11px !important;
+  padding: 6px 10px !important;
+  border-radius: 4px !important;
+  flex-grow: 1 !important;
+}
+
+.rg-mega-dropdown-tray .rg-drive-time-controls-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  width: 100% !important;
+}
+
+.rg-mega-dropdown-tray .drive-time-icon-wrapper {
+  width: 32px !important;
+  height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 6px !important;
+  padding: 4px !important;
+  box-sizing: border-box !important;
+}
+
+.rg-mega-dropdown-tray .drive-time-svg-icon {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+.rg-mega-dropdown-tray .horizontal-drive-stack {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 8px !important;
+  flex: 1 !important;
+}
+
+.rg-mega-dropdown-tray .rg-quiz-card.compact {
+  flex: 1 !important;
+  padding: 8px 10px !important;
+  justify-content: center !important;
+}
+
+.rg-mega-dropdown-tray .rg-weather-days-row {
+  display: flex !important;
+  gap: 8px !important;
+  width: 100% !important;
+  overflow-x: auto !important;
+  padding-bottom: 6px !important;
+  scroll-behavior: smooth !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.rg-mega-dropdown-tray .rg-weather-days-row::-webkit-scrollbar {
+  height: 4px !important;
+}
+
+.rg-mega-dropdown-tray .rg-weather-days-row::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 2px !important;
+}
+
+.rg-mega-dropdown-tray .rg-weather-days-row::-webkit-scrollbar-thumb {
+  background: rgba(245, 158, 11, 0.4) !important;
+  border-radius: 2px !important;
+}
+
+.rg-mega-dropdown-tray .rg-weather-day-chip {
+  flex: 0 0 105px !important;
+  min-width: 105px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 6px !important;
+  padding: 8px 6px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+.rg-mega-dropdown-tray .rg-weather-day-chip:hover {
+  border-color: #f59e0b !important;
+}
+
+.rg-mega-dropdown-tray .rg-weather-day-chip.selected {
+  background: rgba(35, 110, 160, 0.4) !important;
+  border: 2px solid #f59e0b !important;
+}
+
+.rg-mega-dropdown-tray .chip-day {
+  font-size: 9.5px !important;
+  font-weight: 800 !important;
+  color: #f8fafc !important;
+}
+
+.rg-mega-dropdown-tray .chip-joy {
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  color: #f59e0b !important;
+  margin: 2px 0 !important;
+}
+
+.rg-mega-dropdown-tray .chip-status {
+  font-size: 8.5px !important;
+  color: #94a3b8 !important;
+  text-transform: uppercase !important;
+}
+
+/* ─── 6. FINE-TUNE MANUAL PARAMETERS BODY ─── */
+.rg-mega-dropdown-tray .rg-manual-tuning-body {
+  padding: 8px 0 16px 0 !important;
+  width: 100% !important;
+}
+
+.rg-mega-dropdown-tray .rg-tuning-intro {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 11px !important;
+  color: #cbd5e1 !important;
+  margin: 0 0 14px 0 !important;
+}
+
+/* 🎯 REBALANCED 3-COLUMN MANUAL PARAMETERS GRID */
+.rg-mega-dropdown-tray .rg-manual-tuning-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 16px !important;
+  width: 100% !important;
+}
+
+.rg-mega-dropdown-tray .rg-tuning-control-card {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 8px !important;
+  padding: 12px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  box-sizing: border-box !important;
+}
+
+.rg-mega-dropdown-tray .rg-tuning-label-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.rg-mega-dropdown-tray .rg-tuning-label {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  color: #f8fafc !important;
+}
+
+.rg-mega-dropdown-tray .rg-tuning-value {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  color: #f59e0b !important;
+}
+
+/* ─── 7. FOOTER ACTION BAR (CLEAN SINGLE CENTERED CTA) ─── */
+.rg-mega-dropdown-tray .rg-mega-dropdown-footer {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding-top: 12px !important;
+  width: 100% !important;
+}
+
+.rg-mega-dropdown-tray .footer-col-center {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.rg-mega-dropdown-tray .rg-apply-quiz-btn {
+  background: #f59e0b !important;
+  color: #1e293b !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  padding: 11px 28px !important;
+  border: none !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35) !important;
+  transition: transform 150ms ease !important;
+}
+
+.rg-mega-dropdown-tray .rg-apply-quiz-btn:hover:not(.disabled) {
+  transform: translateY(-1px) !important;
+}
+
+.rg-mega-dropdown-tray .rg-apply-quiz-btn.disabled {
+  background-color: #475569 !important;
+  color: #94a3b8 !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  opacity: 0.7 !important;
+}
+
+.rg-mega-dropdown-tray .rg-apply-quiz-btn.highlighted {
+  background: linear-gradient(110deg, #f59e0b 0%, #fbbf24 25%, #ffffff 50%, #fbbf24 75%, #f59e0b 100%) !important;
+  background-size: 200% 100% !important;
+  animation: rgShimmerCta 2.5s infinite linear !important;
+  box-shadow: 0 4px 18px rgba(245, 158, 11, 0.5) !important;
+}
+
+@keyframes rgShimmerCta {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ─── 8. DUAL-THUMB RANGE SLIDER STYLES ─── */
+.rg-mega-dropdown-tray .rg-dual-range-track-wrapper {
+  position: relative !important;
+  height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin-top: 6px !important;
+}
+
+.rg-mega-dropdown-tray .rg-dual-range-track-wrapper::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 6px !important;
+  background-color: #334155 !important;
+  border-radius: 3px !important;
+  z-index: 0 !important;
+}
+
+.rg-mega-dropdown-tray .rg-dual-range-track-bar {
+  position: absolute !important;
+  height: 6px !important;
+  background-color: #f59e0b !important;
+  border-radius: 3px !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+.rg-mega-dropdown-tray .rg-dual-range-thumb {
+  position: absolute !important;
+  width: 100% !important;
+  height: 6px !important;
+  background: transparent !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  pointer-events: none !important;
+  outline: none !important;
+  margin: 0 !important;
+  z-index: 2 !important;
+}
+
+.rg-mega-dropdown-tray .rg-dual-range-thumb::-webkit-slider-thumb {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  background: #ffffff !important;
+  border: 2px solid #f59e0b !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+  transition: transform 150ms ease !important;
+}
+
+.rg-mega-dropdown-tray .rg-dual-range-thumb::-webkit-slider-thumb:hover {
+  transform: scale(1.15) !important;
+}
+
+.rg-mega-dropdown-tray .rg-dual-range-thumb::-moz-range-thumb {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  background: #ffffff !important;
+  border: 2px solid #f59e0b !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+  transition: transform 150ms ease !important;
+}
+
+.rg-mega-dropdown-tray .rg-dual-range-thumb::-moz-range-thumb:hover {
+  transform: scale(1.15) !important;
+}

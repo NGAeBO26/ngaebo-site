@@ -1,7 +1,7 @@
 {
     "profile_id": "740_S1",
     "route_id": "740",
-    "ssdi_score": 9.7,
+    "ssdi_score": 8.1,
     "v3_terrain_score": 4.6,
     "v3_terrain_class": "Strenuous",
     "badge_type": "muddy",
@@ -17,21 +17,21 @@
         "value": 0.13
     },
     "environment": {
-        "current_temp": 69,
-        "saturation_index": 25.72,
+        "current_temp": 79,
+        "saturation_index": 17.39,
         "soil_status": "Saturated",
-        "precip_24h": 0.02,
+        "precip_24h": 0.01,
         "saturation_trend": "stable",
         "alerts": []
     },
     "physics": {
-        "live_traction": 0.43,
-        "live_wh_per_km": 15.16,
+        "live_traction": 0.45,
+        "live_wh_per_km": 15.02,
         "energy_penalty_pct": 20.0,
         "v3_base_intensity": 4.6
     },
     "connectivity": {
-        "signal_class": "Unknown",
-        "deadzone_max_meters": 0
+        "signal_class": "Spotty",
+        "deadzone_max_meters": 319
     }
 }

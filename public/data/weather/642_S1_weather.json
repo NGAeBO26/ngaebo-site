@@ -1,550 +1,18 @@
 {
-  "current_temp": 69,
-  "temp_avg": 65,
+  "current_temp": 84,
+  "temp_avg": 83,
   "precip_24h": 0.03,
-  "short": "Mostly Cloudy",
-  "primary_condition": "Mostly Cloudy",
-  "precip_prob": 7,
+  "short": "Mostly Sunny",
+  "primary_condition": "Mostly Sunny",
+  "precip_prob": 1,
   "hourly_data": [
     {
       "number": 1,
       "name": "",
-      "startTime": "2026-05-31T15:00:00-04:00",
-      "endTime": "2026-05-31T16:00:00-04:00",
+      "startTime": "2026-07-21T12:00:00-04:00",
+      "endTime": "2026-07-21T13:00:00-04:00",
       "isDaytime": true,
-      "temperature": 69,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 7
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 16.666666666666668
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 80
-      },
-      "windSpeed": "7 mph",
-      "windDirection": "E",
-      "icon": "https://api.weather.gov/icons/land/day/bkn?size=small",
-      "shortForecast": "Mostly Cloudy",
-      "detailedForecast": "",
-      "joy_score": 70.5
-    },
-    {
-      "number": 2,
-      "name": "",
-      "startTime": "2026-05-31T16:00:00-04:00",
-      "endTime": "2026-05-31T17:00:00-04:00",
-      "isDaytime": true,
-      "temperature": 69,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 9
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 17.22222222222222
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 82
-      },
-      "windSpeed": "6 mph",
-      "windDirection": "E",
-      "icon": "https://api.weather.gov/icons/land/day/bkn?size=small",
-      "shortForecast": "Mostly Cloudy",
-      "detailedForecast": "",
-      "joy_score": 69.7
-    },
-    {
-      "number": 3,
-      "name": "",
-      "startTime": "2026-05-31T17:00:00-04:00",
-      "endTime": "2026-05-31T18:00:00-04:00",
-      "isDaytime": true,
-      "temperature": 69,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 16
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 17.22222222222222
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 82
-      },
-      "windSpeed": "6 mph",
-      "windDirection": "E",
-      "icon": "https://api.weather.gov/icons/land/day/tsra,20?size=small",
-      "shortForecast": "Slight Chance Showers And Thunderstorms",
-      "detailedForecast": "",
-      "joy_score": 68.6
-    },
-    {
-      "number": 4,
-      "name": "",
-      "startTime": "2026-05-31T18:00:00-04:00",
-      "endTime": "2026-05-31T19:00:00-04:00",
-      "isDaytime": false,
-      "temperature": 69,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 22
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 17.22222222222222
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 81
-      },
-      "windSpeed": "5 mph",
-      "windDirection": "ESE",
-      "icon": "https://api.weather.gov/icons/land/night/tsra_sct,20?size=small",
-      "shortForecast": "Slight Chance Showers And Thunderstorms",
-      "detailedForecast": "",
-      "joy_score": 68.7
-    },
-    {
-      "number": 5,
-      "name": "",
-      "startTime": "2026-05-31T19:00:00-04:00",
-      "endTime": "2026-05-31T20:00:00-04:00",
-      "isDaytime": false,
-      "temperature": 69,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 27
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 16.666666666666668
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 79
-      },
-      "windSpeed": "3 mph",
-      "windDirection": "E",
-      "icon": "https://api.weather.gov/icons/land/night/tsra_sct,30?size=small",
-      "shortForecast": "Chance Showers And Thunderstorms",
-      "detailedForecast": "",
-      "joy_score": 70.0
-    },
-    {
-      "number": 6,
-      "name": "",
-      "startTime": "2026-05-31T20:00:00-04:00",
-      "endTime": "2026-05-31T21:00:00-04:00",
-      "isDaytime": false,
-      "temperature": 68,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 41
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 16.666666666666668
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 82
-      },
-      "windSpeed": "3 mph",
-      "windDirection": "E",
-      "icon": "https://api.weather.gov/icons/land/night/tsra_sct,40?size=small",
-      "shortForecast": "Chance Showers And Thunderstorms",
-      "detailedForecast": "",
-      "joy_score": 66.3
-    },
-    {
-      "number": 7,
-      "name": "",
-      "startTime": "2026-05-31T21:00:00-04:00",
-      "endTime": "2026-05-31T22:00:00-04:00",
-      "isDaytime": false,
-      "temperature": 65,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 38
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 16.666666666666668
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 92
-      },
-      "windSpeed": "2 mph",
-      "windDirection": "E",
-      "icon": "https://api.weather.gov/icons/land/night/tsra,40?size=small",
-      "shortForecast": "Chance Showers And Thunderstorms",
-      "detailedForecast": "",
-      "joy_score": 62.3
-    },
-    {
-      "number": 8,
-      "name": "",
-      "startTime": "2026-05-31T22:00:00-04:00",
-      "endTime": "2026-05-31T23:00:00-04:00",
-      "isDaytime": false,
-      "temperature": 63,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 35
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 16.666666666666668
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 97
-      },
-      "windSpeed": "2 mph",
-      "windDirection": "E",
-      "icon": "https://api.weather.gov/icons/land/night/tsra,40?size=small",
-      "shortForecast": "Chance Showers And Thunderstorms",
-      "detailedForecast": "",
-      "joy_score": 60.2
-    },
-    {
-      "number": 9,
-      "name": "",
-      "startTime": "2026-05-31T23:00:00-04:00",
-      "endTime": "2026-06-01T00:00:00-04:00",
-      "isDaytime": false,
-      "temperature": 62,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 35
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 16.666666666666668
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 99
-      },
-      "windSpeed": "2 mph",
-      "windDirection": "ENE",
-      "icon": "https://api.weather.gov/icons/land/night/rain_showers,40?size=small",
-      "shortForecast": "Chance Rain Showers",
-      "detailedForecast": "",
-      "joy_score": 59.2
-    },
-    {
-      "number": 10,
-      "name": "",
-      "startTime": "2026-06-01T00:00:00-04:00",
-      "endTime": "2026-06-01T01:00:00-04:00",
-      "isDaytime": false,
-      "temperature": 62,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 40
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 16.666666666666668
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 99
-      },
-      "windSpeed": "1 mph",
-      "windDirection": "NE",
-      "icon": "https://api.weather.gov/icons/land/night/rain_showers,40?size=small",
-      "shortForecast": "Chance Rain Showers",
-      "detailedForecast": "",
-      "joy_score": 59.0
-    },
-    {
-      "number": 11,
-      "name": "",
-      "startTime": "2026-06-01T01:00:00-04:00",
-      "endTime": "2026-06-01T02:00:00-04:00",
-      "isDaytime": false,
-      "temperature": 62,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 40
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 16.666666666666668
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 100
-      },
-      "windSpeed": "1 mph",
-      "windDirection": "ENE",
-      "icon": "https://api.weather.gov/icons/land/night/rain_showers,40?size=small",
-      "shortForecast": "Chance Rain Showers",
-      "detailedForecast": "",
-      "joy_score": 58.5
-    },
-    {
-      "number": 12,
-      "name": "",
-      "startTime": "2026-06-01T02:00:00-04:00",
-      "endTime": "2026-06-01T03:00:00-04:00",
-      "isDaytime": false,
-      "temperature": 62,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 17
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 16.666666666666668
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 99
-      },
-      "windSpeed": "1 mph",
-      "windDirection": "NE",
-      "icon": "https://api.weather.gov/icons/land/night/rain_showers,20?size=small",
-      "shortForecast": "Patchy Fog",
-      "detailedForecast": "",
-      "joy_score": 62.5
-    },
-    {
-      "number": 13,
-      "name": "",
-      "startTime": "2026-06-01T03:00:00-04:00",
-      "endTime": "2026-06-01T04:00:00-04:00",
-      "isDaytime": false,
-      "temperature": 61,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 14
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 16.11111111111111
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 100
-      },
-      "windSpeed": "1 mph",
-      "windDirection": "N",
-      "icon": "https://api.weather.gov/icons/land/night/fog?size=small",
-      "shortForecast": "Patchy Fog",
-      "detailedForecast": "",
-      "joy_score": 62.4
-    },
-    {
-      "number": 14,
-      "name": "",
-      "startTime": "2026-06-01T04:00:00-04:00",
-      "endTime": "2026-06-01T05:00:00-04:00",
-      "isDaytime": false,
-      "temperature": 61,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 8
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 16.11111111111111
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 100
-      },
-      "windSpeed": "1 mph",
-      "windDirection": "N",
-      "icon": "https://api.weather.gov/icons/land/night/fog?size=small",
-      "shortForecast": "Patchy Fog",
-      "detailedForecast": "",
-      "joy_score": 63.3
-    },
-    {
-      "number": 15,
-      "name": "",
-      "startTime": "2026-06-01T05:00:00-04:00",
-      "endTime": "2026-06-01T06:00:00-04:00",
-      "isDaytime": false,
-      "temperature": 61,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 6
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 16.11111111111111
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 100
-      },
-      "windSpeed": "1 mph",
-      "windDirection": "N",
-      "icon": "https://api.weather.gov/icons/land/night/fog?size=small",
-      "shortForecast": "Patchy Fog",
-      "detailedForecast": "",
-      "joy_score": 63.6
-    },
-    {
-      "number": 16,
-      "name": "",
-      "startTime": "2026-06-01T06:00:00-04:00",
-      "endTime": "2026-06-01T07:00:00-04:00",
-      "isDaytime": true,
-      "temperature": 60,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 4
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 15.555555555555555
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 100
-      },
-      "windSpeed": "1 mph",
-      "windDirection": "NNW",
-      "icon": "https://api.weather.gov/icons/land/day/fog?size=small",
-      "shortForecast": "Patchy Fog",
-      "detailedForecast": "",
-      "joy_score": 63.9
-    },
-    {
-      "number": 17,
-      "name": "",
-      "startTime": "2026-06-01T07:00:00-04:00",
-      "endTime": "2026-06-01T08:00:00-04:00",
-      "isDaytime": true,
-      "temperature": 61,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 3
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 16.11111111111111
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 100
-      },
-      "windSpeed": "2 mph",
-      "windDirection": "NW",
-      "icon": "https://api.weather.gov/icons/land/day/fog?size=small",
-      "shortForecast": "Patchy Fog",
-      "detailedForecast": "",
-      "joy_score": 63.5
-    },
-    {
-      "number": 18,
-      "name": "",
-      "startTime": "2026-06-01T08:00:00-04:00",
-      "endTime": "2026-06-01T09:00:00-04:00",
-      "isDaytime": true,
-      "temperature": 62,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 2
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 16.666666666666668
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 100
-      },
-      "windSpeed": "2 mph",
-      "windDirection": "NW",
-      "icon": "https://api.weather.gov/icons/land/day/sct?size=small",
-      "shortForecast": "Mostly Sunny",
-      "detailedForecast": "",
-      "joy_score": 63.7
-    },
-    {
-      "number": 19,
-      "name": "",
-      "startTime": "2026-06-01T09:00:00-04:00",
-      "endTime": "2026-06-01T10:00:00-04:00",
-      "isDaytime": true,
-      "temperature": 65,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 2
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 17.77777777777778
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 98
-      },
-      "windSpeed": "3 mph",
-      "windDirection": "NW",
-      "icon": "https://api.weather.gov/icons/land/day/few?size=small",
-      "shortForecast": "Sunny",
-      "detailedForecast": "",
-      "joy_score": 64.2
-    },
-    {
-      "number": 20,
-      "name": "",
-      "startTime": "2026-06-01T10:00:00-04:00",
-      "endTime": "2026-06-01T11:00:00-04:00",
-      "isDaytime": true,
-      "temperature": 71,
+      "temperature": 84,
       "temperatureUnit": "F",
       "temperatureTrend": null,
       "probabilityOfPrecipitation": {
@@ -553,26 +21,26 @@
       },
       "dewpoint": {
         "unitCode": "wmoUnit:degC",
-        "value": 19.444444444444443
+        "value": 22.77777777777778
       },
       "relativeHumidity": {
         "unitCode": "wmoUnit:percent",
-        "value": 86
+        "value": 70
       },
       "windSpeed": "5 mph",
-      "windDirection": "NW",
+      "windDirection": "SSW",
       "icon": "https://api.weather.gov/icons/land/day/sct?size=small",
       "shortForecast": "Mostly Sunny",
       "detailedForecast": "",
-      "joy_score": 69.3
+      "joy_score": 59.4
     },
     {
-      "number": 21,
+      "number": 2,
       "name": "",
-      "startTime": "2026-06-01T11:00:00-04:00",
-      "endTime": "2026-06-01T12:00:00-04:00",
+      "startTime": "2026-07-21T13:00:00-04:00",
+      "endTime": "2026-07-21T14:00:00-04:00",
       "isDaytime": true,
-      "temperature": 75,
+      "temperature": 86,
       "temperatureUnit": "F",
       "temperatureTrend": null,
       "probabilityOfPrecipitation": {
@@ -581,26 +49,26 @@
       },
       "dewpoint": {
         "unitCode": "wmoUnit:degC",
-        "value": 20
+        "value": 22.22222222222222
       },
       "relativeHumidity": {
         "unitCode": "wmoUnit:percent",
-        "value": 78
+        "value": 64
       },
-      "windSpeed": "5 mph",
-      "windDirection": "NNW",
-      "icon": "https://api.weather.gov/icons/land/day/few?size=small",
-      "shortForecast": "Sunny",
+      "windSpeed": "6 mph",
+      "windDirection": "SSW",
+      "icon": "https://api.weather.gov/icons/land/day/sct?size=small",
+      "shortForecast": "Mostly Sunny",
       "detailedForecast": "",
-      "joy_score": 73.0
+      "joy_score": 57.5
     },
     {
-      "number": 22,
+      "number": 3,
       "name": "",
-      "startTime": "2026-06-01T12:00:00-04:00",
-      "endTime": "2026-06-01T13:00:00-04:00",
+      "startTime": "2026-07-21T14:00:00-04:00",
+      "endTime": "2026-07-21T15:00:00-04:00",
       "isDaytime": true,
-      "temperature": 78,
+      "temperature": 86,
       "temperatureUnit": "F",
       "temperatureTrend": null,
       "probabilityOfPrecipitation": {
@@ -609,86 +77,618 @@
       },
       "dewpoint": {
         "unitCode": "wmoUnit:degC",
-        "value": 19.444444444444443
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 69
-      },
-      "windSpeed": "5 mph",
-      "windDirection": "NNW",
-      "icon": "https://api.weather.gov/icons/land/day/sct?size=small",
-      "shortForecast": "Mostly Sunny",
-      "detailedForecast": "",
-      "joy_score": 71.2
-    },
-    {
-      "number": 23,
-      "name": "",
-      "startTime": "2026-06-01T13:00:00-04:00",
-      "endTime": "2026-06-01T14:00:00-04:00",
-      "isDaytime": true,
-      "temperature": 80,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 9
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 19.444444444444443
-      },
-      "relativeHumidity": {
-        "unitCode": "wmoUnit:percent",
-        "value": 63
-      },
-      "windSpeed": "5 mph",
-      "windDirection": "WNW",
-      "icon": "https://api.weather.gov/icons/land/day/sct?size=small",
-      "shortForecast": "Mostly Sunny",
-      "detailedForecast": "",
-      "joy_score": 69.7
-    },
-    {
-      "number": 24,
-      "name": "",
-      "startTime": "2026-06-01T14:00:00-04:00",
-      "endTime": "2026-06-01T15:00:00-04:00",
-      "isDaytime": true,
-      "temperature": 81,
-      "temperatureUnit": "F",
-      "temperatureTrend": null,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 26
-      },
-      "dewpoint": {
-        "unitCode": "wmoUnit:degC",
-        "value": 18.88888888888889
+        "value": 21.666666666666668
       },
       "relativeHumidity": {
         "unitCode": "wmoUnit:percent",
         "value": 60
       },
-      "windSpeed": "5 mph",
-      "windDirection": "NW",
-      "icon": "https://api.weather.gov/icons/land/day/tsra_hi,30?size=small",
-      "shortForecast": "Chance Showers And Thunderstorms",
+      "windSpeed": "6 mph",
+      "windDirection": "SSW",
+      "icon": "https://api.weather.gov/icons/land/day/bkn?size=small",
+      "shortForecast": "Partly Sunny",
       "detailedForecast": "",
-      "joy_score": 66.6
+      "joy_score": 59.2
+    },
+    {
+      "number": 4,
+      "name": "",
+      "startTime": "2026-07-21T15:00:00-04:00",
+      "endTime": "2026-07-21T16:00:00-04:00",
+      "isDaytime": true,
+      "temperature": 87,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 6
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 21.666666666666668
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 58
+      },
+      "windSpeed": "6 mph",
+      "windDirection": "SSW",
+      "icon": "https://api.weather.gov/icons/land/day/sct?size=small",
+      "shortForecast": "Mostly Sunny",
+      "detailedForecast": "",
+      "joy_score": 57.1
+    },
+    {
+      "number": 5,
+      "name": "",
+      "startTime": "2026-07-21T16:00:00-04:00",
+      "endTime": "2026-07-21T17:00:00-04:00",
+      "isDaytime": true,
+      "temperature": 88,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 6
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 21.666666666666668
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 57
+      },
+      "windSpeed": "6 mph",
+      "windDirection": "SSW",
+      "icon": "https://api.weather.gov/icons/land/day/sct?size=small",
+      "shortForecast": "Mostly Sunny",
+      "detailedForecast": "",
+      "joy_score": 55.1
+    },
+    {
+      "number": 6,
+      "name": "",
+      "startTime": "2026-07-21T17:00:00-04:00",
+      "endTime": "2026-07-21T18:00:00-04:00",
+      "isDaytime": true,
+      "temperature": 87,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 7
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 21.666666666666668
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 58
+      },
+      "windSpeed": "6 mph",
+      "windDirection": "SSW",
+      "icon": "https://api.weather.gov/icons/land/day/sct?size=small",
+      "shortForecast": "Mostly Sunny",
+      "detailedForecast": "",
+      "joy_score": 57.0
+    },
+    {
+      "number": 7,
+      "name": "",
+      "startTime": "2026-07-21T18:00:00-04:00",
+      "endTime": "2026-07-21T19:00:00-04:00",
+      "isDaytime": false,
+      "temperature": 87,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 5
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 21.666666666666668
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 60
+      },
+      "windSpeed": "6 mph",
+      "windDirection": "SSW",
+      "icon": "https://api.weather.gov/icons/land/night/sct?size=small",
+      "shortForecast": "Partly Cloudy",
+      "detailedForecast": "",
+      "joy_score": 57.2
+    },
+    {
+      "number": 8,
+      "name": "",
+      "startTime": "2026-07-21T19:00:00-04:00",
+      "endTime": "2026-07-21T20:00:00-04:00",
+      "isDaytime": false,
+      "temperature": 86,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 6
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 22.22222222222222
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 64
+      },
+      "windSpeed": "6 mph",
+      "windDirection": "SSW",
+      "icon": "https://api.weather.gov/icons/land/night/sct?size=small",
+      "shortForecast": "Partly Cloudy",
+      "detailedForecast": "",
+      "joy_score": 57.1
+    },
+    {
+      "number": 9,
+      "name": "",
+      "startTime": "2026-07-21T20:00:00-04:00",
+      "endTime": "2026-07-21T21:00:00-04:00",
+      "isDaytime": false,
+      "temperature": 81,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 21
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 22.22222222222222
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 74
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SSW",
+      "icon": "https://api.weather.gov/icons/land/night/tsra_sct,20?size=small",
+      "shortForecast": "Slight Chance Showers And Thunderstorms",
+      "detailedForecast": "",
+      "joy_score": 60.4
+    },
+    {
+      "number": 10,
+      "name": "",
+      "startTime": "2026-07-21T21:00:00-04:00",
+      "endTime": "2026-07-21T22:00:00-04:00",
+      "isDaytime": false,
+      "temperature": 78,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 16
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 22.22222222222222
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 82
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SSW",
+      "icon": "https://api.weather.gov/icons/land/night/tsra_sct,20?size=small",
+      "shortForecast": "Slight Chance Showers And Thunderstorms",
+      "detailedForecast": "",
+      "joy_score": 63.1
+    },
+    {
+      "number": 11,
+      "name": "",
+      "startTime": "2026-07-21T22:00:00-04:00",
+      "endTime": "2026-07-21T23:00:00-04:00",
+      "isDaytime": false,
+      "temperature": 76,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 14
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 22.22222222222222
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 86
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SSW",
+      "icon": "https://api.weather.gov/icons/land/night/bkn?size=small",
+      "shortForecast": "Mostly Cloudy",
+      "detailedForecast": "",
+      "joy_score": 65.4
+    },
+    {
+      "number": 12,
+      "name": "",
+      "startTime": "2026-07-21T23:00:00-04:00",
+      "endTime": "2026-07-22T00:00:00-04:00",
+      "isDaytime": false,
+      "temperature": 75,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 8
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 22.22222222222222
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 88
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SW",
+      "icon": "https://api.weather.gov/icons/land/night/bkn?size=small",
+      "shortForecast": "Mostly Cloudy",
+      "detailedForecast": "",
+      "joy_score": 67.3
+    },
+    {
+      "number": 13,
+      "name": "",
+      "startTime": "2026-07-22T00:00:00-04:00",
+      "endTime": "2026-07-22T01:00:00-04:00",
+      "isDaytime": false,
+      "temperature": 74,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 10
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 21.666666666666668
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 90
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SW",
+      "icon": "https://api.weather.gov/icons/land/night/bkn?size=small",
+      "shortForecast": "Mostly Cloudy",
+      "detailedForecast": "",
+      "joy_score": 66.0
+    },
+    {
+      "number": 14,
+      "name": "",
+      "startTime": "2026-07-22T01:00:00-04:00",
+      "endTime": "2026-07-22T02:00:00-04:00",
+      "isDaytime": false,
+      "temperature": 74,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 11
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 21.666666666666668
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 92
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SW",
+      "icon": "https://api.weather.gov/icons/land/night/bkn?size=small",
+      "shortForecast": "Mostly Cloudy",
+      "detailedForecast": "",
+      "joy_score": 64.8
+    },
+    {
+      "number": 15,
+      "name": "",
+      "startTime": "2026-07-22T02:00:00-04:00",
+      "endTime": "2026-07-22T03:00:00-04:00",
+      "isDaytime": false,
+      "temperature": 73,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 8
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 21.666666666666668
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 93
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SW",
+      "icon": "https://api.weather.gov/icons/land/night/bkn?size=small",
+      "shortForecast": "Mostly Cloudy",
+      "detailedForecast": "",
+      "joy_score": 64.8
+    },
+    {
+      "number": 16,
+      "name": "",
+      "startTime": "2026-07-22T03:00:00-04:00",
+      "endTime": "2026-07-22T04:00:00-04:00",
+      "isDaytime": false,
+      "temperature": 73,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 7
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 21.666666666666668
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 93
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SW",
+      "icon": "https://api.weather.gov/icons/land/night/ovc?size=small",
+      "shortForecast": "Cloudy",
+      "detailedForecast": "",
+      "joy_score": 65.0
+    },
+    {
+      "number": 17,
+      "name": "",
+      "startTime": "2026-07-22T04:00:00-04:00",
+      "endTime": "2026-07-22T05:00:00-04:00",
+      "isDaytime": false,
+      "temperature": 72,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 7
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 21.666666666666668
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 95
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SW",
+      "icon": "https://api.weather.gov/icons/land/night/bkn?size=small",
+      "shortForecast": "Mostly Cloudy",
+      "detailedForecast": "",
+      "joy_score": 64.0
+    },
+    {
+      "number": 18,
+      "name": "",
+      "startTime": "2026-07-22T05:00:00-04:00",
+      "endTime": "2026-07-22T06:00:00-04:00",
+      "isDaytime": false,
+      "temperature": 72,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 8
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 21.11111111111111
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 95
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SW",
+      "icon": "https://api.weather.gov/icons/land/night/bkn?size=small",
+      "shortForecast": "Mostly Cloudy",
+      "detailedForecast": "",
+      "joy_score": 63.8
+    },
+    {
+      "number": 19,
+      "name": "",
+      "startTime": "2026-07-22T06:00:00-04:00",
+      "endTime": "2026-07-22T07:00:00-04:00",
+      "isDaytime": true,
+      "temperature": 71,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 7
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 21.11111111111111
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 96
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "WSW",
+      "icon": "https://api.weather.gov/icons/land/day/bkn?size=small",
+      "shortForecast": "Mostly Cloudy",
+      "detailedForecast": "",
+      "joy_score": 63.5
+    },
+    {
+      "number": 20,
+      "name": "",
+      "startTime": "2026-07-22T07:00:00-04:00",
+      "endTime": "2026-07-22T08:00:00-04:00",
+      "isDaytime": true,
+      "temperature": 71,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 10
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 21.11111111111111
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 98
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "WSW",
+      "icon": "https://api.weather.gov/icons/land/day/bkn?size=small",
+      "shortForecast": "Mostly Cloudy",
+      "detailedForecast": "",
+      "joy_score": 62.0
+    },
+    {
+      "number": 21,
+      "name": "",
+      "startTime": "2026-07-22T08:00:00-04:00",
+      "endTime": "2026-07-22T09:00:00-04:00",
+      "isDaytime": true,
+      "temperature": 71,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 12
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 21.666666666666668
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 99
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "WSW",
+      "icon": "https://api.weather.gov/icons/land/day/bkn?size=small",
+      "shortForecast": "Mostly Cloudy",
+      "detailedForecast": "",
+      "joy_score": 61.2
+    },
+    {
+      "number": 22,
+      "name": "",
+      "startTime": "2026-07-22T09:00:00-04:00",
+      "endTime": "2026-07-22T10:00:00-04:00",
+      "isDaytime": true,
+      "temperature": 73,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 16
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 22.77777777777778
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 99
+      },
+      "windSpeed": "6 mph",
+      "windDirection": "SW",
+      "icon": "https://api.weather.gov/icons/land/day/rain_showers,20?size=small",
+      "shortForecast": "Slight Chance Rain Showers",
+      "detailedForecast": "",
+      "joy_score": 60.1
+    },
+    {
+      "number": 23,
+      "name": "",
+      "startTime": "2026-07-22T10:00:00-04:00",
+      "endTime": "2026-07-22T11:00:00-04:00",
+      "isDaytime": true,
+      "temperature": 76,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 15
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 23.333333333333332
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 93
+      },
+      "windSpeed": "7 mph",
+      "windDirection": "SW",
+      "icon": "https://api.weather.gov/icons/land/day/rain_showers,20?size=small",
+      "shortForecast": "Slight Chance Rain Showers",
+      "detailedForecast": "",
+      "joy_score": 60.8
+    },
+    {
+      "number": 24,
+      "name": "",
+      "startTime": "2026-07-22T11:00:00-04:00",
+      "endTime": "2026-07-22T12:00:00-04:00",
+      "isDaytime": true,
+      "temperature": 78,
+      "temperatureUnit": "F",
+      "temperatureTrend": null,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 20
+      },
+      "dewpoint": {
+        "unitCode": "wmoUnit:degC",
+        "value": 23.88888888888889
+      },
+      "relativeHumidity": {
+        "unitCode": "wmoUnit:percent",
+        "value": 89
+      },
+      "windSpeed": "7 mph",
+      "windDirection": "SW",
+      "icon": "https://api.weather.gov/icons/land/day/tsra_sct,20?size=small",
+      "shortForecast": "Slight Chance Showers And Thunderstorms",
+      "detailedForecast": "",
+      "joy_score": 58.0
     }
   ],
   "metadata": {
     "profile_id": "642_S1",
     "lat": 34.759,
     "lon": -83.4749,
-    "generated_at": "2026-05-31T15:39:58.150806",
-    "saturation_index": 43.92,
+    "generated_at": "2026-07-21T12:55:07.047268",
+    "saturation_index": 29.3,
     "precip_24h_total": 0.03,
     "soil_status": "Saturated",
-    "prime_joy_score": 72.1,
-    "prime_window_start": 11,
-    "prime_window_end": 13
+    "prime_joy_score": 66.7,
+    "prime_window_start": 23,
+    "prime_window_end": 25
   }
 }

@@ -17,8 +17,8 @@
     "value": 0.32
   },
   "environment": {
-    "current_temp": 73,
-    "saturation_index": 12.1,
+    "current_temp": 83,
+    "saturation_index": 17.4,
     "soil_status": "Saturated",
     "precip_24h": 0.01,
     "saturation_trend": "stable",

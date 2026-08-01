@@ -1053,7 +1053,7 @@ app.post("/api/webhooks/shopify/orders-paid", async (req, res) => {
 });
 
 /* ==========================================================================
-   1. MAILERLITE FORM CAPTURE GATEWAY ENDPOINT (EXACT EXTENSION VERIFIED)
+   1. MAILERLITE FORM CAPTURE GATEWAY ENDPOINT (UPDATED TO V3)
    ========================================================================== */
 app.post("/api/subscribe", async (req, res) => {
   const { email, intent_tag } = req.body;
@@ -1062,30 +1062,30 @@ app.post("/api/subscribe", async (req, res) => {
     return res.status(400).json({ error: "Email is required" });
   }
 
-  // Fallback if intent_tag is not present
   const intentTag = intent_tag || "general_newsletter";
 
   try {
-    const apiKey = process.env.MAILERLITE_API_KEY;
-    // 🎯 YOUR EXACT PRODUCTION GROUP ID REMAINING ABSOLUTELY UNTOUCHED
-    const groupId = "189918909111994294"; 
+    const apiKey = process.env.MAILERLITE_API_KEY?.trim().replace(/[\r\n]/g, "");
+    const groupId = process.env.ML_GROUP || "189918909111994294"; 
 
-    const url = `https://api.mailerlite.com/api/v2/groups/${groupId}/subscribers`;
+    // 🎯 MAILERLITE V3 API ENDPOINT
+    const url = "https://connect.mailerlite.com/api/subscribers";
 
     const response = await fetch(url, {
       method: "POST",
       headers: {
-        "X-MailerLite-ApiKey": apiKey,
         "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
         email: email,
-        // Safeguards re-entry tracking rules for multi-click subscribers
-        resubscribe: true, 
+        status: "active",
+        groups: [groupId],
         fields: {
-          intent_tag: intentTag, // 🎯 Left exactly as it is now to preserve what works
-          tags: "nurture_active" // 🚀 The exact low-risk extension needed to seed your tracker
-        },
+          intent_tag: intentTag,
+          tags: "nurture_active"
+        }
       }),
     });
 
@@ -1100,6 +1100,128 @@ app.post("/api/subscribe", async (req, res) => {
   } catch (error) {
     console.error("❌ Subscription Route Internal Exception:", error);
     return res.status(500).json({ error: "Internal server error experienced processing your subscription request." });
+  }
+});
+
+// ==========================================================================
+// 🎯 GOOGLE DISTANCE MATRIX PROXIMITY ROUTING API ENDPOINT
+// ==========================================================================
+
+const driveTimeCache = new Map();
+
+app.post("/api/isochrone", async (req, res) => {
+  const { address, coordinates, destinations } = req.body;
+  const googleApiKey =
+    process.env.GOOGLE_MAPS_API_KEY ||
+    process.env.VITE_GOOGLE_MAPS_API_KEY ||
+    process.env.GOOGLE_API_KEY;
+
+  if (!googleApiKey) {
+    console.warn("⚠️ GOOGLE_MAPS_API_KEY missing in environment variables.");
+    return res.status(500).json({ error: "Google Maps API key not configured on server." });
+  }
+
+  try {
+    let originLngLat = coordinates;
+
+    // 1. Resolve starting coordinates if address/city string is supplied
+    if (!originLngLat && address) {
+      const queryStr = address.trim().toLowerCase();
+      if (queryStr.includes("canton")) {
+        originLngLat = [-84.4908, 34.2368];
+      } else {
+        const geoUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${googleApiKey}`;
+        const geoRes = await fetch(geoUrl);
+        const geoData = await geoRes.json();
+
+        if (geoData.status === "OK" && geoData.results.length > 0) {
+          const loc = geoData.results[0].geometry.location;
+          originLngLat = [loc.lng, loc.lat];
+        } else {
+          originLngLat = [-84.4908, 34.2368]; // Fallback Canton, GA
+        }
+      }
+    }
+
+    if (!originLngLat || originLngLat.length < 2) {
+      return res.status(400).json({ error: "Invalid starting location coordinates." });
+    }
+
+    const originStr = `${originLngLat[1]},${originLngLat[0]}`; // Google format: "lat,lng"
+
+    // 2. If destinations array is provided, batch request Google Distance Matrix API
+    if (Array.isArray(destinations) && destinations.length > 0) {
+      const CHUNK_SIZE = 25; // Google Distance Matrix hard cap per request
+      const chunks = [];
+
+      for (let i = 0; i < destinations.length; i += CHUNK_SIZE) {
+        chunks.push(destinations.slice(i, i + CHUNK_SIZE));
+      }
+
+      console.log(`🚗 [GOOGLE MATRIX REQUEST]: Calculating drive times for ${destinations.length} routes in ${chunks.length} batch(es) from origin ${originStr}...`);
+
+      const batchPromises = chunks.map(async (chunk) => {
+        const destString = chunk
+          .map((item) => `${item.lat},${item.lng}`)
+          .join("|");
+
+        const matrixUrl = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${originStr}&destinations=${encodeURIComponent(destString)}&units=imperial&key=${googleApiKey}`;
+
+        const response = await fetch(matrixUrl);
+        const data = await response.json();
+
+        if (data.status !== "OK") {
+          console.error("❌ GOOGLE DISTANCE MATRIX BATCH ERROR:", data);
+          return [];
+        }
+
+        const elements = data.rows[0]?.elements || [];
+        return chunk.map((destItem, index) => {
+          const el = elements[index];
+          if (el && el.status === "OK") {
+            const durationSec = el.duration.value;
+            const durationMins = Math.round(durationSec / 60);
+            return {
+              id: destItem.id,
+              durationSec,
+              durationMins,
+              durationText: el.duration.text,
+              distanceText: el.distance.text,
+            };
+          }
+          return { id: destItem.id, durationSec: null, durationMins: null, durationText: null, distanceText: null };
+        });
+      });
+
+      const batchResults = await Promise.all(batchPromises);
+      const flattenedResults = batchResults.flat();
+
+      // Convert array to fast lookup object mapped by route ID
+      const driveTimeMap = {};
+      flattenedResults.forEach((res) => {
+        if (res && res.id) {
+          driveTimeMap[res.id] = res;
+        }
+      });
+
+      return res.status(200).json({
+        success: true,
+        origin: { lat: originLngLat[1], lng: originLngLat[0], address: address || "Canton, GA" },
+        driveTimes: driveTimeMap,
+      });
+    }
+
+    // Graceful fallback for empty route candidate pools (e.g. 0 matches active)
+    console.warn("⚠️ [GOOGLE MATRIX]: No destination coordinates provided in payload.");
+    return res.status(200).json({
+      success: true,
+      origin: { lat: originLngLat[1], lng: originLngLat[0], address: address || "Canton, GA" },
+      driveTimes: {},
+    });
+
+  } catch (err) {
+    console.error("❌ GOOGLE DISTANCE MATRIX ROUTE FAILURE:", err);
+    return res.status(500).json({ error: "Internal Distance Matrix processing error." });
   }
 });
 

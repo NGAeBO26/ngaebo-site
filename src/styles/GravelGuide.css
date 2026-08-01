@@ -1,6 +1,7 @@
+/* src/styles/GravelGuide.css */
+
 .trail-map {
   width: 100%;
-  /* FIXED: Changed from strict aspect-ratio to auto so the 800px child component mounts without layout clipping */
   height: auto; 
   max-height: 90vh;
   position: relative;
@@ -8,7 +9,6 @@
   z-index: 0;
   border-radius: var(--ng-radius-sm);
   margin-bottom: 24px;
-  
 }
 
 /* ensure the #map element fills the container */
@@ -29,7 +29,7 @@
   pointer-events: auto;
 }
 
-/* loading overlay (keeps existing naming) */
+/* loading overlay */
 .map-loading-overlay {
   position: absolute;
   inset: 0;
@@ -51,7 +51,6 @@
   max-width: 240px;
   font-size: 13px;
   line-height: 1.4;
-  /* so the arrow sits flush at the bottom */
   margin-bottom: 8px;
 }
 
@@ -96,17 +95,16 @@
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
   border-top: 8px solid #fff;
-  /* shadow to match box */
   filter: drop-shadow(0 2px 2px rgba(0,0,0,0.12));
 }
 
 /* ─── 🎯 ANIMATED FIXED APPLICATION OVERLAY CONTROLS ─── */
 
 body.dashboard-view-active {
-  overflow: hidden !important; /* Locks background page movement during focus */
+  overflow: hidden !important;
 }
 
-/* 🎯 FIXED OVERLAY BASE LAYER */
+/* FIXED OVERLAY BASE LAYER */
 body.dashboard-view-active .discovery-dashboard-root {
   position: fixed !important;
   top: 0 !important;
@@ -114,22 +112,20 @@ body.dashboard-view-active .discovery-dashboard-root {
   width: 100vw !important;
   height: 100vh !important;
   z-index: 99999 !important;
-  background: #111827; /* Core brand deep dark canvas background */
+  background: #111827;
   display: flex !important;
   flex-direction: column !important;
   padding: 0 !important;
   margin: 0 !important;
-  
-  /* Hardware acceleration flags to keep map rendering butter-smooth during transitions */
   will-change: transform, opacity;
 }
 
-/* 🚀 TIER A: SMOOTH ENTRANCE ANIMATION (Fires when scrolling into view) */
+/* SMOOTH ENTRANCE ANIMATION */
 body.dashboard-view-active:not(.dashboard-view-exiting) .discovery-dashboard-root {
   animation: dashboardSlideIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* 🚀 TIER B: SMOOTH EXIT ANIMATION (Fires when clicking Exit) */
+/* SMOOTH EXIT ANIMATION */
 body.dashboard-view-exiting .discovery-dashboard-root {
   animation: dashboardSlideOut 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -137,7 +133,7 @@ body.dashboard-view-exiting .discovery-dashboard-root {
 @keyframes dashboardSlideIn {
   from {
     opacity: 0;
-    transform: translateY(24px); /* Glides upward into screen real estate */
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -152,14 +148,14 @@ body.dashboard-view-exiting .discovery-dashboard-root {
   }
   to {
     opacity: 0;
-    transform: translateY(24px); /* Drops away cleanly as it fades */
+    transform: translateY(24px);
   }
 }
 
 /* Central container allocates space perfectly below filter row */
 body.dashboard-view-active .discovery-center-container {
   flex: 1 !important;
-  height: calc(100vh - 74px) !important; /* Prevents layout clipping */
+  height: calc(100vh - 74px) !important;
   overflow: hidden !important;
 }
 
@@ -218,4 +214,34 @@ body.dashboard-view-active .rg-site-header-nav {
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+/* ─── 🎯 FLOATING TOUR RE-OPENER TRIGGER BUTTON (?) ─── */
+.rg-map-tour-reopen-floating-trigger {
+  position: absolute !important;
+  top: 16px !important;
+  right: 16px !important;
+  z-index: 10 !important;
+  width: 36px !important;
+  height: 36px !important;
+  background-color: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 50% !important;
+  color: #3b593a !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 900 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.rg-map-tour-reopen-floating-trigger:hover {
+  background-color: #f59e0b !important;
+  color: #ffffff !important;
+  border-color: #f59e0b !important;
+  transform: scale(1.06) !important;
 }

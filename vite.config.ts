@@ -22,6 +22,15 @@ export default defineConfig({
     },
 
     proxy: {
+      // 🎯 TARGET C: Private DigitalOcean OSRM Routing Proxy
+      // Bypasses browser HTTPS Mixed Content blocks when using ngrok tunnels
+      "/osrm-api": {
+        target: "http://142.93.192.70:5000",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/osrm-api/, ""),
+      },
+
       // 🎯 TARGET B: Relational Product Catalog rules MUST sit at the top.
       // Because Vite evaluates proxy targets sequentially, this intercepts catalog searches and routes them to your PG database API
       "/api/products": {

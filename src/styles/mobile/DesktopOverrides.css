@@ -10,7 +10,7 @@
   }
 
   /* SACRED PROTECTION: Standard unselected gallery list rows hide subtitles on desktop viewports */
-  .route-finder-card-vertical:not(.mobile-header-banner-takeover) .card-subtitle-banner-row {
+  .route-finder-card-vertical:not(.mobile-header-banner-takeover) .card-subtitle-banner-row:not(.card-proximity-row) {
     display: none !important;
   }
 

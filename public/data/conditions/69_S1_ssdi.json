@@ -17,12 +17,14 @@
     "value": 0.15
   },
   "environment": {
-    "current_temp": 81,
-    "saturation_index": 17.6,
+    "current_temp": 73,
+    "saturation_index": 19.7,
     "soil_status": "Saturated",
-    "precip_24h": 0.04,
+    "precip_24h": 0.02,
     "saturation_trend": "stable",
-    "alerts": []
+    "alerts": [
+      "SAFETY ALERT: Cell Service is UNAVAILABLE."
+    ]
   },
   "physics": {
     "live_traction": 0.68,
@@ -31,7 +33,7 @@
     "v3_base_intensity": 3.6
   },
   "connectivity": {
-    "signal_class": "Unknown",
-    "deadzone_max_meters": 0
+    "signal_class": "Unavailable",
+    "deadzone_max_meters": 12526
   }
 }

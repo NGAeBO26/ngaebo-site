@@ -1,8 +1,8 @@
 {
   "profile_id": "346_S1",
   "route_id": "346",
-  "ssdi_score": 17.2,
-  "v3_terrain_score": 6.7,
+  "ssdi_score": 13.0,
+  "v3_terrain_score": 6.6,
   "v3_terrain_class": "Strenuous",
   "badge_type": "muddy",
   "condition": "MUDDY / SOFT",
@@ -17,8 +17,8 @@
     "value": 0.35
   },
   "environment": {
-    "current_temp": 80,
-    "saturation_index": 16.6,
+    "current_temp": 75,
+    "saturation_index": 24.3,
     "soil_status": "Saturated",
     "precip_24h": 0.01,
     "saturation_trend": "stable",
@@ -31,7 +31,7 @@
     "v3_base_intensity": 6.7
   },
   "connectivity": {
-    "signal_class": "Unknown",
-    "deadzone_max_meters": 0
+    "signal_class": "Spotty",
+    "deadzone_max_meters": 2410
   }
 }

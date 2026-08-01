@@ -4,91 +4,94 @@
 .discovery-dashboard-root {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* FIXED: Sets an explicit, fluid viewport limit */
+  height: 100vh;
   min-height: 600px;
-  background-color: #6e7c7c; 
+  background-color: #6e7c7c;
   color: #f8fafc;
-  border: 2px solid #236ea0;
   overflow: hidden;
   box-sizing: border-box;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
   position: relative;
 }
 
 .discovery-workspace-core-stack {
   display: flex;
   flex-direction: column;
-  flex: 1; /* Automatically takes up all remaining vertical room */
-  min-height: 0; /* CRITICAL: Prevents long list boxes from expanding past boundaries */
+  flex: 1;
+  min-height: 0;
   position: relative;
   width: 100%;
 }
 
-/* Tier 1: Top Filter Bar Layout Row */
-.finder-header-row {
-  height: 80px !important;
-  background-color: #236ea0 !important;
-  border-bottom: 1px solid #1e293b !important;
-  padding: 0px !important;
+/* ==========================================================================
+   🎯 3-REGION HEADER GRID LOCK (PIXEL-PERFECT COLUMN MATCH)
+   ========================================================================== */
+
+header.finder-header-row {
   display: grid !important;
-  
-  /* Forces strict matching columns that perfectly mirror the workspace below */
   grid-template-columns: 260px 1fr 260px !important;
-  
-  align-items: center !important;
-  flex-shrink: 0 !important;
-  box-sizing: border-box !important;
-  z-index: 30 !important;
   width: 100% !important;
+  height: 80px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  background-color: #236ea0 !important;
+  border-bottom: 4px solid var(--brand-amber) !important;
   overflow: visible !important;
+  position: relative !important;
+  z-index: 30 !important;
 }
 
-/* Header Column 2: Centers input controls perfectly inside the active middle map workspace area */
-.finder-controls-wrapper {
+/* REGION 1 (LEFT): Brand Block */
+.finder-header-row .finder-brand-block {
+  width: 260px !important;
+  max-width: 260px !important;
+  height: 100% !important;
   display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  border-right: none !important;
+}
+
+.finder-brand-logo {
+  height: 64px !important;
+  width: auto !important;
+  display: block !important;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35)) !important;
+}
+
+.finder-brand-subtitle {
+  font-size: 10px !important;
+  color: var(--brand-bone, #f8fafc) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  font-family: "Montserrat", sans-serif !important;
+  text-transform: uppercase !important;
+  margin-top: 2px !important;
+}
+
+/* REGION 2 (MIDDLE): Filter Controls */
+.finder-header-row .finder-controls-wrapper {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: row !important;
   align-items: center !important;
   justify-content: space-evenly !important;
-  gap: 16px !important;
-  flex: 1 1 auto !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  height: 100% !important;
-  margin: 0px !important;
-  padding: 0px 24px !important;
+  padding: 0 16px !important;
+  margin: 0 !important;
   box-sizing: border-box !important;
+  min-width: 0 !important;
   overflow: visible !important;
-}
-
-.finder-brand-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 2px;
-  width: 260px !important;
-  height: 100%;
-  flex-shrink: 0;
-  box-sizing: border-box;
-  border-right: none !important; /* Flat layout look with no borders */
-}
-
-/* FIXED: Added logo bounding constraints to maintain a sharp layout profile */
-.finder-brand-logo {
-  height: 32px; /* Set proportional height constraint */
-  width: auto;
-  display: block;
-}
-
-/* FIXED: Centered the text and kept your exact styling properties intact */
-.finder-brand-subtitle {
-  font-size: 10px;
-  color: var(--brand-bone); /* PRESERVED: Your exact amber color option tracking key */
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  font-family: "Montserrat", sans-serif;
-  text-transform: uppercase;
-  margin-top: 2px;
 }
 
 .control-input-group {
@@ -110,15 +113,12 @@
 .finder-text-input {
   background-color: #ffffff !important;
   color: #334155 !important;
-  
-  /* 🎯 THE ERADICATION: Strips default borders and outline boxes completely */
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
-  
   border-radius: 8px !important;
-  padding: 8px 12px !important;
-  font-size: 11.5px !important;
+  padding: 6px 10px !important;
+  font-size: 11px !important;
   font-family: "Montserrat", sans-serif !important;
   font-weight: 600 !important;
   width: 100%;
@@ -127,18 +127,15 @@
 .finder-select-input {
   background-color: #ffffff !important;
   color: #334155 !important;
-  
-  /* 🎯 THE ERADICATION: Strips drop-down element box borders */
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
-  
   border-radius: 8px !important;
-  padding: 8px 32px 8px 12px !important; /* Leaves breathing room for arrow icons */
-  font-size: 11.5px !important;
+  padding: 6px 28px 6px 10px !important;
+  font-size: 11px !important;
   font-family: "Montserrat", sans-serif !important;
   font-weight: 600 !important;
-  width: 130px !important;
+  width: 110px !important;
   cursor: pointer !important;
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
@@ -149,26 +146,26 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  width: 130px;
+  width: 110px;
 }
 
 .slider-header-labels {
   display: flex;
   justify-content: space-between;
-  font-size: 9px;
+  font-size: 8.5px;
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
   color: var(--brand-bone);
 }
 
-/* --- RANGE SLIDER TRACK CONFIGURATION --- */
+/* Range Slider Configuration */
 .finder-range-slider {
-  -webkit-appearance: none; 
-  -moz-appearance: none;    
-  appearance: none;         
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   width: 100%;
   height: 4px;
-  background-color: transparent; 
+  background-color: transparent;
   border-radius: 8px;
   cursor: pointer;
 }
@@ -187,40 +184,40 @@
 }
 
 .finder-range-slider::-webkit-slider-thumb {
-  -webkit-appearance: none; 
+  -webkit-appearance: none;
   appearance: none;
-  margin-top: -6px;        
+  margin-top: -6px;
   height: 16px;
   width: 16px;
   border-radius: 50%;
-  background-color: #f59e0b; 
+  background-color: #f59e0b;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   transition: transform 150ms ease;
 }
 
 .finder-range-slider::-webkit-slider-thumb:hover {
-  transform: scale(1.15);  
+  transform: scale(1.15);
 }
 
 .finder-range-slider::-moz-range-track {
   width: 100%;
   height: 4px;
-  background-color: #ffffff; 
+  background-color: #ffffff;
   border-radius: 8px;
 }
 
 .finder-range-slider::-moz-range-progress {
   height: 4px;
-  background-color: #f59e0b; 
+  background-color: #f59e0b;
   border-radius: 8px 0 0 8px;
 }
 
 .finder-range-slider::-moz-range-thumb {
-  border: none;            
+  border: none;
   height: 16px;
   width: 16px;
   border-radius: 50%;
-  background-color: #f59e0b; 
+  background-color: #f59e0b;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   transition: transform 150ms ease;
 }
@@ -229,25 +226,32 @@
   transform: scale(1.15);
 }
 
-.yield-counter-panel {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  
-  /* 🎯 Centers text exactly inside its own 260px box width */
-  align-items: center !important; 
-  text-align: center !important;
-  
-  /* Fixed dimension match syncing cleanly to the results list panel */
-  width: 260px !important; 
+/* REGION 3 (RIGHT): Action Bay */
+.finder-header-row .finder-header-action-bay {
+  width: 260px !important;
   max-width: 260px !important;
   height: 100% !important;
-  
-  border-left: none !important;
-  background-color: transparent !important;
-  padding: 0 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-evenly !important;
+  padding: 0 8px !important;
+  margin: 0 !important;
   box-sizing: border-box !important;
   flex-shrink: 0 !important;
+}
+
+.finder-header-action-bay .yield-counter-panel {
+  width: auto !important;
+  max-width: none !important;
+  height: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .yield-counter-panel label {
@@ -275,15 +279,58 @@
   font-size: 14px !important;
   font-weight: 900 !important;
 }
+
+.finder-header-action-bay .rg-header-clear-filters-action-btn {
+  width: auto !important;
+  min-width: 72px !important;
+  height: 42px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+  padding: 4px 10px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  transition: all 0.15s ease !important;
+}
+
+.rg-header-clear-filters-action-btn:hover {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+  border-color: #ef4444 !important;
+}
+
+.rg-clear-filters-btn-icon {
+  width: 12px !important;
+  height: 12px !important;
+  display: block !important;
+  margin-bottom: 2px !important;
+}
+
+.rg-header-clear-filters-action-btn span {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 7.5px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.4px !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
 /* Tier 2: Workspace Layout Area Frame */
 .discovery-center-container {
   display: flex;
-  flex: 1;          /* Automatically fills the remaining space below the filter bar */
-  min-height: 0;    /* CRITICAL: Prevents children from expanding past boundaries */
+  flex: 1;
+  min-height: 0;
   width: 100%;
-  height: calc(100% - 81px); /* FIXED: Safely constrains layout area below your header bar */
+  height: calc(100% - 81px);
   position: relative;
-  overflow: hidden; /* Clips any rogue child rendering leaks safely */
+  overflow: hidden;
 }
 
 .gravel-guide-container {
@@ -293,70 +340,65 @@
 }
 
 .discovery-map-main-viewport {
-  flex: 1;
-  height: 100%;
-  position: relative; /* FIXED: Serves as the structural alignment anchor for the popup layout drawer */
-  background-color: #0f172a;
-  z-index: 10;
-  box-sizing: border-box;
+  flex: 1 !important;
+  height: 100% !important;
+  position: relative !important;
+  background-color: #0f172a !important;
+  z-index: 10 !important;
+  box-sizing: border-box !important;
+  margin-right: 260px !important;
+  transition: margin-right 350ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.discovery-center-container:has(.side-drawer-panel.drawer-collapsed) .discovery-map-main-viewport {
+  margin-right: 0 !important;
 }
 
 /* Slide-out Panel Layout Components */
-.side-drawer-panel {
-  width: 320px;
-  height: 100%;
-  background: radial-gradient(circle at center, #ffffff 0%, #f9f9f9 100%) !important; /* PRESERVED: Your exact light layout background gradient */
-  border-left: 2px solid #236ea0 !important;
+.discovery-center-container .side-drawer-panel {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 260px !important;
+  max-width: none !important;
+  height: 100% !important;
+  background: radial-gradient(
+    circle at center,
+    #ffffff 0%,
+    #f9f9f9 100%
+  ) !important;
+  border-left: 2px solid var(--brand-deep-blue) !important;
   border-bottom: 1px solid #e0e0e0 !important;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 10;
-  position: relative;
-  flex-shrink: 0;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+  transition:
+    width 350ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 350ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  z-index: 20 !important;
+  flex-shrink: 0 !important;
 }
 
-.side-drawer-panel.drawer-collapsed {
-  transform: translateX(320px);
-  margin-left: -320px; 
+.discovery-center-container .side-drawer-panel.drawer-collapsed {
+  transform: translateX(260px) !important;
 }
 
-/* Toggle Drawer Button Handle Component */
-.drawer-toggle-tab-btn {
-  position: absolute;
-  top: 8px;
-  left: -40px;
-  width: 40px;
-  height: 40px;
-  background-color: #236ea0; /* PRESERVED: Your blue background tracking color */
-  border: 1px solid #1e293b;
-  border-right: none;
-  border-radius: 8px 0 0 8px;
-  color: #f59e0b;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  font-weight: bold;
-  box-shadow: -4px 4px 10px rgba(0,0,0,0.3);
-  transition: background-color 200ms;
-  outline: none;
-  z-index: 11;
+.discovery-center-container .side-drawer-panel.is-expanded {
+  width: calc(100% - 260px) !important;
+  z-index: 35 !important;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.3) !important;
 }
 
-.drawer-toggle-tab-btn:hover {
-  background-color: #1e293b;
-}
-
-.drawer-header-title {
+.side-drawer-panel .drawer-header-title {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   padding: 16px;
   border-bottom: 1px solid #1e293b;
-  background-color: #236ea0; /* PRESERVED: Your title block color parameter */
+  background-color: var(--brand-deep-blue);
   text-align: center;
   z-index: 12;
-  border-radius: 0 0 8px 8px
 }
 
 .drawer-header-title h2 {
@@ -368,8 +410,28 @@
   margin: 0;
 }
 
-/* Vertical Cards Scrolling Track Grid Layout */
-.vertical-cards-scroll-container {
+.side-drawer-panel .gallery-expand-toggle-btn {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  color: #f59e0b !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 9.5px !important;
+  font-weight: 800 !important;
+  padding: 4px 10px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  text-transform: uppercase !important;
+}
+
+.side-drawer-panel .gallery-expand-toggle-btn:hover {
+  background: rgba(245, 158, 11, 0.25) !important;
+  border-color: #f59e0b !important;
+  color: #ffffff !important;
+}
+
+/* Vertical Cards Scroll Container */
+.side-drawer-panel .vertical-cards-scroll-container {
   flex: 1;
   padding: 16px;
   overflow-y: auto;
@@ -378,7 +440,350 @@
   flex-direction: column;
   gap: 12px;
   box-sizing: border-box;
-  background-color: var(--brand-bone); /* PRESERVED: Your exact list view background yellow tint */
+  background-color: var(--brand-bone);
+  scroll-padding-top: 12px !important;
+}
+
+.side-drawer-panel.is-expanded .vertical-cards-scroll-container {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+  align-content: start !important;
+  gap: 12px !important;
+  padding: 16px !important;
+}
+
+.side-drawer-panel.is-expanded .route-finder-card-vertical {
+  width: 100% !important;
+  min-height: 128px !important;
+  height: auto !important;
+}
+
+/* Side Drawer Sort Deck */
+.side-drawer-panel .gallery-sort-deck {
+  background-color: var(--brand-deep-blue) !important;
+  border-bottom: 1px solid #1e293b !important;
+  padding: 10px 14px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  box-sizing: border-box !important;
+  z-index: 25 !important;
+  border-radius: 0 0 0 8px;
+  height: 120px !important;
+  min-height: 108px !important;
+  overflow: visible !important;
+}
+
+.side-drawer-panel .gallery-view-toggle-btn {
+  width: 100% !important;
+  background: rgba(245, 158, 11, 0.12) !important;
+  border: 1px solid #f59e0b !important;
+  color: #f59e0b !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  padding: 7px 12px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  margin-top: 2px !important;
+}
+
+.side-drawer-panel .gallery-view-toggle-btn:hover {
+  background: #f59e0b !important;
+  color: #0f172a !important;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.4) !important;
+}
+
+.side-drawer-panel .gallery-view-toggle-btn.mode-grid-active {
+  background: rgba(35, 110, 160, 0.8) !important;
+  border-color: #38bdf8 !important;
+  color: #ffffff !important;
+}
+
+.side-drawer-panel .gallery-view-toggle-btn.mode-grid-active:hover {
+  background: #236ea0 !important;
+  border-color: #f59e0b !important;
+  color: #f59e0b !important;
+}
+
+.side-drawer-panel .sort-deck-header-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+.side-drawer-panel .sort-deck-label {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 8.5px !important;
+  font-weight: 800 !important;
+  color: var(--brand-bone, #f8fafc) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+}
+
+.side-drawer-panel .sort-order-toggle-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #f59e0b !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 800 !important;
+  padding: 2px 8px !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+.side-drawer-panel .sort-order-toggle-btn:hover {
+  background: rgba(245, 158, 11, 0.2) !important;
+  border-color: #f59e0b !important;
+}
+
+/* EXPANDED GRID VIEW: Horizontal Sort Pill Buttons with Radio Indicators */
+.side-drawer-panel .sort-pills-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  width: 100% !important;
+}
+
+.side-drawer-panel .sort-pill-btn {
+  flex: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #cbd5e1 !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 9.5px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  padding: 6px 4px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  transition: all 0.15s ease !important;
+  white-space: nowrap !important;
+}
+
+.side-drawer-panel .sort-pill-btn:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+}
+
+.side-drawer-panel .sort-pill-btn.active {
+  background: #236ea0 !important;
+  border-color: #f59e0b !important;
+  color: #ffffff !important;
+  box-shadow: inset 0 0 6px rgba(245, 158, 11, 0.3) !important;
+}
+
+/* Radio Dot inside Grid View Pill Button */
+.side-drawer-panel .sort-pill-btn .sort-radio-custom-dot {
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  border: 1.5px solid #64748b !important;
+  display: inline-block !important;
+  box-sizing: border-box !important;
+  transition: all 0.15s ease !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+}
+
+.side-drawer-panel .sort-pill-btn:hover .sort-radio-custom-dot {
+  border-color: #cbd5e1 !important;
+}
+
+.side-drawer-panel .sort-pill-btn.active .sort-radio-custom-dot {
+  border-color: #f59e0b !important;
+  background-color: #f59e0b !important;
+  box-shadow: inset 0 0 0 2px #236ea0 !important;
+}
+
+/* COLLAPSED MAP VIEW: Custom Radio Button Popover Container */
+.side-drawer-panel .sort-dropdown-row {
+  width: 100% !important;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  z-index: 30 !important;
+}
+
+.side-drawer-panel .gallery-sort-trigger-btn {
+  width: 100% !important;
+  height: 32px !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 6px !important;
+  color: #f59e0b !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  padding: 0 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  cursor: pointer !important;
+  outline: none !important;
+  transition: all 0.15s ease !important;
+  box-sizing: border-box !important;
+}
+
+.side-drawer-panel .gallery-sort-trigger-btn:hover,
+.side-drawer-panel .gallery-sort-trigger-btn.active {
+  background-color: rgba(35, 110, 160, 0.6) !important;
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.2) !important;
+}
+
+.side-drawer-panel .gallery-sort-trigger-btn .trigger-chevron-icon {
+  font-size: 9px !important;
+  color: #f59e0b !important;
+  margin-left: 6px !important;
+}
+
+/* Floating Radio Menu Popover */
+.side-drawer-panel .gallery-sort-radio-menu {
+  position: absolute !important;
+  top: calc(100% + 4px) !important;
+  left: 0 !important;
+  width: 100% !important;
+  background-color: #0f172a !important;
+  border: 1px solid #334155 !important;
+  border-radius: 8px !important;
+  padding: 4px 0 !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45) !important;
+  z-index: 100 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+  animation: rgRadioMenuFadeIn 0.15s ease forwards !important;
+}
+
+@keyframes rgRadioMenuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.side-drawer-panel .sort-radio-item {
+  display: flex !important;
+  align-items: center !important;
+  padding: 8px 12px !important;
+  cursor: pointer !important;
+  transition: background-color 0.12s ease !important;
+  user-select: none !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+  background: transparent !important;
+  width: 100% !important;
+  text-align: left !important;
+  outline: none !important;
+  font: inherit !important;
+}
+
+.side-drawer-panel .sort-radio-item:last-child {
+  border-bottom: none !important;
+}
+
+.side-drawer-panel .sort-radio-item:hover {
+  background-color: rgba(35, 110, 160, 0.4) !important;
+}
+
+.side-drawer-panel .sort-radio-item.is-selected {
+  background-color: rgba(245, 158, 11, 0.12) !important;
+}
+
+.side-drawer-panel .sort-radio-native-input {
+  position: absolute !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Custom Styled Radio Circle Indicator */
+.side-drawer-panel .sort-radio-custom-dot {
+  width: 14px !important;
+  height: 14px !important;
+  border-radius: 50% !important;
+  border: 2px solid #64748b !important;
+  margin-right: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  transition: all 0.15s ease !important;
+  flex-shrink: 0 !important;
+}
+
+.side-drawer-panel .sort-radio-item:hover .sort-radio-custom-dot {
+  border-color: #cbd5e1 !important;
+}
+
+.side-drawer-panel .sort-radio-item.is-selected .sort-radio-custom-dot {
+  border-color: #f59e0b !important;
+  background-color: #f59e0b !important;
+  box-shadow: inset 0 0 0 3px #0f172a !important;
+}
+
+.side-drawer-panel .sort-radio-item-label {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #cbd5e1 !important;
+  transition: color 0.12s ease !important;
+}
+
+.side-drawer-panel .sort-radio-item:hover .sort-radio-item-label {
+  color: #ffffff !important;
+}
+
+.side-drawer-panel .sort-radio-item.is-selected .sort-radio-item-label {
+  color: #f59e0b !important;
+  font-weight: 800 !important;
+}
+
+/* Toggle Drawer Button Handle Component */
+.drawer-toggle-tab-btn {
+  position: absolute;
+  top: 8px;
+  left: -40px;
+  width: 40px;
+  height: 40px;
+  background-color: #236ea0;
+  border: 1px solid #1e293b;
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+  color: #f59e0b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 200ms;
+  outline: none;
+  z-index: 11;
+}
+
+.drawer-toggle-tab-btn:hover {
+  background-color: #1e293b;
 }
 
 .gallery-empty-state {
@@ -391,166 +796,301 @@
   text-align: center;
 }
 
-/* --- REVISED CARD STRUCTURAL SELECTORS --- */
+/* ==========================================================================
+   🎯 GAUGED RESULT CARD CONTAINER & SUB-ELEMENTS
+   ========================================================================== */
+
 .route-finder-card-vertical {
-  width: 100%;
-  height: 80px !important; 
+  width: 100% !important;
+  height: auto !important;
+  min-height: 52px !important;
   flex-shrink: 0 !important;
-  background: radial-gradient(circle at center, #ffffff 0%, #f9f9f9 100%) !important; 
-  border-left: 1px solid #e0e0e0 !important;
-  border-right: 1px solid #e0e0e0 !important;
-  border-bottom: 1px solid #e0e0e0 !important;
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch; /* Forces left and right boxes to fill the 120px height equally */
-  box-sizing: border-box;
-  border-radius: 10px; 
-  padding: 0 !important; 
-  overflow: hidden;
-  text-align: left;
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative !important;
+  border-radius: 12px !important;
+  background-color: #fdfdfd !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  text-align: left !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  padding: 0 !important;
 }
 
 .route-finder-card-vertical:hover {
-  border-color: rgba(245, 158, 11, 0.5) !important;
+  border-color: #f59e0b !important;
+  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.18) !important;
 }
 
 .route-finder-card-vertical.card-active-hover {
-  border-color: #f59e0b !important;
-  transform: translateX(-4px);
-  background: #236ea0 !important; 
+  border-color: #3b82f6 !important;
+  background-color: #1e293b !important;
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.25) !important;
 }
 
-/* Left Details panel rules */
-.card-left-details-block {
-  flex: 1;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 14px 0 14px 14px;
-  min-width: 0;
-  box-sizing: border-box;
+/* Top Header Bar */
+.route-finder-card-vertical .rg-card-header-bar {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+  height: 34px !important;
+  padding: 8px 90px 2px 14px !important;
+  box-sizing: border-box !important;
 }
 
-.card-title-block {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  width: 100%;
+.route-finder-card-vertical .card-route-title {
+  margin: 0 !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  font-family: "Montserrat", sans-serif !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  color: #1e293b !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  line-height: 1.2 !important;
 }
 
-.card-id-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  gap: 12px;
+.route-finder-card-vertical.card-active-hover .card-route-title {
+  color: #ffffff !important;
 }
 
-.card-route-title {
-  font-size: 11px;
-  font-weight: bold;
-  margin: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-transform: uppercase;
-  color: #334155; 
-  flex: 1;
-  text-align: left;
+/* Flush Card Tab Match Badge (Top Right Corner - Width 80px matches FCS Bay) */
+.route-finder-card-vertical .rg-card-match-tab {
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 96px !important;
+  height: 32px !important;
+  border-radius: 0 12px 0 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #ffffff !important;
+  font-family: "Montserrat", sans-serif !important;
+  box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.12) !important;
+  z-index: 5 !important;
 }
 
-.card-active-hover .card-route-title {
-  color: #f59e0b;
+/* Collapsed Sidebar Mode: Compact Match Tab & Extra Title Clearance */
+.side-drawer-panel:not(.is-expanded)
+  .route-finder-card-vertical
+  .rg-card-header-bar {
+  padding-right: 68px !important;
 }
 
-/* Metrics Section Rules */
-.card-metrics-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  border-top: 1px solid #f59e0b; /* PRESERVED: Your orange section divider line track */
-  padding-top: 8px;
-  margin-right: 14px; 
+.side-drawer-panel:not(.is-expanded)
+  .route-finder-card-vertical
+  .rg-card-match-tab {
+  width: 64px !important;
 }
 
-.card-active-hover .card-metrics-grid {
-  border-top: 1px solid #fff;
+.route-finder-card-vertical .rg-card-match-tab .match-val {
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.02em !important;
 }
 
-.metric-column {
-  display: flex;
-  flex-direction: column;
+.route-finder-card-vertical .rg-card-match-tab .match-lbl {
+  font-size: 7.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
+  margin-top: 1px !important;
+  opacity: 0.95 !important;
 }
 
-.metric-column .metric-label {
-  font-size: 7.5px;
-  color: #64748b;
-  text-transform: uppercase;
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold;
+/* Amber Accent Divider Line */
+.route-finder-card-vertical .rg-card-amber-divider {
+  height: 2px !important;
+  background-color: #f59e0b !important;
+  margin: 2px 14px 8px 14px !important;
+  border-radius: 1px !important;
+  position: relative !important;
+  z-index: 10 !important;
 }
 
-.metric-column .metric-value {
-  font-size: 10px;
-  font-family: "Montserrat", sans-serif;
-  font-weight: bold;
-  color: #475569; 
-  margin-top: 1px;
+/* Horizontal Dials Row Container */
+.route-finder-card-vertical .rg-card-dials-row {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) 80px !important;
+  gap: 4px !important;
+  align-items: center !important;
+  padding: 0 14px 10px 14px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s ease !important;
+  border: none !important;
 }
 
-.card-active-hover .metric-value {
-  color: #cbd5e1;
+/* Collapsed Sidebar Mode: Auto-hide gauges until hover */
+.side-drawer-panel:not(.is-expanded)
+  .route-finder-card-vertical
+  .rg-card-dials-row {
+  display: none !important;
 }
 
-/* Right Full-Height Badge Frame Column rules */
-.card-right-badge-bay {
-  width: 85px; 
-  height: 100%; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-left: 1px solid rgba(0, 0, 0, 0.05);
-  flex-shrink: 0;
-  padding: 12px; 
-  box-sizing: border-box;
+.side-drawer-panel:not(.is-expanded)
+  .route-finder-card-vertical:hover
+  .rg-card-dials-row,
+.side-drawer-panel:not(.is-expanded)
+  .route-finder-card-vertical.card-active-hover
+  .rg-card-dials-row {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) 70px !important;
+  animation: rgFadeInDials 0.2s ease forwards !important;
 }
 
-.card-active-hover .card-right-badge-bay {
-  background-color: rgba(255, 255, 255, 0.04);
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
+/* Collapsed Sidebar Mode: Hide Drive Time & Joy Score to show Distance, Grade & FCS Badge */
+.side-drawer-panel:not(.is-expanded)
+  .route-finder-card-vertical
+  .rg-card-dials-row
+  .rg-dial-tile:nth-child(1),
+.side-drawer-panel:not(.is-expanded)
+  .route-finder-card-vertical
+  .rg-card-dials-row
+  .rg-dial-tile:nth-child(2) {
+  display: none !important;
 }
 
-.card-route-badge-image-scaled {
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain; /* Scales up responsively while maintaining its aspect ratio */
-  display: block;
+.side-drawer-panel:not(.is-expanded)
+  .route-finder-card-vertical
+  .rg-card-fcs-bay {
+  width: 70px !important;
 }
 
-/* Custom Scrollbar for Drawer Content panel wrappers */
-.vertical-cards-scroll-container::-webkit-scrollbar {
-  width: 6px;
-}
-.vertical-cards-scroll-container::-webkit-scrollbar-track {
-  background: #fff; 
-}
-.vertical-cards-scroll-container::-webkit-scrollbar-thumb {
-  background: #f59e0b; 
-  border-radius: 99px;
-}
-.vertical-cards-scroll-container::-webkit-scrollbar-thumb:hover {
-  background: #f59e0b;
+@keyframes rgFadeInDials {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Add directly to the bottom of DiscoveryContainer.css */
+/* Individual Dial Tile */
+.route-finder-card-vertical .rg-dial-tile {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  min-width: 0 !important;
+}
 
-/* Custom Search Autocomplete Styling Layers */
+/* ISOLATED 4-SIDE INSET GAUGED DIAL ENGINE */
+.route-finder-card-vertical .rg-card-dial-wrapper {
+  position: relative !important;
+  width: 40px !important;
+  height: 40px !important;
+  margin: 0 auto 3px auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.route-finder-card-vertical .rg-card-dial-arc {
+  position: absolute !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  box-sizing: border-box !important;
+  z-index: 1 !important;
+  transition: background 0.4s ease !important;
+}
+
+.route-finder-card-vertical .rg-card-dial-mask {
+  position: absolute !important;
+  width: 28px !important;
+  height: 28px !important;
+  background-color: #ffffff !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  z-index: 2 !important;
+}
+
+.route-finder-card-vertical.card-active-hover .rg-card-dial-mask {
+  background-color: #1e293b !important;
+}
+
+
+.route-finder-card-vertical .rg-card-dial-icon {
+  width: 18px !important;
+  height: 18px !important;
+  object-fit: contain !important;
+  display: block !important;
+  z-index: 3 !important;
+}
+.route-finder-card-vertical .dial-val {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  /* line-height: 1.1 !important; */
+  white-space: nowrap !important;
+}
+
+.route-finder-card-vertical.card-active-hover .dial-val {
+  color: #ffffff !important;
+}
+
+.route-finder-card-vertical .dial-lbl {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 7.5px !important;
+  font-weight: 800 !important;
+  color: #64748b !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.03em !important;
+  margin-top: 2px !important;
+  line-height: 1.1 !important;
+  text-align: center !important;
+  white-space: normal !important;
+}
+
+.route-finder-card-vertical.card-active-hover .dial-lbl {
+  color: #94a3b8 !important;
+}
+
+/* FCS Badge Bay (Width 80px matches Match Tab) */
+.route-finder-card-vertical .rg-card-fcs-bay {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 80px !important;
+  height: 100% !important;
+  padding-left: 6px !important;
+  border-left: 1px solid #e2e8f0 !important;
+  box-sizing: border-box !important;
+}
+
+.route-finder-card-vertical.card-active-hover .rg-card-fcs-bay {
+  border-left-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.route-finder-card-vertical .rg-fcs-badge-img {
+  max-height: 52px !important;
+  max-width: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+/* ==========================================================================
+   🎯 AUTOCOMPLETE & TAKEOVER HUD DRAWERS
+   ========================================================================== */
+
 .styleable-autocomplete-wrapper {
   position: relative;
 }
@@ -566,7 +1106,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  width: 180px; /* Expanded layout track footprint bounds */
+  width: 150px;
 }
 
 .class-dropdown-arrow-icon {
@@ -576,21 +1116,18 @@
   transform: translateY(-50%);
   width: 0;
   height: 0;
-  /* Renders the precise triangle style parameters from your layout blueprint */
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 5px solid #333; 
+  border-top: 5px solid #333;
   cursor: pointer;
-  /* Allows clicks to pass through safely into the underlying HTML select element options map */
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 .autocomplete-input-field {
-  padding-right: 28px !important; /* Leaves room for custom selection arrows */
+  padding-right: 28px !important;
   box-sizing: border-box;
 }
 
-/* Replicates the standard browser select arrow icon placement rules */
 .autocomplete-dropdown-arrow-icon {
   position: absolute;
   right: 10px;
@@ -600,12 +1137,11 @@
   height: 0;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 5px solid #333; /* Matches select input arrow gray weight color */
+  border-top: 5px solid #333;
   cursor: pointer;
   pointer-events: auto;
 }
 
-/* Custom List Dropdown Overlay Panel matching search field styling profiles */
 .autocomplete-suggestions-dropdown-overlay {
   position: absolute;
   top: 100%;
@@ -613,7 +1149,7 @@
   width: 100%;
   max-height: 200px;
   overflow-y: auto;
-  background-color: #ffffff;
+  background-color: var(--brand-gray);
   border: 1px solid #334155;
   border-radius: 8px;
   margin: 4px 0 0 0;
@@ -643,30 +1179,14 @@
 
 .suggestion-interactive-item:hover {
   background-color: #f1f5f9;
-  color: #236ea0; /* Brand blue highlight accent path color text tracking */
+  color: #236ea0;
 }
 
-/* Custom Scrollbar formatting rules for suggestions overlay dropdown panels */
-.autocomplete-suggestions-dropdown-overlay::-webkit-scrollbar {
-  width: 6px;
-}
-.autocomplete-suggestions-dropdown-overlay::-webkit-scrollbar-track {
-  background: #fff;
-}
-.autocomplete-suggestions-dropdown-overlay::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 99px;
-}
-
-/* ==========================================================================
-   IMMERSIVE TOP-DOWN DRAWER TAKEOVER SYSTEM (MOCKUP SPECIFICATION)
-   ========================================================================== */
-
-/* Header blanking layer matches deep branding blue during active takeovers */
+/* Takeover Drawer Overlay Rules */
 .takeover-header-blue-blank {
   background-color: #236ea0 !important;
-  border-bottom: 1px solid #164e75 !important;
-  height: 84px !important;
+  border-bottom: 4px solid var(--brand-amber) !important;
+  height: 80px !important;
   transition: all 250ms ease;
 }
 
@@ -675,38 +1195,29 @@
   height: 100%;
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   MAIN ABSOLUTE POPUP DRAWER LAYOUT CONSTRAINTS
-   ────────────────────────────────────────────────────────────────────────── */
 .takeover-hud-drop-down-tray-wrapper {
-  position: absolute; 
-  top: 0px !important; /* FIXED: Anchors the blue capsule header perfectly over the RideFilterBar title row */
+  position: absolute;
+  top: 0px !important;
   left: 50%;
   transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
-  
   width: 100% !important;
-  max-width: 580px !important; 
+  max-width: 580px !important;
   height: auto;
-  
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  z-index: 45; 
-  
+  z-index: 45;
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   INTEGRATED BLUE RIBBON LAYER (RESTORES ROUTE TEXT STACK PRESTIGE GRAPHICS)
-   ────────────────────────────────────────────────────────────────────────── */
 .hud-integrated-blue-header-capsule {
   width: 100% !important;
-  height: 84px; 
-  background-color: #236ea0 !important; /* Forces rich background visibility color fill */
-  border-bottom: 1px solid #164e75 !important;  
+  height: 80px !important;
+  background-color: #236ea0 !important;
+  border-bottom: 1px solid #164e75 !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative; /* Coordinate anchor baseline maps the chevron button to the right margin */
+  position: relative;
   box-sizing: border-box;
 }
 
@@ -717,41 +1228,18 @@
   justify-content: center;
   text-align: center;
   width: 100%;
-  padding: 0 44px; 
+  padding: 0 44px;
 }
 
 .hud-route-title-node {
   font-family: "Montserrat", sans-serif;
   font-size: 15px;
   font-weight: 900;
-  color: #ffffff !important; /* Locks color state cleanly to bright white text */
+  color: #ffffff !important;
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   line-height: 1.1;
-}
-
-.hud-header-centered-cta-btn {
-  background-color: #f59e0b !important; 
-  color: #1e293b !important;
-  font-family: "Montserrat", sans-serif;
-  font-size: 10px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 3px 14px;
-  margin: 4px 0;
-  border: 1px solid #ffffff;
-  border-radius: 4px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  transition: all 150ms ease;
-  outline: none;
-}
-
-.hud-header-centered-cta-btn:hover {
-  background-color: #ffffff !important;
-  color: #236ea0 !important;
 }
 
 .hud-route-metadata-subtext {
@@ -771,16 +1259,10 @@
   color: #5b92b6;
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   RE-ANCHORED CHEVRON TOGGLE HANDLES (TOP RIGHT INNER DRAWER COORDS)
-   ────────────────────────────────────────────────────────────────────────── */
 .takeover-hud-tray-up-chevron-btn {
   position: absolute;
-  
-  /* FIXED: Re-anchored to pin inside the right border wall of the 580px wide blue ribbon capsule header box */
-  right: 12px !important; 
-  bottom: 8px !important; 
-  
+  right: 12px !important;
+  bottom: 8px !important;
   width: 28px;
   height: 28px;
   background-color: #1e293b;
@@ -804,17 +1286,9 @@
   color: #1e293b;
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   THE SLIDING BODY TRAY (Strips borders and background spaces)
-   ────────────────────────────────────────────────────────────────────────── */
 .takeover-hud-drop-down-tray-body {
-  /* FIXED: Binds the inner body content to exactly match the 580px tray envelope dimensions */
   width: 100% !important;
   background: #ffffff !important;
-  border-left: 2px solid var(--brand-sky) !important;
-  border-right: 2px solid var(--brand-sky) !important;
-  border-bottom: 2px solid var(--brand-sky)  !important;
-  border-radius: 0 0 8px 8px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -849,139 +1323,69 @@
 }
 
 .hud-section-body {
-  padding: 4px 12px;
   box-sizing: border-box;
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   65mm HEIGHT ERADICATION OVERRIDE AND CARD BORDER REMOVAL
-   ────────────────────────────────────────────────────────────────────────── */
-.horizontal-metrics-grid-bay .rr-metrics-tiles-wrapper {
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
-  width: 100% !important;
-  
-  /* FIXED: Eradicates the 65mm legacy layout parameter from RouteMetrics.css */
-  height: auto !important; 
-  min-height: 0px !important;
-  
-  gap: 8px !important;
-  padding: 2px 0 !important;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-.horizontal-metrics-grid-bay .rr-metric-tile-row {
-  display: flex !important;
-  align-items: center !important;
-  height: 32px !important; 
-  padding: 0px !important;
-  margin: 0px !important;
-  background: transparent !important; 
-  border: none !important; 
-  box-shadow: none !important;
-}
-
-.horizontal-metrics-grid-bay .rr-metric-tile-row .rr-metric-icon-column,
-.horizontal-metrics-grid-bay .rr-metric-tile-row > div:first-child {
-  padding-right: 0px !important;
-  margin-right: 4px !important;
-  display: flex !important;
-  align-items: center;
-}
-
-.horizontal-metrics-grid-bay .rr-metric-tile-row .rr-metric-content-column,
-.horizontal-metrics-grid-bay .rr-metric-tile-row > div:nth-child(2) {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  flex: 1 1 auto !important;
-  padding-left: 0px !important;
-  box-sizing: border-box;
-}
-
-.horizontal-metrics-grid-bay .rr-metric-value-display {
-  font-size: 11px !important;
-  line-height: 1.1 !important;
-  font-weight: 800 !important;
-  color: #1e293b !important;
-}
-
-.horizontal-metrics-grid-bay .rr-metric-label-display {
-  font-size: 7.5px !important;
-  line-height: 1.1 !important;
-  color: #64748b !important;
-  text-transform: uppercase;
-}
-
-.horizontal-metrics-grid-bay .rr-metrics-tiles-wrapper .rr-metric-tile-row:nth-child(5) {
-  display: none !important;
-}
-
-/* Sparkline profile timeline viewport chart metrics rules */
-.sparkline-viewport-containment {
-  padding: 2px 12px 6px 12px;
-}
-
-.sparkline-viewport-containment .rr-sparkline-container {
-  width: 100%;
-  height: 100px !important; 
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-.sparkline-viewport-containment .rr-sparkline-main,
-.sparkline-viewport-containment .rr-sparkline-svg {
-  /* height: 75px !important; */
-  width: 100%;
-}
-
-.takeover-force-hidden {
-  display: none !important;
-}
-
-
-
-/* ==========================================================================
-   GRAVELPOPUP SLIDE-OUT HUD ANIMATIONS
-   Syncs perfectly with the 400ms cubic-bezier transitions of the results card
-   ========================================================================== */
-
-/* Active mounting state wrapper class */
 .takeover-hud-drop-down-tray-wrapper.popup-entering {
-  position: absolute; 
+  position: absolute;
   top: 0px !important;
   left: 50%;
   transform: translate(-50%, 0);
   width: 100% !important;
-  max-width: 580px !important; 
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  z-index: 45; 
-  
-  /* FIXED: Pure hardware transformation using your exact side-drawer timing curves */
-  animation: hudPopupSlideIn 400ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-/* Active unmounting state wrapper class */
-.takeover-hud-drop-down-tray-wrapper.popup-dismissing {
-  position: absolute; 
-  top: 0px !important;
-  left: 50%;
-  width: 100% !important;
-  max-width: 580px !important; 
+  max-width: 580px !important;
+  background: var(--brand-white) !important;
   height: auto;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   z-index: 45;
+  animation: hudPopupSlideIn 400ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
 
-  /* FIXED: Clean, direct slide out matching the entry physics */
+.takeover-hud-drop-down-tray-wrapper.popup-dismissing {
+  position: absolute;
+  top: 0px !important;
+  left: 50%;
+  width: 100% !important;
+  max-width: 580px !important;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  z-index: 45;
   animation: hudPopupSlideOut 400ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.rg-mega-summary-trigger-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: 680px !important;
+  height: 42px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  padding: 0 16px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+.rg-mega-summary-trigger-btn:hover,
+.rg-mega-summary-trigger-btn.active {
+  background: rgba(35, 110, 160, 0.6) !important;
+  border-color: #f59e0b !important;
+  color: #f59e0b !important;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.2) !important;
+}
+
+.rg-mega-summary-trigger-btn .trigger-arrow {
+  font-size: 10px !important;
+  margin-left: 8px !important;
 }
 
 @keyframes hudPopupSlideIn {
@@ -993,7 +1397,6 @@
   }
 }
 
-/* Pulls right back up without ghosting or lingering on screen */
 @keyframes hudPopupSlideOut {
   0% {
     transform: translate(-50%, 0);

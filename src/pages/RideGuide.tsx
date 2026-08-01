@@ -12,6 +12,7 @@ import { LoadingOverlay } from "../components/LoadingOverlay";
 import PersistentLeftShopPanel from "../store/StorePanel";
 import CartDropdown from "../components/CartDropdown";
 import { useShopifyCart } from "../store/ShopifyCartContext"; 
+import MapGuideOverlay from "../components/modal/MapGuideOverlay";
 
 import "../styles/StorePanel.css";
 import "../features/Discovery/DiscoveryContainer.css";
@@ -48,6 +49,9 @@ export default function RideGuide() {
   // Layout Coordination Anchors
   const [isEnteringFullscreen, setIsEnteringFullscreen] =
     useState<boolean>(false);
+  
+  // 🎯 NEW STATE: Explicitly tracking active fullscreen layout configurations to sync the onboarding tour modal
+  const [isDashboardViewActive, setIsDashboardViewActive] = useState<boolean>(false);
 
   // ─── 📱 APPROVED MOBILE APPLICATION STATE LAYER CONTROLLERS ───
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -55,6 +59,9 @@ export default function RideGuide() {
   const [isMobileCartOpen, setIsMobileCartOpen] = useState<boolean>(false);
   const [isSiteNavMenuOpen, setIsSiteNavMenuOpen] = useState<boolean>(false);
   const [isBottomDrawerExpanded, setIsBottomDrawerExpanded] = useState<boolean>(false);
+
+  // 🎯 ADDED: Desktop gallery grid expansion state definition
+  const [isGalleryExpanded, setIsGalleryExpanded] = useState<boolean>(false);
 
   // ─── 🔍 DIAGNOSTIC LIFECYCLE EXECUTION TRACE ───
   useEffect(() => {
@@ -90,19 +97,13 @@ export default function RideGuide() {
       }
     };
 
-    // Snapshot 1: Capture layout metrics while loading is true or false
     logTrace(isWorkspaceLoading ? "LOADING OVERLAY ACTIVE" : "LOADER UNMOUNTED");
-
   }, [isWorkspaceLoading]);
-
-
 
   // 🎯 REGRESSION FIREWALL & ROOT SAFARI ENGINE TINT
   useEffect(() => {
     document.body.classList.add("rg-page-mounted");
     
-    /* 🌐 ROOT TINT FORCE: Explicitly colors the root HTML node to match your header blue.
-       This acts as Safari's primary layout fallback scanner layer. */
     const originalHtmlBg = document.documentElement.style.backgroundColor;
     document.documentElement.style.backgroundColor = "#236ea0";
     
@@ -112,7 +113,7 @@ export default function RideGuide() {
     };
   }, []);
 
-  // 📱 VIEWPORT MEDIA QUERY LISTENER (Left completely uncompromised)
+  // 📱 VIEWPORT MEDIA QUERY LISTENER 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 767px)");
     setIsMobile(mediaQuery.matches);
@@ -155,6 +156,8 @@ export default function RideGuide() {
         "dashboard-view-active",
         "dashboard-view-exiting",
       );
+      // 🎯 STATE SYNC: Clears tracking hooks when exiting full-bleed desktop maps
+      setIsDashboardViewActive(false);
       window.scrollTo({ top: 0 });
       ignoreObserverRef.current = false;
       setIsSiteNavMenuOpen(false);
@@ -166,6 +169,8 @@ export default function RideGuide() {
   useEffect(() => {
     if (isMobile && !isWorkspaceLoading) {
       document.body.classList.add("dashboard-view-active");
+      // 🎯 STATE SYNC: Asserts true for mobile viewports once map loading completes
+      setIsDashboardViewActive(true);
     }
   }, [isMobile, isWorkspaceLoading]);
 
@@ -189,6 +194,8 @@ export default function RideGuide() {
         setTimeout(() => {
           setIsEnteringFullscreen(false);
           document.body.classList.add("dashboard-view-active");
+          // 🎯 STATE SYNC: Asserts true for desktop layouts once fullscreen transition settles
+          setIsDashboardViewActive(true);
           ignoreObserverRef.current = false;
         }, 2500);
       }
@@ -215,29 +222,25 @@ export default function RideGuide() {
     setFilteredRoutes(routes);
 
     let watchdogTicks = 0;
-    const maxWatchdogTicks = 20; // 20 * 100ms = 2.0 seconds maximum allowed wait window
+    const maxWatchdogTicks = 20; 
 
     const mapPaintStabilizer = setInterval(() => {
       watchdogTicks++;
       const isCanvasFullyPainted = (window as any).mapLoaded === true;
       
-      /* 🎯 THE WATCHDOG BREAKER: If the canvas paints early, clear instantly.
-         If the canvas stalls or fails to flag window.mapLoaded, trip the fallback 
-         breaker after 2 seconds so the user is never left stuck at 85%! */
       if (isCanvasFullyPainted || watchdogTicks >= maxWatchdogTicks) {
         clearInterval(mapPaintStabilizer);
         setLoadProgress(100);
         
-        // Brief micro-buffer to let the state settle smoothly
         setTimeout(() => {
           setIsWorkspaceLoading(false);
         }, 100);
 
         if (watchdogTicks >= maxWatchdogTicks && !isCanvasFullyPainted) {
-          console.warn("⚠️ Map paint event timed out. Watchdog bypassed initialization overlay locks safely.");
+          console.warn("⚠️ Map paint event timed out. Watchdog bypassed overlay locks safely.");
         }
       }
-    }, 100); // Poll context state every 100ms
+    }, 100); 
   }, []);
 
   const handleRouteSelect = useCallback((feature: any | null) => {
@@ -250,13 +253,11 @@ export default function RideGuide() {
 
       setIsPopupClosing(false);
       setActiveTakeoverRouteId(primitiveId);
+      setIsGalleryExpanded(false); // 🎯 Reset expanded grid when GravelPopup opens
 
       if (window.matchMedia("(max-width: 767px)").matches) {
         setIsBottomDrawerExpanded(true);
         setIsFilterDrawerOpen(false);
-        
-        /* 🎯 STATE PROTECTION: Programmatically drops the mobile cart 
-           dropdown overlay view frame when a new route card is selected */
         setIsMobileCartOpen(false);
       }
 
@@ -284,8 +285,23 @@ export default function RideGuide() {
   const filterEngine = useRideFinderEngine(masterRoutes, handleFilterUpdate);
   const isTakeoverCurrentlyActive = activeTakeoverRouteId !== null;
 
+  // 🎯 AUTO-CLOSE GRAVEL POPUP WHEN GALLERY EXPANDS TO GRID VIEW
+  useEffect(() => {
+    if (isGalleryExpanded && isTakeoverCurrentlyActive) {
+      handleExitTakeover();
+    }
+  }, [isGalleryExpanded, isTakeoverCurrentlyActive, handleExitTakeover]);
+
   return (
     <div className={`ride-finder-page-container ${isMobile ? "is-mobile-device" : ""}`}>
+      
+      {/* 🎯 CONTEXTUAL ONBOARDING CORE INTERCEPTOR: Fires strictly according to map and viewport animations */}
+      <MapGuideOverlay 
+        isMapReady={!isWorkspaceLoading}
+        isDesktopTakeoverActive={isDashboardViewActive}
+        isMobile={isMobile}
+      />
+
       <h1 style={{
         position: 'absolute',
         width: '1px',
@@ -405,7 +421,6 @@ export default function RideGuide() {
         {isMobile && (
           <div className="rg-mobile-app-header-strip">
             
-            {/* 🎯 /RIDES FOREHEAD SHIM (BRAND BLUE): Pins the status bar to blue */}
             <div style={{
               position: 'fixed',
               top: 0,
@@ -417,8 +432,6 @@ export default function RideGuide() {
               pointerEvents: 'none'
             }} />
 
-            {/* 🎯 /RIDES CHIN SHIM (DARK SLATE): Forces the floating Safari URL bar 
-               to blend seamlessly into your dashboard backdrop panel color */}
             <div style={{
               position: 'fixed',
               bottom: '-8px',
@@ -430,7 +443,6 @@ export default function RideGuide() {
               pointerEvents: 'none'
             }} />
             
-            {/* 🎯 LEFT ACTIONS DOCK (FIXED: Duplicate entry cleanly removed to fix tree compilation) */}
             <div className="rg-mobile-header-left-actions-dock">
               <button 
                 type="button" 
@@ -441,7 +453,6 @@ export default function RideGuide() {
                   setIsMobileCartOpen(false);
                   setIsSiteNavMenuOpen(false);
                   
-                  /* 🎯 NEW STATE MANAGEMENT: If filters are opened during a route selection, collapse the route card */
                   if (nextFilterState && isTakeoverCurrentlyActive) {
                     setIsBottomDrawerExpanded(false);
                   }
@@ -490,18 +501,14 @@ export default function RideGuide() {
               </button>
             </div>
 
-            {/* 🎯 CENTERED BRANDING */}
             <div className="rg-mobile-app-centered-branding" onClick={handleExitFullscreen} title="Minimize workspace map view layer">
               <img 
                 src="/images/RideGuide_embroid-v1.svg" 
                 alt="RideGuide Logo" 
               />
-              <span className="rg-mobile-header-subtitle">
-                RideFinder Pro
-              </span>
+              
             </div>
 
-            {/* 🎯 RIGHT ACTIONS DOCK */}
             <div className="rg-mobile-header-right-actions-dock">
               <button
                 type="button"
@@ -512,8 +519,6 @@ export default function RideGuide() {
                   setIsFilterDrawerOpen(false);
                   setIsSiteNavMenuOpen(false);
                   
-                  /* 🎯 CO-ORDINATION FIX: Collapses the expanded route bottom drawer 
-                    when opening the cart to prevent the dropdown layout from being covered */
                   if (nextCartState) {
                     setIsBottomDrawerExpanded(false);
                   }
@@ -527,7 +532,6 @@ export default function RideGuide() {
                   <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                 </svg>
 
-                {/* 🎯 THE BADGE INJECTION: Dynamically fires only when items populate the context loop */}
                 {cartItems && cartItems.length > 0 && (
                   <span className="rg-header-cart-badge">
                     {cartItems.length}
@@ -559,7 +563,6 @@ export default function RideGuide() {
               </nav>
             )}
 
-            {/* 🎯 CART DROPDOWN CLOSER INJECTION */}
             <CartDropdown 
               isOpen={isMobileCartOpen} 
               allRoutes={masterRoutes} 
@@ -569,18 +572,27 @@ export default function RideGuide() {
           </div>
         )}
 
-       {/* HAMBURGER SLIDEOUT DRAPDOWN TRAY FILTER CONTROLS */}
+        {/* HAMBURGER SLIDEOUT DRAPDOWN TRAY FILTER CONTROLS */}
         {(!isMobile || isFilterDrawerOpen) && (
           <RideFilterBar
             engine={filterEngine}
             totalCount={masterRoutes.length}
-            /* 🎯 THE OVERRIDE FIX: Forces filter controls to display if the filter drawer is actively open */
+            routesData={masterRoutes}
             isTakeoverActive={isTakeoverCurrentlyActive && !isFilterDrawerOpen}
-            onSelectionComplete={() => setIsBottomDrawerExpanded(true)}
+            onSelectionComplete={() => {
+              setIsBottomDrawerExpanded(true);
+              if (!isMobile) {
+                setIsGalleryExpanded(true); // 🎯 Auto-expand gallery grid on desktop when quiz finishes
+              }
+            }}
+            onMegaOpen={() => {
+              handleExitTakeover();
+              setIsGalleryExpanded(false); // 🎯 COLLAPSE GRID GALLERY WHEN MEGA DROPDOWN OPENS
+            }}
+            onRouteSelect={!isMobile ? handleRouteSelect : undefined}
           />
         )}
 
-        {/* SHIELDED: GravelPopup is short-circuited to block rendering on mobile screen views */}
         {!isMobile && isTakeoverCurrentlyActive && selectedRouteFeature && (
           <GravelPopup
             feature={selectedRouteFeature}
@@ -631,12 +643,22 @@ export default function RideGuide() {
                 isCollapsed={false}
                 onToggleCollapse={() => {}}
                 onRouteSelect={handleRouteSelect}
-                isTakeoverActive={false}
+                isTakeoverActive={isTakeoverCurrentlyActive}
+                activeRouteId={activeTakeoverRouteId} // 🎯 PASSED ACTIVE TAKEOVER ROUTE ID
+                sortBy={filterEngine.sortBy}
+                onSortChange={filterEngine.setSortBy}
+                sortOrder={filterEngine.sortOrder}
+                onToggleSortOrder={filterEngine.toggleSortOrder}
+                isExpanded={isGalleryExpanded}
+                onToggleExpand={() => setIsGalleryExpanded((prev: boolean) => !prev)}
+                evaluateRouteProximity={filterEngine.evaluateRouteProximity}
+                selectedRideDay={filterEngine.activeQuizSelections?.selectedRideDay}
+                activeQuizSelections={filterEngine.activeQuizSelections}
+                driveTimesMap={filterEngine.driveTimesMap}
               />
             )}
 
             {/* ─── 📱 APPROVED ADAPTIVE MOBILE OVERLAY LOWER DRAWER CONTROLLER ─── */}
-            {/* Hidden during loading to prevent empty frames from flashing before vector data finishes compiling */}
             {isMobile && !isWorkspaceLoading && (
               <div className={`rg-mobile-unified-bottom-drawer ${isBottomDrawerExpanded ? "drawer-expanded" : "drawer-minimized"} ${isTakeoverCurrentlyActive ? "has-active-selection" : ""}`}>
                 
@@ -647,8 +669,6 @@ export default function RideGuide() {
                     const nextExpandedState = !isBottomDrawerExpanded;
                     setIsBottomDrawerExpanded(nextExpandedState);
                     
-                    /* 🎯 CO-ORDINATION FIX: If the user explicitly expands the lower sheet 
-                       by tapping the handle bar, collapse the mobile cart dropdown tray */
                     if (nextExpandedState) {
                       setIsMobileCartOpen(false);
                     }
@@ -697,19 +717,21 @@ export default function RideGuide() {
                       onToggleCollapse={() => {}}
                       onRouteSelect={handleRouteSelect}
                       isTakeoverActive={false}
+                      evaluateRouteProximity={filterEngine.evaluateRouteProximity}
+                      selectedRideDay={filterEngine.activeQuizSelections?.selectedRideDay}
+                      activeQuizSelections={filterEngine.activeQuizSelections}
+                      driveTimesMap={filterEngine.driveTimesMap}
                     />
                   )}
                 </div>
 
-                {/* 🎯 THE PERSISTENT SYSTEM BEZEL FOOTER: Anchored directly below the content pane */}
+                {/* 🎯 THE PERSISTENT SYSTEM BEZEL FOOTER */}
                 <div className="rg-mobile-drawer-system-bezel-footer">
                   <div className="rg-bezel-hardware-line" />
                 </div>
 
               </div>
             )}
-            
-
           </div>
         </div>
       </div>

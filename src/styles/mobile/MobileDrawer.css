@@ -646,7 +646,7 @@
   }
 
   /* ─── 📊 TELEMETRY REPLICATED BLOCKS ─── */
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .horizontal-metrics-grid-bay .rr-metrics-tiles-wrapper {
+  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .rr-metrics-tiles-wrapper {
     display: flex !important;
     flex-direction: row !important; 
     justify-content: space-between !important;
@@ -656,7 +656,7 @@
     box-sizing: border-box !important;
   }
   
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .horizontal-metrics-grid-bay .rr-metric-tile-row {
+  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .rr-metric-tile-row {
     display: flex !important;
     flex-direction: column !important; 
     align-items: center !important;
@@ -670,7 +670,7 @@
     min-width: 0 !important; 
   }
 
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .horizontal-metrics-grid-bay .rr-metric-icon-column {
+  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .rr-metric-icon-column {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
@@ -679,16 +679,16 @@
     margin: 0 auto 4px auto !important;
   }
   
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .horizontal-metrics-grid-bay .metric-icon-container,
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .horizontal-metrics-grid-bay .rr-metric-dial-wrapper {
+  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .metric-icon-container,
+  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .rr-metric-dial-wrapper {
     width: 38px !important; 
     height: 38px !important;
     min-width: 38px !important;
     margin: 0 auto !important;
   }
 
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .horizontal-metrics-grid-bay .rr-metric-content-column,
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .horizontal-metrics-grid-bay .metric-details {
+  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .rr-metric-content-column,
+  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .metric-details {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
@@ -697,8 +697,8 @@
     width: 100% !important;
   }
   
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .horizontal-metrics-grid-bay .rr-metric-value-display,
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .horizontal-metrics-grid-bay .metric-value {
+  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .rr-metric-value-display,
+  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .metric-value {
     font-size: 10px !important; 
     line-height: 1.2 !important;
     font-weight: 800 !important;
@@ -707,8 +707,8 @@
     text-align: center !important;
   }
   
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .horizontal-metrics-grid-bay .rr-metric-label-display,
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .horizontal-metrics-grid-bay .metric-label {
+  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .rr-metric-label-display,
+  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .metric-label {
     font-size: 6.5px !important;
     line-height: 1.1 !important;
     white-space: normal !important;
@@ -785,6 +785,31 @@
   .discovery-dashboard-root .rg-mobile-unified-bottom-drawer.drawer-minimized.has-active-selection .sparkline-viewport-containment {
     display: none !important;
     height: 0 !important;
+  }
+
+  /* ==========================================================================
+     📱 SCOPED MOBILE METRICS HEIGHT COLLAPSE (ELIMINATE EXTRA WHITE SPACE)
+     ========================================================================== */
+  .rg-mobile-consolidated-drawer-content .section-metrics-row .hud-section-body,
+  .rg-mobile-consolidated-drawer-content .rr-metrics-tiles-wrapper {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    flex: 0 0 auto !important;
+    padding-bottom: 6px !important;
+    background: var(--brand-cream) !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .rr-metrics-tiles-wrapper {
+    display: flex !important;
+    flex-direction: row !important; 
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    gap: 4px !important;
+    box-sizing: border-box !important;
   }
 
   /* ─── 📦 LAYOUT SCROLLER HOOKS ─── */
