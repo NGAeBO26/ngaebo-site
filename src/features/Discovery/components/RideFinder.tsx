@@ -435,12 +435,14 @@ export function RideFilterBar({
   onRouteSelect,
 }: FilterBarProps) {
   const [isMegaOpen, setIsMegaOpen] = useState(false);
+  const [isFlashing, setIsFlashing] = useState(false);
 
   const handleToggleMega = () => {
     const nextState = !isMegaOpen;
     setIsMegaOpen(nextState);
-    if (nextState && onMegaOpen) {
-      onMegaOpen();
+    if (nextState) {
+      window.dispatchEvent(new CustomEvent("close-bottom-drawer"));
+      if (onMegaOpen) onMegaOpen();
     }
   };
 
@@ -474,13 +476,30 @@ export function RideFilterBar({
       epic: "All-Day Epic (8+ mi)",
     };
 
-    const hasSelection =
-      isMegaOpen || Boolean(q?.bikeType || q?.effortLevel || q?.distanceRange);
+    const hasAnySelection = Boolean(
+      q?.bikeType ||
+        q?.effortLevel ||
+        q?.distanceRange ||
+        q?.driveTimeMax ||
+        q?.selectedRideDay,
+    );
 
-    if (!hasSelection) {
+    // 🎯 STATE 1: UNSTARTED & COLLAPSED -> INITIAL CTA
+    if (!isMegaOpen && !hasAnySelection) {
       return <span> Find Your Next Ride</span>;
     }
 
+    // 🎯 STATE 2: UNSTARTED & OPEN -> INTERMEDIATE PROMPT STATE
+    if (isMegaOpen && !hasAnySelection) {
+      return (
+        <>
+          <span className="wishlist-label">💬 MY NEXT RIDE IS: </span>
+          <span className="quiz-prompt-label">Choose from the options below to get started!</span>
+        </>
+      );
+    }
+
+    // 🎯 STATE 3: HAS SELECTIONS -> NATURAL LANGUAGE SENTENCE HUD
     const eText = q?.effortLevel ? effortLabels[q.effortLevel] : "___";
     const dText = q?.distanceRange ? distanceLabels[q.distanceRange] : "___";
     const bText = q?.bikeType ? bikeLabels[q.bikeType] : "___";
@@ -542,6 +561,44 @@ export function RideFilterBar({
     );
   };
 
+  // 🎯 LISTEN FOR GLOBAL EVENTS TO SLIDE DOWN QUIZ TRAY, CLOSE IT, OR FLASH TRIGGER BUTTON
+  useEffect(() => {
+    const handleOpenQuiz = () => {
+      setIsMegaOpen(true);
+      window.dispatchEvent(new CustomEvent("close-bottom-drawer"));
+      if (onMegaOpen) onMegaOpen();
+    };
+    const handleCloseQuiz = () => {
+      setIsMegaOpen(false);
+    };
+    const handleFlashTrigger = () => {
+      setIsFlashing(true);
+      setTimeout(() => setIsFlashing(false), 1200);
+    };
+
+    // 🎯 INTERCEPT BOTTOM DRAWER HANDLE TAPS TO COLLAPSE RIDEBUILDER IMMEDIATELY
+    const handleGlobalClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target && target.closest(".rg-mobile-drawer-drag-handle-bar")) {
+        setIsMegaOpen(false);
+      }
+    };
+
+    window.addEventListener("open-ride-builder", handleOpenQuiz);
+    window.addEventListener("close-ride-builder", handleCloseQuiz);
+    window.addEventListener("bottom-drawer-opened", handleCloseQuiz);
+    window.addEventListener("flash-mega-button", handleFlashTrigger);
+    document.addEventListener("click", handleGlobalClick, true);
+
+    return () => {
+      window.removeEventListener("open-ride-builder", handleOpenQuiz);
+      window.removeEventListener("close-ride-builder", handleCloseQuiz);
+      window.removeEventListener("bottom-drawer-opened", handleCloseQuiz);
+      window.removeEventListener("flash-mega-button", handleFlashTrigger);
+      document.removeEventListener("click", handleGlobalClick, true);
+    };
+  }, [onMegaOpen]);
+
   // 🎯 QUIZ COMPLETION STATE CHECK FOR TRIGGER BUTTON STYLING
   const isQuizComplete = Boolean(
     engine.activeQuizSelections?.bikeType &&
@@ -550,7 +607,7 @@ export function RideFilterBar({
   );
 
   return (
-    <header className="finder-header-row">
+    <header className={`finder-header-row ${isMegaOpen ? "is-expanded" : "is-collapsed"}`}>
       <div className="finder-brand-block">
         <img
           src="/images/rideatlas-logo.svg"
@@ -564,7 +621,7 @@ export function RideFilterBar({
           type="button"
           className={`rg-mega-summary-trigger-btn ${isMegaOpen ? "active" : ""} ${
             isQuizComplete ? "quiz-complete" : ""
-          }`}
+          } ${isFlashing ? "flash-attention" : ""}`}
           onClick={handleToggleMega}
           title="Open Guided Route Finder Quiz"
           aria-label="Open filter tray dropdown"
@@ -678,24 +735,26 @@ export function getMatchBadgeColor(score: number): {
   text: string;
 } {
   if (score >= 76) {
-    return { bg: "#10b981", border: "#059669", text: "#ffffff" }; // Emerald High
+    return { bg: "#15652e", border: "#2d422b", text: "#ffffff" }; // Emerald High
   } else if (score >= 51) {
     return { bg: "#1b7f3a", border: "#15803d", text: "#ffffff" }; // Mid Green
   } else if (score >= 26) {
-    return { bg: "#3f5a3c", border: "#2d422b", text: "#ffffff" }; // Forest Start
+    return { bg: "#10b981", border: "#059669", text: "#ffffff" }; // Forest Start
   }
   return { bg: "#2d3748", border: "#1a202c", text: "#ffffff" }; // Base Muted
 }
 
-// 🎯 DIAL RENDERER (MIRRORS METRICSTILES CONIC-GRADIENT ARC SWEEP)
+// 🎯 DIAL RENDERER (MIRRORS METRICSTILES CONIC-GRADIENT ARC SWEEP & 3-STATE LOCK/PENDING/ACTIVE)
 function MetricDial({
   type,
   value,
   raw,
+  state = "active",
 }: {
   type: "drivetime" | "joyscore" | "dist" | "grade";
   value: number | string;
   raw?: number;
+  state?: "active" | "pending" | "locked";
 }) {
   const assetBase = import.meta.env.VITE_ASSETS_DIR || "/data/assets";
 
@@ -703,7 +762,11 @@ function MetricDial({
   let trackColor = "#9badad";
   let iconName = "";
 
-  if (type === "drivetime") {
+  if (state === "locked") {
+    trackColor = "#475569";
+  } else if (state === "pending") {
+    trackColor = "#64748b";
+  } else if (type === "drivetime") {
     const val =
       typeof value === "number" ? value : parseFloat(String(value)) || 0;
     fillPercent = (val / 180) * 100;
@@ -728,24 +791,40 @@ function MetricDial({
     iconName = "icon_grade.svg";
   }
 
-  const activeFill = Math.min(100, Math.max(0, fillPercent));
+  const activeFill =
+    state === "locked" || state === "pending"
+      ? 0
+      : Math.min(100, Math.max(0, fillPercent));
   const emptyStartPercent = 100 - activeFill;
 
   return (
-    <div className="rg-card-dial-wrapper">
+    <div className={`rg-card-dial-wrapper state-${state}`}>
       <div
         className="rg-card-dial-arc"
         style={{
-          background: `conic-gradient(from 180deg, #e0e0e0 0% ${emptyStartPercent}%, ${trackColor} ${emptyStartPercent}% 100%)`,
+          background:
+            state === "locked" || state === "pending"
+              ? "conic-gradient(from 180deg, #cbd5e1 0% 100%, #cbd5e1 100%)"
+              : `conic-gradient(from 180deg, #e0e0e0 0% ${emptyStartPercent}%, ${trackColor} ${emptyStartPercent}% 100%)`,
           transform: "scaleX(-1)",
         }}
       />
       <div className="rg-card-dial-mask">
-        <img
-          src={`${assetBase}/${iconName}`}
-          className="rg-card-dial-icon"
-          alt={type}
-        />
+        {state === "locked" ? (
+          <img
+            src={`${assetBase}/icon_unlock.svg`}
+            className="rg-card-dial-icon locked-icon"
+            alt="locked"
+          />
+        ) : state === "pending" ? (
+          <span className="rg-card-dial-pending-icon">?</span>
+        ) : (
+          <img
+            src={`${assetBase}/${iconName}`}
+            className="rg-card-dial-icon"
+            alt={type}
+          />
+        )}
       </div>
     </div>
   );
@@ -818,20 +897,27 @@ export function RideResultGallery({
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
+  const isQuizComplete = Boolean(
+    activeQuizSelections?.bikeType ||
+      activeQuizSelections?.effortLevel ||
+      activeQuizSelections?.distanceRange,
+  );
+
   const SORT_OPTIONS: Array<{
     key: "match" | "name" | "distance" | "grade" | "proximity" | "joy";
     label: string;
+    requiresQuiz?: boolean;
   }> = [
-    { key: "match", label: "Match %" },
-    { key: "name", label: "Name" },
-    { key: "distance", label: "Distance" },
-    { key: "grade", label: "Grade" },
-    { key: "proximity", label: "Drive Time" },
-    { key: "joy", label: "Ride Window" },
+    { key: "name", label: "Name", requiresQuiz: false },
+    { key: "distance", label: "Distance", requiresQuiz: false },
+    { key: "grade", label: "Grade", requiresQuiz: false },
+    { key: "match", label: "Match %", requiresQuiz: true },
+    { key: "proximity", label: "Drive Time", requiresQuiz: true },
+    { key: "joy", label: "Ride Window", requiresQuiz: true },
   ];
 
-  const currentSortLabel =
-    SORT_OPTIONS.find((o) => o.key === sortBy)?.label || "Sort Routes";
+  const activeSortObj = SORT_OPTIONS.find((o) => o.key === sortBy);
+  const currentSortLabel = `Sort By: ${activeSortObj?.label || "Name"}`;
 
   useEffect(() => {
     if (!activeRouteId || !scrollContainerRef.current) return;
@@ -882,37 +968,41 @@ export function RideResultGallery({
       </div>
 
       <div className="gallery-sort-deck">
-        <div className="sort-deck-header-row">
-          <span className="sort-deck-label">Sort Routes By</span>
-          {onToggleSortOrder && (
-            <button
-              type="button"
-              className="sort-order-toggle-btn"
-              onClick={onToggleSortOrder}
-              title={`Order: ${sortOrder.toUpperCase()}. Click to switch.`}
-            >
-              {sortOrder === "asc" ? "ASC ⬆" : "DESC ⬇"}
-            </button>
-          )}
-        </div>
-
         {isExpanded ? (
           /* 🎯 EXPANDED GRID VIEW: Horizontal Sort Pill Buttons with Radio Indicators */
           <div className="sort-pills-row">
-            {SORT_OPTIONS.map((opt) => (
-              <button
-                key={opt.key}
-                type="button"
-                className={`sort-pill-btn ${sortBy === opt.key ? "active" : ""}`}
-                onClick={() => onSortChange && onSortChange(opt.key)}
-              >
-                <span className="sort-radio-custom-dot" />
-                <span className="sort-pill-label">{opt.label}</span>
-              </button>
-            ))}
+            {SORT_OPTIONS.map((opt) => {
+              const isDisabled = Boolean(opt.requiresQuiz && !isQuizComplete);
+              return (
+                <button
+                  key={opt.key}
+                  type="button"
+                  className={`sort-pill-btn ${sortBy === opt.key ? "active" : ""} ${isDisabled ? "is-disabled" : ""}`}
+                  title={
+                    isDisabled
+                      ? "Complete the RideBuilder Quiz to unlock this sort option"
+                      : `Sort by ${opt.label}`
+                  }
+                  onClick={() => {
+                    if (isDisabled) {
+                      window.dispatchEvent(
+                        new CustomEvent("flash-mega-button"),
+                      );
+                      return;
+                    }
+                    if (onSortChange) onSortChange(opt.key);
+                  }}
+                >
+                  <span className="sort-radio-custom-dot" />
+                  <span className="sort-pill-label">
+                    {opt.label} {isDisabled && "🔒"}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         ) : (
-          /* 🎯 COLLAPSED MAP VIEW: Custom Radio Button Popover Menu */
+          /* 🎯 COLLAPSED MAP VIEW: Custom Radio Button Popover Menu & Inline Toggle */
           <div className="sort-dropdown-row" ref={sortDropdownRef}>
             <button
               type="button"
@@ -927,23 +1017,55 @@ export function RideResultGallery({
               </span>
             </button>
 
+            {onToggleSortOrder && (
+              <button
+                type="button"
+                className="sort-order-toggle-btn"
+                onClick={onToggleSortOrder}
+                title={`Order: ${sortOrder.toUpperCase()}. Click to switch.`}
+              >
+                {sortOrder === "asc" ? "ASC ⬆" : "DESC ⬇"}
+              </button>
+            )}
+
             {isSortOpen && (
               <div className="gallery-sort-radio-menu" role="listbox">
                 {SORT_OPTIONS.map((opt) => {
                   const isSelected = sortBy === opt.key;
+                  const isDisabled = Boolean(
+                    opt.requiresQuiz && !isQuizComplete,
+                  );
+
                   return (
                     <button
                       key={opt.key}
                       type="button"
-                      className={`sort-radio-item ${isSelected ? "is-selected" : ""}`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (onSortChange) onSortChange(opt.key);
+                      className={`sort-radio-item ${isSelected ? "is-selected" : ""} ${isDisabled ? "is-disabled" : ""}`}
+                      title={
+                        isDisabled
+                          ? "Complete the RideBuilder Quiz to unlock this sort option"
+                          : `Sort by ${opt.label}`
+                      }
+                      onClick={() => {
+                        if (isDisabled) {
+                          window.dispatchEvent(
+                            new CustomEvent("flash-mega-button"),
+                          );
+                          setIsSortOpen(false);
+                          return;
+                        }
+
+                        if (typeof onSortChange === "function") {
+                          onSortChange(opt.key);
+                        }
                         setIsSortOpen(false);
                       }}
                     >
                       <span className="sort-radio-custom-dot" />
                       <span className="sort-radio-item-label">{opt.label}</span>
+                      {isDisabled && (
+                        <span className="sort-lock-badge">🔒</span>
+                      )}
                     </button>
                   );
                 })}
@@ -1000,14 +1122,10 @@ export function RideResultGallery({
               ? String(id) === String(activeRouteId)
               : String(id) === String(activeHoverId);
 
-            // const routeVibe = props.v3_vibe || "Explore backcountry trails";
-            // const routeSurface = props.v3_surface || "Gravel / Dirt";
-
             // 🎯 DYNAMIC TELEMETRY EVALUATION FROM SHARED ENGINE
             const proximity = evaluateRouteProximity
               ? evaluateRouteProximity(route)
               : null;
-            const driveMins = proximity?.maxMinutes ?? 45;
             const driveTextClean = proximity?.label
               ? proximity.label
                   .replace(/^[^\d]+/, "")
@@ -1067,70 +1185,147 @@ export function RideResultGallery({
                 {/* 🎯 2. AMBER ACCENT DIVIDER LINE */}
                 <div className="rg-card-amber-divider" />
 
-                {/* 🎯 3. HORIZONTAL DIAL TILES & FCS BADGE DECK */}
-                <div className="rg-card-dials-row">
-                  {/* DRIVE TIME DIAL */}
-                  <div className="rg-dial-tile">
-                    <MetricDial type="drivetime" value={driveMins} />
-                    <span className="dial-val">{driveTextClean}</span>
-                    <span className="dial-lbl">
-                      DRIVE
-                      <br />
-                      TIME
-                    </span>
-                  </div>
+                {/* 🎯 EVALUATE METRIC STATES (DRIVE TIME & JOY SCORE) */}
+                {(() => {
+                  const quizRecord = activeQuizSelections as Record<
+                    string,
+                    any
+                  > | null;
 
-                  {/* JOY SCORE DIAL */}
-                  <div className="rg-dial-tile">
-                    <MetricDial
-                      type="joyscore"
-                      value={joyData.score}
-                      raw={joyData.score}
-                    />
-                    <span className="dial-val">{joyData.score}%</span>
-                    <span className="dial-lbl">
-                      JOY
-                      <br />
-                      SCORE
-                    </span>
-                  </div>
+                  const isDriveTimeOptedIn = Boolean(
+                    quizRecord?.isDriveTimeOptedIn ??
+                      quizRecord?.driveTimeOptIn ??
+                      quizRecord?.driveTimeMax,
+                  );
+                  const driveTimeState: "active" | "pending" | "locked" =
+                    activeQuizSelections?.driveTimeMax
+                      ? "active"
+                      : isDriveTimeOptedIn
+                        ? "pending"
+                        : "locked";
 
-                  {/* ROUTE DISTANCE DIAL */}
-                  <div className="rg-dial-tile">
-                    <MetricDial type="dist" value={milesNum} />
-                    <span className="dial-val">{miles} mi</span>
-                    <span className="dial-lbl">
-                      ROUTE
-                      <br />
-                      DISTANCE
-                    </span>
-                  </div>
+                  const isJoyScoreOptedIn = Boolean(
+                    quizRecord?.isRideWindowOptedIn ??
+                      quizRecord?.rideWindowOptIn ??
+                      quizRecord?.selectedRideDay,
+                  );
+                  const joyScoreState: "active" | "pending" | "locked" =
+                    activeQuizSelections?.selectedRideDay
+                      ? "active"
+                      : isJoyScoreOptedIn
+                        ? "pending"
+                        : "locked";
 
-                  {/* AVERAGE GRADE DIAL */}
-                  <div className="rg-dial-tile">
-                    <MetricDial type="grade" value={gradeNum} />
-                    <span className="dial-val">{grade}%</span>
-                    <span className="dial-lbl">
-                      AVERAGE
-                      <br />
-                      GRADE
-                    </span>
-                  </div>
+                  const handleDisabledDialClick = (e: React.MouseEvent) => {
+                    e.stopPropagation();
+                    window.dispatchEvent(new CustomEvent("flash-mega-button"));
+                  };
 
-                  {/* FCS BADGE BAY */}
-                  {fcsBadgePath && (
-                    <div className="rg-card-fcs-bay">
-                      <img
-                        src={fcsBadgePath}
-                        alt="FCS Badge"
-                        className="rg-fcs-badge-img"
-                        onError={(e) => {
-                          (e.target as HTMLElement).style.display = "none";
-                        }}
-                      />
+                  return (
+                    <div className="rg-card-dials-row">
+                      {/* DRIVE TIME DIAL */}
+                      <div
+                        className={`rg-dial-tile state-${driveTimeState}`}
+                        onClick={
+                          driveTimeState !== "active"
+                            ? handleDisabledDialClick
+                            : undefined
+                        }
+                      >
+                        <MetricDial
+                          type="drivetime"
+                          value={driveTextClean}
+                          state={driveTimeState}
+                        />
+                        <span
+                          className={`dial-val ${
+                            driveTimeState !== "active" ? "is-disabled-val" : ""
+                          }`}
+                        >
+                          {driveTimeState === "locked"
+                            ? "??"
+                            : driveTimeState === "pending"
+                              ? "?"
+                              : driveTextClean}
+                        </span>
+                        <span className="dial-lbl">
+                          DRIVE
+                          <br />
+                          TIME
+                        </span>
+                      </div>
+
+                      {/* JOY SCORE DIAL */}
+                      <div
+                        className={`rg-dial-tile state-${joyScoreState}`}
+                        onClick={
+                          joyScoreState !== "active"
+                            ? handleDisabledDialClick
+                            : undefined
+                        }
+                      >
+                        <MetricDial
+                          type="joyscore"
+                          value={joyData.score}
+                          raw={joyData.score}
+                          state={joyScoreState}
+                        />
+                        <span
+                          className={`dial-val ${
+                            joyScoreState !== "active" ? "is-disabled-val" : ""
+                          }`}
+                        >
+                          {joyScoreState === "locked"
+                            ? "??"
+                            : joyScoreState === "pending"
+                              ? "?"
+                              : `${joyData.score}%`}
+                        </span>
+                        <span className="dial-lbl">
+                          JOY
+                          <br />
+                          SCORE
+                        </span>
+                      </div>
+
+                      {/* ROUTE DISTANCE DIAL */}
+                      <div className="rg-dial-tile">
+                        <MetricDial type="dist" value={milesNum} />
+                        <span className="dial-val">{miles} mi</span>
+                        <span className="dial-lbl">
+                          ROUTE
+                          <br />
+                          DISTANCE
+                        </span>
+                      </div>
+
+                      {/* AVERAGE GRADE DIAL */}
+                      <div className="rg-dial-tile">
+                        <MetricDial type="grade" value={gradeNum} />
+                        <span className="dial-val">{grade}%</span>
+                        <span className="dial-lbl">
+                          AVERAGE
+                          <br />
+                          GRADE
+                        </span>
+                      </div>
+
+                      {/* FCS BADGE BAY */}
+                      {fcsBadgePath && (
+                        <div className="rg-card-fcs-bay">
+                          <img
+                            src={fcsBadgePath}
+                            alt="FCS Badge"
+                            className="rg-fcs-badge-img"
+                            onError={(e) => {
+                              (e.target as HTMLElement).style.display = "none";
+                            }}
+                          />
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
+                  );
+                })()}
               </div>
             );
           })

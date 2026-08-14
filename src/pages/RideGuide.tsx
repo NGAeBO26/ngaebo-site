@@ -13,12 +13,14 @@ import PersistentLeftShopPanel from "../store/StorePanel";
 import CartDropdown from "../components/CartDropdown";
 import { useShopifyCart } from "../store/ShopifyCartContext"; 
 import MapGuideOverlay from "../components/modal/MapGuideOverlay";
+import MobileRideBuilder from "../features/Discovery/components/MobileRideBuilder";
 
 import "../styles/StorePanel.css";
 import "../features/Discovery/DiscoveryContainer.css";
 import "../styles/RideGuide.css";
 import "../styles/mobile/DesktopOverrides.css";
 import "../styles/mobile/MobileHeader.css";
+import "../styles/mobile/MobileRideBuilder.css";
 import "../styles/mobile/MobileDrawer.css";
 import "../styles/mobile/MobileModals.css";
 
@@ -113,7 +115,7 @@ export default function RideGuide() {
     };
   }, []);
 
-  // 📱 VIEWPORT MEDIA QUERY LISTENER 
+  // 📱 VIEWPORT MEDIA QUERY & QUIZ EVENT LISTENERS
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 767px)");
     setIsMobile(mediaQuery.matches);
@@ -122,8 +124,23 @@ export default function RideGuide() {
       setIsMobile(e.matches);
     };
 
+    const handleOpenQuizMobile = () => {
+      if (window.matchMedia("(max-width: 767px)").matches) {
+        setIsFilterDrawerOpen(true);
+        setIsMobileCartOpen(false);
+        setIsSiteNavMenuOpen(false);
+      }
+    };
+
     mediaQuery.addEventListener("change", handleViewportChange);
-    return () => mediaQuery.removeEventListener("change", handleViewportChange);
+    window.addEventListener("open-ride-builder", handleOpenQuizMobile);
+    window.addEventListener("flash-mega-button", handleOpenQuizMobile);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleViewportChange);
+      window.removeEventListener("open-ride-builder", handleOpenQuizMobile);
+      window.removeEventListener("flash-mega-button", handleOpenQuizMobile);
+    };
   }, []);
 
   const dashboardRef = useRef<HTMLDivElement | null>(null);
@@ -173,6 +190,19 @@ export default function RideGuide() {
       setIsDashboardViewActive(true);
     }
   }, [isMobile, isWorkspaceLoading]);
+
+  // 🎯 DASHBOARD ROOT SCROLL SHIFT LOCK: Prevents internal scrollIntoView from shifting the top header strip
+  useEffect(() => {
+    const el = dashboardRef.current;
+    if (!el) return;
+    const handleRootScrollLock = () => {
+      if (el.scrollTop !== 0) {
+        el.scrollTop = 0;
+      }
+    };
+    el.addEventListener("scroll", handleRootScrollLock, { passive: true });
+    return () => el.removeEventListener("scroll", handleRootScrollLock);
+  }, []);
 
   // ─── LOOP-PROOF SCROLL CAPTURE TRACKING ENGINE ───
   useEffect(() => {
@@ -421,27 +451,8 @@ export default function RideGuide() {
         {isMobile && (
           <div className="rg-mobile-app-header-strip">
             
-            <div style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '8px',
-              backgroundColor: '#236ea0',
-              zIndex: 2000000,
-              pointerEvents: 'none'
-            }} />
-
-            <div style={{
-              position: 'fixed',
-              bottom: '-8px',
-              left: 0,
-              width: '100%',
-              height: '12px',
-              backgroundColor: '#236ea0',
-              zIndex: 2000000,
-              pointerEvents: 'none'
-            }} />
+            <div className="rg-mobile-header-top-seam-mask" />
+            <div className="rg-mobile-header-bottom-seam-mask" />
             
             <div className="rg-mobile-header-left-actions-dock">
               <button 
@@ -453,7 +464,7 @@ export default function RideGuide() {
                   setIsMobileCartOpen(false);
                   setIsSiteNavMenuOpen(false);
                   
-                  if (nextFilterState && isTakeoverCurrentlyActive) {
+                  if (nextFilterState) {
                     setIsBottomDrawerExpanded(false);
                   }
                 }}
@@ -479,10 +490,7 @@ export default function RideGuide() {
                     handleExitTakeover();
                   } else {
                     if (filterEngine) {
-                      filterEngine.setSearchName("");
-                      filterEngine.setSelectedClass("ALL");
-                      filterEngine.setSearchDistance(30); 
-                      filterEngine.setSearchGrade(25);    
+                      filterEngine.resetFilters();
                     }
                     setFilteredRoutes(masterRoutes);
                     if (mapResetFnRef.current) {
@@ -503,8 +511,8 @@ export default function RideGuide() {
 
             <div className="rg-mobile-app-centered-branding" onClick={handleExitFullscreen} title="Minimize workspace map view layer">
               <img 
-                src="/images/RideGuide_embroid-v1.svg" 
-                alt="RideGuide Logo" 
+                src="/images/rideatlas-logo.svg" 
+                alt="RideAtlas Logo" 
               />
               
             </div>
@@ -573,23 +581,47 @@ export default function RideGuide() {
         )}
 
         {/* HAMBURGER SLIDEOUT DRAPDOWN TRAY FILTER CONTROLS */}
-        {(!isMobile || isFilterDrawerOpen) && (
+        {isMobile ? (
+          !isWorkspaceLoading && !isMobileCartOpen && !isSiteNavMenuOpen && (
+            <div className={`finder-header-row ${isFilterDrawerOpen ? "is-expanded" : "is-collapsed"}`}>
+              <MobileRideBuilder
+                isOpen={isFilterDrawerOpen}
+                onToggleOpen={() => {
+                  setIsFilterDrawerOpen((prev) => {
+                    const nextState = !prev;
+                    if (nextState) {
+                      setIsBottomDrawerExpanded(false);
+                    }
+                    return nextState;
+                  });
+                }}
+                onClose={() => setIsFilterDrawerOpen(false)}
+                engine={filterEngine}
+                routesData={masterRoutes}
+                totalCount={masterRoutes.length}
+                onApplyQuiz={() => {
+                  setIsFilterDrawerOpen(false);
+                  setIsBottomDrawerExpanded(true);
+                }}
+                onRouteSelect={handleRouteSelect}
+              />
+            </div>
+          )
+        ) : (
           <RideFilterBar
             engine={filterEngine}
             totalCount={masterRoutes.length}
             routesData={masterRoutes}
-            isTakeoverActive={isTakeoverCurrentlyActive && !isFilterDrawerOpen}
+            isTakeoverActive={isTakeoverCurrentlyActive}
             onSelectionComplete={() => {
               setIsBottomDrawerExpanded(true);
-              if (!isMobile) {
-                setIsGalleryExpanded(true); // 🎯 Auto-expand gallery grid on desktop when quiz finishes
-              }
+              setIsGalleryExpanded(true);
             }}
             onMegaOpen={() => {
               handleExitTakeover();
-              setIsGalleryExpanded(false); // 🎯 COLLAPSE GRID GALLERY WHEN MEGA DROPDOWN OPENS
+              setIsGalleryExpanded(false);
             }}
-            onRouteSelect={!isMobile ? handleRouteSelect : undefined}
+            onRouteSelect={handleRouteSelect}
           />
         )}
 
@@ -717,12 +749,17 @@ export default function RideGuide() {
                       onToggleCollapse={() => {}}
                       onRouteSelect={handleRouteSelect}
                       isTakeoverActive={false}
+                      sortBy={filterEngine.sortBy}
+                      onSortChange={filterEngine.setSortBy}
+                      sortOrder={filterEngine.sortOrder}
+                      onToggleSortOrder={filterEngine.toggleSortOrder}
                       evaluateRouteProximity={filterEngine.evaluateRouteProximity}
                       selectedRideDay={filterEngine.activeQuizSelections?.selectedRideDay}
                       activeQuizSelections={filterEngine.activeQuizSelections}
                       driveTimesMap={filterEngine.driveTimesMap}
                     />
                   )}
+                  
                 </div>
 
                 {/* 🎯 THE PERSISTENT SYSTEM BEZEL FOOTER */}

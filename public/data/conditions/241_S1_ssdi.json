@@ -1,7 +1,7 @@
 {
   "profile_id": "241_S1",
   "route_id": "241",
-  "ssdi_score": 14.6,
+  "ssdi_score": 18.8,
   "v3_terrain_score": 8.4,
   "v3_terrain_class": "Epic",
   "badge_type": "muddy",
@@ -17,8 +17,8 @@
     "value": 0.37
   },
   "environment": {
-    "current_temp": 80,
-    "saturation_index": 42.1,
+    "current_temp": 71,
+    "saturation_index": 42.2,
     "soil_status": "Saturated",
     "precip_24h": 0.27,
     "saturation_trend": "stable",

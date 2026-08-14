@@ -15,7 +15,14 @@
   }
 
   /* Force the toggle chevron indicators to completely disappear on desktop screens */
-  .rg-accordion-indicator-arrow {
+  .rg-accordion-indicator-arrow,
+  .rg-mega-dropdown-tray .accordion-chevron,
+  .rg-mega-dropdown-tray .step-selected-summary {
     display: none !important;
+  }
+
+  /* 🎯 REGRESSION FIREWALL: UN-COLLAPSE ALL QUIZ COLUMNS ON DESKTOP */
+  .rg-mega-dropdown-tray .rg-quiz-column.is-collapsed .rg-quiz-cards-stack {
+    display: flex !important;
   }
 }

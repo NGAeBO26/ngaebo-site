@@ -15,6 +15,11 @@
   padding: 8px 20px !important;
   border-radius: 8px !important;
   cursor: pointer !important;
+  height: auto !important;
+  min-height: 40px !important;
+  white-space: normal !important;
+  line-height: 1.35 !important;
+  text-align: center !important;
   transition:
     transform 150ms ease,
     box-shadow 200ms ease,
@@ -42,7 +47,7 @@
 
 .finder-header-row
   .rg-mega-summary-trigger-btn.quiz-complete:not(.active):hover {
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+  /* background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important; */
   border-color: #fbbf24 !important;
   box-shadow: 0 0 20px rgba(245, 158, 11, 0.7) !important;
   transform: translateY(-1px) !important;
@@ -90,6 +95,10 @@
   font-family: "Montserrat", sans-serif !important;
   font-size: 12px !important;
   color: #cbd5e1 !important;
+  display: inline-block !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  line-height: 1.35 !important;
 }
 
 .finder-header-row
@@ -253,6 +262,11 @@
   color: #ffffff !important;
 }
 
+/* 🎯 MOBILE STICKY QUIZ STEP TIMELINE BAR (DESKTOP DEFAULT HIDE) */
+.rg-mobile-sticky-quiz-stepper {
+  display: none;
+}
+
 /* ─── 2. QUIZ GRID & DYNAMIC PROGRESSIVE STEP HIGHLIGHTING ─── */
 .rg-mega-dropdown-tray .rg-quiz-grid-wrapper {
   display: flex !important;
@@ -309,6 +323,37 @@
   align-items: center !important;
   gap: 8px !important;
   margin-bottom: 12px !important;
+}
+
+.rg-mega-dropdown-tray .rg-quiz-column-title.clickable {
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
+.rg-mega-dropdown-tray .step-selected-summary {
+  margin-left: auto !important;
+  font-size: 9.5px !important;
+  font-weight: 800 !important;
+  color: #f59e0b !important;
+  background: rgba(245, 158, 11, 0.15) !important;
+  border: 1px solid rgba(245, 158, 11, 0.4) !important;
+  padding: 2px 8px !important;
+  border-radius: 12px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 140px !important;
+}
+
+.rg-mega-dropdown-tray .accordion-chevron {
+  font-size: 10px !important;
+  color: #94a3b8 !important;
+  margin-left: 4px !important;
+}
+
+/* 🎯 MOBILE ACCORDION COLLAPSED STEP STYLING (HIDES ONLY UNSELECTED CARDS) */
+.rg-mega-dropdown-tray .rg-quiz-column.is-collapsed .rg-quiz-card:not(.selected) {
+  display: none !important;
 }
 
 .rg-mega-dropdown-tray .rg-quiz-column-title .step-num {

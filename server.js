@@ -137,9 +137,11 @@ const OSRM_DROPLET_URL = process.env.OSRM_DROPLET_URL || 'http://142.93.192.70';
 app.use('/osrm-api', createProxyMiddleware({
   target: OSRM_DROPLET_URL,
   changeOrigin: true,
-  pathRewrite: {
-    '^/osrm-api': '', // Strips '/osrm-api' so Droplet receives '/table/v1/driving...'
-  },
+  pathRewrite: { '^/osrm-api': '' },
+  on: {
+    proxyReq: (proxyReq, req) => console.log(`🚗 [OSRM PROXY] Routing ${req.method} request to OSRM Droplet`),
+    error: (err, req, res) => console.error(`❌ [OSRM PROXY ERROR]:`, err.message),
+  }
 }));
 
 // ==========================================================================

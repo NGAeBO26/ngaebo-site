@@ -1,12 +1,12 @@
 {
   "profile_id": "295_S1",
   "route_id": "295",
-  "ssdi_score": 7.7,
+  "ssdi_score": 6.3,
   "v3_terrain_score": 4.2,
   "v3_terrain_class": "Strenuous",
-  "badge_type": "wet",
-  "condition": "WET / SLICK",
-  "style_color": "#e66e00",
+  "badge_type": "ideal",
+  "condition": "DAMP / PACK",
+  "style_color": "#1b5e20",
   "access": {
     "label": "OPEN",
     "vibe_context": "RESTRICTED EXPLORER",
@@ -18,16 +18,16 @@
   },
   "environment": {
     "current_temp": 70,
-    "saturation_index": 16.5,
+    "saturation_index": 28.4,
     "soil_status": "Saturated",
     "precip_24h": 0.01,
     "saturation_trend": "stable",
     "alerts": []
   },
   "physics": {
-    "live_traction": 0.67,
-    "live_wh_per_km": 11.92,
-    "energy_penalty_pct": 8.0,
+    "live_traction": 0.82,
+    "live_wh_per_km": 11.13,
+    "energy_penalty_pct": 0.8,
     "v3_base_intensity": 4.2
   },
   "connectivity": {

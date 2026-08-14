@@ -116,6 +116,15 @@ export default function RideBuilder({
   const [showSuggestions, setShowSuggestions] = useState(false);
   const autocompleteRef = useRef<HTMLDivElement>(null);
 
+  // 🎯 STEP SCROLL ANCHOR REFS FOR MOBILE TIMELINE STEPPER
+  const step1Ref = useRef<HTMLDivElement>(null);
+  const step2Ref = useRef<HTMLDivElement>(null);
+  const step3Ref = useRef<HTMLDivElement>(null);
+  const step4Ref = useRef<HTMLDivElement>(null);
+
+  // 🎯 MOBILE ACCORDION STATE TRACKING (DEFAULTS TO STEP 1)
+  const [openStep, setOpenStep] = useState<number | null>(1);
+
   const [isUnlocked, setIsUnlocked] = useState<boolean>(() => {
     return localStorage.getItem("rideguide_lead_submitted") === "true";
   });
@@ -256,11 +265,23 @@ export default function RideBuilder({
     evaluateRouteProximity,
   ]);
 
-  // 🎯 REAL-TIME OPTION SELECTION & LIVE YIELD DISPATCH
+  // 🎯 REAL-TIME OPTION SELECTION & ACCORDION ADVANCE ENGINE
   const handleSelectOption = (key: keyof QuizSelections, value: any) => {
     const nextSelections = { ...selections, [key]: value };
     setSelections(nextSelections);
     translateQuizToEngine(nextSelections, engine);
+
+    // Reinstated Auto-Advance & Smooth Scroll Engine
+    if (key === "effortLevel") {
+      setOpenStep(2);
+      setTimeout(() => step2Ref.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 120);
+    } else if (key === "distanceRange") {
+      setOpenStep(3);
+      setTimeout(() => step3Ref.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 120);
+    } else if (key === "bikeType") {
+      setOpenStep(4);
+      setTimeout(() => step4Ref.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 120);
+    }
   };
 
   // 🎯 SYNC WITH HEADER CLEAR FILTERS ACTION
@@ -273,11 +294,44 @@ export default function RideBuilder({
         driveTimeMax: null,
         selectedRideDay: null,
       });
+      setOpenStep(1);
     }
   }, [engine.activeQuizSelections]);
 
-  // Active step index (1, 2, or 3)
-  const activeStep = !isStep1Done ? 1 : !isStep2Done ? 2 : !isStep3Done ? 3 : 4;
+  // 🎯 HELPER LABELS FOR COLLAPSED ACCORDION STEP BADGES
+  // const getEffortSummary = () => {
+  //   if (selections.effortLevel === "casual") return "Casual Spin";
+  //   if (selections.effortLevel === "workout") return "Solid Workout";
+  //   if (selections.effortLevel === "grunt") return "Tough Grunt";
+  //   if (selections.effortLevel === "sufferfest") return "Sufferfest";
+  //   return "";
+  // };
+
+  // const getDistanceSummary = () => {
+  //   if (selections.distanceRange === "quick") return "Quick Burner (<3 mi)";
+  //   if (selections.distanceRange === "half_day") return "Half-Day (3–8 mi)";
+  //   if (selections.distanceRange === "epic") return "All-Day Epic (8+ mi)";
+  //   return "";
+  // };
+
+  // const getBikeSummary = () => {
+  //   if (selections.bikeType === "all_road") return "Commuter / All-Road";
+  //   if (selections.bikeType === "gravel") return "Fat-Tire";
+  //   if (selections.bikeType === "rugged") return "Mountain Bike";
+  //   return "";
+  // };
+
+  // Active step index (1, 2, 3, 4, or 5)
+  const activeStep =
+    !isStep1Done
+      ? 1
+      : !isStep2Done
+      ? 2
+      : !isStep3Done
+      ? 3
+      : !selections.driveTimeMax
+      ? 4
+      : 5;
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -387,6 +441,62 @@ export default function RideBuilder({
 
   return (
     <div className="rg-mega-dropdown-tray">
+      {/* 🎯 MOBILE QUIZ STEP TIMELINE BAR (POSITIONED ABOVE SEARCH) */}
+      {activeTab === "quiz" && (
+        <div className="rg-mobile-sticky-quiz-stepper">
+          <button
+            type="button"
+            className={`stepper-pill ${isStep1Done ? "completed" : activeStep === 1 ? "active" : ""}`}
+            onClick={() => {
+              setOpenStep(1);
+              step1Ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }}
+          >
+            <span className="stepper-step-num">{isStep1Done ? "✓" : "1"}</span>
+            <span className="stepper-step-label">1. Effort</span>
+          </button>
+
+          <button
+            type="button"
+            className={`stepper-pill ${!isStep1Done ? "locked" : isStep2Done ? "completed" : activeStep === 2 ? "active" : ""}`}
+            onClick={() => {
+              if (!isStep1Done) return;
+              setOpenStep(2);
+              step2Ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }}
+          >
+            <span className="stepper-step-num">{isStep2Done ? "✓" : "2"}</span>
+            <span className="stepper-step-label">2. Distance</span>
+          </button>
+
+          <button
+            type="button"
+            className={`stepper-pill ${!isStep2Done ? "locked" : isStep3Done ? "completed" : activeStep === 3 ? "active" : ""}`}
+            onClick={() => {
+              if (!isStep2Done) return;
+              setOpenStep(3);
+              step3Ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }}
+          >
+            <span className="stepper-step-num">{isStep3Done ? "✓" : "3"}</span>
+            <span className="stepper-step-label">3. Bike</span>
+          </button>
+
+          <button
+            type="button"
+            className={`stepper-pill ${!isStep3Done ? "locked" : isUnlocked ? "completed" : "pro-lock"}`}
+            onClick={() => {
+              if (!isStep3Done) return;
+              setOpenStep(4);
+              step4Ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+            }}
+          >
+            <span className="stepper-step-num">{isUnlocked ? "✓" : "🔒"}</span>
+            <span className="stepper-step-label">4. Pro Locks</span>
+          </button>
+        </div>
+      )}
+
       {/* ─── TRAY HEADER: SINGLE ROW (SEARCH -> TAB 1 -> TAB 2) ─── */}
       <div className="rg-mega-dropdown-header">
         <div className="rg-mode-toggle-group">
@@ -441,31 +551,9 @@ export default function RideBuilder({
                           suggestionText.trim().toLowerCase(),
                       );
 
-                      // 🔍 TRACE EXECUTION LOGS
-                      console.group("🔍 [Route Search Execution Trace]");
-                      console.log("1. Selected Text:", suggestionText);
-                      console.log("2. Search Pool Size:", searchPool.length);
-                      console.log("3. Matched Route Object:", matchedRoute);
-                      console.log(
-                        "4. is onRouteSelect Passed?:",
-                        typeof onRouteSelect === "function",
-                      );
-                      console.groupEnd();
-
                       if (matchedRoute && onRouteSelect) {
-                        console.log(
-                          "🚀 Triggering GravelPopup via onRouteSelect()...",
-                        );
                         onRouteSelect(matchedRoute);
-                        onClose(); // 🎯 Close mega dropdown tray so GravelPopup is visible
-                      } else {
-                        console.warn(
-                          "⚠️ GravelPopup Failed to Open! Check reason above:",
-                          {
-                            reasonMissingRoute: !matchedRoute,
-                            reasonMissingCallback: !onRouteSelect,
-                          },
-                        );
+                        onClose();
                       }
                     }}
                     className="suggestion-interactive-item"
@@ -483,7 +571,7 @@ export default function RideBuilder({
             className={`rg-mode-tab-btn ${activeTab === "quiz" ? "active" : ""}`}
             onClick={() => setActiveTab("quiz")}
           >
-            RideFinder Quiz
+            RideBuilder
           </button>
 
           {/* 🎯 3. FINE-TUNE PARAMETERS TAB */}
@@ -500,22 +588,29 @@ export default function RideBuilder({
           ✕ Close
         </button>
       </div>
-
+      
       {/* ─── TAB 1: GUIDED QUIZ GRID ─── */}
       {activeTab === "quiz" ? (
         <div className="rg-quiz-grid-wrapper">
           <div className="rg-quiz-grid-body">
-            {/* 🎯 STEP 1: PHYSICAL EFFORT (ALWAYS ACTIVE FIRST) */}
+            {/* 🎯 STEP 1: PHYSICAL EFFORT (ACCORDION TOGGLE) */}
             <div
-              className={`rg-quiz-column ${activeStep === 1 ? "step-current" : "step-active"}`}
+              ref={step1Ref}
+              className={`rg-quiz-column step-1 ${activeStep === 1 ? "step-current" : "step-active"} ${openStep !== 1 && isStep1Done ? "is-collapsed" : ""}`}
             >
-              <div className="rg-quiz-column-title">
+              <div
+                className="rg-quiz-column-title clickable"
+                onClick={() => setOpenStep((prev) => (prev === 1 ? null : 1))}
+              >
                 <span
                   className={`step-num ${isStep1Done ? "completed" : activeStep === 1 ? "current" : ""}`}
                 >
                   {isStep1Done ? "✓" : "1"}
                 </span>
                 <h3>How hard to push?</h3>
+                <span className="accordion-chevron">
+                  {openStep === 1 ? "▲" : "▼"}
+                </span>
               </div>
 
               <div className="rg-quiz-cards-stack">
@@ -581,17 +676,24 @@ export default function RideBuilder({
               </div>
             </div>
 
-            {/* 🎯 STEP 2: TIME & DISTANCE (LOCKED UNTIL STEP 1 IS DONE) */}
+            {/* 🎯 STEP 2: TIME & DISTANCE (ACCORDION TOGGLE) */}
             <div
-              className={`rg-quiz-column ${!isStep1Done ? "step-locked" : activeStep === 2 ? "step-current" : "step-active"}`}
+              ref={step2Ref}
+              className={`rg-quiz-column step-2 ${!isStep1Done ? "step-locked" : activeStep === 2 ? "step-current" : "step-active"} ${openStep !== 2 && isStep2Done ? "is-collapsed" : ""}`}
             >
-              <div className="rg-quiz-column-title">
+              <div
+                className="rg-quiz-column-title clickable"
+                onClick={() => isStep1Done && setOpenStep((prev) => (prev === 2 ? null : 2))}
+              >
                 <span
                   className={`step-num ${isStep2Done ? "completed" : activeStep === 2 ? "current" : ""}`}
                 >
                   {isStep2Done ? "✓" : "2"}
                 </span>
                 <h3>How long on trail?</h3>
+                <span className="accordion-chevron">
+                  {openStep === 2 ? "▲" : "▼"}
+                </span>
               </div>
 
               <div className="rg-quiz-cards-stack">
@@ -659,17 +761,24 @@ export default function RideBuilder({
               </div>
             </div>
 
-            {/* 🎯 STEP 3: BIKE & TIRES (LOCKED UNTIL STEP 2 IS DONE) */}
+            {/* 🎯 STEP 3: BIKE & TIRES (ACCORDION TOGGLE) */}
             <div
-              className={`rg-quiz-column ${!isStep2Done ? "step-locked" : activeStep === 3 ? "step-current" : "step-active"}`}
+              ref={step3Ref}
+              className={`rg-quiz-column step-3 ${!isStep2Done ? "step-locked" : activeStep === 3 ? "step-current" : "step-active"} ${openStep !== 3 && isStep3Done ? "is-collapsed" : ""}`}
             >
-              <div className="rg-quiz-column-title">
+              <div
+                className="rg-quiz-column-title clickable"
+                onClick={() => isStep2Done && setOpenStep((prev) => (prev === 3 ? null : 3))}
+              >
                 <span
                   className={`step-num ${isStep3Done ? "completed" : activeStep === 3 ? "current" : ""}`}
                 >
                   {isStep3Done ? "✓" : "3"}
                 </span>
                 <h3>What are you Riding?</h3>
+                <span className="accordion-chevron">
+                  {openStep === 3 ? "▲" : "▼"}
+                </span>
               </div>
 
               <div className="rg-quiz-cards-stack">
@@ -737,12 +846,12 @@ export default function RideBuilder({
           </div>
 
           {/* ─── CONTEXTUAL OPT-IN & ADVANCED TELEMETRY STATE MACHINE ─── */}
-          {/* ─── CONTEXTUAL OPT-IN & ADVANCED TELEMETRY STATE MACHINE ─── */}
+          <div ref={step4Ref} className="rg-step4-scroll-anchor" style={{ width: "100%" }}>
           {!isUnlocked ? (
             !isStep3Done ? (
               /* STATE A: PREVIEW DIMMED ROW DURING STEPS 1–3 */
               <div className="rg-quiz-preview-locked-row step-locked">
-                <div className="rg-preview-column">
+                <div className="rg-quiz-column step-4 step-locked">
                   <div className="rg-quiz-column-title">
                     <span className="step-num">4</span>
                     <h3>How Far to Drive?</h3>
@@ -778,7 +887,7 @@ export default function RideBuilder({
                   </div>
                 </div>
 
-                <div className="rg-preview-column">
+                <div className="rg-quiz-column step-5 step-locked">
                   <div className="rg-quiz-column-title">
                     <span className="step-num">5</span>
                     <h3>Best Ride Window?</h3>
@@ -790,12 +899,6 @@ export default function RideBuilder({
                         <div
                           key={day.iso}
                           className={`rg-weather-day-chip ${isSelected ? "selected" : ""}`}
-                          onClick={() =>
-                            handleSelectOption(
-                              "selectedRideDay",
-                              isSelected ? null : day.iso,
-                            )
-                          }
                         >
                           <span className="chip-day">{day.label}</span>
                           <span className="chip-joy">
@@ -937,12 +1040,21 @@ export default function RideBuilder({
               </div>
             )
           ) : (
-            /* STATE C: UNLOCKED STEPS 4 & 5 FOR OPTED-IN USERS */
+            /* STATE C: UNLOCKED STEPS 4 & 5 INDIVIDUAL ACCORDION COLUMNS */
             <div className="rg-quiz-unlocked-row">
-              <div className="rg-quiz-column step-active">
-                <div className="rg-quiz-column-title">
-                  <span className="step-num completed">✓</span>
+              {/* STEP 4 ACCORDION COLUMN */}
+              <div className={`rg-quiz-column step-4 ${activeStep === 4 ? "step-current" : "step-active"} ${openStep !== 4 && selections.driveTimeMax ? "is-collapsed" : ""}`}>
+                <div
+                  className="rg-quiz-column-title clickable"
+                  onClick={() => setOpenStep((prev) => (prev === 4 ? null : 4))}
+                >
+                  <span className={`step-num ${selections.driveTimeMax ? "completed" : activeStep === 4 ? "current" : ""}`}>
+                    {selections.driveTimeMax ? "✓" : "4"}
+                  </span>
                   <h3>How Far to Drive?</h3>
+                  <span className="accordion-chevron">
+                    {openStep === 4 ? "▲" : "▼"}
+                  </span>
                 </div>
                 <div className="rg-origin-input-box">
                   <span className="origin-label">Starting Location:</span>
@@ -988,10 +1100,19 @@ export default function RideBuilder({
                 </div>
               </div>
 
-              <div className="rg-quiz-column step-active">
-                <div className="rg-quiz-column-title">
-                  <span className="step-num completed">✓</span>
+              {/* STEP 5 ACCORDION COLUMN */}
+              <div className={`rg-quiz-column step-5 ${activeStep === 5 ? "step-current" : "step-active"} ${openStep !== 5 && selections.selectedRideDay ? "is-collapsed" : ""}`}>
+                <div
+                  className="rg-quiz-column-title clickable"
+                  onClick={() => setOpenStep((prev) => (prev === 5 ? null : 5))}
+                >
+                  <span className={`step-num ${selections.selectedRideDay ? "completed" : activeStep === 5 ? "current" : ""}`}>
+                    {selections.selectedRideDay ? "✓" : "5"}
+                  </span>
                   <h3>Best Ride Window?</h3>
+                  <span className="accordion-chevron">
+                    {openStep === 5 ? "▲" : "▼"}
+                  </span>
                 </div>
                 <div className="rg-weather-days-row">
                   {tenDayWindow.map((day) => {
@@ -1019,6 +1140,7 @@ export default function RideBuilder({
               </div>
             </div>
           )}
+          </div>
         </div>
       ) : (
         /* ─── TAB 2: MANUAL CONTROLS (3 PARAMETER CARDS) ─── */
