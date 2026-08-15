@@ -1,7 +1,7 @@
 {
   "profile_id": "819_S1",
   "route_id": "819",
-  "ssdi_score": 7.6,
+  "ssdi_score": 8.3,
   "v3_terrain_score": 4.7,
   "v3_terrain_class": "Strenuous",
   "badge_type": "wet",
@@ -17,8 +17,8 @@
     "value": 0.33
   },
   "environment": {
-    "current_temp": 69,
-    "saturation_index": 25.1,
+    "current_temp": 85,
+    "saturation_index": 16.8,
     "soil_status": "Saturated",
     "precip_24h": 0.02,
     "saturation_trend": "stable",

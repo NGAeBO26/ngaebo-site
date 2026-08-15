@@ -51,7 +51,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+  z-index: 2000000 !important;
   backdrop-filter: blur(4px);
 }
 
@@ -421,6 +421,14 @@
   text-align: center;
   margin-top: 16px;
   color: var(--brand-mellow);
+}
+
+/* ─── 📱 MOBILE VIEWPORT OVERRIDES ─── */
+@media (max-width: 767px) {
+  /* 🎯 IMMEDIATE CSS HIDE: Prevents mobile loading render flash */
+  .rg-inline-showcase-section {
+    display: none !important;
+  }
 }
 
 

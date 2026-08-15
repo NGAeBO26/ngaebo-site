@@ -1,5 +1,5 @@
 /* src/components/modal/MapGuideOverlay.tsx */
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import "../../styles/MapGuideOverlay.css";
 
 interface OnboardingStep {
@@ -70,7 +70,7 @@ export default function MapGuideOverlay({
     return () => window.removeEventListener("rg-open-onboarding-tour", handleForceOpenTourChannel);
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const isAlreadyOnboarded = localStorage.getItem("nga_map_onboarded") === "true";
     if (isAlreadyOnboarded || !isMapReady) return;
 

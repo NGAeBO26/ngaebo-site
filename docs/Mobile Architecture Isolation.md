@@ -30,29 +30,34 @@ Isolate mobile layout controllers, drawer mechanics, and route detail takeovers 
 ## 📋 Execution Phases & Verification Gates
 
 ### Phase 1: `MobileGravelPopup.tsx` & `MobileGravelPopup.css` Creation
-- [ ] Create `MobileGravelPopup.tsx` by extracting the mobile active route takeover JSX from `StorePanel.tsx`.
-- [ ] Create `MobileGravelPopup.css` and port mobile drawer takeover styles from `MobileDrawer.css`.
-- [ ] Add locked weather teaser card (`.teaser-locked-card`) with blur filter, unlock badge (`🔒 INCLUDED WITH $6.99 GUIDE`), and hover/tap green CTA pulse interaction matching `GravelPopup.css`.
-- [ ] **Verification 1:** Run Phase 1 diagnostic script to confirm exact subpixel geometry parity ($422.4\text{px} \times 112.4\text{px}$ weather block, $422.4\text{px} \times 40.8\text{px}$ CTA button).
+- [x] Create `MobileGravelPopup.tsx` by extracting the mobile active route takeover JSX from `StorePanel.tsx`.
+- [x] Create `MobileGravelPopup.css` and port mobile drawer takeover styles from `MobileDrawer.css`.
+- [x] Add locked weather teaser card (`.teaser-locked-card`) with blur filter, unlock badge (`🔒 INCLUDED WITH $6.99 GUIDE`), and hover/tap green CTA pulse interaction matching `GravelPopup.css`.
+- [x] Wire `MobileGravelPopup` into `RideGuide.tsx` mobile drawer pane for testing.
+- [x] **Verification 1 Passed:** Live runtime verification confirmed subpixel geometry and interactive CTA flash parity.
 
 ---
 
-### Phase 2: Decouple `StorePanel.tsx` (Desktop Storefront Isolation)
-- [ ] Remove `if (isMobile)` branch from `StorePanel.tsx`.
-- [ ] Remove unused mobile component imports (`MobileThreeDayForecast`) from `StorePanel.tsx`.
+### Phase 2: Decouple & Scrub `StorePanel.tsx` (Desktop Storefront Isolation)
+- [ ] **Code Scrub:** Remove `if (isMobile) { ... }` mobile takeover return block from `StorePanel.tsx`.
+- [ ] **Code Scrub:** Remove `isMobile` property from `StorePanelProps` interface definition.
+- [ ] **Code Scrub:** Remove unused import `import MobileThreeDayForecast from '../features/Discovery/components/3DayForecast';`.
 - [ ] Ensure `StorePanel.tsx` remains 100% intact for desktop cart and catalog vault operations.
 - [ ] **Verification 2:** Test desktop cart dropdown and catalog print operations to verify zero desktop regression.
 
 ---
 
-### Phase 3: Create `MobileRideGuide.tsx` Shell
-- [ ] Create `MobileRideGuide.tsx` containing all mobile header strips, hamburger menu, top drawer (`MobileRideBuilder`), WebGL map canvas (`GravelGuide`), and bottom drawer assembly.
-- [ ] Mount `MobileGravelPopup` inside the bottom drawer when `activeRouteProperties !== null`.
-- [ ] Mount `RideResultGallery` inside the bottom drawer when `activeRouteProperties === null`.
+### Phase 3: Create `MobileRideGuide.tsx` Shell & Scrub `RideGuide.tsx`
+- [ ] Create `MobileRideGuide.tsx` containing mobile header strips, hamburger menu, top drawer (`MobileRideBuilder`), WebGL map canvas (`GravelGuide`), and bottom drawer assembly.
+- [ ] Mount `MobileGravelPopup` inside `MobileRideGuide` bottom drawer when `activeRouteProperties !== null`.
+- [ ] Mount `RideResultGallery` inside `MobileRideGuide` bottom drawer when `activeRouteProperties === null`.
+- [ ] **Code Scrub:** Extract mobile JSX block (`.rg-mobile-app-header-strip` and `.rg-mobile-unified-bottom-drawer`) out of `RideGuide.tsx`.
+- [ ] **Code Scrub:** Move mobile-specific drawer state hooks out of `RideGuide.tsx` into `MobileRideGuide.tsx`.
 - [ ] **Verification 3:** Run Phase 3 diagnostic script to verify seamless accordion toggling between top `MobileRideBuilder` drawer and bottom drawer.
 
 ---
 
-### Phase 4: `RideGuide.tsx` Parent Controller Clean-Up
+### Phase 4: CSS Cleanup & Final Controller Clean-Up
+- [ ] **Code Scrub:** Prune duplicate takeover CSS selectors (`.mobile-header-banner-takeover`, `.section-metrics-row`, `.section-weather-row`, `.section-elevation-graph`) from `MobileDrawer.css`.
 - [ ] Update `RideGuide.tsx` to conditionally render `<MobileRideGuide />` on mobile viewports vs `<RideGuideDesktop />` on desktop.
 - [ ] **Verification 4:** Final full-pass baseline diff check comparing runtime metrics against Phase 0 pre-refactor baseline.

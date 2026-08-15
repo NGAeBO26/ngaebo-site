@@ -1,7 +1,7 @@
 {
   "profile_id": "37C_S1",
   "route_id": "37C",
-  "ssdi_score": 4.5,
+  "ssdi_score": 5.9,
   "v3_terrain_score": 2.4,
   "v3_terrain_class": "Cruiser",
   "badge_type": "ideal",
@@ -17,8 +17,8 @@
     "value": 0.1
   },
   "environment": {
-    "current_temp": 75,
-    "saturation_index": 23.8,
+    "current_temp": 83,
+    "saturation_index": 16.9,
     "soil_status": "Saturated",
     "precip_24h": 0.12,
     "saturation_trend": "stable",

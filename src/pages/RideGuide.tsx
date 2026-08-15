@@ -10,10 +10,9 @@ import GravelPopup from "../features/Discovery/components/GravelPopup";
 import TacticalLeadForm from "../components/TacticalLeadForm";
 import { LoadingOverlay } from "../components/LoadingOverlay";
 import PersistentLeftShopPanel from "../store/StorePanel";
-import CartDropdown from "../components/CartDropdown";
 import { useShopifyCart } from "../store/ShopifyCartContext"; 
 import MapGuideOverlay from "../components/modal/MapGuideOverlay";
-import MobileRideBuilder from "../features/Discovery/components/MobileRideBuilder";
+import MobileRideGuide from "../features/Discovery/components/MobileRideGuide";
 
 import "../styles/StorePanel.css";
 import "../features/Discovery/DiscoveryContainer.css";
@@ -56,11 +55,9 @@ export default function RideGuide() {
   const [isDashboardViewActive, setIsDashboardViewActive] = useState<boolean>(false);
 
   // ─── 📱 APPROVED MOBILE APPLICATION STATE LAYER CONTROLLERS ───
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-  const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState<boolean>(false);
-  const [isMobileCartOpen, setIsMobileCartOpen] = useState<boolean>(false);
-  const [isSiteNavMenuOpen, setIsSiteNavMenuOpen] = useState<boolean>(false);
-  const [isBottomDrawerExpanded, setIsBottomDrawerExpanded] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(
+    () => typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches
+  );
 
   // 🎯 ADDED: Desktop gallery grid expansion state definition
   const [isGalleryExpanded, setIsGalleryExpanded] = useState<boolean>(false);
@@ -115,7 +112,7 @@ export default function RideGuide() {
     };
   }, []);
 
-  // 📱 VIEWPORT MEDIA QUERY & QUIZ EVENT LISTENERS
+  // 📱 VIEWPORT MEDIA QUERY EVENT LISTENER
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 767px)");
     setIsMobile(mediaQuery.matches);
@@ -124,22 +121,10 @@ export default function RideGuide() {
       setIsMobile(e.matches);
     };
 
-    const handleOpenQuizMobile = () => {
-      if (window.matchMedia("(max-width: 767px)").matches) {
-        setIsFilterDrawerOpen(true);
-        setIsMobileCartOpen(false);
-        setIsSiteNavMenuOpen(false);
-      }
-    };
-
     mediaQuery.addEventListener("change", handleViewportChange);
-    window.addEventListener("open-ride-builder", handleOpenQuizMobile);
-    window.addEventListener("flash-mega-button", handleOpenQuizMobile);
 
     return () => {
       mediaQuery.removeEventListener("change", handleViewportChange);
-      window.removeEventListener("open-ride-builder", handleOpenQuizMobile);
-      window.removeEventListener("flash-mega-button", handleOpenQuizMobile);
     };
   }, []);
 
@@ -177,8 +162,6 @@ export default function RideGuide() {
       setIsDashboardViewActive(false);
       window.scrollTo({ top: 0 });
       ignoreObserverRef.current = false;
-      setIsSiteNavMenuOpen(false);
-      setIsMobileCartOpen(false);
     }, 350);
   }, []);
 
@@ -285,12 +268,6 @@ export default function RideGuide() {
       setActiveTakeoverRouteId(primitiveId);
       setIsGalleryExpanded(false); // 🎯 Reset expanded grid when GravelPopup opens
 
-      if (window.matchMedia("(max-width: 767px)").matches) {
-        setIsBottomDrawerExpanded(true);
-        setIsFilterDrawerOpen(false);
-        setIsMobileCartOpen(false);
-      }
-
       if (mapZoomFnRef.current) {
         mapZoomFnRef.current(feature);
       }
@@ -355,9 +332,10 @@ export default function RideGuide() {
         isFullscreen={true}
       />
 
-      {/* SHOWCASE BRAND MARKETING TOP ROW */}
-      <section className="rg-inline-showcase-section" aria-label="Product Benefit Overview Section">
-        <div className="rf-marketing-hero-banner">
+      {/* SHOWCASE BRAND MARKETING TOP ROW (DESKTOP ONLY) */}
+      {!isMobile && (
+        <section className="rg-inline-showcase-section" aria-label="Product Benefit Overview Section">
+          <div className="rf-marketing-hero-banner">
           <h2>Plan Faster. Ride Smarter.</h2>
           <p>HIGH ACCURACY TERRAIN - CUSTOM ANALYTICS - WEATHER AWARE - GUIDE FOR YOUR RIDE</p>
         </div>
@@ -443,178 +421,37 @@ export default function RideGuide() {
             <div className="rg-instructions-micro-header-callout">Use the interactive map below to discover routes, then get your offline guide delivered to your inbox!</div>
           </div>
         </div>
-      </section>
+        </section>
+      )}
 
       {/* CONSOLE MODULE WRAPPER PLATFORM */}
-      <div className="discovery-dashboard-root" ref={dashboardRef}>
-        
-        {isMobile && (
-          <div className="rg-mobile-app-header-strip">
-            
-            <div className="rg-mobile-header-top-seam-mask" />
-            <div className="rg-mobile-header-bottom-seam-mask" />
-            
-            <div className="rg-mobile-header-left-actions-dock">
-              <button 
-                type="button" 
-                className="rg-mobile-hamburger-drawer-trigger"
-                onClick={() => {
-                  const nextFilterState = !isFilterDrawerOpen;
-                  setIsFilterDrawerOpen(nextFilterState);
-                  setIsMobileCartOpen(false);
-                  setIsSiteNavMenuOpen(false);
-                  
-                  if (nextFilterState) {
-                    setIsBottomDrawerExpanded(false);
-                  }
-                }}
-                aria-expanded={isFilterDrawerOpen}
-                aria-label="Toggle Route Filtering Controls Drawer"
-              >
-                {isFilterDrawerOpen ? (
-                  "✕"
-                ) : (
-                  <img 
-                    src="/data/assets/icon-filter.svg" 
-                    alt="Filter Controls" 
-                  />
-                )}
-              </button>
-
-              <button 
-                type="button"
-                className="rg-drawer-reset-filters-btn"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (isTakeoverCurrentlyActive) {
-                    handleExitTakeover();
-                  } else {
-                    if (filterEngine) {
-                      filterEngine.resetFilters();
-                    }
-                    setFilteredRoutes(masterRoutes);
-                    if (mapResetFnRef.current) {
-                      mapResetFnRef.current();
-                    }
-                    console.log("Mobile search filters and map constraints reset to defaults.");
-                  }
-                }}
-                title={isTakeoverCurrentlyActive ? "Clear Selected Route" : "Reset All Active Search Filters"}
-                aria-label={isTakeoverCurrentlyActive ? "Clear currently selected route metrics overview" : "Clear all filtering parameters and return to master backcountry checklist"}
-              >
-                <img 
-                  src="/data/assets/icon-reset.svg" 
-                  alt="Reset Filters" 
-                />
-              </button>
-            </div>
-
-            <div className="rg-mobile-app-centered-branding" onClick={handleExitFullscreen} title="Minimize workspace map view layer">
-              <img 
-                src="/images/rideatlas-logo.svg" 
-                alt="RideAtlas Logo" 
-              />
-              
-            </div>
-
-            <div className="rg-mobile-header-right-actions-dock">
-              <button
-                type="button"
-                className={`rg-mobile-header-icon-action-btn ${isMobileCartOpen ? "action-active" : ""}`}
-                onClick={() => {
-                  const nextCartState = !isMobileCartOpen;
-                  setIsMobileCartOpen(nextCartState);
-                  setIsFilterDrawerOpen(false);
-                  setIsSiteNavMenuOpen(false);
-                  
-                  if (nextCartState) {
-                    setIsBottomDrawerExpanded(false);
-                  }
-                }}
-                aria-expanded={isMobileCartOpen}
-                aria-label="Toggle Shopping Cart Dropdown Menu Drawer"
-              >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="9" cy="21" r="1"></circle>
-                  <circle cx="20" cy="21" r="1"></circle>
-                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                </svg>
-
-                {cartItems && cartItems.length > 0 && (
-                  <span className="rg-header-cart-badge">
-                    {cartItems.length}
-                  </span>
-                )}
-              </button>
-
-              <button
-                type="button"
-                className={`rg-mobile-sitenav-drawer-trigger ${isSiteNavMenuOpen ? "action-active" : ""}`}
-                onClick={() => {
-                  setIsSiteNavMenuOpen(!isSiteNavMenuOpen);
-                  setIsFilterDrawerOpen(false);
-                  setIsMobileCartOpen(false);
-                }}
-                aria-expanded={isSiteNavMenuOpen}
-                aria-label="Toggle Global Site Destination Links Menu"
-              >
-                ☰
-              </button>
-            </div>
-
-            {isSiteNavMenuOpen && (
-              <nav className="rg-mobile-sitenav-dropdown-overlay-tray" aria-label="Mobile Site Navigation Menu Links">
-                <a href="/" className="rg-mobile-nav-link-item">Home</a>
-                <a href="/rides" className="rg-mobile-nav-link-item active-destination">RideGuides</a>
-                <a href="/shop" className="rg-mobile-nav-link-item">Shop Gear</a>
-                <a href="/about" className="rg-mobile-nav-link-item">About Us</a>
-              </nav>
-            )}
-
-            <CartDropdown 
-              isOpen={isMobileCartOpen} 
-              allRoutes={masterRoutes} 
-              isMobile={true} 
-              onActionTriggered={() => setIsMobileCartOpen(false)} 
-            />
-          </div>
-        )}
-
-        {/* HAMBURGER SLIDEOUT DRAPDOWN TRAY FILTER CONTROLS */}
-        {isMobile ? (
-          !isWorkspaceLoading && !isMobileCartOpen && !isSiteNavMenuOpen && (
-            <div className={`finder-header-row ${isFilterDrawerOpen ? "is-expanded" : "is-collapsed"}`}>
-              <MobileRideBuilder
-                isOpen={isFilterDrawerOpen}
-                onToggleOpen={() => {
-                  setIsFilterDrawerOpen((prev) => {
-                    const nextState = !prev;
-                    if (nextState) {
-                      setIsBottomDrawerExpanded(false);
-                    }
-                    return nextState;
-                  });
-                }}
-                onClose={() => setIsFilterDrawerOpen(false)}
-                engine={filterEngine}
-                routesData={masterRoutes}
-                totalCount={masterRoutes.length}
-                onApplyQuiz={() => {
-                  setIsFilterDrawerOpen(false);
-                  setIsBottomDrawerExpanded(true);
-                }}
-                onRouteSelect={handleRouteSelect}
-              />
-            </div>
-          )
-        ) : (
+      {isMobile ? (
+        <MobileRideGuide
+          filterEngine={filterEngine}
+          masterRoutes={masterRoutes}
+          filteredRoutes={filteredRoutes}
+          selectedRouteFeature={selectedRouteFeature}
+          isTakeoverCurrentlyActive={isTakeoverCurrentlyActive}
+          onRouteSelect={handleRouteSelect}
+          onExitTakeover={handleExitTakeover}
+          isWorkspaceLoading={isWorkspaceLoading}
+          loadProgress={loadProgress}
+          activeHoverId={activeHoverId}
+          onHoverChange={setActiveHoverId}
+          onRoutesLoaded={handleRoutesLoaded}
+          onExitFullscreen={handleExitFullscreen}
+          mapResetFnRef={mapResetFnRef}
+          mapZoomFnRef={mapZoomFnRef}
+          cartItems={cartItems}
+        />
+      ) : (
+        <div className="discovery-dashboard-root" ref={dashboardRef}>
           <RideFilterBar
             engine={filterEngine}
             totalCount={masterRoutes.length}
             routesData={masterRoutes}
             isTakeoverActive={isTakeoverCurrentlyActive}
             onSelectionComplete={() => {
-              setIsBottomDrawerExpanded(true);
               setIsGalleryExpanded(true);
             }}
             onMegaOpen={() => {
@@ -623,51 +460,58 @@ export default function RideGuide() {
             }}
             onRouteSelect={handleRouteSelect}
           />
-        )}
 
-        {!isMobile && isTakeoverCurrentlyActive && selectedRouteFeature && (
-          <GravelPopup
-            feature={selectedRouteFeature}
-            onClose={handleExitTakeover}
-            className={isPopupClosing ? "popup-dismissing" : "popup-entering"}
-          />
-        )}
+          {isTakeoverCurrentlyActive && selectedRouteFeature && (
+            <GravelPopup
+              feature={selectedRouteFeature}
+              onClose={handleExitTakeover}
+              className={isPopupClosing ? "popup-dismissing" : "popup-entering"}
+            />
+          )}
 
-        <div className="discovery-center-container" style={{ position: "relative" }}>
-          
-          <LoadingOverlay isLoading={isWorkspaceLoading} progress={loadProgress} message="Loading Map Data..." />
+          <div
+            className="discovery-center-container"
+            style={{ position: "relative" }}
+          >
+            <LoadingOverlay
+              isLoading={isWorkspaceLoading}
+              progress={loadProgress}
+              message="Loading Map Data..."
+            />
 
-          <div className="rg-retail-map-workspace-layout-deck">
-            
-            {/* Desktop Left Store Sidebar Container Block */}
-            {!isMobile && (
+            <div className="rg-retail-map-workspace-layout-deck">
+              {/* Desktop Left Store Sidebar Container Block */}
               <aside className="rg-left-workspace-storefront-sidebar">
                 <PersistentLeftShopPanel
-                  activeRouteProperties={selectedRouteFeature ? selectedRouteFeature.properties : null}
+                  activeRouteProperties={
+                    selectedRouteFeature ? selectedRouteFeature.properties : null
+                  }
                   allRoutes={masterRoutes}
                   aria-label="Route Telemetry Workspace Data Feed"
                 />
               </aside>
-            )}
 
-            {/* Immersive WebGL Mapping Backplane Canvas Viewport */}
-            <div className="discovery-map-main-viewport">
-              <GravelGuide
-                activeHoverId={activeHoverId}
-                onRouteHover={setActiveHoverId}
-                activeRouteId={activeTakeoverRouteId}
-                onRouteSelect={handleRouteSelect}
-                isTakeoverActive={isTakeoverCurrentlyActive}
-                filteredRoutes={filteredRoutes}
-                onRoutesLoaded={handleRoutesLoaded}
-                onRegisterResetFn={(fn) => { mapResetFnRef.current = fn; }}
-                onRegisterZoomFn={(fn) => { mapZoomFnRef.current = fn; }}
-                onExitFullscreen={handleExitFullscreen}
-              />
-            </div>
+              {/* Immersive WebGL Mapping Backplane Canvas Viewport */}
+              <div className="discovery-map-main-viewport">
+                <GravelGuide
+                  activeHoverId={activeHoverId}
+                  onRouteHover={setActiveHoverId}
+                  activeRouteId={activeTakeoverRouteId}
+                  onRouteSelect={handleRouteSelect}
+                  isTakeoverActive={isTakeoverCurrentlyActive}
+                  filteredRoutes={filteredRoutes}
+                  onRoutesLoaded={handleRoutesLoaded}
+                  onRegisterResetFn={(fn) => {
+                    mapResetFnRef.current = fn;
+                  }}
+                  onRegisterZoomFn={(fn) => {
+                    mapZoomFnRef.current = fn;
+                  }}
+                  onExitFullscreen={handleExitFullscreen}
+                />
+              </div>
 
-            {/* Desktop Right Rail Asset Gallery Container Block */}
-            {!isMobile && (
+              {/* Desktop Right Rail Asset Gallery Container Block */}
               <RideResultGallery
                 routes={filteredRoutes}
                 activeHoverId={activeHoverId}
@@ -676,102 +520,26 @@ export default function RideGuide() {
                 onToggleCollapse={() => {}}
                 onRouteSelect={handleRouteSelect}
                 isTakeoverActive={isTakeoverCurrentlyActive}
-                activeRouteId={activeTakeoverRouteId} // 🎯 PASSED ACTIVE TAKEOVER ROUTE ID
+                activeRouteId={activeTakeoverRouteId}
                 sortBy={filterEngine.sortBy}
                 onSortChange={filterEngine.setSortBy}
                 sortOrder={filterEngine.sortOrder}
                 onToggleSortOrder={filterEngine.toggleSortOrder}
                 isExpanded={isGalleryExpanded}
-                onToggleExpand={() => setIsGalleryExpanded((prev: boolean) => !prev)}
+                onToggleExpand={() =>
+                  setIsGalleryExpanded((prev: boolean) => !prev)
+                }
                 evaluateRouteProximity={filterEngine.evaluateRouteProximity}
-                selectedRideDay={filterEngine.activeQuizSelections?.selectedRideDay}
+                selectedRideDay={
+                  filterEngine.activeQuizSelections?.selectedRideDay
+                }
                 activeQuizSelections={filterEngine.activeQuizSelections}
                 driveTimesMap={filterEngine.driveTimesMap}
               />
-            )}
-
-            {/* ─── 📱 APPROVED ADAPTIVE MOBILE OVERLAY LOWER DRAWER CONTROLLER ─── */}
-            {isMobile && !isWorkspaceLoading && (
-              <div className={`rg-mobile-unified-bottom-drawer ${isBottomDrawerExpanded ? "drawer-expanded" : "drawer-minimized"} ${isTakeoverCurrentlyActive ? "has-active-selection" : ""}`}>
-                
-                {/* INTERACTIVE DRAG HANDLE ROW */}
-                <div 
-                  className="rg-mobile-drawer-drag-handle-bar"
-                  onClick={() => {
-                    const nextExpandedState = !isBottomDrawerExpanded;
-                    setIsBottomDrawerExpanded(nextExpandedState);
-                    
-                    if (nextExpandedState) {
-                      setIsMobileCartOpen(false);
-                    }
-                  }}
-                >
-                  <div className="rg-drawer-horizontal-pill-indicator"></div>
-                  
-                  <div className="rg-drawer-toggle-arrow-indicator">
-                    {isBottomDrawerExpanded ? '▼' : '▲'}
-                  </div>
-
-                  <div className="rg-drawer-status-title-text-wrapper">
-                    <span className="rg-drawer-status-title-text">
-                      {isTakeoverCurrentlyActive && selectedRouteFeature?.properties
-                        ? `FS ${selectedRouteFeature.properties.ID || selectedRouteFeature.properties.id || ''} - ${selectedRouteFeature.properties.NAME || selectedRouteFeature.properties.title || "Selected Route"}`
-                        : `Available RideGuides (${filteredRoutes.length})`
-                      }
-                    </span>
-                    {isTakeoverCurrentlyActive && selectedRouteFeature?.properties?.v3_fcs_label && (
-                      <img 
-                        src={`/images/badges/fcs/fcs-badge-${String(selectedRouteFeature.properties.v3_fcs_label).toLowerCase()}.png`} 
-                        alt="Difficulty Badge" 
-                        className="rg-drawer-header-badge" 
-                      />
-                    )}
-                  </div>
-                </div>
-
-                {/* THE ADAPTIVE CONTENT ACCORDION PANE */}
-                <div className="rg-mobile-drawer-interior-scroll-pane">
-                  {isTakeoverCurrentlyActive ? (
-                    <aside className="rg-left-workspace-storefront-sidebar-mobile-portal">
-                      <PersistentLeftShopPanel
-                        activeRouteProperties={selectedRouteFeature ? selectedRouteFeature.properties : null}
-                        allRoutes={masterRoutes}
-                        isMobile={true} 
-                        onActionTriggered={() => setIsMobileCartOpen(false)}
-                      />
-                    </aside>
-                  ) : (
-                    <RideResultGallery
-                      routes={filteredRoutes}
-                      activeHoverId={activeHoverId}
-                      onHoverChange={setActiveHoverId}
-                      isCollapsed={false}
-                      onToggleCollapse={() => {}}
-                      onRouteSelect={handleRouteSelect}
-                      isTakeoverActive={false}
-                      sortBy={filterEngine.sortBy}
-                      onSortChange={filterEngine.setSortBy}
-                      sortOrder={filterEngine.sortOrder}
-                      onToggleSortOrder={filterEngine.toggleSortOrder}
-                      evaluateRouteProximity={filterEngine.evaluateRouteProximity}
-                      selectedRideDay={filterEngine.activeQuizSelections?.selectedRideDay}
-                      activeQuizSelections={filterEngine.activeQuizSelections}
-                      driveTimesMap={filterEngine.driveTimesMap}
-                    />
-                  )}
-                  
-                </div>
-
-                {/* 🎯 THE PERSISTENT SYSTEM BEZEL FOOTER */}
-                <div className="rg-mobile-drawer-system-bezel-footer">
-                  <div className="rg-bezel-hardware-line" />
-                </div>
-
-              </div>
-            )}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

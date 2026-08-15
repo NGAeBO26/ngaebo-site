@@ -1,0 +1,435 @@
+/* src/features/Discovery/components/MobileGravelPopup.css */
+
+@media (max-width: 767px) {
+  /* 🎯 COMPONENT SCOPED NAMESPACE */
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: min-content !important;
+    width: 100% !important;
+    justify-content: flex-start !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* ─── 🗺️ TAKEOVER HEADER BANNER ─── */
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .mobile-header-banner-takeover {
+    margin: -14px -14px 0px -14px !important; 
+    width: calc(100% + 28px) !important;
+    border: none !important;
+    background: var(--brand-cream) !important;
+    border-radius: 0px !important;
+    padding: 12px 16px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: row !important;    
+    align-items: center !important;
+    justify-content: center !important;
+    height: auto !important;
+    min-height: 0 !important;
+    flex-shrink: 0 !important;
+    position: relative !important;
+  }
+
+  /* 🎯 MINIMIZED SELECTION PEEK: Resets negative margins when bottom drawer is collapsed */
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer.drawer-minimized.has-active-selection .rg-mobile-gravel-popup-container .mobile-header-banner-takeover {
+    margin: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 12px 16px !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .card-left-details-block {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important; 
+    margin: 0 !important;                     
+    box-sizing: border-box !important;
+    border-radius: 0px !important;
+    background: transparent !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .card-subtitle-banner-row {
+    display: flex !important;
+    flex-direction: row !important;           
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin: 0 !important;                     
+    padding: 0 !important;
+    white-space: normal !important;
+    background: transparent !important;
+    gap: 0 !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .subtitle-item:first-of-type {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 0% !important;
+    align-items: flex-end !important;
+    text-align: right !important;
+    padding: 0 12px 0 0 !important;          
+    margin: 0 !important;
+    gap: 1px !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .subtitle-item:last-of-type {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 1 1 0% !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    padding: 0 0 0 12px !important;           
+    margin: 0 !important;
+    gap: 1px !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .subtitle-label {
+    font-size: 8px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    color: #94a3b8 !important;                
+    font-weight: 800 !important;
+    font-family: "Montserrat", sans-serif !important;
+    line-height: 1.1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .mellow-highlight-value {
+    font-size: 9px !important;
+    color: var(--brand-deep-green) !important; 
+    font-weight: 800 !important;
+    font-family: "Montserrat", sans-serif !important;
+    text-transform: uppercase !important;
+    display: inline-block !important;
+    line-height: 1.2 !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .banner-inline-divider {
+    display: block !important;
+    color: var(--brand-amber) !important;
+    font-size: 16px !important;
+    align-self: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* ─── 📊 TELEMETRY METRICS BAY ─── */
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .rg-mobile-metrics-grid-bay .rr-metrics-tiles-wrapper,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .rg-mobile-metrics-grid-bay .hud-section-body {
+    display: flex !important;
+    flex-direction: row !important; 
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    gap: 2px !important;
+    box-sizing: border-box !important;
+    padding: 4px 0 !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .rg-mobile-metrics-grid-bay .rr-metric-tile-row {
+    display: flex !important;
+    flex-direction: column !important; 
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: center !important;
+    padding: 2px 0 !important;
+    background: transparent !important;
+    border: none !important;
+    height: auto !important;
+    flex: 1 !important; 
+    min-width: 0 !important; 
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .rg-mobile-metrics-grid-bay .rr-metric-icon-column {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: auto !important;
+    padding: 0 !important;
+    margin: 0 auto 4px auto !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .rg-mobile-metrics-grid-bay .metric-icon-container,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .rg-mobile-metrics-grid-bay .rr-metric-dial-wrapper {
+    width: 38px !important; 
+    height: 38px !important;
+    min-width: 38px !important;
+    margin: 0 auto !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .rg-mobile-metrics-grid-bay .rr-metric-content-column,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .rg-mobile-metrics-grid-bay .metric-details {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .rg-mobile-metrics-grid-bay .rr-metric-value-display,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .rg-mobile-metrics-grid-bay .metric-value {
+    font-size: 10px !important; 
+    line-height: 1.2 !important;
+    font-weight: 800 !important;
+    color: var(--brand-charcoal) !important;
+    margin: 0 auto 2px auto !important;
+    text-align: center !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .rg-mobile-metrics-grid-bay .rr-metric-label-display,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .rg-mobile-metrics-grid-bay .metric-label {
+    font-size: 6.5px !important;
+    line-height: 1.1 !important;
+    white-space: normal !important;
+    max-width: 65px !important;
+    color: #475569 !important;
+    margin: 0 auto !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .hud-console-section {
+    margin-bottom: 0px !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .hud-console-section.section-metrics-row {
+    margin-top: 0px !important;
+  }
+
+  /* ─── ⛰️ ELEVATION SPARKLINE CONTAINMENT ─── */
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .sparkline-viewport-containment {
+    padding: 0 !important;
+    height: 104px !important; 
+    min-height: 104px !important;
+    flex-shrink: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .rr-sparkline-container,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .rr-sparkline-main {
+    height: 100% !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-top: -8px !important;
+    margin-bottom: -4px !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .rr-sparkline-svg {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: contain !important; 
+    display: block !important;
+  }
+
+  /* ─── 🟢 ACTION CTA BUTTON WRAPPER ─── */
+  .discovery-dashboard-root .rg-mobile-action-cta-button-wrapper,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-action-cta-button-wrapper,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .rg-mobile-action-cta-button-wrapper,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-consolidated-drawer-content .rg-mobile-action-cta-button-wrapper {
+    margin-top: 16px !important; 
+    margin-bottom: 8px !important;
+    width: 100% !important; 
+    margin-left: 0 !important;
+    flex-shrink: 0 !important;
+    display: block !important;
+    position: relative !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-action-cta-button-wrapper .rg-inline-card-action-btn,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-action-cta-button-wrapper .rg-inline-card-action-btn,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .rg-mobile-action-cta-button-wrapper .rg-inline-card-action-btn,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-consolidated-drawer-content .rg-mobile-action-cta-button-wrapper .rg-inline-card-action-btn {
+    border-radius: 10px !important; 
+    padding: 14px 16px !important; 
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
+    border: none !important;
+    margin: 0 !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 48px !important;
+    min-height: 48px !important;
+    color: #ffffff !important;
+    background-color: #1b7f3a !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-action-cta-button-wrapper .rg-inline-card-action-btn.print-green,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-action-cta-button-wrapper .rg-inline-card-action-btn.print-green,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .rg-mobile-action-cta-button-wrapper .rg-inline-card-action-btn.print-green,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-consolidated-drawer-content .rg-mobile-action-cta-button-wrapper .rg-inline-card-action-btn.print-green {
+    background-color: #10b981 !important;
+  }
+
+  /* 🎯 SCOPED MOBILE METRICS HEIGHT COLLAPSE (ELIMINATES EXTRA WHITE SPACE) */
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .section-metrics-row .hud-section-body,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .rr-metrics-tiles-wrapper {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    flex: 0 0 auto !important;
+    padding-bottom: 6px !important;
+    background: var(--brand-cream) !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  
+
+  /* ─── 🔒 TEASER LOCKED CARD OVERLAY & BLUR MATRIX ─── */
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-locked-card {
+    position: relative !important;
+    overflow: hidden !important;
+    border-radius: 8px !important;
+    background: radial-gradient(circle at center, #ffffff 0%, #f9f9f9 100%) !important;
+    box-sizing: border-box !important;
+    height: 100% !important;
+    width: 100% !important;
+    min-height: 84px !important;
+    cursor: pointer !important;
+    transition: all 200ms ease !important;
+    user-select: none !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-blurred-content {
+    filter: blur(4px) opacity(0.55) !important;
+    pointer-events: none !important;
+    user-select: none !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    transition: filter 200ms ease !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-locked-card:active .teaser-blurred-content,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-locked-card:hover .teaser-blurred-content {
+    filter: blur(2px) opacity(0.7) !important;
+  }
+
+  /* 🔒 LOCK UNLOCK BADGE */
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-lock-badge {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    background: rgba(15, 23, 42, 0.92) !important;
+    border: 1px solid #f59e0b !important;
+    color: #ffffff !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 800 !important;
+    padding: 6px 12px !important;
+    border-radius: 20px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    z-index: 10 !important;
+    white-space: nowrap !important;
+    pointer-events: none !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-lock-icon {
+    width: 12px !important;
+    height: 12px !important;
+    object-fit: contain !important;
+    flex-shrink: 0 !important;
+    display: inline-block !important;
+    transition: transform 200ms ease !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-badge-label {
+    display: inline-block !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-badge-hover-label {
+    display: none !important;
+    color: #ffffff !important;
+    font-weight: 900 !important;
+  }
+
+  /* 🟢 TAP / HOVER SOLID GREEN MORPH BADGE */
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-locked-card.is-active-teaser .teaser-lock-badge,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-locked-card:active .teaser-lock-badge,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-locked-card:hover .teaser-lock-badge {
+    background-color: #10b981 !important;
+    color: #ffffff !important;
+    border-color: #10b981 !important;
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.85) !important;
+    transform: translate(-50%, -50%) scale(1.06) !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-locked-card.is-active-teaser .teaser-badge-label,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-locked-card:active .teaser-badge-label,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-locked-card:hover .teaser-badge-label {
+    display: none !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-locked-card.is-active-teaser .teaser-badge-hover-label,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-locked-card:active .teaser-badge-hover-label,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-locked-card:hover .teaser-badge-hover-label {
+    display: inline-block !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-locked-card.is-active-teaser .teaser-lock-icon,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-locked-card:active .teaser-lock-icon,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .rg-mobile-gravel-popup-container .teaser-locked-card:hover .teaser-lock-icon {
+    transform: rotate(-12deg) scale(1.1) !important;
+    filter: brightness(0) invert(1) !important;
+  }
+
+  /* ─── 🟢 VERDANT CTA FLASH & CROSS-HIGHLIGHT ANIMATION ─── */
+  .discovery-dashboard-root .rg-mobile-consolidated-drawer-content .rg-mobile-action-cta-button-wrapper .rg-inline-card-action-btn.flash-attention {
+    animation: mobileTeaserCtaPulse 0.8s infinite alternate ease-in-out !important;
+    background-color: #10b981 !important;
+    box-shadow: 0 0 24px rgba(16, 185, 129, 0.95), 0 0 8px rgba(255, 255, 255, 0.9) !important;
+  }
+
+  /* CROSS-HIGHLIGHT: WHEN HOVERING / TAPPING ANY LOCKED TEASER CARD */
+  .discovery-dashboard-root:has(.teaser-locked-card:active) .rg-mobile-action-cta-button-wrapper .rg-inline-card-action-btn.add-verdant:not(:disabled),
+  .discovery-dashboard-root:has(.teaser-locked-card:hover) .rg-mobile-action-cta-button-wrapper .rg-inline-card-action-btn.add-verdant:not(:disabled) {
+    animation: mobileTeaserCtaPulse 0.8s infinite alternate ease-in-out !important;
+    background-color: #10b981 !important;
+    box-shadow: 0 0 24px rgba(16, 185, 129, 0.95), 0 0 8px rgba(255, 255, 255, 0.9) !important;
+    transform: scale(1.02) !important;
+  }
+
+  @keyframes mobileTeaserCtaPulse {
+    0% {
+      transform: scale(1.01);
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.75), 0 0 6px rgba(255, 255, 255, 0.6);
+    }
+    100% {
+      transform: scale(1.04);
+      box-shadow: 0 0 28px rgba(16, 185, 129, 1), 0 0 12px rgba(255, 255, 255, 0.95);
+    }
+  }
+}

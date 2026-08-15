@@ -89,14 +89,6 @@
     pointer-events: auto !important; 
   }
 
-  /* ─── 📱 SPLIT WORKSPACE OVERRIDES ─── */
-  .rg-left-workspace-storefront-sidebar-mobile-portal .rg-unified-top-profile-deck,
-  .rg-left-workspace-storefront-sidebar-mobile-portal .rg-tabs-window-container,
-  .rg-left-workspace-storefront-sidebar-mobile-portal .rg-premium-buy-btn,
-  .rg-left-workspace-storefront-sidebar-mobile-portal .rg-disclaimer-note {
-    display: none !important;
-  }
-
   /* ─── APP-STYLE COLLAPSIBLE LOWER PANE DRAWER ─── */
   .discovery-dashboard-root .rg-mobile-unified-bottom-drawer {
     display: flex !important;
@@ -180,6 +172,7 @@
     transform: translate3d(0, 0, 0) !important;
     -webkit-transform: translate3d(0, 0, 0) !important;
   }
+  
   .discovery-dashboard-root .rg-mobile-unified-bottom-drawer.drawer-minimized.has-active-selection .rg-mobile-drawer-interior-scroll-pane {
     display: flex !important;
     flex-direction: column !important;    
@@ -190,6 +183,17 @@
     overflow: hidden !important;
     background-color: var(--brand-cream, #f5f5f4) !important;
     border: none !important;
+  }
+
+  /* 🎯 MINIMIZED ACTIVE SELECTION HIDE GUARD: Hides metrics, weather, sparkline, and CTA button in collapsed view */
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer.drawer-minimized.has-active-selection .rg-mobile-drawer-data-body-group,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer.drawer-minimized.has-active-selection .rg-mobile-action-cta-button-wrapper,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer.drawer-minimized.has-active-selection .hud-console-section,
+  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer.drawer-minimized.has-active-selection .sparkline-viewport-containment {
+    display: none !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
   }
 
   /* 🎯 STATE 4: EXPANDED WITH ACTIVE SELECTION TAKEOVER */
@@ -331,40 +335,7 @@
     pointer-events: none !important;
   }
 
-  /* ─── 🗺️ CARD FINDER ROW LAYOUT RECONCILIATION ─── */
-  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer .mobile-header-banner-takeover,
-  .discovery-dashboard-root .route-finder-card-vertical.mobile-header-banner-takeover {
-    margin: -14px -14px 0px -14px !important; 
-    width: calc(100% + 28px) !important;
-    border: none !important;
-    background: var(--brand-cream) !important;
-    border-radius: 0px !important;
-    padding: 12px 16px !important;
-    box-sizing: border-box !important;
-    display: flex !important;
-    flex-direction: row !important;    
-    align-items: center !important;
-    justify-content: center !important;
-    height: auto !important;
-    min-height: 0 !important;
-    flex-shrink: 0 !important;
-    position: relative !important;
-  }
-
-  /* 🎯 MINIMIZED SELECTION RESETS: Restores full layout margins to prevent handlebar text overlaps */
-  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer.drawer-minimized.has-active-selection .mobile-header-banner-takeover {
-    margin: 0 !important;
-    border-radius: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    padding: 12px 16px !important; 
-    box-sizing: border-box !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-
-  /* 🎯 UNSELECTED CARD TELEMETRY & LAYOUT PARITY */
+  /* ─── 🗺️ UNSELECTED MOBILE RESULT CARDS (RideResultGallery) ─── */
   .discovery-dashboard-root .route-finder-card-vertical:not(.mobile-header-banner-takeover) {
     width: 100% !important;
     max-width: 100% !important;
@@ -386,7 +357,6 @@
     gap: 0 !important;
   }
 
-  /* Force display of amber divider on mobile unselected cards */
   .discovery-dashboard-root .route-finder-card-vertical:not(.mobile-header-banner-takeover) .rg-card-amber-divider {
     display: block !important;
     height: 2px !important;
@@ -395,7 +365,6 @@
     border-radius: 1px !important;
   }
 
-  /* Enable 4-dial + FCS Badge telemetry row on mobile cards & disable hover layout shift */
   .discovery-dashboard-root .route-finder-card-vertical:not(.mobile-header-banner-takeover) .rg-card-dials-row,
   .discovery-dashboard-root .side-drawer-panel:not(.is-expanded) .route-finder-card-vertical:hover .rg-card-dials-row,
   .discovery-dashboard-root .side-drawer-panel:not(.is-expanded) .route-finder-card-vertical.card-active-hover .rg-card-dials-row,
@@ -412,7 +381,6 @@
     animation: none !important;
   }
 
-  /* Explicitly force high specificity to override any legacy :nth-child(1) display:none rules */
   .discovery-dashboard-root .route-finder-card-vertical:not(.mobile-header-banner-takeover) .rg-card-dials-row .rg-dial-tile,
   .discovery-dashboard-root .route-finder-card-vertical:not(.mobile-header-banner-takeover) .rg-card-dials-row .rg-dial-tile:nth-child(1),
   .discovery-dashboard-root .route-finder-card-vertical:not(.mobile-header-banner-takeover) .rg-card-dials-row .rg-dial-tile:nth-child(2) {
@@ -441,7 +409,6 @@
     white-space: nowrap !important;
   }
 
-  /* 🎯 LOCKED & PENDING METRIC DIAL STYLES */
   .discovery-dashboard-root .rg-dial-tile.state-locked,
   .discovery-dashboard-root .rg-dial-tile.state-pending {
     cursor: pointer !important;
@@ -494,16 +461,6 @@
     object-fit: contain !important;
   }
 
-  /* .discovery-dashboard-root .route-finder-card-vertical:not(.mobile-header-banner-takeover).is-hovered,
-  .discovery-dashboard-root .route-finder-card-vertical:not(.mobile-header-banner-takeover).active-hover,
-  .discovery-dashboard-root .route-finder-card-vertical:not(.mobile-header-banner-takeover):active {
-    background: linear-gradient(90deg, #fffbeb 0%, #ffffff 100%) !important; 
-    border-bottom: 1px solid #fde68a !important;                               
-    box-shadow: inset 4px 0px 0px #f59e0b !important;                       
-    transition: all 150ms ease !important;
-  } */
-
-  /* 🎯 MOBILE DIAL MASK BACKGROUND OVERRIDE (ELIMINATES DARK SLATE CUTOUTS ON SELECTED CARDS) */
   .discovery-dashboard-root .route-finder-card-vertical:not(.mobile-header-banner-takeover) .rg-card-dial-mask,
   .discovery-dashboard-root .route-finder-card-vertical:not(.mobile-header-banner-takeover).card-active-hover .rg-card-dial-mask,
   .discovery-dashboard-root .route-finder-card-vertical:not(.mobile-header-banner-takeover).is-hovered .rg-card-dial-mask,
@@ -559,23 +516,9 @@
   }
 
   .discovery-dashboard-root .route-finder-card-vertical:not(.mobile-header-banner-takeover) .card-route-title {
-    font-family: "Montserrat", sans-serif !important;
-    font-size: 12px !important;
-    font-weight: 800 !important;
-    color: #0f172a !important;
-    margin: 0 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.01em !important;
-    text-align: left !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    width: 100% !important;
-    line-height: 1.2 !important;
     padding-right: 68px !important;
   }
 
-  /* 🎯 MOBILE MATCH BADGE LAYOUT PARITY OVERRIDE */
   .discovery-dashboard-root .side-drawer-panel:not(.is-expanded) .route-finder-card-vertical .rg-card-match-tab,
   .discovery-dashboard-root .route-finder-card-vertical:not(.mobile-header-banner-takeover) .rg-card-match-tab {
     position: absolute !important;
@@ -616,97 +559,6 @@
     margin-top: 2px !important;
   }
 
-  /* ─── 🗺️ ACTIVE SELECTION TAKEOVER CO-ORDINATION MATRIX ─── */
-  .discovery-dashboard-root .mobile-header-banner-takeover .card-left-details-block {
-    width: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    padding: 0 !important; 
-    margin: 0 !important;                     
-    box-sizing: border-box !important;
-    border-radius: 0px !important;
-    background: transparent !important;
-  }
-  
-  /* Retains the clean horizontal alignments for the active takeover panel view */
-  .discovery-dashboard-root .mobile-header-banner-takeover .card-subtitle-banner-row {
-    display: flex !important;
-    flex-direction: row !important;           
-    justify-content: center !important;
-    align-items: center !important;
-    width: 100% !important;
-    margin: 0 !important;                     
-    padding: 0 !important;
-    white-space: normal !important;
-    background: transparent !important;
-    gap: 0 !important;
-  }
-
-  /* Binds character formatting rules directly to original side alignment metrics */
-  .discovery-dashboard-root .mobile-header-banner-takeover .subtitle-item:first-of-type {
-    display: flex !important;
-    flex-direction: column !important;
-    flex: 1 1 0% !important;
-    align-items: flex-end !important;
-    text-align: right !important;
-    padding: 0 12px 0 0 !important;          
-    margin: 0 !important;
-    gap: 1px !important;
-  }
-
-  .discovery-dashboard-root .mobile-header-banner-takeover .subtitle-item:last-of-type {
-    display: flex !important;
-    flex-direction: column !important;
-    flex: 1 1 0% !important;
-    align-items: flex-start !important;
-    text-align: left !important;
-    padding: 0 0 0 12px !important;           
-    margin: 0 !important;
-    gap: 1px !important;
-  }
-
-  /* 🎯 SPECIFIC FLAT DOM TARGET: Maps rules cleanly directly to the mobile view context portal template */
-  .discovery-dashboard-root .rg-active-map-selection-panel {
-    display: flex !important;
-    flex-direction: column !important;
-    height: auto !important;
-    min-height: min-content !important;
-    width: 100% !important;
-    justify-content: flex-start !important;
-    background: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    overflow: visible !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  /* 🎯 TYPOGRAPHY DATA ENFORCEMENT */
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .subtitle-label,
-  .discovery-dashboard-root .mobile-header-banner-takeover .subtitle-label {
-    font-size: 8px !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.08em !important;
-    color: #94a3b8 !important;                
-    font-weight: 800 !important;
-    font-family: "Montserrat", sans-serif !important;
-    line-height: 1.1 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  
-  .discovery-dashboard-root .mobile-header-banner-takeover .mellow-highlight-value {
-    font-size: 9px !important;
-    color: var(--brand-deep-green) !important; 
-    font-weight: 800 !important;
-    font-family: "Montserrat", sans-serif !important;
-    text-transform: uppercase !important;
-    display: inline-block !important;
-    line-height: 1.2 !important;
-  }
-
   .discovery-dashboard-root .route-finder-card-vertical:not(.mobile-header-banner-takeover) .subtitle-label {
     font-size: 8.5px !important;
     font-weight: 700 !important;
@@ -719,178 +571,7 @@
     font-weight: 800 !important;
     color: #475569 !important;
     text-transform: uppercase !important;
-  }
-  
-  /* Restores the takeover banner's amber divider pipe character cleanly */
-  .discovery-dashboard-root .mobile-header-banner-takeover .banner-inline-divider {
-    display: block !important;
-    color: var(--brand-amber) !important;
-    font-size: 16px !important;
-    align-self: center !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    flex-shrink: 0 !important;
-  }
-
-  /* ─── 📊 TELEMETRY REPLICATED BLOCKS ─── */
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .rr-metrics-tiles-wrapper,
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .hud-section-body,
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .hud-console-section.section-metrics-row .hud-section-body {
-    display: flex !important;
-    flex-direction: row !important; 
-    justify-content: space-between !important;
-    align-items: flex-start !important;
-    width: 100% !important;
-    gap: 2px !important;
-    box-sizing: border-box !important;
-    padding: 4px 0 !important;
-  }
-  
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .rr-metric-tile-row {
-    display: flex !important;
-    flex-direction: column !important; 
-    align-items: center !important;
-    justify-content: flex-start !important;
-    text-align: center !important;
-    padding: 2px 0 !important;
-    background: transparent !important;
-    border: none !important;
-    height: auto !important;
-    flex: 1 !important; 
-    min-width: 0 !important; 
-  }
-  
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .rr-metric-icon-column {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    width: auto !important;
-    padding: 0 !important;
-    margin: 0 auto 4px auto !important;
-  }
-  
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .metric-icon-container,
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .rr-metric-dial-wrapper {
-    width: 38px !important; 
-    height: 38px !important;
-    min-width: 38px !important;
-    margin: 0 auto !important;
-  }
-
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .rr-metric-content-column,
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .metric-details {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
-    width: 100% !important;
-  }
-  
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .rr-metric-value-display,
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .metric-value {
-    font-size: 10px !important; 
-    line-height: 1.2 !important;
-    font-weight: 800 !important;
-    color: var(--brand-charcoal) !important;
-    margin: 0 auto 2px auto !important;
-    text-align: center !important;
-  }
-  
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .rr-metric-label-display,
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rg-mobile-metrics-grid-bay .metric-label {
-    font-size: 6.5px !important;
-    line-height: 1.1 !important;
-    white-space: normal !important;
-    max-width: 65px !important;
-    color: #475569 !important;
-    margin: 0 auto !important;
-    text-transform: uppercase !important;
-    text-align: center !important;
-  }
-  
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .hud-console-section {
-    margin-bottom: 0px !important;
-  }
-  
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .hud-console-section.section-metrics-row {
-    margin-top: 0px !important;
-  }
-  
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .sparkline-viewport-containment {
-    padding: 0 !important;
-    height: 104px !important; 
-    min-height: 104px !important;
-    flex-shrink: 0 !important;
-    position: relative !important;
-    overflow: hidden !important;
-  }
-
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rr-sparkline-container,
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rr-sparkline-main {
-    height: 100% !important;
-    width: 100% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    margin-top: -8px !important;
-    margin-bottom: -4px !important;
-  }
-
-  .discovery-dashboard-root .rg-left-workspace-storefront-sidebar-mobile-portal .rr-sparkline-svg {
-    height: 100% !important;
-    width: 100% !important;
-    object-fit: contain !important; 
-    display: block !important;
-  }
-  
-  .discovery-dashboard-root .rg-mobile-consolidated-drawer-content .rg-mobile-action-cta-button-wrapper {
-    margin-top: -14px !important; 
-    width: 100% !important; 
-    margin-left: 0 !important;
-    flex-shrink: 0 !important;
-    display: block !important;
-    position: relative !important;
-  }
-  
-  .discovery-dashboard-root .rg-mobile-consolidated-drawer-content .rg-mobile-action-cta-button-wrapper .rg-inline-card-action-btn {
-    border-radius: 8px !important; 
-    padding: 14px 12px !important; 
-    font-size: 11px !important;
-    font-weight: 800 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.5px !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
-    border: none !important;
-    margin: 0 !important;
-    width: 100% !important;
-    display: block !important;
-    height: auto !important;
-  }
-
-  /* Drops trailing data arrays from layout paths when minimized */
-  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer.drawer-minimized.has-active-selection .rg-mobile-drawer-data-body-group,
-  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer.drawer-minimized.has-active-selection .rg-mobile-action-cta-button-wrapper,
-  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer.drawer-minimized.has-active-selection .hud-console-section,
-  .discovery-dashboard-root .rg-mobile-unified-bottom-drawer.drawer-minimized.has-active-selection .sparkline-viewport-containment {
-    display: none !important;
-    height: 0 !important;
-  }
-
-  /* ==========================================================================
-     📱 SCOPED MOBILE METRICS HEIGHT COLLAPSE (ELIMINATE EXTRA WHITE SPACE)
-     ========================================================================== */
- .rg-mobile-consolidated-drawer-content .section-metrics-row .hud-section-body,
-  .rg-mobile-consolidated-drawer-content .rr-metrics-tiles-wrapper {
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
-    flex: 0 0 auto !important;
-    padding-bottom: 6px !important;
-    background: var(--brand-cream) !important;
-    border: none !important;
-    box-shadow: none !important;
-  }
+  }  
 
  /* ─── 📦 LAYOUT SCROLLER HOOKS ─── */
   .discovery-dashboard-root .side-drawer-panel {

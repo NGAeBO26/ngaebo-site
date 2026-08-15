@@ -4,12 +4,7 @@ import { useShopifyCart } from "./ShopifyCartContext";
 import { useShopifyAuth } from "./ShopifyAuthContext";
 import TokenUpsellModal from "../components/TokenUpsellModal";
 
-import MobileThreeDayForecast from '../features/Discovery/components/3DayForecast';
 import TransactionOverlay, { type TransactionState } from "../components/TransactionOverlay";
-
-// 🎯 PRESERVED ATOMIC DATA WIDGET IMPORTS
-import Sparkline from "../components/RideGuide/widgets/Sparkline"; 
-import MetricsTiles from "../components/RideGuide/widgets/MetricsTiles";
 
 interface CartItem { 
   id: string; 
@@ -23,17 +18,15 @@ interface CartItem {
 interface StorePanelProps { 
   activeRouteProperties: any | null; 
   allRoutes?: any[]; 
-  isMobile?: boolean; 
   onActionTriggered?: () => void; /* 🎯 Accept the action coordination link */
 }
 
-export default function StorePanel({ activeRouteProperties, allRoutes = [], isMobile = false, onActionTriggered }: StorePanelProps) {
+export default function StorePanel({ activeRouteProperties, allRoutes = [], onActionTriggered }: StorePanelProps) {
   const { isAuthenticated, customer, refreshProfile, login, logout } = useShopifyAuth(); 
-  const { addRouteToCart, removeCartItem, cartItems, checkoutUrl, cartSubtotal } = useShopifyCart(); 
+  const { removeCartItem, cartItems, checkoutUrl, cartSubtotal } = useShopifyCart(); 
 
-  const [isAdding, setIsAdding] = useState(false); 
-  const [isRedeeming, setIsRedeeming] = useState(false);  
-  const [cachedRoute, setCachedRoute] = useState<any | null>(null); 
+  const [isRedeeming, setIsRedeeming] = useState(false); 
+  const [cachedRoute, setCachedRoute] = useState<any | null>(null);
   const [activeTab, setActiveTab] = useState<"cart" | "catalog">("cart"); 
   const [activeCatalogHoverId, setActiveCatalogHoverId] = useState<string | null>(null); 
   
@@ -67,19 +60,11 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [], isMo
   }; 
 
   const hasActivePass = customer?.passExpiresAt ? new Date() < new Date(customer.passExpiresAt) : false; 
-  const hasActiveSelection = cachedRoute !== null; 
+ const hasActiveSelection = cachedRoute !== null; 
   const routeProps = cachedRoute?.properties || cachedRoute || {}; 
-  const routeTitle = hasActiveSelection ? (routeProps.NAME || routeProps.title || "Selected Route") : "No Route Selected"; 
-  const rawRouteId = hasActiveSelection ? String(routeProps.profile_id || cachedRoute.id || routeProps.id || routeProps.ID || "") : ""; 
-  const miles = routeProps.GIS_MILES ? parseFloat(routeProps.GIS_MILES).toFixed(1) : null; 
-  const distanceMetric = miles ? `${miles} MILES` : (routeProps.distance ? `${routeProps.distance} mi` : "Premium Data"); 
-  const fcsLabel = routeProps.v3_fcs_label ? String(routeProps.v3_fcs_label).toLowerCase() : ""; 
- 
-  // Approved Mobile Viewport Data Field Properties
-  const routeVibe = routeProps.v3_vibe || "Explore backcountry trails";
-  const routeSurface = routeProps.v3_surface || "Gravel / Dirt";
+  const rawRouteId = hasActiveSelection ? String(routeProps.profile_id || cachedRoute.id || routeProps.id || routeProps.ID || "") : "";
 
-  const tokenBalance = customer?.tokens || 0; 
+  const tokenBalance = customer?.tokens || 0;
   const hasTokens = tokenBalance > 0; 
 
   // 🎯 SYNCHRONIZED UTILITY ENTITY MATCH FILTERS
@@ -119,8 +104,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [], isMo
   // 🎯 REAL TIME CALCULATIONS SYNC: Grabs native subtotal if buying bundle packs
   const computedPriceTotal = hasBundleInCart ? cartSubtotal.toFixed(2) : (totalCartCount * 6.99).toFixed(2); 
   const computedTokenTotal = totalCartCount;  
-  const isAlreadyInCart = visibleCartItems.some((item: CartItem) => String(item.routeId) === rawRouteId); 
-
+  
   useEffect(() => { 
     if (isFullyAuthenticated && refreshProfile) { 
       const handleTabFocusSync = () => refreshProfile(); 
@@ -236,25 +220,7 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [], isMo
     }; 
   });
 
-  const handleAddToCartAction = async () => { 
-    if (!hasActiveSelection || isAdding) return; 
-    if (isThisRouteExplicitlyUnlocked) { 
-      setActiveTab("catalog"); 
-      return; 
-    } 
-    if (isAlreadyInCart) return; 
-
-    setIsAdding(true); 
-    const targetVariantId = "gid://shopify/ProductVariant/51045122146524"; 
-    const success = await addRouteToCart(targetVariantId, rawRouteId, routeTitle, distanceMetric, fcsLabel); 
-    setIsAdding(false); 
-    
-    if (success) { 
-      setActiveTab("cart"); 
-    } 
-  };  
-
-  const handleTokenRedemption = async (targetId: string, targetTitle: string) => { 
+  const handleTokenRedemption = async (targetId: string, targetTitle: string) => {
     if (isRedeeming || !customer) return; 
 
     /* 🎯 COLLAPSE BACKDROP OVERLAYS */
@@ -410,92 +376,6 @@ export default function StorePanel({ activeRouteProperties, allRoutes = [], isMo
     if (!checkoutUrl) return; 
     window.open(checkoutUrl, "_blank"); 
   }; 
-
-  // ─── 📱 MOBILE DRAWER RETURNING STRUCTURE (Isolated Mobile Branch Layout Only) ───
-  if (isMobile) {
-    return (
-      <div className="rg-mobile-consolidated-drawer-content">
-        {hasActiveSelection && (
-          <div className="rg-active-map-selection-panel">
-            
-            {/* 🎯 REMOVED: card-route-title and card-right-badge-bay have been stripped cleanly */}
-            <div className="route-finder-card-vertical mobile-header-banner-takeover">
-              <div className="card-left-details-block">
-                <div className="card-subtitle-banner-row">
-                  <div className="subtitle-item">
-                    <span className="subtitle-label">Route Vibe</span>
-                    <strong className="mellow-highlight-value">{routeVibe}</strong>
-                  </div>
-                  <span className="banner-inline-divider">|</span>
-                  <div className="subtitle-item">
-                    <span className="subtitle-label">Surface Type</span>
-                    <strong className="mellow-highlight-value">{routeSurface}</strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Metrics and elevation profile grouping block */}
-            <div className="rg-mobile-drawer-data-body-group">
-              <div className="hud-console-section section-metrics-row">
-                <div className="takeover-report-label-banner"><span>Route Metrics</span></div>
-                <div className="hud-section-body rg-mobile-metrics-grid-bay">
-                  <MetricsTiles data={routeProps} />
-                </div>
-              </div>
-
-              {/* 🎯 THE WEATHER ADDITION: Mounted cleanly inside the body stack */}
-            <div className="hud-console-section section-weather-row">
-              <div className="takeover-report-label-banner"><span>Weather Conditions</span></div>
-              <div className="hud-section-body">
-                <MobileThreeDayForecast routeID={rawRouteId} />
-              </div>
-            </div>
-
-              <div className="hud-console-section section-elevation-graph">
-                <div className="takeover-report-label-banner"><span>Elevation Profile</span></div>
-                <div className="hud-section-body sparkline-viewport-containment">
-                  <Sparkline routeID={rawRouteId} />
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* 🎯 CTA MOVED HERE: Now rendered as a direct sibling to selection panels inside the main wrapper */}
-        {hasActiveSelection && (
-          <div className="rg-mobile-action-cta-button-wrapper">
-            {isThisRouteExplicitlyUnlocked ? (
-              <button className="rg-inline-card-action-btn print-green" onClick={() => handleTokenRedemption(rawRouteId, routeTitle)}>
-                PRINT RIDEGUIDE NOW ➔
-              </button>
-            ) : isTokenUser ? (
-              <button className="rg-inline-card-action-btn unlock-verdant" disabled={isRedeeming} onClick={() => handlePrimaryCheckoutDispatch(rawRouteId, routeTitle)}>
-                INSTANT UNLOCK (1 CREDIT) ➔
-              </button>
-            ) : (
-              <button className="rg-inline-card-action-btn add-verdant" disabled={isAdding || isAlreadyInCart} onClick={handleAddToCartAction}>
-                {isAlreadyInCart ? "✓ ALREADY IN CART" : isAdding ? "ADDING... ⏳" : "ADD ROUTE TO CART +"}
-              </button>
-            )}
-          </div>
-        )}
-
-        <TokenUpsellModal 
-          isOpen={isUpsellOpen}
-          onClose={() => { setIsUpsellOpen(false); setUpsellTargetRoute(null); }}
-          onBypass={handleBypassCheckout}
-          targetRoute={upsellTargetRoute}
-          isTokenUser={isTokenUser}
-          tokenBalance={tokenBalance}
-          onRedeemSingle={handleTokenRedemption}
-          onRedeemBatch={handleBatchTokenRedemption}
-          isMutating={isRedeeming}
-        />
-        <TransactionOverlay state={transactionState} onClose={() => setTransactionState(null)} />
-      </div>
-    );
-  }
 
   /* ─── 🖥️ DESKTOP RENDERING BLOCK ─── */
   return ( 
