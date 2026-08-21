@@ -1,16 +1,24 @@
 /* src/pages/Home.tsx */
 
+import { useState, useRef } from "react";
 import FeaturedProducts from "../store/FeaturedProducts";
 import TacticalLeadForm from "../components/TacticalLeadForm";
 import DigitalProductShowcase from "../components/DigitalProductShowcase"; 
 import "./Home.css";
 
 export default function Home() {
-  // Telemetry Conic Arc Math Loops
-  const elevFill = (754 / 1500) * 100;
-  const elevEmptyStart = 100 - Math.min(100, Math.max(0, elevFill));
-  const gradeFill = (18.6 / 45) * 100;
-  const gradeEmptyStart = 100 - Math.min(100, Math.max(0, gradeFill));
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const toggleAudio = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (videoRef.current) {
+      const nextMutedState = !isMuted;
+      videoRef.current.muted = nextMutedState;
+      setIsMuted(nextMutedState);
+    }
+  };
 
   return (
     <div className="page funnel-landing-page">
@@ -22,118 +30,61 @@ export default function Home() {
           <div className="hero-split-layout">
             
             <div className="hero-content-stack">
-              <h1 className="hero-home-title">
-                Master the Backcountry.<br /> Ride with Confidence.
-              </h1>
-              <h2 className="hero-tagline-blue">
+              <div className="hero-eyebrow-blue">
                 Plan Faster. Ride Smarter.
-              </h2>
+              </div>
+              <h1 className="hero-home-title">
+                Build the Right Ride for Today’s Conditions — Before You Roll Out
+              </h1>
               <p className="hero-text">
-                Don't ride into the unknown. Featuring custom meteorological modeling, high-accuracy terrain profile tracking, and real-world physics engine calculators, you'll always know what to expect before you leave the staging area.
+                Use our smart route matcher <strong>RideBuilder</strong> to match your bike, your time, your effort level and more to build a route that fits today. Then unlock a <strong>RideGuide</strong> with current-weather-powered ride intelligence so you can ride safer, avoid surprises, and know what to expect before you go.
               </p>
+              
               <div className="hero-actions-stack">
                 <a href="/rides" className="btn btn-funnel-main">
-                  Get the Ultimate RideGuide
+                  Find My Ride with RideBuilder
                 </a>
-                <a href="/shop" className="btn btn-funnel-sub">
-                  Shop Vetted Gear
+                <a href="#free-sample-pack" className="btn btn-funnel-sub">
+                  See 3 Free Sample RideGuides
                 </a>
               </div>
             </div>
 
-            <div className="hero-visual-block">
-              <div className="hud-console-header-pill">
-                <img src="/images/RideGuide_embroid-v1.svg" alt="RideGuide System Logo" className="hud-console-logo-asset" />
-                <div className="hud-header-text-aligner">
-                  <h3 className="hud-pipeline-title">...PIPELINE INITIALIZED...</h3>
-                  <div className="hud-pipeline-checklist">
-                    <span>...WEATHER API SYNC ✓</span>
-                    <span>...DIGITAL ELEVATION MODEL ACTIVE ✓</span>
-                    <span>...PHYSICS ENGINE ENGAGED ✓</span>
+            <div className="hero-visual-block hero-bezel-showcase">
+              <a href="/rides" className="hero-phone-bezel-link" aria-label="Launch RideBuilder workspace">
+                <div className="hero-phone-video-viewport">
+                  <video
+                    ref={videoRef}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="hero-promo-video-element"
+                  >
+                    <source src="/data/assets/videos/RideBuilder-promo1.mp4" type="video/mp4" />
+                  </video>
+                  <button
+                    type="button"
+                    className="hero-video-audio-toggle"
+                    onClick={toggleAudio}
+                    aria-label={isMuted ? "Enable video audio" : "Mute video audio"}
+                  >
+                    {isMuted ? "🔇  Sound On" : "🔊 Sound Off"}
+                  </button>
+                  <div className="hero-video-interactive-badge">
+                    <span>Tap to Launch RideBuilder →</span>
                   </div>
                 </div>
-              </div>
-
-              <div className="hero-hud-3x3-container">
-                <div className="hud-center-radar-anchor">
-                  <div className="hud-spider-wrapper">
-                    <span className="hud-axis-label axis-top">Vertical Tax</span>
-                    <span className="hud-axis-label axis-right-side">Slip Hazard</span>
-                    <span className="hud-axis-label axis-right-bottom">Energy Drain</span>
-                    <span className="hud-axis-label axis-left-bottom">Exposure</span>
-                    <span className="hud-axis-label axis-left-side">Isolation</span>
-                    <span className="hud-axis-label axis-center-title">Risk Radar</span>
-                    <img src="/data/visualization/17A_S1_spider.svg" className="svg-size-risk-radar" alt="Risk Radar Chart" />
-                  </div>
-                </div>
-
-                <div className="hud-quadrant-card cell-top-left">
-                  <div>
-                    <div className="hud-panel-label">Meteorological Model Active..</div>
-                    <div className="hud-panel-title">Prime Ride Time</div>
-                  </div>
-                  <div className="hero-metric-inline-card-centered">
-                    <img src="/data/joyscores/83_S1_joy_dial.svg" className="svg-size-joy-dial" alt="Joy Score Dial" />
-                  </div>
-                </div>
-
-                <div className="hud-quadrant-card cell-top-right">
-                  <div>
-                    <div className="hud-panel-label">Analyzing Terrain.......</div>
-                    <div className="hud-panel-title">Elevation Profile</div>
-                  </div>
-                  <div className="hero-metric-inline-card-centered">
-                    <img src="/data/sparklines/54A_S1_sparkline.svg" className="svg-size-sparkline" alt="Terrain Elevation Profile" />
-                  </div>
-                </div>
-
-                <div className="hud-quadrant-card cell-bottom-left">
-                  <div>
-                    <div className="hud-panel-label">Running Physics Engine ...</div>
-                    <div className="hud-panel-title">Effort Intensity Gauge</div>
-                  </div>
-                  <div className="hero-metric-inline-card-centered hud-padded-intensity-box">
-                    <img src="/data/effortgauges/83_S1_effort_tax.svg" className="svg-size-effort-gauge" alt="Effort Intensity Gauge Meter" />
-                  </div>
-                </div>
-
-                <div className="hud-quadrant-card cell-bottom-right">
-                  <div>
-                    <div className="hud-panel-label">Generating Route Statistics.....</div>
-                    <div className="hud-panel-title">Route Metrics</div>
-                  </div>
-                  <div className="hero-metric-flex-bay">
-                    <div className="hero-metric-inline-card">
-                      <div className="hero-dial-wrapper">
-                        <div className="hero-dial-arc" style={{ background: `conic-gradient(from 180deg, #e0e0e0 0% ${elevEmptyStart}%, #d88a3a ${elevEmptyStart}% 100%)`, transform: 'scaleX(-1)' }}></div>
-                        <div className="hero-dial-mask">
-                          <img src="/data/assets/icon_gain_arrow.svg" className="hero-dial-icon" alt="Elevation Gain" />
-                        </div>
-                      </div>
-                      <div>
-                        <div className="hud-metric-readout-bold">754 ft</div>
-                        <div className="hud-metric-label-micro">Elevation Gain</div>
-                      </div>
-                    </div>
-
-                    <div className="hero-metric-inline-card">
-                      <div className="hero-dial-wrapper">
-                        <div className="hero-dial-arc" style={{ background: `conic-gradient(from 180deg, #e0e0e0 0% ${gradeEmptyStart}%, #c0392b ${gradeEmptyStart}% 100%)`, transform: 'scaleX(-1)' }}></div>
-                        <div className="hero-dial-mask">
-                          <img src="/data/assets/icon_grade.svg" className="hero-dial-icon" alt="Average Grade" />
-                        </div>
-                      </div>
-                      <div>
-                        <div className="hud-metric-readout-bold">18.6%</div>
-                        <div className="hud-metric-label-micro">Average Grade</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
+              </a>
             </div>
 
+          </div>
+
+          <div className="hero-bridge-line">
+            <span className="bridge-title">Know Before You Go — Why It’s Worth It</span>
+            <p>
+              A RideGuide helps you avoid picking the wrong route for your bike, energy, or the day’s conditions. For <strong>$6.99</strong>, see when to ride, how hard it’ll feel, and what to watch before you commit — ensuring a safer, more enjoyable, and more predictable ride with fewer bad surprises.
+            </p>
           </div>
         </div>
       </section>
@@ -141,7 +92,6 @@ export default function Home() {
       <hr className="funnel-divider" />
 
       {/* SECTION 2: THE CORE PROBLEM / VALUE HOOK */}
-      {/* ─── 🎯 FIX 2: DEFINE LANDMARK REGION SCOPE ─── */}
       <section className="problem-hook-section" aria-label="Backcountry Challenges Overview">
         <div className="funnel-container">
           <div className="problem-split-grid">
@@ -262,7 +212,7 @@ export default function Home() {
 
       {/* SECTION 6: THE FOOTER SAFETY NET */}
       {/* ─── 🎯 FIX 8: DEFINE LANDMARK REGION SCOPE ─── */}
-      <section className="lead-capture-footer" aria-label="Free Map Sample Giveaway Registration">
+      <section id="free-sample-pack" className="lead-capture-footer" aria-label="Free Map Sample Giveaway Registration">
         <div className="funnel-container">
           <div className="capture-split-layout">
             <div className="capture-text-stack">

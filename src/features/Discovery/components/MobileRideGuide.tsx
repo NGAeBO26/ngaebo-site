@@ -46,7 +46,8 @@ export default function MobileRideGuide({
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState<boolean>(false);
   const [isMobileCartOpen, setIsMobileCartOpen] = useState<boolean>(false);
   const [isSiteNavMenuOpen, setIsSiteNavMenuOpen] = useState<boolean>(false);
-  const [isBottomDrawerExpanded, setIsBottomDrawerExpanded] = useState<boolean>(false);
+  const [isBottomDrawerExpanded, setIsBottomDrawerExpanded] =
+    useState<boolean>(false);
 
   const rootRef = useRef<HTMLDivElement | null>(null);
 
@@ -147,7 +148,7 @@ export default function MobileRideGuide({
           onClick={onExitFullscreen}
           title="Minimize workspace map view layer"
         >
-          <img src="/images/rideatlas-logo.svg" alt="RideAtlas Logo" />
+          <img src="/images/ridebuilder-logo.svg" alt="RideAtlas Logo" />
         </div>
 
         <div className="rg-mobile-header-right-actions-dock">
@@ -289,7 +290,7 @@ export default function MobileRideGuide({
                       selectedRouteFeature?.properties?.profile_id ||
                         selectedRouteFeature?.id ||
                         selectedRouteFeature?.properties?.id ||
-                        ""
+                        "",
                     )
                   : null
               }
@@ -336,68 +337,68 @@ export default function MobileRideGuide({
                   {isWorkspaceLoading || masterRoutes.length === 0
                     ? "Available RideGuides"
                     : isTakeoverCurrentlyActive &&
-                      selectedRouteFeature?.properties
-                    ? `FS ${
-                        selectedRouteFeature.properties.ID ||
-                        selectedRouteFeature.properties.id ||
-                        ""
-                      } - ${
-                        selectedRouteFeature.properties.NAME ||
-                        selectedRouteFeature.properties.title ||
-                        "Selected Route"
-                      }`
-                    : `Available RideGuides (${filteredRoutes.length})`}
+                        selectedRouteFeature?.properties
+                      ? `FS ${
+                          selectedRouteFeature.properties.ID ||
+                          selectedRouteFeature.properties.id ||
+                          ""
+                        } - ${
+                          selectedRouteFeature.properties.NAME ||
+                          selectedRouteFeature.properties.title ||
+                          "Selected Route"
+                        }`
+                      : `Available RideGuides (${filteredRoutes.length})`}
                 </span>
-                  {isTakeoverCurrentlyActive &&
-                    selectedRouteFeature?.properties?.v3_fcs_label && (
-                      <img
-                        src={`/images/badges/fcs/fcs-badge-${String(
-                          selectedRouteFeature.properties.v3_fcs_label
-                        ).toLowerCase()}.png`}
-                        alt="Difficulty Badge"
-                        className="rg-drawer-header-badge"
-                      />
-                    )}
-                </div>
-              </div>
-
-              {/* THE ADAPTIVE CONTENT ACCORDION PANE */}
-              <div className="rg-mobile-drawer-interior-scroll-pane">
-                {isTakeoverCurrentlyActive ? (
-                  <aside className="rg-left-workspace-storefront-sidebar-mobile-portal">
-                    <MobileGravelPopup
-                      feature={selectedRouteFeature}
-                      onActionTriggered={() => setIsMobileCartOpen(false)}
+                {isTakeoverCurrentlyActive &&
+                  selectedRouteFeature?.properties?.v3_fcs_label && (
+                    <img
+                      src={`/images/badges/fcs/fcs-badge-${String(
+                        selectedRouteFeature.properties.v3_fcs_label,
+                      ).toLowerCase()}.png`}
+                      alt="Difficulty Badge"
+                      className="rg-drawer-header-badge"
                     />
-                  </aside>
-                ) : (
-                  <RideResultGallery
-                    routes={filteredRoutes}
-                    activeHoverId={activeHoverId}
-                    onHoverChange={onHoverChange}
-                    isCollapsed={false}
-                    onToggleCollapse={() => {}}
-                    onRouteSelect={onRouteSelect}
-                    isTakeoverActive={false}
-                    sortBy={filterEngine.sortBy}
-                    onSortChange={filterEngine.setSortBy}
-                    sortOrder={filterEngine.sortOrder}
-                    onToggleSortOrder={filterEngine.toggleSortOrder}
-                    evaluateRouteProximity={filterEngine.evaluateRouteProximity}
-                    selectedRideDay={
-                      filterEngine.activeQuizSelections?.selectedRideDay
-                    }
-                    activeQuizSelections={filterEngine.activeQuizSelections}
-                    driveTimesMap={filterEngine.driveTimesMap}
-                  />
-                )}
-              </div>
-
-              {/* 🎯 THE PERSISTENT SYSTEM BEZEL FOOTER */}
-              <div className="rg-mobile-drawer-system-bezel-footer">
-                <div className="rg-bezel-hardware-line" />
+                  )}
               </div>
             </div>
+
+            {/* THE ADAPTIVE CONTENT ACCORDION PANE */}
+            <div className="rg-mobile-drawer-interior-scroll-pane">
+              {isTakeoverCurrentlyActive ? (
+                <aside className="rg-left-workspace-storefront-sidebar-mobile-portal">
+                  <MobileGravelPopup
+                    feature={selectedRouteFeature}
+                    onActionTriggered={() => setIsMobileCartOpen(false)}
+                  />
+                </aside>
+              ) : (
+                <RideResultGallery
+                  routes={filteredRoutes}
+                  activeHoverId={activeHoverId}
+                  onHoverChange={onHoverChange}
+                  isCollapsed={false}
+                  onToggleCollapse={() => {}}
+                  onRouteSelect={onRouteSelect}
+                  isTakeoverActive={false}
+                  sortBy={filterEngine.sortBy}
+                  onSortChange={filterEngine.setSortBy}
+                  sortOrder={filterEngine.sortOrder}
+                  onToggleSortOrder={filterEngine.toggleSortOrder}
+                  evaluateRouteProximity={filterEngine.evaluateRouteProximity}
+                  selectedRideDay={
+                    filterEngine.activeQuizSelections?.selectedRideDay
+                  }
+                  activeQuizSelections={filterEngine.activeQuizSelections}
+                  driveTimesMap={filterEngine.driveTimesMap}
+                />
+              )}
+            </div>
+
+            {/* 🎯 THE PERSISTENT SYSTEM BEZEL FOOTER */}
+            <div className="rg-mobile-drawer-system-bezel-footer">
+              <div className="rg-bezel-hardware-line" />
+            </div>
+          </div>
         </div>
       </div>
     </div>

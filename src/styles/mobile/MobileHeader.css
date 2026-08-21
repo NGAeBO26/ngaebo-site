@@ -266,6 +266,7 @@
     width: auto !important;
     display: block !important;
     object-fit: contain !important;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35)) !important;
   }
 
   .discovery-dashboard-root .rg-mobile-header-subtitle {

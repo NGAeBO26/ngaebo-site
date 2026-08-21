@@ -478,10 +478,10 @@ export function RideFilterBar({
 
     const hasAnySelection = Boolean(
       q?.bikeType ||
-        q?.effortLevel ||
-        q?.distanceRange ||
-        q?.driveTimeMax ||
-        q?.selectedRideDay,
+      q?.effortLevel ||
+      q?.distanceRange ||
+      q?.driveTimeMax ||
+      q?.selectedRideDay,
     );
 
     // 🎯 STATE 1: UNSTARTED & COLLAPSED -> INITIAL CTA
@@ -494,7 +494,9 @@ export function RideFilterBar({
       return (
         <>
           <span className="wishlist-label">💬 MY NEXT RIDE IS: </span>
-          <span className="quiz-prompt-label">Choose from the options below to get started!</span>
+          <span className="quiz-prompt-label">
+            Choose from the options below to get started!
+          </span>
         </>
       );
     }
@@ -607,10 +609,12 @@ export function RideFilterBar({
   );
 
   return (
-    <header className={`finder-header-row ${isMegaOpen ? "is-expanded" : "is-collapsed"}`}>
+    <header
+      className={`finder-header-row ${isMegaOpen ? "is-expanded" : "is-collapsed"}`}
+    >
       <div className="finder-brand-block">
         <img
-          src="/images/rideatlas-logo.svg"
+          src="/images/ridebuilder-logo.svg"
           alt="RideGuide Logo"
           className="finder-brand-logo"
         />
@@ -899,8 +903,8 @@ export function RideResultGallery({
 
   const isQuizComplete = Boolean(
     activeQuizSelections?.bikeType ||
-      activeQuizSelections?.effortLevel ||
-      activeQuizSelections?.distanceRange,
+    activeQuizSelections?.effortLevel ||
+    activeQuizSelections?.distanceRange,
   );
 
   const SORT_OPTIONS: Array<{
@@ -1194,8 +1198,8 @@ export function RideResultGallery({
 
                   const isDriveTimeOptedIn = Boolean(
                     quizRecord?.isDriveTimeOptedIn ??
-                      quizRecord?.driveTimeOptIn ??
-                      quizRecord?.driveTimeMax,
+                    quizRecord?.driveTimeOptIn ??
+                    quizRecord?.driveTimeMax,
                   );
                   const driveTimeState: "active" | "pending" | "locked" =
                     activeQuizSelections?.driveTimeMax
@@ -1206,8 +1210,8 @@ export function RideResultGallery({
 
                   const isJoyScoreOptedIn = Boolean(
                     quizRecord?.isRideWindowOptedIn ??
-                      quizRecord?.rideWindowOptIn ??
-                      quizRecord?.selectedRideDay,
+                    quizRecord?.rideWindowOptIn ??
+                    quizRecord?.selectedRideDay,
                   );
                   const joyScoreState: "active" | "pending" | "locked" =
                     activeQuizSelections?.selectedRideDay

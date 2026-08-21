@@ -28,12 +28,13 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 48px;
-  align-items: center;
+  align-items: stretch;
 }
 
 .hero-content-stack {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .hero-home-title {
@@ -44,13 +45,51 @@
   margin: 0;
 }
 
-.hero-tagline-blue {
+.hero-eyebrow-blue {
   color: #236ea0;
-  margin: 16px 0 0 0;
+  margin: 0 0 12px 0;
   font-size: 1.15rem;
   font-weight: 800;
   letter-spacing: 0.03em;
   text-transform: uppercase;
+}
+
+.hero-trust-line {
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.hero-bridge-line {
+  margin-top: 32px;
+  padding: 18px 24px;
+  background: rgba(35, 110, 160, 0.06);
+  border-left: 4px solid #236ea0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.hero-bridge-line .bridge-title {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.hero-bridge-line p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.hero-bridge-line strong {
+  color: #0f172a;
 }
 
 .hero-text {
@@ -65,6 +104,7 @@
   flex-direction: column;
   gap: 12px;
   max-width: 340px;
+  margin-top: auto;
 }
 
 .hero-actions-stack .btn-funnel-main {
@@ -105,34 +145,92 @@
   background: rgba(0, 0, 0, 0.02);
 }
 
-/* --- THE COCKPIT IMMERSIVE VIEWPORT --- */
-.hero-visual-block {
-  min-height: 500px; 
-  border-radius: 24px; 
-  background-image: linear-gradient(rgba(15, 23, 42, 0.05), rgba(15, 23, 42, 0.2)), url('/images/hero.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: var(--brand-army);
-  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.35);
-  padding: 12px;
+/* --- HERO RIDEBUILDER SHOWCASE VIDEO DECK --- */
+.funnel-landing-page .hero-bezel-showcase {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
-  background-position: 25% 70%; 
+  max-height: 520px;
 }
 
-.hud-console-header-pill {
-  background: rgba(255, 255, 255, 0.96); 
-  border-radius: 16px; 
-  padding: 12px 20px; 
-  box-shadow: 0 10px 25px -5px rgba(0,0,0,0.12);
+.funnel-landing-page .hero-phone-bezel-link {
+  text-decoration: none;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 4px;
-  border: 2px solid #236ea0;
-  z-index: 60;
+  width: 100%;
+  height: 100%;
+}
+
+.funnel-landing-page .hero-phone-video-viewport {
+  width: auto;
+  height: 100%;
+  max-height: 480px;
+  aspect-ratio: 9 / 16;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  background: #0f172a;
+  box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.funnel-landing-page .hero-promo-video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 12px;
+  background: #0f172a;
+}
+
+.funnel-landing-page .hero-video-audio-toggle {
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 16px;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.funnel-landing-page .hero-video-audio-toggle:hover {
+  background: rgba(15, 23, 42, 0.98);
+  border-color: var(--brand-amber);
+  color: var(--brand-amber);
+}
+
+.funnel-landing-page .hero-video-interactive-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid var(--brand-amber);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 800;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .hud-console-logo-asset {
@@ -603,134 +701,33 @@
     display: contents !important;
   }
 
-  /* Structural document order sequence */
-  .hero-home-title { order: 1 !important; text-align: center !important; font-size: 2.2rem !important; }
-  .hero-tagline-blue { order: 2 !important; text-align: center !important; margin-top: 8px !important; }
-  .hero-text { order: 3 !important; text-align: center !important; margin: 16px 0 !important; font-size: 1rem !important; }
-
-  /* Moves the unbroken cockpit graphics block up above the CTA buttons */
-  .hero-visual-block {
-    order: 4 !important;
-    height: auto !important; /* Unlocks vertical growth constraints */
-    min-height: auto !important; 
-    padding: 12px !important;
-    gap: 12px !important;
-    background-position: center !important;
-  }
-
-  /* Pushes the button array directly beneath the cockpit graphic */
+  /* Mobile Single-Fold Responsive Order */
+  .hero-eyebrow-blue { order: 1 !important; text-align: center !important; }
+  .hero-home-title { order: 2 !important; text-align: center !important; font-size: 2.1rem !important; }
+  .hero-text { order: 3 !important; text-align: center !important; margin: 12px 0 !important; font-size: 0.95rem !important; }
+  .hero-trust-line { order: 4 !important; text-align: center !important; margin: 12px 0 !important; }
+  
   .hero-actions-stack {
     order: 5 !important;
     width: 100% !important;
     max-width: 100% !important;
-    gap: 10px !important;
+    margin-top: 20px !important;
   }
 
-  /* 2. COCKPIT INSTRUMENT GRID SYSTEM SCALING */
-  .hero-hud-3x3-container {
-    grid-template-columns: 36% 28% 36% !important;
-    position: relative !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    
-    /* 🎯 THE FIX: Changes the rigid 105px rows to dynamic minmax tracks. 
-       This allows rows to grow automatically to match the height of your longest text string! */
-    grid-template-rows: minmax(105px, auto) 30px minmax(105px, auto) !important; 
-    height: auto !important; /* Removes the 240px structural ceiling */
+  .hero-bridge-line {
+    order: 7 !important;
+    margin-top: 20px !important;
   }
 
-  /* 🎯 THE FIX: Declares the quadrant card inside mobile to enforce backgrounds and 100% row height matching */
-  .hud-quadrant-card {
-    border-radius: 12px !important; /* Fixed typo here */
-    padding: 8px !important; 
-    box-sizing: border-box !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important; 
-    align-items: flex-start !important;
-    width: 100% !important;
-    height: 100% !important; 
-    
-    background: color-mix(in srgb, var(--brand-white) 35%, transparent) !important;
-    border: 1px solid var(--brand-white) !important;
-  }
+  .hero-bezel-showcase {
+        order: 6 !important;
+        padding: 12px !important;
+        max-height: none !important;
+      }
 
-  /* Compresses internal metric cards to prevent layout breaks */
-  .hero-metric-inline-card-centered {
-    height: 62px !important; 
-    margin: 8px 0 0 0 !important; /* Pushes element down away from the text header block */
-  }
-
-  .hero-metric-inline-card {
-    height: 28px !important;
-    gap: 6px !important;
-    padding: 4px 8px !important;
-  }
-
-  /* Proportional vector image scaling */
-  .svg-size-joy-dial     { width: 75px !important; height: 48px !important; }
-  .svg-size-sparkline    { height: 24px !important; }
-  .svg-size-effort-gauge { height: 22px !important; }
-  
-  .hero-dial-wrapper { width: 20px !important; height: 20px !important; }
-  .hero-dial-icon    { width: 11px !important; height: 11px !important; }
-  .hero-dial-mask    { inset: 2px !important; }
-  
-  .hud-metric-readout-bold { font-size: 0.62rem !important; }
-  .hud-metric-label-micro  { font-size: 5px !important; }
-
-  /* 🎯 THE FIX: Forces text wrapping on long labels without clipping */
-  .hud-panel-label {
-    font-size: 7.5px !important; 
-    white-space: normal !important; /* Allows natural multi-line wrapping */
-    line-height: 1.25 !important;
-    overflow: visible !important;
-    text-overflow: clip !important;
-    display: block !important;
-    margin-bottom: 2px !important;
-  }
-
-  /* 🎯 THE FIX: Syncs mobile text styling directly with your desktop amber color and drop shadow values */
-  .hud-panel-title {
-    font-size: 8.5px !important;
-    white-space: nowrap !important; 
-    overflow: hidden !important;   
-    text-overflow: ellipsis !important;
-    letter-spacing: 0px !important;
-    margin-top: 1px !important;
-    color: var(--brand-amber) !important;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95) !important; /* Perfectly mirrors desktop shadow settings */
-  }
-
-  /* Mathematical radar centering engine */
-  .hud-center-radar-anchor {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) scale(0.68) !important; 
-    width: 110px !important;
-    height: 110px !important;
-    margin: 0 !important;
-    z-index: 100 !important;
-  }
-
-  .hud-spider-wrapper {
-    width: 100px !important;
-    height: 100px !important;
-  }
-
-  .svg-size-risk-radar {
-    width: 95px !important;
-    height: 95px !important;
-  }
-
-  /* Readout map label scales */
-  .hud-axis-label {
-    font-size: 6.5px !important;
-  }
-  .axis-right-side   { right: -24px !important; }
-  .axis-left-side    { left: -22px !important; }
-  .axis-center-title { bottom: -14px !important; font-size: 8px !important; }
+      .hero-phone-video-viewport {
+        max-height: 400px !important;
+      }
 
   /* 3. SECTION 2: PROBLEM-HOOK STACKING RESTRUCTURE */
   .problem-split-grid {

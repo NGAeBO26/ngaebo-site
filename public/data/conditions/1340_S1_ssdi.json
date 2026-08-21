@@ -1,12 +1,12 @@
 {
   "profile_id": "1340_S1",
   "route_id": "1340",
-  "ssdi_score": 4.5,
+  "ssdi_score": 3.1,
   "v3_terrain_score": 1.0,
   "v3_terrain_class": "Cruiser",
   "badge_type": "ideal",
-  "condition": "DAMP / PACK",
-  "style_color": "#1b5e20",
+  "condition": "IDEAL",
+  "style_color": "#2e7d32",
   "access": {
     "label": "OPEN",
     "vibe_context": "RESTRICTED EXPLORER",
@@ -17,17 +17,17 @@
     "value": 0.0
   },
   "environment": {
-    "current_temp": 91,
-    "saturation_index": 15.7,
+    "current_temp": 80,
+    "saturation_index": 10.8,
     "soil_status": "Saturated",
     "precip_24h": 0.17,
     "saturation_trend": "stable",
     "alerts": []
   },
   "physics": {
-    "live_traction": 0.86,
-    "live_wh_per_km": 9.31,
-    "energy_penalty_pct": 0.8,
+    "live_traction": 0.88,
+    "live_wh_per_km": 9.24,
+    "energy_penalty_pct": 0.0,
     "v3_base_intensity": 1.0
   },
   "connectivity": {
