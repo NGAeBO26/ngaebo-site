@@ -4,11 +4,11 @@
 @media (max-width: 767px) {
   
   /* PRECISION BODY OVERRIDE LOCK: Standard header is ONLY hidden on mobile when actively on this page */
-  body.rg-page-mounted .site-header, 
+  /* body.rg-page-mounted .site-header, 
   body.rg-page-mounted #site-header, 
   body.rg-page-mounted .main-header {
     display: none !important;
-  }
+  } */
 
   /* 🎯 THE GAP VAPORIZER: Strips inherited theme margins/paddings & locks window scroll on mobile */
   html.rg-page-mounted,

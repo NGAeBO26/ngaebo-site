@@ -486,7 +486,7 @@ export function RideFilterBar({
 
     // 🎯 STATE 1: UNSTARTED & COLLAPSED -> INITIAL CTA
     if (!isMegaOpen && !hasAnySelection) {
-      return <span> Find Your Next Ride</span>;
+      return <span>Build Your Next Ride</span>;
     }
 
     // 🎯 STATE 2: UNSTARTED & OPEN -> INTERMEDIATE PROMPT STATE

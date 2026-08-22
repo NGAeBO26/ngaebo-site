@@ -76,351 +76,161 @@
   z-index: 10;
 }
 
-/* ==========================================================================
-   🎯 INTEGRATED IN-PAGE REPLICATED SHOWCASE SECTION STYLES
-   ========================================================================== */
-
-.rg-inline-showcase-section {
-  padding: 48px 0;
-  background-image:
-    linear-gradient(rgba(30, 58, 52, 0.65), rgba(110, 124, 124, 0.88)),
-    url("/images/backcountry_vprop_bg.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+/* 🎯 GLOBAL SITE HEADER SUPPRESSION ON RIDEGUIDES WORKSPACE MOUNT */
+body.rg-page-mounted .site-header, 
+body.rg-page-mounted #site-header, 
+body.rg-page-mounted .main-header {
+  display: none !important;
 }
 
-.rg-inline-showcase-section .rg-inline-funnel-container {
-  max-width: 960px;
-  margin: 0 auto;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* --- TIER 1: SCOPED 4-COLUMN TRUST & PREVIEW STRIP --- */
-.rg-inline-showcase-section .prop-strip-matrix-bay {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 46px;
-  width: 100%;
-  max-width: 840px;
-  margin: 8px auto 16px auto;
-}
-
-.rg-inline-showcase-section .tier-4-column-grid {
-  grid-template-columns: repeat(4, 1fr) !important;
-  gap: 20px !important;
-  max-width: 960px !important;
-  margin-bottom: 24px !important;
-}
-
-.prop-card-header-title-fallback {
-  font-size: 1.05rem;
-  color: #ffffff;
-  font-weight: 700;
-  display: block;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
-}
-
-.rg-inline-showcase-section .prop-value-column-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 16px;
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--brand-deep-green) 50%, transparent);
-  border: 1px solid var(--brand-deep-green);
-  box-sizing: border-box;
-}
-
-.rg-inline-showcase-section .prop-value-column-card h5 {
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin: 0 0 6px 0;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
-}
-
-.rg-inline-showcase-section .prop-value-column-card p {
-  font-size: 0.8rem;
-  color: #cbd5e1;
-  line-height: 1.45;
-  margin: 0;
-  text-align: left;
-}
-
-.rf-featured-products-footer-container .rf-section-label {
-  color: #94a3b8;
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.rg-inline-showcase-section .prop-value-icon-box {
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.rg-inline-showcase-section .prop-card-header-strip {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  width: 100%;
-}
-
-.rg-inline-showcase-section .text-prop-heavy {
-  color: var(--brand-mellow);
-  font-weight: 800;
-}
-
-.rg-inline-showcase-section .prop-value-icon-box img.ng-prop-graphic-asset {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-}
-
-/* Rotated Thumbnail Column Custom Styles */
-.rg-inline-showcase-section .rg-preview-img-contain-rotated {
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  position: relative;
-}
-
-.rg-inline-showcase-section .rg-mini-thumbnail-rotated {
-  width: 32px;
-  height: 44px;
-  object-fit: cover;
-  transform: rotate(-20deg);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
-  border-radius: 2px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-/* --- TIER 2: MIDSECTION HORIZONTAL CONVERSION BANNER --- */
-.rg-inline-showcase-section .rg-conversion-banner-tier {
-  width: 100%;
-  max-width: 930px;
-  margin: 0 auto 32px auto;
-  border-radius: 12px;
-  padding: 24px;
-  box-sizing: border-box;
-  background: color-mix(in srgb, var(--brand-deep-green) 50%, transparent);
-  border: 1px solid var(--brand-deep-green);
-  text-align: center;
-}
-
-.rg-inline-showcase-section .rg-lead-magnet-pitch-text-center {
-  font-size: 0.88rem !important;
-  line-height: 1.55 !important;
-  color: #cbd5e1 !important;
-  max-width: 720px;
-  margin: 0 auto 16px auto !important;
-  text-align: center !important;
-}
-
-.rg-inline-showcase-section .capture-form-full-width-container {
-  width: 100%;
-  max-width: 650px;
-  margin: 0 auto;
-}
-
-.rg-inline-showcase-section .capture-legal-disclaimer-center {
-  display: block;
-  font-size: 0.68rem;
-  line-height: 1.4;
-  color: #94a3b8;
-  text-align: center;
-  margin-top: 12px;
-  width: 100%;
-}
-
-.rg-inline-showcase-section .capture-success-persistent-msg {
-  text-align: center;
-  color: #10b981;
-  font-size: 0.78rem;
-  font-weight: 700;
-  padding: 10px 14px;
-  background: rgba(16, 185, 129, 0.06);
-  border: 1px dashed #10b981;
-  border-radius: 8px;
-  margin-top: 4px;
-  box-sizing: border-box;
-  width: 100%;
-}
-
-/* --- TIER 3: HORIZONTAL GRID FLOW SEQUENCE RULES --- */
-.rg-horizontal-instructions-tier {
-  width: 100%;
-  max-width: 930px;
-  margin: 0 auto 12px auto;  
-  padding: 16px;
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--brand-deep-green) 50%, transparent);
-  border: 1px solid var(--brand-deep-green);
-  box-sizing: border-box;
-}
-
-.rg-horizontal-steps-row {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr auto 1fr;
-  align-items: center;
-  gap: 14px;
-  width: 100%;
-}
-
-.rg-step-column-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px;
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--brand-bone) 30%, transparent);
-  border: 1px solid var(--brand-bone);
-  box-sizing: border-box;
-}
-
-.rg-step-step-divider {
-  font-size: 1.25rem;
-  color: var(--brand-sky);
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  padding: 0 4px;
-  text-shadow: 0 1px 2px var(--brand-white);
-}
-
-.rg-step-badge-number {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--brand-sky);
-  color: #ffffff;
-  font-family: "Montserrat", sans-serif !important;
-  font-size: 0.85rem;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-}
-
-.rg-step-item-text {
-  font-size: 0.76rem !important;
-  line-height: 1.45 !important;
-  color: var(--brand-white) !important;
-  font-weight: 600;
+/* 🎯 MAP ATTRIBUTION CONTAINER CENTER LOCK & STACKING */
+.discovery-map-main-viewport .map-dashboard-attribution-overlay {
+  position: absolute !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;  
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  height: auto !important;
+  gap: 6px !important;
+  z-index: 100002 !important;
   margin: 0 !important;
-  text-align: left;
+  pointer-events: auto !important;
 }
 
-.rg-step-item-text strong {
-  color: var(--brand-sky);
-  font-weight: 800;
-  text-transform: uppercase;
-  text-shadow: 0 1px 2px var(--brand-white);
+/* Ensure attribution sub-elements stack below the button frame cleanly */
+.discovery-map-main-viewport .map-dashboard-attribution-overlay .map-attribution-text,
+.discovery-map-main-viewport .map-dashboard-attribution-overlay .map-attribution-tag,
+.discovery-map-main-viewport .map-dashboard-attribution-overlay span,
+.discovery-map-main-viewport .map-dashboard-attribution-overlay a {
+  position: relative !important;
+  bottom: auto !important;
+  top: auto !important;
+  font-size: 10px !important;
+  color: #64748b !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) !important;
 }
 
-.rg-instructions-micro-header {
+/* 🎯 REVISE EXIT BUTTON TO MATCH NAV TRAY WIDTH & ACTIVE ORANGE STATE */
+.discovery-dashboard-root .btn-exit-fullscreen-pill,
+.discovery-dashboard-root .exit-fullscreen-btn,
+.discovery-dashboard-root .map-exit-fullscreen-btn,
+.discovery-map-main-viewport .btn-exit-fullscreen-pill,
+.discovery-map-main-viewport .exit-fullscreen-btn,
+.discovery-map-main-viewport .map-exit-fullscreen-btn,
+.discovery-map-main-viewport button[class*="exit"] {
+  font-size: 0 !important;
+  width: 180px !important;
+  min-width: 180px !important;
+  max-width: 180px !important;
+  height: 38px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 8px !important;
+  background: #0f172a !important;
+  border: 2px solid #236ea0 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  z-index: 100002 !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Button label when CLOSED */
+.discovery-dashboard-root .btn-exit-fullscreen-pill::after,
+.discovery-dashboard-root .exit-fullscreen-btn::after,
+.discovery-dashboard-root .map-exit-fullscreen-btn::after,
+.discovery-map-main-viewport .btn-exit-fullscreen-pill::after,
+.discovery-map-main-viewport .exit-fullscreen-btn::after,
+.discovery-map-main-viewport .map-exit-fullscreen-btn::after,
+.discovery-map-main-viewport button[class*="exit"]::after {
+  content: "EXIT TO SITE ▲" !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
   font-family: "Montserrat", sans-serif !important;
-  font-size: 0.9rem;
-  font-weight: 800;
-  color: var(--brand-mellow);
-  text-align: center;
-  margin: 12px 0 12px 0;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
+  color: #ffffff !important;
 }
 
-/* 🛒 DEDICATED FEATURED PRODUCTS LOWER CONTAINER */
-.rf-featured-products-footer-container {
-  background-color: #111827;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 40px 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+/* Button label & background when EXPANDED (active orange state) */
+.discovery-map-main-viewport.nav-tray-open .btn-exit-fullscreen-pill,
+.discovery-map-main-viewport.nav-tray-open .exit-fullscreen-btn,
+.discovery-map-main-viewport.nav-tray-open .map-exit-fullscreen-btn,
+.discovery-map-main-viewport.nav-tray-open button[class*="exit"] {
+  background: var(--brand-sky) !important;
+  border-color: var(--brand-deep-blue) !important;
+  /* box-shadow: 0 0 16px #2e85ee66 !important; */
+  border-radius: 0 0 8px 8px !important;
+}
+
+.discovery-map-main-viewport.nav-tray-open .btn-exit-fullscreen-pill::after,
+.discovery-map-main-viewport.nav-tray-open .exit-fullscreen-btn::after,
+.discovery-map-main-viewport.nav-tray-open .map-exit-fullscreen-btn::after,
+.discovery-map-main-viewport.nav-tray-open button[class*="exit"]::after {
+  content: "EXIT TO SITE ▼" !important;
+  color: #0f172a !important;
+}
+
+/* 🎯 DESKTOP MAP SITE NAVIGATION DOCK & TRAY (FLUSH 0px GAP DOCKING) */
+.discovery-dashboard-root .rg-desktop-sitenav-dropdown-overlay-tray {
+  position: absolute !important;
+  bottom: 60px !important;
+  left: 50% !important;
+  transform: translateX(-50%) translateY(12px) !important;
+  width: 180px !important;
+  box-sizing: border-box !important;
+  background-color: #f5f5f4 !important;
+  border: 2px solid var(--brand-deep-blue) !important;
+  border-bottom: none !important;
+  border-radius: 12px 12px 0 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 4px 0 !important;
+  box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.35) !important;
+  z-index: 100001 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease !important;
+}
+
+.discovery-dashboard-root .rg-desktop-sitenav-dropdown-overlay-tray.is-open {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
+
+.discovery-dashboard-root .rg-desktop-sitenav-dropdown-overlay-tray .rg-mobile-nav-link-item {
+  padding: 12px 18px !important;
   font-family: "Montserrat", sans-serif !important;
-  border-radius: 8px 8px 0 0;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  color: #1e293b !important;
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  text-align: left !important;
+  display: block !important;
+  transition: background-color 0.15s ease, color 0.15s ease !important;
 }
 
-.rf-product-cards-row {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
+.discovery-dashboard-root .rg-desktop-sitenav-dropdown-overlay-tray .rg-mobile-nav-link-item:hover {
+  background-color: rgba(35, 110, 160, 0.08) !important;
+  color: #236ea0 !important;
 }
 
-.rf-affiliate-product-card {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  background-color: #1f2937;
-  padding: 12px 20px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  min-width: 240px;
+.discovery-dashboard-root .rg-desktop-sitenav-dropdown-overlay-tray .rg-mobile-nav-link-item:last-child {
+  border-bottom: none !important;
 }
 
-.rf-product-icon-wrapper {
-  width: 40px;
-  height: 40px;
-  background-color: #374151;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-}
-
-.rf-product-title {
-  color: #e5e7eb;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.rf-product-subtitle {
-  color: #9ca3af;
-  font-size: 12px;
-  margin-top: 2px;
-}
-
-/* RideGuide Component Structural Accessibility Adjustments */
-
-/* ─── 🎯 VALUE MATRIX ITEM HEADER OVERRIDES ─── */
-.prop-value-column-card .prop-card-header-title {
-  display: block; 
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin: 0 0 6px 0;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
-}
-
-/* ─── 🎯 BOTTOM SUMMARY INSTRUCTION CALLOUT ─── */
-.rg-horizontal-instructions-tier .rg-instructions-micro-header-callout {
-  display: block;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: bold;
-  line-height: 1.4;
-  text-align: center;
-  margin-top: 16px;
-  color: var(--brand-mellow);
+.discovery-dashboard-root .rg-desktop-sitenav-dropdown-overlay-tray .rg-mobile-nav-link-item.active-destination {
+  color: var(--brand-sky) !important;
+  border-left: 4px solid var(--brand-deep-blue) !important;
+  background-color: rgba(35, 110, 160, 0.1) !important;
 }
 
 /* ─── 📱 MOBILE VIEWPORT OVERRIDES ─── */

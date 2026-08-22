@@ -7,7 +7,7 @@ import {
   RideResultGallery,
 } from "../features/Discovery/components/RideFinder";
 import GravelPopup from "../features/Discovery/components/GravelPopup";
-import TacticalLeadForm from "../components/TacticalLeadForm";
+
 import { LoadingOverlay } from "../components/LoadingOverlay";
 import PersistentLeftShopPanel from "../store/StorePanel";
 import { useShopifyCart } from "../store/ShopifyCartContext"; 
@@ -43,16 +43,10 @@ export default function RideGuide() {
   const [isWorkspaceLoading, setIsWorkspaceLoading] = useState<boolean>(true);
   const [loadProgress, setLoadProgress] = useState<number>(0);
 
-  const [showModal, setShowModal] = useState(() => {
-    return localStorage.getItem("rideguide_lead_submitted") !== "true";
-  });
-
-  // Layout Coordination Anchors
-  const [isEnteringFullscreen, setIsEnteringFullscreen] =
-    useState<boolean>(false);
-  
   // 🎯 NEW STATE: Explicitly tracking active fullscreen layout configurations to sync the onboarding tour modal
   const [isDashboardViewActive, setIsDashboardViewActive] = useState<boolean>(false);
+  const [showNavMenu, setShowNavMenu] = useState<boolean>(false);
+  const navMenuRef = useRef<HTMLDivElement | null>(null);
 
   // ─── 📱 APPROVED MOBILE APPLICATION STATE LAYER CONTROLLERS ───
   const [isMobile, setIsMobile] = useState<boolean>(
@@ -129,7 +123,6 @@ export default function RideGuide() {
   }, []);
 
   const dashboardRef = useRef<HTMLDivElement | null>(null);
-  const ignoreObserverRef = useRef<boolean>(false);
 
   useEffect(() => {
     if (!isWorkspaceLoading) return;
@@ -147,83 +140,33 @@ export default function RideGuide() {
     return () => clearInterval(progressTimer);
   }, [isWorkspaceLoading]);
 
-  // ─── UNIFIED STAGGERED ANIMATION ESCAPE OUTLET PIPELINE ───
-  const handleExitFullscreen = useCallback(() => {
-    ignoreObserverRef.current = true;
-
-    document.body.classList.add("dashboard-view-exiting");
-
-    setTimeout(() => {
-      document.body.classList.remove(
-        "dashboard-view-active",
-        "dashboard-view-exiting",
-      );
-      // 🎯 STATE SYNC: Clears tracking hooks when exiting full-bleed desktop maps
-      setIsDashboardViewActive(false);
-      window.scrollTo({ top: 0 });
-      ignoreObserverRef.current = false;
-    }, 350);
+  const handleNavToggle = useCallback(() => {
+    setShowNavMenu((prev) => !prev);
   }, []);
 
-  // ─── 📱 INSTANT MOBILE AREA AUTO-LOCK VIEWPORT ENGINE ───
   useEffect(() => {
-    if (isMobile && !isWorkspaceLoading) {
+    if (!showNavMenu) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (
+        navMenuRef.current?.contains(target) ||
+        target?.closest('.map-dashboard-attribution-overlay, .btn-exit-fullscreen-pill, .map-exit-fullscreen-btn, .exit-fullscreen-btn, button[class*="exit"]')
+      ) {
+        return;
+      }
+      setShowNavMenu(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [showNavMenu]);
+
+  // ─── 📱 // ─── INSTANT FULLSCREEN DASHBOARD AUTO-LOCK ENGINE ───
+  useEffect(() => {
+    if (!isWorkspaceLoading) {
       document.body.classList.add("dashboard-view-active");
-      // 🎯 STATE SYNC: Asserts true for mobile viewports once map loading completes
       setIsDashboardViewActive(true);
     }
-  }, [isMobile, isWorkspaceLoading]);
-
-  // 🎯 DASHBOARD ROOT SCROLL SHIFT LOCK: Prevents internal scrollIntoView from shifting the top header strip
-  useEffect(() => {
-    const el = dashboardRef.current;
-    if (!el) return;
-    const handleRootScrollLock = () => {
-      if (el.scrollTop !== 0) {
-        el.scrollTop = 0;
-      }
-    };
-    el.addEventListener("scroll", handleRootScrollLock, { passive: true });
-    return () => el.removeEventListener("scroll", handleRootScrollLock);
-  }, []);
-
-  // ─── LOOP-PROOF SCROLL CAPTURE TRACKING ENGINE ───
-  useEffect(() => {
-    const handleScrollEntryTrigger = () => {
-      if (ignoreObserverRef.current) return;
-      if (isMobile) return; 
-      if (document.body.classList.contains("dashboard-view-active")) return;
-
-      const element = dashboardRef.current;
-      if (!element) return;
-
-      const rect = element.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-
-      if (rect.top <= viewportHeight * 0.33 && rect.top > 0) {
-        ignoreObserverRef.current = true;
-        setIsEnteringFullscreen(true);
-
-        setTimeout(() => {
-          setIsEnteringFullscreen(false);
-          document.body.classList.add("dashboard-view-active");
-          // 🎯 STATE SYNC: Asserts true for desktop layouts once fullscreen transition settles
-          setIsDashboardViewActive(true);
-          ignoreObserverRef.current = false;
-        }, 2500);
-      }
-    };
-
-    window.addEventListener("scroll", handleScrollEntryTrigger, {
-      passive: true,
-    });
-    return () => window.removeEventListener("scroll", handleScrollEntryTrigger);
-  }, [isMobile]);
-
-  const handleLeadSuccess = () => {
-    localStorage.setItem("rideguide_lead_submitted", "true");
-    setShowModal(false);
-  };
+  }, [isWorkspaceLoading]);
 
   const handleFilterUpdate = useCallback((results: any[]) => {
     setFilteredRoutes(results);
@@ -323,106 +266,7 @@ export default function RideGuide() {
         North Georgia Backcountry Route Explorer and Telemetry Workspace
       </h1>
       
-      <LoadingOverlay
-        isLoading={isEnteringFullscreen}
-        progress={0}
-        message="Entering Full Screen Mode"
-        subtitle="Setting up the viewport..."
-        hideProgress={true}
-        isFullscreen={true}
-      />
-
-      {/* SHOWCASE BRAND MARKETING TOP ROW (DESKTOP ONLY) */}
-      {!isMobile && (
-        <section className="rg-inline-showcase-section" aria-label="Product Benefit Overview Section">
-          <div className="rf-marketing-hero-banner">
-          <h2>Plan Faster. Ride Smarter.</h2>
-          <p>HIGH ACCURACY TERRAIN - CUSTOM ANALYTICS - WEATHER AWARE - GUIDE FOR YOUR RIDE</p>
-        </div>
-
-        <div className="rg-inline-funnel-container">
-          <div className="prop-strip-matrix-bay tier-4-column-grid">
-            <div className="prop-value-column-card">
-              <div className="prop-card-header-strip">
-                <div className="rg-preview-img-contain-rotated">
-                  <img src="/data/assets/RideGuide_Sample.png" alt="RideGuide Premium PDF Pack" className="rg-mini-thumbnail-rotated" />
-                </div>
-                <span className="prop-card-header-title">Know Before You Go</span>
-              </div>
-              <p>High-resolution elevation mapping, route metrics, and surface saturation tracking dials, <strong className="text-prop-heavy">so you are prepared for every ride!</strong>.</p>
-            </div>
-
-            <div className="prop-value-column-card">
-              <div className="prop-card-header-strip">
-                <div className="prop-value-icon-box ng-prop-icon-offline">
-                  <img src="data\assets\icon_no_cell_signal.svg" className="ng-prop-graphic-asset" alt="Offline Independent Icon" />
-                </div>
-                <span className="prop-card-header-title">Offline Independent</span>
-              </div>
-              <p>Pre-rendered field guides that load instantly without requiring <strong className="text-prop-heavy">cell network data or map syncs</strong>.</p>
-            </div>
-
-            <div className="prop-value-column-card">
-              <div className="prop-card-header-strip">
-                <div className="prop-value-icon-box window-icon ng-prop-icon-motor">
-                  <img src="data\assets\icon_credit_card.svg" className="ng-prop-graphic-asset" alt="No Subscription Required Icon" />
-                </div>
-                <span className="prop-card-header-title">No Required Subscription</span>
-              </div>
-              <p>Don't get caught in subscription based route services. <strong className="text-prop-heavy">Buy only what you want, when you want.</strong></p>
-            </div>
-
-            <div className="prop-value-column-card">
-              <div className="prop-card-header-strip">
-                <div className="prop-value-icon-box ng-prop-icon-insurance">
-                  <img src="data\assets\icon_safety.svg" className="ng-prop-graphic-asset" alt="Peace of Mind Icon" />
-                </div>
-                <span className="prop-card-header-title">Peace of Mind</span>
-              </div>
-              <p>The backcountry can be dangerous if you are not prepared. <strong className="text-prop-heavy">Understand your risk and ride safely.</strong></p>
-            </div>
-          </div>
-
-          <div className="rg-conversion-banner-tier">
-            {!showModal ? (
-              <div className="capture-success-persistent-msg" role="status" aria-live="polite">
-                ✓ Free 3-Pack Sample Unlocked! Check your email inbox for your instant backcountry download link.
-              </div>
-            ) : (
-              <>
-                <p className="rg-lead-magnet-pitch-text-center">
-                  Planning your bike's maiden voyage? We've mapped out the the ultimate 3-pack sample series of Fire Service routes perfectly suited for this bike. Instant download package delivered straight to your email.
-                </p>
-                <div className="capture-form-full-width-container">
-                  <TacticalLeadForm layout="row" sourceGroupTag="rides_page_capture" buttonLabel="Unlock Free Sample Maps ➔" onSuccess={handleLeadSuccess} />
-                </div>
-              </>
-            )}
-          </div>
-
-          <div className="rg-horizontal-instructions-tier" role="region" aria-label="Application Usage Instructions">
-            <div className="rg-instructions-micro-header">Get Your RideGuide in 3 Easy Steps...</div>
-            <div className="rg-horizontal-steps-row">
-              <div className="rg-step-column-item">
-                <span className="rg-step-badge-number">1</span>
-                <p className="rg-step-item-text"><strong>Filter routes</strong> by name, route class, distance, or grade using the RideFinder filtering controls.</p>
-              </div>
-              <div className="rg-step-step-divider" role="presentation">➔</div>
-              <div className="rg-step-column-item">
-                <span className="rg-step-badge-number">2</span>
-                <p className="rg-step-item-text"><strong>Select your route</strong> by clicking on the list cards or targeting pins directly on the live map canvas.</p>
-              </div>
-              <div className="rg-step-step-divider" role="presentation">➔</div>
-              <div className="rg-step-column-item">
-                <span className="rg-step-badge-number">3</span>
-                <p className="rg-step-item-text"><strong>Unlock your RideGuide</strong> pack to download full continuous telemetry, profiles, and safety matrices.</p>
-              </div>
-            </div>
-            <div className="rg-instructions-micro-header-callout">Use the interactive map below to discover routes, then get your offline guide delivered to your inbox!</div>
-          </div>
-        </div>
-        </section>
-      )}
+      
 
       {/* CONSOLE MODULE WRAPPER PLATFORM */}
       {isMobile ? (
@@ -439,7 +283,7 @@ export default function RideGuide() {
           activeHoverId={activeHoverId}
           onHoverChange={setActiveHoverId}
           onRoutesLoaded={handleRoutesLoaded}
-          onExitFullscreen={handleExitFullscreen}
+          onExitFullscreen={handleNavToggle}
           mapResetFnRef={mapResetFnRef}
           mapZoomFnRef={mapZoomFnRef}
           cartItems={cartItems}
@@ -492,7 +336,7 @@ export default function RideGuide() {
               </aside>
 
               {/* Immersive WebGL Mapping Backplane Canvas Viewport */}
-              <div className="discovery-map-main-viewport">
+              <div className={`discovery-map-main-viewport ${showNavMenu ? "nav-tray-open" : ""}`}>
                 <GravelGuide
                   activeHoverId={activeHoverId}
                   onRouteHover={setActiveHoverId}
@@ -507,8 +351,26 @@ export default function RideGuide() {
                   onRegisterZoomFn={(fn) => {
                     mapZoomFnRef.current = fn;
                   }}
-                  onExitFullscreen={handleExitFullscreen}
+                  onExitFullscreen={handleNavToggle}
                 />
+
+                <div
+                  className={`rg-desktop-sitenav-dropdown-overlay-tray ${showNavMenu ? "is-open" : ""}`}
+                  ref={navMenuRef}
+                >
+                  <a href="/" className="rg-mobile-nav-link-item">
+                    Home
+                  </a>
+                  <a href="/rides" className="rg-mobile-nav-link-item active-destination">
+                    RideGuides
+                  </a>
+                  <a href="/shop" className="rg-mobile-nav-link-item">
+                    Shop Gear
+                  </a>
+                  <a href="/community" className="rg-mobile-nav-link-item">
+                    About Us
+                  </a>
+                </div>
               </div>
 
               {/* Desktop Right Rail Asset Gallery Container Block */}

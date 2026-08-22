@@ -9,7 +9,7 @@
     0 0 18px rgba(245, 158, 11, 0.8),
     0 0 6px rgba(255, 255, 255, 0.6) !important;
   font-family: "Montserrat", sans-serif !important;
-  font-size: 12px !important;
+  font-size: 16px !important;
   font-weight: 900 !important;
   letter-spacing: 0.04em !important;
   padding: 8px 20px !important;
@@ -34,6 +34,11 @@
   box-shadow:
     0 0 24px rgba(245, 158, 11, 0.95),
     0 0 10px rgba(255, 255, 255, 0.8) !important;
+}
+
+.quiz-prompt-label {
+font-size: 12px !important;
+
 }
 
 /* 🎯 QUIZ COMPLETE STATE (TRIGGER BUTTON WHEN TRAY IS CLOSED) */

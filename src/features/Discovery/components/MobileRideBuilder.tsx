@@ -484,7 +484,7 @@ export default function MobileRideBuilder({
               <span className="quiz-prompt-label">Choose from the options below to get started!</span>
             </>
           ) : (
-            <span className="cta-button-text">Find Your Next Ride ▼</span>
+            <span className="cta-button-text">Build Your Next Ride ▼</span>
           )}
         </button>
       </div>
