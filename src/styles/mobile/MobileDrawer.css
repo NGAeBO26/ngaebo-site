@@ -283,10 +283,10 @@
   .discovery-dashboard-root .rg-drawer-header-badge {
     position: absolute !important; 
     right: 24px !important;
-    top: 75% !important;
+    top: 80% !important;
     transform: translateY(-50%) !important;
-    width: 48px !important;
-    height: 48px !important;
+    width: 64px !important;
+    height: 64px !important;
     object-fit: contain !important;
     flex-shrink: 0 !important;
     display: block !important;

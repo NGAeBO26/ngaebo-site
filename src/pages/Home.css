@@ -107,7 +107,7 @@
   margin-top: auto;
 }
 
-.hero-actions-stack .btn-funnel-main {
+.funnel-landing-page .btn-funnel-main {
   text-align: center;
   padding: 14px 28px;
   font-weight: 600;
@@ -115,6 +115,7 @@
   background-color: var(--color-primary);
   display: inline-block;
   text-decoration: none;
+  border-radius: 8px;
   
   /* ─── 🎯 FIXED CONTRAST ─── 
      Swapped from var(--brand-white) (#ffffff) to deep charcoal (#0f172a). 
@@ -123,7 +124,7 @@
   color: #0f172a !important;
 }
 
-.hero-actions-stack .btn-funnel-main:hover {
+.funnel-landing-page .btn-funnel-main:hover {
   background-color: var(--color-primary-dark);
   
   /* ─── 🎯 FIXED HOVER STATE ─── 
@@ -132,13 +133,11 @@
 }
 
 .hero-actions-stack .btn-funnel-sub {
-  text-align: center;
-  padding: 12px 24px;
-  font-weight: 500;
   font-size: 1rem;
-  background: transparent;
-  border: 1px solid var(--color-border);
-  color: #475569;
+    font-weight: 700;
+    color: #236ea0;
+    text-decoration: none;
+    transition: color 0.15s ease;
 }
 
 .hero-actions-stack .btn-funnel-sub:hover {
@@ -156,6 +155,10 @@
   box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
   max-height: 520px;
+  max-width: 260px;
+  overflow: hidden;
+  margin: auto;
+  justify-self: center;
 }
 
 .funnel-landing-page .hero-phone-bezel-link {
@@ -451,7 +454,7 @@
   height: 140px; 
 }
 
-/* --- SECTION 2: PROBLEM HOOK SECTION --- */
+/* --- SECTION 2: PROBLEM HOOK SECTION & VALUE PROOF SHOWCASE --- */
 .problem-hook-section {
   padding: 90px 0; 
   background: var(--brand-cream);
@@ -464,20 +467,8 @@
   align-items: flex-start;
 }
 
-.problem-challenge-block h2 {
-  font-size: 2.25rem;
-  font-weight: 800;
-  color: var(--brand-charcoal);
-  line-height: 1.25;
-  margin: 0;
-  letter-spacing: -0.01em;
-}
-
-.problem-tagline-amber {
-  /* ─── 🎯 FIXED CONTRAST ─── 
-     Swapped from var(--brand-amber) (#d88a3a) to a deeply saturated accessible 
-     burnt amber (#92400e) which completely clears the 4.5:1 WCAG AA barrier against light backgrounds */
-  color: #92400e !important;
+.funnel-landing-page .problem-hook-section .section2-eyebrow-amber {
+  color: #92400e;
   font-size: 1.15rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -486,11 +477,507 @@
   display: block;
 }
 
-.problem-solution-block p {
+.funnel-landing-page .problem-hook-section .section2-headline,
+.funnel-landing-page .problem-hook-section .problem-challenge-block h2 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--brand-charcoal);
+  line-height: 1.25;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.funnel-landing-page .problem-hook-section .section2-body-text {
   font-size: 1.15rem;
   color: #475569;
   line-height: 1.65;
+  margin: 0 0 20px 0;
+}
+
+.funnel-landing-page .problem-hook-section .section2-action-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.funnel-landing-page .problem-hook-section .section2-secondary-link {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #236ea0;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.funnel-landing-page .problem-hook-section .section2-secondary-link:hover {
+  color: #0f172a;
+  text-decoration: underline;
+}
+
+/* --- SECTION 2: INTERACTIVE HERO SHOWCASE & BLOOMING HOTSPOTS --- */
+.funnel-landing-page .section2-proof-showcase {
+  margin-top: 48px;
+  padding: 24px 28px;
+  background-color: var(--brand-deep-green);
+  background-image: 
+    linear-gradient(color-mix(in srgb, var(--brand-deep-green) 80%, transparent), color-mix(in srgb, #1e3a34 70%, transparent)), 
+    url("/images/map-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 12px 36px -5px rgba(15, 23, 42, 0.35);
+  position: relative;
+}
+
+.funnel-landing-page .section2-proof-showcase .showcase-header-block {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 16px auto;
+}
+
+.funnel-landing-page .section2-proof-showcase .showcase-main-title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
+}
+
+.funnel-landing-page .section2-proof-showcase .showcase-brand-logo-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.funnel-landing-page .section2-proof-showcase .showcase-brand-logo {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
+}
+
+.funnel-landing-page .section2-proof-showcase .showcase-sub-title {
+  color: #e2e8f0;
+  font-weight: 500;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+  line-height: 1.4;
   margin: 0;
+}
+
+/* Central Stage Container holding Hero Sheet, Lines & Absolute Cards */
+.funnel-landing-page .section2-proof-showcase .showcase-interactive-stage {
+  position: relative;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  height: 420px;
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Connector Line SVG Overlay */
+.funnel-landing-page .section2-proof-showcase .hotspot-connector-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 15;
+  overflow: visible;
+}
+
+.funnel-landing-page .section2-proof-showcase .connector-line-path {
+  fill: none;
+  stroke: var(--brand-amber, #f59e0b);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  opacity: 0;
+  transition: stroke-dashoffset 5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease;
+  filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.6));
+}
+
+.funnel-landing-page .section2-proof-showcase .connector-line-path.active-line {
+  stroke-dashoffset: 0;
+  opacity: 1;
+}
+
+.funnel-landing-page .section2-proof-showcase .connector-node-dot {
+  fill: var(--brand-amber);
+  filter: drop-shadow(0 0 6px #ffffff);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.funnel-landing-page .section2-proof-showcase .connector-node-dot.active-line {
+  opacity: 1;
+}
+
+.funnel-landing-page .section2-proof-showcase .hero-guide-frame-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
+}
+
+.funnel-landing-page .section2-proof-showcase .hero-guide-sheet-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Centered Sample RideGuide Badge Overlay */
+.funnel-landing-page .section2-proof-showcase .hero-guide-map-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(15, 23, 42, 0.65);
+  background: color-mix(in srgb, var(--brand-deep-green) 65%, transparent);
+  border: 1px solid var(--brand-amber);
+  border-radius: 8px;
+  padding: 8px 8px;
+  max-width: 120px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);  
+  white-space: normal;
+}
+
+.funnel-landing-page .section2-proof-showcase .hero-guide-map-overlay .overlay-brand-logo {
+  height: 20px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 4px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+}
+
+.funnel-landing-page .section2-proof-showcase .hero-guide-map-overlay .overlay-title {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+.funnel-landing-page .section2-proof-showcase .hero-guide-map-overlay .overlay-subtitle {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--brand-amber);
+  margin-top: 4px;
+  line-height: 1.25;
+}
+
+/* Pulsing Hotspot Marker Buttons Anchored Over Hero Sheet */
+.funnel-landing-page .section2-proof-showcase .hotspot-marker {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--brand-slate);
+  border: 2px solid var(--brand-amber);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.funnel-landing-page .section2-proof-showcase .hotspot-marker:hover,
+.funnel-landing-page .section2-proof-showcase .hotspot-marker.active-hotspot {
+  transform: scale(1.15);
+  background: var(--brand-amber);
+  border-color: #ffffff;
+}
+
+.funnel-landing-page .section2-proof-showcase .hotspot-icon {
+  width: 17px;
+  height: 17px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.funnel-landing-page .section2-proof-showcase .hotspot-marker.active-hotspot .hotspot-icon {
+  filter: brightness(0) invert(1);
+}
+
+/* Pulsing Outer Halo Ring */
+.funnel-landing-page .section2-proof-showcase .hotspot-pulse-ring {
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 2px solid var(--brand-amber);
+  opacity: 0.6;
+  animation: hotspotPulse 2s infinite cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+@keyframes hotspotPulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* Hotspot Anchor Positions (% based over RideGuide Sheet) */
+.funnel-landing-page .section2-proof-showcase .marker-weather { top: 10%; left: 45%; }
+.funnel-landing-page .section2-proof-showcase .marker-effort { top: 48%; left: 11%; }
+.funnel-landing-page .section2-proof-showcase .marker-risk { top: 60%; left: 11%; }
+.funnel-landing-page .section2-proof-showcase .marker-conditions { top: 10%; left: 78%; }
+
+/* Blooming Telemetry Widget Cards Layered Around Hero Sheet */
+.funnel-landing-page .section2-proof-showcase .hotspot-widget-card {
+  position: absolute;
+  width: 280px;
+  background: radial-gradient(circle at center, #ffffff 0%, #f9f9f9 100%) !important;
+  border: 2px solid var(--brand-amber) !important;
+  border-radius: 10px;
+  padding: 0 12px 10px 12px;
+  box-sizing: border-box;
+  z-index: 30;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  overflow: visible;
+}
+
+.funnel-landing-page .section2-proof-showcase .hotspot-widget-card.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.82);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) 0s, opacity 0.25s ease 0s;
+}
+
+.funnel-landing-page .section2-proof-showcase .hotspot-widget-card.bloomed {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.6s, opacity 0.35s ease 0.6s;
+}
+
+/* Widget Card Anchors (Separated Vertical Spacing Lock) */
+.funnel-landing-page .section2-proof-showcase .slot-top-left { top: 0%; left: 0; }
+.funnel-landing-page .section2-proof-showcase .slot-top-right { top: 0%; right: 0; }
+.funnel-landing-page .section2-proof-showcase .slot-bottom-right { bottom: 0%; right: 0; }
+.funnel-landing-page .section2-proof-showcase .slot-bottom-left { bottom: 0%; left: 0; }
+
+.funnel-landing-page .section2-proof-showcase .widget-card-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0 -12px 8px -12px;
+  background: #fdf4ce;
+  border-bottom: 1px solid #fbbf24;
+  padding: 8px 12px 8px 52px;
+  box-sizing: border-box;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  min-height: 38px;
+}
+
+.funnel-landing-page .section2-proof-showcase .widget-header-icon {
+  position: absolute;
+    top: 8px;
+    left: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--brand-amber);
+    border: 2px solid var(--brand-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 5;
+}
+
+.funnel-landing-page .section2-proof-showcase .widget-header-icon-img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.funnel-landing-page .section2-proof-showcase .widget-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #92400e;
+  letter-spacing: 0.03em;
+}
+
+.funnel-landing-page .section2-proof-showcase .widget-body-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  margin: 4px 0;
+}
+
+.funnel-landing-page .section2-proof-showcase .widget-subtitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #475569;
+  line-height: 1.35;
+  text-align: left;
+  flex: 1;
+  max-width: 95px;
+}
+
+.funnel-landing-page .section2-proof-showcase .widget-telemetry-svg {
+  width: 140px;
+  max-width: 140px;
+  height: 60px;
+  object-fit: contain;
+  display: block;
+  margin: 0;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+}
+
+.funnel-landing-page .section2-proof-showcase .widget-description {
+  font-size: 0.75rem;
+  color: #475569;
+  line-height: 1.35;
+  margin: 0 0 6px 0;
+  text-align: left;
+}
+
+.funnel-landing-page .section2-proof-showcase .widget-benefit {
+  font-size: 0.72rem;
+  color: #0f172a;
+  background: rgba(35, 110, 160, 0.1);
+  border-left: 3px solid #236ea0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-align: left;
+}
+
+.funnel-landing-page .section2-proof-showcase .showcase-prompt-callout {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.funnel-landing-page .section2-proof-showcase .showcase-sample-path-row {
+  margin-top: 4px;
+}
+
+.funnel-landing-page .section2-proof-showcase .section2-sample-link {
+  color: var(--brand-sky);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+}
+
+.funnel-landing-page .section2-proof-showcase .section2-sample-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* Proof Cards Grid Embedded Inside Showcase Footer */
+.funnel-landing-page .section2-proof-showcase .section2-proof-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.funnel-landing-page .section2-proof-showcase .proof-card-item {
+background: color-mix(in srgb, var(--brand-deep-green) 50%, transparent);
+  border: 1px solid var(--brand-deep-green);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.funnel-landing-page .section2-proof-showcase .proof-card-header-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.funnel-landing-page .section2-proof-showcase .showcase-footer-block {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #e2e8f0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.funnel-landing-page .section2-proof-showcase .showcase-footer-helper {
+  color: #fff;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 680px;
+  line-height: 1.5;
+}
+
+.funnel-landing-page .section2-proof-showcase .proof-card-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.2);
+  border-color: #cbd5e1;
+}
+
+.funnel-landing-page .section2-proof-showcase .proof-card-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  filter: brightness(0) invert(1);
+}
+
+.funnel-landing-page .section2-proof-showcase .proof-card-item h4 {
+  display: block;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0 0 6px 0;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.95);
+  
+  line-height: 1.3;
+}
+
+.funnel-landing-page .section2-proof-showcase .proof-card-item p {
+ font-size: 0.8rem;
+    color: #cbd5e1;
+    line-height: 1.45;
+    margin: 0;
 }
 
 .funnel-divider {
@@ -737,13 +1224,35 @@
   }
 
   .problem-challenge-block h2 {
-    font-size: 1.8rem !important; 
-    line-height: 1.3 !important;
-    text-align: left !important;
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--brand-charcoal);
+    line-height: 1.25;
+    margin: 0;
+    letter-spacing: -0.01em;
   }
 
   .problem-solution-block p {
     font-size: 1rem !important;
     line-height: 1.6 !important;
+  }
+
+  .funnel-landing-page .section2-proof-showcase {
+    padding: 20px !important;
+    margin-top: 36px !important;
+  }
+
+  .funnel-landing-page .section2-proof-showcase .showcase-interactive-deck {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .funnel-landing-page .section2-headline {
+    font-size: 1.75rem !important;
+  }
+
+  .funnel-landing-page .section2-proof-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
   }
 }
