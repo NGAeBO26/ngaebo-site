@@ -391,12 +391,27 @@ export default function Home() {
               </div>
 
               {/* Slot Top-Left Bloomed: Effort Gauge */}
-              <div ref={cardRefs.effort} className={`hotspot-widget-card slot-top-left ${openHotspots.effort ? 'bloomed' : 'hidden'}`}>
+              <div 
+                ref={cardRefs.effort} 
+                className={`hotspot-widget-card slot-top-left ${openHotspots.effort ? 'bloomed' : 'hidden'}`}
+                onClick={() => toggleHotspot('effort')}
+              >
                 <div className="widget-card-header">
                   <div className="widget-header-icon">
                     <img src="/data/assets/icon_motor.svg" alt="" className="widget-header-icon-img" />
                   </div>
                   <div className="widget-title">EFFORT GAUGE</div>
+                  <button
+                    type="button"
+                    className="widget-close-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleHotspot('effort');
+                    }}
+                    aria-label="Close Effort Gauge"
+                  >
+                    ✕
+                  </button>
                 </div>
                 <div className="widget-body-row">
                   <div className="widget-subtitle">How hard will it feel?</div>
@@ -411,12 +426,27 @@ export default function Home() {
               </div>
 
               {/* Slot Bottom-Left Bloomed: Risk Radar */}
-              <div ref={cardRefs.risk} className={`hotspot-widget-card slot-bottom-left ${openHotspots.risk ? 'bloomed' : 'hidden'}`}>
+              <div 
+                ref={cardRefs.risk} 
+                className={`hotspot-widget-card slot-bottom-left ${openHotspots.risk ? 'bloomed' : 'hidden'}`}
+                onClick={() => toggleHotspot('risk')}
+              >
                 <div className="widget-card-header">
                   <div className="widget-header-icon">
                     <img src="/data/assets/icon_safety.svg" alt="" className="widget-header-icon-img" />
                   </div>
                   <div className="widget-title">RISK RADAR</div>
+                  <button
+                    type="button"
+                    className="widget-close-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleHotspot('risk');
+                    }}
+                    aria-label="Close Risk Radar"
+                  >
+                    ✕
+                  </button>
                 </div>
                 <div className="widget-body-row">
                   <div className="widget-subtitle">What should I watch?</div>
@@ -431,12 +461,27 @@ export default function Home() {
               </div>
 
               {/* Slot Top-Right Bloomed: Prime Ride Time */}
-              <div ref={cardRefs.weather} className={`hotspot-widget-card slot-top-right ${openHotspots.weather ? 'bloomed' : 'hidden'}`}>
+              <div 
+                ref={cardRefs.weather} 
+                className={`hotspot-widget-card slot-top-right ${openHotspots.weather ? 'bloomed' : 'hidden'}`}
+                onClick={() => toggleHotspot('weather')}
+              >
                 <div className="widget-card-header">
                   <div className="widget-header-icon">
                     <img src="/data/assets/icon_joyscore.svg" alt="" className="widget-header-icon-img" />
                   </div>
                   <div className="widget-title">PRIME RIDE TIME</div>
+                  <button
+                    type="button"
+                    className="widget-close-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleHotspot('weather');
+                    }}
+                    aria-label="Close Prime Ride Time"
+                  >
+                    ✕
+                  </button>
                 </div>
                 <div className="widget-body-row">
                   <div className="widget-subtitle">When should I ride?</div>
@@ -451,12 +496,27 @@ export default function Home() {
               </div>
 
               {/* Slot Bottom-Right Bloomed: Route Conditions */}
-              <div ref={cardRefs.conditions} className={`hotspot-widget-card slot-bottom-right ${openHotspots.conditions ? 'bloomed' : 'hidden'}`}>
+              <div 
+                ref={cardRefs.conditions} 
+                className={`hotspot-widget-card slot-bottom-right ${openHotspots.conditions ? 'bloomed' : 'hidden'}`}
+                onClick={() => toggleHotspot('conditions')}
+              >
                 <div className="widget-card-header">
                   <div className="widget-header-icon">
                     <img src="/data/assets/icon_route.svg" alt="" className="widget-header-icon-img" />
                   </div>
                   <div className="widget-title">ROUTE CONDITIONS</div>
+                  <button
+                    type="button"
+                    className="widget-close-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleHotspot('conditions');
+                    }}
+                    aria-label="Close Route Conditions"
+                  >
+                    ✕
+                  </button>
                 </div>
                 <div className="widget-body-row">
                   <div className="widget-subtitle">What are the route conditions?</div>
@@ -469,7 +529,7 @@ export default function Home() {
                   <strong>Benefit:</strong> Know surface grip and mud risks before rolling out.
                 </div>
               </div>
-            </div>
+            </div>  
 
             <div className="showcase-prompt-callout">
               <a ref={ctaRef} href="/rides" className="btn btn-funnel-main">

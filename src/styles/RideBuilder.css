@@ -2,6 +2,7 @@
 
 /* ─── 0. TOP-LEVEL HEADER TRIGGER CTA BUTTON ─── */
 .finder-header-row .rg-mega-summary-trigger-btn {
+  position: relative !important;
   background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
   color: #0f172a !important;
   border: 2px solid #ffffff !important;
@@ -12,7 +13,7 @@
   font-size: 16px !important;
   font-weight: 900 !important;
   letter-spacing: 0.04em !important;
-  padding: 8px 20px !important;
+  padding: 8px 42px !important;
   border-radius: 8px !important;
   cursor: pointer !important;
   height: auto !important;
@@ -25,6 +26,43 @@
     box-shadow 200ms ease,
     background 200ms ease !important;
   animation: triggerBeaconGlow 2.5s infinite ease-in-out !important;
+}
+
+.finder-header-row .rg-mega-summary-trigger-btn .rg-trigger-btn-icon {
+  position: absolute !important;
+  left: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 28px !important;
+  height: 28px !important;
+  object-fit: contain !important;
+  flex-shrink: 0 !important;
+  pointer-events: none !important;
+  transition: transform 150ms ease, filter 150ms ease !important;
+}
+
+.finder-header-row .rg-mega-summary-trigger-btn:hover .rg-trigger-btn-icon {
+  transform: translateY(-50%) scale(1.1) !important;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9)) !important;
+}
+
+/* 🎯 OPEN / ACTIVE STATE FOR TRIGGER BUTTON ICON */
+.finder-header-row .rg-mega-summary-trigger-btn.active .rg-trigger-btn-icon {
+  transform: translateY(-50%) scale(1.05) !important;
+  filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.9)) !important;
+  filter: brightness(0) invert(1) !important;
+}
+
+/* 🎯 PERSISTENTLY PINNED CHEVRON ARROW (MIRRORS LEFT ICON PADDING) */
+.finder-header-row .rg-mega-summary-trigger-btn .trigger-arrow {
+  position: absolute !important;
+  right: 14px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  font-size: 11px !important;
+  line-height: 1 !important;
+  pointer-events: none !important;
+  transition: transform 150ms ease, color 150ms ease !important;
 }
 
 .finder-header-row .rg-mega-summary-trigger-btn:hover {
@@ -48,6 +86,7 @@ font-size: 12px !important;
   border: 2px solid #f59e0b !important;
   box-shadow: 0 0 14px rgba(245, 158, 11, 0.4) !important;
   animation: none !important;
+  /* filter: brightness(0) invert(1); */
 }
 
 .finder-header-row
@@ -81,10 +120,11 @@ font-size: 12px !important;
   border: 1px solid rgba(245, 158, 11, 0.4) !important;
   border-left: 4px solid #f59e0b !important;
   border-radius: 8px !important;
-  padding: 10px 18px !important;
+  padding: 10px 42px !important;
   box-sizing: border-box !important;
   box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.35) !important;
   animation: none !important;
+  
 }
 
 .finder-header-row .rg-mega-summary-trigger-btn .wishlist-label {
@@ -1132,4 +1172,37 @@ font-size: 12px !important;
 
 .rg-mega-dropdown-tray .rg-dual-range-thumb::-moz-range-thumb:hover {
   transform: scale(1.15) !important;
+}
+
+/* ─── DRAWER FOOTER SITE LOGO CONTAINER ─── */
+.side-drawer-panel .drawer-footer-logo-container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  padding: 10px 12px !important;
+  margin-top: auto !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+  background: var(--brand-bone, #0f172a) !important;
+  flex-shrink: 0 !important;
+  min-height: 90px !important;
+  height: auto !important;
+}
+
+.side-drawer-panel .drawer-footer-site-logo {
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: 52px !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+.side-drawer-panel .rg-disclaimer-note {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 8.5px !important;
+  color: var(--brand-graphite) !important;
+  text-align: center !important;
+  line-height: 1.25 !important;
+  display: block !important;
 }

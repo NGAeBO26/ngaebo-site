@@ -493,7 +493,7 @@ export function RideFilterBar({
     if (isMegaOpen && !hasAnySelection) {
       return (
         <>
-          <span className="wishlist-label">💬 MY NEXT RIDE IS: </span>
+          <span className="wishlist-label">MY NEXT RIDE IS: </span>
           <span className="quiz-prompt-label">
             Choose from the options below to get started!
           </span>
@@ -540,7 +540,7 @@ export function RideFilterBar({
 
     return (
       <span className="wishlist-phrase">
-        <span className="wishlist-label">💬 MY NEXT RIDE IS: </span> "I'm
+        <span className="wishlist-label">MY NEXT RIDE IS: </span> "I'm
         looking for a{" "}
         <strong className={q?.effortLevel ? "active-val" : "pending-val"}>
           {eText}
@@ -630,6 +630,11 @@ export function RideFilterBar({
           title="Open Guided Route Finder Quiz"
           aria-label="Open filter tray dropdown"
         >
+          <img
+            src="/data/assets/icon_ridebuilder.svg"
+            alt=""
+            className="rg-trigger-btn-icon"
+          />
           {renderFilterSummary()}
           <span className="trigger-arrow">{isMegaOpen ? "▲" : "▼"}</span>
         </button>
@@ -1335,6 +1340,16 @@ export function RideResultGallery({
           })
         )}
       </div>
+
+      <div className="drawer-footer-logo-container">
+        <img
+          src="/images/site-logo.png"
+          alt="North Georgia eBike Outfitters"
+          className="drawer-footer-site-logo"
+        />
+        <span className="rg-disclaimer-note">© 2026 North Georgia eBike Outfitters. All rights reserved.</span>
+      </div>
+      
     </aside>
   );
 }

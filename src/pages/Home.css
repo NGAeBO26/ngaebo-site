@@ -826,6 +826,28 @@
   letter-spacing: 0.03em;
 }
 
+.funnel-landing-page .section2-proof-showcase .widget-close-btn {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: #92400e;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  z-index: 10;
+}
+
+.funnel-landing-page .section2-proof-showcase .widget-close-btn:hover {
+  background-color: rgba(245, 158, 11, 0.25);
+  color: #0f172a;
+}
+
 .funnel-landing-page .section2-proof-showcase .widget-body-row {
   display: flex;
   align-items: center;
@@ -1192,8 +1214,13 @@ background: color-mix(in srgb, var(--brand-deep-green) 50%, transparent);
   .hero-eyebrow-blue { order: 1 !important; text-align: center !important; }
   .hero-home-title { order: 2 !important; text-align: center !important; font-size: 2.1rem !important; }
   .hero-text { order: 3 !important; text-align: center !important; margin: 12px 0 !important; font-size: 0.95rem !important; }
-  .hero-trust-line { order: 4 !important; text-align: center !important; margin: 12px 0 !important; }
   
+  .hero-bezel-showcase {
+    order: 4 !important;
+    padding: 12px !important;
+    max-height: none !important;
+  }
+
   .hero-actions-stack {
     order: 5 !important;
     width: 100% !important;
@@ -1202,15 +1229,11 @@ background: color-mix(in srgb, var(--brand-deep-green) 50%, transparent);
   }
 
   .hero-bridge-line {
-    order: 7 !important;
+    order: 6 !important;
     margin-top: 20px !important;
   }
 
-  .hero-bezel-showcase {
-        order: 6 !important;
-        padding: 12px !important;
-        max-height: none !important;
-      }
+ 
 
       .hero-phone-video-viewport {
         max-height: 400px !important;
