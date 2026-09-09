@@ -272,10 +272,6 @@ export default function CartDropdown({ isOpen, allRoutes = [] , isMobile = false
 
   const handleCheckoutRedirect = () => {
     if (totalCartCount === 0) return;
-    if (!isFullyAuthenticated) {
-      login();
-      return;
-    }
 
     /* 🎯 CLOSE POP-OVER LAYER INSTANTLY */
     if (onActionTriggered) onActionTriggered();

@@ -16,10 +16,6 @@ interface CalculatedTrackMetrics {
   isHorizontal: boolean;
 }
 
-// ============================================================================
-// 🗺️ ORIENTATION-ADAPTIVE GEOMETRIC PROJECTION ENGINE
-// Extracts raw geometry strings and computes precise coordinate boundaries
-// ============================================================================
 function calculateAdvancedTrackMetrics(feature: any): CalculatedTrackMetrics | null {
   if (!feature || !feature.geometry || !Array.isArray(feature.geometry.coordinates)) return null;
 
@@ -138,10 +134,6 @@ export default function useMapController(opts: MapControllerOptions) {
     }
   }, []);
 
-  // ==========================================================================
-  // 🎯 SYNCHRONOUS CAMERA MOVEMENT PIPELINE (ANTI-THRASING PROJECTION ENGINE)
-  // Lock container dimensions inline to protect the canvas from parent layout shifts.
-  // ==========================================================================
   const fitRoutePadded = useCallback((incomingFeature: any) => {
     const currentMap = stateRef.current.mapRef.current;
     if (!currentMap || !incomingFeature) return;
@@ -150,10 +142,7 @@ export default function useMapController(opts: MapControllerOptions) {
 
     const mapContainer = currentMap.getContainer();
     const mapCanvas = currentMap.getCanvas();
-    
-    // ─── 🛑 THE BOUNDARY SHIELD ───
-    // Read current pixel constraints and lock them inline. This stops incoming layout panel
-    // insertions from shifting the container height and causing a context reset flash.
+
     if (mapContainer) {
       const rect = mapContainer.getBoundingClientRect();
       mapContainer.style.width = `${rect.width}px`;
@@ -163,7 +152,6 @@ export default function useMapController(opts: MapControllerOptions) {
     }
     if (mapCanvas) mapCanvas.style.pointerEvents = "none";
 
-    // Safely restore responsive styling parameters once the flight settles smoothly
     currentMap.once('moveend', () => {
       (currentMap as any)._rgCameraFlying = false;
       if (mapContainer) {
@@ -268,9 +256,6 @@ export default function useMapController(opts: MapControllerOptions) {
     }
   }, [opts.mapRef]);
 
-  // ==========================================================================
-  // VIEWPORT LIFECYCLE HOOK BINDINGS
-  // ==========================================================================
   useEffect(() => {
     if (!opts.containerRef.current || opts.mapRef.current) return;
 
@@ -287,9 +272,6 @@ export default function useMapController(opts: MapControllerOptions) {
       });
 
       opts.mapRef.current = mapInstance;
-
-      (window as any)._debugMapInstance = mapInstance;
-      (window as any).map = mapInstance; 
 
       mapInstance.on("load", () => {
         setMapReady(true);
@@ -308,10 +290,6 @@ export default function useMapController(opts: MapControllerOptions) {
       if (opts.mapRef.current) {
         try { opts.mapRef.current.remove(); } catch {}
         opts.mapRef.current = null;
-        
-        delete (window as any)._debugMapInstance;
-        delete (window as any).map;
-        
         setMapReady(false);
       }
     };

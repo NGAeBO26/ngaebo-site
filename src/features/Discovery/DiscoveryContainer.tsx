@@ -32,6 +32,9 @@ export default function DiscoveryContainer() {
   const [isWorkspaceLoading, setIsWorkspaceLoading] = useState<boolean>(true);
   const [loadProgress, setLoadProgress] = useState<number>(0);
 
+  // 🎯 ADDED: Gallery grid expansion state definition
+  const [isGalleryExpanded, setIsGalleryExpanded] = useState<boolean>(false);
+
   // Simulated progressive loader baseline sync
   useEffect(() => {
     if (!isWorkspaceLoading) return;
@@ -86,6 +89,7 @@ export default function DiscoveryContainer() {
 
       setIsPopupClosing(false);
       setActiveTakeoverRouteId(primitiveId);
+      setIsGalleryExpanded(false); // 🎯 Reset expanded grid when GravelPopup opens
 
       if (mapZoomFnRef.current) {
         mapZoomFnRef.current(feature);
@@ -112,6 +116,13 @@ export default function DiscoveryContainer() {
   const filterEngine = useRideFinderEngine(masterRoutes, handleFilterUpdate);
   const isTakeoverCurrentlyActive = activeTakeoverRouteId !== null;
 
+  // 🎯 ADD HERE: AUTO-CLOSE GRAVEL POPUP WHEN GALLERY EXPANDS TO GRID VIEW
+  useEffect(() => {
+    if (isGalleryExpanded && isTakeoverCurrentlyActive) {
+      handleExitTakeover();
+    }
+  }, [isGalleryExpanded, isTakeoverCurrentlyActive, handleExitTakeover]);
+
   return (
     <div className="discovery-dashboard-root" style={{ position: "relative" }}>
       <LoadingOverlay
@@ -120,10 +131,18 @@ export default function DiscoveryContainer() {
         message="Hydrating Backcountry Telemetry..."
       />
 
+      {/* 🎯 Pass handleExitTakeover down via onMegaOpen & handleRouteSelect via onRouteSelect */}
       <RideFilterBar
         engine={filterEngine}
         totalCount={masterRoutes.length}
+        routesData={masterRoutes}
         isTakeoverActive={isTakeoverCurrentlyActive}
+        onSelectionComplete={() => setIsGalleryExpanded(true)} // 🎯 Auto-expand on quiz finish
+        onMegaOpen={() => {
+          handleExitTakeover();
+          setIsGalleryExpanded(false); // 🎯 COLLAPSE GRID GALLERY WHEN MEGA DROPDOWN OPENS
+        }}
+        onRouteSelect={handleRouteSelect}
       />
 
       {isTakeoverCurrentlyActive && selectedRouteFeature && (
@@ -163,14 +182,21 @@ export default function DiscoveryContainer() {
             />
           </div>
 
-          <RideResultGallery
+         <RideResultGallery
             routes={filteredRoutes}
             activeHoverId={activeHoverId}
             onHoverChange={setActiveHoverId}
             isCollapsed={false}
             onToggleCollapse={() => {}}
             onRouteSelect={handleRouteSelect}
-            isTakeoverActive={false}
+            isTakeoverActive={isTakeoverCurrentlyActive}
+            activeRouteId={activeTakeoverRouteId} // 🎯 PASSED ACTIVE TAKEOVER ROUTE ID
+            sortBy={filterEngine.sortBy}
+            onSortChange={filterEngine.setSortBy}
+            sortOrder={filterEngine.sortOrder}
+            onToggleSortOrder={filterEngine.toggleSortOrder}
+            isExpanded={isGalleryExpanded}
+            onToggleExpand={() => setIsGalleryExpanded((prev: boolean) => !prev)}
           />
         </div>
       </div>

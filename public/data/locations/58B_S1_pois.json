@@ -44,10 +44,10 @@
         }
     ],
     "rescue_anchor": {
-        "name": "Fannin County Emergency Services - Fire Station 1",
+        "name": "Lumpkin County Fire Department",
         "type": "Fire-EMS",
-        "address": "20 Station Rdg, Blue Ridge, GA 30513, USA",
-        "phone": "(706) 632-4711",
-        "dist_mi": 15.1
+        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
+        "phone": "(706) 864-3030",
+        "dist_mi": 18.5
     }
 }

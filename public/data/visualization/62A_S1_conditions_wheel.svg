@@ -1,0 +1,85 @@
+<svg width="100%" height="100%" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="topFillGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#e3f2fd" /><stop offset="100%" stop-color="#236ea0" />
+                </linearGradient>
+                <linearGradient id="bottomFillGrad" x1="100%" y1="0%" x2="0%" y2="0%">
+                    <stop offset="0%" stop-color="#d9cbb9" /><stop offset="100%" stop-color="#4d3a24" />
+                </linearGradient>
+                <path id="topTextPath" d="M 175.0,500 A 325.0,325.0 0 0,1 825.0,500" />
+                <path id="bottomTextPath" d="M 175.0,500 A 325.0,325.0 0 0,0 825.0,500" />
+            </defs>
+
+            <line x1="585.0" y1="500.0" x2="844.0" y2="500.0" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="573.6121593216773" y1="542.5" x2="797.912738901847" y2="672.0" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="542.5" y1="573.6121593216773" x2="672.0" y2="797.9127389018469" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="500.0" y1="585.0" x2="500.0" y2="844.0" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="457.5" y1="573.6121593216773" x2="328.0000000000001" y2="797.912738901847" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="426.38784067832273" y1="542.5" x2="202.08726109815308" y2="672.0" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="415.0" y1="500.0" x2="156.0" y2="500.00000000000006" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="426.38784067832273" y1="457.5" x2="202.08726109815314" y2="328.0" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="457.49999999999994" y1="426.38784067832273" x2="327.9999999999999" y2="202.08726109815314" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="500.0" y1="415.0" x2="499.99999999999994" y2="156.0" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="542.5" y1="426.38784067832273" x2="672.0" y2="202.08726109815314" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="573.6121593216773" y1="457.49999999999994" x2="797.9127389018468" y2="327.9999999999999" stroke="#333333" stroke-width="4" opacity="0.6" />
+            
+            <circle cx="500" cy="500" r="85" fill="white" stroke="#333333" stroke-width="2" />
+            <circle cx="500" cy="500" r="352.0" fill="none" stroke="#d1d1d1" stroke-width="16" />
+            
+            <g id="top"><circle cx="70.0" cy="500.0" r="25" fill="#e3f2fd" />
+<circle cx="73.7" cy="443.9" r="25" fill="#e3f2fd" />
+<circle cx="84.7" cy="388.7" r="25" fill="#e3f2fd" />
+<circle cx="102.7" cy="335.4" r="25" fill="#e3f2fd" />
+<circle cx="127.6" cy="285.0" r="25" fill="#e3f2fd" />
+<circle cx="158.9" cy="238.2" r="25" fill="#e3f2fd" />
+<circle cx="195.9" cy="195.9" r="25" fill="#e3f2fd" />
+<circle cx="238.2" cy="158.9" r="25" fill="#e3f2fd" />
+<circle cx="285.0" cy="127.6" r="25" fill="#e3f2fd" />
+<circle cx="335.4" cy="102.7" r="25" fill="#e3f2fd" />
+<circle cx="388.7" cy="84.7" r="25" fill="#e3f2fd" />
+<circle cx="443.9" cy="73.7" r="25" fill="#e3f2fd" />
+<circle cx="500.0" cy="70.0" r="25" fill="#e3f2fd" />
+<circle cx="556.1" cy="73.7" r="25" fill="#e3f2fd" />
+<circle cx="611.3" cy="84.7" r="25" fill="#e3f2fd" />
+<circle cx="664.6" cy="102.7" r="25" fill="#e3f2fd" />
+<circle cx="715.0" cy="127.6" r="25" fill="#e3f2fd" />
+<circle cx="761.8" cy="158.9" r="25" fill="#e3f2fd" />
+<circle cx="804.1" cy="195.9" r="25" fill="#e3f2fd" />
+<circle cx="841.1" cy="238.2" r="25" fill="#e3f2fd" />
+<circle cx="872.4" cy="285.0" r="25" fill="#e3f2fd" />
+<circle cx="897.3" cy="335.4" r="25" fill="#e3f2fd" />
+<circle cx="915.3" cy="388.7" r="25" fill="#e3f2fd" />
+<circle cx="926.3" cy="443.9" r="25" fill="#e3f2fd" />
+<circle cx="930.0" cy="500.0" r="25" fill="#e3f2fd" />
+
+                <path d="M 110,500 A 390,390 0 0,1 890,500" fill="none" stroke="#e3f2fd" stroke-width="60" />
+                <polygon points="80.0,500.0 80.1,491.4 80.4,482.8 80.8,474.2 81.4,465.6 82.2,457.0 83.2,448.5 84.3,439.9 85.6,431.4 87.1,423.0 88.8,414.5 90.6,406.1 92.6,397.7 94.8,389.4 97.2,381.1 99.7,372.9 102.4,364.7 105.2,356.6 108.3,348.5 111.5,340.5 114.8,332.6 118.3,324.7 122.0,316.9 125.8,309.2 129.8,301.6 134.0,294.1 138.3,286.6 142.7,279.2 147.3,272.0 152.1,264.8 156.9,257.7 162.0,250.7 167.2,243.8 172.5,237.1 177.9,230.4 183.5,223.9 189.3,217.4 195.1,211.1 201.1,204.9 207.2,198.9 213.5,192.9 254.4,236.8 249.0,241.9 243.8,247.1 238.7,252.4 233.7,257.8 228.7,263.3 224.0,268.9 219.3,274.6 214.7,280.4 210.3,286.3 206.0,292.3 201.8,298.4 197.7,304.5 193.7,310.8 189.9,317.1 186.2,323.5 182.7,329.9 179.3,336.5 176.0,343.1 172.8,349.8 169.8,356.5 167.0,363.3 164.2,370.2 161.6,377.1 159.2,384.0 156.9,391.0 154.7,398.1 152.7,405.2 150.8,412.3 149.1,419.5 147.5,426.7 146.1,434.0 144.8,441.2 143.7,448.5 142.7,455.8 141.9,463.2 141.2,470.5 140.7,477.9 140.3,485.2 140.1,492.6 140.0,500.0" fill="url(#topFillGrad)" />
+            </g>
+            <g id="bottom"><circle cx="930.0" cy="500.0" r="25" fill="#d9cbb9" />
+<circle cx="926.3" cy="556.1" r="25" fill="#d9cbb9" />
+<circle cx="915.3" cy="611.3" r="25" fill="#d9cbb9" />
+<circle cx="897.3" cy="664.6" r="25" fill="#d9cbb9" />
+<circle cx="872.4" cy="715.0" r="25" fill="#d9cbb9" />
+<circle cx="841.1" cy="761.8" r="25" fill="#d9cbb9" />
+<circle cx="804.1" cy="804.1" r="25" fill="#d9cbb9" />
+<circle cx="761.8" cy="841.1" r="25" fill="#d9cbb9" />
+<circle cx="715.0" cy="872.4" r="25" fill="#d9cbb9" />
+<circle cx="664.6" cy="897.3" r="25" fill="#d9cbb9" />
+<circle cx="611.3" cy="915.3" r="25" fill="#d9cbb9" />
+<circle cx="556.1" cy="926.3" r="25" fill="#d9cbb9" />
+<circle cx="500.0" cy="930.0" r="25" fill="#d9cbb9" />
+<circle cx="443.9" cy="926.3" r="25" fill="#d9cbb9" />
+<circle cx="388.7" cy="915.3" r="25" fill="#d9cbb9" />
+<circle cx="335.4" cy="897.3" r="25" fill="#d9cbb9" />
+<circle cx="285.0" cy="872.4" r="25" fill="#d9cbb9" />
+<circle cx="238.2" cy="841.1" r="25" fill="#d9cbb9" />
+<circle cx="195.9" cy="804.1" r="25" fill="#d9cbb9" />
+<circle cx="158.9" cy="761.8" r="25" fill="#d9cbb9" />
+<circle cx="127.6" cy="715.0" r="25" fill="#d9cbb9" />
+<circle cx="102.7" cy="664.6" r="25" fill="#d9cbb9" />
+<circle cx="84.7" cy="611.3" r="25" fill="#d9cbb9" />
+<circle cx="73.7" cy="556.1" r="25" fill="#d9cbb9" />
+<circle cx="70.0" cy="500.0" r="25" fill="#d9cbb9" />
+
+                <path d="M 890,500 A 390,390 0 0,1 110,500" fill="none" stroke="#d9cbb9" stroke-width="60" />
+                <polygon points="920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 920.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0 860.0,500.0" fill="url(#bottomFillGrad)" />
+            </g>
+            
+            <text font-family="Montserrat" font-size="70" font-weight="900" fill="#236ea0" letter-spacing="8">
+                <textPath href="#topTextPath" startOffset="50%" text-anchor="middle" dominant-baseline="hanging">SATURATED (26%)</textPath>
+            </text>
+            <text font-family="Montserrat" font-size="70" font-weight="900" fill="#4d3a24" letter-spacing="8">
+                <textPath href="#bottomTextPath" startOffset="50%" text-anchor="middle" dominant-baseline="auto">
+                    CHATTERY (0.00)
+                </textPath>
+            </text>
+        </svg>

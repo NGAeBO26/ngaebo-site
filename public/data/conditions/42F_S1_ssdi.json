@@ -1,7 +1,7 @@
 {
     "profile_id": "42F_S1",
     "route_id": "42F",
-    "ssdi_score": 12.7,
+    "ssdi_score": 8.9,
     "v3_terrain_score": 4.4,
     "v3_terrain_class": "Strenuous",
     "badge_type": "muddy",
@@ -17,21 +17,23 @@
         "value": 0.45
     },
     "environment": {
-        "current_temp": 67,
-        "saturation_index": 41.66,
+        "current_temp": 80,
+        "saturation_index": 22.29,
         "soil_status": "Saturated",
-        "precip_24h": 0.04,
+        "precip_24h": 0.02,
         "saturation_trend": "stable",
-        "alerts": []
+        "alerts": [
+            "SAFETY ALERT: Cell Service is UNAVAILABLE."
+        ]
     },
     "physics": {
-        "live_traction": 0.37,
-        "live_wh_per_km": 12.88,
+        "live_traction": 0.41,
+        "live_wh_per_km": 12.58,
         "energy_penalty_pct": 20.0,
         "v3_base_intensity": 4.4
     },
     "connectivity": {
-        "signal_class": "Unknown",
-        "deadzone_max_meters": 0
+        "signal_class": "Unavailable",
+        "deadzone_max_meters": 206
     }
 }

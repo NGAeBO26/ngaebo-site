@@ -1,0 +1,524 @@
+/* src/styles/mobile/MobileRideBuilder.css */
+
+@media (max-width: 767px) {
+  /* 🎯 1. PARENT OVERRIDE TO ENFORCE 100% FULL-WIDTH MOBILE CONTAINMENT & CLEAN ICB BOUNDARIES */
+  .ride-finder-page-container {
+    transform: none !important;
+    filter: none !important;
+    perspective: none !important;
+    will-change: auto !important;
+  }
+
+  .discovery-dashboard-root .finder-header-row.is-collapsed .finder-controls-wrapper {
+    pointer-events: auto !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .discovery-dashboard-root .finder-header-row.is-expanded {
+    pointer-events: auto !important;
+  }
+
+  /* 🎯 2. DEDICATED MOBILE RIDEBUILDER CONTAINER */
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    background-color: transparent !important;
+    padding: 8px 16px 8px 16px !important;
+    margin: 0 !important;
+    gap: 6px !important;
+  }
+
+  /* 🎯 3. PRE-RESERVED WISHLIST HEADER CONTAINER (FROZEN 112PX TOTAL HEIGHT LOCK) */
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .finder-controls-wrapper {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 90 !important;
+    width: 100% !important;
+    min-height: 86px !important;
+    max-height: 96px !important;
+    box-sizing: border-box !important;
+    background: rgba(15, 23, 42, 0.4) !important;
+    border: 1px solid rgba(245, 158, 11, 0.4) !important;
+    border-radius: 8px !important;
+    padding: 10px 12px 8px 12px !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex-shrink: 0 !important;
+    overflow: hidden !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  /* 🎯 COLLAPSED STATE: STRIP FINDER-CONTROLS-WRAPPER BOX STYLING */
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container.tray-collapsed .finder-controls-wrapper,
+  .discovery-dashboard-root .rg-mega-dropdown-tray.tray-collapsed .finder-controls-wrapper,
+  .discovery-dashboard-root .finder-header-row.is-collapsed .finder-controls-wrapper {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container.tray-collapsed .rg-mega-summary-trigger-btn,
+  .discovery-dashboard-root .rg-mega-dropdown-tray.tray-collapsed .rg-mega-summary-trigger-btn,
+  .discovery-dashboard-root .finder-header-row.is-collapsed .rg-mega-summary-trigger-btn {
+    height: auto !important;
+    min-height: 44px !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-mega-summary-trigger-btn {
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+    text-align: center !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-mega-summary-trigger-btn.beacon-cta {
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+    color: #0f172a !important;
+    border: 2px solid #ffffff !important;
+    box-shadow: 0 0 18px rgba(245, 158, 11, 0.8), 0 0 6px rgba(255, 255, 255, 0.6) !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.04em !important;
+    padding: 10px 16px !important;
+    border-radius: 6px !important;
+    text-transform: uppercase !important;
+    animation: triggerBeaconGlow 2.5s infinite ease-in-out !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-mega-summary-trigger-btn.active {
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 2px !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .wishlist-label {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 900 !important;
+    color: #f59e0b !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+    display: block !important;
+    line-height: 1.2 !important;
+    margin-bottom: 3px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* 🎯 STATE 2: UNSTARTED & OPEN INTERMEDIATE PROMPT LABEL */
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .quiz-prompt-label {
+    font-family: "Montserrat", sans-serif !important;
+        font-size: 13px !important;
+        font-weight: 900 !important;
+        letter-spacing: 0.04em !important;
+    color: #ffffff !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+    display: block !important;
+    line-height: 1.25 !important;
+    text-align: center !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .wishlist-phrase {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 10.5px !important;
+    color: #cbd5e1 !important;
+    line-height: 1.35 !important;
+    word-break: break-word !important;
+    display: block !important;
+    overflow: visible !important;
+    max-height: none !important;
+    line-clamp: unset !important;
+    -webkit-line-clamp: unset !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .wishlist-phrase strong.active-val {
+    color: #ffffff !important;
+    border-bottom: 2px solid #f59e0b !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .wishlist-phrase strong.pending-val {
+    color: #64748b !important;
+  }
+
+  /* 🎯 4. STICKY MODE TOGGLE BAR (PINNED DIRECTLY AT TOP 112PX) */
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-mega-dropdown-header {
+    position: sticky !important;
+    z-index: 88 !important;
+    width: 100% !important;
+    height: 38px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+    box-sizing: border-box !important;
+    background-color: var(--brand-sky, #236ea0) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 6px 0 !important;
+    margin: 0 !important;
+    flex-shrink: 0 !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-mode-toggle-group {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 8px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-mode-tab-btn {
+    flex: 1 !important;
+    padding: 6px 10px !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 10.5px !important;
+    font-weight: 800 !important;
+    color: #94a3b8 !important;
+    background: rgba(15, 23, 42, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-mode-tab-btn.active {
+    background: rgba(245, 158, 11, 0.2) !important;
+    color: #f59e0b !important;
+    border-color: #f59e0b !important;
+  }
+
+  /* 🎯 5. THREE-TIER STICKY STEPPER TIMELINE BAR (PINNED DIRECTLY AT TOP 150PX) */
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-mobile-sticky-quiz-stepper {
+    position: sticky !important;
+    top: 150px !important;
+    z-index: 85 !important;
+    background-color: var(--brand-sky, #236ea0) !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 4px !important;
+    width: 100% !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    box-sizing: border-box !important;
+    padding: 4px 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+    flex-shrink: 0 !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .stepper-pill {
+    flex: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 3px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 16px !important;
+    padding: 6px 2px !important;
+    cursor: pointer !important;
+    color: #94a3b8 !important;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 9px !important;
+    font-weight: 700 !important;
+    white-space: nowrap !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .stepper-pill.active {
+    background: #f59e0b !important;
+    color: #0f172a !important;
+    border-color: #f59e0b !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .stepper-pill.completed {
+    background: rgba(16, 185, 129, 0.2) !important;
+    color: #10b981 !important;
+    border-color: #10b981 !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .stepper-pill.locked {
+    opacity: 0.4 !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .stepper-step-num {
+    font-weight: 900 !important;
+    font-size: 9px !important;
+  }
+
+  /* 🎯 6. QUIZ GRID BODY (STRICT SINGLE-COLUMN MOBILE VERTICAL FLEX) */
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-quiz-grid-wrapper {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-quiz-grid-body {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    width: 100% !important;
+    max-width: 100% !important;   
+  }
+
+  /* 🎯 6. ACCORDION STEP COLUMNS */
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-quiz-column {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    border-radius: 8px !important;
+    padding: 10px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    scroll-margin-top: 190px !important;
+  }
+
+  /* 🎯 LOCKED STEP CONTAINER & CARD DESKTOP PARITY MATCH */
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-quiz-column.step-locked {
+    opacity: 0.55 !important;
+    pointer-events: none !important;
+    background: rgba(15, 23, 42, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: none !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-quiz-column.step-locked .rg-quiz-column-title h3 {
+    color: #94a3b8 !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-quiz-column.step-locked .rg-quiz-card {
+    background: rgba(15, 23, 42, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-left: 5px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-quiz-column.step-locked .rg-quiz-card .card-headline {
+    color: #94a3b8 !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-quiz-column.step-locked .rg-quiz-card .card-subtext {
+    color: #64748b !important;
+  }
+
+  /* 🎯 10. MANUAL TUNING BODY & SEARCH OVERRIDE */
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-manual-tuning-body {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    width: 100% !important;
+    padding-top: 8px !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-manual-tuning-body .styleable-autocomplete-wrapper {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-quiz-column.step-current {
+    border-color: var(--brand-amber) !important;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.15) !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-quiz-column.is-collapsed {
+    padding: 8px 10px !important;
+    background: rgba(15, 23, 42, 0.4) !important;
+    border-color: rgba(245, 158, 11, 0.3) !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-quiz-column-title {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+    cursor: pointer !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-quiz-column-title h3 {
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    margin: 0 !important;
+    text-transform: uppercase !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .step-selected-summary {
+    margin-left: auto !important;
+    font-size: 10px !important;
+    font-weight: 800 !important;
+    color: #f59e0b !important;
+    background: rgba(245, 158, 11, 0.15) !important;
+    border: 1px solid rgba(245, 158, 11, 0.4) !important;
+    padding: 2px 8px !important;
+    border-radius: 12px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 150px !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .accordion-chevron {
+    font-size: 10px !important;
+    color: #94a3b8 !important;
+    margin-left: 4px !important;
+  }
+
+  /* 🎯 7. QUIZ CARDS STACK */
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-quiz-cards-stack {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    margin-top: 10px !important;
+    width: 100% !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-quiz-card {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    background: rgba(15, 23, 42, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-left: 5px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 6px !important;
+    padding: 8px 10px !important;
+    cursor: pointer !important;
+    text-align: left !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-quiz-card.selected {
+    background: var(--brand-cream, #f4f1eb) !important;
+    border-color: #f59e0b !important;
+    border-left-color: #f59e0b !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-quiz-card.selected .card-headline {
+    color: var(--brand-deep-blue, #1a547e) !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-quiz-card.selected .card-subtext {
+    color: #334155 !important;
+  }
+
+  /* 🎯 8. DRIVE TIME STEP 4 CONTROLS */
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-origin-input-box {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-top: 10px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .origin-label {
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    color: #cbd5e1 !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-origin-text-input {
+    background: #0f172a !important;
+    border: 1px solid #334155 !important;
+    color: #ffffff !important;
+    font-size: 11px !important;
+    padding: 6px 10px !important;
+    border-radius: 4px !important;
+    flex-grow: 1 !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-drive-time-controls-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .horizontal-drive-stack {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 6px !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-quiz-card.compact {
+    flex: 1 !important;
+    padding: 8px 4px !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-quiz-card.compact .card-headline {
+    font-size: 10px !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  /* 🎯 9. WEATHER CHIPS ROW FOR STEP 5 */
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-weather-days-row {
+    display: flex !important;
+    gap: 8px !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    padding: 8px 0 !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-weather-day-chip {
+    flex: 0 0 100px !important;
+    min-width: 100px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 6px !important;
+    padding: 6px 4px !important;
+    cursor: pointer !important;
+  }
+
+  .discovery-dashboard-root .rg-mobile-ridebuilder-container .rg-weather-day-chip.selected {
+    background: rgba(35, 110, 160, 0.4) !important;
+    border-color: #f59e0b !important;
+  }
+}

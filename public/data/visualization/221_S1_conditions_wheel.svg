@@ -1,0 +1,85 @@
+<svg width="100%" height="100%" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="topFillGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#e3f2fd" /><stop offset="100%" stop-color="#236ea0" />
+                </linearGradient>
+                <linearGradient id="bottomFillGrad" x1="100%" y1="0%" x2="0%" y2="0%">
+                    <stop offset="0%" stop-color="#d9cbb9" /><stop offset="100%" stop-color="#4d3a24" />
+                </linearGradient>
+                <path id="topTextPath" d="M 175.0,500 A 325.0,325.0 0 0,1 825.0,500" />
+                <path id="bottomTextPath" d="M 175.0,500 A 325.0,325.0 0 0,0 825.0,500" />
+            </defs>
+
+            <line x1="585.0" y1="500.0" x2="844.0" y2="500.0" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="573.6121593216773" y1="542.5" x2="797.912738901847" y2="672.0" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="542.5" y1="573.6121593216773" x2="672.0" y2="797.9127389018469" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="500.0" y1="585.0" x2="500.0" y2="844.0" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="457.5" y1="573.6121593216773" x2="328.0000000000001" y2="797.912738901847" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="426.38784067832273" y1="542.5" x2="202.08726109815308" y2="672.0" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="415.0" y1="500.0" x2="156.0" y2="500.00000000000006" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="426.38784067832273" y1="457.5" x2="202.08726109815314" y2="328.0" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="457.49999999999994" y1="426.38784067832273" x2="327.9999999999999" y2="202.08726109815314" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="500.0" y1="415.0" x2="499.99999999999994" y2="156.0" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="542.5" y1="426.38784067832273" x2="672.0" y2="202.08726109815314" stroke="#333333" stroke-width="4" opacity="0.6" /><line x1="573.6121593216773" y1="457.49999999999994" x2="797.9127389018468" y2="327.9999999999999" stroke="#333333" stroke-width="4" opacity="0.6" />
+            
+            <circle cx="500" cy="500" r="85" fill="white" stroke="#333333" stroke-width="2" />
+            <circle cx="500" cy="500" r="352.0" fill="none" stroke="#d1d1d1" stroke-width="16" />
+            
+            <g id="top"><circle cx="70.0" cy="500.0" r="25" fill="#e3f2fd" />
+<circle cx="73.7" cy="443.9" r="25" fill="#e3f2fd" />
+<circle cx="84.7" cy="388.7" r="25" fill="#e3f2fd" />
+<circle cx="102.7" cy="335.4" r="25" fill="#e3f2fd" />
+<circle cx="127.6" cy="285.0" r="25" fill="#e3f2fd" />
+<circle cx="158.9" cy="238.2" r="25" fill="#e3f2fd" />
+<circle cx="195.9" cy="195.9" r="25" fill="#e3f2fd" />
+<circle cx="238.2" cy="158.9" r="25" fill="#e3f2fd" />
+<circle cx="285.0" cy="127.6" r="25" fill="#e3f2fd" />
+<circle cx="335.4" cy="102.7" r="25" fill="#e3f2fd" />
+<circle cx="388.7" cy="84.7" r="25" fill="#e3f2fd" />
+<circle cx="443.9" cy="73.7" r="25" fill="#e3f2fd" />
+<circle cx="500.0" cy="70.0" r="25" fill="#e3f2fd" />
+<circle cx="556.1" cy="73.7" r="25" fill="#e3f2fd" />
+<circle cx="611.3" cy="84.7" r="25" fill="#e3f2fd" />
+<circle cx="664.6" cy="102.7" r="25" fill="#e3f2fd" />
+<circle cx="715.0" cy="127.6" r="25" fill="#e3f2fd" />
+<circle cx="761.8" cy="158.9" r="25" fill="#e3f2fd" />
+<circle cx="804.1" cy="195.9" r="25" fill="#e3f2fd" />
+<circle cx="841.1" cy="238.2" r="25" fill="#e3f2fd" />
+<circle cx="872.4" cy="285.0" r="25" fill="#e3f2fd" />
+<circle cx="897.3" cy="335.4" r="25" fill="#e3f2fd" />
+<circle cx="915.3" cy="388.7" r="25" fill="#e3f2fd" />
+<circle cx="926.3" cy="443.9" r="25" fill="#e3f2fd" />
+<circle cx="930.0" cy="500.0" r="25" fill="#e3f2fd" />
+
+                <path d="M 110,500 A 390,390 0 0,1 890,500" fill="none" stroke="#e3f2fd" stroke-width="60" />
+                <polygon points="80.0,500.0 80.3,485.4 81.0,470.8 82.3,456.2 84.1,441.7 86.3,427.3 89.1,413.0 92.4,398.7 96.2,384.6 100.4,370.6 105.2,356.8 110.4,343.2 116.1,329.7 122.2,316.4 128.8,303.4 135.9,290.6 143.4,278.1 151.4,265.8 159.7,253.8 168.5,242.1 177.6,230.8 187.2,219.7 197.2,209.0 207.5,198.6 218.1,188.6 229.1,179.0 240.4,169.8 252.1,161.0 264.0,152.6 276.3,144.6 288.8,137.0 301.5,129.9 314.5,123.2 327.7,117.0 341.2,111.2 354.8,105.9 368.6,101.1 382.5,96.8 396.6,92.9 410.9,89.6 425.2,86.7 435.9,145.8 423.6,148.2 411.4,151.1 399.3,154.4 387.4,158.1 375.5,162.2 363.9,166.7 352.3,171.7 341.0,177.0 329.9,182.7 318.9,188.8 308.2,195.3 297.7,202.2 287.5,209.4 277.5,217.0 267.8,224.9 258.4,233.1 249.2,241.7 240.4,250.6 231.9,259.8 223.7,269.2 215.8,279.0 208.3,289.0 201.2,299.3 194.4,309.8 187.9,320.5 181.9,331.5 176.2,342.7 170.9,354.0 166.0,365.6 161.6,377.3 157.5,389.1 153.9,401.1 150.6,413.2 147.8,425.4 145.4,437.7 143.5,450.1 142.0,462.5 140.9,475.0 140.2,487.5 140.0,500.0" fill="url(#topFillGrad)" />
+            </g>
+            <g id="bottom"><circle cx="930.0" cy="500.0" r="25" fill="#d9cbb9" />
+<circle cx="926.3" cy="556.1" r="25" fill="#d9cbb9" />
+<circle cx="915.3" cy="611.3" r="25" fill="#d9cbb9" />
+<circle cx="897.3" cy="664.6" r="25" fill="#d9cbb9" />
+<circle cx="872.4" cy="715.0" r="25" fill="#d9cbb9" />
+<circle cx="841.1" cy="761.8" r="25" fill="#d9cbb9" />
+<circle cx="804.1" cy="804.1" r="25" fill="#d9cbb9" />
+<circle cx="761.8" cy="841.1" r="25" fill="#d9cbb9" />
+<circle cx="715.0" cy="872.4" r="25" fill="#d9cbb9" />
+<circle cx="664.6" cy="897.3" r="25" fill="#d9cbb9" />
+<circle cx="611.3" cy="915.3" r="25" fill="#d9cbb9" />
+<circle cx="556.1" cy="926.3" r="25" fill="#d9cbb9" />
+<circle cx="500.0" cy="930.0" r="25" fill="#d9cbb9" />
+<circle cx="443.9" cy="926.3" r="25" fill="#d9cbb9" />
+<circle cx="388.7" cy="915.3" r="25" fill="#d9cbb9" />
+<circle cx="335.4" cy="897.3" r="25" fill="#d9cbb9" />
+<circle cx="285.0" cy="872.4" r="25" fill="#d9cbb9" />
+<circle cx="238.2" cy="841.1" r="25" fill="#d9cbb9" />
+<circle cx="195.9" cy="804.1" r="25" fill="#d9cbb9" />
+<circle cx="158.9" cy="761.8" r="25" fill="#d9cbb9" />
+<circle cx="127.6" cy="715.0" r="25" fill="#d9cbb9" />
+<circle cx="102.7" cy="664.6" r="25" fill="#d9cbb9" />
+<circle cx="84.7" cy="611.3" r="25" fill="#d9cbb9" />
+<circle cx="73.7" cy="556.1" r="25" fill="#d9cbb9" />
+<circle cx="70.0" cy="500.0" r="25" fill="#d9cbb9" />
+
+                <path d="M 890,500 A 390,390 0 0,1 110,500" fill="none" stroke="#d9cbb9" stroke-width="60" />
+                <polygon points="920.0,500.0 920.0,502.3 920.0,504.6 919.9,506.9 919.9,509.2 919.8,511.5 919.8,513.9 919.7,516.2 919.6,518.5 919.5,520.8 919.4,523.1 919.2,525.4 919.1,527.7 918.9,530.0 918.8,532.3 918.6,534.6 918.4,536.9 918.2,539.2 917.9,541.5 917.7,543.8 917.5,546.1 917.2,548.4 916.9,550.7 916.6,553.0 916.3,555.3 916.0,557.5 915.7,559.8 915.4,562.1 915.0,564.4 914.7,566.7 914.3,569.0 913.9,571.2 913.5,573.5 913.1,575.8 912.7,578.1 912.2,580.3 911.8,582.6 911.3,584.8 910.9,587.1 910.4,589.4 909.9,591.6 851.3,578.5 851.8,576.6 852.2,574.7 852.6,572.7 853.0,570.8 853.4,568.8 853.7,566.9 854.1,565.0 854.4,563.0 854.8,561.1 855.1,559.1 855.4,557.2 855.7,555.2 856.0,553.2 856.3,551.3 856.6,549.3 856.9,547.4 857.1,545.4 857.4,543.4 857.6,541.5 857.8,539.5 858.0,537.5 858.2,535.6 858.4,533.6 858.6,531.6 858.8,529.7 858.9,527.7 859.1,525.7 859.2,523.7 859.3,521.8 859.5,519.8 859.6,517.8 859.7,515.8 859.7,513.9 859.8,511.9 859.9,509.9 859.9,507.9 860.0,505.9 860.0,504.0 860.0,502.0 860.0,500.0" fill="url(#bottomFillGrad)" />
+            </g>
+            
+            <text font-family="Montserrat" font-size="70" font-weight="900" fill="#236ea0" letter-spacing="8">
+                <textPath href="#topTextPath" startOffset="50%" text-anchor="middle" dominant-baseline="hanging">SATURATED (44%)</textPath>
+            </text>
+            <text font-family="Montserrat" font-size="70" font-weight="900" fill="#4d3a24" letter-spacing="8">
+                <textPath href="#bottomTextPath" startOffset="50%" text-anchor="middle" dominant-baseline="auto">
+                    CHATTERY (0.07)
+                </textPath>
+            </text>
+        </svg>

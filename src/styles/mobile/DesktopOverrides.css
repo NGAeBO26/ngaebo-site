@@ -10,12 +10,19 @@
   }
 
   /* SACRED PROTECTION: Standard unselected gallery list rows hide subtitles on desktop viewports */
-  .route-finder-card-vertical:not(.mobile-header-banner-takeover) .card-subtitle-banner-row {
+  .route-finder-card-vertical:not(.mobile-header-banner-takeover) .card-subtitle-banner-row:not(.card-proximity-row) {
     display: none !important;
   }
 
   /* Force the toggle chevron indicators to completely disappear on desktop screens */
-  .rg-accordion-indicator-arrow {
+  .rg-accordion-indicator-arrow,
+  .rg-mega-dropdown-tray .accordion-chevron,
+  .rg-mega-dropdown-tray .step-selected-summary {
     display: none !important;
+  }
+
+  /* 🎯 REGRESSION FIREWALL: UN-COLLAPSE ALL QUIZ COLUMNS ON DESKTOP */
+  .rg-mega-dropdown-tray .rg-quiz-column.is-collapsed .rg-quiz-cards-stack {
+    display: flex !important;
   }
 }

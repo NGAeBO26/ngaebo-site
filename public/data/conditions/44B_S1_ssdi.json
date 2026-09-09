@@ -1,7 +1,7 @@
 {
   "profile_id": "44B_S1",
   "route_id": "44B",
-  "ssdi_score": 12.4,
+  "ssdi_score": 10.3,
   "v3_terrain_score": 2.6,
   "v3_terrain_class": "Cruiser",
   "badge_type": "muddy",
@@ -17,8 +17,8 @@
     "value": 0.0
   },
   "environment": {
-    "current_temp": 84,
-    "saturation_index": 43.1,
+    "current_temp": 85,
+    "saturation_index": 29.7,
     "soil_status": "Saturated",
     "precip_24h": 0.12,
     "saturation_trend": "stable",

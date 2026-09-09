@@ -1,359 +1,359 @@
 {
-  "current_temp": 86,
-  "temp_avg": 80,
-  "precip_24h": 0.07,
-  "short": "Chance Showers And Thunderstorms",
-  "primary_condition": "Mostly Sunny",
-  "precip_prob": 13,
+  "current_temp": 82,
+  "temp_avg": 79,
+  "precip_24h": 0.13,
+  "short": "Mostly Sunny",
+  "primary_condition": "Partly Sunny",
+  "precip_prob": 7,
   "hourly_data": [
     {
       "number": 1,
-      "startTime": "2026-07-16T13:00:00-04:00",
-      "temperature": 86,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 13
-      },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Mostly Sunny",
-      "joy_score": 61.0
-    },
-    {
-      "number": 2,
-      "startTime": "2026-07-16T14:00:00-04:00",
-      "temperature": 85,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 33
-      },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Chance Showers And Thunderstorms",
-      "joy_score": 60.0
-    },
-    {
-      "number": 3,
-      "startTime": "2026-07-16T15:00:00-04:00",
-      "temperature": 85,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 40
-      },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Chance Showers And Thunderstorms",
-      "joy_score": 59.0
-    },
-    {
-      "number": 4,
-      "startTime": "2026-07-16T16:00:00-04:00",
-      "temperature": 84,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 40
-      },
-      "windSpeed": "5 mph",
-      "windDirection": "NW",
-      "shortForecast": "Chance Showers And Thunderstorms",
-      "joy_score": 58.5
-    },
-    {
-      "number": 5,
-      "startTime": "2026-07-16T17:00:00-04:00",
+      "startTime": "2026-07-22T13:00:00-04:00",
       "temperature": 82,
       "probabilityOfPrecipitation": {
         "unitCode": "wmoUnit:percent",
-        "value": 37
+        "value": 7
       },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Chance Showers And Thunderstorms",
-      "joy_score": 65.5
+      "windSpeed": "5 mph",
+      "windDirection": "SW",
+      "shortForecast": "Partly Sunny",
+      "joy_score": 67.5
+    },
+    {
+      "number": 2,
+      "startTime": "2026-07-22T14:00:00-04:00",
+      "temperature": 83,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 15
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SW",
+      "shortForecast": "Slight Chance Showers And Thunderstorms",
+      "joy_score": 64.2
+    },
+    {
+      "number": 3,
+      "startTime": "2026-07-22T15:00:00-04:00",
+      "temperature": 83,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 18
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SW",
+      "shortForecast": "Slight Chance Showers And Thunderstorms",
+      "joy_score": 63.8
+    },
+    {
+      "number": 4,
+      "startTime": "2026-07-22T16:00:00-04:00",
+      "temperature": 84,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 18
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SW",
+      "shortForecast": "Slight Chance Showers And Thunderstorms",
+      "joy_score": 61.8
+    },
+    {
+      "number": 5,
+      "startTime": "2026-07-22T17:00:00-04:00",
+      "temperature": 83,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 23
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SW",
+      "shortForecast": "Slight Chance Showers And Thunderstorms",
+      "joy_score": 63.0
     },
     {
       "number": 6,
-      "startTime": "2026-07-16T18:00:00-04:00",
-      "temperature": 81,
+      "startTime": "2026-07-22T18:00:00-04:00",
+      "temperature": 82,
       "probabilityOfPrecipitation": {
         "unitCode": "wmoUnit:percent",
         "value": 31
       },
-      "windSpeed": "0 mph",
-      "windDirection": "",
+      "windSpeed": "5 mph",
+      "windDirection": "SW",
       "shortForecast": "Chance Showers And Thunderstorms",
-      "joy_score": 68.3
+      "joy_score": 63.9
     },
     {
       "number": 7,
-      "startTime": "2026-07-16T19:00:00-04:00",
-      "temperature": 80,
+      "startTime": "2026-07-22T19:00:00-04:00",
+      "temperature": 81,
       "probabilityOfPrecipitation": {
         "unitCode": "wmoUnit:percent",
-        "value": 27
+        "value": 35
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SW",
+      "shortForecast": "Chance Showers And Thunderstorms",
+      "joy_score": 65.2
+    },
+    {
+      "number": 8,
+      "startTime": "2026-07-22T20:00:00-04:00",
+      "temperature": 78,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 48
       },
       "windSpeed": "0 mph",
       "windDirection": "",
       "shortForecast": "Chance Showers And Thunderstorms",
-      "joy_score": 71.0
-    },
-    {
-      "number": 8,
-      "startTime": "2026-07-16T20:00:00-04:00",
-      "temperature": 78,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 11
-      },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Partly Cloudy",
-      "joy_score": 77.3
+      "joy_score": 71.8
     },
     {
       "number": 9,
-      "startTime": "2026-07-16T21:00:00-04:00",
+      "startTime": "2026-07-22T21:00:00-04:00",
       "temperature": 76,
       "probabilityOfPrecipitation": {
         "unitCode": "wmoUnit:percent",
-        "value": 9
+        "value": 48
       },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Partly Cloudy",
-      "joy_score": 81.7
+      "windSpeed": "5 mph",
+      "windDirection": "SW",
+      "shortForecast": "Chance Showers And Thunderstorms",
+      "joy_score": 73.3
     },
     {
       "number": 10,
-      "startTime": "2026-07-16T22:00:00-04:00",
+      "startTime": "2026-07-22T22:00:00-04:00",
       "temperature": 74,
       "probabilityOfPrecipitation": {
         "unitCode": "wmoUnit:percent",
-        "value": 6
+        "value": 47
       },
       "windSpeed": "0 mph",
       "windDirection": "",
-      "shortForecast": "Mostly Clear",
-      "joy_score": 84.1
+      "shortForecast": "Chance Showers And Thunderstorms",
+      "joy_score": 78.0
     },
     {
       "number": 11,
-      "startTime": "2026-07-16T23:00:00-04:00",
+      "startTime": "2026-07-22T23:00:00-04:00",
       "temperature": 73,
       "probabilityOfPrecipitation": {
         "unitCode": "wmoUnit:percent",
-        "value": 4
+        "value": 48
       },
-      "windSpeed": "5 mph",
-      "windDirection": "NW",
-      "shortForecast": "Mostly Clear",
-      "joy_score": 81.9
+      "windSpeed": "0 mph",
+      "windDirection": "",
+      "shortForecast": "Chance Showers And Thunderstorms",
+      "joy_score": 77.8
     },
     {
       "number": 12,
-      "startTime": "2026-07-17T00:00:00-04:00",
-      "temperature": 72,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 3
-      },
-      "windSpeed": "5 mph",
-      "windDirection": "NW",
-      "shortForecast": "Mostly Clear",
-      "joy_score": 82.0
-    },
-    {
-      "number": 13,
-      "startTime": "2026-07-17T01:00:00-04:00",
-      "temperature": 72,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 3
-      },
-      "windSpeed": "5 mph",
-      "windDirection": "NW",
-      "shortForecast": "Mostly Clear",
-      "joy_score": 82.0
-    },
-    {
-      "number": 14,
-      "startTime": "2026-07-17T02:00:00-04:00",
-      "temperature": 71,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 2
-      },
-      "windSpeed": "5 mph",
-      "windDirection": "N",
-      "shortForecast": "Mostly Clear",
-      "joy_score": 82.2
-    },
-    {
-      "number": 15,
-      "startTime": "2026-07-17T03:00:00-04:00",
-      "temperature": 71,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 2
-      },
-      "windSpeed": "5 mph",
-      "windDirection": "N",
-      "shortForecast": "Mostly Clear",
-      "joy_score": 82.2
-    },
-    {
-      "number": 16,
-      "startTime": "2026-07-17T04:00:00-04:00",
-      "temperature": 71,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 2
-      },
-      "windSpeed": "5 mph",
-      "windDirection": "N",
-      "shortForecast": "Mostly Clear",
-      "joy_score": 82.2
-    },
-    {
-      "number": 17,
-      "startTime": "2026-07-17T05:00:00-04:00",
-      "temperature": 70,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 2
-      },
-      "windSpeed": "5 mph",
-      "windDirection": "N",
-      "shortForecast": "Mostly Clear",
-      "joy_score": 82.2
-    },
-    {
-      "number": 18,
-      "startTime": "2026-07-17T06:00:00-04:00",
-      "temperature": 70,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 2
-      },
-      "windSpeed": "5 mph",
-      "windDirection": "N",
-      "shortForecast": "Sunny",
-      "joy_score": 82.2
-    },
-    {
-      "number": 19,
-      "startTime": "2026-07-17T07:00:00-04:00",
-      "temperature": 70,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 2
-      },
-      "windSpeed": "5 mph",
-      "windDirection": "N",
-      "shortForecast": "Sunny",
-      "joy_score": 82.2
-    },
-    {
-      "number": 20,
-      "startTime": "2026-07-17T08:00:00-04:00",
-      "temperature": 71,
-      "probabilityOfPrecipitation": {
-        "unitCode": "wmoUnit:percent",
-        "value": 2
-      },
-      "windSpeed": "5 mph",
-      "windDirection": "N",
-      "shortForecast": "Sunny",
-      "joy_score": 82.2
-    },
-    {
-      "number": 21,
-      "startTime": "2026-07-17T09:00:00-04:00",
+      "startTime": "2026-07-23T00:00:00-04:00",
       "temperature": 73,
       "probabilityOfPrecipitation": {
         "unitCode": "wmoUnit:percent",
-        "value": 3
+        "value": 54
+      },
+      "windSpeed": "0 mph",
+      "windDirection": "",
+      "shortForecast": "Chance Showers And Thunderstorms",
+      "joy_score": 76.9
+    },
+    {
+      "number": 13,
+      "startTime": "2026-07-23T01:00:00-04:00",
+      "temperature": 73,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 68
       },
       "windSpeed": "5 mph",
-      "windDirection": "N",
-      "shortForecast": "Sunny",
-      "joy_score": 82.0
+      "windDirection": "SW",
+      "shortForecast": "Showers And Thunderstorms Likely",
+      "joy_score": 72.3
+    },
+    {
+      "number": 14,
+      "startTime": "2026-07-23T02:00:00-04:00",
+      "temperature": 72,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 47
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "SW",
+      "shortForecast": "Chance Showers And Thunderstorms",
+      "joy_score": 75.5
+    },
+    {
+      "number": 15,
+      "startTime": "2026-07-23T03:00:00-04:00",
+      "temperature": 72,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 42
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "W",
+      "shortForecast": "Chance Showers And Thunderstorms",
+      "joy_score": 76.2
+    },
+    {
+      "number": 16,
+      "startTime": "2026-07-23T04:00:00-04:00",
+      "temperature": 72,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 37
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "W",
+      "shortForecast": "Chance Showers And Thunderstorms",
+      "joy_score": 77.0
+    },
+    {
+      "number": 17,
+      "startTime": "2026-07-23T05:00:00-04:00",
+      "temperature": 71,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 35
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "W",
+      "shortForecast": "Chance Showers And Thunderstorms",
+      "joy_score": 77.2
+    },
+    {
+      "number": 18,
+      "startTime": "2026-07-23T06:00:00-04:00",
+      "temperature": 71,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 32
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "W",
+      "shortForecast": "Chance Showers And Thunderstorms",
+      "joy_score": 77.7
+    },
+    {
+      "number": 19,
+      "startTime": "2026-07-23T07:00:00-04:00",
+      "temperature": 70,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 32
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "W",
+      "shortForecast": "Chance Showers And Thunderstorms",
+      "joy_score": 77.7
+    },
+    {
+      "number": 20,
+      "startTime": "2026-07-23T08:00:00-04:00",
+      "temperature": 70,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 45
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "W",
+      "shortForecast": "Chance Showers And Thunderstorms",
+      "joy_score": 75.8
+    },
+    {
+      "number": 21,
+      "startTime": "2026-07-23T09:00:00-04:00",
+      "temperature": 71,
+      "probabilityOfPrecipitation": {
+        "unitCode": "wmoUnit:percent",
+        "value": 45
+      },
+      "windSpeed": "5 mph",
+      "windDirection": "W",
+      "shortForecast": "Chance Showers And Thunderstorms",
+      "joy_score": 75.8
     },
     {
       "number": 22,
-      "startTime": "2026-07-17T10:00:00-04:00",
-      "temperature": 80,
+      "startTime": "2026-07-23T10:00:00-04:00",
+      "temperature": 74,
       "probabilityOfPrecipitation": {
         "unitCode": "wmoUnit:percent",
-        "value": 6
+        "value": 44
       },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Sunny",
-      "joy_score": 74.1
+      "windSpeed": "5 mph",
+      "windDirection": "W",
+      "shortForecast": "Chance Showers And Thunderstorms",
+      "joy_score": 75.9
     },
     {
       "number": 23,
-      "startTime": "2026-07-17T11:00:00-04:00",
-      "temperature": 83,
+      "startTime": "2026-07-23T11:00:00-04:00",
+      "temperature": 75,
       "probabilityOfPrecipitation": {
         "unitCode": "wmoUnit:percent",
-        "value": 8
+        "value": 48
       },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Sunny",
-      "joy_score": 67.8
+      "windSpeed": "5 mph",
+      "windDirection": "SW",
+      "shortForecast": "Chance Showers And Thunderstorms",
+      "joy_score": 75.3
     },
     {
       "number": 24,
-      "startTime": "2026-07-17T12:00:00-04:00",
-      "temperature": 85,
+      "startTime": "2026-07-23T12:00:00-04:00",
+      "temperature": 77,
       "probabilityOfPrecipitation": {
         "unitCode": "wmoUnit:percent",
-        "value": 13
+        "value": 51
       },
-      "windSpeed": "0 mph",
-      "windDirection": "",
-      "shortForecast": "Mostly Sunny",
-      "joy_score": 63.0
+      "windSpeed": "5 mph",
+      "windDirection": "SW",
+      "shortForecast": "Chance Showers And Thunderstorms",
+      "joy_score": 70.8
     }
   ],
   "metadata": {
     "profile_id": "141A_S1",
     "lat": 34.6301,
     "lon": -84.1125,
-    "generated_at": "2026-07-16T13:04:58.372006",
-    "saturation_index": 26.9,
-    "precip_24h_total": 0.17,
+    "generated_at": "2026-07-22T13:47:23.977034",
+    "saturation_index": 18.6,
+    "precip_24h_total": 0.02,
     "soil_status": "Saturated",
-    "prime_joy_score": 84.1,
+    "prime_joy_score": 78.0,
     "prime_window_start": 8,
     "prime_window_end": 11,
-    "ssdi": 10.3
+    "ssdi": 12.4
   },
   "live_wh": 14.78,
   "energy_penalty_pct": 20.0,
   "three_day_forecast": [
     {
-      "date": "2026-07-16",
-      "temp_max": 86,
+      "date": "2026-07-22",
+      "temp_max": 84,
       "temp_min": 73,
-      "precip_prob": 40,
+      "precip_prob": 48,
       "condition": "Chance Showers And Thunderstorms"
     },
     {
-      "date": "2026-07-17",
-      "temp_max": 87,
+      "date": "2026-07-23",
+      "temp_max": 80,
       "temp_min": 70,
-      "precip_prob": 64,
-      "condition": "Sunny"
+      "precip_prob": 81,
+      "condition": "Chance Showers And Thunderstorms"
     },
     {
-      "date": "2026-07-18",
-      "temp_max": 85,
-      "temp_min": 69,
-      "precip_prob": 61,
+      "date": "2026-07-24",
+      "temp_max": 79,
+      "temp_min": 67,
+      "precip_prob": 87,
       "condition": "Showers And Thunderstorms Likely"
     }
   ]

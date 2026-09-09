@@ -1,37 +1,39 @@
 {
-  "profile_id": "288A_S1",
-  "route_id": "288A",
-  "ssdi_score": 4.9,
-  "v3_terrain_score": 4.6,
-  "v3_terrain_class": "Strenuous",
-  "badge_type": "wet",
-  "condition": "WET PAVEMENT",
-  "style_color": "#e66e00",
-  "access": {
-    "label": "OPEN",
-    "vibe_context": "RESTRICTED EXPLORER",
-    "status_code": "OPEN"
-  },
-  "ruggedness": {
-    "class": "Smooth",
-    "value": 0.21
-  },
-  "environment": {
-    "current_temp": 80,
-    "saturation_index": 16.2,
-    "soil_status": "Saturated",
-    "precip_24h": 0.0,
-    "saturation_trend": "stable",
-    "alerts": []
-  },
-  "physics": {
-    "live_traction": 0.74,
-    "live_wh_per_km": 11.37,
-    "energy_penalty_pct": 1.5,
-    "v3_base_intensity": 4.5
-  },
-  "connectivity": {
-    "signal_class": "Unknown",
-    "deadzone_max_meters": 0
-  }
+    "profile_id": "288A_S1",
+    "route_id": "288A",
+    "ssdi_score": 8.6,
+    "v3_terrain_score": 4.5,
+    "v3_terrain_class": "Strenuous",
+    "badge_type": "wet",
+    "condition": "WET PAVEMENT",
+    "style_color": "#e66e00",
+    "access": {
+        "label": "OPEN",
+        "vibe_context": "RESTRICTED EXPLORER",
+        "status_code": "OPEN"
+    },
+    "ruggedness": {
+        "class": "Smooth",
+        "value": 0.21
+    },
+    "environment": {
+        "current_temp": 85,
+        "saturation_index": 20.5,
+        "soil_status": "Saturated",
+        "precip_24h": 0.03,
+        "saturation_trend": "stable",
+        "alerts": [
+            "SAFETY ALERT: Cell Service is UNRELIABLE."
+        ]
+    },
+    "physics": {
+        "live_traction": 0.8,
+        "live_wh_per_km": 11.18,
+        "energy_penalty_pct": 1.5,
+        "v3_base_intensity": 4.5
+    },
+    "connectivity": {
+        "signal_class": "Unreliable",
+        "deadzone_max_meters": 1063
+    }
 }

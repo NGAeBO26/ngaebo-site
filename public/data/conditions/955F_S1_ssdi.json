@@ -1,7 +1,7 @@
 {
   "profile_id": "955F_S1",
   "route_id": "955F",
-  "ssdi_score": 12.4,
+  "ssdi_score": 10.3,
   "v3_terrain_score": 6.2,
   "v3_terrain_class": "Strenuous",
   "badge_type": "muddy",
@@ -17,8 +17,8 @@
     "value": 0.19
   },
   "environment": {
-    "current_temp": 71,
-    "saturation_index": 32.1,
+    "current_temp": 87,
+    "saturation_index": 13.1,
     "soil_status": "Saturated",
     "precip_24h": 0.09,
     "saturation_trend": "stable",

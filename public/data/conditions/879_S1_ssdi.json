@@ -1,8 +1,8 @@
 {
   "profile_id": "879_S1",
   "route_id": "879",
-  "ssdi_score": 14.1,
-  "v3_terrain_score": 8.1,
+  "ssdi_score": 14.4,
+  "v3_terrain_score": 8.0,
   "v3_terrain_class": "Epic",
   "badge_type": "muddy",
   "condition": "MUDDY / SOFT",
@@ -17,21 +17,21 @@
     "value": 0.29
   },
   "environment": {
-    "current_temp": 70,
-    "saturation_index": 28.9,
+    "current_temp": 82,
+    "saturation_index": 18.6,
     "soil_status": "Saturated",
-    "precip_24h": 0.01,
+    "precip_24h": 0.02,
     "saturation_trend": "stable",
     "alerts": []
   },
   "physics": {
-    "live_traction": 0.41,
-    "live_wh_per_km": 19.93,
+    "live_traction": 0.39,
+    "live_wh_per_km": 20.87,
     "energy_penalty_pct": 20.0,
-    "v3_base_intensity": 7.8
+    "v3_base_intensity": 8.1
   },
   "connectivity": {
-    "signal_class": "Unknown",
+    "signal_class": "Weak/Stable",
     "deadzone_max_meters": 0
   }
 }

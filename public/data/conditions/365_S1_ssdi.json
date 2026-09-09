@@ -2,7 +2,7 @@
   "profile_id": "365_S1",
   "route_id": "365",
   "ssdi_score": 8.9,
-  "v3_terrain_score": 5.5,
+  "v3_terrain_score": 5.3,
   "v3_terrain_class": "Strenuous",
   "badge_type": "wet",
   "condition": "WET / SLICK",
@@ -17,12 +17,14 @@
     "value": 0.29
   },
   "environment": {
-    "current_temp": 84,
-    "saturation_index": 26.8,
+    "current_temp": 71,
+    "saturation_index": 23.0,
     "soil_status": "Saturated",
-    "precip_24h": 0.0,
+    "precip_24h": 0.03,
     "saturation_trend": "stable",
-    "alerts": []
+    "alerts": [
+      "SAFETY ALERT: Cell Service is UNAVAILABLE."
+    ]
   },
   "physics": {
     "live_traction": 0.62,
@@ -31,7 +33,7 @@
     "v3_base_intensity": 5.4
   },
   "connectivity": {
-    "signal_class": "Unknown",
-    "deadzone_max_meters": 0
+    "signal_class": "Unavailable",
+    "deadzone_max_meters": 423
   }
 }

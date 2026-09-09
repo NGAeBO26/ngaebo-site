@@ -44,10 +44,10 @@
         }
     ],
     "rescue_anchor": {
-        "name": "Lumpkin County Fire Department",
+        "name": "Dawson County Emergency Services",
         "type": "Fire-EMS",
-        "address": "57 Pinetree Way, Dahlonega, GA 30533, USA",
-        "phone": "(706) 864-3030",
-        "dist_mi": 15.6
+        "address": "393 Memory Ln, Dawsonville, GA 30534, USA",
+        "phone": "(706) 344-3666",
+        "dist_mi": 13.4
     }
 }

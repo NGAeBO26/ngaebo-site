@@ -1,7 +1,7 @@
 {
     "profile_id": "642_S1",
     "route_id": "642",
-    "ssdi_score": 9.8,
+    "ssdi_score": 6.9,
     "v3_terrain_score": 1.0,
     "v3_terrain_class": "Cruiser",
     "badge_type": "wet",
@@ -17,21 +17,23 @@
         "value": 0.0
     },
     "environment": {
-        "current_temp": 69,
-        "saturation_index": 43.92,
+        "current_temp": 84,
+        "saturation_index": 29.3,
         "soil_status": "Saturated",
         "precip_24h": 0.03,
         "saturation_trend": "stable",
-        "alerts": []
+        "alerts": [
+            "SAFETY ALERT: Cell Service is UNAVAILABLE."
+        ]
     },
     "physics": {
-        "live_traction": 0.73,
-        "live_wh_per_km": 8.47,
-        "energy_penalty_pct": 1.6,
+        "live_traction": 0.78,
+        "live_wh_per_km": 14.52,
+        "energy_penalty_pct": 1.5,
         "v3_base_intensity": 1.0
     },
     "connectivity": {
-        "signal_class": "Unknown",
-        "deadzone_max_meters": 0
+        "signal_class": "Unavailable",
+        "deadzone_max_meters": 447
     }
 }

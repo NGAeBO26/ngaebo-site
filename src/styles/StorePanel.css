@@ -68,7 +68,7 @@
   height: 100% !important;
   background-color: var(--brand-bone) !important;
   border: none !important;
-  border-right: 2px solid var(--brand-sky) !important;
+  border-right: 2px solid var(--brand-deep-blue) !important;
   border-radius: 0px !important;
   padding: 16px !important;
   box-sizing: border-box !important;
@@ -80,13 +80,13 @@
 .rg-checkout-hub-card .drawer-header-title {
   padding: 16px 12px !important;
   border-bottom: 1px solid var(--brand-charcoal) !important;
-  background-color: var(--brand-sky) !important;
+  background-color: var(--brand-deep-blue) !important;
   text-align: center !important;
   z-index: 12 !important;
   margin: -16px -16px 0 -16px !important;
   width: auto !important;
   flex-shrink: 0 !important;
-  border-radius: 0 0 8px 8px;
+  /* border-radius: 0 0 8px 8px; */
 }
 
 .rg-checkout-hub-card .drawer-header-title h2 {
@@ -99,7 +99,7 @@
 }
 
 .rg-unified-top-profile-deck {
-  background-color: var(--brand-sky) !important;
+  background-color: var(--brand-deep-blue) !important;
   padding: 12px 14px !important;
   margin: 0 -16px 0 -16px !important;
   display: flex !important;
@@ -107,13 +107,15 @@
   gap: 6px !important;
   border-bottom: 1px solid var(--brand-gray) !important;
   flex-shrink: 0 !important;
-  border-radius: 8px;
+  border-radius: 0 0 8px 0;
+  height: 120px;
 }
 
 .rg-profile-identity-row {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
+  padding: 0 0 6px 0 !important;
 }
 
 .rg-profile-username-tag {
@@ -313,10 +315,11 @@
 }
 
 .rg-cart-empty-placeholder span {
-  font-size: 9.5px !important;  
-  font-weight: 500;
+  font-size: 16px !important;  
+  font-weight: 800;
   line-height: 1.4 !important;
   font-family: "Montserrat", sans-serif !important;
+  color: var(--brand-amber) !important;
 }
 
 .rg-cart-row-item {
@@ -413,7 +416,9 @@
 
 .rg-checkout-hub-card .rg-premium-buy-btn.mod-ready,
 .rg-checkout-hub-card .rg-premium-buy-btn.mod-checkout {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
   background-color: var(--brand-amber) !important;
+  box-shadow: 0 0 18px rgba(245, 158, 11, 0.8), 0 0 6px rgba(255, 255, 255, 0.6) !important;
   cursor: pointer !important;
 }
 

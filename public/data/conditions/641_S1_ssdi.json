@@ -1,37 +1,37 @@
 {
-    "profile_id": "641_S1",
-    "route_id": "641",
-    "ssdi_score": 8.9,
-    "v3_terrain_score": 2.8,
-    "v3_terrain_class": "Cruiser",
-    "badge_type": "wet",
-    "condition": "WET PAVEMENT",
-    "style_color": "#e66e00",
-    "access": {
-        "label": "OPEN",
-        "vibe_context": "PAVED ACCESS",
-        "status_code": "OPEN"
-    },
-    "ruggedness": {
-        "class": "Smooth",
-        "value": 0.18
-    },
-    "environment": {
-        "current_temp": 75,
-        "saturation_index": 30.55,
-        "soil_status": "Saturated",
-        "precip_24h": 0.03,
-        "saturation_trend": "stable",
-        "alerts": []
-    },
-    "physics": {
-        "live_traction": 0.77,
-        "live_wh_per_km": 8.61,
-        "energy_penalty_pct": 1.5,
-        "v3_base_intensity": 2.8
-    },
-    "connectivity": {
-        "signal_class": "Unknown",
-        "deadzone_max_meters": 0
-    }
+  "profile_id": "641_S1",
+  "route_id": "641",
+  "ssdi_score": 3.4,
+  "v3_terrain_score": 2.8,
+  "v3_terrain_class": "Cruiser",
+  "badge_type": "wet",
+  "condition": "WET PAVEMENT",
+  "style_color": "#e66e00",
+  "access": {
+    "label": "OPEN",
+    "vibe_context": "PAVED ACCESS",
+    "status_code": "OPEN"
+  },
+  "ruggedness": {
+    "class": "Smooth",
+    "value": 0.18
+  },
+  "environment": {
+    "current_temp": 79,
+    "saturation_index": 26.5,
+    "soil_status": "Saturated",
+    "precip_24h": 0.03,
+    "saturation_trend": "stable",
+    "alerts": []
+  },
+  "physics": {
+    "live_traction": 0.8,
+    "live_wh_per_km": 8.49,
+    "energy_penalty_pct": 1.6,
+    "v3_base_intensity": 2.7
+  },
+  "connectivity": {
+    "signal_class": "Unknown",
+    "deadzone_max_meters": 0
+  }
 }
